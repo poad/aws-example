@@ -17,6 +17,9 @@ Parameters:
     Type: String
   PipelineName:
     Type: String
+  DockerImageName:
+    Type: String
+    Default: hello-world
 
 Resources:
   CodeBuildRole:
@@ -64,7 +67,11 @@ Resources:
                   - ecr:UploadLayerPart
                 Effect: Allow
                 Resource: '*'
-                
+  
+  ECRRepogitory:
+    Type: "AWS::ECR::Repository"
+    Properties:
+      RepositoryName: !Ref DockerImageName
 
   CodeBuildProject:
     Type: "AWS::CodeBuild::Project"
@@ -76,6 +83,19 @@ Resources:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL 
         Image: 'aws/codebuild/docker:17.09.0'
+        EnvironmentVariables:
+          -
+            Name: AWS_DEFAULT_REGION
+            Value: !Ref 'AWS::Region'
+          -
+            Name: AWS_ACCOUNT_ID
+            Value: !Ref 'AWS::AccountId'
+          -
+            Name: IMAGE_REPO_NAME
+            Value: !Ref DockerImageName
+          -
+            Name: IMAGE_TAG
+            Value: latest
       ServiceRole: !GetAtt CodeBuildRole.Arn
       Source:
         Type: CODEPIPELINE

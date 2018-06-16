@@ -5,7 +5,7 @@ Resources:
   CodePipelineBucket:
     Type: AWS::S3::Bucket
     Properties:
-      AccessControl: BucketOwnerFullControl
+      AccessControl: Private
       BucketName: !Join [ "-", [ codepipeline, !Ref 'AWS::Region', !Ref 'AWS::AccountId' ] ]
     DeletionPolicy: Delete
 

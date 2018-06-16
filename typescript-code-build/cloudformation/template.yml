@@ -11,7 +11,7 @@ Resources:
     Properties:
       FunctionName: !Ref FunctionName
       Handler: main.handler
-      Runtime: nodejs6.10
+      Runtime: nodejs8.10
       CodeUri: ../app/src
       AutoPublishAlias: test
     

@@ -15,15 +15,11 @@ Parameters:
   OAuthToken:
     NoEcho: true
     Type: String
-  LambdaStackName:
-    Type: String
-  LambdaFunctionName:
-    Type: String
   PipelineName:
     Type: String
 
 Resources:
-  LambdaCodeBuildRole:
+  CodeBuildRole:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
@@ -52,33 +48,40 @@ Resources:
                 Resource: '*'
               - 
                 Action:
-                  - lambda:UpdateFunctionCode
-                Effect: Allow
-                Resource: !Join [ ":", [ 'arn:aws:lambda', !Ref 'AWS::Region', !Ref 'AWS::AccountId', 'function', '*' ] ]
-              - 
-                Action:
                   - logs:CreateLogGroup
                   - logs:CreateLogStream
                   - logs:PutLogEvents
                 Effect: Allow
                 Resource: arn:aws:logs:*:*:*
+              -
+                Action:
+                  - ecr:CreateRepository
+                  - ecr:BatchCheckLayerAvailability
+                  - ecr:CompleteLayerUpload
+                  - ecr:GetAuthorizationToken
+                  - ecr:InitiateLayerUpload
+                  - ecr:PutImage
+                  - ecr:UploadLayerPart
+                Effect: Allow
+                Resource: '*'
                 
 
-  LambdaCodeBuildProject:
+  CodeBuildProject:
     Type: "AWS::CodeBuild::Project"
     Properties: 
-      Name: !Join [ "-", [ lambda, !Ref 'AWS::AccountId' ] ]
+      Name: !Join [ "-", [ docker, build, !Ref 'AWS::AccountId' ] ]
       Artifacts:
         Type: CODEPIPELINE
       Environment:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL 
-        Image: 'aws/codebuild/eb-nodejs-6.10.0-amazonlinux-64:4.0.0'
-      ServiceRole: !GetAtt LambdaCodeBuildRole.Arn
+        Image: 'aws/codebuild/docker:17.09.0'
+      ServiceRole: !GetAtt CodeBuildRole.Arn
       Source:
         Type: CODEPIPELINE
+        BuildSpec: docker-build/buildspec.yml
 
-  LambdaCodePipelineRole:
+  CodePipelineRole:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
@@ -195,18 +198,8 @@ Resources:
                   - s3:GetBucketLocation
                 Effect: Allow
                 Resource: '*'
-              -
-                Action:
-                  - lambda:*
-                Effect: Allow
-                Resource: !Join [ ":", [ 'arn:aws:lambda', !Ref 'AWS::Region', !Ref 'AWS::AccountId', 'function', '*' ] ]
-              -
-                Action:
-                  - lambda:*
-                Effect: Allow
-                Resource: '*'
 
-  LambdaBuildCodePipeline:
+  DockerBuildCodePipeline:
     Type: "AWS::CodePipeline::Pipeline"
     Properties:
       Name: !Ref PipelineName
@@ -214,7 +207,7 @@ Resources:
         Location: !Ref CodePipelineBucket
         Type: S3
       RestartExecutionOnUpdate: false
-      RoleArn: !GetAtt LambdaCodePipelineRole.Arn
+      RoleArn: !GetAtt CodePipelineRole.Arn
       Stages:
         -
           Name: Source
@@ -228,7 +221,7 @@ Resources:
                 Version: 1
               InputArtifacts: []
               OutputArtifacts:
-                - Name: LambdaSource
+                - Name: DockerSource
               Configuration:
                 Owner: !Ref Owner
                 Repo: !Ref Repo
@@ -246,57 +239,9 @@ Resources:
                 Provider: CodeBuild
                 Version: 1
               InputArtifacts:
-                - Name: LambdaSource
-              OutputArtifacts:
-                - Name: BuildResult
+                - Name: DockerSource
               Configuration:
-                ProjectName: !Ref LambdaCodeBuildProject
+                ProjectName: !Ref CodeBuildProject
               RunOrder: 1
-        -
-          Name: Deploy
-          Actions:
-            - 
-              Name: CreateChangeSet
-              ActionTypeId:
-                Category: Deploy
-                Owner: AWS
-                Provider: CloudFormation
-                Version: 1
-              InputArtifacts:
-                - Name: BuildResult
-              OutputArtifacts:
-                - Name: LambdaStackResult
-              Configuration:
-                ActionMode: CHANGE_SET_REPLACE
-                ChangeSetName: lambda-change-set
-                StackName: !Ref LambdaStackName
-                RoleArn: !GetAtt CloudFormationRole.Arn
-                TemplatePath: "BuildResult::package-template.yml"
-                Capabilities: CAPABILITY_IAM
-                OutputFileName: CreateChangeSetOutput.json
-                ParameterOverrides: !Sub |
-                    {
-                      "FunctionName": "${LambdaFunctionName}"
-                    }
-              RunOrder: 1
-            - 
-              Name: ApplyChangeSet
-              ActionTypeId:
-                Category: Deploy
-                Owner: AWS
-                Provider: CloudFormation
-                Version: 1
-              InputArtifacts:
-                - Name: BuildResult
-              OutputArtifacts:
-                - Name: LambdaStackResult2
-              Configuration:
-                ActionMode: CHANGE_SET_EXECUTE
-                ChangeSetName: lambda-change-set
-                StackName: !Ref LambdaStackName
-                RoleArn: !GetAtt CloudFormationRole.Arn
-                Capabilities: CAPABILITY_IAM
-                OutputFileName: CreateChangeSetOutput2.json
-              RunOrder: 2
 
 

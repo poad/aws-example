@@ -1,0 +1,15 @@
+version: 0.2
+
+# env:
+
+phases:
+  build: 
+    commands:
+      - cd codebuild-custom-image/apps
+      - mvn clean install package
+
+artifacts:
+  type: zip
+  files:
+    - codebuild-custom-image/apps/target/aws-codebuild-custom-image-example-0.1-SNAPSHOT
+  discard-paths: yes

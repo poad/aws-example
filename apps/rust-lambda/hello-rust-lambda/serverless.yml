@@ -1,0 +1,21 @@
+service: demo
+provider:
+  name: aws
+  runtime: rust
+plugins:
+  # this adds informs serverless to use
+  # the serverless-rust plugin
+  - serverless-rust
+# creates one artifact for each function
+package:
+  individually: true
+functions:
+  test:
+    # handler value syntax is `{cargo-package-name}.{bin-name}`
+    # or `{cargo-package-name}` for short when you are building a
+    # default bin for a given package.
+    handler: hello-rust-lambda.bootstrap
+    # events:
+    #   - http:
+    #       path: /test
+    #       method: GET

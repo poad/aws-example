@@ -1,0 +1,37 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - apt-get update -qq
+      - apt-get full-upgrade -qqy
+      - apt-get install -qqy --no-install-recommends python3-pip python3-setuptools unzip
+      - pip3 install -U pip
+      - pip install -U awscli
+      - apt-get install -qqy --no-install-recommends apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+      - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+      - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+      - apt-get update -qq
+      - apt-get install -qqy --no-install-recommends docker-ce docker-ce-cli containerd.io
+      - nohup /usr/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2&
+      - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
+
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+
+  build: 
+    commands:
+      - echo Build started on `date`
+      - cd ${CODEBUILD_SRC_DIR_AppSource}
+      - docker build --rm -f docker/Dockerfile -t docker-java-mecab:latest .
+      - ./gradlew jibDockerBuild
+      - echo Building the Docker image...
+      - docker tag mecab-java-api-server:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest

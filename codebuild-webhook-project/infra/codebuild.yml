@@ -1,5 +1,14 @@
 AWSTemplateFormatVersion: 2010-09-09
 
+Parameters:
+  JavaMinorRevision:
+    Type: String
+    Default: "0.5"
+  JdkEsum:
+    Type: String
+    Default: "5a4d45f951fd329d42abd77ef9c00b8d9e315ea3"
+
+
 Resources:
   CodeBuildRole:
     Type: AWS::IAM::Role
@@ -65,6 +74,9 @@ Resources:
           -
             Name: IMAGE_TAG
             Value: latest
+          -
+            Name: DOCKER_VERSION
+            Value: 19.03.1
       ServiceRole: !GetAtt CodeBuildRole.Arn
       Source:
         Type: GITHUB
@@ -79,15 +91,26 @@ Resources:
                 runtime-versions:
                   docker: 18
                   python: 3.8
-                  java: openjdk11
-                commands:
-                  - apt update -qq
-                  - apt install -qqy --no-install-recommends tree
+                commands: !Sub
+                  - |
+                    CUR=$(pwd) && \
+                    curl -Lso /tmp/openjdk.tar.gz https://download.bell-sw.com/java/11.${JavaMinorRevision}/bellsoft-jdk11.${JavaMinorRevision}-linux-amd64.tar.gz && \
+                    sha1sum /tmp/openjdk.tar.gz && \
+                    mkdir -p /usr/lib/jvm/java-11.${JavaMinorRevision}-openjdk-amd64 && \
+                    cd /usr/lib/jvm/java-11.${JavaMinorRevision}-openjdk-amd64 && \
+                    echo "${JdkEsum}  /tmp/openjdk.tar.gz" | sha1sum -c - && \
+                    tar -xf /tmp/openjdk.tar.gz && \
+                    mv /usr/lib/jvm/java-11.${JavaMinorRevision}-openjdk-amd64/jdk-11.${JavaMinorRevision}/* /usr/lib/jvm/java-11.${JavaMinorRevision}-openjdk-amd64 && \
+                    for tool_path in /usr/lib/jvm/java-11.${JavaMinorRevision}-openjdk-amd64/bin/*; do \
+                      tool=`basename $tool_path` && \
+                      update-alternatives --install /usr/bin/$tool $tool $tool_path 10000 && \
+                      update-alternatives --set $tool $tool_path; \
+                    done
               build:
                 commands:
+                  - cd $CUR
                   - cd codebuild-webhook-project
                   - ./gradlew clean test
-                  - tree
             reports:
               SurefireReports:
                 files:

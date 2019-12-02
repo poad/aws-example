@@ -14,26 +14,29 @@ plugins {
     id 'application'
 }
 
-repositories {
-    // Use jcenter for resolving dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-    jcenter()
+subprojects {
+    apply plugin: 'java'
+    
+    repositories {
+        // Use jcenter for resolving dependencies.
+        // You can declare any Maven/Ivy/file repository here.
+        jcenter()
+    }
+
+    dependencies {
+        // https://mvnrepository.com/artifact/org.junit/junit-bom
+        testImplementation platform('org.junit:junit-bom:5.5.2')
+
+        // This dependency is used by the application.
+        implementation 'com.google.guava:guava:28.0-jre'
+
+        // Use JUnit Jupiter API for testing.
+        testImplementation 'org.junit.jupiter:junit-jupiter-api'
+
+        // Use JUnit Jupiter Engine for testing.
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    }
 }
-
-dependencies {
-    // https://mvnrepository.com/artifact/org.junit/junit-bom
-    testImplementation platform('org.junit:junit-bom:5.5.2')
-
-    // This dependency is used by the application.
-    implementation 'com.google.guava:guava:28.0-jre'
-
-    // Use JUnit Jupiter API for testing.
-    testImplementation 'org.junit.jupiter:junit-jupiter-api'
-
-    // Use JUnit Jupiter Engine for testing.
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-}
-
 application {
     // Define the main class for the application.
     mainClassName = 'com.github.poad.codebuild.webhook.App'

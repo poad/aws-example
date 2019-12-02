@@ -80,15 +80,19 @@ Resources:
                   docker: 18
                   python: 3.8
                   java: openjdk11
+                commands:
+                  - apt update -qq
+                  - apt install -qqy --no-install-recommends tree
               build:
                 commands:
                   - cd codebuild-webhook-project
-                  - ./gradlew test
+                  - ./gradlew clean test
+                  - tree
             reports:
-              arn:aws:codebuild:${AWS::Region}:${AWS::AccountId}:report-group/webhook-reportgroup:
+              SurefireReports:
                 files:
                   - "**/*"
-                base-directory: 'app/build/test-results'
+                base-directory: 'codebuild-webhook-project/app/build/test-results'
                 discard-paths: no
                 file-format: JunitXml
             cache:

@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      docker: 18
+
+    commands:
+      - apt-get -qq update
+      - apt-get -qqy install --no-install-recommends curl jq
+
+  build: 
+    commands:
+      - mkdir -p work
+      - cd work
+      - |
+        USER=$(curl -H "Authorization: token ${TOKEN}" https://api.github.com/user)
+      - USER_ID=$(echo ${USER} | jq ".login")
+      - EMAIL=$(echo ${USER} | jq ".email")
+      - git config --global user.email "${EMAIL}"
+      - git config --global user.name "${USER_ID}"
+      - git clone https://${OWNER}:${TOKEN}@github.com/${OWNER}/${REPO}.git --branch ${BRANCH}
+      - cd ${REPO}
+      - TAG=$(date +%Y%m%d.%H%M%S)
+      - git tag ${TAG}
+      - git push origin ${TAG}

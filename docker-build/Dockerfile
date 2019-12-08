@@ -1,9 +1,8 @@
-FROM poad/docker-useful-webtool
+FROM alpine:3
 
 RUN apk update && \
     apk upgrade && \
     rm -rf /var/cache/apk/*
 
-EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["echo", "Hello!", "World!"]

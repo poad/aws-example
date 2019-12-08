@@ -224,7 +224,7 @@ Resources:
     Properties:
       Name: !Ref PipelineName
       ArtifactStore: 
-        Location: !Ref CodePipelineBucket
+        Location: !Sub 'codepipeline-artifact-store-${AWS::Region}-${AWS::AccountId}'
         Type: S3
       RestartExecutionOnUpdate: false
       RoleArn: !GetAtt CodePipelineRole.Arn

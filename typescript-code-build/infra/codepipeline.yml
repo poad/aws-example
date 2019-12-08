@@ -56,13 +56,13 @@ Resources:
                   - logs:CreateLogStream
                   - logs:PutLogEvents
                 Effect: Allow
-                Resource: arn:aws:logs:*:*:*
+                Resource: !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:*'
                 
 
   LambdaCodeBuildProject:
     Type: "AWS::CodeBuild::Project"
     Properties: 
-      Name: !Sub 'lambda-${AWS::AccountId}'
+      Name: !Sub '${LambdaFunctionName}-${AWS::AccountId}'
       Artifacts:
         Type: CODEPIPELINE
       Environment:

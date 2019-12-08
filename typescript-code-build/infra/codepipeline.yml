@@ -49,7 +49,7 @@ Resources:
                 Action:
                   - lambda:UpdateFunctionCode
                 Effect: Allow
-                Resource: !Join [ ":", [ 'arn:aws:lambda', !Ref 'AWS::Region', !Ref 'AWS::AccountId', 'function', '*' ] ]
+                Resource: !Sub 'arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:*'
               - 
                 Action:
                   - logs:CreateLogGroup
@@ -62,13 +62,17 @@ Resources:
   LambdaCodeBuildProject:
     Type: "AWS::CodeBuild::Project"
     Properties: 
-      Name: !Join [ "-", [ lambda, !Ref 'AWS::AccountId' ] ]
+      Name: !Sub 'lambda-${AWS::AccountId}'
       Artifacts:
         Type: CODEPIPELINE
       Environment:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL 
         Image: 'aws/codebuild/standard:3.0'
+        EnvironmentVariables:
+          -
+            Name: ARTIFACT_STORE
+            Value: !Sub 'codepipeline-artifact-store-${AWS::Region}-${AWS::AccountId}'
       ServiceRole: !GetAtt LambdaCodeBuildRole.Arn
       Source:
         Type: CODEPIPELINE
@@ -195,7 +199,7 @@ Resources:
                 Action:
                   - lambda:*
                 Effect: Allow
-                Resource: !Join [ ":", [ 'arn:aws:lambda', !Ref 'AWS::Region', !Ref 'AWS::AccountId', 'function', '*' ] ]
+                Resource: !Sub 'arn:aws:lambda:${AWS::Region}${AWS::AccountId}:function:*'
               -
                 Action:
                   - lambda:*

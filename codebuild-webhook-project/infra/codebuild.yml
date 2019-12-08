@@ -109,7 +109,6 @@ Resources:
                   - cd $CUR
               build:
                 commands:
-                  - cd $CUR
                   - cd codebuild-webhook-project
                   - ./gradlew clean test
             reports:

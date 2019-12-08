@@ -1,26 +1,21 @@
 AWSTemplateFormatVersion: '2010-09-09'
 
 Parameters:
-  CodePipelineBucket:
-    Type: String
-    Default: codepipeline-us-east-1-653810325336
   Repo:
     Type: String
     Default: aws-example
   Owner:
     Type: String
+    Default: poad
   Branch:
     Type: String
     Default: master
   OAuthToken:
     NoEcho: true
     Type: String
-  LambdaStackName:
-    Type: String
   LambdaFunctionName:
     Type: String
-  PipelineName:
-    Type: String
+    Default: hello-typescript
 
 Resources:
   LambdaCodeBuildRole:
@@ -210,9 +205,9 @@ Resources:
   LambdaBuildCodePipeline:
     Type: "AWS::CodePipeline::Pipeline"
     Properties:
-      Name: !Ref PipelineName
+      Name: !Sub '${LambdaFunctionName}-deploy'
       ArtifactStore: 
-        Location: !Ref CodePipelineBucket
+        Location: !Sub 'codepipeline-artifact-store-${AWS::Region}-${AWS::AccountId}'
         Type: S3
       RestartExecutionOnUpdate: false
       RoleArn: !GetAtt LambdaCodePipelineRole.Arn
@@ -270,7 +265,7 @@ Resources:
               Configuration:
                 ActionMode: CHANGE_SET_REPLACE
                 ChangeSetName: lambda-change-set
-                StackName: !Ref LambdaStackName
+                StackName: !Sub '${LambdaFunctionName}'
                 RoleArn: !GetAtt CloudFormationRole.Arn
                 TemplatePath: "BuildResult::package-template.yml"
                 Capabilities: CAPABILITY_IAM
@@ -294,7 +289,7 @@ Resources:
               Configuration:
                 ActionMode: CHANGE_SET_EXECUTE
                 ChangeSetName: lambda-change-set
-                StackName: !Ref LambdaStackName
+                StackName: !Sub '${LambdaFunctionName}'
                 RoleArn: !GetAtt CloudFormationRole.Arn
                 Capabilities: CAPABILITY_IAM
                 OutputFileName: CreateChangeSetOutput2.json

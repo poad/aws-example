@@ -1,26 +1,21 @@
 AWSTemplateFormatVersion: '2010-09-09'
 
 Parameters:
-  CodePipelineBucket:
-    Type: String
-    Default: codepipeline-us-east-1-653810325336
   Repo:
     Type: String
     Default: aws-example
   Owner:
     Type: String
+    Default: poad
   Branch:
     Type: String
     Default: master
   OAuthToken:
     NoEcho: true
     Type: String
-  LambdaStackName:
-    Type: String
   LambdaFunctionName:
     Type: String
-  PipelineName:
-    Type: String
+    Default: hello-typescript
 
 Resources:
   LambdaCodeBuildRole:
@@ -54,26 +49,30 @@ Resources:
                 Action:
                   - lambda:UpdateFunctionCode
                 Effect: Allow
-                Resource: !Join [ ":", [ 'arn:aws:lambda', !Ref 'AWS::Region', !Ref 'AWS::AccountId', 'function', '*' ] ]
+                Resource: !Sub 'arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:*'
               - 
                 Action:
                   - logs:CreateLogGroup
                   - logs:CreateLogStream
                   - logs:PutLogEvents
                 Effect: Allow
-                Resource: arn:aws:logs:*:*:*
+                Resource: !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:*'
                 
 
   LambdaCodeBuildProject:
     Type: "AWS::CodeBuild::Project"
     Properties: 
-      Name: !Join [ "-", [ lambda, !Ref 'AWS::AccountId' ] ]
+      Name: !Sub '${LambdaFunctionName}-${AWS::AccountId}'
       Artifacts:
         Type: CODEPIPELINE
       Environment:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL 
-        Image: 'aws/codebuild/nodejs:8.11.0'
+        Image: 'aws/codebuild/standard:3.0'
+        EnvironmentVariables:
+          -
+            Name: ARTIFACT_STORE
+            Value: !Sub 'codepipeline-artifact-store-${AWS::Region}-${AWS::AccountId}'
       ServiceRole: !GetAtt LambdaCodeBuildRole.Arn
       Source:
         Type: CODEPIPELINE
@@ -200,7 +199,7 @@ Resources:
                 Action:
                   - lambda:*
                 Effect: Allow
-                Resource: !Join [ ":", [ 'arn:aws:lambda', !Ref 'AWS::Region', !Ref 'AWS::AccountId', 'function', '*' ] ]
+                Resource: !Sub 'arn:aws:lambda:${AWS::Region}${AWS::AccountId}:function:*'
               -
                 Action:
                   - lambda:*
@@ -210,9 +209,9 @@ Resources:
   LambdaBuildCodePipeline:
     Type: "AWS::CodePipeline::Pipeline"
     Properties:
-      Name: !Ref PipelineName
+      Name: !Sub '${LambdaFunctionName}-deploy'
       ArtifactStore: 
-        Location: !Ref CodePipelineBucket
+        Location: !Sub 'codepipeline-artifact-store-${AWS::Region}-${AWS::AccountId}'
         Type: S3
       RestartExecutionOnUpdate: false
       RoleArn: !GetAtt LambdaCodePipelineRole.Arn
@@ -270,7 +269,7 @@ Resources:
               Configuration:
                 ActionMode: CHANGE_SET_REPLACE
                 ChangeSetName: lambda-change-set
-                StackName: !Ref LambdaStackName
+                StackName: !Sub '${LambdaFunctionName}'
                 RoleArn: !GetAtt CloudFormationRole.Arn
                 TemplatePath: "BuildResult::package-template.yml"
                 Capabilities: CAPABILITY_IAM
@@ -294,7 +293,7 @@ Resources:
               Configuration:
                 ActionMode: CHANGE_SET_EXECUTE
                 ChangeSetName: lambda-change-set
-                StackName: !Ref LambdaStackName
+                StackName: !Sub '${LambdaFunctionName}'
                 RoleArn: !GetAtt CloudFormationRole.Arn
                 Capabilities: CAPABILITY_IAM
                 OutputFileName: CreateChangeSetOutput2.json

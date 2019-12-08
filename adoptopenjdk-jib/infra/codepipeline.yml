@@ -1,9 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 
 Parameters:
-  CodePipelineBucket:
-    Type: String
-    Default: codepipeline-us-east-1-786553742110
   Repo:
     Type: String
     Default: aws-example
@@ -175,7 +172,7 @@ Resources:
     Properties:
       Name: !Ref PipelineName
       ArtifactStore: 
-        Location: !Ref CodePipelineBucket
+        Location: !Sub 'codepipeline-artifact-store-${AWS::Region}-${AWS::AccountId}'
         Type: S3
       RestartExecutionOnUpdate: false
       RoleArn: !GetAtt CodePipelineRole.Arn

@@ -1,25 +1,21 @@
 AWSTemplateFormatVersion: '2010-09-09'
 
 Parameters:
-  CodePipelineBucket:
-    Type: String
-    Default: codepipeline-us-east-1-653810325336
   Repo:
     Type: String
     Default: aws-example
   Owner:
     Type: String
+    Default: poad
   Branch:
     Type: String
     Default: master
   OAuthToken:
     NoEcho: true
     Type: String
-  PipelineName:
-    Type: String
   DockerImageName:
     Type: String
-    Default: hello-world
+    Default: docker-build-example
 
 Resources:
   CodeBuildRole:
@@ -76,13 +72,14 @@ Resources:
   CodeBuildProject:
     Type: "AWS::CodeBuild::Project"
     Properties: 
-      Name: !Join [ "-", [ docker, build, !Ref 'AWS::AccountId' ] ]
+      Name: !Sub 'docker-build'
       Artifacts:
         Type: CODEPIPELINE
       Environment:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL 
-        Image: 'aws/codebuild/docker:17.09.0'
+        Image: 'aws/codebuild/standard:3.0'
+        PrivilegedMode: true
         EnvironmentVariables:
           -
             Name: AWS_DEFAULT_REGION
@@ -222,9 +219,9 @@ Resources:
   DockerBuildCodePipeline:
     Type: "AWS::CodePipeline::Pipeline"
     Properties:
-      Name: !Ref PipelineName
+      Name: !Sub '${DockerImageName}-deploy'
       ArtifactStore: 
-        Location: !Ref CodePipelineBucket
+        Location: !Sub 'codepipeline-artifact-store-${AWS::Region}-${AWS::AccountId}'
         Type: S3
       RestartExecutionOnUpdate: false
       RoleArn: !GetAtt CodePipelineRole.Arn

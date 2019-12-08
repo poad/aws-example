@@ -1,20 +1,18 @@
 version: 0.2
 
-# env:
-
 phases:
   install: 
+    runtime-versions:
+      nodejs: 12
+
     commands:
       - npm install -g typescript
       - tsc -v
 
-  # pre_build: 
-  #   commands: 
-
   build: 
     commands:
       - cd typescript-code-build/app/src && tsc main.ts
-      - cd ../../ && aws cloudformation package --template cloudformation/template.yml --s3-bucket codepipeline-us-east-1-653810325336 --output-template-file package-template.yml
+      - cd ../../ && aws cloudformation package --template app/sam.yml --s3-bucket ${ARTIFACT_STORE} --output-template-file package-template.yml
   
 artifacts:
   files:

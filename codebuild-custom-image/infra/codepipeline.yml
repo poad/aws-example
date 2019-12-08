@@ -1,25 +1,21 @@
 AWSTemplateFormatVersion: '2010-09-09'
 
 Parameters:
-  CodePipelineBucket:
-    Type: String
-    Default: codepipeline-us-east-1-653810325336
   Repo:
     Type: String
     Default: aws-example
   Owner:
     Type: String
+    Default: poad
   Branch:
     Type: String
     Default: master
   OAuthToken:
     NoEcho: true
     Type: String
-  PipelineName:
-    Type: String
   DockerImageName:
     Type: String
-    Default: hello-world
+    Default: codebuild-custom-image
 
 Resources:
   ImageCodeBuildRole:
@@ -89,13 +85,14 @@ Resources:
   ImageBuildCodeBuildProject:
     Type: "AWS::CodeBuild::Project"
     Properties: 
-      Name: !Join [ "-", [ codebuild, docker, build, !Ref 'AWS::AccountId' ] ]
+      Name: !Sub '${DockerImageName}-codebuild-docker-build-${AWS::AccountId}'
       Artifacts:
         Type: CODEPIPELINE
       Environment:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL 
-        Image: 'aws/codebuild/docker:17.09.0'
+        Image: 'aws/codebuild/standard:3.0'
+        PrivilegedMode: true
         EnvironmentVariables:
           -
             Name: AWS_DEFAULT_REGION
@@ -114,13 +111,13 @@ Resources:
   AppBuildCodeBuildProject:
     Type: "AWS::CodeBuild::Project"
     Properties: 
-      Name: !Join [ "-", [ app, build, !Ref 'AWS::AccountId' ] ]
+      Name: !Sub '${DockerImageName}-app-build-${AWS::AccountId}'
       Artifacts:
         Type: CODEPIPELINE
       Environment:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL 
-        Image: !Join [ "", [ !Ref 'AWS::AccountId', ".dkr.ecr.", !Ref 'AWS::Region', ".amazonaws.com/", !Ref DockerImageName, ":latest" ] ]
+        Image: !Sub '${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${DockerImageName}:latest'
         EnvironmentVariables:
           -
             Name: AWS_DEFAULT_REGION
@@ -243,9 +240,9 @@ Resources:
   DockerBuildCodePipeline:
     Type: "AWS::CodePipeline::Pipeline"
     Properties:
-      Name: !Ref PipelineName
+      Name: !Sub '${DockerImageName}-deploy'
       ArtifactStore: 
-        Location: !Ref CodePipelineBucket
+        Location: !Sub 'codepipeline-artifact-store-${AWS::Region}-${AWS::AccountId}'
         Type: S3
       RestartExecutionOnUpdate: false
       RoleArn: !GetAtt CodePipelineRole.Arn

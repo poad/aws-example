@@ -4,12 +4,12 @@ version: 0.2
 
 phases:
   install: 
+    runtime-versions:
+      nodejs: 12
+
     commands:
       - npm install -g typescript
       - tsc -v
-
-  # pre_build: 
-  #   commands: 
 
   build: 
     commands:

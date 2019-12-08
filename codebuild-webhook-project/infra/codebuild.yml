@@ -106,6 +106,7 @@ Resources:
                       update-alternatives --install /usr/bin/$tool $tool $tool_path 10000 && \
                       update-alternatives --set $tool $tool_path; \
                     done
+                  - cd $CUR
               build:
                 commands:
                   - cd $CUR

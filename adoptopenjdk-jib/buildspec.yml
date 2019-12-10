@@ -2,36 +2,61 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      docker: 18
+      python: 3.8
+    
     commands:
-      - apt-get update -qq
-      - apt-get full-upgrade -qqy
-      - apt-get install -qqy --no-install-recommends python3-pip python3-setuptools unzip
-      - pip3 install -U pip
-      - pip install -U awscli
-      - apt-get install -qqy --no-install-recommends apt-transport-https ca-certificates curl gnupg-agent software-properties-common
-      - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-      - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-      - apt-get update -qq
-      - apt-get install -qqy --no-install-recommends docker-ce docker-ce-cli containerd.io
-      - nohup /usr/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2&
-      - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
+      - echo ${JAVA_URL}
+      - CUR=$(pwd)
+      - curl -Lso /tmp/openjdk.tar.gz ${JAVA_URL}
+      - sha256sum /tmp/openjdk.tar.gz
+      - mkdir -p ${JAVA_HOME}
+      - cd ${JAVA_HOME}
+      - echo "${JDK_ESUM}  /tmp/openjdk.tar.gz" | sha256sum -c -
+      - tar -xf /tmp/openjdk.tar.gz
+      - mv ${JAVA_HOME}/jdk-${JAVA_MAJOR_MINOR_REVISION}+${JAVA_BUILD_NUMBER}/* ${JAVA_HOME}
+      - |
+        for tool_path in ${JAVA_HOME}/bin/*; do \
+          tool=`basename ${tool_path}` && \
+          update-alternatives --install /usr/bin/${tool} ${tool} ${tool_path} 10000 && \
+          update-alternatives --set ${tool} ${tool_path}; \
+        done
+      - cd $CUR
 
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      - $(aws ecr get-login --no-include-email --region ${AWS_DEFAULT_REGION})
 
   build: 
     commands:
       - echo Build started on `date`
       - cd ${CODEBUILD_SRC_DIR_AppSource}
+      - echo "Build base image"
       - docker build --rm -f docker/Dockerfile -t docker-java-mecab:latest .
+      - echo "Build image"
       - ./gradlew jibDockerBuild
       - echo Building the Docker image...
-      - docker tag mecab-java-api-server:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest
+      - export TAG="$(./gradlew app:properties | grep version | cut -d ' ' -f2)"
+      - echo ${TAG}
+      - IMAGE="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
+      - export IMAGE_NAME="${IMAGE}:${TAG}"
+      - echo -n "${IMAGE_NAME}"
+      - docker tag mecab-java-api-server:latest ${IMAGE_NAME}
 
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest
+      - docker push ${IMAGE_NAME}
+      - cd $CUR
+      - echo ${TAG} > version.txt
+
+artifacts:
+  files:
+    - version.txt
+
+cache:
+  paths:
+    - /root/.gradle

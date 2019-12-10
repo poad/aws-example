@@ -1,25 +1,44 @@
 AWSTemplateFormatVersion: '2010-09-09'
 
 Parameters:
-  Repo:
+  InfraRepo:
     Type: String
     Default: aws-example
-  Owner:
+  InfraOwner:
     Type: String
+    Default: poad
+  InfraSourceBranch:
+    Type: String
+    Default: master
+  InfraRepoOAuthToken:
+    NoEcho: true
+    Type: String
+  AppRepo:
+    Type: String
+    Default: mecab-java-api-server
+  AppRepoOwner:
+    Type: String
+    Default: poad
   AppSourceBranch:
     Type: String
     Default: master
-  DockerSourceBranch:
-    Type: String
-    Default: master
-  OAuthToken:
+  AppRepoOAuthToken:
     NoEcho: true
     Type: String
-  PipelineName:
+
+  JavaMajorVersion:
+    Type: Number
+    Default: 11
+  JavaMinorRevision:
     Type: String
-  DockerImageName:
+    Default: 0.5
+  JavaBuildNumber:
     Type: String
-    Default: hello-world
+    Default: 10
+  JdkEsum:
+    Type: String
+    Default: 6dd0c9c8a740e6c19149e98034fba8e368fd9aa16ab417aa636854d40db1a161
+
 
 Resources:
   CodeBuildRole:
@@ -71,18 +90,18 @@ Resources:
   ECRRepogitory:
     Type: "AWS::ECR::Repository"
     Properties:
-      RepositoryName: !Ref DockerImageName
+      RepositoryName: !Ref AppRepo
 
-  CodeBuildProject:
+  AppBuildCodeBuildProject:
     Type: "AWS::CodeBuild::Project"
     Properties: 
-      Name: !Join [ "-", [ docker, build, !Ref 'AWS::AccountId' ] ]
+      Name: !Sub '${AppRepo}-build'
       Artifacts:
         Type: CODEPIPELINE
       Environment:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL
-        Image: 'adoptopenjdk:11-hotspot-bionic'
+        Image: 'aws/codebuild/standard:3.0'
         PrivilegedMode: true
         EnvironmentVariables:
           -
@@ -93,14 +112,73 @@ Resources:
             Value: !Ref 'AWS::AccountId'
           -
             Name: IMAGE_REPO_NAME
-            Value: !Ref DockerImageName
+            Value: !Ref AppRepo
           -
-            Name: IMAGE_TAG
-            Value: latest
+            Name: JAVA_BUILD_NUMBER
+            Value: !Ref JavaBuildNumber
+          -
+            Name: JDK_ESUM
+            Value: !Ref JdkEsum
+          -
+            Name: JAVA_MAJOR_MINOR_REVISION
+            Value: !Sub '${JavaMajorVersion}.${JavaMinorRevision}'
+          -
+            Name: JAVA_VERSION
+            Value: !Sub '${JavaMajorVersion}.${JavaMinorRevision}_${JavaBuildNumber}'
+          -
+            Name: JAVA_HOME
+            Value: !Sub '/usr/lib/jvm/java-${JavaMajorVersion}.${JavaMinorRevision}_${JavaBuildNumber}-openjdk-amd64'
+          -
+            Name: JAVA_URL
+            Value: !Sub 'https://github.com/AdoptOpenJDK/openjdk${JavaMajorVersion}-binaries/releases/download/jdk-${JavaMajorVersion}.${JavaMinorRevision}%2B${JavaBuildNumber}/OpenJDK11U-jdk_x64_linux_hotspot_${JavaMajorVersion}.${JavaMinorRevision}_${JavaBuildNumber}.tar.gz'
       ServiceRole: !GetAtt CodeBuildRole.Arn
       Source:
         Type: CODEPIPELINE
         BuildSpec: adoptopenjdk-jib/buildspec.yml
+
+  AddTagCodeBuildProject:
+    Type: "AWS::CodeBuild::Project"
+    Properties: 
+      Name: !Sub '${AppRepo}-add-tag'
+      Artifacts:
+        Type: CODEPIPELINE
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: 'aws/codebuild/standard:3.0'
+        PrivilegedMode: true
+      ServiceRole: !GetAtt CodeBuildRole.Arn
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: !Sub |
+          version: 0.2
+
+          phases:
+            install:
+              runtime-versions:
+                docker: 18
+
+              commands:
+                - apt-get -qq update
+                - apt-get -qqy install --no-install-recommends jq
+
+            build: 
+              commands:
+                - mkdir -p work
+                - cd work
+                - |
+                  USER=$(curl -H "Authorization: token ${AppRepoOAuthToken}" https://api.github.com/user)
+                - USER_ID=$(echo $USER | jq ".login")
+                - EMAIL=$(echo $USER | jq ".email")
+                - git config --global user.email "$EMAIL"
+                - git config --global user.name "$USER_ID"
+                - git clone https://${AppRepoOwner}:${AppRepoOAuthToken}@github.com/${AppRepoOwner}/${AppRepo}.git --branch ${AppSourceBranch}
+                - cd ${AppRepo}
+                - VERSION=$(cat $CODEBUILD_SRC_DIR_BuildResult/version.txt)
+                - TAG=$VERSION-$(date +%Y%m%d.%H%M%S)
+                - git tag $TAG
+                - git push origin $TAG
+
 
   CodePipelineRole:
     Type: AWS::IAM::Role
@@ -170,7 +248,7 @@ Resources:
   DockerBuildCodePipeline:
     Type: "AWS::CodePipeline::Pipeline"
     Properties:
-      Name: !Ref PipelineName
+      Name: !Sub '${AppRepo}-deploy'
       ArtifactStore: 
         Location: !Sub 'codepipeline-artifact-store-${AWS::Region}-${AWS::AccountId}'
         Type: S3
@@ -191,10 +269,10 @@ Resources:
               OutputArtifacts:
                 - Name: DockerSource
               Configuration:
-                Owner: !Ref Owner
-                Repo: !Ref Repo
-                Branch: !Ref DockerSourceBranch
-                OAuthToken: !Ref OAuthToken
+                Owner: !Ref InfraOwner
+                Repo: !Ref InfraRepo
+                Branch: !Ref InfraSourceBranch
+                OAuthToken: !Ref InfraRepoOAuthToken
               RunOrder: 1
             -
               Name: AppSource
@@ -207,16 +285,16 @@ Resources:
               OutputArtifacts:
                 - Name: AppSource
               Configuration:
-                Owner: !Ref Owner
-                Repo: mecab-java-api-server
+                Owner: !Ref AppRepoOwner
+                Repo: !Ref AppRepo
                 Branch: !Ref AppSourceBranch
-                OAuthToken: !Ref OAuthToken
+                OAuthToken: !Ref AppRepoOAuthToken
               RunOrder: 1
         -
           Name: Build
           Actions:
             - 
-              Name: CodeBuild
+              Name: BuildAndPush
               ActionTypeId:
                 Category: Build
                 Owner: AWS
@@ -228,8 +306,25 @@ Resources:
               OutputArtifacts:
                 - Name: BuildResult 
               Configuration:
-                ProjectName: !Ref CodeBuildProject
+                ProjectName: !Ref AppBuildCodeBuildProject
                 PrimarySource: DockerSource
-              RunOrder: 2
+              RunOrder: 1
 
+        -
+          Name: Finalize
+          Actions:
+            - 
+              Name: AddTag
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Provider: CodeBuild
+                Version: 1
+              InputArtifacts:
+                - Name: AppSource
+                - Name: BuildResult
+              Configuration:
+                ProjectName: !Ref AddTagCodeBuildProject
+                PrimarySource: AppSource
+              RunOrder: 1
 

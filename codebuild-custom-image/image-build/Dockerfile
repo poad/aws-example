@@ -32,8 +32,8 @@ ARG mandir=$basedir/man
 ENV MAVEN_HOME "/usr/share/maven/maven"
 ENV MAVEN_CONFIG="/root/.m2"
 
-ARG MAVEN_VERSION=3.5.4
-ARG MAVEN_DOWNLOAD_SHA1="22cac91b3557586bb1eba326f2f7727543ff15e3"
+ARG MAVEN_VERSION=3.6.3
+ARG MAVEN_DOWNLOAD_SHA512="c35a1803a6e70a126e80b2b3ae33eed961f83ed74d18fcd16909b2d44d7dada3203f1ffe726c17ef8dcca2dcaa9fca676987befeadc9b9f759967a8cb77181c0"
 
 RUN set -ex; \
 	\
@@ -69,7 +69,7 @@ RUN set -ex; \
     && \
     curl -LSso ${TMP_DIR}/apache-maven-$MAVEN_VERSION-bin.tar.gz https://apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz \
     && \
-    echo "$MAVEN_DOWNLOAD_SHA1 ${TMP_DIR}/apache-maven-$MAVEN_VERSION-bin.tar.gz" | sha1sum -c - \
+    echo "$MAVEN_DOWNLOAD_SHA512 ${TMP_DIR}/apache-maven-$MAVEN_VERSION-bin.tar.gz" | sha512sum -c - \
     && \
     tar xzvf ${TMP_DIR}/apache-maven-$MAVEN_VERSION-bin.tar.gz -C ${MAVEN_HOME} --strip-components=1 \
     && \

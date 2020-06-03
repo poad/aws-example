@@ -101,7 +101,7 @@ Resources:
       Environment:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL
-        Image: 'aws/codebuild/standard:3.0'
+        Image: 'aws/codebuild/standard:4.0'
         PrivilegedMode: true
         EnvironmentVariables:
           -
@@ -145,7 +145,7 @@ Resources:
       Environment:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL
-        Image: 'aws/codebuild/standard:3.0'
+        Image: 'aws/codebuild/standard:4.0'
         PrivilegedMode: true
       ServiceRole: !GetAtt CodeBuildRole.Arn
       Source:

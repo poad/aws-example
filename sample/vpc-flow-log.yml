@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  FlowLogRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+              - 'vpc-flow-logs.amazonaws.com'
+            Action:
+              - 'sts:AssumeRole'
+      Path: /
+
+      Policies:
+        - PolicyName: 'FlowLogPolicy'
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'cloudwatch:Describe*'
+                  - 'cloudformation:List*'
+                  - 'cloudformation:Get*'
+                Resource: '*'

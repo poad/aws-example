@@ -14,5 +14,5 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
  * `cdk synth`       emits the synthesized CloudFormation template
 
 ```
-cdk deploy --all --require-approval never
+cdk deploy -c tags=test --all --require-approval never
 ```

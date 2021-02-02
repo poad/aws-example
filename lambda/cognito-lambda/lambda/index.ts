@@ -12,6 +12,7 @@ interface EnvironmentVariables {
   identityProvider: string,
   s3Region: string,
   bucket: string,
+  region: string,
 }
 
 export const environments: EnvironmentVariables = {
@@ -21,6 +22,7 @@ export const environments: EnvironmentVariables = {
   identityProvider: process.env.IDENTITY_PROVIDER!,
   s3Region: process.env.S3_REGION!,
   bucket: process.env.S3_BUCKET!,
+  region: process.env.REGION!,
 };
 
 interface TokenAuthParam {
@@ -108,7 +110,7 @@ const getId = async (
     key: param.identityProvider,
     value: param.idToken,
   }].map((entry) => {
-    const entity: {[key: string]: string} = {};
+    const entity: { [key: string]: string } = {};
     entity[entry.key] = entry.value;
     return entity;
   }).reduce((cur, acc) => Object.assign(acc, cur));
@@ -159,7 +161,7 @@ const getCredentialsForIdentity = async (
     key: param.identityProvider,
     value: param.idToken,
   }].map((entry) => {
-    const entity: {[key: string]: string} = {};
+    const entity: { [key: string]: string } = {};
     entity[entry.key] = entry.value;
     return entity;
   }).reduce((cur, acc) => Object.assign(acc, cur));
@@ -168,6 +170,8 @@ const getCredentialsForIdentity = async (
     IdentityId: param.identityId,
     Logins: logins,
   });
+
+  console.log(JSON.stringify(req, undefined, 2));
 
   const resp = await client.send(req);
   return resp;
@@ -184,15 +188,15 @@ const signIn = async (param: SignInParam): Promise<{
     epiration: number | undefined,
   }
 }> => {
-  const { identityProvider } = param;
+  const { identityProvider, domain, clientId, redirectUri, code } = param;
 
   const idpClient = new CognitoIdentityClient({});
 
-  const currentSession = param.code !== undefined ? await tokenAuth({
-    domain: param.domain,
-    clientId: param.clientId,
-    redirectUri: param.redirectUri,
-    code: param.code,
+  const currentSession = code !== undefined ? await tokenAuth({
+    domain,
+    clientId,
+    redirectUri,
+    code,
   }) : { idToken: param.idToken!, refreshToken: param.refreshToken!, expiresIn: param.expireIn! };
 
   let { idToken } = currentSession;
@@ -209,6 +213,9 @@ const signIn = async (param: SignInParam): Promise<{
       },
     );
   } catch (e) {
+    // eslint-disable-next-line no-console
+    console.info(e);
+
     const idProvider = new CognitoIdentityProviderClient({});
     const initiateAuthResp = await initiateAuth(
       idProvider,
@@ -229,11 +236,14 @@ const signIn = async (param: SignInParam): Promise<{
       },
     );
   }
-  const credentials = await getCredentialsForIdentity(idpClient, {
-    identityId,
-    identityProvider,
-    idToken,
-  });
+
+  const credentials = await getCredentialsForIdentity(
+    idpClient, {
+      identityId,
+      identityProvider,
+      idToken,
+    }
+  );
 
   return {
     accessKeyId: credentials.Credentials?.AccessKeyId,
@@ -262,7 +272,7 @@ export const handler = async (
   event: APIGatewayProxyEventV2,
 ): Promise<APIGatewayProxyStructuredResultV2> => {
   try {
-  // eslint-disable-next-line no-console
+    // eslint-disable-next-line no-console
     console.log('request:', JSON.stringify(event, undefined, 2));
 
     const pathParameters = event.pathParameters || { proxy: undefined };
@@ -287,28 +297,30 @@ export const handler = async (
         expiration: undefined,
       };
 
-    const { idToken, refreshToken } = session?.expiration < new Date().getTime()
-      ? session : { idToken: undefined, refreshToken: undefined };
-    if (code === undefined || idToken === undefined || refreshToken === undefined) {
-      return {
-        statusCode: 401,
-        headers: { 'Content-Type': 'text/plain' },
-      };
-    }
-
-    const state = queryStringParameters.state !== undefined
-      ? queryStringParameters.state : undefined;
-
-    const baseKey = state !== undefined ? Buffer.from(state).toString('utf-8') : cookie?.baseKey;
-
-    const context = event.requestContext;
-
     const {
       domain,
       clientId,
       idPoolId,
       identityProvider,
+      region,
     } = environments;
+
+    console.log('session:', JSON.stringify(session, undefined, 2));
+
+    const { idToken, refreshToken } = session?.expiration > new Date().getTime()
+      ? session : { idToken: undefined, refreshToken: undefined };
+    if (code === undefined && (idToken === undefined || refreshToken === undefined)) {
+
+      console.log('session:', JSON.stringify(session, undefined, 2));
+      const redirectUri = `https://${domain}.auth.${region}.amazoncognito.com/login?response_type=code&client_id=${clientId}&redirect_uri=https://${event.requestContext.domainName}${event.rawPath}`;
+      return {
+        cookies: [],
+        statusCode: 308,
+        headers: { Location: redirectUri },
+      };
+    }
+
+    const context = event.requestContext;
 
     const redirectUri = `https://${context.domainName}${context.http.path}`;
 
@@ -386,13 +398,7 @@ export const handler = async (
         body: stringResult,
       };
 
-      if (proxy === 'index.html') {
-        const cookies = [JSON.stringify({
-          baseKey,
-        })];
-        return Object.assign(result, { cookies, session: tokens });
-      }
-      return result;
+      return Object.assign(result, { session: tokens });
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);

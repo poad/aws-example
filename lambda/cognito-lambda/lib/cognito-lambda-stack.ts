@@ -24,9 +24,6 @@ export interface CognitoLambdaStackProps extends StackProps {
   environment: string,
   groups: GroupConfig[],
   domain: string,
-  clientId: string,
-  idPoolId: string,
-  identityProvider: string,
   s3Region: string,
   s3Bucket: string,
 }
@@ -35,22 +32,7 @@ export class CognitoLambdaStack extends Stack {
   constructor(scope: Construct, id: string, props: CognitoLambdaStackProps) {
     super(scope, id, props);
 
-    const fn = new DockerImageFunction(this, 'CognitoLambdaFunction', {
-      code: DockerImageCode.fromImageAsset('lambda'),
-      functionName: props.name,
-      logRetention: RetentionDays.ONE_DAY,
-      retryAttempts: 0,
-      environment: {
-        'DOMAIN': props.domain,
-        'CLIENT_ID': props.clientId,
-        'ID_POOL_ID': props.idPoolId,
-        'IDENTITY_PROVIDER': props.identityProvider,
-        'S3_REGION': props.s3Region,
-        'S3_BUCKET': props.s3Bucket,
-      },
-    });
-
-    const userPool = new UserPool(this, 'CognitoAwsConsoleUserPool', {
+    const userPool = new UserPool(this, 'UserPool', {
       userPoolName: `${props.environment}-cognito-lambda-user-pool`,
       signInAliases: {
         username: true,
@@ -79,11 +61,29 @@ export class CognitoLambdaStack extends Stack {
       accountRecovery: AccountRecovery.EMAIL_ONLY,
     });
 
+    const domain = `${props.environment}-poad-s3-lambda`;
     userPool.addDomain('UserPoolDomain', {
       cognitoDomain: {
-        domainPrefix: `${props.environment}-poad-s3-lambda`
+        domainPrefix: domain
       }
     });
+
+    const fn = new DockerImageFunction(this, 'CognitoLambdaFunction', {
+      code: DockerImageCode.fromImageAsset('lambda', {
+        repositoryName: 'cognito-lambda',
+      }),
+      functionName: props.name,
+      logRetention: RetentionDays.ONE_DAY,
+      retryAttempts: 0,
+      environment: {
+        'DOMAIN': domain,
+        'S3_REGION': props.s3Region,
+        'S3_BUCKET': props.s3Bucket,
+        'REGION': props.region,
+      },
+    });
+
+
 
     const api = new HttpApi(this, "HttpApi", {
       apiName: 'Cognito Lambda API',
@@ -99,7 +99,7 @@ export class CognitoLambdaStack extends Stack {
       }),
     });
 
-    const client = new UserPoolClient(this, 'CognitoAwsConsoleAppClient', {
+    const client = new UserPoolClient(this, 'AppClient', {
       userPool,
       userPoolClientName: `${props.environment}-cognito-lambda`,
       authFlows: {
@@ -109,7 +109,7 @@ export class CognitoLambdaStack extends Stack {
         custom: true,
       },
       oAuth: {
-        callbackUrls: [ `${api.url}index.html` ],
+        callbackUrls: [`${api.url}index.html`],
         logoutUrls: undefined,
         flows: {
           authorizationCodeGrant: true,
@@ -128,8 +128,9 @@ export class CognitoLambdaStack extends Stack {
     const identityPoolProvider = {
       clientId: client.userPoolClientId,
       providerName: userPool.userPoolProviderName,
+      serverSideTokenCheck: true,
     };
-    const identityPool = new CfnIdentityPool(this, 'CognitoAwsConsoleIdPool', {
+    const identityPool = new CfnIdentityPool(this, 'IdPool', {
       allowUnauthenticatedIdentities: false,
       cognitoIdentityProviders: [
         identityPoolProvider,
@@ -137,7 +138,12 @@ export class CognitoLambdaStack extends Stack {
       identityPoolName: `${props.environment}-cognito-lambda-idp`,
     });
 
+    fn.addEnvironment('CLIENT_ID', client.userPoolClientId);
+    fn.addEnvironment('ID_POOL_ID', identityPool.ref);
+    fn.addEnvironment('IDENTITY_PROVIDER', identityPoolProvider.providerName);
+
     const unauthenticatedRole = new Role(this, 'CognitoDefaultUnauthenticatedRole', {
+      roleName: `${props.environment}-cognito-unauth-role`,
       assumedBy: new FederatedPrincipal('cognito-identity.amazonaws.com', {
         StringEquals: {
           'cognito-identity.amazonaws.com:aud': identityPool.ref,
@@ -152,11 +158,14 @@ export class CognitoLambdaStack extends Stack {
       effect: Effect.ALLOW,
       actions: [
         'cognito-sync:*',
+        'cognito-identity:*',
+        "cognito-idp:*",
       ],
       resources: ['*'],
     }));
 
     const authenticatedRole = new Role(this, 'CognitoDefaultAuthenticatedRole', {
+      roleName: `${props.environment}-cognito-auth-role`,
       assumedBy: new FederatedPrincipal('cognito-identity.amazonaws.com', {
         StringEquals: {
           'cognito-identity.amazonaws.com:aud': identityPool.ref,
@@ -172,6 +181,7 @@ export class CognitoLambdaStack extends Stack {
       actions: [
         'cognito-sync:*',
         'cognito-identity:*',
+        "cognito-idp:*",
       ],
       resources: ['*'],
     }));
@@ -207,10 +217,9 @@ export class CognitoLambdaStack extends Stack {
           `${s3.bucketArn}/*`
         ],
       }));
-
     }
 
-    new CfnIdentityPoolRoleAttachment(this, 'CognitoAwsConsoleIdPoolRoleAttachment', {
+    new CfnIdentityPoolRoleAttachment(this, 'IdPoolRoleAttachment', {
       identityPoolId: identityPool.ref,
       roles: {
         authenticated: authenticatedRole.roleArn,
@@ -235,7 +244,8 @@ export class CognitoLambdaStack extends Stack {
     };
 
     const roles = props.groups.map((group) => {
-      const groupRole = new Role(this, `${props.environment}-CognitoAwsConsolGroupRole-${group.name}`, {
+      const groupRole = new Role(this, `${props.environment}-GroupRole-${group.name}`, {
+        roleName: `${props.environment}-group-role-${group.name}`,
         assumedBy: new WebIdentityPrincipal('cognito-identity.amazonaws.com', conditions),
       });
       if (group.admin) {
@@ -245,10 +255,19 @@ export class CognitoLambdaStack extends Stack {
         effect: Effect.ALLOW,
         actions: [
           'sts:GetFederationToken',
+          ],
+        resources: ['*'],
+      }));
+      groupRole.addToPolicy(new PolicyStatement({
+        effect: Effect.ALLOW,
+        actions: [
+          'cognito-sync:*',
+          'cognito-identity:*',
+          "cognito-idp:*",
         ],
         resources: ['*'],
       }));
-
+  
       return { id: group.id, name: group.name, role: groupRole };
     });
     roles.forEach((role) => {

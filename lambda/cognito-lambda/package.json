@@ -1,0 +1,45 @@
+{
+  "name": "cognito-lambda",
+  "version": "0.1.0",
+  "private": true,
+  "bin": {
+    "cognito-lambda": "bin/cognito-lambda.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk",
+    "lint": "eslint --ext .ts lambda"
+  },
+  "devDependencies": {
+    "@aws-cdk/assert": "^1.87.0",
+    "@types/aws-lambda": "^8.10.71",
+    "@types/jest": "^26.0.20",
+    "@types/node": "14.14.22",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "aws-cdk": "^1.87.0",
+    "eslint": "^7.18.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.4.4",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-apigateway": "^1.87.0",
+    "@aws-cdk/aws-apigatewayv2": "^1.87.0",
+    "@aws-cdk/aws-apigatewayv2-integrations": "^1.87.0",
+    "@aws-cdk/aws-cognito": "^1.87.0",
+    "@aws-cdk/aws-ecr-assets": "^1.87.0",
+    "@aws-cdk/aws-iam": "^1.87.0",
+    "@aws-cdk/aws-lambda": "^1.87.0",
+    "@aws-cdk/aws-logs": "^1.87.1",
+    "@aws-cdk/aws-s3": "^1.87.1",
+    "@aws-cdk/core": "^1.87.0",
+    "aws-lambda": "^1.0.6",
+    "source-map-support": "^0.5.19"
+  }
+}

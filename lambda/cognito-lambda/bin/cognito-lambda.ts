@@ -3,20 +3,28 @@ import 'source-map-support/register';
 import { App } from '@aws-cdk/core';
 import { CognitoLambdaStack, GroupConfig } from '../lib/cognito-lambda-stack';
 
+interface Context {
+  region: string,
+  domain: string,
+  clientId: string,
+  idPoolId: string,
+  userPoolId: string,
+  s3Region: string,
+  groups: GroupConfig[],
+  s3Bucket: string,
+}
+
 const app = new App();
 
-const region = app.node.tryGetContext('region') as string;
 const env = app.node.tryGetContext('env') as string;
-const groups = app.node.tryGetContext('groups') as GroupConfig[];
 
-const domain = app.node.tryGetContext('domain') as string;
-const clientId = app.node.tryGetContext('clientId') as string;
-const idPoolId = app.node.tryGetContext('idPoolId') as string;
-const userPoolId = app.node.tryGetContext('userPoolId') as string;
-const s3Region = app.node.tryGetContext('s3Region') as string;
-const s3Bucket = app.node.tryGetContext('s3Bucket') as string;
+const context = app.node.tryGetContext(env) as Context;
+const region = context.region;
+const groups = context.groups;
 
-const identityProvider = `cognito-idp.${region}.amazonaws.com/${userPoolId}`;
+const domain = context.domain;
+const s3Region = context.s3Region;
+const s3Bucket = context.s3Bucket;
 
 new CognitoLambdaStack(app, 'CognitoLambdaStack', {
   name: 'cognito-lambda',
@@ -27,9 +35,6 @@ new CognitoLambdaStack(app, 'CognitoLambdaStack', {
     region,
   },
   domain,
-  clientId,
-  idPoolId,
-  identityProvider,
   s3Region,
   s3Bucket,
 });

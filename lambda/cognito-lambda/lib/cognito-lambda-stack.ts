@@ -6,7 +6,7 @@ import {
 import {
   AccountRecovery, Mfa, OAuthScope, UserPoolClient, CfnIdentityPoolRoleAttachment, CfnUserPoolGroup, UserPool, CfnIdentityPool,
 } from '@aws-cdk/aws-cognito';
-import { Stack, StackProps, Construct } from '@aws-cdk/core';
+import { Stack, StackProps, Construct, Duration } from '@aws-cdk/core';
 import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
 import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations';
 import { RetentionDays } from '@aws-cdk/aws-logs';
@@ -174,6 +174,7 @@ export class CognitoLambdaStack extends Stack {
           'cognito-identity.amazonaws.com:amr': 'authenticated',
         },
       }, 'sts:AssumeRoleWithWebIdentity'),
+      maxSessionDuration: Duration.hours(12),
     });
 
     authenticatedRole.addToPolicy(new PolicyStatement({
@@ -204,7 +205,7 @@ export class CognitoLambdaStack extends Stack {
 
     if (props.region === props.s3Region) {
       const s3 = new Bucket(this, 'S3Bucket', {
-        bucketName: props.s3Bucket
+        bucketName: `${props.s3Bucket}-${this.account}`,
       });
       authenticatedRole.addToPolicy(new PolicyStatement({
         effect: Effect.ALLOW,
@@ -247,6 +248,7 @@ export class CognitoLambdaStack extends Stack {
       const groupRole = new Role(this, `${props.environment}-GroupRole-${group.name}`, {
         roleName: `${props.environment}-group-role-${group.name}`,
         assumedBy: new WebIdentityPrincipal('cognito-identity.amazonaws.com', conditions),
+        maxSessionDuration: Duration.hours(12),
       });
       if (group.admin) {
         groupRole.addManagedPolicy(ManagedPolicy.fromManagedPolicyArn(this, 'AdminAccessPolicy', 'arn:aws:iam::aws:policy/AdministratorAccess'));

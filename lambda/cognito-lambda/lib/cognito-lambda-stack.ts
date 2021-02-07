@@ -237,7 +237,7 @@ export class CognitoLambdaStack extends Stack {
 
     const conditions = {
       StringEquals: {
-        'cognito-identity.amazonaws.com:aud': userPool.userPoolId,
+        'cognito-identity.amazonaws.com:aud': identityPool.ref,
       },
       'ForAnyValue:StringLike': {
         'cognito-identity.amazonaws.com:amr': 'authenticated',

@@ -120,8 +120,8 @@ export class CognitoConsoleStack extends Stack {
         custom: true,
       },
       oAuth: {
-        callbackUrls: [`${api.url}index.html`],
-        logoutUrls: undefined,
+        callbackUrls: [`${api.url}`],
+        logoutUrls: [ api.url! ],
         flows: {
           authorizationCodeGrant: true,
           implicitCodeGrant: true,
@@ -186,6 +186,9 @@ export class CognitoConsoleStack extends Stack {
         'ForAnyValue:StringLike': {
           'cognito-identity.amazonaws.com:amr': 'authenticated',
         },
+        StringLike: {
+          'sts:RoleSessionName': '${aws:username}',
+        },
       }, 'sts:AssumeRoleWithWebIdentity'),
       maxSessionDuration: Duration.hours(12),
     });
@@ -193,7 +196,6 @@ export class CognitoConsoleStack extends Stack {
     authenticatedRole.addToPolicy(new PolicyStatement({
       effect: Effect.ALLOW,
       actions: [
-        'cognito-sync:*',
         'cognito-identity:*',
         "cognito-idp:*",
         'sts:GetFederationToken',
@@ -237,7 +239,6 @@ export class CognitoConsoleStack extends Stack {
       groupRole.addToPolicy(new PolicyStatement({
         effect: Effect.ALLOW,
         actions: [
-          'cognito-sync:*',
           'cognito-identity:*',
           "cognito-idp:*",
           'sts:GetFederationToken',

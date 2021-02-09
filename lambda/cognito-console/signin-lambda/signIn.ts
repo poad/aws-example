@@ -53,14 +53,11 @@ interface TokenAuthParam {
     idPoolId: string,
     redirectUri: string,
     code?: string,
-    idToken?: string,
-    refreshToken?: string,
-    expireIn?: number
   }
 
 export type SigninResult = GetCredentialsResult;
 
-const tokenAuth = async (param: TokenAuthParam): Promise<{
+const getOAuthToken = async (param: TokenAuthParam): Promise<{
     idToken: string,
     accessToken: string,
     refreshToken: string,
@@ -141,6 +138,8 @@ const initiateAuth = async (
     ClientId: param.clientId,
   }));
 
+  // console.log(JSON.stringify(res));
+
   return {
     idToken: res.AuthenticationResult!.IdToken!,
     accessToken: res.AuthenticationResult!.AccessToken!,
@@ -208,6 +207,7 @@ const getCredentials = async (
         refreshToken,
       },
     );
+
     idToken = initiateAuthResp.idToken;
     tokenExpiration = initiateAuthResp.expiresIn;
 
@@ -219,6 +219,11 @@ const getCredentials = async (
         idToken,
       },
     );
+
+    // const user = await idProvider.send(new GetUserCommand({
+    //   AccessToken: initiateAuthResp.idToken,
+    // }));
+    // console.log(`Uer Info: ${JSON.stringify(user)}`);
   }
 
   try {
@@ -255,26 +260,15 @@ const signIn = async (param: SignInParam): Promise<SigninResult> => {
   } = param;
   const idpClient = new CognitoIdentityClient({});
 
-  const { idToken } = param;
-
-  if (param.idToken !== undefined && param.refreshToken !== undefined) {
-    return getCredentials(idpClient, {
-      idPoolId: param.idPoolId,
-      identityProvider: param.identityProvider,
-      clientId: param.clientId,
-      idToken: param.idToken,
-      refreshToken: param.refreshToken,
-    });
-  }
-  if (idToken !== undefined) {
-    // through
-  } else if (code !== undefined) {
-    const currentSession = code !== undefined ? await tokenAuth({
+  if (code !== undefined) {
+    const currentSession = await getOAuthToken({
       domain,
       clientId,
       redirectUri,
       code,
-    }) : { idToken: param.idToken!, refreshToken: param.refreshToken!, expiresIn: param.expireIn! };
+    });
+
+    // console.log(`OAuthTokens: ${JSON.stringify(currentSession)}`);
 
     return getCredentials(idpClient, {
       idPoolId: param.idPoolId,

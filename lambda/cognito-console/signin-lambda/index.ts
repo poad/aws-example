@@ -20,12 +20,6 @@ export const environments: EnvironmentVariables = {
   apiUrl: process.env.API_URL!,
 };
 
-interface Session {
-  idToken: string | undefined,
-  refreshToken: string | undefined,
-  expiration: number | undefined,
-}
-
 const getSignInToken = async (
   param: {
     accessKeyId: string,
@@ -60,18 +54,7 @@ export const handler = async (
       };
     }
 
-    const cookie = event.cookies !== undefined
-      ? JSON.parse(event.cookies[0])
-      : { session: undefined };
-
-    const code = event.queryStringParameters?.code !== undefined
-      ? event.queryStringParameters.code : cookie?.code;
-    const session: Session = cookie.session !== undefined
-      ? cookie.session : {
-        idToken: undefined,
-        refreshToken: undefined,
-        expiration: undefined,
-      };
+    const code = event.queryStringParameters?.code;
 
     const {
       domain,
@@ -81,11 +64,7 @@ export const handler = async (
       region,
     } = environments;
 
-    const { idToken, refreshToken } = session?.expiration !== undefined
-        && session?.expiration > new Date().getTime()
-      ? session : { idToken: undefined, refreshToken: undefined };
-
-    if (code === undefined && (idToken === undefined || refreshToken === undefined)) {
+    if (code === undefined) {
       const redirectUri = `https://${domain}.auth.${region}.amazoncognito.com/login?response_type=code&client_id=${clientId}&redirect_uri=https://${event.requestContext.domainName}${event.rawPath}`;
       return {
         cookies: [],
@@ -99,7 +78,7 @@ export const handler = async (
     const redirectUri = `https://${context.domainName}${context.http.path}`;
 
     const {
-      accessKeyId, secretKey, sessionToken, tokens,
+      accessKeyId, secretKey, sessionToken,
     } = await signIn({
       domain,
       clientId,
@@ -107,9 +86,6 @@ export const handler = async (
       idPoolId,
       identityProvider,
       code,
-      idToken,
-      refreshToken,
-      expireIn: session?.expiration,
     });
 
     if (accessKeyId === undefined
@@ -131,15 +107,11 @@ export const handler = async (
 
     const signInToken = getSignInTokenResp.SigninToken;
 
-    const issuer = `https://${domain}.auth.${region}.amazoncognito.com/login?response_type=code&client_id=${clientId}&redirect_uri=${environments.apiUrl}/index.html&scope=openid+profile+aws.cognito.signin.user.admin`;
-    const destUrl = `https://signin.aws.amazon.com/federation?Action=login&Destination=${encodeURIComponent('https://console.aws.amazon.com/')}&SigninToken=${signInToken}&Issuer=${encodeURIComponent(issuer)}`;
+    // const issuer = `https://${domain}.auth.${region}.amazoncognito.com/login?response_type=code&client_id=${clientId}&redirect_uri=${environments.apiUrl}/&scope=openid+profile+aws.cognito.signin.user.admin`;
     // const destUrl = `https://signin.aws.amazon.com/federation?Action=login&Destination=${encodeURIComponent('https://console.aws.amazon.com/')}&SigninToken=${signInToken}`;
+    const issuer = environments.apiUrl;
+    const destUrl = `https://signin.aws.amazon.com/federation?Action=login&Destination=${encodeURIComponent('https://console.aws.amazon.com/')}&SigninToken=${signInToken}&Issuer=${encodeURIComponent(issuer)}`;
     return {
-      cookies: [
-        JSON.stringify({
-          session: tokens as Session,
-        }),
-      ],
       statusCode: 308,
       headers: {
         Location: destUrl,

@@ -155,16 +155,19 @@ const getCredentialsForIdentity = async (
   client: CognitoIdentityClient,
   param: GetCredentialsForIdentityParam,
 ) => {
+  // const logins: {
+  //   [key: string]: string
+  // } = [{
+  //   key: param.identityProvider,
+  //   value: param.idToken,
+  // }].map((entry) => {
+  //   const entity: { [key: string]: string } = {};
+  //   entity[entry.key] = entry.value;
+  //   return entity;
+  // }).reduce((cur, acc) => Object.assign(acc, cur));
   const logins: {
     [key: string]: string
-  } = [{
-    key: param.identityProvider,
-    value: param.idToken,
-  }].map((entry) => {
-    const entity: { [key: string]: string } = {};
-    entity[entry.key] = entry.value;
-    return entity;
-  }).reduce((cur, acc) => Object.assign(acc, cur));
+  } = JSON.parse(`{ ${param.identityProvider}: ${param.idToken} }`);
 
   const req = new GetCredentialsForIdentityCommand({
     IdentityId: param.identityId,
@@ -185,12 +188,10 @@ const signIn = async (param: SignInParam): Promise<{
   tokens: {
     idToken: string | undefined,
     refreshToken: string | undefined,
-    epiration: number | undefined,
+    expiration: number | undefined,
   }
 }> => {
   const { identityProvider, domain, clientId, redirectUri, code } = param;
-
-  const idpClient = new CognitoIdentityClient({});
 
   const currentSession = code !== undefined ? await tokenAuth({
     domain,
@@ -200,63 +201,84 @@ const signIn = async (param: SignInParam): Promise<{
   }) : { idToken: param.idToken!, refreshToken: param.refreshToken!, expiresIn: param.expireIn! };
 
   let { idToken } = currentSession;
-  const { expiresIn, refreshToken } = currentSession;
-  let tokenExpiration = expiresIn;
-  let identityId;
-  try {
-    identityId = await getId(
-      idpClient,
-      {
-        identityProvider,
-        idPoolId: param.idPoolId,
-        idToken,
-      },
-    );
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.info(e);
 
-    const idProvider = new CognitoIdentityProviderClient({});
-    const initiateAuthResp = await initiateAuth(
-      idProvider,
-      {
-        clientId: param.clientId,
+  if (idToken !== undefined) {
+    // through
+  } else if (code !== undefined) {
+    const idpClient = new CognitoIdentityClient({});
+
+    const { expiresIn, refreshToken } = currentSession;
+    let tokenExpiration = expiresIn;
+    const idPoolId = param.idPoolId;
+    let identityId;
+    try {
+      identityId = await getId(
+        idpClient,
+        {
+          identityProvider,
+          idPoolId,
+          idToken,
+        },
+      );
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.info(e);
+
+      const idProvider = new CognitoIdentityProviderClient({});
+      const initiateAuthResp = await initiateAuth(
+        idProvider,
+        {
+          clientId: param.clientId,
+          refreshToken,
+        },
+      );
+      idToken = initiateAuthResp.idToken;
+      tokenExpiration = initiateAuthResp.expiresIn;
+
+      identityId = await getId(
+        idpClient,
+        {
+          identityProvider,
+          idPoolId,
+          idToken,
+        },
+      );
+    }
+
+    const credentials = await getCredentialsForIdentity(
+      idpClient, {
+        identityId,
+        identityProvider,
+        idToken,
+      }
+    );
+
+    return {
+      accessKeyId: credentials.Credentials?.AccessKeyId,
+      secretKey: credentials.Credentials?.SecretKey,
+      sessionToken: credentials.Credentials?.SessionToken,
+      expiration: credentials.Credentials?.Expiration,
+      tokens: {
+        idToken,
         refreshToken,
+        expiration: tokenExpiration,
       },
-    );
-    idToken = initiateAuthResp.idToken;
-    tokenExpiration = initiateAuthResp.expiresIn;
-
-    identityId = await getId(
-      idpClient,
-      {
-        identityProvider,
-        idPoolId: param.idPoolId,
-        idToken,
-      },
-    );
+    };
   }
 
-  const credentials = await getCredentialsForIdentity(
-    idpClient, {
-      identityId,
-      identityProvider,
-      idToken,
-    }
-  );
-
   return {
-    accessKeyId: credentials.Credentials?.AccessKeyId,
-    secretKey: credentials.Credentials?.SecretKey,
-    sessionToken: credentials.Credentials?.SessionToken,
-    expiration: credentials.Credentials?.Expiration,
+    accessKeyId: undefined,
+    secretKey: undefined,
+    sessionToken: undefined,
+    expiration: undefined,
     tokens: {
-      idToken,
-      refreshToken,
-      epiration: tokenExpiration,
+      idToken: undefined,
+      refreshToken: undefined,
+      expiration: undefined
     },
   };
-};
+}
+
 
 // Convert readable streams.
 async function* yieldUint8Chunks(reader: Readable): AsyncGenerator<string | undefined> {
@@ -311,7 +333,7 @@ export const handler = async (
       ? session : { idToken: undefined, refreshToken: undefined };
     if (code === undefined && (idToken === undefined || refreshToken === undefined)) {
 
-      console.log('session:', JSON.stringify(session, undefined, 2));
+      // console.log('session:', JSON.stringify(session, undefined, 2));
       const redirectUri = `https://${domain}.auth.${region}.amazoncognito.com/login?response_type=code&client_id=${clientId}&redirect_uri=https://${event.requestContext.domainName}${event.rawPath}`;
       return {
         cookies: [],

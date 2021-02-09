@@ -1,7 +1,7 @@
 import { DockerImageFunction, DockerImageCode } from '@aws-cdk/aws-lambda';
 
 import {
-  Effect, FederatedPrincipal, ManagedPolicy, PolicyStatement, Role, WebIdentityPrincipal,
+  Effect, FederatedPrincipal, ManagedPolicy, PolicyDocument, PolicyStatement, Role, ServicePrincipal, WebIdentityPrincipal,
 } from '@aws-cdk/aws-iam';
 import {
   AccountRecovery, Mfa, OAuthScope, UserPoolClient, CfnIdentityPoolRoleAttachment, CfnUserPoolGroup, UserPool, CfnIdentityPool,
@@ -10,7 +10,6 @@ import { Stack, StackProps, Construct, Duration } from '@aws-cdk/core';
 import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
 import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations';
 import { RetentionDays } from '@aws-cdk/aws-logs';
-import { Bucket } from '@aws-cdk/aws-s3';
 
 export interface GroupConfig {
   id: string,
@@ -18,22 +17,20 @@ export interface GroupConfig {
   admin: boolean,
 }
 
-export interface CognitoLambdaStackProps extends StackProps {
+export interface CCognitoConsoleStackProps extends StackProps {
   name: string,
   region: string,
   environment: string,
   groups: GroupConfig[],
   domain: string,
-  s3Region: string,
-  s3Bucket: string,
 }
 
-export class CognitoLambdaStack extends Stack {
-  constructor(scope: Construct, id: string, props: CognitoLambdaStackProps) {
+export class CognitoConsoleStack extends Stack {
+  constructor(scope: Construct, id: string, props: CCognitoConsoleStackProps) {
     super(scope, id, props);
 
     const userPool = new UserPool(this, 'UserPool', {
-      userPoolName: `${props.environment}-cognito-lambda-user-pool`,
+      userPoolName: `${props.environment}-cognito-console-lambda`,
       signInAliases: {
         username: true,
         email: true,
@@ -61,41 +58,55 @@ export class CognitoLambdaStack extends Stack {
       accountRecovery: AccountRecovery.EMAIL_ONLY,
     });
 
-    const domain = `${props.environment}-poad-s3-lambda`;
+    const domain = props.domain;
     userPool.addDomain('UserPoolDomain', {
       cognitoDomain: {
         domainPrefix: domain
       }
     });
 
-    const fn = new DockerImageFunction(this, 'CognitoLambdaFunction', {
-      code: DockerImageCode.fromImageAsset('lambda', {
-        repositoryName: 'cognito-lambda',
+    const signInFn = new DockerImageFunction(this, 'CognitoLambdaFunction', {
+      code: DockerImageCode.fromImageAsset('signin-lambda', {
+        repositoryName: 'signin-lambda',
       }),
       functionName: props.name,
       logRetention: RetentionDays.ONE_DAY,
       retryAttempts: 0,
       environment: {
         'DOMAIN': domain,
-        'S3_REGION': props.s3Region,
-        'S3_BUCKET': props.s3Bucket,
         'REGION': props.region,
       },
+      role: new Role(this, 'LambdaExecutionRole', {
+        assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
+        inlinePolicies: {
+          'logs-policy': new PolicyDocument({
+            statements: [
+              new PolicyStatement({
+                effect: Effect.ALLOW,
+                actions: [
+                  'logs:CreateLogGroup',
+                  'logs:CreateLogStream',
+                  'logs:PutLogEvents'
+                ],
+                resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.name}:*`],
+              })
+            ]
+          }),
+        },
+      })
     });
-
-
 
     const api = new HttpApi(this, "HttpApi", {
       apiName: 'Cognito Lambda API',
       defaultIntegration: new LambdaProxyIntegration({
-        handler: fn
+        handler: signInFn
       })
     });
     api.addRoutes({
-      path: "/{proxy+}",
+      path: "/signin",
       methods: [HttpMethod.ANY],
       integration: new LambdaProxyIntegration({
-        handler: fn
+        handler: signInFn
       }),
     });
 
@@ -109,8 +120,8 @@ export class CognitoLambdaStack extends Stack {
         custom: true,
       },
       oAuth: {
-        callbackUrls: [`${api.url}index.html`],
-        logoutUrls: undefined,
+        callbackUrls: [`${api.url}`],
+        logoutUrls: [ api.url! ],
         flows: {
           authorizationCodeGrant: true,
           implicitCodeGrant: true,
@@ -135,15 +146,16 @@ export class CognitoLambdaStack extends Stack {
       cognitoIdentityProviders: [
         identityPoolProvider,
       ],
-      identityPoolName: `${props.environment}-cognito-lambda-idp`,
+      identityPoolName: `${props.environment} signin lambda`,
     });
 
-    fn.addEnvironment('CLIENT_ID', client.userPoolClientId);
-    fn.addEnvironment('ID_POOL_ID', identityPool.ref);
-    fn.addEnvironment('IDENTITY_PROVIDER', identityPoolProvider.providerName);
+    signInFn.addEnvironment('CLIENT_ID', client.userPoolClientId);
+    signInFn.addEnvironment('ID_POOL_ID', identityPool.ref);
+    signInFn.addEnvironment('IDENTITY_PROVIDER', identityPoolProvider.providerName);
+    signInFn.addEnvironment('API_URL', api.url!);
 
     const unauthenticatedRole = new Role(this, 'CognitoDefaultUnauthenticatedRole', {
-      roleName: `${props.environment}-cognito-unauth-role`,
+      roleName: `${props.environment}-cognito-console-unauth-role`,
       assumedBy: new FederatedPrincipal('cognito-identity.amazonaws.com', {
         StringEquals: {
           'cognito-identity.amazonaws.com:aud': identityPool.ref,
@@ -160,18 +172,22 @@ export class CognitoLambdaStack extends Stack {
         'cognito-sync:*',
         'cognito-identity:*',
         "cognito-idp:*",
+        'sts:GetFederationToken',
       ],
       resources: ['*'],
     }));
 
     const authenticatedRole = new Role(this, 'CognitoDefaultAuthenticatedRole', {
-      roleName: `${props.environment}-cognito-auth-role`,
+      roleName: `${props.environment}-cognito-console-auth-role`,
       assumedBy: new FederatedPrincipal('cognito-identity.amazonaws.com', {
         StringEquals: {
           'cognito-identity.amazonaws.com:aud': identityPool.ref,
         },
         'ForAnyValue:StringLike': {
           'cognito-identity.amazonaws.com:amr': 'authenticated',
+        },
+        StringLike: {
+          'sts:RoleSessionName': '${aws:username}',
         },
       }, 'sts:AssumeRoleWithWebIdentity'),
       maxSessionDuration: Duration.hours(12),
@@ -180,45 +196,12 @@ export class CognitoLambdaStack extends Stack {
     authenticatedRole.addToPolicy(new PolicyStatement({
       effect: Effect.ALLOW,
       actions: [
-        'cognito-sync:*',
         'cognito-identity:*',
         "cognito-idp:*",
-      ],
-      resources: ['*'],
-    }));
-    authenticatedRole.addToPolicy(new PolicyStatement({
-      effect: Effect.ALLOW,
-      actions: [
         'sts:GetFederationToken',
       ],
       resources: ['*'],
     }));
-
-    authenticatedRole.addToPolicy(new PolicyStatement({
-      effect: Effect.ALLOW,
-      actions: [
-        's3:GetBucket*',
-        's3:ListBucket*',
-      ],
-      resources: ['*'],
-    }));
-
-    if (props.region === props.s3Region) {
-      const s3 = new Bucket(this, 'S3Bucket', {
-        bucketName: `${props.s3Bucket}-${this.account}`,
-      });
-      authenticatedRole.addToPolicy(new PolicyStatement({
-        effect: Effect.ALLOW,
-        actions: [
-          's3:GetObject*',
-          's3:ListObject*',
-        ],
-        resources: [
-          `${s3.bucketArn}/`,
-          `${s3.bucketArn}/*`
-        ],
-      }));
-    }
 
     new CfnIdentityPoolRoleAttachment(this, 'IdPoolRoleAttachment', {
       identityPoolId: identityPool.ref,
@@ -246,7 +229,7 @@ export class CognitoLambdaStack extends Stack {
 
     const roles = props.groups.map((group) => {
       const groupRole = new Role(this, `${props.environment}-GroupRole-${group.name}`, {
-        roleName: `${props.environment}-group-role-${group.name}`,
+        roleName: `${props.environment}-cognito-consle-${group.name}`,
         assumedBy: new WebIdentityPrincipal('cognito-identity.amazonaws.com', conditions),
         maxSessionDuration: Duration.hours(12),
       });
@@ -256,16 +239,9 @@ export class CognitoLambdaStack extends Stack {
       groupRole.addToPolicy(new PolicyStatement({
         effect: Effect.ALLOW,
         actions: [
-          'sts:GetFederationToken',
-          ],
-        resources: ['*'],
-      }));
-      groupRole.addToPolicy(new PolicyStatement({
-        effect: Effect.ALLOW,
-        actions: [
-          'cognito-sync:*',
           'cognito-identity:*',
           "cognito-idp:*",
+          'sts:GetFederationToken',
         ],
         resources: ['*'],
       }));

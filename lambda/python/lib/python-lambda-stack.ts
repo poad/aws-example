@@ -7,7 +7,7 @@ import { PythonFunction } from '@aws-cdk/aws-lambda-python';
 import path = require('path');
 import { RuleTargetInput } from '@aws-cdk/aws-events';
 import { ServicePrincipal } from '@aws-cdk/aws-iam';
-import { Duration } from '@aws-cdk/core';
+import { RetentionDays } from '@aws-cdk/aws-logs';
 
 export interface ContextAppStackProps extends cdk.StackProps {
   targetTags: Array<string>;
@@ -52,6 +52,7 @@ export class PythonLambdaStack extends cdk.Stack {
       functionName: 'ec2-instance-killer',
       entry: path.resolve(__dirname, '../functions'),
       runtime: lambda.Runtime.PYTHON_3_8,
+      logRetention: RetentionDays.ONE_DAY,
       role: role,
       timeout: cdk.Duration.seconds(14.5 * 60),
     });

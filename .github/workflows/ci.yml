@@ -16,8 +16,9 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 15.x]
+        node-version: [12.x, 14.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        target: [ ./lambda/cognito-console, ./lambda/cognito-lambda, ./lambda/python ]
 
     steps:
     - uses: actions/checkout@v2
@@ -26,5 +27,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm i -g yarn aws-cdk typescript
-    - run: yarn install
-    - run: yarn build
+    - run: |
+        cd ${{ matrix.target }} && \
+        yarn install && \
+        yarn build

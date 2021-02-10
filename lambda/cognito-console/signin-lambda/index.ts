@@ -55,7 +55,7 @@ export const handler = async (
     }
 
     const code = event.queryStringParameters?.code;
-
+    
     const {
       domain,
       clientId,

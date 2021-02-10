@@ -6,7 +6,7 @@
     "cognito-console": "bin/cognito-console.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc bin/*.ts lib/*.ts",
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",

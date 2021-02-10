@@ -6,7 +6,7 @@
     "cognito-lambda": "bin/cognito-lambda.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc bin/*.ts lib/*.ts",
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",

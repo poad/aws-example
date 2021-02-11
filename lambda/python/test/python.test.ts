@@ -5,7 +5,7 @@ import * as Python from '../lib/python-lambda-stack';
 test('Empty Stack', () => {
     const app = new cdk.App();
     // WHEN
-    const stack = new Python.PythonLambdaStack(app, 'MyTestStack', {tag: ''});
+    const stack = new Python.PythonLambdaStack(app, 'MyTestStack', {targetTags: ['']});
     // THEN
     expectCDK(stack).to(matchTemplate({
       "Resources": {}

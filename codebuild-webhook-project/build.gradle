@@ -39,7 +39,7 @@ subprojects {
 }
 application {
     // Define the main class for the application.
-    mainClassName = 'com.github.poad.codebuild.webhook.App'
+    getMainClass().set('com.github.poad.codebuild.webhook.App')
 }
 
 test {

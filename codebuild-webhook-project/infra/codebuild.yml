@@ -3,10 +3,10 @@ AWSTemplateFormatVersion: 2010-09-09
 Parameters:
   JavaMinorRevision:
     Type: String
-    Default: "0.5"
+    Default: "0.10"
   JdkEsum:
     Type: String
-    Default: "5a4d45f951fd329d42abd77ef9c00b8d9e315ea3"
+    Default: "32e0fe99199c9691e616af48355157139c0c8e60"
 
 
 Resources:
@@ -62,7 +62,7 @@ Resources:
       Environment:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL
-        Image: 'aws/codebuild/standard:4.0'
+        Image: 'aws/codebuild/standard:5.0'
         PrivilegedMode: true
         EnvironmentVariables:
           -
@@ -74,9 +74,6 @@ Resources:
           -
             Name: IMAGE_TAG
             Value: latest
-          -
-            Name: DOCKER_VERSION
-            Value: 19.03.1
       ServiceRole: !GetAtt CodeBuildRole.Arn
       Source:
         Type: GITHUB

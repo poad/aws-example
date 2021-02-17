@@ -5,6 +5,7 @@ import signIn from './signIn';
 interface EnvironmentVariables {
   domain: string,
   region: string,
+  userPoolId: string,
   clientId: string,
   idPoolId: string,
   identityProvider: string,
@@ -14,11 +15,16 @@ interface EnvironmentVariables {
 export const environments: EnvironmentVariables = {
   domain: process.env.DOMAIN!,
   region: process.env.REGION!,
+  userPoolId: process.env.USER_POOL_ID!,
   clientId: process.env.CLIENT_ID!,
   idPoolId: process.env.ID_POOL_ID!,
   identityProvider: process.env.IDENTITY_PROVIDER!,
   apiUrl: process.env.API_URL!,
 };
+
+interface Session {
+  refreshToken?: string,
+}
 
 const getSignInToken = async (
   param: {
@@ -47,7 +53,9 @@ export const handler = async (
     // eslint-disable-next-line no-console
     console.log('request:', JSON.stringify(event, undefined, 2));
 
-    if (event.pathParameters?.proxy === 'favicon.ico') {
+    const { rawPath } = event;
+
+    if (rawPath === '/favicon.ico') {
       return {
         statusCode: 404,
         headers: { 'Content-Type': 'text/plain' },
@@ -56,16 +64,11 @@ export const handler = async (
 
     const code = event.queryStringParameters?.code;
     
-    const {
-      domain,
-      clientId,
-      idPoolId,
-      identityProvider,
-      region,
-    } = environments;
+    const { domain, clientId, region, } = environments;
+    const {domainName, http } = event.requestContext;
 
     if (code === undefined) {
-      const redirectUri = `https://${domain}.auth.${region}.amazoncognito.com/login?response_type=code&client_id=${clientId}&redirect_uri=https://${event.requestContext.domainName}${event.rawPath}`;
+      const redirectUri = `https://${domain}.auth.${region}.amazoncognito.com/login?response_type=code&client_id=${clientId}&redirect_uri=https://${domainName}${rawPath}`;
       return {
         cookies: [],
         statusCode: 308,
@@ -73,19 +76,22 @@ export const handler = async (
       };
     }
 
-    const context = event.requestContext;
+    const redirectUri = `https://${domainName}${http.path}`;
 
-    const redirectUri = `https://${context.domainName}${context.http.path}`;
+    const { refreshToken } = event.cookies !== undefined && event.cookies.length > 0
+        ? JSON.parse(event.cookies[0]) as Session : { refreshToken : undefined};
 
     const {
-      accessKeyId, secretKey, sessionToken,
+      accessKeyId, secretKey, sessionToken, tokens
     } = await signIn({
       domain,
+      userPoolId: environments.userPoolId,
       clientId,
       redirectUri,
-      idPoolId,
-      identityProvider,
+      idPoolId: environments.idPoolId,
+      identityProvider: environments.identityProvider,
       code,
+      refreshToken,
     });
 
     if (accessKeyId === undefined
@@ -99,23 +105,16 @@ export const handler = async (
       };
     }
 
-    const getSignInTokenResp = await getSignInToken({
-      accessKeyId,
-      secretKey,
-      sessionToken,
-    });
+    const { SigninToken } = await getSignInToken({ accessKeyId, secretKey, sessionToken, });
 
-    const signInToken = getSignInTokenResp.SigninToken;
-
-    // const issuer = `https://${domain}.auth.${region}.amazoncognito.com/login?response_type=code&client_id=${clientId}&redirect_uri=${environments.apiUrl}/&scope=openid+profile+aws.cognito.signin.user.admin`;
-    // const destUrl = `https://signin.aws.amazon.com/federation?Action=login&Destination=${encodeURIComponent('https://console.aws.amazon.com/')}&SigninToken=${signInToken}`;
     const issuer = environments.apiUrl;
-    const destUrl = `https://signin.aws.amazon.com/federation?Action=login&Destination=${encodeURIComponent('https://console.aws.amazon.com/')}&SigninToken=${signInToken}&Issuer=${encodeURIComponent(issuer)}`;
+    const destUrl = `https://signin.aws.amazon.com/federation?Action=login&Destination=${encodeURIComponent('https://console.aws.amazon.com/')}&SigninToken=${SigninToken}&Issuer=${encodeURIComponent(issuer)}`;
     return {
       statusCode: 308,
       headers: {
         Location: destUrl,
       },
+      cookies: [ JSON.stringify({ refreshToken: tokens.refreshToken } as Session) ]
     };
   } catch (e) {
     // eslint-disable-next-line no-console

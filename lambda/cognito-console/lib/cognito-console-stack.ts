@@ -11,13 +11,14 @@ import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
 import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations';
 import { RetentionDays } from '@aws-cdk/aws-logs';
 
+
 export interface GroupConfig {
   id: string,
   name: string,
   admin: boolean,
 }
 
-export interface CCognitoConsoleStackProps extends StackProps {
+export interface CognitoConsoleStackProps extends StackProps {
   name: string,
   region: string,
   environment: string,
@@ -26,7 +27,7 @@ export interface CCognitoConsoleStackProps extends StackProps {
 }
 
 export class CognitoConsoleStack extends Stack {
-  constructor(scope: Construct, id: string, props: CCognitoConsoleStackProps) {
+  constructor(scope: Construct, id: string, props: CognitoConsoleStackProps) {
     super(scope, id, props);
 
     const userPool = new UserPool(this, 'UserPool', {
@@ -66,9 +67,7 @@ export class CognitoConsoleStack extends Stack {
     });
 
     const signInFn = new DockerImageFunction(this, 'CognitoLambdaFunction', {
-      code: DockerImageCode.fromImageAsset('signin-lambda', {
-        repositoryName: 'signin-lambda',
-      }),
+      code: DockerImageCode.fromImageAsset('signin-lambda'),
       functionName: props.name,
       logRetention: RetentionDays.ONE_DAY,
       retryAttempts: 0,
@@ -92,18 +91,34 @@ export class CognitoConsoleStack extends Stack {
               })
             ]
           }),
+          'assumed-role-policy': new PolicyDocument(
+            {
+              statements: [
+                new PolicyStatement({
+                  effect: Effect.ALLOW,
+                  actions: [
+                    'cognito-identity:*',
+                    "cognito-idp:*",
+                    'sts:GetFederationToken',
+                    'sts:AssumeRoleWithWebIdentity',
+                  ],
+                  resources: ['*'],
+                })
+              ]
+            }
+          )
         },
       })
     });
 
     const api = new HttpApi(this, "HttpApi", {
-      apiName: 'Cognito Lambda API',
+      apiName: 'Cognito Console Lambda API',
       defaultIntegration: new LambdaProxyIntegration({
         handler: signInFn
       })
     });
     api.addRoutes({
-      path: "/signin",
+      path: "/",
       methods: [HttpMethod.ANY],
       integration: new LambdaProxyIntegration({
         handler: signInFn
@@ -150,6 +165,7 @@ export class CognitoConsoleStack extends Stack {
     });
 
     signInFn.addEnvironment('CLIENT_ID', client.userPoolClientId);
+    signInFn.addEnvironment('USER_POOL_ID', userPool.userPoolId);
     signInFn.addEnvironment('ID_POOL_ID', identityPool.ref);
     signInFn.addEnvironment('IDENTITY_PROVIDER', identityPoolProvider.providerName);
     signInFn.addEnvironment('API_URL', api.url!);
@@ -169,10 +185,10 @@ export class CognitoConsoleStack extends Stack {
     unauthenticatedRole.addToPolicy(new PolicyStatement({
       effect: Effect.ALLOW,
       actions: [
-        'cognito-sync:*',
         'cognito-identity:*',
         "cognito-idp:*",
         'sts:GetFederationToken',
+        'sts:AssumeRoleWithWebIdentity',
       ],
       resources: ['*'],
     }));
@@ -199,6 +215,7 @@ export class CognitoConsoleStack extends Stack {
         'cognito-identity:*',
         "cognito-idp:*",
         'sts:GetFederationToken',
+        'sts:AssumeRoleWithWebIdentity',
       ],
       resources: ['*'],
     }));
@@ -209,13 +226,13 @@ export class CognitoConsoleStack extends Stack {
         authenticated: authenticatedRole.roleArn,
         unauthenticated: unauthenticatedRole.roleArn,
       },
-      roleMappings: {
-        'cognito-lambda': {
-          ambiguousRoleResolution: 'AuthenticatedRole',
-          identityProvider: `cognito-idp.${Stack.of(this).region}.amazonaws.com/${userPool.userPoolId}:${client.userPoolClientId}`,
-          type: 'Token',
-        },
-      },
+      // roleMappings: {
+      //   'cognito-lambda': {
+      //     ambiguousRoleResolution: 'AuthenticatedRole',
+      //     identityProvider: `cognito-idp.${Stack.of(this).region}.amazonaws.com/${userPool.userPoolId}:${client.userPoolClientId}`,
+      //     type: 'Token',
+      //   },
+      // },
     });
 
     const conditions = {
@@ -242,6 +259,7 @@ export class CognitoConsoleStack extends Stack {
           'cognito-identity:*',
           "cognito-idp:*",
           'sts:GetFederationToken',
+          'sts:AssumeRoleWithWebIdentity',
         ],
         resources: ['*'],
       }));

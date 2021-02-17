@@ -1,6 +1,8 @@
-import { CognitoIdentityClient, GetCredentialsForIdentityCommand, GetIdCommand } from '@aws-sdk/client-cognito-identity';
+import { CognitoIdentityClient, GetIdCommand, GetIdentityPoolRolesCommand, GetOpenIdTokenCommand } from '@aws-sdk/client-cognito-identity';
 import { CognitoIdentityProviderClient, InitiateAuthCommand } from '@aws-sdk/client-cognito-identity-provider';
+import { AssumeRoleWithWebIdentityCommand, STSClient } from '@aws-sdk/client-sts';
 import fetch from 'node-fetch';
+import * as jwt from 'jsonwebtoken';
 
 interface TokenAuthParam {
     domain: string,
@@ -20,13 +22,8 @@ interface TokenAuthParam {
     refreshToken: string,
   }
 
-  interface GetCredentialsForIdentityParam {
-    identityId: string,
-    identityProvider: string,
-    idToken: string,
-  }
-
   interface GetCredentialsParam {
+    userPoolId: string,
     idPoolId: string,
     clientId: string,
     identityProvider: string,
@@ -48,11 +45,13 @@ interface TokenAuthParam {
 
   interface SignInParam {
     domain: string,
+    userPoolId: string,
     clientId: string,
     identityProvider: string,
     idPoolId: string,
     redirectUri: string,
     code?: string,
+    refreshToken?: string,
   }
 
 export type SigninResult = GetCredentialsResult;
@@ -149,13 +148,26 @@ const initiateAuth = async (
   };
 };
 
-const getCredentialsForIdentity = async (
+const getDefaultRoles = async (
   client: CognitoIdentityClient,
-  param: GetCredentialsForIdentityParam,
+  param: {
+    idPoolId: string,
+  }
 ) => {
-  const IdentityId = param.identityId;
+  return client.send(new GetIdentityPoolRolesCommand({
+    IdentityPoolId: param.idPoolId,
+  }));
+}
 
-  const Logins: {
+const getOpenIDToken = async (
+  client: CognitoIdentityClient,
+  param: {
+    identityId: string,
+    identityProvider: string,
+    idToken: string,
+  }
+) => {
+  const logins: {
       [key: string]: string
     } = [{
       key: param.identityProvider,
@@ -166,16 +178,32 @@ const getCredentialsForIdentity = async (
       return entity;
     }).reduce((cur, acc) => Object.assign(acc, cur));
 
-  const req = new GetCredentialsForIdentityCommand({
-    IdentityId,
-    Logins,
-  });
+  return client.send(new GetOpenIdTokenCommand({
+    IdentityId: param.identityId,
+    Logins: logins
+  }));
+}
 
-  return client.send(req);
-};
+const assumeRoleWithWebIdentity = async (
+  client: STSClient,
+  param: {
+    token: string,
+    roleArn: string,
+    roleSessionName: string,
+    sessionDuration?: number,
+  }
+) => {
+  const request = new AssumeRoleWithWebIdentityCommand({
+    WebIdentityToken: param.token,
+    RoleArn: param.roleArn,
+    RoleSessionName: param.roleSessionName,
+    DurationSeconds: param.sessionDuration
+  });
+  return client.send(request);
+}
 
 const getCredentials = async (
-  idpClient: CognitoIdentityClient,
+  identityClient: CognitoIdentityClient,
   param: GetCredentialsParam,
 ): Promise<GetCredentialsResult> => {
   let identityId;
@@ -186,58 +214,62 @@ const getCredentials = async (
     identityProvider, idPoolId, clientId, refreshToken,
   } = param;
   let tokenExpiration;
+  const idpClient = new CognitoIdentityProviderClient({});
+
+  const initiateAuthResp = await initiateAuth(
+    idpClient,
+    {
+      clientId,
+      refreshToken,
+    },
+  );
+
+  idToken = initiateAuthResp.idToken;
+  tokenExpiration = initiateAuthResp.expiresIn;
+
+  identityId = await getId(
+    identityClient,
+    {
+      identityProvider,
+      idPoolId,
+      idToken,
+    },
+  );
+
+  // const user = await idProvider.send(new GetUserCommand({
+  //   AccessToken: initiateAuthResp.idToken,
+  // }));
+  // console.log(`Uer Info: ${JSON.stringify(user)}`);
+
+  const payload = jwt.decode(idToken) as { [key: string]: string | string[] };
+  const preferredRole = payload['cognito:preferred_role'] as string;
+  const username = payload['cognito:username'] as string;
+  const email = payload.email;
+  console.log(`JWT: ${JSON.stringify(payload)}`);
+
+  const roleArn = preferredRole !== undefined
+      ? preferredRole
+      : (await getDefaultRoles(identityClient, { idPoolId })).Roles?.authenticated;
+
+  console.log(`role arn: ${roleArn}`);
   try {
-    identityId = await getId(
-      idpClient,
-      {
-        identityProvider,
-        idPoolId,
-        idToken,
-      },
-    );
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.info(e);
-
-    const idProvider = new CognitoIdentityProviderClient({});
-    const initiateAuthResp = await initiateAuth(
-      idProvider,
-      {
-        clientId,
-        refreshToken,
-      },
-    );
-
-    idToken = initiateAuthResp.idToken;
-    tokenExpiration = initiateAuthResp.expiresIn;
-
-    identityId = await getId(
-      idpClient,
-      {
-        identityProvider,
-        idPoolId,
-        idToken,
-      },
-    );
-
-    // const user = await idProvider.send(new GetUserCommand({
-    //   AccessToken: initiateAuthResp.idToken,
-    // }));
-    // console.log(`Uer Info: ${JSON.stringify(user)}`);
-  }
-
-  try {
-    const credentials = await getCredentialsForIdentity(
-      idpClient, {
+    const openIdToken = await getOpenIDToken(
+      identityClient, {
         identityId,
         identityProvider,
         idToken,
       },
     );
 
+    const credentials = await assumeRoleWithWebIdentity(new STSClient({}), {
+      token: openIdToken.Token!,
+      roleArn: roleArn!,
+      roleSessionName: email !== undefined ? `${email}` : username,
+    });
+
     return {
       accessKeyId: credentials.Credentials?.AccessKeyId,
-      secretKey: credentials.Credentials?.SecretKey,
+      secretKey: credentials.Credentials?.SecretAccessKey,
       sessionToken: credentials.Credentials?.SessionToken,
       expiration: credentials.Credentials?.Expiration,
       tokens: {
@@ -258,8 +290,24 @@ const signIn = async (param: SignInParam): Promise<SigninResult> => {
   const {
     domain, clientId, redirectUri, code,
   } = param;
-  const idpClient = new CognitoIdentityClient({});
+  let {
+    refreshToken,
+  } = param;
+  const identityClient = new CognitoIdentityClient({});
+  const idpClient = new CognitoIdentityProviderClient({});
 
+  let idToken;
+  if (refreshToken !== undefined) {
+
+    const initiateAuthResp = await initiateAuth(
+      idpClient,
+      {
+        clientId,
+        refreshToken,
+      },
+    );
+    idToken = initiateAuthResp.idToken;
+  }
   if (code !== undefined) {
     const currentSession = await getOAuthToken({
       domain,
@@ -267,29 +315,33 @@ const signIn = async (param: SignInParam): Promise<SigninResult> => {
       redirectUri,
       code,
     });
-
-    // console.log(`OAuthTokens: ${JSON.stringify(currentSession)}`);
-
-    return getCredentials(idpClient, {
-      idPoolId: param.idPoolId,
-      identityProvider: param.identityProvider,
-      clientId: param.clientId,
-      idToken: currentSession.idToken,
-      refreshToken: currentSession.refreshToken,
-    });
+    idToken = currentSession.idToken;
+    refreshToken = currentSession.refreshToken;
   }
 
-  return {
-    accessKeyId: undefined,
-    secretKey: undefined,
-    sessionToken: undefined,
-    expiration: undefined,
-    tokens: {
-      idToken: undefined,
-      refreshToken: undefined,
+  if (idToken === undefined || refreshToken === undefined) {
+    return {
+      accessKeyId: undefined,
+      secretKey: undefined,
+      sessionToken: undefined,
       expiration: undefined,
-    },
-  };
+      tokens: {
+        idToken: undefined,
+        refreshToken: undefined,
+        expiration: undefined,
+      },
+    };
+  }
+
+  // console.log(`OAuthTokens: ${JSON.stringify(currentSession)}`);
+  return getCredentials(identityClient, {
+    userPoolId: param.userPoolId,
+    idPoolId: param.idPoolId,
+    identityProvider: param.identityProvider,
+    clientId: param.clientId,
+    idToken,
+    refreshToken: refreshToken,
+  });
 };
 
 export default signIn;

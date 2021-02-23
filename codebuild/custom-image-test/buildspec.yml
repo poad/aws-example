@@ -1,0 +1,16 @@
+version: 0.2
+
+batch:
+  fast-fail: true
+
+phases:
+  install:
+    runtime-versions:
+      android: 29
+      java: openjdk8
+  build:
+    commands:
+      - cd ./codebuild/custom-image-test/android
+      - chmod +x gradlew
+      - ./gradlew assembleDebug
+

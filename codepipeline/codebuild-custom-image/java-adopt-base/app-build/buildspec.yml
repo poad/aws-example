@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      android: 30
+      java: openjdk8
+  build: 
+    commands:
+      - cd codebuild-custom-image/apps
+      - mvn clean install package
+
+artifacts:
+  type: zip
+  files:
+    - codebuild/codebuild-webhook-project/apps/
+  discard-paths: yes

@@ -1,6 +1,6 @@
 import { CognitoIdentityClient, GetIdCommand, GetIdentityPoolRolesCommand, GetOpenIdTokenCommand } from '@aws-sdk/client-cognito-identity';
 import { CognitoIdentityProviderClient, InitiateAuthCommand } from '@aws-sdk/client-cognito-identity-provider';
-import { AssumeRoleWithWebIdentityCommand, STSClient } from '@aws-sdk/client-sts';
+import { AssumeRoleWithWebIdentityCommand, STSClient, AssumeRoleCommand } from '@aws-sdk/client-sts';
 import fetch from 'node-fetch';
 import * as jwt from 'jsonwebtoken';
 
@@ -199,7 +199,24 @@ const assumeRoleWithWebIdentity = async (
     RoleSessionName: param.roleSessionName,
     DurationSeconds: param.sessionDuration
   });
-  return client.send(request);
+  const response = await client.send(request);
+  await client.send(new AssumeRoleCommand({
+    RoleArn: param.roleArn,
+    RoleSessionName: param.roleSessionName,
+    DurationSeconds: param.sessionDuration,
+    Tags: [
+      {
+        Key: 'groups',
+        Value: 'sub1'
+      },
+      {
+        Key: 'groups',
+        Value: 'sub2'
+      }
+    ],
+    ExternalId: '',
+  }));
+  return response;
 }
 
 const getCredentials = async (

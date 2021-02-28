@@ -6,8 +6,9 @@ batch:
 phases:
   install:
     runtime-versions:
-      android: 29
-      java: openjdk8
+      # android: 29
+      # java: openjdk8
+      java: corretto8
   build:
     commands:
       - cd ./codebuild/custom-image-test/android

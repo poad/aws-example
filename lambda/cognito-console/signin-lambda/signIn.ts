@@ -199,24 +199,7 @@ const assumeRoleWithWebIdentity = async (
     RoleSessionName: param.roleSessionName,
     DurationSeconds: param.sessionDuration
   });
-  const response = await client.send(request);
-  await client.send(new AssumeRoleCommand({
-    RoleArn: param.roleArn,
-    RoleSessionName: param.roleSessionName,
-    DurationSeconds: param.sessionDuration,
-    Tags: [
-      {
-        Key: 'groups',
-        Value: 'sub1'
-      },
-      {
-        Key: 'groups',
-        Value: 'sub2'
-      }
-    ],
-    ExternalId: '',
-  }));
-  return response;
+  return client.send(request);
 }
 
 const getCredentials = async (

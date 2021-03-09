@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x, 14.x]
-        target: [ ./lambda/cognito-console, ./lambda/cognito-lambda, ./lambda/python ]
+        target: [ ./codebuild/custom-image-test, ./lambda/cognito-console, ./lambda/cognito-lambda, ./lambda/docker-lambda, ./lambda/python ]
 
     steps:
     - uses: actions/checkout@v2

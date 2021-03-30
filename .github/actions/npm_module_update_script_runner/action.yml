@@ -1,0 +1,13 @@
+name: 'Update the node modules'
+description: 'Updates node modules via GitHub Actions.'
+author: 'poad <ken-yo@mbr.nifty.com>'
+branding:
+  icon: 'terminal'
+  color: 'yellow'
+inputs:
+  script_file:
+    description: 'When use the script, then true'
+    default: update.sh
+runs:
+  using: 'docker'
+  image: './Dockerfile'

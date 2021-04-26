@@ -1,15 +1,15 @@
-import { DockerImageFunction, DockerImageCode } from '@aws-cdk/aws-lambda';
-
 import {
   Effect, FederatedPrincipal, ManagedPolicy, PolicyDocument, PolicyStatement, Role, ServicePrincipal, WebIdentityPrincipal,
 } from '@aws-cdk/aws-iam';
 import {
   AccountRecovery, Mfa, OAuthScope, UserPoolClient, CfnIdentityPoolRoleAttachment, CfnUserPoolGroup, UserPool, CfnIdentityPool,
 } from '@aws-cdk/aws-cognito';
-import { Stack, StackProps, Construct, Duration } from '@aws-cdk/core';
+import { Stack, StackProps, Construct, Duration, RemovalPolicy } from '@aws-cdk/core';
 import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
 import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations';
 import { RetentionDays } from '@aws-cdk/aws-logs';
+import { NodejsFunction } from '@aws-cdk/aws-lambda-nodejs';
+import { Runtime } from '@aws-cdk/aws-lambda';
 
 
 export interface GroupConfig {
@@ -24,18 +24,75 @@ export interface CognitoConsoleStackProps extends StackProps {
   environment: string,
   groups: GroupConfig[],
   domain: string,
+  Lambda: {
+    app: {
+      name: string,
+      entry: string,
+    },
+    triggers: {
+      postConfirm?: {
+        name: string,
+        entry: string,
+      },
+    }
+  },
 }
 
 export class CognitoConsoleStack extends Stack {
   constructor(scope: Construct, id: string, props: CognitoConsoleStackProps) {
     super(scope, id, props);
 
+    const signpostConfirmInFn = props.Lambda.triggers.postConfirm !== undefined ?
+      new NodejsFunction(this, 'PostConfirmLambdaFunction', {
+        runtime: Runtime.NODEJS_14_X,
+        entry: props.Lambda.triggers.postConfirm.entry,
+        functionName: props.Lambda.triggers.postConfirm.name,
+        logRetention: RetentionDays.ONE_DAY,
+        retryAttempts: 0,
+        environment: {
+          'REGION': props.region,
+        },
+        role: new Role(this, 'PostConfirmLambdaExecutionRole', {
+          assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
+          inlinePolicies: {
+            'logs-policy': new PolicyDocument({
+              statements: [
+                new PolicyStatement({
+                  effect: Effect.ALLOW,
+                  actions: [
+                    'logs:CreateLogGroup',
+                    'logs:CreateLogStream',
+                    'logs:PutLogEvents'
+                  ],
+                  resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.Lambda.triggers.postConfirm.name}:*`],
+                })
+              ]
+            }),
+            'assumed-role-policy': new PolicyDocument(
+              {
+                statements: [
+                  new PolicyStatement({
+                    effect: Effect.ALLOW,
+                    actions: [
+                      'cognito-identity:*',
+                      "cognito-idp:*",
+                    ],
+                    resources: ['*'],
+                  })
+                ]
+              }
+            )
+          },
+        })
+      }) : undefined;
+
+
     const userPool = new UserPool(this, 'UserPool', {
       userPoolName: `${props.environment}-cognito-console-lambda`,
       signInAliases: {
         username: true,
         email: true,
-        preferredUsername: true,
+        preferredUsername: false,
         phone: false,
       },
       autoVerify: {
@@ -46,7 +103,7 @@ export class CognitoConsoleStack extends Stack {
           required: true,
         },
         preferredUsername: {
-          required: true,
+          required: false,
         },
         phoneNumber: {
           required: false,
@@ -54,9 +111,13 @@ export class CognitoConsoleStack extends Stack {
       },
       mfa: Mfa.OPTIONAL,
       passwordPolicy: {
-        minLength: 12,
+        minLength: 6,
       },
       accountRecovery: AccountRecovery.EMAIL_ONLY,
+      lambdaTriggers: {
+        postConfirmation: signpostConfirmInFn,
+      },
+      removalPolicy: RemovalPolicy.DESTROY,
     });
 
     const domain = props.domain;
@@ -66,16 +127,18 @@ export class CognitoConsoleStack extends Stack {
       }
     });
 
-    const signInFn = new DockerImageFunction(this, 'CognitoLambdaFunction', {
-      code: DockerImageCode.fromImageAsset('signin-lambda'),
-      functionName: props.name,
+
+    const signInFn = new NodejsFunction(this, 'SignInLambdaFunction', {
+      runtime: Runtime.NODEJS_14_X,
+      entry: props.Lambda.app.entry,
+      functionName: props.Lambda.app.name,
       logRetention: RetentionDays.ONE_DAY,
       retryAttempts: 0,
       environment: {
         'DOMAIN': domain,
         'REGION': props.region,
       },
-      role: new Role(this, 'LambdaExecutionRole', {
+      role: new Role(this, 'SignInLambdaExecutionRole', {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
         inlinePolicies: {
           'logs-policy': new PolicyDocument({
@@ -87,7 +150,7 @@ export class CognitoConsoleStack extends Stack {
                   'logs:CreateLogStream',
                   'logs:PutLogEvents'
                 ],
-                resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.name}:*`],
+                resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.Lambda.app.name}:*`],
               })
             ]
           }),
@@ -112,7 +175,7 @@ export class CognitoConsoleStack extends Stack {
     });
 
     const api = new HttpApi(this, "HttpApi", {
-      apiName: 'Cognito Console Lambda API',
+      apiName: `Cognito Console Lambda API (${props.environment})`,
       defaultIntegration: new LambdaProxyIntegration({
         handler: signInFn
       })
@@ -136,7 +199,7 @@ export class CognitoConsoleStack extends Stack {
       },
       oAuth: {
         callbackUrls: [`${api.url}`],
-        logoutUrls: [ api.url! ],
+        logoutUrls: [api.url!],
         flows: {
           authorizationCodeGrant: true,
           implicitCodeGrant: true,
@@ -180,18 +243,23 @@ export class CognitoConsoleStack extends Stack {
           'cognito-identity.amazonaws.com:amr': 'unauthenticated',
         },
       }, 'sts:AssumeRoleWithWebIdentity'),
+      inlinePolicies: {
+        'allow-assume-role': new PolicyDocument({
+          statements: [
+            new PolicyStatement({
+              effect: Effect.ALLOW,
+              actions: [
+                'cognito-identity:*',
+                "cognito-idp:*",
+                'sts:GetFederationToken',
+                'sts:AssumeRoleWithWebIdentity',
+              ],
+              resources: ['*'],
+            })
+          ]
+        })
+      }
     });
-
-    unauthenticatedRole.addToPolicy(new PolicyStatement({
-      effect: Effect.ALLOW,
-      actions: [
-        'cognito-identity:*',
-        "cognito-idp:*",
-        'sts:GetFederationToken',
-        'sts:AssumeRoleWithWebIdentity',
-      ],
-      resources: ['*'],
-    }));
 
     const authenticatedRole = new Role(this, 'CognitoDefaultAuthenticatedRole', {
       roleName: `${props.environment}-cognito-console-auth-role`,
@@ -202,23 +270,25 @@ export class CognitoConsoleStack extends Stack {
         'ForAnyValue:StringLike': {
           'cognito-identity.amazonaws.com:amr': 'authenticated',
         },
-        StringLike: {
-          'sts:RoleSessionName': '${aws:username}',
-        },
       }, 'sts:AssumeRoleWithWebIdentity'),
       maxSessionDuration: Duration.hours(12),
+      inlinePolicies: {
+        'allow-assume-role': new PolicyDocument({
+          statements: [
+            new PolicyStatement({
+              effect: Effect.ALLOW,
+              actions: [
+                'cognito-identity:*',
+                "cognito-idp:*",
+                'sts:GetFederationToken',
+                'sts:AssumeRoleWithWebIdentity',
+              ],
+              resources: ['*'],
+            })
+          ]
+        })
+      }
     });
-
-    authenticatedRole.addToPolicy(new PolicyStatement({
-      effect: Effect.ALLOW,
-      actions: [
-        'cognito-identity:*',
-        "cognito-idp:*",
-        'sts:GetFederationToken',
-        'sts:AssumeRoleWithWebIdentity',
-      ],
-      resources: ['*'],
-    }));
 
     new CfnIdentityPoolRoleAttachment(this, 'IdPoolRoleAttachment', {
       identityPoolId: identityPool.ref,
@@ -263,7 +333,7 @@ export class CognitoConsoleStack extends Stack {
         ],
         resources: ['*'],
       }));
-  
+
       return { id: group.id, name: group.name, role: groupRole };
     });
     roles.forEach((role) => {

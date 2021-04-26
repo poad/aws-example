@@ -14,9 +14,11 @@
   },
   "devDependencies": {
     "@aws-cdk/assert": "^1.100.0",
-    "@types/aws-lambda": "^8.10.76",
-    "@types/jest": "^26.0.23",
-    "@types/node": "^15.0.0",
+    "@types/aws-lambda": "latest",
+    "@types/jest": "latest",
+    "@types/jsonwebtoken": "latest",
+    "@types/node": "latest",
+    "@types/node-fetch": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
     "aws-cdk": "^1.100.0",
@@ -35,9 +37,15 @@
     "@aws-cdk/aws-cognito": "^1.100.0",
     "@aws-cdk/aws-iam": "^1.100.0",
     "@aws-cdk/aws-lambda": "^1.100.0",
+    "@aws-cdk/aws-lambda-nodejs": "^1.100.0",
     "@aws-cdk/aws-logs": "^1.100.0",
     "@aws-cdk/core": "^1.100.0",
+    "@aws-sdk/client-cognito-identity": "latest",
+    "@aws-sdk/client-cognito-identity-provider": "latest",
+    "@aws-sdk/client-sts": "latest",
     "aws-lambda": "latest",
+    "node-fetch": "latest",
+    "jsonwebtoken": "latest",
     "source-map-support": "latest"
   }
 }

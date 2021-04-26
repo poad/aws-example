@@ -22,8 +22,8 @@ const groups = context.groups;
 
 const domain = context.domain;
 
-new CognitoConsoleStack(app, 'CognitoConsoleStack', {
-  name: 'cognito-console',
+new CognitoConsoleStack(app, `${env}-cognito-console-stack`, {
+  name: `${env}-cognito-console`,
   region,
   groups,
   environment: env,
@@ -31,4 +31,16 @@ new CognitoConsoleStack(app, 'CognitoConsoleStack', {
     region,
   },
   domain,
+  Lambda: {
+    app: {
+      name: "dev-signin-api",
+      entry: "lambda/signin/index.ts"}
+    ,
+    triggers: {
+      postConfirm: {
+        name: "dev-trigger-post-confirm",
+        entry: "lambda/triggers/post-confirm/index.ts"
+      },
+    },
+  }
 });

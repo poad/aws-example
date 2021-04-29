@@ -6,6 +6,7 @@ import { CognitoConsoleStack, GroupConfig } from '../lib/cognito-console-stack';
 interface Context {
   region: string,
   domain: string,
+  auth0Domain?: string,
   clientId: string,
   idPoolId: string,
   userPoolId: string,
@@ -37,6 +38,10 @@ new CognitoConsoleStack(app, `${env}-cognito-console-stack`, {
       entry: "lambda/signin/index.ts"}
     ,
     triggers: {
+      preSignUp: {
+        name: "dev-trigger-pre-sign-up",
+        entry: "lambda/triggers/pre-sign-up/index.ts"
+      },
       postConfirm: {
         name: "dev-trigger-post-confirm",
         entry: "lambda/triggers/post-confirm/index.ts"

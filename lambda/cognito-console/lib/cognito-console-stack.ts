@@ -24,12 +24,17 @@ export interface CognitoConsoleStackProps extends StackProps {
   environment: string,
   groups: GroupConfig[],
   domain: string,
+  auth0Domain?: string,
   Lambda: {
     app: {
       name: string,
       entry: string,
     },
     triggers: {
+      preSignUp?: {
+        name: string,
+        entry: string,
+      },
       postConfirm?: {
         name: string,
         entry: string,
@@ -42,16 +47,54 @@ export class CognitoConsoleStack extends Stack {
   constructor(scope: Construct, id: string, props: CognitoConsoleStackProps) {
     super(scope, id, props);
 
-    const signpostConfirmInFn = props.Lambda.triggers.postConfirm !== undefined ?
+    const preSignUpInFn = props.Lambda.triggers.preSignUp !== undefined ?
+      new NodejsFunction(this, 'PreSignUpLambdaFunction', {
+        runtime: Runtime.NODEJS_14_X,
+        entry: props.Lambda.triggers.preSignUp.entry,
+        functionName: props.Lambda.triggers.preSignUp.name,
+        logRetention: RetentionDays.ONE_DAY,
+        retryAttempts: 0,
+        role: new Role(this, 'PreSignUpExecutionRole', {
+          assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
+          inlinePolicies: {
+            'logs-policy': new PolicyDocument({
+              statements: [
+                new PolicyStatement({
+                  effect: Effect.ALLOW,
+                  actions: [
+                    'logs:CreateLogGroup',
+                    'logs:CreateLogStream',
+                    'logs:PutLogEvents'
+                  ],
+                  resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.Lambda.triggers.preSignUp.name}:*`],
+                })
+              ]
+            }),
+            'assumed-role-policy': new PolicyDocument(
+              {
+                statements: [
+                  new PolicyStatement({
+                    effect: Effect.ALLOW,
+                    actions: [
+                      'cognito-identity:*',
+                      "cognito-idp:*",
+                    ],
+                    resources: ['*'],
+                  })
+                ]
+              }
+            )
+          },
+        })
+      }) : undefined;
+
+      const postConfirmInFn = props.Lambda.triggers.postConfirm !== undefined ?
       new NodejsFunction(this, 'PostConfirmLambdaFunction', {
         runtime: Runtime.NODEJS_14_X,
         entry: props.Lambda.triggers.postConfirm.entry,
         functionName: props.Lambda.triggers.postConfirm.name,
         logRetention: RetentionDays.ONE_DAY,
         retryAttempts: 0,
-        environment: {
-          'REGION': props.region,
-        },
         role: new Role(this, 'PostConfirmLambdaExecutionRole', {
           assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
           inlinePolicies: {
@@ -115,7 +158,8 @@ export class CognitoConsoleStack extends Stack {
       },
       accountRecovery: AccountRecovery.EMAIL_ONLY,
       lambdaTriggers: {
-        postConfirmation: signpostConfirmInFn,
+        preSignUp: preSignUpInFn,
+        postConfirmation: postConfirmInFn,
       },
       removalPolicy: RemovalPolicy.DESTROY,
     });
@@ -188,6 +232,9 @@ export class CognitoConsoleStack extends Stack {
       }),
     });
 
+    const callbackUrls = props.auth0Domain !== undefined ? [`${api.url}`, `https://${props.auth0Domain}.auth0.com/login/callback`] : [`${api.url!}`];
+    const logoutUrls = props.auth0Domain !== undefined ? [`${api.url!}`, `https://${props.auth0Domain}.auth0.com/logout/callback`] : [`${api.url!}`];
+
     const client = new UserPoolClient(this, 'AppClient', {
       userPool,
       userPoolClientName: `${props.environment}-cognito-lambda`,
@@ -198,8 +245,8 @@ export class CognitoConsoleStack extends Stack {
         custom: true,
       },
       oAuth: {
-        callbackUrls: [`${api.url}`],
-        logoutUrls: [api.url!],
+        callbackUrls,
+        logoutUrls,
         flows: {
           authorizationCodeGrant: true,
           implicitCodeGrant: true,

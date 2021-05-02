@@ -5,72 +5,71 @@ import fetch from 'node-fetch';
 import * as jwt from 'jsonwebtoken';
 
 interface TokenAuthParam {
-    domain: string,
-    clientId: string,
-    redirectUri: string,
-    code: string,
-  }
+  domain: string,
+  clientId: string,
+  redirectUri: string,
+  code: string,
+}
 
-  interface GetIdParam {
-    identityProvider: string,
-    idPoolId: string,
-    idToken: string,
-  }
+interface GetIdParam {
+  identityProvider: string,
+  idPoolId: string,
+  idToken: string,
+}
 
-  interface InitiateAuthParam {
-    clientId: string,
-    refreshToken: string,
-  }
+interface InitiateAuthParam {
+  clientId: string,
+  refreshToken: string,
+}
 
-  interface GetCredentialsParam {
-    userPoolId: string,
-    idPoolId: string,
-    clientId: string,
-    identityProvider: string,
-    idToken: string,
-    refreshToken: string,
-  }
+interface GetCredentialsParam {
+  userPoolId: string,
+  idPoolId: string,
+  clientId: string,
+  identityProvider: string,
+  refreshToken: string,
+}
 
-  interface GetCredentialsResult {
-    accessKeyId: string | undefined,
-    secretKey: string | undefined,
-    sessionToken: string | undefined,
-    expiration: Date | undefined,
-    tokens: {
-      idToken: string | undefined,
-      refreshToken: string | undefined,
-      expiration: number | undefined,
-    }
+interface GetCredentialsResult {
+  accessKeyId: string | undefined,
+  secretKey: string | undefined,
+  sessionToken: string | undefined,
+  expiration: Date | undefined,
+  tokens: {
+    idToken: string | undefined,
+    refreshToken: string | undefined,
+    expiration: number | undefined,
   }
+}
 
-  interface SignInParam {
-    domain: string,
-    userPoolId: string,
-    clientId: string,
-    identityProvider: string,
-    idPoolId: string,
-    redirectUri: string,
-    code?: string,
-    refreshToken?: string,
-  }
+interface SignInParam {
+  domain: string,
+  userPoolId: string,
+  clientId: string,
+  identityProvider: string,
+  idPoolId: string,
+  redirectUri: string,
+  code?: string,
+  refreshToken?: string,
+}
 
 export type SigninResult = GetCredentialsResult;
 
 const getOAuthToken = async (param: TokenAuthParam): Promise<{
-    idToken: string,
-    accessToken: string,
-    refreshToken: string,
-    expiresIn: number,
-    tokenType: string,
-  }> => {
+  idToken: string,
+  accessToken: string,
+  refreshToken: string,
+  expiresIn: number,
+  tokenType: string,
+}> => {
   const body = Object.entries({
     grant_type: 'authorization_code',
     client_id: param.clientId,
     code: param.code,
     redirect_uri: param.redirectUri,
   } as {
-      [key: string]: string
-    })
+    [key: string]: string
+  })
     .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
     .reduce((cur, acc) => `${acc}&${cur}`);
 
@@ -100,15 +99,15 @@ const getId = async (
   param: GetIdParam,
 ): Promise<string> => {
   const logins: {
-      [key: string]: string
-    } = [{
-      key: param.identityProvider,
-      value: param.idToken,
-    }].map((entry) => {
-      const entity: { [key: string]: string } = {};
-      entity[entry.key] = entry.value;
-      return entity;
-    }).reduce((cur, acc) => Object.assign(acc, cur));
+    [key: string]: string
+  } = [{
+    key: param.identityProvider,
+    value: param.idToken,
+  }].map((entry) => {
+    const entity: { [key: string]: string } = {};
+    entity[entry.key] = entry.value;
+    return entity;
+  }).reduce((cur, acc) => Object.assign(acc, cur));
 
   const req = new GetIdCommand({
     IdentityPoolId: param.idPoolId,
@@ -123,12 +122,12 @@ const initiateAuth = async (
   idProvider: CognitoIdentityProviderClient,
   param: InitiateAuthParam,
 ): Promise<{
-    idToken: string,
-    accessToken: string,
-    refreshToken: string,
-    expiresIn: number,
-    tokenType: string,
-  }> => {
+  idToken: string,
+  accessToken: string,
+  refreshToken: string,
+  expiresIn: number,
+  tokenType: string,
+}> => {
   const res = await idProvider.send(new InitiateAuthCommand({
     AuthFlow: 'REFRESH_TOKEN_AUTH',
     AuthParameters: {
@@ -168,15 +167,15 @@ const getOpenIDToken = async (
   }
 ) => {
   const logins: {
-      [key: string]: string
-    } = [{
-      key: param.identityProvider,
-      value: param.idToken,
-    }].map((entry) => {
-      const entity: { [key: string]: string } = {};
-      entity[entry.key] = entry.value;
-      return entity;
-    }).reduce((cur, acc) => Object.assign(acc, cur));
+    [key: string]: string
+  } = [{
+    key: param.identityProvider,
+    value: param.idToken,
+  }].map((entry) => {
+    const entity: { [key: string]: string } = {};
+    entity[entry.key] = entry.value;
+    return entity;
+  }).reduce((cur, acc) => Object.assign(acc, cur));
 
   return client.send(new GetOpenIdTokenCommand({
     IdentityId: param.identityId,
@@ -207,9 +206,6 @@ const getCredentials = async (
   param: GetCredentialsParam,
 ): Promise<GetCredentialsResult> => {
   let identityId;
-  let {
-    idToken,
-  } = param;
   const {
     identityProvider, idPoolId, clientId, refreshToken,
   } = param;
@@ -224,7 +220,7 @@ const getCredentials = async (
     },
   );
 
-  idToken = initiateAuthResp.idToken;
+  let idToken = initiateAuthResp.idToken;
   tokenExpiration = initiateAuthResp.expiresIn;
 
   identityId = await getId(
@@ -248,17 +244,17 @@ const getCredentials = async (
   console.log(`JWT: ${JSON.stringify(payload)}`);
 
   const roleArn = preferredRole !== undefined
-      ? preferredRole
-      : (await getDefaultRoles(identityClient, { idPoolId })).Roles?.authenticated;
+    ? preferredRole
+    : (await getDefaultRoles(identityClient, { idPoolId })).Roles?.authenticated;
 
   console.log(`role arn: ${roleArn}`);
   try {
     const openIdToken = await getOpenIDToken(
       identityClient, {
-        identityId,
-        identityProvider,
-        idToken,
-      },
+      identityId,
+      identityProvider,
+      idToken,
+    },
     );
 
     const credentials = await assumeRoleWithWebIdentity(new STSClient({}), {
@@ -288,38 +284,24 @@ const getCredentials = async (
 
 const signIn = async (param: SignInParam): Promise<SigninResult> => {
   const {
-    domain, clientId, redirectUri, code,
+    domain, clientId, redirectUri, code, idPoolId, identityProvider,
   } = param;
   let {
     refreshToken,
   } = param;
   const identityClient = new CognitoIdentityClient({});
-  const idpClient = new CognitoIdentityProviderClient({});
 
-  let idToken;
-  if (refreshToken !== undefined) {
-
-    const initiateAuthResp = await initiateAuth(
-      idpClient,
-      {
-        clientId,
-        refreshToken,
-      },
-    );
-    idToken = initiateAuthResp.idToken;
-  }
-  if (code !== undefined) {
-    const currentSession = await getOAuthToken({
-      domain,
-      clientId,
-      redirectUri,
-      code,
+  if (refreshToken !== undefined && refreshToken.length > 0) {
+    return getCredentials(identityClient, {
+      userPoolId: param.userPoolId,
+      idPoolId: param.idPoolId,
+      identityProvider: param.identityProvider,
+      clientId: param.clientId,
+      refreshToken: refreshToken,
     });
-    idToken = currentSession.idToken;
-    refreshToken = currentSession.refreshToken;
   }
 
-  if (idToken === undefined || refreshToken === undefined) {
+  if (code === undefined) {
     return {
       accessKeyId: undefined,
       secretKey: undefined,
@@ -333,15 +315,74 @@ const signIn = async (param: SignInParam): Promise<SigninResult> => {
     };
   }
 
-  // console.log(`OAuthTokens: ${JSON.stringify(currentSession)}`);
-  return getCredentials(identityClient, {
-    userPoolId: param.userPoolId,
-    idPoolId: param.idPoolId,
-    identityProvider: param.identityProvider,
-    clientId: param.clientId,
-    idToken,
-    refreshToken: refreshToken,
+  const token = await getOAuthToken({
+    domain,
+    clientId,
+    redirectUri,
+    code,
   });
+
+  const idToken = token.idToken;
+  const tokenExpiration = token.expiresIn;
+
+  const identityId = await getId(
+    identityClient,
+    {
+      idPoolId,
+      identityProvider,
+      idToken,
+    },
+  );
+
+  // const user = await idProvider.send(new GetUserCommand({
+  //   AccessToken: initiateAuthResp.idToken,
+  // }));
+  // console.log(`Uer Info: ${JSON.stringify(user)}`);
+
+  const payload = jwt.decode(idToken) as { [key: string]: string | string[] };
+  const preferredRole = payload['cognito:preferred_role'] as string;
+  const username = payload['cognito:username'] as string;
+  const email = payload.email;
+  console.log(`JWT: ${JSON.stringify(payload)}`);
+
+  const roleArn = preferredRole !== undefined
+    ? preferredRole
+    : (await getDefaultRoles(identityClient, { idPoolId })).Roles?.authenticated;
+
+  console.log(`role arn: ${roleArn}`);
+  try {
+    const openIdToken = await getOpenIDToken(
+      identityClient, {
+      identityId,
+      identityProvider,
+      idToken,
+    },
+    );
+
+    const credentials = await assumeRoleWithWebIdentity(new STSClient({}), {
+      token: openIdToken.Token!,
+      roleArn: roleArn!,
+      roleSessionName: email !== undefined ? `${email}` : username,
+    });
+
+    return {
+      accessKeyId: credentials.Credentials?.AccessKeyId,
+      secretKey: credentials.Credentials?.SecretAccessKey,
+      sessionToken: credentials.Credentials?.SessionToken,
+      expiration: credentials.Credentials?.Expiration,
+      tokens: {
+        idToken,
+        refreshToken,
+        expiration: tokenExpiration,
+      },
+    };
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error(e);
+
+    throw e;
+  }
+
 };
 
 export default signIn;

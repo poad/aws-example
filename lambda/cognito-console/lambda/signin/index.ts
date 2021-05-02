@@ -63,9 +63,9 @@ export const handler = async (
     }
 
     const code = event.queryStringParameters?.code;
-    
+
     const { domain, clientId, region, } = environments;
-    const {domainName, http } = event.requestContext;
+    const { domainName, http } = event.requestContext;
 
     if (code === undefined) {
       const redirectUri = `https://${domain}.auth.${region}.amazoncognito.com/login?response_type=code&client_id=${clientId}&redirect_uri=https://${domainName}${rawPath}`;
@@ -79,43 +79,55 @@ export const handler = async (
     const redirectUri = `https://${domainName}${http.path}`;
 
     const { refreshToken } = event.cookies !== undefined && event.cookies.length > 0
-        ? JSON.parse(event.cookies[0]) as Session : { refreshToken : undefined};
+      ? JSON.parse(event.cookies[0]) as Session : { refreshToken: undefined };
 
-    const {
-      accessKeyId, secretKey, sessionToken, tokens
-    } = await signIn({
-      domain,
-      userPoolId: environments.userPoolId,
-      clientId,
-      redirectUri,
-      idPoolId: environments.idPoolId,
-      identityProvider: environments.identityProvider,
-      code,
-      refreshToken,
-    });
+    try {
+      const {
+        accessKeyId, secretKey, sessionToken, tokens
+      } = await signIn({
+        domain,
+        userPoolId: environments.userPoolId,
+        clientId,
+        redirectUri,
+        idPoolId: environments.idPoolId,
+        identityProvider: environments.identityProvider,
+        code,
+        refreshToken,
+      });
 
-    if (accessKeyId === undefined
-      || secretKey === undefined
-      || sessionToken === undefined) {
-      // eslint-disable-next-line no-console
-      console.error('Credentials are empty');
+      if (accessKeyId === undefined
+        || secretKey === undefined
+        || sessionToken === undefined) {
+        // eslint-disable-next-line no-console
+        console.error('Credentials are empty');
+        return {
+          statusCode: 500,
+          headers: { 'Content-Type': 'text/plain' },
+        };
+      }
+
+      const { SigninToken } = await getSignInToken({ accessKeyId, secretKey, sessionToken, });
+
+      const issuer = environments.apiUrl;
+      const destUrl = `https://signin.aws.amazon.com/federation?Action=login&Destination=${encodeURIComponent('https://console.aws.amazon.com/')}&SigninToken=${SigninToken}&Issuer=${encodeURIComponent(issuer)}`;
       return {
-        statusCode: 500,
-        headers: { 'Content-Type': 'text/plain' },
+        statusCode: 308,
+        headers: {
+          Location: destUrl,
+        },
+        cookies: [JSON.stringify({ refreshToken: tokens.refreshToken } as Session)]
+      };
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e);
+
+      const redirectUri = `https://${domain}.auth.${region}.amazoncognito.com/login?response_type=code&client_id=${clientId}&redirect_uri=https://${domainName}${rawPath}`;
+      return {
+        cookies: [],
+        statusCode: 308,
+        headers: { Location: redirectUri },
       };
     }
-
-    const { SigninToken } = await getSignInToken({ accessKeyId, secretKey, sessionToken, });
-
-    const issuer = environments.apiUrl;
-    const destUrl = `https://signin.aws.amazon.com/federation?Action=login&Destination=${encodeURIComponent('https://console.aws.amazon.com/')}&SigninToken=${SigninToken}&Issuer=${encodeURIComponent(issuer)}`;
-    return {
-      statusCode: 308,
-      headers: {
-        Location: destUrl,
-      },
-      cookies: [ JSON.stringify({ refreshToken: tokens.refreshToken } as Session) ]
-    };
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error(e);

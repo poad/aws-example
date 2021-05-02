@@ -1,5 +1,6 @@
-import { AdminDeleteUserCommand, AdminLinkProviderForUserCommand, AdminUserGlobalSignOutCommand, CognitoIdentityProviderClient, ListUsersCommand } from "@aws-sdk/client-cognito-identity-provider";
+import { AdminLinkProviderForUserCommand, CognitoIdentityProviderClient, ListUsersCommand } from "@aws-sdk/client-cognito-identity-provider";
 import { Callback, Context, PreSignUpTriggerEvent, PreSignUpTriggerHandler } from "aws-lambda";
+import { StringMap } from "aws-lambda/trigger/cognito-user-pool-trigger/_common";
 
 export const handler: PreSignUpTriggerHandler = async (
     event: PreSignUpTriggerEvent,
@@ -8,11 +9,34 @@ export const handler: PreSignUpTriggerHandler = async (
 ): Promise<any> => {
     console.log(JSON.stringify(event));
 
-    const { triggerSource } = event;
-    if (triggerSource === 'PreSignUp_ExternalProvider') {
-        event.response.autoVerifyEmail = true;
-        event.userName = event.userName.substr(event.userName.indexOf('_'));
-    }
+    const { userPoolId, request, triggerSource } = event;
 
+    if (triggerSource === 'PreSignUp_ExternalProvider') {
+        const { userAttributes } = request;
+        const { email } = userAttributes;
+
+        const identityProvider = new CognitoIdentityProviderClient({});
+
+        const user = (await identityProvider.send(new ListUsersCommand({
+            UserPoolId: userPoolId,
+            Filter: `email = \"${email}\"`
+        }))).Users?.find((user) => user.UserStatus !== "EXTERNAL_PROVIDER");
+
+        if (user === undefined) {
+            return callback('No such link target', event);
+        }
+
+        const provider = event.userName.split('_')[0];
+        const identities = user.Attributes !== undefined ? user.Attributes
+                .filter(attribute => attribute.Name === 'identities' && attribute.Value !== undefined)
+                .flatMap(attribute => {
+                    JSON.parse(attribute.Value!)
+                }) : [];
+        if (identities.find((identity: StringMap) => identity.providerName !== provider) === undefined) {
+            return callback('No such link target', event);
+        }
+        event.response.autoVerifyEmail = true;
+
+    }
     callback(null, event);
-};
+}

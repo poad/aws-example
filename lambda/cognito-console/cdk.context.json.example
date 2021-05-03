@@ -5,9 +5,9 @@
     "auth0Domain": "YOUR_AUTH0_DOMAIN_PREFIX_WITH_REGION",
     "providers": "Auth0,Azure",
     "triggers": {
-      "preSignUp": false,
+      "preSignUp": true,
       "preAuth": false,
-      "postAuth": false,
+      "postAuth": true,
       "defAuthChallenge": false,
       "createAuthChallenge": false,
       "verifyAuthChallenge": false,

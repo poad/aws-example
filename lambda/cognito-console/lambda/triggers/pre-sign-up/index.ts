@@ -7,7 +7,7 @@ export const handler: PreSignUpTriggerHandler = async (
     _: Context,
     callback: Callback<any>
 ): Promise<any> => {
-    console.log(JSON.stringify(event));
+    // console.log(JSON.stringify(event));
 
     const { userPoolId, request, triggerSource } = event;
 
@@ -27,12 +27,12 @@ export const handler: PreSignUpTriggerHandler = async (
         }
 
         const provider = event.userName.split('_')[0];
-        const identities = user.Attributes !== undefined ? user.Attributes
+        const identities: StringMap[] = user.Attributes !== undefined ? user.Attributes
                 .filter(attribute => attribute.Name === 'identities' && attribute.Value !== undefined)
                 .flatMap(attribute => {
                     JSON.parse(attribute.Value!)
                 }) : [];
-        if (identities.find((identity: StringMap) => identity.providerName !== provider) === undefined) {
+        if (identities.find((identity) => identity.providerName !== undefined && identity.providerName !== provider) === undefined) {
             return callback('No such link target', event);
         }
         event.response.autoVerifyEmail = true;

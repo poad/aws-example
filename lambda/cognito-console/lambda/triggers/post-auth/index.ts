@@ -7,7 +7,7 @@ export const handler: PostAuthenticationTriggerHandler = async (
     _: Context,
     callback: Callback<any>
 ): Promise<any> => {
-    console.log(JSON.stringify(event));
+    // console.log(JSON.stringify(event));
 
     const { userPoolId, request, triggerSource } = event;
     if (triggerSource === 'PostAuthentication_Authentication') {
@@ -18,8 +18,6 @@ export const handler: PostAuthenticationTriggerHandler = async (
                 .split(',')
                 .filter(provider => identities.length === 0 || identities
                     .find((identity: StringMap) => identity.providerName !== provider) !== undefined);
-
-            console.log(providers);
 
             providers
                 .forEach(async (provider) => {

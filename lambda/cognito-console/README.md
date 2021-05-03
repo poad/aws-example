@@ -94,3 +94,10 @@ function(accessToken, ctx, cb) {
 7. 「CREATE」をクリック
 8. 「TRY CONNECTION」で Cognbito ユーザープールのユーザー認証が実行され、ユーザー情報が取得出来ることを確認する
 
+### OAuth 2.0 Device Flow
+
+Auth0 only
+
+[クラスメソッドの記事](https://dev.classmethod.jp/articles/amazon-api-gateway-http-api-authz-auth0/) を参考に設定する。
+
+API Gateway の API を呼び出せるのみ。（その先は現時点では何も出来ない)

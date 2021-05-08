@@ -19,6 +19,8 @@ import {
   Theme,
   createStyles,
 } from '@material-ui/core/styles';
+import { CognitoUser } from 'amazon-cognito-identity-js';
+import { AmplifySignOut } from '@aws-amplify/ui-react';
 
 const drawerWidth = 240;
 
@@ -53,6 +55,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   content: {
     flexGrow: 1,
   },
+  title: {
+    flexGrow: 1,
+  },
   menuItem: {
     color: '#fff',
   },
@@ -63,7 +68,8 @@ interface LayoutProps {
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
    */
-  container?: Element
+  container?: Element,
+  user?: CognitoUser
 }
 
 const Layout: React.FC<LayoutProps> = (props) => {
@@ -107,7 +113,10 @@ const Layout: React.FC<LayoutProps> = (props) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap></Typography>
+          <Typography variant="h6" className={classes.title}>
+            Account manager
+          </Typography>
+          <Typography variant="h6" color="inherit" noWrap><AmplifySignOut /></Typography>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">

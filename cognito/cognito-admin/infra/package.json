@@ -1,31 +1,26 @@
 {
-  "name": "cognito-lambda",
-  "version": "0.1.0",
+  "name": "infra",
   "private": true,
+  "version": "0.0.1",
   "bin": {
-    "cognito-lambda": "bin/cognito-lambda.js"
+    "infra": "bin/infra.js"
   },
   "scripts": {
-    "build": "tsc bin/*.ts lib/*.ts",
+    "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk",
-    "lint": "eslint --ext .ts lambda"
+    "cdk": "cdk"
   },
   "devDependencies": {
     "@aws-cdk/assert": "^1.102.0",
     "@types/aws-lambda": "^8.10.76",
     "@types/jest": "^26.0.23",
+    "@types/jsonwebtoken": "^8.5.1",
     "@types/node": "^15.0.1",
-    "@typescript-eslint/eslint-plugin": "^4.22.1",
-    "@typescript-eslint/parser": "^4.22.1",
     "aws-cdk": "^1.102.0",
-    "eslint": "^7.25.0",
-    "eslint-config-airbnb-base": "latest",
-    "eslint-plugin-import": "latest",
-    "jest": "latest",
+    "jest": "^26.4.2",
     "ts-jest": "^26.5.6",
-    "ts-node": "latest",
+    "ts-node": "^9.1.1",
     "typescript": "latest"
   },
   "dependencies": {
@@ -35,10 +30,12 @@
     "@aws-cdk/aws-cognito": "^1.102.0",
     "@aws-cdk/aws-iam": "^1.102.0",
     "@aws-cdk/aws-lambda": "^1.102.0",
+    "@aws-cdk/aws-lambda-nodejs": "^1.102.0",
     "@aws-cdk/aws-logs": "^1.102.0",
-    "@aws-cdk/aws-s3": "^1.102.0",
     "@aws-cdk/core": "^1.102.0",
-    "aws-lambda": "latest",
-    "source-map-support": "latest"
+    "@aws-sdk/client-cognito-identity-provider": "^3.14.0",
+    "aws-lambda": "^1.0.6",
+    "jsonwebtoken": "^8.5.1",
+    "source-map-support": "^0.5.16"
   }
 }

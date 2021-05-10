@@ -16,6 +16,8 @@
 
 ## Cognito 直でのサインイン
 
+2 以降は InitiateAuth が走るときに実行される
+
 1. Pre Sign Up
 2. Pre Authentication
 3. Post Authentication

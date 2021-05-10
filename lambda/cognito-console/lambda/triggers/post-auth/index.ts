@@ -11,13 +11,13 @@ export const handler: PostAuthenticationTriggerHandler = async (
 
     const { userPoolId, request, triggerSource } = event;
     if (triggerSource === 'PostAuthentication_Authentication') {
-        const identities = request.userAttributes['identities'] !== undefined ? JSON.parse(request.userAttributes['identities']) : [];
+        const identities = JSON.parse(request.userAttributes?.identities) || [];
 
         if (process.env.PROVIDERS !== undefined) {
             const providers = process.env.PROVIDERS
                 .split(',')
                 .filter(provider => identities.length === 0 || identities
-                    .find((identity: StringMap) => identity.providerName !== provider) !== undefined);
+                    .find((identity?: StringMap) => identity?.providerName !== provider) !== undefined);
 
             providers
                 .forEach(async (provider) => {

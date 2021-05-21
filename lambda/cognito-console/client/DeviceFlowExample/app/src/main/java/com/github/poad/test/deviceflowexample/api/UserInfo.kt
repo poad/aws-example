@@ -18,13 +18,24 @@ data class UserAttribute(
 
 data class UserInfo(
     @SerializedName("MFAOptions")
-    val mfaOptions: List<MFAOption>,
+    val mfaOptions: List<MFAOption>?,
     @SerializedName("PreferredMfaSetting")
-    val preferredMfaSetting: String,
+    val preferredMfaSetting: String?,
     @SerializedName("UserAttributes")
-    val userAttributes: List<UserAttribute>,
+    val userAttributes: List<UserAttribute>?,
     @SerializedName("UserMFASettingList")
-    val userMFASettingList: List<String>,
+    val userMFASettingList: List<String>?,
     @SerializedName("Username")
-    val username: String,
+    val username: String?,
+
+    @SerializedName("sub")
+    val sub: String?,
+    @SerializedName("picture")
+    val picture: String?,
+    @SerializedName("given_name")
+    val givenName: String?,
+    @SerializedName("family_name")
+    val familyName: String?,
+    @SerializedName("name")
+    val name: String?,
 )

@@ -2,7 +2,7 @@ package com.github.poad.test.deviceflowexample.api
 
 import com.google.gson.annotations.SerializedName
 
-data class Auth0Error(
+data class OAuthError(
     @SerializedName("error")
     val error: String,
     @SerializedName("error_description")

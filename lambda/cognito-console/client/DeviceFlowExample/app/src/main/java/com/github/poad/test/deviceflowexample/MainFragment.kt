@@ -1,6 +1,6 @@
 package com.github.poad.test.deviceflowexample
 
-import androidx.leanback.app.BrowseFragment
+import androidx.leanback.app.BrowseSupportFragment
 
-class MainFragment : BrowseFragment() {
+class MainFragment : BrowseSupportFragment() {
 }

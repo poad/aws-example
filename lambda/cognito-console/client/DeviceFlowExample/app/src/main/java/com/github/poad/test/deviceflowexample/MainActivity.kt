@@ -1,15 +1,16 @@
 package com.github.poad.test.deviceflowexample
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
-import com.github.poad.test.deviceflowexample.api.Auth0Error
+import androidx.lifecycle.*
+import androidx.lifecycle.Observer
+import com.github.poad.test.deviceflowexample.api.OAuthError
 import com.github.poad.test.deviceflowexample.api.Client
-import com.github.poad.test.deviceflowexample.api.Auth0OAuthClient
+import com.github.poad.test.deviceflowexample.api.OAuthClient
 import com.google.gson.Gson
 import com.google.zxing.BarcodeFormat
 import com.journeyapps.barcodescanner.BarcodeEncoder
@@ -17,13 +18,45 @@ import kotlinx.coroutines.*
 import retrofit2.HttpException
 import java.time.ZonedDateTime
 import java.util.*
+import androidx.appcompat.app.AppCompatActivity
 
 /**
  * Loads [MainFragment].
  */
-class MainActivity() : Activity() {
+private data class OAuthApiEndpoints(val deviceCode: String, val token: String) {
+}
+
+class VerificationUriViewModel : ViewModel() {
+    internal val verificationUri: MutableLiveData<String> by lazy {
+        MutableLiveData<String>()
+    }
+}
+
+class UserCodeViewModel : ViewModel() {
+    internal val userCode: MutableLiveData<String> by lazy {
+        MutableLiveData<String>()
+    }
+}
+
+class MessageViewModel : ViewModel() {
+    internal val message: MutableLiveData<String?> by lazy {
+        MutableLiveData<String?>()
+    }
+}
+
+class MainActivity() : AppCompatActivity() {
 
     private var poll = true
+    private val verificationUriModel by lazy {
+        ViewModelProvider(this).get(VerificationUriViewModel::class.java)
+    }
+    private val userCodeModel by lazy {
+        ViewModelProvider(this).get(UserCodeViewModel::class.java)
+    }
+    private val messageModel by lazy {
+        ViewModelProvider(this).get(MessageViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,48 +64,88 @@ class MainActivity() : Activity() {
         val oauthProps = Properties()
         oauthProps.load(resources.openRawResource((R.raw.oauth)))
 
-        val client = Client("https://%s/".format(oauthProps.getProperty("auth0_domain")), Auth0OAuthClient::class.java)
-            .createService()
-
-        val userInfoEndpoint = "%s%s".format(oauthProps.getProperty("api_endpoint"), oauthProps.getProperty("user_info_path"))
-
-        deviceFlow(
-            client,
-            oauthProps.getProperty("oauth_client_id"),
-            oauthProps.getProperty("auth0_domain"),
-            userInfoEndpoint)
-    }
-
-    private fun deviceFlow(clientAuth0: Auth0OAuthClient, clientId: String, auth0Domain: String, audience: String) {
         val imageViewQRCode = findViewById<ImageView>(R.id.imageView)
         val verificationUriTextView = findViewById<TextView>(R.id.verificationUriTextView)
         val userCodeTextView = findViewById<TextView>(R.id.userCodeTextView)
+        val messageTextView = findViewById<TextView>(R.id.messageTextView)
 
-        CoroutineScope(Dispatchers.Main + SupervisorJob()).launch {
+        // Create the observer which updates the UI.
+        val verificationUriObserver = Observer<String> { verificationUri ->
+            val bitmap = BarcodeEncoder().encodeBitmap(
+                verificationUri,
+                BarcodeFormat.QR_CODE,
+                300,
+                300
+            )
+
+            imageViewQRCode.setImageBitmap(bitmap)
+            imageViewQRCode.visibility = VISIBLE
+            verificationUriTextView.text = verificationUri
+            verificationUriTextView.visibility = VISIBLE
+        }
+
+        val userCodeObserver = Observer<String> { userCode ->
+            userCodeTextView.text = userCode
+            userCodeTextView.visibility = VISIBLE
+        }
+
+        val messageObserver = Observer<String?> { message ->
+            if (message != null) {
+                messageTextView.text = message
+                messageTextView.visibility = VISIBLE
+            }
+        }
+        verificationUriModel.verificationUri.observe(this, verificationUriObserver)
+        userCodeModel.userCode.observe(this, userCodeObserver)
+        messageModel.message.observe(this, messageObserver)
+
+        val oauthEndpoint = oauthProps.getProperty("oauth.endpoint")
+        val client = Client(oauthEndpoint, OAuthClient::class.java)
+            .createService()
+
+        val audience = oauthProps.getProperty("oauth.audience")
+
+        val deviceCodePath = oauthProps.getProperty("oauth.device_code_path")
+        val tokenPath = oauthProps.getProperty("oauth.token_path")
+        val scope = oauthProps.getProperty("oauth.scope")
+
+        deviceFlow(
+            client,
+            oauthProps.getProperty("oauth.client_id"),
+            OAuthApiEndpoints(
+                "%s%s".format(oauthEndpoint, deviceCodePath),
+                "%s%s".format(oauthEndpoint, tokenPath)
+            ),
+            scope,
+            if (audience.isEmpty()) null else audience
+        )
+    }
+
+    private fun deviceFlow(
+        oauthClient: OAuthClient,
+        clientId: String,
+        endpoints: OAuthApiEndpoints,
+        scope: String,
+        audience: String?
+    ) {
+        CoroutineScope(Dispatchers.Main + SupervisorJob() + Dispatchers.IO).launch {
             try {
                 while (poll) {
-                    val deviceCodeResp = clientAuth0
+                    val deviceCodeResp = oauthClient
                         .oauthDeviceCode(
+                            endpoints.deviceCode,
                             clientId,
-                            "openid read:userInfo",
+                            scope,
                             audience
                         )
 
                     val expiration = ZonedDateTime.now().plusSeconds(deviceCodeResp.expiresIn)
 
-                    val bitmap = BarcodeEncoder().encodeBitmap(
-                        deviceCodeResp.verificationUriComplete,
-                        BarcodeFormat.QR_CODE,
-                        300,
-                        300
-                    )
+                    verificationUriModel.verificationUri.postValue(
+                        deviceCodeResp.verificationUriComplete ?: deviceCodeResp.verificationUri)
+                    userCodeModel.userCode.postValue(deviceCodeResp.userCode)
+                    messageModel.message.postValue(deviceCodeResp.message)
 
-                    imageViewQRCode.setImageBitmap(bitmap)
-                    imageViewQRCode.visibility = VISIBLE
-                    verificationUriTextView.text = deviceCodeResp.verificationUri
-                    verificationUriTextView.visibility = VISIBLE
-                    userCodeTextView.text = deviceCodeResp.userCode
-                    userCodeTextView.visibility = VISIBLE
                     val deviceCode = deviceCodeResp.deviceCode
                     val interval = deviceCodeResp.interval
 
@@ -86,7 +159,8 @@ class MainActivity() : Activity() {
 
                         try {
                             if (Objects.nonNull(deviceCode)) {
-                                val response = clientAuth0.token(
+                                val response = oauthClient.token(
+                                    endpoints.token,
                                     clientId,
                                     deviceCode
                                 )
@@ -97,7 +171,10 @@ class MainActivity() : Activity() {
                                 )
 
                                 poll = false
-                                nextIntent.putExtra(R.string.extra_key_access_token.toString(), response.accessToken)
+                                nextIntent.putExtra(
+                                    R.string.extra_key_access_token.toString(),
+                                    response.accessToken
+                                )
                                 startActivity(
                                     nextIntent
                                 )
@@ -106,10 +183,11 @@ class MainActivity() : Activity() {
                         } catch (e: Exception) {
                             when (e) {
                                 is HttpException -> {
-                                    val response: Auth0Error? = e.response()?.errorBody()?.source()?.let {
-                                        Gson().fromJson(it.readUtf8(), Auth0Error::class.java)
-                                    }
-                                    if (response?.error != "authorization_pending" ) {
+                                    val response: OAuthError? =
+                                        e.response()?.errorBody()?.source()?.let {
+                                            Gson().fromJson(it.readUtf8(), OAuthError::class.java)
+                                        }
+                                    if (response?.error != "authorization_pending") {
                                         Log.e("[ERROR]", response.toString())
                                         break
                                     }

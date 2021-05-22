@@ -14,5 +14,7 @@ data class OAuthDeviceCode(
     @SerializedName("interval")
     val interval: String,
     @SerializedName("verification_uri_complete")
-    val verificationUriComplete: String
+    val verificationUriComplete: String?,
+    @SerializedName("message")
+    val message: String?,
 )

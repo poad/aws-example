@@ -205,15 +205,15 @@ const UserDetail: React.FunctionComponent<UsersDetailProps> = (props): JSX.Eleme
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
                         Can't undo it. Do you want to delete user?
-          </DialogContentText>
+                    </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCancel} color="primary" autoFocus>
                         CANCEL
-          </Button>
+                    </Button>
                     <Button onClick={deleteUser} color="secondary">
                         DELETE
-          </Button>
+                    </Button>
                 </DialogActions>
             </Dialog>
         </Container>

@@ -51,11 +51,13 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Eleme
         message: string
     } | undefined>(undefined);
 
+    const [attacheRole, setAttacheRole] = useState<string | undefined>(undefined);
+
     const filterGroupRoles = (roles: IamRole[]): IamRole[] => {
         const name = appConfig.groupRoleClassificationTagName;
         const value = appConfig.groupRoleClassificationTagValue;
         const check = name !== undefined && value !== undefined;
-        const filered = check ? roles.filter(role => 
+        const filered = check ? roles.filter(role =>
             (role.tags?.find(tag => tag.key === name && tag.value === value)) !== undefined) : roles;
         return filered;
     }
@@ -64,7 +66,7 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Eleme
         const roles = await props.iamClient.listRoles()
             .then(roles => Promise.resolve(roles));
 
-        return Promise.all(roles.map((role) => 
+        return Promise.all(roles.map((role) =>
             props.iamClient.getRole(role.roleName!)
         ));
     };
@@ -106,20 +108,39 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Eleme
 
     const handleRoleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
         const newRole = event.target.value as string;
-        if (detail?.roleArn !== newRole) {
-            props.client.updateGroup({ ...detail, roleArn: newRole.length > 0 ? newRole : undefined } as Group)
-                .then((newGroup) => {
-                    if (props.onUpdate !== undefined) {
-                        props.onUpdate(newGroup);
-                    }
-                    setDetail(newGroup);
-                });
+        if ((detail?.roleArn === undefined || detail?.roleArn?.length === 0) && newRole.length !== 0) {
+            setAttacheRole(newRole);
+        } else {
+            if (detail?.roleArn !== newRole) {
+                props.client.updateGroup({ ...detail, roleArn: newRole.length > 0 ? newRole : undefined } as Group)
+                    .then((newGroup) => {
+                        if (props.onUpdate !== undefined) {
+                            props.onUpdate(newGroup);
+                        }
+                        setDetail(newGroup);
+                    });
+            }
         }
     }
 
     const onErrorClose = () => {
         setError(undefined);
     };
+
+    const handleCancelAttacheRole = () => {
+        setAttacheRole(undefined);
+    };
+
+    const atttachRoleToGroup = () => {
+        props.client.updateGroup({ ...detail, roleArn: attacheRole } as Group)
+            .then((newGroup) => {
+                if (props.onUpdate !== undefined) {
+                    props.onUpdate(newGroup);
+                }
+                setDetail(newGroup);
+                setAttacheRole(undefined);
+            });
+    }
 
     return (
         <Container>
@@ -155,8 +176,8 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Eleme
                                         }
                                         {
                                             roles.map(role => (
-                                                    <MenuItem key={role.arn} value={role.arn} style={{ paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4 }}><em>{role.roleName}</em></MenuItem>
-                                                )
+                                                <MenuItem key={role.arn} value={role.arn} style={{ paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4 }}><em>{role.roleName}</em></MenuItem>
+                                            )
                                             )
                                         }
                                     </Select>
@@ -194,19 +215,40 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Eleme
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="alert-dialog-title">{"Delete User?"}</DialogTitle>
+                <DialogTitle id="alert-dialog-title">{"Delete Group?"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        Can't undo it. Do you want to delete user?
-          </DialogContentText>
+                        Can't undo it. Do you want to delete group?
+                      </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCancel} color="primary" autoFocus>
                         CANCEL
-          </Button>
+                    </Button>
                     <Button onClick={deleteGroup} color="secondary">
                         DELETE
-          </Button>
+                    </Button>
+                </DialogActions>
+            </Dialog>
+            <Dialog
+                open={attacheRole !== undefined}
+                onClose={handleCancelAttacheRole}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-group-role-dialog-title">{"Attache IAM role to Group?"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-group-role-dialog-description">
+                        Once the IAM role is set for a group, it cannot be reverted to the state where the IAM role is not set, is that correct?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCancelAttacheRole} color="primary" autoFocus>
+                        CANCEL
+                    </Button>
+                    <Button onClick={atttachRoleToGroup} color="secondary">
+                        OK
+                    </Button>
                 </DialogActions>
             </Dialog>
         </Container>

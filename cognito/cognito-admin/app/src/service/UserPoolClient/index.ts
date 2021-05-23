@@ -1,5 +1,5 @@
 import { ICredentials } from "@aws-amplify/core";
-import { AdminCreateUserCommand, AdminDeleteUserCommand, AdminDisableUserCommand, AdminEnableUserCommand, AdminListGroupsForUserCommand, AdminListGroupsForUserResponse, AdminResetUserPasswordCommand, CognitoIdentityProviderClient, CreateGroupCommand, DeleteGroupCommand, ListGroupsCommand, ListGroupsResponse, ListUsersCommand, ListUsersInGroupCommand, ListUsersInGroupResponse, ListUsersResponse, UserType } from "@aws-sdk/client-cognito-identity-provider";
+import { AdminAddUserToGroupCommand, AdminCreateUserCommand, AdminDeleteUserCommand, AdminDisableUserCommand, AdminEnableUserCommand, AdminListGroupsForUserCommand, AdminListGroupsForUserResponse, AdminRemoveUserFromGroupCommand, AdminResetUserPasswordCommand, CognitoIdentityProviderClient, CreateGroupCommand, DeleteGroupCommand, ListGroupsCommand, ListGroupsResponse, ListUsersCommand, ListUsersInGroupCommand, ListUsersInGroupResponse, ListUsersResponse, UpdateGroupCommand, UserType } from "@aws-sdk/client-cognito-identity-provider";
 import { User, Group } from "../../interfaces";
 
 interface CreateUserParam {
@@ -12,7 +12,17 @@ interface CreateGroupParam {
     description?: string,
     precedence?: number,
     roleArn?: string,
-  }
+}
+
+interface AddUserToGroupParam {
+    groupName: string,
+    username: string,
+}
+
+interface RemoveUserFromGroupParam {
+    groupName: string,
+    username: string,
+}
 
 class UserPoolClient {
     private client: CognitoIdentityProviderClient;
@@ -49,11 +59,31 @@ class UserPoolClient {
         };
     }
 
+    async updateGroup(group: Group): Promise<Group> {
+        const resp = await this.client.send(new UpdateGroupCommand({
+            UserPoolId: this.userPoolId,
+            GroupName: group.groupName,
+            Description: group.description,
+            Precedence: group.precedence,
+            RoleArn: group.roleArn
+        }));
+        const newGroup = resp.Group!;
+        return {
+            groupName: newGroup.GroupName!,
+            description: newGroup.Description,
+            precedence: newGroup.Precedence,
+            roleArn: newGroup.RoleArn,
+            creationDate: newGroup.CreationDate,
+            lastModifiedDate: newGroup.LastModifiedDate,
+        };
+
+    }
+
     async deleteGroup(groupName: string): Promise<void> {
-        await this.client.send(new DeleteGroupCommand({
+        Promise.resolve(await this.client.send(new DeleteGroupCommand({
             UserPoolId: this.userPoolId,
             GroupName: groupName,
-        }));
+        })));
     }
 
 
@@ -98,6 +128,21 @@ class UserPoolClient {
         }));
     }
 
+    async addUserToGroup(params: AddUserToGroupParam): Promise<void> {
+        await this.client.send(new AdminAddUserToGroupCommand({
+            GroupName: params.groupName,
+            Username: params.username,
+            UserPoolId: this.userPoolId,
+        }));
+    };
+
+    async removeUserFromGroup(params: RemoveUserFromGroupParam): Promise<void> {
+        await this.client.send(new AdminRemoveUserFromGroupCommand({
+            GroupName: params.groupName,
+            Username: params.username,
+            UserPoolId: this.userPoolId,
+        }));
+    };
 
     async listGroups(): Promise<Group[]> {
         let nextToken = undefined;

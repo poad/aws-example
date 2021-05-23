@@ -53,7 +53,7 @@ const CreateUserDialog: React.FunctionComponent<CreateUserDialogProps> = (props)
             <Dialog fullScreen={fullScreen} open={open} aria-labelledby="responsive-dialog-title">
                 <DialogContent>
                     <DialogTitle id="create-user-dialog-title"><Typography variant="h3" component="span" gutterBottom>{'Create User'}</Typography></DialogTitle>
-                    <DialogContentText id="create-user-dialog">
+                    <DialogContentText id="create-user-dialog" component="div">
                         <Container>
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <TextField id="username" label="Username" type='username' style={{ margin: 8 }} margin="dense" {...register("username", { required: true })} />

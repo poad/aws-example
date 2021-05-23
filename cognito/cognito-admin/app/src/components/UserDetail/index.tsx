@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Button, Container, createStyles, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, List, ListItem, makeStyles, Paper, TextField, Theme, Typography, useMediaQuery, useTheme } from "@material-ui/core";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, createStyles, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, Input, InputLabel, List, ListItem, makeStyles, MenuItem, Paper, Select, TextField, Theme, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { User } from "../../interfaces";
 import React, { useEffect, useState } from "react";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -41,11 +41,19 @@ const UserDetail: React.FunctionComponent<UsersDetailProps> = (props): JSX.Eleme
     const [detail, setDetail] = useState<User | undefined>(props.user);
 
     const [confirm, setConfirm] = useState<boolean>(false);
+    const [client,] = useState<UserPoolClient>(props.client);
+
+    const [groups, setGroups] = useState<string[]>([]);
 
     useEffect(
         () => {
-            setOpen(props.open);
-            setDetail(props.user);
+            client.listGroups()
+                .then(items => items.map(item => item.groupName))
+                .then(setGroups)
+                .then(() => {
+                    setOpen(props.open);
+                    setDetail(props.user);
+                });
         }, [props.user, props.open]);
 
 
@@ -64,7 +72,6 @@ const UserDetail: React.FunctionComponent<UsersDetailProps> = (props): JSX.Eleme
     };
 
     const resetPassword = () => {
-        console.trace(JSON.stringify(detail));
         if (detail !== undefined && detail.attributes.status !== 'FORCE_CHANGE_PASSWORD') {
             props.client.resetUserPassword(detail.username)
                 .then(() => {
@@ -118,6 +125,22 @@ const UserDetail: React.FunctionComponent<UsersDetailProps> = (props): JSX.Eleme
         setConfirm(false);
     };
 
+    const handleGroupChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+        const newGroups = event.target.value as string[];
+        if (detail !== undefined) {
+
+            const currentGroups = detail!.groups || [];
+
+            const deletionGroups = currentGroups.filter(current => newGroups.indexOf(current) === -1);
+            const additionGroups = newGroups.filter(current => currentGroups.indexOf(current) === -1);
+
+            deletionGroups.forEach(group => props.client.removeUserFromGroup({ username: detail?.username!, groupName: group }));
+            additionGroups.forEach(group => props.client.addUserToGroup({ username: detail?.username!, groupName: group }));
+
+            setDetail({ ...detail!, groups: newGroups });
+        }
+    };
+
     return (
         <Container>
             <Dialog fullScreen={fullScreen} open={open} aria-labelledby="responsive-dialog-title">
@@ -125,48 +148,42 @@ const UserDetail: React.FunctionComponent<UsersDetailProps> = (props): JSX.Eleme
                     <DialogTitle id="user-detail-dialog-title"><Typography variant="h3" component="span" gutterBottom>{detail?.username}</Typography></DialogTitle>
                     <DialogContentText id="user-detail-dialog" component='div'>
                         <Container>
-                            <Paper variant="outlined">
-                                <TextField id="e-email" label="E-mail" style={{ margin: 8 }} margin="normal" fullWidth key='e-mail' InputProps={{ readOnly: true, }} defaultValue={detail?.email} />
-                                <TextField id="createdAt" label="CreatedAt" style={{ margin: 8 }} margin="normal" fullWidth key='createdAt' InputProps={{ readOnly: true, }} defaultValue={detail?.createdAt?.toLocaleString()} />
-                                <TextField id="lastModifiedAt" label="LastModifiedAt" style={{ margin: 8 }} margin="normal" fullWidth key='lastModifiedAt' InputProps={{ readOnly: true, }} defaultValue={detail?.lastModifiedAt?.toLocaleString()} />
-                                <TextField id="enabled" label="Enabled" style={{ margin: 8 }} margin="normal" fullWidth key='enabled' InputProps={{ readOnly: true, }} defaultValue={detail?.enabled} />
-                                <TextField id="status" label="Status" style={{ margin: 8 }} margin="normal" fullWidth key='status' InputProps={{ readOnly: true, }} defaultValue={detail?.status} />
-                            </Paper>
-                            <Paper variant="outlined">
-                                <Accordion>
+                            <Paper variant="outlined" style={{ paddingLeft: 4, paddingRight: 4, paddingTop: 16, paddingBottom: 16 }}>
+                                <TextField id="e-email" label="E-mail" style={{ paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4 }} fullWidth variant="outlined" key='e-mail' InputProps={{ readOnly: true, }} defaultValue={detail?.email} />
+                                <TextField id="createdAt" label="CreatedAt" style={{ paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4 }} fullWidth variant="outlined" key='createdAt' InputProps={{ readOnly: true, }} defaultValue={detail?.createdAt?.toLocaleString()} />
+                                <TextField id="lastModifiedAt" label="LastModifiedAt" style={{ paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4 }} fullWidth variant="outlined" key='lastModifiedAt' InputProps={{ readOnly: true, }} defaultValue={detail?.lastModifiedAt?.toLocaleString()} />
+                                <TextField id="enabled" label="Enabled" style={{ paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4 }} fullWidth variant="outlined" key='enabled' InputProps={{ readOnly: true, }} defaultValue={detail?.enabled} />
+                                <TextField id="status" label="Status" style={{ paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4 }} fullWidth variant="outlined" key='status' InputProps={{ readOnly: true, }} defaultValue={detail?.status} />
+
+                                <Accordion style={{ marginBottom: 16 }}>
                                     <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="attributes-content" id="attributes-header">
                                         <Typography className={classes.heading}>Attributes</Typography>
                                     </AccordionSummary>
                                     <AccordionDetails id="attributes-content">
-                                        <List component="ul" id="attributes-list">
+                                    <Box border={1}>
+                                        <List component="ul" id="attributes-list" dense={true} disablePadding={true}>
                                             {
                                                 detail?.attributes !== undefined ? Object.keys(detail?.attributes!).filter(attribute => attribute !== 'email').map(attributeName => (
-                                                    <ListItem component="li" key={`${detail?.email}-attr-${attributeName}`}>
-                                                        <TextField id={attributeName} label={attributeName} style={{ margin: 8 }} margin="normal" fullWidth key={attributeName} InputProps={{ readOnly: true, }} defaultValue={detail?.attributes![attributeName]} />
+                                                    <ListItem component="li" dense={true} key={`${detail?.email}-attr-${attributeName}`} button={false} disabled={true}>
+                                                        <TextField id={attributeName} label={attributeName} style={{ paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4 }} fullWidth variant="outlined" key={attributeName} InputProps={{ readOnly: true, }} defaultValue={detail?.attributes![attributeName]} />
                                                     </ListItem>
                                                 )) : ('')
                                             }
                                         </List>
+                                    </Box>
                                     </AccordionDetails>
                                 </Accordion>
-                            </Paper>
-                            <Paper variant="outlined">
-                                <Accordion>
-                                    <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="groups-content" id="groups-header">
-                                        <Typography className={classes.heading}>Groups</Typography>
-                                    </AccordionSummary>
-                                    <AccordionDetails>
-                                        <List component="ul" id="groups-content">
-                                            {
-                                                detail?.groups?.map(group => (
-                                                    <ListItem component="li" key={`${detail?.email}-group-${group}`}>
-                                                        {group}
-                                                    </ListItem>
-                                                ))
-                                            }
-                                        </List>
-                                    </AccordionDetails>
-                                </Accordion>
+                                <FormControl variant="outlined" fullWidth style={{ paddingLeft: 2, paddingRight: 2 }}>
+                                    <InputLabel id="groups-label" style={{ paddingLeft: 2, paddingRight: 2 }}>Groups</InputLabel>
+                                    <Select labelId="groups-label" style={{ paddingLeft: 2, paddingRight: 2 }} id="groups" value={detail?.groups || []} onChange={handleGroupChange} label="Groups" fullWidth multiple input={<Input />} renderValue={(selected) => (selected as string[]).join(', ')}>
+                                        {
+                                            groups.map(group => (
+                                                <MenuItem key={group} value={group} style={{ paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4 }}><em>{group}</em></MenuItem>
+                                            )
+                                            )
+                                        }
+                                    </Select>
+                                </FormControl>
                             </Paper>
                             <DialogActions>
                                 <Button autoFocus style={{ margin: 8 }} onClick={props.onClose}>CLOSE</Button>

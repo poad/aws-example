@@ -1,9 +1,9 @@
 import { ICredentials } from "@aws-amplify/core";
-import { IAMClient, ListRolesCommand, ListRolesResponse } from '@aws-sdk/client-iam';
+import { GetRoleCommand, GetRoleResponse, IAMClient, ListRolesCommand, ListRolesResponse } from '@aws-sdk/client-iam';
 import { IamRole } from "../../interfaces";
 
 class IamClient {
-    
+
     private client: IAMClient;
 
     constructor(credentials: ICredentials, region: string) {
@@ -56,6 +56,35 @@ class IamClient {
                 region: role.RoleLastUsed?.Region,
             }
         } as IamRole));
+    };
+
+    getRole = async (roleName: string): Promise<IamRole> => {
+        const resp: GetRoleResponse = await this.client.send(new GetRoleCommand({
+            RoleName: roleName,
+        }));
+        const role = resp.Role!;
+        return {
+            path: role.Path,
+            roleName: role.RoleName,
+            roleId: role.RoleId,
+            arn: role.Arn,
+            createDate: role.CreateDate,
+            assumeRolePolicyDocument: role.AssumeRolePolicyDocument,
+            description: role.Description,
+            maxSessionDuration: role.MaxSessionDuration,
+            permissionsBoundary: {
+                permissionsBoundaryType: role.PermissionsBoundary?.PermissionsBoundaryType,
+                permissionsBoundaryArn: role.PermissionsBoundary?.PermissionsBoundaryArn,
+            },
+            tags: role.Tags?.map(tag => ({
+                key: tag.Key,
+                value: tag.Value,
+            })),
+            roleLastUsed: {
+                lastUsedDate: role.RoleLastUsed?.LastUsedDate,
+                region: role.RoleLastUsed?.Region,
+            }
+        } as IamRole;
     };
 }
 

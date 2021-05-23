@@ -48,3 +48,8 @@ export interface IamRole {
     region?: string
   },
 };
+
+export interface Tag {
+  key: string | undefined,
+  value: string | undefined,
+};

@@ -1,9 +1,10 @@
-import { Accordion, AccordionDetails, AccordionSummary, Button, Container, createStyles, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, List, ListItem, makeStyles, Paper, TextField, Theme, Typography, useMediaQuery, useTheme } from "@material-ui/core";
+import { Accordion, AccordionDetails, AccordionSummary, Button, Container, createStyles, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, List, ListItem, makeStyles, MenuItem, Paper, Select, TextField, Theme, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { Group, IamRole } from "../../interfaces";
 import React, { useEffect, useState } from "react";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import UserPoolClient from "../../service/UserPoolClient";
 import IamClient from "../../service/IamClient";
+import { appConfig } from "../../aws-config";
 
 interface GroupDetailProps {
     /**
@@ -45,13 +46,39 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Eleme
 
     const [roles, setRoles] = useState<IamRole[]>([]);
 
+    const [error, setError] = useState<{
+        title: string | undefined,
+        message: string
+    } | undefined>(undefined);
+
+    const filterGroupRoles = (roles: IamRole[]): IamRole[] => {
+        const name = appConfig.groupRoleClassificationTagName;
+        const value = appConfig.groupRoleClassificationTagValue;
+        const check = name !== undefined && value !== undefined;
+        const filered = check ? roles.filter(role => 
+            (role.tags?.find(tag => tag.key === name && tag.value === value)) !== undefined) : roles;
+        return filered;
+    }
+
+    const listRoles = async (): Promise<IamRole[]> => {
+        const roles = await props.iamClient.listRoles()
+            .then(roles => Promise.resolve(roles));
+
+        return Promise.all(roles.map((role) => 
+            props.iamClient.getRole(role.roleName!)
+        ));
+    };
+
+
     useEffect(
         () => {
-            props.iamClient.listRoles()
-                .then(setRoles)
-            setOpen(props.open);
+            listRoles()
+                .then(filterGroupRoles)
+                .then(setRoles);
+
             setDetail(props.group);
-        }, [props.group, props.open]);
+            setOpen(props.open);
+        }, [props.group]);
 
 
     const deleteGroup = () => {
@@ -61,7 +88,7 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Eleme
                     if (props.onDelete !== undefined) {
                         props.onDelete(detail);
                     }
-                    setDetail(undefined);
+                    Promise.resolve(setDetail(undefined));
                 });
         }
         setConfirm(false);
@@ -77,31 +104,75 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Eleme
         setConfirm(false);
     };
 
+    const handleRoleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+        const newRole = event.target.value as string;
+        if (detail?.roleArn !== newRole) {
+            props.client.updateGroup({ ...detail, roleArn: newRole.length > 0 ? newRole : undefined } as Group)
+                .then((newGroup) => {
+                    if (props.onUpdate !== undefined) {
+                        props.onUpdate(newGroup);
+                    }
+                    setDetail(newGroup);
+                });
+        }
+    }
+
+    const onErrorClose = () => {
+        setError(undefined);
+    };
+
     return (
         <Container>
+            <Dialog open={error !== undefined} onClick={onErrorClose}>
+                <DialogContent>
+                    {
+                        error?.title !== undefined ? (
+                            <DialogTitle id="user-detail-dialog-title">
+                                <Typography variant="h4" component="span" gutterBottom>{error.title}</Typography>
+                            </DialogTitle>
+                        ) : undefined
+                    }
+                    <DialogContentText id="alert-dialog-description" component='div'>
+                        {error?.message !== undefined ? error.message : ""}
+                    </DialogContentText>
+                </DialogContent>
+            </Dialog>
+
             <Dialog fullScreen={fullScreen} open={open} aria-labelledby="responsive-dialog-title">
                 <DialogContent>
-                    <DialogTitle id="user-detail-dialog-title"><Typography variant="h3" component="span" gutterBottom>{detail?.groupName}</Typography></DialogTitle>
+                    <DialogTitle id="user-detail-dialog-title"><Typography variant="h4" component="span" gutterBottom>{detail?.groupName}</Typography></DialogTitle>
                     <DialogContentText id="user-detail-dialog" component='div'>
                         <Container>
-                            <Paper variant="outlined">
-                                <TextField id="groupName" label="GroupName" style={{ margin: 8 }} margin="normal" fullWidth key='groupName' InputProps={{ readOnly: true, }} defaultValue={detail?.groupName} />
-                                <TextField id="createdAt" label="CreatedAt" style={{ margin: 8 }} margin="normal" fullWidth key='createdAt' InputProps={{ readOnly: true, }} defaultValue={detail?.creationDate?.toLocaleString()} />
-                                <TextField id="lastModifiedAt" label="LastModifiedAt" style={{ margin: 8 }} margin="normal" fullWidth key='lastModifiedAt' InputProps={{ readOnly: true, }} defaultValue={detail?.lastModifiedDate?.toLocaleString()} />
-                                <TextField id="roleArn" label="Role Arn" style={{ margin: 8 }} margin="normal" fullWidth key='enabled' InputProps={{ readOnly: true, }} defaultValue={detail?.roleArn} />
-                                <TextField id="precedence" label="Precedence" style={{ margin: 8 }} margin="normal" fullWidth key='precedence' InputProps={{ readOnly: true, }} defaultValue={detail?.precedence} />
-                            </Paper>
-                            <Paper variant="outlined">
-                                <Accordion>
+                            <Paper variant="outlined" style={{ paddingLeft: 4, paddingRight: 4, paddingTop: 16, paddingBottom: 16 }}>
+                                <TextField id="groupName" label="GroupName" style={{ paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4 }} fullWidth variant="outlined" key='groupName' InputLabelProps={{ shrink: true, }} InputProps={{ readOnly: true, }} defaultValue={detail?.groupName} />
+                                <TextField id="createdAt" label="CreatedAt" style={{ paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4 }} fullWidth variant="outlined" key='createdAt' InputProps={{ readOnly: true, }} defaultValue={detail?.creationDate?.toLocaleString()} />
+                                <TextField id="lastModifiedAt" label="LastModifiedAt" style={{ paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4 }} fullWidth variant="outlined" key='lastModifiedAt' InputProps={{ readOnly: true, }} defaultValue={detail?.lastModifiedDate?.toLocaleString()} />
+                                <FormControl variant="outlined" fullWidth style={{ paddingLeft: 2, paddingRight: 2 }}>
+                                    <InputLabel id="roleArn-label" style={{ paddingLeft: 2, paddingRight: 2 }}>Role Arn</InputLabel>
+                                    <Select labelId="roleArn-label" style={{ paddingLeft: 2, paddingRight: 2 }} id="roleArn" value={detail?.roleArn || ''} onChange={handleRoleChange} label="Role Arn" fullWidth>
+                                        {
+                                            detail?.roleArn === undefined ? (<MenuItem key="None" value="" style={{ paddingLeft: 2, paddingRight: 2 }}><em>None</em></MenuItem>) : undefined
+                                        }
+                                        {
+                                            roles.map(role => (
+                                                    <MenuItem key={role.arn} value={role.arn} style={{ paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4 }}><em>{role.roleName}</em></MenuItem>
+                                                )
+                                            )
+                                        }
+                                    </Select>
+                                </FormControl>
+                                <TextField id="precedence" label="Precedence" style={{ paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4 }} fullWidth key='precedence' variant="outlined" InputProps={{ readOnly: true, }} defaultValue={detail?.precedence} />
+
+                                <Accordion variant="outlined">
                                     <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="users-content" id="users-header">
-                                        <Typography className={classes.heading}>Users</Typography>
+                                        <Typography className={classes.heading} style={{ paddingLeft: 2, paddingRight: 2 }}>Users</Typography>
                                     </AccordionSummary>
                                     <AccordionDetails id="users-content">
-                                        <List component="ul" id="users-list">
+                                        <List component="ul" id="users-list" style={{ paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4 }}>
                                             {
                                                 detail?.users !== undefined ? detail?.users.map(user => (
                                                     <ListItem component="li" key={`${detail?.groupName}-user-${user.username}`}>
-                                                        <TextField id={user.username} label={user.username} style={{ margin: 8 }} margin="normal" fullWidth key={user.username} InputProps={{ readOnly: true, }} defaultValue={user.username} />
+                                                        <TextField id={user.username} label={user.username} style={{ paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4 }} fullWidth key={user.username} InputProps={{ readOnly: true, }} defaultValue={user.username} />
                                                     </ListItem>
                                                 )) : ('')
                                             }

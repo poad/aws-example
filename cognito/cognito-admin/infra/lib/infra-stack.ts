@@ -4,7 +4,7 @@ import {
 import {
   AccountRecovery, Mfa, OAuthScope, UserPoolClient, CfnIdentityPoolRoleAttachment, UserPool, CfnIdentityPool,
 } from '@aws-cdk/aws-cognito';
-import { Stack, StackProps, Construct, Duration, RemovalPolicy } from '@aws-cdk/core';
+import { Stack, StackProps, Construct, Duration, RemovalPolicy, Tags, Tag } from '@aws-cdk/core';
 import { RetentionDays } from '@aws-cdk/aws-logs';
 import { NodejsFunction } from '@aws-cdk/aws-lambda-nodejs';
 import { Runtime } from '@aws-cdk/aws-lambda';
@@ -28,6 +28,11 @@ export interface InfraStackStackProps extends StackProps {
       },
     },
   },
+  groupRoleClassificationTag: {
+    name: string | undefined,
+    value: string | undefined
+  },
+  testRoles: number | undefined,
 }
 
 export class InfraStack extends Stack {
@@ -292,6 +297,8 @@ export class InfraStack extends Stack {
                 'sts:GetFederationToken',
                 'sts:AssumeRoleWithWebIdentity',
                 'iam:ListRoles',
+                'iam:PassRole',
+                'iam:GetRole',
               ],
               resources: ['*'],
             })
@@ -411,5 +418,43 @@ export class InfraStack extends Stack {
         unauthenticated: endUserUnauthenticatedRole.roleArn,
       },
     });
+
+    if (props.testRoles !== undefined && props.testRoles > 0) {
+      for (let i = 0; i < props.testRoles; i++) {
+        const roleName = `${props.environment}-test-group-role-${i + 1}`;
+
+        const groupRole = new Role(this, `TestGroupRole${i + 1}`, {
+          roleName,
+          assumedBy: new FederatedPrincipal('cognito-identity.amazonaws.com', {
+            StringEquals: {
+              'cognito-identity.amazonaws.com:aud': endUserPoolIdentityPool.ref,
+            },
+            'ForAnyValue:StringLike': {
+              'cognito-identity.amazonaws.com:amr': 'authenticated',
+            },
+          }, 'sts:AssumeRoleWithWebIdentity'),
+          maxSessionDuration: Duration.hours(12),
+          inlinePolicies: {
+            'allow-assume-role': new PolicyDocument({
+              statements: [
+                new PolicyStatement({
+                  effect: Effect.ALLOW,
+                  actions: [
+                    'cognito-identity:*',
+                    "cognito-idp:*",
+                    'sts:GetFederationToken',
+                    'sts:AssumeRoleWithWebIdentity',
+                  ],
+                  resources: ['*'],
+                })
+              ]
+            })
+          }
+        });
+        if (props.groupRoleClassificationTag.name !== undefined && props.groupRoleClassificationTag.value !== undefined) {
+          Tags.of(groupRole).add(props.groupRoleClassificationTag.name, props.groupRoleClassificationTag.value)
+        }
+      }
+    }
   }
 }

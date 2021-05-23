@@ -224,6 +224,20 @@ const Groups: React.FunctionComponent<GroupsProps> = (props): JSX.Element => {
         setGroups(groups.concat(group));
     };
 
+    const onUpdate = (group: Group) => {
+        const index = groups.findIndex((group) => detail?.groupName === group.groupName)
+        if (index === -1) {
+            throw "Group not found";
+        }
+        groups[index] = group;
+        setDetail(group);
+        setGroups(groups);
+    };
+
+    const onError = (error: any) => {
+        setError({error: true, message: error.name !== undefined ? error.name : JSON.stringify(error)});   
+    }
+
     return (
         <React.Fragment>
             <LoadingBackdrop open={!loaded && !error.error} invisible={loaded || error.error}>
@@ -239,13 +253,13 @@ const Groups: React.FunctionComponent<GroupsProps> = (props): JSX.Element => {
 
             {
                 detail !== undefined
-                    ? (<GroupDetail client={client} iamClient={props.iamClient} group={detail} open={openDetail} onClose={handleCloseDetail} onUpdate={setDetail} onDelete={onDelete} />)
+                    ? (<GroupDetail client={client} iamClient={props.iamClient} group={detail} open={openDetail} onClose={handleCloseDetail} onUpdate={onUpdate} onDelete={onDelete} />)
                     : ('')
             }
 
             <Box component="span" m={1}>
                 <Container fixed>
-                    <CreateGroupDialog client={client} iamClient={props.iamClient} onCreate={onCreate} />
+                    <CreateGroupDialog client={client} iamClient={props.iamClient} onCreate={onCreate} onError={onError}/>
                     <TableContainer>
                         <Table size='small' stickyHeader>
                             <TableHead>

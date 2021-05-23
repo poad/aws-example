@@ -24,6 +24,9 @@ interface Context {
     customMessge: boolean,
     userMigrate: boolean,
   },
+  groupRoleClassificationTagName: string | undefined,
+  groupRoleClassificationTagValue: string | undefined,
+  testRoles: number | undefined,
 }
 
 const app = new App();
@@ -31,7 +34,7 @@ const app = new App();
 const env = app.node.tryGetContext('env') as string;
 
 const context = app.node.tryGetContext(env) as Context;
-const { region, domain, endUserDomain, provider } = context;
+const { region, domain, endUserDomain, provider, testRoles, groupRoleClassificationTagName, groupRoleClassificationTagValue } = context;
 
 new InfraStack(app, `${env}-cognito-admin-stack`, {
   name: `${env}-cognito-admin`,
@@ -52,5 +55,10 @@ new InfraStack(app, `${env}-cognito-admin-stack`, {
         entry: "lambda/signin/index.ts"
       },
     },
-  }
+  },
+  groupRoleClassificationTag: {
+    name: groupRoleClassificationTagName,
+    value: groupRoleClassificationTagValue
+  },
+  testRoles,
 });

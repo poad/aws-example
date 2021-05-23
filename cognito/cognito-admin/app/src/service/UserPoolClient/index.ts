@@ -1,5 +1,5 @@
 import { ICredentials } from "@aws-amplify/core";
-import { AdminCreateUserCommand, AdminDeleteUserCommand, AdminDisableUserCommand, AdminEnableUserCommand, AdminListGroupsForUserCommand, AdminListGroupsForUserResponse, AdminResetUserPasswordCommand, CognitoIdentityProviderClient, CreateGroupCommand, DeleteGroupCommand, ListGroupsCommand, ListGroupsResponse, ListUsersCommand, ListUsersInGroupCommand, ListUsersInGroupResponse, ListUsersResponse, UserType } from "@aws-sdk/client-cognito-identity-provider";
+import { AdminCreateUserCommand, AdminDeleteUserCommand, AdminDisableUserCommand, AdminEnableUserCommand, AdminListGroupsForUserCommand, AdminListGroupsForUserResponse, AdminResetUserPasswordCommand, CognitoIdentityProviderClient, CreateGroupCommand, DeleteGroupCommand, ListGroupsCommand, ListGroupsResponse, ListUsersCommand, ListUsersInGroupCommand, ListUsersInGroupResponse, ListUsersResponse, UpdateGroupCommand, UserType } from "@aws-sdk/client-cognito-identity-provider";
 import { User, Group } from "../../interfaces";
 
 interface CreateUserParam {
@@ -49,11 +49,31 @@ class UserPoolClient {
         };
     }
 
+    async updateGroup(group: Group): Promise<Group> {
+        const resp = await this.client.send(new UpdateGroupCommand({
+            UserPoolId: this.userPoolId,
+            GroupName: group.groupName,
+            Description: group.description,
+            Precedence: group.precedence,
+            RoleArn: group.roleArn
+        }));
+        const newGroup = resp.Group!;
+        return {
+            groupName: newGroup.GroupName!,
+            description: newGroup.Description,
+            precedence: newGroup.Precedence,
+            roleArn: newGroup.RoleArn,
+            creationDate: newGroup.CreationDate,
+            lastModifiedDate: newGroup.LastModifiedDate,
+        };
+
+    }
+
     async deleteGroup(groupName: string): Promise<void> {
-        await this.client.send(new DeleteGroupCommand({
+        Promise.resolve(await this.client.send(new DeleteGroupCommand({
             UserPoolId: this.userPoolId,
             GroupName: groupName,
-        }));
+        })));
     }
 
 

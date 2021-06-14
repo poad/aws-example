@@ -72,7 +72,5 @@ jobs:
       uses: reitermarkus/automerge@v1.5.2
       with:
         token: ${{ secrets.PERSONAL_TOKEN_FOR_GITHUB_ACTIONS }}
-        merge-method: rebase
+        merge-method: squash
         pull-request: ${{ github.event.inputs.pull-request }}
-
-  

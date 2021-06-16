@@ -1,0 +1,40 @@
+{
+  "name": "hello-rust-lambda",
+  "version": "0.1.0",
+  "bin": {
+    "hello-rust-lambda": "bin/hello-rust-lambda.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@aws-cdk/assert": "^1.108.1",
+    "@types/aws-lambda": "^8.10.77",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.12.2",
+    "@typescript-eslint/eslint-plugin": "^4.26.1",
+    "@typescript-eslint/parser": "^4.26.1",
+    "aws-cdk": "^1.108.1",
+    "eslint": "^7.28.0",
+    "eslint-config-airbnb-base": "latest",
+    "eslint-plugin-import": "^2.23.4",
+    "jest": "^27.0.4",
+    "ts-jest": "^27.0.3",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-apigateway": "^1.108.1",
+    "@aws-cdk/aws-apigatewayv2": "^1.108.1",
+    "@aws-cdk/aws-apigatewayv2-integrations": "^1.108.1",
+    "@aws-cdk/aws-iam": "^1.108.1",
+    "@aws-cdk/aws-lambda": "^1.108.1",
+    "@aws-cdk/aws-logs": "^1.108.1",
+    "@aws-cdk/core": "^1.108.1",
+    "aws-lambda": "latest",
+    "source-map-support": "latest"
+  }
+}

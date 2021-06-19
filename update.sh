@@ -9,8 +9,9 @@ YARN_PROJECTS="\
   lambda/cognito-console\
   lambda/cognito-lambda\
   lambda/cognito-lambda/lambda\
-  lambda/docker-lambda\
-  lambda/docker-lambda/lambda\
+  lambda/container/hello-rust-lambda\
+  lambda/container/sample\
+  lambda/container/sample/lambda\
   lambda/python
 "
 

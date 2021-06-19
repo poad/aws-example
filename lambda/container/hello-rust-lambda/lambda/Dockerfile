@@ -2,8 +2,8 @@ ARG LLVM_VERSION=12
 ARG NODE_VERSION=14
 ARG DIST=debian
 
-ARG BASE_IMAGE=ghcr.io/poad/docker-aws-lambda-container-images/${DIST}:node${NODE_VERSION}
-ARG DEBUG_IMAGE=ghcr.io/poad/docker-aws-lambda-container-images/${DIST}-debug:node${NODE_VERSION}
+ARG BASE_IMAGE=ghcr.io/poad/docker-aws-lambda-container-images/${DIST}
+ARG DEBUG_IMAGE=ghcr.io/poad/docker-aws-lambda-container-images/${DIST}-debug
 
 ARG DEPS="\
     autoconf \
@@ -31,13 +31,13 @@ ARG DEPS="\
 
 FROM buildpack-deps:stable-curl AS downloader
 
-RUN curl -sSLO /tmp/llvm-snapshot.gpg.key https://apt.llvm.org/llvm-snapshot.gpg.key \
- && curl --proto '=https' --tlsv1.2 -sSfo /tmp/sh.rustup.rs https://sh.rustup.rs
+RUN curl -sSLo /tmp/llvm-snapshot.gpg.key "https://apt.llvm.org/llvm-snapshot.gpg.key" \
+ && curl --proto '=https' --tlsv1.2 -sSfo /tmp/sh.rustup.rs "https://sh.rustup.rs"
 
-FROM ${BASE_IMAGE} AS builder-env
+FROM ${BASE_IMAGE}:node${NODE_VERSION} AS builder
 
-COPY --from=builder /tmp/llvm-snapshot.gpg.key /tmp/llvm-snapshot.gpg.key
-COPY --from=builder /tmp/sh.rustup.rs /tmp/sh.rustup.rs
+COPY --from=downloader /tmp/llvm-snapshot.gpg.key /tmp/llvm-snapshot.gpg.key
+COPY --from=downloader /tmp/sh.rustup.rs /tmp/sh.rustup.rs
 
 ARG LLVM_VERSION
 
@@ -46,25 +46,24 @@ WORKDIR /var/task/
 ENV PATH ${PATH}:/root/.cargo/bin
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt update -qq  \
-#  && apt upgrade -qqy  \
- && apt install --no-install-recommends -qqy \
+RUN apt-get update -qq \
+ && apt-get install --no-install-recommends -qqy \
     unzip \
     libcurl4-openssl-dev \
     python3.9-minimal \
     python3.9-dev \
     lsb-release \
+    curl \
     ca-certificates \
     gnupg2 \
     binutils \
     apt-utils \
     software-properties-common \
-   #  dirmngr \
  && apt-key add /tmp/llvm-snapshot.gpg.key \
  && rm -rf /tmp/llvm-snapshot.gpg.key \
  && echo "deb http://apt.llvm.org/$(lsb_release -cs)/ llvm-toolchain-$(lsb_release -cs)-${LLVM_VERSION} main" >> /etc/apt/sources.list.d/llvm-toolchain.list \
- && apt update -qq \
- && apt install --no-install-recommends -qqy \
+ && apt-get update -qq \
+ && apt-get install --no-install-recommends -qqy \
     clang-${LLVM_VERSION} \
     lld-${LLVM_VERSION} \
     libllvm${LLVM_VERSION} \
@@ -77,33 +76,32 @@ RUN apt update -qq  \
  
 ENV PATH ${PATH}:/root/.cargo/bin
 
-FROM builder-env AS builder
-
 WORKDIR /work
 
 COPY ./src /work/src
 COPY Cargo.toml /work/Cargo.toml
 
-RUN cargo build --release
+RUN cargo build --target x86_64-unknown-linux-gnu \
+ && cargo build --release --target x86_64-unknown-linux-gnu
 
-FROM ${BASE_IMAGE} AS release
+FROM ${BASE_IMAGE}:node${NODE_VERSION} AS release
 
-ARG DEPS
-
-COPY --from=builder /work/target/release/handler /var/task/handler
+COPY --from=builder /work/target/x86_64-unknown-linux-gnu/release/handler /var/task/handler
 RUN chmod +x /var/task/handler
 
 WORKDIR /var/task/
 
-ENTRYPOINT [ "/var/task/bootstrap" ]
-CMD [ "/var/task/handler" ]
+ENTRYPOINT [ "/var/task/handler" ]
 
-FROM ${DEBUG_IMAGE}
+FROM ${DEBUG_IMAGE}:node${NODE_VERSION} AS debug
 
-COPY --from=builder /work/target/release/handler /var/task/handler
-RUN chmod +x /var/task/handler 
+ENV RUST_BACKTRACE=full
+
+COPY --from=builder /work/target/x86_64-unknown-linux-gnu/debug/handler /var/task/handler
+RUN chmod +x /var/task/handler
 
 WORKDIR /var/task/
 
-ENTRYPOINT [ "/var/task/bootstrap" ]
-CMD [ "/var/task/handler" ]
+## https://github.com/awslabs/aws-lambda-rust-runtime/pull/332
+# ENTRYPOINT [ "aws-lambda-rie", "/var/task/handler" ]
+ENTRYPOINT [ "/var/task/handler" ]

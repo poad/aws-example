@@ -9,6 +9,13 @@ on:
   pull_request:
     branches: [ main ]
 
+  # Try enabling auto-merge for the specified pull request or all open pull requests if none is specified.
+  workflow_dispatch:
+    inputs:
+      pull-request:
+        description: Pull Request Number
+        required: false
+
 jobs:
   build:
 
@@ -17,7 +24,7 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
-        target: [ ./codebuild/custom-image-test, ./lambda/cognito-console, ./lambda/cognito-lambda, ./lambda/docker-lambda, ./lambda/python ]
+        target: [ ./codebuild/custom-image-test, ./lambda/cognito-console, ./lambda/cognito-lambda, ./lambda/container/simple, ./lambda/container/hello-rust-lambda, ./lambda/python ]
 
     steps:
     - uses: actions/checkout@v2
@@ -30,6 +37,75 @@ jobs:
         cd ${{ matrix.target }} && \
         yarn install && \
         yarn build
+
+  docker-build-multi-version:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        pattern: [
+          { node: 12, os-dist: debian, app: hello-rust-lambda, image: lambda, test: false },
+          { node: 14, os-dist: debian, app: hello-rust-lambda, image: lambda, test: false },
+          { node: 16, os-dist: debian, app: hello-rust-lambda, image: lambda, test: false },
+          { node: 12, os-dist: ubuntu, app: hello-rust-lambda, image: lambda, test: false },
+          { node: 14, os-dist: ubuntu, app: hello-rust-lambda, image: lambda, test: false },
+          { node: 16, os-dist: ubuntu, app: hello-rust-lambda, image: lambda, test: false },
+
+          { node: 12, os-dist: debian, app: simple, image: lambda-simple, test: true },
+          { node: 14, os-dist: debian, app: simple, image: lambda-simple, test: true },
+          { node: 12, os-dist: ubuntu, app: simple, image: lambda-simple, test: true },
+          { node: 14, os-dist: ubuntu, app: simple, image: lambda-simple, test: true }
+        ]
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1 
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.PERSONAL_TOKEN_FOR_GITHUB_ACTIONS }}
+
+    - name: Build (debug) lambda/container/${{ matrix.pattern.app }}/lambda ${{ matrix.pattern.node }} ${{ matrix.pattern.os-dist }}
+      run: |
+        docker build --rm \
+          --build-arg NODE_VERSION=${{ matrix.pattern.node }} \
+          --build-arg DIST=${{ matrix.pattern.os-dist }} \
+          -t ${{ matrix.pattern.image }}:latest \
+          lambda/container/${{ matrix.pattern.app }}/lambda
+
+    - name: Build (release) lambda/container/${{ matrix.pattern.app }}/lambda ${{ matrix.pattern.node }} ${{ matrix.pattern.os-dist }}
+      run: |
+        docker build --rm \
+          --build-arg NODE_VERSION=${{ matrix.pattern.node }} \
+          --build-arg DIST=${{ matrix.pattern.os-dist }} \
+          --target=release \
+          -t ${{ matrix.pattern.image }}:release \
+          lambda/container/${{ matrix.pattern.app }}/lambda
+
+    - name: Hadolint lambda/container/${{ matrix.pattern.app }}/lambda ${{ matrix.pattern.node }} ${{ matrix.pattern.os-dist }}
+      uses: hadolint/hadolint-action@v1.5.0
+      with:
+        dockerfile: lambda/container/${{ matrix.pattern.app }}/lambda/Dockerfile
+
+    - name: Test lambda/container/${{ matrix.pattern.app }} ${{ matrix.pattern.node }} ${{ matrix.pattern.os-dist }}
+      if: ${{ matrix.pattern.test }} == true
+      env:
+        DOCKER_BUILDKIT: 1
+        IMAGE: ${{ matrix.pattern.image }}:latest
+        CONTAINER: ${{ matrix.pattern.image }}
+      run: |
+        if [ "${{ matrix.pattern.test }}" == "true"  ]; then
+          docker run -p 9000:8080 --name ${CONTAINER} -d ${IMAGE} && \
+          RESULT=$(curl -sSL -i -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{}' | grep "HTTP/1.1 200" | wc -l) && \
+          if [ ${RESULT} -ne 1 ]; then \
+            echo ${RESULT} && \
+            docker logs ${CONTAINER} && \
+            exit -1;
+          fi
+        fi
+    
 
   build-client:
 

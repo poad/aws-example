@@ -7,6 +7,13 @@ on:
   schedule:
     - cron:  '0 0 * * *'
 
+  # Try enabling auto-merge for the specified pull request or all open pull requests if none is specified.
+  workflow_dispatch:
+    inputs:
+      pull-request:
+        description: Pull Request Number
+        required: false
+
 jobs:
   auto_update:
     runs-on: ubuntu-latest

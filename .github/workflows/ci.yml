@@ -4,23 +4,31 @@
 name: Node.js CI
 
 on:
-#  push:
-#    branches: [ main ]
+  push:
   pull_request:
     branches: [ main ]
 
-  # Try enabling auto-merge for the specified pull request or all open pull requests if none is specified.
   workflow_dispatch:
-    inputs:
-      pull-request:
-        description: Pull Request Number
-        required: false
+
+
 
 jobs:
-  build:
 
+  configure:
     runs-on: ubuntu-latest
+    steps:
+    - name: Pull request auto merge enabler
+      if: github.event_name == 'pull_request'
+      uses: poad/github-pull-request-auto-merge-enable-action@v1.0.0
+      with:
+        pull_request_id: ${{ github.event.pull_request.node_id }}
+        github_token: ${{ secrets.PERSONAL_TOKEN_FOR_GITHUB_ACTIONS }}
+        repository: ${{ github.event.repository.name }}
+        owner: ${{ github.repository_owner }}
+        merge_method: SQUASH
 
+  build:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
@@ -105,8 +113,7 @@ jobs:
             exit -1;
           fi
         fi
-    
-
+  
   build-client:
 
     runs-on: ubuntu-latest
@@ -137,3 +144,4 @@ jobs:
         mv oauth.properties.template app/src/main/res/raw/oauth.properties
         chmod +x gradlew
         ./gradlew build
+

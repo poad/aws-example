@@ -5,6 +5,8 @@ CUR=$(pwd)
 YARN_PROJECTS="\
   cognito/cognito-admin/app\
   cognito/cognito-admin/infra\
+  cognito/tiny-device-flow\
+  cognito/tiny-device-flow/pages\
   codebuild/custom-image-test\
   lambda/cognito-console\
   lambda/cognito-lambda\

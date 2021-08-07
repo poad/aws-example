@@ -32,7 +32,7 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
-        target: [ ./codebuild/custom-image-test, ./lambda/cognito-console, ./lambda/cognito-lambda, ./lambda/container/simple, ./lambda/container/hello-rust-lambda, ./lambda/python ]
+        target: [ ./codebuild/custom-image-test, ./lambda/cognito-console, ./lambda/cognito-lambda, ./lambda/container/simple, ./lambda/container/hello-rust-lambda, ./lambda/python, ./cognito/tiny-device-flow, ./cognito/tiny-device-flow/pages ]
 
     steps:
     - uses: actions/checkout@v2
@@ -41,7 +41,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm i -g yarn aws-cdk typescript
-    - run: |
+    - name: build
+      env:
+        BASE_PATH: /oauth/device/activate
+      run: |
         cd ${{ matrix.target }} && \
         yarn install && \
         yarn build

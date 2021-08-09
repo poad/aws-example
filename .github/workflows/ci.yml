@@ -52,12 +52,12 @@ jobs:
     strategy:
       matrix:
         pattern: [
-          { node: 12, os-dist: debian, app: hello-rust-lambda, image: lambda, test: false },
-          { node: 14, os-dist: debian, app: hello-rust-lambda, image: lambda, test: false },
-          { node: 16, os-dist: debian, app: hello-rust-lambda, image: lambda, test: false },
-          { node: 12, os-dist: ubuntu, app: hello-rust-lambda, image: lambda, test: false },
-          { node: 14, os-dist: ubuntu, app: hello-rust-lambda, image: lambda, test: false },
-          { node: 16, os-dist: ubuntu, app: hello-rust-lambda, image: lambda, test: false },
+          { node: 12, os-dist: debian, app: hello-rust-lambda, image: lambda, test: true },
+          { node: 14, os-dist: debian, app: hello-rust-lambda, image: lambda, test: true },
+          { node: 16, os-dist: debian, app: hello-rust-lambda, image: lambda, test: true },
+          { node: 12, os-dist: ubuntu, app: hello-rust-lambda, image: lambda, test: true },
+          { node: 14, os-dist: ubuntu, app: hello-rust-lambda, image: lambda, test: true },
+          { node: 16, os-dist: ubuntu, app: hello-rust-lambda, image: lambda, test: true },
 
           { node: 12, os-dist: debian, app: simple, image: lambda-simple, test: true },
           { node: 14, os-dist: debian, app: simple, image: lambda-simple, test: true },

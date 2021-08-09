@@ -102,6 +102,4 @@ RUN chmod +x /var/task/handler
 
 WORKDIR /var/task/
 
-## https://github.com/awslabs/aws-lambda-rust-runtime/pull/332
-# ENTRYPOINT [ "aws-lambda-rie", "/var/task/handler" ]
-ENTRYPOINT [ "/var/task/handler" ]
+ENTRYPOINT [ "aws-lambda-rie", "/var/task/handler" ]

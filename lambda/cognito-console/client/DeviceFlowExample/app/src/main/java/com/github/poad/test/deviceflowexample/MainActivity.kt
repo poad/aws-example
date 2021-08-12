@@ -103,7 +103,7 @@ class MainActivity() : AppCompatActivity() {
         val client = Client(oauthEndpoint, OAuthClient::class.java)
             .createService()
 
-        val audience = oauthProps.getProperty("oauth.audience")
+        val audience = oauthProps.getProperty("oauth.audience", "")
 
         val deviceCodePath = oauthProps.getProperty("oauth.device_code_path")
         val tokenPath = oauthProps.getProperty("oauth.token_path")
@@ -147,7 +147,8 @@ class MainActivity() : AppCompatActivity() {
                     messageModel.message.postValue(deviceCodeResp.message)
 
                     val deviceCode = deviceCodeResp.deviceCode
-                    val interval = deviceCodeResp.interval
+                    val interval = deviceCodeResp.interval ?: "5"
+
 
                     while (true) {
                         if (ZonedDateTime.now() >= expiration) {

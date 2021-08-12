@@ -74,7 +74,7 @@ export const handler = async (
     Item: marshall({
       device_code: deviceCode,
       user_code: userCode,
-      expire: (new Date().getTime() / 1000) + duration,
+      expire: Math.floor((new Date().getTime() / 1000) + duration),
     } as DeviceCodeTable),
     TableName: process.env.TABLE_NAME,
   };

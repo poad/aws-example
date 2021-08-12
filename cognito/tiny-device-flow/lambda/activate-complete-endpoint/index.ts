@@ -189,7 +189,7 @@ export const handler = async (
       user_code: userCode,
       token_type: 'Bearer',
       access_token: token.accessToken,
-      expire: Number((new Date().getTime() / 1000) + token.expiresIn),
+      expire: Math.floor(Number((new Date().getTime() / 1000) + token.expiresIn)),
     };
     /* eslint-enable camelcase */
 

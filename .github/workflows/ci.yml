@@ -180,7 +180,7 @@ jobs:
         AUTH0_FQDN: ${{ secrets.AUTH0_APP_FQDN }}
       run: |
         cd lambda/cognito-console/client/DeviceFlowExample
-        mkdir -p app/src/main/res/raw
+        rm -rf app/src/main/res/raw/example_oauth.properties
         mv oauth.properties.template app/src/main/res/raw/oauth.properties
         chmod +x gradlew
         ./gradlew build

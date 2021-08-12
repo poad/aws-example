@@ -95,11 +95,6 @@ jobs:
           -t ${{ matrix.pattern.image }}:release \
           lambda/container/${{ matrix.pattern.app }}/lambda
 
-    - name: Hadolint lambda/container/${{ matrix.pattern.app }}/lambda ${{ matrix.pattern.node }} ${{ matrix.pattern.os-dist }}
-      uses: hadolint/hadolint-action@v1.5.0
-      with:
-        dockerfile: lambda/container/${{ matrix.pattern.app }}/lambda/Dockerfile
-
     - name: Test lambda/container/${{ matrix.pattern.app }} ${{ matrix.pattern.node }} ${{ matrix.pattern.os-dist }}
       if: ${{ matrix.pattern.test }} == true
       env:
@@ -116,6 +111,48 @@ jobs:
             exit -1;
           fi
         fi
+  
+  hadolint:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        pattern: [
+          { app: hello-rust-lambda, image: lambda },
+          { app: simple, image: lambda-simple },
+        ]
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1 
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.PERSONAL_TOKEN_FOR_GITHUB_ACTIONS }}
+
+    - name: Build (debug) lambda/container/${{ matrix.pattern.app }}/lambda
+      run: |
+        docker build --rm \
+          --build-arg NODE_VERSION=14 \
+          --build-arg DIST=debian \
+          -t ${{ matrix.pattern.image }}:latest \
+          lambda/container/${{ matrix.pattern.app }}/lambda
+
+    - name: Build (release) lambda/container/${{ matrix.pattern.app }}/lambda
+      run: |
+        docker build --rm \
+          --build-arg NODE_VERSION=14 \
+          --build-arg DIST=debian \
+          --target=release \
+          -t ${{ matrix.pattern.image }}:release \
+          lambda/container/${{ matrix.pattern.app }}/lambda
+
+    - name: Hadolint lambda/container/${{ matrix.pattern.app }}/lambda
+      uses: hadolint/hadolint-action@v1.5.0
+      with:
+        dockerfile: lambda/container/${{ matrix.pattern.app }}/lambda/Dockerfile
   
   build-client:
 

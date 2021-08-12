@@ -12,7 +12,7 @@ data class OAuthDeviceCode(
     @SerializedName("expires_in")
     val expiresIn: Long,
     @SerializedName("interval")
-    val interval: String,
+    val interval: String?,
     @SerializedName("verification_uri_complete")
     val verificationUriComplete: String?,
     @SerializedName("message")

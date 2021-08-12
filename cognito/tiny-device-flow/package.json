@@ -1,0 +1,58 @@
+{
+  "name": "tiny-device-flow",
+  "version": "0.1.0",
+  "bin": {
+    "tiny-device-flow": "bin/tiny-device-flow.js"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk",
+    "lint": "eslint --ext .ts,.js,.tsx,.jsx lambda"
+  },
+  "devDependencies": {
+    "@aws-cdk/assert": "^1.118.0",
+    "@types/aws-lambda": "^8.10.82",
+    "@types/jest": "^27.0.0",
+    "@types/node": "^16.4.13",
+    "@types/node-fetch": "^2.5.12",
+    "@types/randombytes": "^2.0.0",
+    "@types/uuid": "^8.3.1",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
+    "aws-cdk": "^1.118.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.0",
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.4",
+    "ts-node": "^10.2.0",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-apigateway": "^1.118.0",
+    "@aws-cdk/aws-apigatewayv2": "^1.118.0",
+    "@aws-cdk/aws-apigatewayv2-integrations": "^1.118.0",
+    "@aws-cdk/aws-cognito": "^1.118.0",
+    "@aws-cdk/aws-dynamodb": "^1.118.0",
+    "@aws-cdk/aws-iam": "^1.118.0",
+    "@aws-cdk/aws-lambda": "^1.118.0",
+    "@aws-cdk/aws-lambda-nodejs": "^1.118.0",
+    "@aws-cdk/aws-logs": "^1.118.0",
+    "@aws-cdk/aws-s3": "^1.118.0",
+    "@aws-cdk/aws-s3-assets": "^1.118.0",
+    "@aws-cdk/aws-s3-deployment": "^1.118.0",
+    "@aws-cdk/core": "^1.118.0",
+    "@aws-sdk/client-cognito-identity-provider": "^3.25.0",
+    "@aws-sdk/client-dynamodb": "^3.25.0",
+    "@aws-sdk/client-s3": "^3.25.0",
+    "@aws-sdk/util-dynamodb": "^3.25.0",
+    "aws-lambda": "^1.0.6",
+    "node-fetch": "^2.6.1",
+    "randombytes": "^2.1.0",
+    "source-map-support": "^0.5.19",
+    "uuid": "^8.3.2"
+  }
+}

@@ -3,7 +3,7 @@ module.exports = {
   env: {
     browser: true,
     node: true,
-    es2020: true,
+    es2021: true,
     jest: true
   },
   parserOptions: {
@@ -14,8 +14,9 @@ module.exports = {
     useJSXTextNode: true
   },
   extends: [
-    "airbnb-typescript/base",
+    'airbnb-typescript/base',
     'plugin:react/recommended',
+    'plugin:@next/next/recommended',
     'plugin:@typescript-eslint/recommended'
   ],
   plugins: [
@@ -38,7 +39,7 @@ module.exports = {
       'always',
       { markers: ['/ <reference'] }
     ],
-    'max-len': ['error', {'code': 100}],
+    'max-len': ['error', {'code': 200}],
     'prefer-promise-reject-errors': ['off'],
     'react/jsx-filename-extension': ['off'],
     'react/prop-types': ['off'],

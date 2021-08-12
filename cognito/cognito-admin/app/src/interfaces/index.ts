@@ -14,7 +14,7 @@ export interface User {
   group: string | undefined,
   groups: string[] | undefined,
   email: string | undefined,
-};
+}
 
 export interface Group {
   groupName: string,
@@ -24,7 +24,7 @@ export interface Group {
   lastModifiedDate?: Date,
   users?: User[],
   roleArn?: string,
-};
+}
 
 export interface IamRole {
   path: string | undefined,
@@ -47,9 +47,9 @@ export interface IamRole {
     lastUsedDate?: Date,
     region?: string
   },
-};
+}
 
 export interface Tag {
   key: string | undefined,
   value: string | undefined,
-};
+}

@@ -8,8 +8,7 @@
     "dev": "next",
     "build": "rm -rf out && next build && next export",
     "start": "next start",
-    "lint": "eslint --ext .ts,.js,.tsx,.jsx src",
-    "format": "prettier --write src/**/*.tsx"
+    "lint": "eslint --ext .ts,.js,.tsx,.jsx src"
   },
   "dependencies": {
     "@types/node": "^16.4.14",
@@ -22,6 +21,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
+    "@swc/core": "^1.2.76",
     "@typescript-eslint/eslint-plugin": "^4.29.1",
     "@typescript-eslint/parser": "^4.29.1",
     "autoprefixer": "^10.3.1",
@@ -42,6 +42,7 @@
     "next-transpile-modules": "^8.0.0",
     "postcss": "^8.3.6",
     "prettier": "^2.3.2",
+    "swc-loader": "^0.1.14",
     "ts-jest": "^27.0.4",
     "typescript": "^4.3.5"
   }

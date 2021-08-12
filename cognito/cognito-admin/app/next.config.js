@@ -1,7 +1,4 @@
-const basePath = process.env.BASE_PATH || '/';
-
 module.exports = {
-    basePath,
     webpack5: true,
     reactStrictMode: true,
     // webpack: {

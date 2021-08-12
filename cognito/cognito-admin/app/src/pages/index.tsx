@@ -14,10 +14,10 @@ import {
   createStyles,
 } from '@material-ui/core/styles';
 
+import { Tab, Tabs } from '@material-ui/core';
 import styles from '../styles/Home.module.css';
 import awsconfig, { appConfig } from '../aws-config';
 import Users from '../components/Users';
-import { Tab, Tabs } from '@material-ui/core';
 import UserPoolClient from '../service/UserPoolClient';
 import IamClient from '../service/IamClient';
 import TabPanel from '../components/TabPanel';
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
   appBar: {
     [theme.breakpoints.up('sm')]: {
-      width: `calc(100%)`,
+      width: 'calc(100%)',
     },
   },
   menuButton: {
@@ -53,7 +53,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-
 const Home = (): JSX.Element => {
   const classes = useStyles();
 
@@ -62,15 +61,15 @@ const Home = (): JSX.Element => {
   const [authenticated, setAuthenticated] = useState<boolean>(false);
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (_: React.ChangeEvent<{}>, newValue: number) => {
+  const handleChange = (newValue: number) => {
     setValue(newValue);
   };
-  
+
   useEffect(
     () => {
       Auth.currentUserCredentials()
         .then(Auth.essentialCredentials)
-        .then(currentCredentials => {
+        .then((currentCredentials) => {
           setAuthenticated(currentCredentials.authenticated);
           if (currentCredentials.authenticated) {
             setClient(new UserPoolClient(
@@ -83,12 +82,13 @@ const Home = (): JSX.Element => {
               awsconfig.Auth.region,
             ));
             return currentCredentials;
-          } else {
-            return undefined;
           }
+          return undefined;
         })
+        // eslint-disable-next-line no-console
         .catch(console.error);
-    }, [authenticated]);
+    }, [authenticated],
+  );
 
   return (
     <div className={classes.root}>
@@ -109,14 +109,14 @@ const Home = (): JSX.Element => {
             <TabPanel value={value} index={0}>
               <Users client={client} page={{ page: 0, rowsPerPage: 10 }} />
             </TabPanel>
-        ) : null
+          ) : null
         }
         {
           client !== undefined && iamClient !== undefined ? (
             <TabPanel value={value} index={1}>
               <Groups client={client} iamClient={iamClient} page={{ page: 0, rowsPerPage: 10 }} />
             </TabPanel>
-        ) : null
+          ) : null
         }
       </div>
 

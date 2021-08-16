@@ -114,7 +114,7 @@ export const handler = async (
       /* eslint-disable camelcase */
       access_token: item.access_token.S!,
       token_type: item.token_type.S!,
-      expires_in: item.expire.N !== undefined ? Number(item.expire.N) : undefined,
+      expires_in: item.token_expire.N !== undefined ? Number(item.token_expire.N) : undefined,
       /* eslint-enable camelcase */
     } as DeviceAccessTokenResponse;
   } catch (err) {

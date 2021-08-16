@@ -181,7 +181,7 @@ export const handler = async (
     });
 
     // eslint-disable-next-line camelcase
-    const { device_code } = result.Items[0];
+    const { device_code, expire } = result.Items[0];
 
     /* eslint-disable camelcase */
     const item: DeviceCodeTable = {
@@ -189,7 +189,8 @@ export const handler = async (
       user_code: userCode,
       token_type: 'Bearer',
       access_token: token.accessToken,
-      expire: Math.floor(Number((new Date().getTime() / 1000) + token.expiresIn)),
+      token_expire: token.expiresIn,
+      expire: Number(expire.N!),
     };
     /* eslint-enable camelcase */
 

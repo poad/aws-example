@@ -16,7 +16,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import java.util.*
+
 
 class UserInfoViewModel : ViewModel() {
     internal val userInfo: MutableLiveData<String> by lazy {
@@ -32,8 +32,7 @@ class AuthenticatedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_authenticated)
 
-        val oauthProps = Properties()
-        oauthProps.load(resources.openRawResource((R.raw.oauth)))
+        val config = OAuthConfig.load(resources)
 
         val accessToken = this.intent.getStringExtra(R.string.extra_key_access_token.toString())
         if (accessToken == null) {
@@ -45,11 +44,11 @@ class AuthenticatedActivity : AppCompatActivity() {
             )
             return
         }
-        val client = Client(oauthProps.getProperty("api_endpoint"), UserInfoApiClient::class.java, accessToken)
+        val client = Client(config.apiEndpoint, UserInfoApiClient::class.java, accessToken)
             .createService()
-        val apiUrl = oauthProps.getProperty("user_info_api")
-        val userInfoTextView = findViewById<TextView>(R.id.userInfo)
+        val apiPath = config.userInfoApi
         val userInfoObserver = Observer<String> { userInfo ->
+            val userInfoTextView = findViewById<TextView>(R.id.userInfo)
             userInfoTextView.text = userInfo
             userInfoTextView.visibility = View.VISIBLE
         }
@@ -57,7 +56,7 @@ class AuthenticatedActivity : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.Main + SupervisorJob()).launch {
             try {
-                val userInfo = client.userInfo(apiUrl)
+                val userInfo = client.userInfo(apiPath)
                 val name = userInfo.username ?: userInfo.name
                 userIndoModel.userInfo.postValue(name)
             } catch (e: Exception) {
@@ -65,4 +64,5 @@ class AuthenticatedActivity : AppCompatActivity() {
             }
         }
     }
+
 }

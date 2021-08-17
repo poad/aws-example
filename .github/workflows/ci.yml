@@ -177,12 +177,12 @@ jobs:
 
     - name: Build with Gradle (lambda/cognito-console/client/DeviceFlowExample)
       env:
-        OAUTH_CLIENT_ID: ${{ secrets.AUTH0_APP_CLIENT_ID }}
-        AUTH0_FQDN: ${{ secrets.AUTH0_APP_FQDN }}
+        OAUTH_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
+        COGNITO_DOMAIN: ${{ secrets.COGNITO_DOMAIN }}
       run: |
         cd lambda/cognito-console/client/DeviceFlowExample
-        rm -rf app/src/main/res/raw/example_oauth.properties
-        mv oauth.properties.template app/src/main/res/raw/oauth.properties
+        rm -rf app/src/main/res/raw/example_oauth.json
+        echo $(cat oauth.json.template) > app/src/main/res/raw/oauth.json
         chmod +x gradlew
         ./gradlew build
 

@@ -3,7 +3,6 @@ package com.github.poad.test.deviceflowexample.api
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -48,10 +47,10 @@ class Client<T>(private val baseUrl: String, private  val service: Class<T>, pri
             })
                 .readTimeout(30, TimeUnit.SECONDS)
 
-            // log interceptor
-            val loggingInterceptor = HttpLoggingInterceptor()
-            loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-            httpClient.addInterceptor(loggingInterceptor)
+//            // log interceptor
+//            val loggingInterceptor = okhttp3.logging.HttpLoggingInterceptor()
+//            loggingInterceptor.level = okhttp3.logging.HttpLoggingInterceptor.Level.BODY
+//            httpClient.addInterceptor(loggingInterceptor)
 
             return httpClient
         }

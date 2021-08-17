@@ -37,11 +37,11 @@ class Client<T>(private val baseUrl: String, private  val service: Class<T>, pri
                     true -> original.newBuilder()
                         .header("Accept", "application/json")
                         .header("Authorization", "Bearer " + this.accessToken)
-                        .method(original.method(), original.body())
+                        .method(original.method, original.body)
                         .build()
                     else -> original.newBuilder()
                         .header("Accept", "application/json")
-                        .method(original.method(), original.body())
+                        .method(original.method, original.body)
                         .build()
                 }
                 return@Interceptor chain.proceed(request)

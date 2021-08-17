@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_browse_fragment"
-    android:name="com.github.poad.test.deviceflowexample.MainFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:name="com.github.poad.test.deviceflowexample.MainFragment"
+    tools:layout="@layout/activity_main"
     tools:context=".MainActivity"
     tools:deviceIds="tv"
     tools:ignore="MergeRootFrame">
@@ -49,4 +50,4 @@
         android:layout_marginEnd="44dp"
         android:layout_marginBottom="60dp"
         android:visibility="invisible" />
-</fragment>
+</FrameLayout>

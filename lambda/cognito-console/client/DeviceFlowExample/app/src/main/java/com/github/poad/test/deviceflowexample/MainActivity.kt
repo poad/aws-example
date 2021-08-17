@@ -20,11 +20,7 @@ import java.time.ZonedDateTime
 import java.util.*
 import androidx.appcompat.app.AppCompatActivity
 
-/**
- * Loads [MainFragment].
- */
-private data class OAuthApiEndpoints(val deviceCode: String, val token: String) {
-}
+private data class OAuthApiEndpoints(val deviceCode: String, val token: String)
 
 class VerificationUriViewModel : ViewModel() {
     internal val verificationUri: MutableLiveData<String> by lazy {
@@ -61,8 +57,7 @@ class MainActivity() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val oauthProps = Properties()
-        oauthProps.load(resources.openRawResource((R.raw.oauth)))
+        val config = OAuthConfig.load(resources)
 
         val imageViewQRCode = findViewById<ImageView>(R.id.imageView)
         val verificationUriTextView = findViewById<TextView>(R.id.verificationUriTextView)
@@ -99,19 +94,19 @@ class MainActivity() : AppCompatActivity() {
         userCodeModel.userCode.observe(this, userCodeObserver)
         messageModel.message.observe(this, messageObserver)
 
-        val oauthEndpoint = oauthProps.getProperty("oauth.endpoint")
+        val oauthEndpoint = config.endpoint
         val client = Client(oauthEndpoint, OAuthClient::class.java)
             .createService()
 
-        val audience = oauthProps.getProperty("oauth.audience", "")
+        val audience = config.audience
 
-        val deviceCodePath = oauthProps.getProperty("oauth.device_code_path")
-        val tokenPath = oauthProps.getProperty("oauth.token_path")
-        val scope = oauthProps.getProperty("oauth.scope")
+        val deviceCodePath = config.deviceCodePath
+        val tokenPath = config.tokenPath
+        val scope = config.scope
 
         deviceFlow(
             client,
-            oauthProps.getProperty("oauth.client_id"),
+            config.clientId,
             OAuthApiEndpoints(
                 "%s%s".format(oauthEndpoint, deviceCodePath),
                 "%s%s".format(oauthEndpoint, tokenPath)

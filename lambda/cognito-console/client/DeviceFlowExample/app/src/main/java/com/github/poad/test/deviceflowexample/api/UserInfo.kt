@@ -25,7 +25,7 @@ data class UserInfo(
     val userAttributes: List<UserAttribute>?,
     @SerializedName("UserMFASettingList")
     val userMFASettingList: List<String>?,
-    @SerializedName("Username")
+    @SerializedName("username")
     val username: String?,
 
     @SerializedName("sub")

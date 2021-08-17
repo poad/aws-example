@@ -151,7 +151,7 @@ class MainActivity() : AppCompatActivity() {
                             break
                         }
 
-                        Log.v("device code", "exire at " + expiration.toLocalDate())
+//                        Log.v("device code", "exire at " + expiration.toLocalDate())
 
                         try {
                             if (Objects.nonNull(deviceCode)) {
@@ -160,7 +160,6 @@ class MainActivity() : AppCompatActivity() {
                                     clientId,
                                     deviceCode
                                 )
-                                Log.v("oauth", response.toString())
                                 val nextIntent = Intent(
                                     applicationContext,
                                     AuthenticatedActivity::class.java

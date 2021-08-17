@@ -47,8 +47,8 @@ class AuthenticatedActivity : AppCompatActivity() {
         val client = Client(config.apiEndpoint, UserInfoApiClient::class.java, accessToken)
             .createService()
         val apiPath = config.userInfoApi
-        val userInfoTextView = findViewById<TextView>(R.id.userInfo)
         val userInfoObserver = Observer<String> { userInfo ->
+            val userInfoTextView = findViewById<TextView>(R.id.userInfo)
             userInfoTextView.text = userInfo
             userInfoTextView.visibility = View.VISIBLE
         }

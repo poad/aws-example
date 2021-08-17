@@ -18,15 +18,14 @@
         <TextView
             android:id="@+id/ScreenTitle"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="0dp"
-            android:layout_weight="1"
             android:text="@string/title_activity_authenticated"
-            android:textColor="#9E9E9E"
+            android:textColor="#FFFFFF"
             android:textSize="10pt" />
 
-        <EditText
+        <TextView
             android:id="@+id/userInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,7 +35,7 @@
             android:minHeight="48dp"
             tools:visibility="invisible"
             android:importantForAutofill="no"
-            android:inputType="textPersonName" />
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 

@@ -19,7 +19,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - uses: docker://node:lts-buster-slim
+    - name: Use Node.js 14.x
+      if: github.event_name != 'pull_request'
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14.x
+        check-latest: true
+
     - name: Update modules
       uses: ./.github/actions/npm_module_update_script_runner
     - name: Commit files
@@ -75,21 +81,25 @@ jobs:
         echo "PULL_REQUEST_ID=${PULL_REQUEST_ID}" >> $GITHUB_ENV
 
     - name: Send result with Pull Request
-      if: success() && env.CHANGE_STATE == 'changed'
-      uses: ./.github/actions/slack_notificator
+      if: success() && env.CHANGE_STATE == 'changed' && github.event_name != 'pull_request'
+      uses: slackapi/slack-github-action@v1.15.0
       with:
-        webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
-        text: ${{ format('{0} {1}\nPull Request <{2}>', github.workflow, job.status, env.PULL_REQUEST_HTML_URL) }}
+        payload: "{ \"text\": \"${{ env.SLACKK_PAYLOAD }}\" }"
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACKK_PAYLOAD: ${{ format('{0} {1}\nPull Request <{2}>', github.workflow, job.status, env.PULL_REQUEST_HTML_URL) }}
 
     - name: Send result without Pull Request
-      if: success() && env.CHANGE_STATE != 'changed'
-      uses: ./.github/actions/slack_notificator
+      if: success() && env.CHANGE_STATE == 'changed' && github.event_name != 'pull_request'
+      uses: slackapi/slack-github-action@v1.15.0
       with:
-        webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
-        text: ${{ format('{0} {1}', github.workflow, job.status) }}
+        payload: "{ \"text\": \"${{ env.SLACKK_PAYLOAD }}\" }"
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACKK_PAYLOAD: ${{ format('{0} {1}', github.workflow, job.status) }}
       
     - name: Pull request auto merge enabler
-      if: success() && env.CHANGE_STATE == 'changed'
+      if: success() && env.CHANGE_STATE == 'changed' && github.actor != 'dependabot[bot]'
       uses: poad/github-pull-request-auto-merge-enable-action@v1.0.0
       with:
         pull_request_id: ${{ env.PULL_REQUEST_ID }}

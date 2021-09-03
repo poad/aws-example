@@ -15,13 +15,8 @@ module.exports = {
   },
   extends: [
     'airbnb-typescript/base',
-    'plugin:react/recommended',
-    'plugin:@next/next/recommended',
+    'next/core-web-vitals',
     'plugin:@typescript-eslint/recommended'
-  ],
-  plugins: [
-    'react',
-    'jest'
   ],
   settings: {
     react: {
@@ -39,12 +34,15 @@ module.exports = {
       'always',
       { markers: ['/ <reference'] }
     ],
-    'max-len': ['error', {'code': 150}],
+    'max-len': ['off'],
     'prefer-promise-reject-errors': ['off'],
     'react/jsx-filename-extension': ['off'],
     'react/prop-types': ['off'],
     'import/extensions': ['off'],
     'jsx-a11y/anchor-is-valid': ['off'],
     'no-return-assign': ['off'],
+    '@next/next/no-img-element': ['off'],
+    'react/display-name': ['off'],
+    'react-hooks/exhaustive-deps': ['off'],
   }
 }

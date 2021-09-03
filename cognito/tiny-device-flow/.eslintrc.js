@@ -17,5 +17,7 @@ module.exports = {
   rules: {
     'max-len': ['error', {'code': 150}],
     'prefer-destructuring': ['off'],
+    'import/no-unresolved': ['off'],
+    'import/extensions': ['off'],
   },
 };

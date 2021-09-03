@@ -63,8 +63,18 @@ const authorize = async (param: {
     redirect: 'follow',
     body,
   });
-  const json = await resp.json();
 
+  /* eslint-disable camelcase */
+  const json = await resp.json() as {
+    access_token: string,
+    refresh_token: string,
+    id_token: string,
+    token_type: string,
+    expires_in: number
+  };
+  /* eslint-enable camelcase */
+
+  /* eslint-disable camelcase */
   return {
     idToken: json.id_token,
     accessToken: json.access_token,
@@ -72,6 +82,7 @@ const authorize = async (param: {
     expiresIn: json.expires_in,
     tokenType: json.token_type,
   };
+  /* eslint-enable camelcase */
 };
 
 const downloadObject = async (s3: S3Client, path: string): Promise<{

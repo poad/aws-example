@@ -80,13 +80,13 @@ jobs:
       uses: poad/update-node-modules@v1.0.5
       with:
         yarn: true
-        path: ${{github.workspace}}/lambda/container/sample/
+        path: ${{github.workspace}}/lambda/container/simple/
 
     - name: update (lambda/container/sample/lambda)
       uses: poad/update-node-modules@v1.0.5
       with:
         yarn: true
-        path: ${{github.workspace}}/lambda/container/sample/lambda/
+        path: ${{github.workspace}}/lambda/container/simple/lambda/
 
     - name: update (lambda/python)
       uses: poad/update-node-modules@v1.0.5

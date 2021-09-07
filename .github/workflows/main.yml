@@ -22,8 +22,78 @@ jobs:
         node-version: 14.x
         check-latest: true
 
-    - name: Update modules
-      uses: ./.github/actions/npm_module_update_script_runner
+    - name: update (cognito/cognito-admin/app)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/cognito/cognito-admin/app/
+
+    - name: update (cognito/cognito-admin/infra)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/cognito/cognito-admin/infra/
+
+    - name: update (cognito/tiny-device-flow)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/cognito/tiny-device-flow/
+
+    - name: update (cognito/tiny-device-flow/pages)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/cognito/tiny-device-flow/pages/
+
+    - name: update (codebuild/custom-image-test)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/codebuild/custom-image-test/
+
+    - name: update (lambda/cognito-console)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/lambda/cognito-console/
+
+    - name: update (lambda/cognito-lambda)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/lambda/cognito-lambda/
+
+    - name: update (lambda/cognito-lambda/lambda)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/lambda/cognito-lambda/lambda/
+
+    - name: update (lambda/container/hello-rust-lambda)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/lambda/container/hello-rust-lambda/
+
+    - name: update (lambda/container/sample)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/lambda/container/sample/
+
+    - name: update (lambda/container/sample/lambda)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/lambda/container/sample/lambda/
+
+    - name: update (lambda/python)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/lambda/python/
+
     - name: Commit files
       run: |
         git config --local user.email "ken-yo@mbr.nifty.com"

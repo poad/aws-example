@@ -1841,18 +1841,6 @@
     jest-mock "^27.3.0"
     jest-util "^27.3.0"
 
-"@jest/fake-timers@^27.3.0":
-  version "27.3.0"
-  resolved "https://registry.yarnpkg.com/@jest/fake-timers/-/fake-timers-27.3.0.tgz#716f166f56abc01901b7823da503bf16c8a00ade"
-  integrity sha512-GCWgnItK6metb75QKflFxcVRlraVGomZonBQ+9B5UPc6wxBB3xzS7dATDWe/73R5P6BfnzCEaiizna771M5r9w==
-  dependencies:
-    "@jest/types" "^27.2.5"
-    "@sinonjs/fake-timers" "^8.0.1"
-    "@types/node" "*"
-    jest-message-util "^27.3.0"
-    jest-mock "^27.3.0"
-    jest-util "^27.3.0"
-
 "@jest/globals@^27.3.0":
   version "27.3.0"
   resolved "https://registry.yarnpkg.com/@jest/globals/-/globals-27.3.0.tgz#8822f9a72aea428e3f11a688ff13c7992bfe1ea4"
@@ -1921,27 +1909,6 @@
     graceful-fs "^4.2.4"
     jest-haste-map "^27.3.0"
     jest-runtime "^27.3.0"
-
-"@jest/transform@^27.3.0":
-  version "27.3.0"
-  resolved "https://registry.yarnpkg.com/@jest/transform/-/transform-27.3.0.tgz#f2a63883eaada30f8141938ec1ad23ba7fdfb97e"
-  integrity sha512-IKrFhIT/+WIfeNjIRKTwQN7HYCdjKF/mmBqoD660gyGWVw1MzCO9pQuEJK9GXEnFWIuOcMHlm8XfUaDohP/zxA==
-  dependencies:
-    "@babel/core" "^7.1.0"
-    "@jest/types" "^27.2.5"
-    babel-plugin-istanbul "^6.0.0"
-    chalk "^4.0.0"
-    convert-source-map "^1.4.0"
-    fast-json-stable-stringify "^2.0.0"
-    graceful-fs "^4.2.4"
-    jest-haste-map "^27.3.0"
-    jest-regex-util "^27.0.6"
-    jest-util "^27.3.0"
-    micromatch "^4.0.4"
-    pirates "^4.0.1"
-    slash "^3.0.0"
-    source-map "^0.6.1"
-    write-file-atomic "^3.0.0"
 
 "@jest/transform@^27.3.0":
   version "27.3.0"
@@ -4226,29 +4193,6 @@ jest-message-util@^27.3.0:
     slash "^3.0.0"
     stack-utils "^2.0.3"
 
-jest-message-util@^27.3.0:
-  version "27.3.0"
-  resolved "https://registry.yarnpkg.com/jest-message-util/-/jest-message-util-27.3.0.tgz#d64d24c2f19111ea916c092fea015076bb7615fe"
-  integrity sha512-0c79aomiyE3mlta4NCWsICydvv2W0HlM/eVx46YEO+vdDuwUvNuQn8LqOtcHC1hSd25i03RrPvscrWgHBJQpRQ==
-  dependencies:
-    "@babel/code-frame" "^7.12.13"
-    "@jest/types" "^27.2.5"
-    "@types/stack-utils" "^2.0.0"
-    chalk "^4.0.0"
-    graceful-fs "^4.2.4"
-    micromatch "^4.0.4"
-    pretty-format "^27.3.0"
-    slash "^3.0.0"
-    stack-utils "^2.0.3"
-
-jest-mock@^27.2.5, jest-mock@^27.3.0:
-  version "27.3.0"
-  resolved "https://registry.yarnpkg.com/jest-mock/-/jest-mock-27.3.0.tgz#ddf0ec3cc3e68c8ccd489bef4d1f525571a1b867"
-  integrity sha512-ziZiLk0elZOQjD08bLkegBzv5hCABu/c8Ytx45nJKkysQwGaonvmTxwjLqEA4qGdasq9o2I8/HtdGMNnVsMTGw==
-  dependencies:
-    "@jest/types" "^27.2.5"
-    "@types/node" "*"
-
 jest-mock@^27.3.0:
   version "27.3.0"
   resolved "https://registry.yarnpkg.com/jest-mock/-/jest-mock-27.3.0.tgz#ddf0ec3cc3e68c8ccd489bef4d1f525571a1b867"
@@ -4390,19 +4334,7 @@ jest-snapshot@^27.3.0:
     pretty-format "^27.3.0"
     semver "^7.3.2"
 
-jest-util@^27.0.0, jest-util@^27.2.5, jest-util@^27.3.0:
-  version "27.3.0"
-  resolved "https://registry.yarnpkg.com/jest-util/-/jest-util-27.3.0.tgz#178f211d308c25c9593d1c5a2f2b3aef28411741"
-  integrity sha512-SFSDBGKkxXi4jClmU1WLp/cMMlb4YX6+5Lb0CUySxmonArio8yJ2NALMWvQuXchgySiH7Rb912hVZ2QZ6t3x7w==
-  dependencies:
-    "@jest/types" "^27.2.5"
-    "@types/node" "*"
-    chalk "^4.0.0"
-    graceful-fs "^4.2.4"
-    is-ci "^3.0.0"
-    picomatch "^2.2.3"
-
-jest-util@^27.3.0:
+jest-util@^27.0.0, jest-util@^27.3.0:
   version "27.3.0"
   resolved "https://registry.yarnpkg.com/jest-util/-/jest-util-27.3.0.tgz#178f211d308c25c9593d1c5a2f2b3aef28411741"
   integrity sha512-SFSDBGKkxXi4jClmU1WLp/cMMlb4YX6+5Lb0CUySxmonArio8yJ2NALMWvQuXchgySiH7Rb912hVZ2QZ6t3x7w==
@@ -5817,9 +5749,9 @@ v8-to-istanbul@^8.1.0:
     source-map "^0.7.3"
 
 vm2@^3.9.3:
-  version "3.9.4"
-  resolved "https://registry.yarnpkg.com/vm2/-/vm2-3.9.4.tgz#2e118290fefe7bd8ea09ebe2f5faf53730dbddaa"
-  integrity sha512-sOdharrJ7KEePIpHekiWaY1DwgueuiBeX/ZBJUPgETsVlJsXuEx0K0/naATq2haFvJrvZnRiORQRubR0b7Ye6g==
+  version "3.9.5"
+  resolved "https://registry.yarnpkg.com/vm2/-/vm2-3.9.5.tgz#5288044860b4bbace443101fcd3bddb2a0aa2496"
+  integrity sha512-LuCAHZN75H9tdrAiLFf030oW7nJV5xwNMuk1ymOZwopmuK3d2H4L1Kv4+GFHgarKiLfXXLFU+7LDABHnwOkWng==
 
 w3c-hr-time@^1.0.2:
   version "1.0.2"

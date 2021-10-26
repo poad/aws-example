@@ -44,6 +44,7 @@ module.exports = {
     'react/jsx-filename-extension': ['off'],
     'react/prop-types': ['off'],
     'import/extensions': ['off'],
+    'import/no-extraneous-dependencies': ['off'],
     'jsx-a11y/anchor-is-valid': ['off'],
     'no-return-assign': ['off']
   }

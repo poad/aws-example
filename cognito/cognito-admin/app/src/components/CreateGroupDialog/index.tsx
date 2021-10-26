@@ -1,7 +1,7 @@
 import {
   Button, Container, Dialog, DialogContent, DialogContentText, DialogActions, Typography, useTheme, useMediaQuery, TextField, DialogTitle,
-  Paper, MenuItem, Select, FormControl, InputLabel,
-} from '@material-ui/core';
+  Paper, MenuItem, Select, FormControl, InputLabel, SelectChangeEvent,
+} from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import UserPoolClient from '../../service/UserPoolClient';
@@ -104,7 +104,7 @@ const CreateGroupDialog: React.FunctionComponent<CreateGroupDialogProps> = (prop
       setOpen(false);
     };
 
-    const handleRoleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    const handleRoleChange = (event: SelectChangeEvent<string>) => {
       setRole(event.target.value as string);
     };
 

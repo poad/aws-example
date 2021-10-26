@@ -1,9 +1,9 @@
 import {
-  Accordion, AccordionDetails, AccordionSummary, Button, Container, createStyles, Dialog, DialogActions, DialogContent, DialogContentText,
-  DialogTitle, FormControl, InputLabel, List, ListItem, makeStyles, MenuItem, Paper, Select, TextField, Theme, Typography, useMediaQuery, useTheme,
-} from '@material-ui/core';
+  Accordion, AccordionDetails, AccordionSummary, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText,
+  DialogTitle, FormControl, InputLabel, List, ListItem, MenuItem, Paper, Select, SelectChangeEvent, TextField, Typography, useMediaQuery, useTheme,
+} from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Group, IamRole } from '../../interfaces';
 import UserPoolClient from '../../service/UserPoolClient';
 import IamClient from '../../service/IamClient';
@@ -24,18 +24,7 @@ interface GroupDetailProps {
   onDelete?: (removeGroup: Group) => void
 }
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {
-    width: '100%',
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
-  },
-}));
-
 const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Element => {
-  const classes = useStyles();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -69,7 +58,7 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Eleme
     return Promise
       .all(iamRoles
         .filter((r) => r.roleName !== undefined)
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         .map((role) => props.iamClient.getRole(role.roleName!)));
   };
 
@@ -106,7 +95,7 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Eleme
     setConfirm(false);
   };
 
-  const handleRoleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleRoleChange = (event: SelectChangeEvent<string>) => {
     const newRole = event.target.value as string;
     if ((detail?.roleArn === undefined || detail?.roleArn?.length === 0) && newRole.length !== 0) {
       setAttacheRole(newRole);
@@ -141,7 +130,7 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Eleme
   };
 
   return (
-    <Container>
+    <Container sx={{ width: '100%' }}>
       <Dialog open={error !== undefined} onClick={onErrorClose}>
         <DialogContent>
           {
@@ -195,7 +184,11 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Eleme
 
                 <Accordion variant="outlined">
                   <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="users-content" id="users-header">
-                    <Typography className={classes.heading} style={{ paddingLeft: 2, paddingRight: 2 }}>Users</Typography>
+                    <Typography sx={{
+                      fontSize: theme.typography.pxToRem(15),
+                      fontWeight: theme.typography.fontWeightRegular,
+                      paddingLeft: 2, paddingRight: 2,
+                    }}>Users</Typography>
                   </AccordionSummary>
                   <AccordionDetails id="users-content">
                     <List component="ul" id="users-list" style={{
@@ -231,15 +224,15 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Eleme
         <DialogTitle id="alert-dialog-title">{'Delete Group?'}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-                        Can&apos;t undo it. Do you want to delete group?
+            Can&apos;t undo it. Do you want to delete group?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCancel} color="primary" autoFocus>
-                        CANCEL
+            CANCEL
           </Button>
           <Button onClick={deleteGroup} color="secondary">
-                        DELETE
+            DELETE
           </Button>
         </DialogActions>
       </Dialog>
@@ -252,15 +245,15 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Eleme
         <DialogTitle id="alert-group-role-dialog-title">{'Attache IAM role to Group?'}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-group-role-dialog-description">
-                        Once the IAM role is set for a group, it cannot be reverted to the state where the IAM role is not set, is that correct?
+            Once the IAM role is set for a group, it cannot be reverted to the state where the IAM role is not set, is that correct?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCancelAttacheRole} color="primary" autoFocus>
-                        CANCEL
+            CANCEL
           </Button>
           <Button onClick={atttachRoleToGroup} color="secondary">
-                        OK
+            OK
           </Button>
         </DialogActions>
       </Dialog>

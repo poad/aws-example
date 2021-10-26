@@ -1,6 +1,6 @@
 import {
   Button, Container, Dialog, DialogContent, DialogContentText, DialogActions, Typography, useTheme, useMediaQuery, TextField, DialogTitle,
-} from '@material-ui/core';
+} from '@mui/material';
 import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import UserPoolClient from '../../service/UserPoolClient';

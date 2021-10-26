@@ -1,8 +1,8 @@
 import {
   Backdrop, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, TableSortLabel, Container, Box, Dialog,
   DialogContent, DialogContentText, createStyles, Theme,
-} from '@material-ui/core';
-import { withStyles } from '@material-ui/styles';
+} from '@mui/material';
+import { withStyles } from '@mui/styles';
 import React, { useEffect, useState } from 'react';
 import Loader from 'react-loader';
 import CreateUserDialog from '../../components/CreateUserDialog';
@@ -286,7 +286,7 @@ const Users: React.FunctionComponent<UsersProps> = (props): JSX.Element => {
                   <StyledTableCell
                     key={headCell.id}
                     align={headCell.numeric ? 'right' : 'left'}
-                    padding={headCell.disablePadding ? 'none' : 'default'}
+                    padding={headCell.disablePadding ? 'none' : 'normal'}
                     sortDirection={sortOrder.orderBy === headCell.id ? sortOrder.order : false}
                   >
                     {headCell.id === 'email' ? headCell.label : (
@@ -332,6 +332,7 @@ const Users: React.FunctionComponent<UsersProps> = (props): JSX.Element => {
           rowsPerPage={page.rowsPerPage}
           page={page.page}
           onChangePage={handleChangePage}
+          onPageChange={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Container>

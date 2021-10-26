@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
+import { AppBar, Box, CssBaseline, Tab, Tabs, Toolbar, Typography } from '@mui/material';
 import Amplify, { Auth } from 'aws-amplify';
-import Typography from '@material-ui/core/Typography';
 import {
   AmplifySignOut,
   withAuthenticator,
 } from '@aws-amplify/ui-react';
-import {
-  makeStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
 
-import { Tab, Tabs } from '@material-ui/core';
 import styles from '../styles/Home.module.css';
 import awsconfig, { appConfig } from '../aws-config';
 import Users from '../components/Users';
@@ -25,43 +16,14 @@ import Groups from '../components/Groups';
 
 Amplify.configure(awsconfig);
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {
-    display: 'flex',
-    color: '#fff',
-  },
-  appBar: {
-    [theme.breakpoints.up('sm')]: {
-      width: 'calc(100%)',
-    },
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
-  },
-  toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-  },
-  title: {
-    flexGrow: 1,
-  },
-  menuItem: {
-    color: '#fff',
-  },
-}));
-
 const Home = (): JSX.Element => {
-  const classes = useStyles();
-
   const [client, setClient] = useState<UserPoolClient | undefined>(undefined);
   const [iamClient, setIamClient] = useState<IamClient | undefined>(undefined);
   const [authenticated, setAuthenticated] = useState<boolean>(false);
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (newValue: number) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleChange = (newValue: any) => {
     setValue(newValue);
   };
 
@@ -91,13 +53,13 @@ const Home = (): JSX.Element => {
   );
 
   return (
-    <div className={classes.root}>
-      <div className={styles.main}>
+    <Box sx={{ display: 'flex', color: '#fff' }}>
+      <Box className={styles.main}>
         <CssBaseline />
-        <AppBar position="fixed" className={classes.appBar}>
+        <AppBar position="fixed" sx={{ width: 'calc(100%)' }}>
           <Toolbar>
-            <Typography variant="h6" className={classes.title}>Account manager</Typography>
-            <Tabs value={value} onChange={handleChange} className={classes.content} aria-label="menu tabs">
+            <Typography variant="h6" sx={{ flexGrow: 1 }}>Account manager</Typography>
+            <Tabs value={value} onChange={handleChange} sx={{ flexGrow: 1 }} aria-label="menu tabs">
               <Tab label="Users" />
               <Tab label="Groups" />
             </Tabs>
@@ -118,7 +80,7 @@ const Home = (): JSX.Element => {
             </TabPanel>
           ) : null
         }
-      </div>
+      </Box>
 
       <style jsx>{`
           .hero {
@@ -166,7 +128,7 @@ const Home = (): JSX.Element => {
             color: #333;
           }
         `}</style>
-    </div>
+    </Box>
   );
 };
 

@@ -1,7 +1,7 @@
 import {
   Backdrop, Box, Container, createStyles, Dialog, DialogContent, DialogContentText, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TableSortLabel, Theme,
-} from '@material-ui/core';
-import { withStyles } from '@material-ui/styles';
+} from '@mui/material';
+import { withStyles } from '@mui/styles';
 import Loader from 'react-loader';
 import React, { useEffect, useState } from 'react';
 import IamClient from '../../service/IamClient';
@@ -276,7 +276,7 @@ const Groups: React.FunctionComponent<GroupsProps> = (props): JSX.Element => {
                     <StyledTableCell
                       key={headCell.id}
                       align={headCell.numeric ? 'right' : 'left'}
-                      padding={headCell.disablePadding ? 'none' : 'default'}
+                      padding={headCell.disablePadding ? 'none' : 'normal'}
                       sortDirection={sortOrder.orderBy === headCell.id ? sortOrder.order : false}
                     >
                       {headCell.id === 'groupName' ? headCell.label : (
@@ -314,12 +314,13 @@ const Groups: React.FunctionComponent<GroupsProps> = (props): JSX.Element => {
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
             component="div"
             count={groups.length}
             rowsPerPage={page.rowsPerPage}
+            rowsPerPageOptions={[10, 25, 100]}
             page={page.page}
             onChangePage={handleChangePage}
+            onPageChange={handleChangePage}
             onChangeRowsPerPage={handleChangeRowsPerPage}
           />
         </Container>

@@ -1,9 +1,9 @@
 import {
-  Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, createStyles, Dialog, DialogActions, DialogContent, DialogContentText,
-  DialogTitle, FormControl, Input, InputLabel, List, ListItem, makeStyles, MenuItem, Paper, Select, TextField, Theme, Typography, useMediaQuery, useTheme,
-} from '@material-ui/core';
+  Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText,
+  DialogTitle, FormControl, Input, InputLabel, List, ListItem, MenuItem, Paper, Select, SelectChangeEvent, TextField, Typography, useMediaQuery, useTheme,
+} from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { User } from '../../interfaces';
 import UserPoolClient from '../../service/UserPoolClient';
 import { appConfig } from '../../aws-config';
@@ -22,18 +22,7 @@ interface UsersDetailProps {
   onDelete?: (removeUser: User) => void
 }
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {
-    width: '100%',
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
-  },
-}));
-
 const UserDetail: React.FunctionComponent<UsersDetailProps> = (props): JSX.Element => {
-  const classes = useStyles();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -125,7 +114,7 @@ const UserDetail: React.FunctionComponent<UsersDetailProps> = (props): JSX.Eleme
     setConfirm(false);
   };
 
-  const handleGroupChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleGroupChange = (event: SelectChangeEvent<string[]>) => {
     const newGroups = event.target.value as string[];
     if (detail !== undefined) {
       const currentGroups = detail.groups || [];
@@ -141,7 +130,7 @@ const UserDetail: React.FunctionComponent<UsersDetailProps> = (props): JSX.Eleme
   };
 
   return (
-    <Container>
+    <Container sx={{ width: '100%' }}>
       <Dialog fullScreen={fullScreen} open={open} aria-labelledby="responsive-dialog-title">
         <DialogContent>
           <DialogTitle id="user-detail-dialog-title"><Typography variant="h3" component="span" gutterBottom>{detail?.username}</Typography></DialogTitle>
@@ -168,7 +157,7 @@ const UserDetail: React.FunctionComponent<UsersDetailProps> = (props): JSX.Eleme
 
                 <Accordion style={{ marginBottom: 16 }}>
                   <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="attributes-content" id="attributes-header">
-                    <Typography className={classes.heading}>Attributes</Typography>
+                    <Typography sx={{ fontSize: theme.typography.pxToRem(15), fontWeight: theme.typography.fontWeightRegular }}>Attributes</Typography>
                   </AccordionSummary>
                   <AccordionDetails id="attributes-content">
                     <Box border={1}>

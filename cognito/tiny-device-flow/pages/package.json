@@ -8,13 +8,14 @@
     "dev": "next",
     "build": "rm -rf out && next build && next export",
     "start": "next start",
-    "lint": "eslint --ext .ts,.js,.tsx,.jsx src"
+    "lint": "eslint --ext .ts,.js,.tsx,.jsx src",
+    "all": "yarn lint --fix && yarn build && yarn test"
   },
   "dependencies": {
     "@types/node": "^16.11.6",
     "@types/react": "^17.0.33",
     "cross-fetch": "^3.1.4",
-    "next": "^11.1.2",
+    "next": "^12.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "tailwindcss": "^2.2.17"
@@ -25,11 +26,11 @@
     "@typescript-eslint/eslint-plugin": "^5.2.0",
     "@typescript-eslint/parser": "^5.2.0",
     "autoprefixer": "^10.3.7",
-    "eslint": "^8.1.0",
+    "eslint": "<8.0.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-airbnb-typescript": "^14.0.1",
     "eslint-config-import": "^0.13.0",
-    "eslint-config-next": "^11.1.2",
+    "eslint-config-next": "^12.0.0",
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-flowtype": "^8.0.2",
     "eslint-plugin-import": "^2.25.2",

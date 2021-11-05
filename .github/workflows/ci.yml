@@ -5,10 +5,23 @@ name: Node.js CI
 
 on:
   push:
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
   workflow_dispatch:
+
+permissions:
+  actions: read
+  checks: write
+  contents: none
+  deployments: none
+  issues: none
+  packages: none
+  pull-requests: write
+  repository-projects: none
+  security-events: write
+  statuses: write
 
 jobs:
 

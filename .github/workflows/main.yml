@@ -40,6 +40,18 @@ jobs:
         yarn: true
         path: ${{github.workspace}}/cognito/cognito-admin/infra/
 
+    - name: update (cognito/cognito-saml-next-js/webapp)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/cognito/cognito-saml-next-js/webapp/
+
+    - name: update (cognito/cognito-saml-next-js/infra)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/cognito/cognito-saml-next-js/infra/
+
     - name: update (cognito/tiny-device-flow)
       uses: poad/update-node-modules@v1.0.5
       with:

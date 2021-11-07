@@ -6,12 +6,13 @@ import { AmplifySignOut } from '@aws-amplify/ui-react';
 import awsconfig from '../aws-exports';
 import qs from 'qs';
 import AuthButton from 'components/AuthButton';
+import { CognitoUserInterface } from '@aws-amplify/ui-components';
 
 Amplify.configure(awsconfig);
 
 const Home = (): JSX.Element => {
 
-  const [user, setUser] = React.useState<any | undefined>();
+  const [user, setUser] = React.useState<CognitoUserInterface | undefined>();
   const [token, setToken] = React.useState<string | undefined>(undefined);
 
   const authHandle = async () => {

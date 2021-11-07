@@ -55,6 +55,7 @@ class MainActivity() : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
 
         val config = OAuthConfig.load(resources)
@@ -166,6 +167,10 @@ class MainActivity() : AppCompatActivity() {
                                 )
 
                                 poll = false
+                                nextIntent.putExtra(
+                                    R.string.extra_key_id_token.toString(),
+                                    response.idToken
+                                )
                                 nextIntent.putExtra(
                                     R.string.extra_key_access_token.toString(),
                                     response.accessToken

@@ -18,6 +18,7 @@ export interface TinyDeviceFlowStackStackProps extends cdk.StackProps {
   region: string,
   environment: string,
   domain: string,
+  identityProvider?: string,
 }
 
 export class TinyDeviceFlowStack extends cdk.Stack {
@@ -274,6 +275,8 @@ export class TinyDeviceFlowStack extends cdk.Stack {
       destinationKeyPrefix: 'web/static' // optional prefix in destination bucket
     });
 
+    const { identityProvider } = props;
+  
     const activateEndpointFnName = `${props.name}-activate-endpoint`;
     const activateEndpointFn = new NodejsFunction(this, 'ActivateEndpointLambdaFunction', {
       runtime: Runtime.NODEJS_14_X,
@@ -289,7 +292,8 @@ export class TinyDeviceFlowStack extends cdk.Stack {
         AUTHORIZE_ENDPOINT: `https://${props.domain}.auth.${props.region}.amazoncognito.com/oauth2/authorize`,
         CLIENT_ID: appClient.userPoolClientId,
         REDIRECT_URI: `${api.url}oauth/complete`,
-        PATH_PREFIX: 'web/static'
+        PATH_PREFIX: 'web/static',
+        IDENTITY_PROVIDER: identityProvider ? identityProvider : 'COGNITO',
       },
       role: new Role(this, 'ActivateEndpointLambdaExecutionRole', {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
@@ -368,7 +372,7 @@ export class TinyDeviceFlowStack extends cdk.Stack {
         CLIENT_ID: appClient.userPoolClientId,
         REDIRECT_URI: `${api.url}oauth/complete`,
         RETRY_URI: `${api.url}oauth/device/activate`,
-        PATH_PREFIX: 'web/static'
+        PATH_PREFIX: 'web/static',
       },
       role: new Role(this, 'ActivateCompleteEndpointLambdaExecutionRole', {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),

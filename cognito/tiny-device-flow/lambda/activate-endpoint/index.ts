@@ -14,6 +14,8 @@ interface Environments {
     authorizeEndpoint: string,
     redirectUri: string,
     pathPrefix: string,
+    responseType: string,
+    identityProvider: string,
 }
 
 const environments: Environments = {
@@ -25,6 +27,8 @@ const environments: Environments = {
   authorizeEndpoint: process.env.AUTHORIZE_ENDPOINT!,
   redirectUri: process.env.REDIRECT_URI!,
   pathPrefix: process.env.PATH_PREFIX!,
+  responseType: process.env.RESPONSE_TYPE!,
+  identityProvider: process.env.IDENTITY_PROVIDER!,
 };
 
 const downloadObject = async (s3: S3Client, path: string): Promise<{
@@ -32,6 +36,10 @@ const downloadObject = async (s3: S3Client, path: string): Promise<{
     contentType: string,
     body?: string
 } | undefined> => {
+  const key = `${environments.pathPrefix}/${path}`;
+
+  console.log(`s3 key: ${key}`);
+
   const resp = await s3.send(new GetObjectCommand({
     Bucket: environments.bucketName,
     Key: `${environments.pathPrefix}/${path}`,
@@ -126,7 +134,7 @@ export const handler = async (
     const result = await dynamoClient.scan(scan);
     const count = result.Count || 0;
     if (count === 0 || result.Items === undefined) {
-      const content = await downloadObject(s3, 'error.html');
+      const content = await downloadObject(s3, 'error/index.html');
 
       return {
         statusCode: 200,
@@ -135,12 +143,15 @@ export const handler = async (
       };
     }
 
+    const idp = environments.identityProvider !== '' ? { identity_provider: environments.identityProvider } : {};
+
     const queryString = Object.entries({
       response_type: 'code',
       client_id: encodeURIComponent(environments.clientId),
       redirect_uri: encodeURIComponent(environments.redirectUri),
       state: encodeURIComponent(event.body!),
       scope: 'openid+profile+email',
+      ...idp,
     } as {
             [key: string]: string
         })

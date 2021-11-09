@@ -5,6 +5,7 @@ import { ErrorResponse } from '../types';
 
 /* eslint-disable camelcase */
 interface DeviceAccessTokenResponse {
+    id_token: string,
     access_token: string,
     token_type: string,
     expires_in?: number,
@@ -77,7 +78,9 @@ export const handler = async (
     TableName: process.env.TABLE_NAME,
     KeyConditionExpression: 'device_code = :device_code',
     ExpressionAttributeValues: {
+      /* eslint-disable camelcase */
       ':device_code': { S: device_code },
+      /* eslint-enable camelcase */
     },
   };
 
@@ -112,6 +115,7 @@ export const handler = async (
 
     return {
       /* eslint-disable camelcase */
+      id_token: item.id_token.S!,
       access_token: item.access_token.S!,
       token_type: item.token_type.S!,
       expires_in: item.token_expire.N !== undefined ? Number(item.token_expire.N) : undefined,

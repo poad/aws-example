@@ -3,10 +3,6 @@ import * as cognito from '@aws-cdk/aws-cognito';
 import * as iam from '@aws-cdk/aws-iam';
 import { AccountRecovery, ClientAttributes, Mfa, OAuthScope, UserPoolIdentityProvider } from '@aws-cdk/aws-cognito';
 import { Duration } from '@aws-cdk/core';
-import { NodejsFunction } from '@aws-cdk/aws-lambda-nodejs';
-import { Role, ServicePrincipal, PolicyDocument, PolicyStatement, Effect } from '@aws-cdk/aws-iam';
-import { Runtime } from '@aws-cdk/aws-lambda';
-import { RetentionDays } from '@aws-cdk/aws-logs';
 
 interface CognitoSamlNextJsStackProps extends cdk.StackProps {
   environment: string,
@@ -22,53 +18,6 @@ export class CognitoSamlNextJsStack extends cdk.Stack {
 
     const { environment, domain, identityProviderMetadataURL, callbackUrls, logoutUrls } = props;
 
-    const preTokenGenFunctionName = `${environment}-cognito-saml-pre-token-gen-trigger`;
-    const preTokenGenTriggerFn = new NodejsFunction(this, 'PreTokenGenLambdaFunction', {
-      runtime: Runtime.NODEJS_14_X,
-      entry: 'lambda/preTokenGen/index.ts',
-      functionName: preTokenGenFunctionName,
-      logRetention: RetentionDays.ONE_DAY,
-      retryAttempts: 0,
-      environment: {
-        REGION: this.region,
-      },
-      role: new Role(this, 'PreTokenGenLambdaExecutionRole', {
-        assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
-        inlinePolicies: {
-          'logs-policy': new PolicyDocument({
-            statements: [
-              new PolicyStatement({
-                effect: Effect.ALLOW,
-                actions: [
-                  'logs:CreateLogGroup',
-                  'logs:CreateLogStream',
-                  'logs:PutLogEvents'
-                ],
-                resources: [
-                  `arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${preTokenGenFunctionName}`,
-                  `arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${preTokenGenFunctionName}:*`,
-                ],
-              })
-            ]
-          }),
-          'assumed-role-policy': new PolicyDocument(
-            {
-              statements: [
-                new PolicyStatement({
-                  effect: Effect.ALLOW,
-                  actions: [
-                    'cognito-identity:*',
-                    'cognito-idp:*',
-                  ],
-                  resources: ['*'],
-                })
-              ]
-            }
-          ),
-        },
-      })
-    });
-
     const userPool = new cognito.UserPool(this, `CognitoSamlUserPool`, {
       userPoolName: `${environment}-cognito-saml-user-pool`,
       signInAliases: {
@@ -79,9 +28,6 @@ export class CognitoSamlNextJsStack extends cdk.Stack {
       },
       autoVerify: {
         email: true
-      },
-      lambdaTriggers: {
-        preTokenGeneration: preTokenGenTriggerFn,
       },
       standardAttributes: {
         email: {
@@ -116,6 +62,7 @@ export class CognitoSamlNextJsStack extends cdk.Stack {
       providerType: "SAML",
       attributeMapping: {
         "email": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress",
+        "email_verified": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/email_verified",
         "family_name": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
         "given_name": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname",
         "name": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",

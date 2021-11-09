@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --passWithNoTests",
     "dev": "next",
-    "build": "rm -rf out && next build && next export",
+    "build": "next build",
+    "export": "next export",
     "start": "next start",
     "lint": "eslint --ext .ts,.js,.tsx,.jsx src",
     "all": "yarn lint --fix && yarn build && yarn test"
@@ -23,8 +24,8 @@
   "devDependencies": {
     "@swc/cli": "^0.1.51",
     "@swc/core": "^1.2.107",
-    "@typescript-eslint/eslint-plugin": "^5.3.0",
-    "@typescript-eslint/parser": "^5.3.0",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
     "autoprefixer": "^10.4.0",
     "eslint": "<8.0.0",
     "eslint-config-airbnb-base": "^14.2.1",
@@ -34,7 +35,7 @@
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-jest": "^25.2.3",
+    "eslint-plugin-jest": "^25.2.4",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^4.2.0",

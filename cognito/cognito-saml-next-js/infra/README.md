@@ -44,6 +44,7 @@ cdk deploy -c env=dev
 | `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname` | user.givenname |
 | `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name` | Join (user.surname, " ", user.givenname) |
 | `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname` | user.surname |
+| `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/email_verified` | "true" |
 
 ### 「アプリのフェデレーション メタデータ URL」を metaURL に指定して cdk deploy し直す
 

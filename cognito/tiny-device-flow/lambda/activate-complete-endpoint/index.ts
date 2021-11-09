@@ -46,7 +46,6 @@ const authorize = async (param: {
     client_id: encodeURIComponent(param.clientId),
     redirect_uri: encodeURIComponent(param.redirectUri),
     code: encodeURIComponent(param.code),
-    scope: 'openid+profile+email',
   } as {
         [key: string]: string
     })
@@ -90,9 +89,12 @@ const downloadObject = async (s3: S3Client, path: string): Promise<{
     contentType: string,
     body?: string
 } | undefined> => {
+  const key = `${environments.pathPrefix}/${path}`;
+
+  console.log(`s3 key: ${key}`);
   const resp = await s3.send(new GetObjectCommand({
     Bucket: environments.bucketName,
-    Key: `${environments.pathPrefix}/${path}`,
+    Key: key,
   }));
   if (resp.Body === undefined) {
     // eslint-disable-next-line no-console
@@ -117,7 +119,7 @@ const downloadObject = async (s3: S3Client, path: string): Promise<{
 export const handler = async (
   event: APIGatewayProxyEventV2,
 ): Promise<APIGatewayProxyResultV2> => {
-//   console.log(JSON.stringify(event));
+  console.log(JSON.stringify(event));
 
   const pathParameters = event.pathParameters || { proxy: undefined };
   const { proxy } = pathParameters;
@@ -129,7 +131,6 @@ export const handler = async (
   }
   const s3 = new S3Client({});
 
-  const code = event.queryStringParameters?.code;
   const state = event.queryStringParameters?.state ? Array.from(
     new URLSearchParams(
       Buffer.from(
@@ -145,6 +146,8 @@ export const handler = async (
         // eslint-disable-next-line camelcase
         user_code?: string,
     } : undefined;
+
+  const code = event.queryStringParameters?.code;
 
   if (code === undefined || state === undefined || state?.user_code === undefined) {
     // eslint-disable-next-line no-console
@@ -175,7 +178,7 @@ export const handler = async (
     const result = await dynamoClient.scan(scan);
     const count = result.Count || 0;
     if (count === 0 || result.Items === undefined) {
-      const content = await downloadObject(s3, 'error.html');
+      const content = await downloadObject(s3, 'error/index.html');
 
       return {
         statusCode: 200,
@@ -199,6 +202,7 @@ export const handler = async (
       device_code: device_code.S!,
       user_code: userCode,
       token_type: 'Bearer',
+      id_token: token.idToken,
       access_token: token.accessToken,
       token_expire: token.expiresIn,
       expire: Number(expire.N!),
@@ -210,7 +214,7 @@ export const handler = async (
       TableName: environments.table,
     });
 
-    const content = await downloadObject(s3, 'complete.html');
+    const content = await downloadObject(s3, 'complete/index.html');
 
     return {
       statusCode: 200,

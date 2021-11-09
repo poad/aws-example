@@ -8,20 +8,19 @@ interface Context {
   region: string,
   domain: string,
   userPool: string,
+  identityProvider?: string,
 }
 
-nextJsExport('/oauth/device/activate');
+nextJsExport();
 
 const app = new cdk.App();
 const env = app.node.tryGetContext('env') as string;
 
 const context = app.node.tryGetContext(env) as Context;
-const { region, domain, userPool } = context;
+const { region, domain, userPool, identityProvider } = context;
 
 new TinyDeviceFlowStack(app, `${env}-tiny-device-flow-stack`, {
   name: `${env}-tiny-device-flow`,
-  userPool,
-  region,
   environment: env,
-  domain,
+  ...context
 });

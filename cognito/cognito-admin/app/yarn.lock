@@ -63,10 +63,24 @@
   dependencies:
     "@aws-amplify/core" "4.3.4"
 
-"@aws-amplify/core@4.3.4", "@aws-amplify/core@^4.3.4":
+"@aws-amplify/core@4.3.4":
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/@aws-amplify/core/-/core-4.3.4.tgz#d580ae3618b22a31ca4d461058cf60c54c5353fc"
   integrity sha512-HIdeuLRlaoumU7FdQ4XgdHz/WtML8Gbmf2VXPlPh8tPQCitZW/EhFPH4nwdvgRkv9gPq4VUmdg9lFwfVOcoFuw==
+  dependencies:
+    "@aws-crypto/sha256-js" "1.0.0-alpha.0"
+    "@aws-sdk/client-cloudwatch-logs" "3.6.1"
+    "@aws-sdk/client-cognito-identity" "3.6.1"
+    "@aws-sdk/credential-provider-cognito-identity" "3.6.1"
+    "@aws-sdk/types" "3.6.1"
+    "@aws-sdk/util-hex-encoding" "3.6.1"
+    universal-cookie "^4.0.4"
+    zen-observable-ts "0.8.19"
+
+"@aws-amplify/core@^4.3.5":
+  version "4.3.5"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/core/-/core-4.3.5.tgz#916baf29bc52ad27f52a93fc4f92dce3fccd6604"
+  integrity sha512-dQeXuwvu2J43Svf2NiNaiJa0gZcJDyaYwBMx79Xi7JsrKsMCj6EQ//kiPsds9hWtluAvZQjVTUxfMJ8RRU0nwA==
   dependencies:
     "@aws-crypto/sha256-js" "1.0.0-alpha.0"
     "@aws-sdk/client-cloudwatch-logs" "3.6.1"
@@ -3338,10 +3352,21 @@ ajv@^8.0.1:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
-amazon-cognito-identity-js@5.2.2, amazon-cognito-identity-js@^5.2.2:
+amazon-cognito-identity-js@5.2.2:
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/amazon-cognito-identity-js/-/amazon-cognito-identity-js-5.2.2.tgz#d75c32bd3bc5502313609cbc108495e1895c7527"
   integrity sha512-kPsIhemt5CTGcafkzjVrfYSPV43YVMKMJ4wTTOOE60YfsAAwe82IMWk84MQu+dVQJaWKALI9tG1nwMkLzRLoJQ==
+  dependencies:
+    buffer "4.9.2"
+    crypto-js "^4.1.1"
+    fast-base64-decode "^1.0.0"
+    isomorphic-unfetch "^3.0.0"
+    js-cookie "^2.2.1"
+
+amazon-cognito-identity-js@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/amazon-cognito-identity-js/-/amazon-cognito-identity-js-5.2.3.tgz#8a730641258c9f6ecfb91f58fe3a711346a955dc"
+  integrity sha512-zTqhdUgvdGar+wjqcu8y9tnTYIS+6VxecZe7t5HAHXHjvzvENIjTehd4zrB6MvnU+oVKVH2wPlCg6jlWdSs0wg==
   dependencies:
     buffer "4.9.2"
     crypto-js "^4.1.1"

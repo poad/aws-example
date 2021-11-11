@@ -165,17 +165,6 @@ updates:
       - poad
 
   - package-ecosystem: gradle
-    directory: '/lambda/cognito-console/client/DeviceFlowExample/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-
-  - package-ecosystem: gradle
     directory: '/codebuild/custom-image-test/android/'
     schedule:
       interval: daily

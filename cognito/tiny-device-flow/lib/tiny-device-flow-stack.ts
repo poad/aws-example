@@ -18,6 +18,7 @@ export interface TinyDeviceFlowStackStackProps extends cdk.StackProps {
   region: string,
   environment: string,
   domain: string,
+  responseType?: string,
   identityProvider?: string,
 }
 
@@ -75,7 +76,7 @@ export class TinyDeviceFlowStack extends cdk.Stack {
         custom: true,
       },
       oAuth: {
-        callbackUrls: [`${api.url}oauth/complete`],
+        callbackUrls: [`${api.url}oauth/process/index.html`,`${api.url}oauth/complete`],
         // logoutUrls,
         flows: {
           authorizationCodeGrant: true,
@@ -182,6 +183,117 @@ export class TinyDeviceFlowStack extends cdk.Stack {
       removalPolicy: RemovalPolicy.DESTROY
     });
 
+
+    const s3bucket = new s3.Bucket(this, 'S3Bucket', {
+      bucketName: `${props.name}-static-site`,
+      versioned: false,
+      removalPolicy: RemovalPolicy.DESTROY,
+      autoDeleteObjects: false,
+      accessControl: s3.BucketAccessControl.PRIVATE,
+      publicReadAccess: false,
+      cors: [
+        {
+          allowedHeaders: ['*'],
+          allowedMethods: [s3.HttpMethods.POST],
+          allowedOrigins: ['*'],
+        },
+      ],
+    });
+
+    new s3deploy.BucketDeployment(this, 'DeployWebsite', {
+      sources: [s3deploy.Source.asset(`${process.cwd()}/pages/out`)],
+      destinationBucket: s3bucket,
+      destinationKeyPrefix: 'web/static' // optional prefix in destination bucket
+    });
+
+    const resourceEndpointFnName = `${props.name}-resource-endpoint`;
+    const resourceEndpointFn = new NodejsFunction(this, 'ResourceEndpointLambdaFunction', {
+      runtime: Runtime.NODEJS_14_X,
+      entry: 'lambda/resource-endpoint/index.ts',
+      functionName: resourceEndpointFnName,
+      logRetention: RetentionDays.ONE_DAY,
+      retryAttempts: 0,
+      bundling: {
+        minify: true,
+        sourceMap: true,
+        target: 'es2020',
+        externalModules: [
+          'aws-sdk',
+          'node'
+        ],
+        buildArgs: {
+          '--bundle': '',
+          '--platform': 'node',
+          '--format': 'cjs',
+        }
+      },
+      environment: {
+        REGION: props.region,
+        BUCKET_NAME: s3bucket.bucketName,
+        PATH_PREFIX: 'web/static',
+      },
+      role: new Role(this, 'ResourceEndpointLambdaExecutionRole', {
+        assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
+        inlinePolicies: {
+          'logs-policy': new PolicyDocument({
+            statements: [
+              new PolicyStatement({
+                effect: Effect.ALLOW,
+                actions: [
+                  'logs:CreateLogGroup',
+                  'logs:CreateLogStream',
+                  'logs:PutLogEvents'
+                ],
+                resources: [
+                  `arn:aws:logs:${props.region}:${this.account}:log-group:/aws/lambda/${resourceEndpointFnName}`,
+                  `arn:aws:logs:${props.region}:${this.account}:log-group:/aws/lambda/${resourceEndpointFnName}:*`,
+                ],
+              })
+            ]
+          }),
+          's3-role-policy': new PolicyDocument(
+            {
+              statements: [
+                new PolicyStatement({
+                  effect: Effect.ALLOW,
+                  actions: [
+                    "s3:GetAccountPublicAccessBlock",
+                    "s3:GetBucketAcl",
+                    "s3:GetBucketLocation",
+                    "s3:GetBucketPolicyStatus",
+                    "s3:GetBucketPublicAccessBlock",
+                    "s3:ListAllMyBuckets"
+                  ],
+                  resources: [
+                    '*'
+                  ],
+                }),
+                new PolicyStatement({
+                  effect: Effect.ALLOW,
+                  actions: [
+                    's3:ListBucket'
+                  ],
+                  resources: [
+                    `${s3bucket.bucketArn}`
+                  ],
+                }),
+                new PolicyStatement({
+                  effect: Effect.ALLOW,
+                  actions: [
+                    "s3:Get*"
+                  ],
+                  resources: [
+                    `${s3bucket.bucketArn}`,
+                    `${s3bucket.bucketArn}/*`
+                  ],
+                }),
+              ]
+            }
+          )
+        },
+      })
+    });
+
     const deviceCodeEndpointFnName = `${props.name}-device-code-endpoint`;
     const deviceCodeEndpointFn = new NodejsFunction(this, 'DeviceCodeEndpointLambdaFunction', {
       runtime: Runtime.NODEJS_14_X,
@@ -189,6 +301,20 @@ export class TinyDeviceFlowStack extends cdk.Stack {
       functionName: deviceCodeEndpointFnName,
       logRetention: RetentionDays.ONE_DAY,
       retryAttempts: 0,
+      bundling: {
+        minify: true,
+        sourceMap: true,
+        target: 'es2020',
+        externalModules: [
+          'aws-sdk',
+          'node'
+        ],
+        buildArgs: {
+          '--bundle': '',
+          '--platform': 'node',
+          '--format': 'cjs',
+        }
+      },
       environment: {
         REGION: props.region,
         TABLE_NAME: deviceCodeTable.tableName,
@@ -231,6 +357,20 @@ export class TinyDeviceFlowStack extends cdk.Stack {
         TABLE_NAME: deviceCodeTable.tableName,
         CLIENT_ID: appClient.userPoolClientId,
       },
+      bundling: {
+        minify: true,
+        sourceMap: true,
+        target: 'es2020',
+        externalModules: [
+          'aws-sdk',
+          'node'
+        ],
+        buildArgs: {
+          '--bundle': '',
+          '--platform': 'node',
+          '--format': 'cjs',
+        }
+      },
       role: new Role(this, 'TokenEndpointLambdaExecutionRole', {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
         inlinePolicies: {
@@ -254,28 +394,8 @@ export class TinyDeviceFlowStack extends cdk.Stack {
       })
     });
 
-    const s3bucket = new s3.Bucket(this, 'S3Bucket', {
-      bucketName: `${props.name}-static-site`,
-      versioned: true,
-      removalPolicy: RemovalPolicy.DESTROY,
-      accessControl: s3.BucketAccessControl.PRIVATE,
-      publicReadAccess: false,
-      cors: [
-        {
-          allowedHeaders: ['*'],
-          allowedMethods: [s3.HttpMethods.POST],
-          allowedOrigins: ['*'],
-        },
-      ],
-    });
 
-    new s3deploy.BucketDeployment(this, 'DeployWebsite', {
-      sources: [s3deploy.Source.asset(`${process.cwd()}/pages/out`)],
-      destinationBucket: s3bucket,
-      destinationKeyPrefix: 'web/static' // optional prefix in destination bucket
-    });
-
-    const { identityProvider } = props;
+    const { responseType, identityProvider } = props;
   
     const activateEndpointFnName = `${props.name}-activate-endpoint`;
     const activateEndpointFn = new NodejsFunction(this, 'ActivateEndpointLambdaFunction', {
@@ -284,6 +404,20 @@ export class TinyDeviceFlowStack extends cdk.Stack {
       functionName: activateEndpointFnName,
       logRetention: RetentionDays.ONE_DAY,
       retryAttempts: 0,
+      bundling: {
+        minify: true,
+        sourceMap: true,
+        target: 'es2020',
+        externalModules: [
+          'aws-sdk',
+          'node'
+        ],
+        buildArgs: {
+          '--bundle': '',
+          '--platform': 'node',
+          '--format': 'cjs',
+        }
+      },
       environment: {
         REGION: props.region,
         BUCKET_NAME: s3bucket.bucketName,
@@ -291,8 +425,9 @@ export class TinyDeviceFlowStack extends cdk.Stack {
         DOMAIN: props.domain,
         AUTHORIZE_ENDPOINT: `https://${props.domain}.auth.${props.region}.amazoncognito.com/oauth2/authorize`,
         CLIENT_ID: appClient.userPoolClientId,
-        REDIRECT_URI: `${api.url}oauth/complete`,
+        REDIRECT_URI: responseType === 'token' ? `${api.url}oauth/process/index.html` : `${api.url}oauth/complete`,
         PATH_PREFIX: 'web/static',
+        RESPONSE_TYPE: responseType ? responseType : 'code',
         IDENTITY_PROVIDER: identityProvider ? identityProvider : 'COGNITO',
       },
       role: new Role(this, 'ActivateEndpointLambdaExecutionRole', {
@@ -363,6 +498,20 @@ export class TinyDeviceFlowStack extends cdk.Stack {
       entry: 'lambda/activate-complete-endpoint/index.ts',
       functionName: activateCompleteEndpointFnName,
       logRetention: RetentionDays.ONE_DAY,
+      bundling: {
+        minify: true,
+        sourceMap: true,
+        target: 'es2020',
+        externalModules: [
+          'aws-sdk',
+          'node'
+        ],
+        buildArgs: {
+          '--bundle': '',
+          '--platform': 'node',
+          '--format': 'cjs',
+        }
+      },
       retryAttempts: 0,
       environment: {
         REGION: props.region,
@@ -373,6 +522,7 @@ export class TinyDeviceFlowStack extends cdk.Stack {
         REDIRECT_URI: `${api.url}oauth/complete`,
         RETRY_URI: `${api.url}oauth/device/activate`,
         PATH_PREFIX: 'web/static',
+        RESPONSE_TYPE: responseType ? responseType : 'code',
       },
       role: new Role(this, 'ActivateCompleteEndpointLambdaExecutionRole', {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
@@ -436,9 +586,19 @@ export class TinyDeviceFlowStack extends cdk.Stack {
       })
     });
 
-
+    
     [ deviceCodeEndpointFn, tokenEndpointFn, activateEndpointFn, activateCompleteEndpointFn ].forEach(fn => deviceCodeTable.grantReadWriteData(fn));
     
+    
+    api.addRoutes({
+      path: '/{proxy+}',
+      methods: [HttpMethod.GET],
+      integration: new LambdaProxyIntegration({
+        handler: resourceEndpointFn
+      }),
+    });
+
+
     api.addRoutes({
       path: '/oauth/device/code',
       methods: [HttpMethod.POST],
@@ -472,6 +632,13 @@ export class TinyDeviceFlowStack extends cdk.Stack {
 
     api.addRoutes({
       path: '/oauth/complete',
+      methods: [HttpMethod.GET],
+      integration: new LambdaProxyIntegration({
+        handler: activateCompleteEndpointFn
+      }),
+    });
+    api.addRoutes({
+      path: '/oauth/complete/{proxy+}',
       methods: [HttpMethod.GET],
       integration: new LambdaProxyIntegration({
         handler: activateCompleteEndpointFn

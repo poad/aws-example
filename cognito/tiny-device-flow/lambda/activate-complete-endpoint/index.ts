@@ -4,7 +4,7 @@ import { marshall } from '@aws-sdk/util-dynamodb';
 import { URLSearchParams } from 'url';
 import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { Stream } from 'stream';
-import fetch from 'node-fetch';
+import fetch from 'cross-fetch';
 import { DeviceCodeTable, ErrorResponse } from '../types';
 
 interface Environments {
@@ -16,6 +16,7 @@ interface Environments {
     redirectUri: string,
     retryUri: string,
     pathPrefix: string,
+    responseType: string,
 }
 
 const environments: Environments = {
@@ -27,6 +28,7 @@ const environments: Environments = {
   redirectUri: process.env.REDIRECT_URI!,
   retryUri: process.env.RETRY_URI!,
   pathPrefix: process.env.PATH_PREFIX!,
+  responseType: process.env.RESPONSE_TYPE!,
 };
 
 const authorize = async (param: {
@@ -91,7 +93,7 @@ const downloadObject = async (s3: S3Client, path: string): Promise<{
 } | undefined> => {
   const key = `${environments.pathPrefix}/${path}`;
 
-  console.log(`s3 key: ${key}`);
+  // console.log(`s3 key: ${key}`);
   const resp = await s3.send(new GetObjectCommand({
     Bucket: environments.bucketName,
     Key: key,
@@ -119,7 +121,7 @@ const downloadObject = async (s3: S3Client, path: string): Promise<{
 export const handler = async (
   event: APIGatewayProxyEventV2,
 ): Promise<APIGatewayProxyResultV2> => {
-  console.log(JSON.stringify(event));
+  // console.log(JSON.stringify(event));
 
   const pathParameters = event.pathParameters || { proxy: undefined };
   const { proxy } = pathParameters;
@@ -133,9 +135,7 @@ export const handler = async (
 
   const state = event.queryStringParameters?.state ? Array.from(
     new URLSearchParams(
-      Buffer.from(
-        event.queryStringParameters?.state, 'base64',
-      ).toString(),
+      Buffer.from(event.queryStringParameters?.state, 'base64').toString(),
     ),
   ).map((entry) => {
     const entity: { [key: string]: string } = {};
@@ -148,8 +148,13 @@ export const handler = async (
     } : undefined;
 
   const code = event.queryStringParameters?.code;
-
-  if (code === undefined || state === undefined || state?.user_code === undefined) {
+  const idToken = event.queryStringParameters?.id_token;
+  const accessToken = event.queryStringParameters?.access_token;
+  const expiresIn = event.queryStringParameters?.expires_in;
+  if (
+    (environments.responseType === 'code' && code === undefined)
+    || (environments.responseType === 'token' && (idToken === undefined || accessToken === undefined || expiresIn === undefined))
+    || state === undefined || state?.user_code === undefined) {
     // eslint-disable-next-line no-console
     console.warn('code or state, user_code are not found');
     // console.debug(`code: ${code} state: ${event.queryStringParameters?.state} user_code: ${state?.user_code}`);
@@ -187,12 +192,17 @@ export const handler = async (
       };
     }
 
-    const token = await authorize({
-      domain: environments.domain,
-      clientId: environments.clientId,
-      redirectUri: environments.redirectUri,
-      code,
-    });
+    const token = environments.responseType === 'code' && code
+      ? await authorize({
+        domain: environments.domain,
+        clientId: environments.clientId,
+        redirectUri: environments.redirectUri,
+        code,
+      }) : {
+        idToken,
+        accessToken,
+        expiresIn: Number(expiresIn || '0'),
+      };
 
     // eslint-disable-next-line camelcase
     const { device_code, expire } = result.Items[0];

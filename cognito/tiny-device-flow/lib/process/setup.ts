@@ -10,7 +10,7 @@ export const nextJsExport = () => {
         }
     });
 
-    ['yarn build', 'yarn export'].forEach((cmd => {
+    ['yarn build', 'yarn export',].forEach((cmd => {
         childProcess.execSync(cmd, {
             cwd: `${process.cwd()}/pages`,
             stdio: ['ignore', 'inherit', 'inherit'],
@@ -18,4 +18,5 @@ export const nextJsExport = () => {
             shell: 'bash'
         });
     }));
+    fs.copyFileSync(`${process.cwd()}/pages/src/public/favicon.ico`, `${process.cwd()}/pages/out/favicon.ico`);
 };

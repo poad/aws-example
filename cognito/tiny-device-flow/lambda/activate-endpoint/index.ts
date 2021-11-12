@@ -38,11 +38,11 @@ const downloadObject = async (s3: S3Client, path: string): Promise<{
 } | undefined> => {
   const key = `${environments.pathPrefix}/${path}`;
 
-  console.log(`s3 key: ${key}`);
+  // console.log(`s3 key: ${key}`);
 
   const resp = await s3.send(new GetObjectCommand({
     Bucket: environments.bucketName,
-    Key: `${environments.pathPrefix}/${path}`,
+    Key: key,
   }));
   if (resp.Body === undefined) {
     // eslint-disable-next-line no-console
@@ -78,21 +78,6 @@ export const handler = async (
     };
   }
   const s3 = new S3Client({});
-
-  if (proxy !== undefined && proxy !== '') {
-    const content = await downloadObject(s3, proxy);
-    const notFound = await downloadObject(s3, 'index.html');
-
-    return content !== undefined ? {
-      statusCode: 200,
-      headers: { 'Content-Type': content?.contentType! },
-      body: content?.body,
-    } : {
-      statusCode: 404,
-      headers: { 'Content-Type': notFound?.contentType! },
-      body: notFound?.body,
-    };
-  }
 
   const body = event.body !== undefined ? Array.from(
     new URLSearchParams(event.isBase64Encoded ? Buffer.from(event.body, 'base64').toString() : event.body),
@@ -143,10 +128,11 @@ export const handler = async (
       };
     }
 
+    const responseType = environments.responseType;
     const idp = environments.identityProvider !== '' ? { identity_provider: environments.identityProvider } : {};
 
     const queryString = Object.entries({
-      response_type: 'code',
+      response_type: responseType,
       client_id: encodeURIComponent(environments.clientId),
       redirect_uri: encodeURIComponent(environments.redirectUri),
       state: encodeURIComponent(event.body!),

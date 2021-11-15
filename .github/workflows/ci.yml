@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x, 16.x]
         target: [
           ./codebuild/custom-image-test,
           ./lambda/cognito-console,
@@ -54,7 +54,11 @@ jobs:
           ./cognito/tiny-device-flow,
           ./cognito/tiny-device-flow/pages,
           ./cognito/cognito-saml-next-js/webapp,
-          ./cognito/cognito-saml-next-js/infra
+          ./cognito/cognito-saml-next-js/infra,
+          ./cognito/cognito-aws-console-example/app,
+          ./cognito/cognito-aws-console-example/infra,
+          ./cognito/cognito-s3-example,
+          ./cognito/cognito-s3-example/infra
         ]
 
     steps:

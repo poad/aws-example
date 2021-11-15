@@ -11,7 +11,7 @@ Amplify.configure(awsconfig);
 
 const Home = (): JSX.Element => {
 
-  const auth = useAuth(typeof window !== 'undefined' ? window.location.hash : undefined);
+  const auth = useAuth();
 
   return (
     <Layout>

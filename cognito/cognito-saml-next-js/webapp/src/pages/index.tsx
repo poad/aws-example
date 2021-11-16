@@ -5,7 +5,7 @@ import Amplify from 'aws-amplify';
 import { AmplifySignOut } from '@aws-amplify/ui-react';
 import awsconfig from '../aws-exports';
 import AuthButton from 'components/AuthButton';
-import useAuth from 'components/hooks/useAuth';
+import useAuth from 'hooks/useAuth';
 
 Amplify.configure(awsconfig);
 

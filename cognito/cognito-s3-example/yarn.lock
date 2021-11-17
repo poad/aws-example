@@ -78,6 +78,20 @@
     universal-cookie "^4.0.4"
     zen-observable-ts "0.8.19"
 
+"@aws-amplify/core@4.3.7":
+  version "4.3.7"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/core/-/core-4.3.7.tgz#220e7571b84455877a8748e31f468b456cf6a388"
+  integrity sha512-V1ZPl+Ege8HCnpTlqYAph+/lPbGxAehclFfQQUbFx34CTGNTFQoLnO9Njd74um//Tw7oz9Q/XdbhaqNjF5pvSw==
+  dependencies:
+    "@aws-crypto/sha256-js" "1.0.0-alpha.0"
+    "@aws-sdk/client-cloudwatch-logs" "3.6.1"
+    "@aws-sdk/client-cognito-identity" "3.6.1"
+    "@aws-sdk/credential-provider-cognito-identity" "3.6.1"
+    "@aws-sdk/types" "3.6.1"
+    "@aws-sdk/util-hex-encoding" "3.6.1"
+    universal-cookie "^4.0.4"
+    zen-observable-ts "0.8.19"
+
 "@aws-amplify/datastore@3.6.0":
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/@aws-amplify/datastore/-/datastore-3.6.0.tgz#1d481a348b758277d8154cd4bb22fda1c1deb5a9"
@@ -141,7 +155,7 @@
     uuid "^3.2.1"
     zen-observable-ts "0.8.19"
 
-"@aws-amplify/storage@4.4.7", "@aws-amplify/storage@^4.4.7":
+"@aws-amplify/storage@4.4.7":
   version "4.4.7"
   resolved "https://registry.yarnpkg.com/@aws-amplify/storage/-/storage-4.4.7.tgz#33e8b7417ce551dd6a1bca79b33b64d2672c3f9b"
   integrity sha512-C5ZmKAMibtAMmmlUAkKBo8U4wdkUFr/Hg9vezCqVB6lmoLS7GVTf0nJ0duPmzjyhb6pqrf0SPB25HGC76X6JAw==
@@ -155,20 +169,20 @@
     events "^3.1.0"
     sinon "^7.5.0"
 
-"@aws-amplify/ui-components@1.9.4", "@aws-amplify/ui-components@^1.9.4":
-  version "1.9.4"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/ui-components/-/ui-components-1.9.4.tgz#74e8d4515c13ca1c8a3e0ade9cdd6b44b60d9485"
-  integrity sha512-0T0WvUMEYOW4T++NR8NlFLHz2Rdpx/vS/DRogcDzmhGdjYAi88y26wmiHmrCU/THncgPjrRX20P4xATVzElU0Q==
+"@aws-amplify/ui-components@1.9.5", "@aws-amplify/ui-components@^1.9.4":
+  version "1.9.5"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/ui-components/-/ui-components-1.9.5.tgz#66738b9d696178ca0557d0250d46c02b69f42d8d"
+  integrity sha512-PMc4F3yvB/9CM26FNuaG4YM+WSOYxLtvfN8ul0W6Ioy4EvGB77CC275MHqHb57uKhw0+Tr0nJtcXYjldmtqbmg==
   dependencies:
     qrcode "^1.4.4"
     uuid "^8.2.0"
 
-"@aws-amplify/ui-react@^1.2.24":
-  version "1.2.24"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/ui-react/-/ui-react-1.2.24.tgz#e859751934e94f227a16d0f045df7869d87c83f7"
-  integrity sha512-MIRheN1OZngAq1kJVwsnYO0W+j5WzqHgLPOXFNkkoi8fWbita8GydiOXyxT6RN/Jg77rEPxiT9RpSc8TboN3+A==
+"@aws-amplify/ui-react@^1.2.25":
+  version "1.2.25"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/ui-react/-/ui-react-1.2.25.tgz#3feea1886741f9dc259910eb8dfab641174c5301"
+  integrity sha512-z0BArd2xl8Hd9gR9gQU39VKERMqbRSmIpq9r46l5T55IovpEpEcYIAZUkqptZwyC7PCS4sIeXlyzfZMTCEf7yg==
   dependencies:
-    "@aws-amplify/ui-components" "1.9.4"
+    "@aws-amplify/ui-components" "1.9.5"
 
 "@aws-amplify/ui@2.0.3":
   version "2.0.3"
@@ -2646,13 +2660,13 @@
     react-is "^17.0.2"
     react-transition-group "^4.4.2"
 
-"@mui/private-theming@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@mui/private-theming/-/private-theming-5.1.0.tgz#44d6a8b75d76c6067b7996993c23b985a457788d"
-  integrity sha512-RWzpvwZTNoCUlWFtf7uMDY4QkNL6pI3V2Ac4MZeVzJr3DLluQrt0JjUdsy8CVS7HCTp1YGiyZsJ7H8PfR9jIOw==
+"@mui/private-theming@^5.1.0", "@mui/private-theming@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@mui/private-theming/-/private-theming-5.1.1.tgz#3e9e91d81a8e69dcb5c4499236e26d684cd4a919"
+  integrity sha512-h+MGzBVSH7GgXou4aIraJhakygTYIWvvxvTm81Y6RmwRcrzv8szDQeRDiM7iOVjqsS33dXfMkTi7csRCgeErsg==
   dependencies:
-    "@babel/runtime" "^7.16.0"
-    "@mui/utils" "^5.1.0"
+    "@babel/runtime" "^7.16.3"
+    "@mui/utils" "^5.1.1"
     prop-types "^15.7.2"
 
 "@mui/styled-engine-sc@^5.1.0":
@@ -2671,16 +2685,16 @@
     "@emotion/cache" "^11.5.0"
     prop-types "^15.7.2"
 
-"@mui/styles@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@mui/styles/-/styles-5.1.0.tgz#90c374a19647a6a1abe83061e30ccb6ce47dbb6c"
-  integrity sha512-1X7LsC3ztFs8MTwso/8PYHnDM3Y0azdTqRnGdN4/8j6jn434sYXN4QrZwXUpAbvGam9i608/EnPaVAIY0IJmVQ==
+"@mui/styles@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@mui/styles/-/styles-5.1.1.tgz#59e240db3a117eae0fe37dcb98d6935a72d25da7"
+  integrity sha512-dM1H5sGLB+aXPOi1OAd+riXX/+RxEC4hOcV9INcbrabbS3b4WBU24lW777ixka3iFwg9HH/FcVCp7M6U5WEGJQ==
   dependencies:
-    "@babel/runtime" "^7.16.0"
+    "@babel/runtime" "^7.16.3"
     "@emotion/hash" "^0.8.0"
-    "@mui/private-theming" "^5.1.0"
+    "@mui/private-theming" "^5.1.1"
     "@mui/types" "^7.1.0"
-    "@mui/utils" "^5.1.0"
+    "@mui/utils" "^5.1.1"
     clsx "^1.1.1"
     csstype "^3.0.9"
     hoist-non-react-statics "^3.3.2"
@@ -2713,12 +2727,12 @@
   resolved "https://registry.yarnpkg.com/@mui/types/-/types-7.1.0.tgz#5ed928c5a41cfbf9a4be82ea3bbdc47bcc9610d5"
   integrity sha512-Hh7ALdq/GjfIwLvqH3XftuY3bcKhupktTm+S6qRIDGOtPtRuq2L21VWzOK4p7kblirK0XgGVH5BLwa6u8z/6QQ==
 
-"@mui/utils@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@mui/utils/-/utils-5.1.0.tgz#876951933b77828925ad9502a16070497664aae6"
-  integrity sha512-TbAa3DZBGE6xjrVsQ6e0Iw0jwgGZqPg/48aZJJWXJJjU8NU5OhBRutYhrk/kbdDRmsIArHNdpJayBSi7yETYvg==
+"@mui/utils@^5.1.0", "@mui/utils@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@mui/utils/-/utils-5.1.1.tgz#3cb2c049731dacb3830336bc8011141e84434aad"
+  integrity sha512-rqakHf0IMaasDo1EcYqkx13VTxeoQoGf/3RxQuazQFKzF7d2uylFwNyb6bnUJGNe2/akiIMk/qiub58sYrwxVQ==
   dependencies:
-    "@babel/runtime" "^7.16.0"
+    "@babel/runtime" "^7.16.3"
     "@types/prop-types" "^15.7.4"
     "@types/react-is" "^16.7.1 || ^17.0.0"
     prop-types "^15.7.2"
@@ -3471,10 +3485,10 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-aws-amplify-react@^5.1.7:
-  version "5.1.7"
-  resolved "https://registry.yarnpkg.com/aws-amplify-react/-/aws-amplify-react-5.1.7.tgz#dab5c4a1aaacd24fd0917fd7052552490bdd9721"
-  integrity sha512-4DBg/TfOUaGeWKrehCF9fFOf+vCNDHdtGj+QpfK4ccHvqBTWCehVkqHMSQE2g+5B5ycvUx2pw7oo/DqPGEqWCA==
+aws-amplify-react@^5.1.8:
+  version "5.1.8"
+  resolved "https://registry.yarnpkg.com/aws-amplify-react/-/aws-amplify-react-5.1.8.tgz#5e6a095dc4806bc17ade7804b4bc49248566b8d1"
+  integrity sha512-bUbmvreZDqPxy3FmtMgUN2b0nJxUHCALMaVDlwI/CGoEpRx0YfKL4SQjA91I9Gr4QlnloD06R0d4qgLiTvboWQ==
   dependencies:
     qrcode.react "^0.8.0"
     regenerator-runtime "^0.11.1"

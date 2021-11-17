@@ -18,7 +18,14 @@
       "domain": "YOUR_COGNITO_USER_POOL_DOMAIN_PREFIX",
       "userPool": "YOUR_COGNITO_USER_POOL_NAME",
       "responseType": "CODE_OR_TOKEN",
-      "identityProvider": "YOUR_COGNITO_IDENTITY_PROVIDER_NAME"
+      "identityProvider": "YOUR_COGNITO_IDENTITY_PROVIDER_NAME",
+      "scopes": {
+        "phone": false,
+        "email": true,
+        "openid": true,
+        "profile": false,
+        "aws.cognito.signin.user.admin": false
+      }
     }
   }
 }

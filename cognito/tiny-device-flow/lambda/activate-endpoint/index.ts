@@ -16,6 +16,7 @@ interface Environments {
     pathPrefix: string,
     responseType: string,
     identityProvider: string,
+    scope: string,
 }
 
 const environments: Environments = {
@@ -29,6 +30,7 @@ const environments: Environments = {
   pathPrefix: process.env.PATH_PREFIX!,
   responseType: process.env.RESPONSE_TYPE!,
   identityProvider: process.env.IDENTITY_PROVIDER!,
+  scope: process.env.SCOPE!,
 };
 
 const downloadObject = async (s3: S3Client, path: string): Promise<{
@@ -136,7 +138,7 @@ export const handler = async (
       client_id: encodeURIComponent(environments.clientId),
       redirect_uri: encodeURIComponent(environments.redirectUri),
       state: encodeURIComponent(event.body!),
-      scope: 'openid+profile+email',
+      scope: environments.scope,
       ...idp,
     } as {
             [key: string]: string

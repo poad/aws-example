@@ -20,6 +20,13 @@ export interface TinyDeviceFlowStackStackProps extends cdk.StackProps {
   domain: string,
   responseType?: string,
   identityProvider?: string,
+  scopes: {
+    phone: boolean,
+    email: boolean,
+    openid: boolean,
+    profile: boolean,
+    'aws.cognito.signin.user.admin': boolean
+  },
 }
 
 export class TinyDeviceFlowStack extends cdk.Stack {
@@ -395,8 +402,12 @@ export class TinyDeviceFlowStack extends cdk.Stack {
     });
 
 
-    const { responseType, identityProvider } = props;
+    const { responseType, identityProvider, scopes } = props;
   
+    const scopeParam = Object.entries(scopes)
+        .filter(scope => scope[1])
+        .map(scope => scope[0])
+        .reduce((acc,cur) => `${acc}+${cur}`)
     const activateEndpointFnName = `${props.name}-activate-endpoint`;
     const activateEndpointFn = new NodejsFunction(this, 'ActivateEndpointLambdaFunction', {
       runtime: Runtime.NODEJS_14_X,
@@ -429,6 +440,7 @@ export class TinyDeviceFlowStack extends cdk.Stack {
         PATH_PREFIX: 'web/static',
         RESPONSE_TYPE: responseType ? responseType : 'code',
         IDENTITY_PROVIDER: identityProvider ? identityProvider : 'COGNITO',
+        SCOPE: scopeParam === '' ? 'openid' : scopeParam,
       },
       role: new Role(this, 'ActivateEndpointLambdaExecutionRole', {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),

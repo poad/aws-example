@@ -78,6 +78,20 @@
     universal-cookie "^4.0.4"
     zen-observable-ts "0.8.19"
 
+"@aws-amplify/core@4.3.8":
+  version "4.3.8"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/core/-/core-4.3.8.tgz#d1039a44b0c1a19258e7c283e09168fcc8702c3c"
+  integrity sha512-mLoprQKRC55t7Xy4t7Xiro7qJ0z0mdLFAjJyGSiHHNXPbBcD1N5poHm16od/EJc9T7qldnVKvbPjUmxE2hEYrw==
+  dependencies:
+    "@aws-crypto/sha256-js" "1.0.0-alpha.0"
+    "@aws-sdk/client-cloudwatch-logs" "3.6.1"
+    "@aws-sdk/client-cognito-identity" "3.6.1"
+    "@aws-sdk/credential-provider-cognito-identity" "3.6.1"
+    "@aws-sdk/types" "3.6.1"
+    "@aws-sdk/util-hex-encoding" "3.6.1"
+    universal-cookie "^4.0.4"
+    zen-observable-ts "0.8.19"
+
 "@aws-amplify/datastore@3.6.1":
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/@aws-amplify/datastore/-/datastore-3.6.1.tgz#894732df3e40588d46a14dee70b155f39fad6dff"
@@ -141,12 +155,26 @@
     uuid "^3.2.1"
     zen-observable-ts "0.8.19"
 
-"@aws-amplify/storage@4.4.8", "@aws-amplify/storage@^4.4.8":
+"@aws-amplify/storage@4.4.8":
   version "4.4.8"
   resolved "https://registry.yarnpkg.com/@aws-amplify/storage/-/storage-4.4.8.tgz#9e0f08964ed2791adc89aa2300645c282f8dac09"
   integrity sha512-plrchIFew29hHd/WrckwWClyycF3xs96k0HOSVqJ5KG4j1ewrkGksw+W9q7YKYBQNlOtNXiceWMabTsQ1rULew==
   dependencies:
     "@aws-amplify/core" "4.3.7"
+    "@aws-sdk/client-s3" "3.6.1"
+    "@aws-sdk/s3-request-presigner" "3.6.1"
+    "@aws-sdk/util-create-request" "3.6.1"
+    "@aws-sdk/util-format-url" "3.6.1"
+    axios "0.21.4"
+    events "^3.1.0"
+    sinon "^7.5.0"
+
+"@aws-amplify/storage@^4.4.9":
+  version "4.4.9"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/storage/-/storage-4.4.9.tgz#2bc83e6a59fa1b5ca4812cd3c96cc06594f05538"
+  integrity sha512-FS9hGHOq1mv+rcZ+KND90FGfx5bcwmkN5rE0u2xiUvfJqlEApPhq5AARZwNfRVQP6rB0swpG9eFXVHwvlU2cGg==
+  dependencies:
+    "@aws-amplify/core" "4.3.8"
     "@aws-sdk/client-s3" "3.6.1"
     "@aws-sdk/s3-request-presigner" "3.6.1"
     "@aws-sdk/util-create-request" "3.6.1"

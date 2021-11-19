@@ -2,7 +2,8 @@ import React from 'react';
 import Layout from '../components/Layout';
 import { Box } from '@mui/system';
 import Amplify from 'aws-amplify';
-import { AmplifySignOut } from '@aws-amplify/ui-react';
+import { Authenticator, Button } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 import awsconfig from '../aws-exports';
 import AuthButton from 'components/AuthButton';
 import useAuth from 'hooks/useAuth';
@@ -15,12 +16,14 @@ const Home = (): JSX.Element => {
 
   return (
     <Layout>
-      {auth?.token !== undefined
+      <Authenticator>
+      {({ signOut }) => {
+        return auth?.token !== undefined
         ? (auth?.user !== undefined
           ? (
             <>
               <Box sx={{ width: '20rem', mt: '3rem' }}>
-                <AmplifySignOut />
+                <Button onClick={signOut}>Sign Out</Button>
               </Box>
               <Box sx={{ color: '#2d2d2d', whiteSpace: 'pre-wrap' }}>
                 {auth.user.attributes.name}
@@ -38,7 +41,9 @@ const Home = (): JSX.Element => {
             </Box>
           </>
         )
+        }
       }
+      </Authenticator>
     </Layout>
   );
 };

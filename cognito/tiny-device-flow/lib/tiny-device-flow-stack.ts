@@ -10,6 +10,7 @@ import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
 import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations';
 import { Table, AttributeType } from '@aws-cdk/aws-dynamodb';
 import * as s3deploy from '@aws-cdk/aws-s3-deployment';
+import assert from 'node:assert';
 
 
 export interface TinyDeviceFlowStackStackProps extends cdk.StackProps {
@@ -404,6 +405,11 @@ export class TinyDeviceFlowStack extends cdk.Stack {
 
     const { responseType, identityProvider, scopes } = props;
   
+    const availableScopes = Object.entries(scopes)
+      .filter(scope => scope[1])
+      .map(scope => scope[0]);
+    assert(availableScopes.length > 0, 'The scopes must have at least one true entry.');
+
     const scopeParam = Object.entries(scopes)
         .filter(scope => scope[1])
         .map(scope => scope[0])

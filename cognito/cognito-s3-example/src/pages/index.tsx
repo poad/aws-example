@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Amplify, { Auth } from 'aws-amplify';
 
-import { AmplifyAuthenticator, AmplifySignIn, AmplifySignOut } from '@aws-amplify/ui-react';
+import { Authenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+
 import { AuthState, onAuthUIStateChange, CognitoUserInterface } from '@aws-amplify/ui-components';
 import Storage, { S3ProviderListOutput } from '@aws-amplify/storage';
 
@@ -9,6 +11,7 @@ import Layout from 'components/Layout';
 import S3Directory from 'components/s3directory';
 import styles from '../styles/Home.module.css';
 import awsconfig from '../aws-config';
+import { Box } from '@mui/material';
 
 Amplify.configure(awsconfig);
 // console.log(awsconfig.Storage.AWSS3)
@@ -20,7 +23,6 @@ Storage.configure({
     private: '',
   },
 });
-
 
 const Home = (): JSX.Element => {
   const [, setAuthState] = useState<AuthState | undefined>(undefined);
@@ -38,27 +40,30 @@ const Home = (): JSX.Element => {
 
     Promise.all([Storage.list('contents')
       .then((result) => setList(result))
-    // eslint-disable-next-line no-console
+      // eslint-disable-next-line no-console
       .catch((err) => console.log(err))]);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Layout username={user?.username}>
-      <AmplifyAuthenticator>
-        <AmplifySignIn slot="sign-in">
-          <div slot="federated-buttons"></div>
-          <div slot="secondary-footer-content"></div>
-        </AmplifySignIn>
+      <Box sx={{'.amplify-tabs': {
+        'display': 'none',
+      }}}>
+      <Authenticator>
+        {({ signOut }) => (
+          <>
+            <main className={styles.main}>
 
-        <main className={styles.main}>
-
-          <div>
-            <AmplifySignOut />
-          </div>
-          <S3Directory s3Objects={list} />
-        </main>
-      </AmplifyAuthenticator>
+              <div>
+                <button onClick={signOut}>Sign out</button>
+              </div>
+              <S3Directory s3Objects={list} />
+            </main>
+          </>
+        )}
+      </Authenticator>
+      </Box>
 
       <footer className={styles.footer}>
         <a

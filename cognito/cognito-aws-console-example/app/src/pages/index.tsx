@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Amplify, { Auth } from 'aws-amplify';
 import { Link } from '@mui/material';
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 import { CognitoIdentityClient, GetIdCommand, GetOpenIdTokenCommand } from '@aws-sdk/client-cognito-identity';
 import { AssumeRoleWithWebIdentityCommand, STSClient, Credentials } from '@aws-sdk/client-sts';
 import { SigninToken } from '../interfaces';
@@ -11,7 +12,11 @@ import awsconfig, { appConfig } from '../aws-config';
 
 Amplify.configure(awsconfig);
 
-const Home = (): JSX.Element => {
+interface HomeProps {
+  signOut: (opts?: any) => Promise<any>
+}
+
+const Home = ({ signOut }: HomeProps): JSX.Element => {
   const [signInToken, setSignInToken] = useState<string | undefined>(undefined);
 
   const selectRole = (idTokenPayload: {
@@ -158,7 +163,7 @@ const Home = (): JSX.Element => {
           ) : (
             ''
           )}
-          <AmplifySignOut />
+          <button onClick={signOut}>Sign out</button>
         </main>
       </div>
 

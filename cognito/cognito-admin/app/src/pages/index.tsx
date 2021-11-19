@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { AppBar, Box, CssBaseline, Tab, Tabs, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, CssBaseline, Tab, Tabs, Toolbar, Typography } from '@mui/material';
 import Amplify, { Auth } from 'aws-amplify';
 import {
-  AmplifySignOut,
   withAuthenticator,
 } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
 import styles from '../styles/Home.module.css';
 import awsconfig, { appConfig } from '../aws-config';
@@ -16,7 +16,11 @@ import Groups from '../components/Groups';
 
 Amplify.configure(awsconfig);
 
-const Home = (): JSX.Element => {
+interface HomeProps {
+  signOut: (opts?: any) => Promise<any>
+}
+
+const Home = ({ signOut }: HomeProps): JSX.Element => {
   const [client, setClient] = useState<UserPoolClient | undefined>(undefined);
   const [iamClient, setIamClient] = useState<IamClient | undefined>(undefined);
   const [authenticated, setAuthenticated] = useState<boolean>(false);
@@ -63,7 +67,7 @@ const Home = (): JSX.Element => {
               <Tab label="Users" />
               <Tab label="Groups" />
             </Tabs>
-            <Typography variant="h6" color="inherit" noWrap><AmplifySignOut /></Typography>
+            <Typography variant="h6" color="inherit" noWrap><Button onClick={signOut}>Sign out</Button></Typography>
           </Toolbar>
         </AppBar>
         {

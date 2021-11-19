@@ -14,7 +14,7 @@ test('Empty Stack', () => {
     scopes: {
       phone: false,
       email: false,
-      openid: false,
+      openid: true,
       profile: false,
       'aws.cognito.signin.user.admin': false,
     },

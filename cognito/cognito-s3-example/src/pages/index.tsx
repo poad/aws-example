@@ -47,22 +47,22 @@ const Home = (): JSX.Element => {
 
   return (
     <Layout username={user?.username}>
-      <Box sx={{'.amplify-tabs': {
+      <Box sx={{ '.amplify-tabs': {
         'display': 'none',
-      }}}>
-      <Authenticator>
-        {({ signOut }) => (
-          <>
-            <main className={styles.main}>
+      } }}>
+        <Authenticator>
+          {({ signOut }) => (
+            <>
+              <main className={styles.main}>
 
-              <div>
-                <button onClick={signOut}>Sign out</button>
-              </div>
-              <S3Directory s3Objects={list} />
-            </main>
-          </>
-        )}
-      </Authenticator>
+                <div>
+                  <button onClick={signOut}>Sign out</button>
+                </div>
+                <S3Directory s3Objects={list} />
+              </main>
+            </>
+          )}
+        </Authenticator>
       </Box>
 
       <footer className={styles.footer}>

@@ -7,6 +7,10 @@
     "@aws-cdk/aws-ecr-assets:dockerIgnoreSupport": true,
     "@aws-cdk/aws-secretsmanager:parseOwnedSecretName": true,
     "@aws-cdk/aws-kms:defaultKeyPolicies": true,
-    "@aws-cdk/aws-s3:grantWriteWithoutAcl": true
+    "@aws-cdk/aws-s3:grantWriteWithoutAcl": true,
+    "owner": "poad",
+    "repo": "aws-example",
+    "buildspec": "codebuild/custom-image-test/buildspec.yml",
+    "image": "public.ecr.aws/n6l7u3t1/aws-codebuild-docker-images:3.0"
   }
 }

@@ -3,6 +3,24 @@
   "context": {
     "@aws-cdk/core:enableStackNameDuplicates": "true",
     "aws-cdk:enableDiffNoFail": "true",
-    "@aws-cdk/core:stackRelativeExports": "true"
+    "@aws-cdk/core:stackRelativeExports": "true",
+    "region": "us-west-2",
+    "userPoolId": "us-west-2_7fwTcWu5N",
+    "idPoolId": "us-west-2:5da88f9e-29d4-4481-af31-5739d4da6fab",
+    "bucket": "cognito-nextjs-example-786553742110",
+    "groups": [ 
+      {
+        "id": "Sub1",
+        "name": "sub1",
+        "baseDir": "contents",
+        "dirs": [ "sub1" ]
+      },
+      {
+        "id": "Sub2",
+        "name": "sub2",
+        "baseDir": "contents",
+        "dirs": [ "sub2" ]
+      }
+    ]  
   }
 }

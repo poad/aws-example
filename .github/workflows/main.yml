@@ -33,7 +33,7 @@ jobs:
       with:
         yarn: true
         path: ${{github.workspace}}/cognito/cognito-admin/app/
-        ignore: '[ "eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser" ]'
+        ignore: '[ "eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser", "typescript" ]'
 
     - name: update (cognito/cognito-admin/infra)
       uses: poad/update-node-modules@v1.0.5
@@ -46,7 +46,7 @@ jobs:
       with:
         yarn: true
         path: ${{github.workspace}}/cognito/cognito-aws-console-example/app/
-        ignore: '[ "eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser" ]'
+        ignore: '[ "eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser", "typescript" ]'
 
     - name: update (cognito/cognito-aws-console-example/infra)
       uses: poad/update-node-modules@v1.0.5
@@ -59,7 +59,7 @@ jobs:
       with:
         yarn: true
         path: ${{github.workspace}}/cognito/cognito-s3-example/
-        ignore: '[ "eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser" ]'
+        ignore: '[ "eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser", "typescript" ]'
 
     - name: update (cognito/ccognito-s3-example/infra)
       uses: poad/update-node-modules@v1.0.5
@@ -72,7 +72,7 @@ jobs:
       with:
         yarn: true
         path: ${{github.workspace}}/cognito/cognito-saml-next-js/webapp/
-        ignore: '[ "eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser" ]'
+        ignore: '[ "eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser", "typescript" ]'
 
     - name: update (cognito/cognito-saml-next-js/infra)
       uses: poad/update-node-modules@v1.0.5
@@ -91,7 +91,7 @@ jobs:
       with:
         yarn: true
         path: ${{github.workspace}}/cognito/tiny-device-flow/pages/
-        ignore: '[ "eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser" ]'
+        ignore: '[ "eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser", "typescript" ]'
 
     - name: update (codebuild/custom-image-test)
       uses: poad/update-node-modules@v1.0.5

@@ -1,19 +1,20 @@
-import * as cdk from '@aws-cdk/core';
-import * as iam from '@aws-cdk/aws-iam';
-import * as events from '@aws-cdk/aws-events';
-import * as targets from '@aws-cdk/aws-events-targets';
-import * as lambda from '@aws-cdk/aws-lambda';
-import { PythonFunction } from '@aws-cdk/aws-lambda-python';
+import * as cdk from 'aws-cdk-lib';
+import * as iam from 'aws-cdk-lib/aws-iam';
+import * as events from 'aws-cdk-lib/aws-events';
+import * as targets from 'aws-cdk-lib/aws-events-targets';
+import * as lambda from 'aws-cdk-lib/aws-lambda';
+import { PythonFunction } from '@aws-cdk/aws-lambda-python-alpha';
 import path = require('path');
-import { RuleTargetInput } from '@aws-cdk/aws-events';
-import { ServicePrincipal } from '@aws-cdk/aws-iam';
-import { RetentionDays } from '@aws-cdk/aws-logs';
+import { RuleTargetInput } from 'aws-cdk-lib/aws-events';
+import { ServicePrincipal } from 'aws-cdk-lib/aws-iam';
+import { RetentionDays } from 'aws-cdk-lib/aws-logs';
+import { Construct } from 'constructs';
 
 export interface ContextAppStackProps extends cdk.StackProps {
   targetTags: Array<string>;
 }
 export class PythonLambdaStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props: ContextAppStackProps) {
+  constructor(scope: Construct, id: string, props: ContextAppStackProps) {
     super(scope, id, props);
 
     const role = new iam.Role(this, 'ec2-instance-killer-role', {

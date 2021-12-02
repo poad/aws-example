@@ -1,16 +1,17 @@
-import { DockerImageFunction, DockerImageCode } from '@aws-cdk/aws-lambda';
+import { DockerImageFunction, DockerImageCode } from 'aws-cdk-lib/aws-lambda';
 
 import {
   Effect, FederatedPrincipal, ManagedPolicy, PolicyStatement, Role, WebIdentityPrincipal,
-} from '@aws-cdk/aws-iam';
+} from 'aws-cdk-lib/aws-iam';
 import {
   AccountRecovery, Mfa, OAuthScope, UserPoolClient, CfnIdentityPoolRoleAttachment, CfnUserPoolGroup, UserPool, CfnIdentityPool,
-} from '@aws-cdk/aws-cognito';
-import { Stack, StackProps, Construct, Duration } from '@aws-cdk/core';
-import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
-import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations';
-import { RetentionDays } from '@aws-cdk/aws-logs';
-import { Bucket } from '@aws-cdk/aws-s3';
+} from 'aws-cdk-lib/aws-cognito';
+import { Stack, StackProps, Duration } from 'aws-cdk-lib';
+import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2-alpha';
+import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
+import { RetentionDays } from 'aws-cdk-lib/aws-logs';
+import { Bucket } from 'aws-cdk-lib/aws-s3';
+import { Construct } from 'constructs';
 
 export interface GroupConfig {
   id: string,
@@ -69,9 +70,7 @@ export class CognitoLambdaStack extends Stack {
     });
 
     const fn = new DockerImageFunction(this, 'CognitoLambdaFunction', {
-      code: DockerImageCode.fromImageAsset('lambda', {
-        repositoryName: 'cognito-lambda',
-      }),
+      code: DockerImageCode.fromImageAsset('lambda', {}),
       functionName: props.name,
       logRetention: RetentionDays.ONE_DAY,
       retryAttempts: 0,
@@ -257,7 +256,7 @@ export class CognitoLambdaStack extends Stack {
         effect: Effect.ALLOW,
         actions: [
           'sts:GetFederationToken',
-          ],
+        ],
         resources: ['*'],
       }));
       groupRole.addToPolicy(new PolicyStatement({
@@ -269,7 +268,7 @@ export class CognitoLambdaStack extends Stack {
         ],
         resources: ['*'],
       }));
-  
+
       return { id: group.id, name: group.name, role: groupRole };
     });
     roles.forEach((role) => {

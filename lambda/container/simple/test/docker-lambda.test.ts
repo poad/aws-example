@@ -1,18 +1,17 @@
 import { Template } from 'aws-cdk-lib/assertions';
 import * as cdk from 'aws-cdk-lib';
-import * as Infra from '../lib/infra-stack';
+import * as DockerLambdaStack from '../lib/docker-lambda-stack';
 
 test('Empty Stack', () => {
   const app = new cdk.App();
   // WHEN
-  const stack = new Infra.InfraStack(app, 'MyTestStack', {
-    userPoolId: '',
-    idPoolId: '',
-    bucket: '',
-    groups: [],
+  const stack = new DockerLambdaStack.DockerLambdaStack(app, 'MyTestStack', {
+    name: 'cognito-lambda',
+    environment: 'dev',
     env: {
-      region: ''
-    }
+      region: 'us-west-2',
+    },
+    region: 'us-west-2',
   });
   // THEN
   const template = Template.fromStack(stack);

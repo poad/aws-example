@@ -1,6 +1,7 @@
-import * as cdk from '@aws-cdk/core';
-import * as iam from '@aws-cdk/aws-iam';
-import * as cognito from '@aws-cdk/aws-cognito';
+import * as cdk from 'aws-cdk-lib';
+import * as iam from 'aws-cdk-lib/aws-iam';
+import * as cognito from 'aws-cdk-lib/aws-cognito';
+import { Construct } from 'constructs';
 
 export interface GroupConfig {
   id: string,
@@ -17,7 +18,7 @@ interface InfraProps extends cdk.StackProps {
 }
 
 export class InfraStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props: InfraProps) {
+  constructor(scope: Construct, id: string, props: InfraProps) {
     super(scope, id, props);
 
     const conditions = {
@@ -47,7 +48,7 @@ export class InfraStack extends cdk.Stack {
               `arn:aws:s3:::${props.bucket}/vercel.svg`,
               `arn:aws:s3:::${props.bucket}/${allowPath}/*`
             ],
-            actions: [            
+            actions: [
               's3:*'
             ]
           })
@@ -56,7 +57,7 @@ export class InfraStack extends cdk.Stack {
           new iam.PolicyStatement({
             effect: iam.Effect.ALLOW,
             resources: ['*'],
-            actions: [            
+            actions: [
               's3:GetAccessPoint',
               's3:GetAccountPublicAccessBlock',
               's3:ListAllMyBuckets',
@@ -76,6 +77,6 @@ export class InfraStack extends cdk.Stack {
         roleArn: role.role.roleArn
       })
     });
-    
+
   }
 }

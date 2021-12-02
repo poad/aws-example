@@ -1,14 +1,14 @@
 import {
   Effect, FederatedPrincipal, PolicyDocument, PolicyStatement, Role, ServicePrincipal,
-} from '@aws-cdk/aws-iam';
+} from 'aws-cdk-lib/aws-iam';
 import {
   AccountRecovery, Mfa, OAuthScope, UserPoolClient, CfnIdentityPoolRoleAttachment, UserPool, CfnIdentityPool,
-} from '@aws-cdk/aws-cognito';
-import { Stack, StackProps, Construct, Duration, RemovalPolicy, Tags, Tag } from '@aws-cdk/core';
-import { RetentionDays } from '@aws-cdk/aws-logs';
-import { NodejsFunction } from '@aws-cdk/aws-lambda-nodejs';
-import { Runtime } from '@aws-cdk/aws-lambda';
-
+} from 'aws-cdk-lib/aws-cognito';
+import { Stack, StackProps, Duration, RemovalPolicy, Tags, Tag } from 'aws-cdk-lib';
+import { RetentionDays } from 'aws-cdk-lib/aws-logs';
+import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
+import { Runtime } from 'aws-cdk-lib/aws-lambda';
+import { Construct } from 'constructs';
 
 
 export interface InfraStackStackProps extends StackProps {

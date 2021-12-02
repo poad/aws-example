@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
-import * as cdk from '@aws-cdk/core';
+import * as cdk from 'aws-cdk-lib';
 import { TinyDeviceFlowStack } from '../lib/tiny-device-flow-stack';
 import { nextJsExport } from '../lib/process/setup';
 

@@ -1,16 +1,17 @@
-import { AccountRecovery, CfnIdentityPool, CfnIdentityPoolRoleAttachment, Mfa, OAuthScope, UserPool, UserPoolClient } from '@aws-cdk/aws-cognito';
-import { Effect, FederatedPrincipal, PolicyDocument, PolicyStatement, Role, ServicePrincipal } from '@aws-cdk/aws-iam';
-import { Runtime } from '@aws-cdk/aws-lambda';
-import { NodejsFunction } from '@aws-cdk/aws-lambda-nodejs';
-import { RetentionDays } from '@aws-cdk/aws-logs';
-import * as s3 from '@aws-cdk/aws-s3';
-import * as cdk from '@aws-cdk/core';
-import { Duration, RemovalPolicy } from '@aws-cdk/core';
-import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
-import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations';
-import { Table, AttributeType } from '@aws-cdk/aws-dynamodb';
-import * as s3deploy from '@aws-cdk/aws-s3-deployment';
+import { AccountRecovery, CfnIdentityPool, CfnIdentityPoolRoleAttachment, Mfa, OAuthScope, UserPool, UserPoolClient } from 'aws-cdk-lib/aws-cognito';
+import { Effect, FederatedPrincipal, PolicyDocument, PolicyStatement, Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
+import { Runtime } from 'aws-cdk-lib/aws-lambda';
+import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
+import { RetentionDays } from 'aws-cdk-lib/aws-logs';
+import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as cdk from 'aws-cdk-lib';
+import { Duration, RemovalPolicy } from 'aws-cdk-lib';
+import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2-alpha';
+import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
+import { Table, AttributeType } from 'aws-cdk-lib/aws-dynamodb';
+import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
 import assert from 'node:assert';
+import { Construct } from 'constructs';
 
 
 export interface TinyDeviceFlowStackStackProps extends cdk.StackProps {
@@ -31,7 +32,7 @@ export interface TinyDeviceFlowStackStackProps extends cdk.StackProps {
 }
 
 export class TinyDeviceFlowStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props: TinyDeviceFlowStackStackProps) {
+  constructor(scope: Construct, id: string, props: TinyDeviceFlowStackStackProps) {
     super(scope, id, props);
 
     const api = new HttpApi(this, "HttpApi", {
@@ -84,7 +85,7 @@ export class TinyDeviceFlowStack extends cdk.Stack {
         custom: true,
       },
       oAuth: {
-        callbackUrls: [`${api.url}oauth/process/index.html`,`${api.url}oauth/complete`],
+        callbackUrls: [`${api.url}oauth/process/index.html`, `${api.url}oauth/complete`],
         // logoutUrls,
         flows: {
           authorizationCodeGrant: true,
@@ -404,16 +405,16 @@ export class TinyDeviceFlowStack extends cdk.Stack {
 
 
     const { responseType, identityProvider, scopes } = props;
-  
+
     const availableScopes = Object.entries(scopes)
       .filter(scope => scope[1])
       .map(scope => scope[0]);
     assert(availableScopes.length > 0, 'The scopes must have at least one true entry.');
 
     const scopeParam = Object.entries(scopes)
-        .filter(scope => scope[1])
-        .map(scope => scope[0])
-        .reduce((acc,cur) => `${acc}+${cur}`)
+      .filter(scope => scope[1])
+      .map(scope => scope[0])
+      .reduce((acc, cur) => `${acc}+${cur}`)
     const activateEndpointFnName = `${props.name}-activate-endpoint`;
     const activateEndpointFn = new NodejsFunction(this, 'ActivateEndpointLambdaFunction', {
       runtime: Runtime.NODEJS_14_X,
@@ -604,10 +605,10 @@ export class TinyDeviceFlowStack extends cdk.Stack {
       })
     });
 
-    
-    [ deviceCodeEndpointFn, tokenEndpointFn, activateEndpointFn, activateCompleteEndpointFn ].forEach(fn => deviceCodeTable.grantReadWriteData(fn));
-    
-    
+
+    [deviceCodeEndpointFn, tokenEndpointFn, activateEndpointFn, activateCompleteEndpointFn].forEach(fn => deviceCodeTable.grantReadWriteData(fn));
+
+
     api.addRoutes({
       path: '/{proxy+}',
       methods: [HttpMethod.GET],

@@ -1,9 +1,10 @@
-import { DockerImageFunction, DockerImageCode } from '@aws-cdk/aws-lambda';
+import { DockerImageFunction, DockerImageCode } from 'aws-cdk-lib/aws-lambda';
 
-import { Stack, StackProps, Construct } from '@aws-cdk/core';
-import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
-import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations';
-import { RetentionDays } from '@aws-cdk/aws-logs';
+import { Stack, StackProps } from 'aws-cdk-lib';
+import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2-alpha';
+import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
+import { RetentionDays } from 'aws-cdk-lib/aws-logs';
+import { Construct } from 'constructs';
 
 
 export interface DockerLambdaStackStackProps extends StackProps {

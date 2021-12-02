@@ -1,9 +1,10 @@
-import * as cdk from '@aws-cdk/core';
-import * as cognito from '@aws-cdk/aws-cognito';
-import * as iam from '@aws-cdk/aws-iam';
-import { AccountRecovery, Mfa, OAuthScope, UserPoolClientIdentityProvider, UserPoolIdentityProvider } from '@aws-cdk/aws-cognito';
-import { Duration, Stack } from '@aws-cdk/core';
-import { ManagedPolicy } from '@aws-cdk/aws-iam';
+import * as cdk from 'aws-cdk-lib';
+import * as cognito from 'aws-cdk-lib/aws-cognito';
+import * as iam from 'aws-cdk-lib/aws-iam';
+import { AccountRecovery, Mfa, OAuthScope } from 'aws-cdk-lib/aws-cognito';
+import { Duration } from 'aws-cdk-lib';
+import { ManagedPolicy } from 'aws-cdk-lib/aws-iam';
+import { Construct } from 'constructs';
 
 
 export interface GroupConfig {
@@ -18,7 +19,7 @@ interface CognitoAwsConsoleInfraProps extends cdk.StackProps {
 }
 
 export class CognitoAwsConsoleInfraStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props: CognitoAwsConsoleInfraProps) {
+  constructor(scope: Construct, id: string, props: CognitoAwsConsoleInfraProps) {
     super(scope, id, props);
 
     const userPool = new cognito.UserPool(this, `CognitoAwsConsoleUserPool`, {
@@ -86,7 +87,7 @@ export class CognitoAwsConsoleInfraStack extends cdk.Stack {
       ],
       identityPoolName: `${props.environment} cognito aws console idp`
     });
-    
+
     // TODO https://github.com/aws/aws-cdk/issues/2041 sts:TagSession support
 
     const unauthenticatedRole = new iam.Role(this, 'CognitoDefaultUnauthenticatedRole', {
@@ -186,7 +187,7 @@ export class CognitoAwsConsoleInfraStack extends cdk.Stack {
         ],
         resources: ["*"],
       }));
-  
+
       return { id: group.id, name: group.name, role: groupRole };
     });
     roles.forEach(role => {
@@ -196,6 +197,6 @@ export class CognitoAwsConsoleInfraStack extends cdk.Stack {
         roleArn: role.role.roleArn
       })
     });
-    
+
   }
 }

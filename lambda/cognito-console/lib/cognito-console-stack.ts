@@ -1,15 +1,16 @@
 import {
   Effect, FederatedPrincipal, ManagedPolicy, PolicyDocument, PolicyStatement, Role, ServicePrincipal, WebIdentityPrincipal,
-} from '@aws-cdk/aws-iam';
+} from 'aws-cdk-lib/aws-iam';
 import {
   AccountRecovery, Mfa, OAuthScope, UserPoolClient, CfnIdentityPoolRoleAttachment, CfnUserPoolGroup, UserPool, CfnIdentityPool,
-} from '@aws-cdk/aws-cognito';
-import { Stack, StackProps, Construct, Duration, RemovalPolicy } from '@aws-cdk/core';
-import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
-import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations';
-import { RetentionDays } from '@aws-cdk/aws-logs';
-import { NodejsFunction } from '@aws-cdk/aws-lambda-nodejs';
-import { Runtime } from '@aws-cdk/aws-lambda';
+} from 'aws-cdk-lib/aws-cognito';
+import { Stack, StackProps, Duration, RemovalPolicy } from 'aws-cdk-lib/core';
+import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2-alpha';
+import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
+import { RetentionDays } from 'aws-cdk-lib/aws-logs';
+import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
+import { Runtime } from 'aws-cdk-lib/aws-lambda';
+import { Construct } from 'constructs';
 
 
 export interface GroupConfig {
@@ -30,15 +31,15 @@ export interface CognitoConsoleStackProps extends StackProps {
     app: {
       signIn: {
         name: string,
-        entry: string,  
+        entry: string,
       },
       signOut: {
         name: string,
-        entry: string,  
+        entry: string,
       },
       userInfo: {
         name: string,
-        entry: string,  
+        entry: string,
       },
     },
     triggers: {
@@ -507,7 +508,7 @@ export class CognitoConsoleStack extends Stack {
         })
       }) : undefined;
 
-    
+
     const userPool = new UserPool(this, 'UserPool', {
       userPoolName: `${props.environment}-cognito-console-lambda`,
       signInAliases: {

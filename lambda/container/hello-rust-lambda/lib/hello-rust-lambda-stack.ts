@@ -1,8 +1,9 @@
-import * as cdk from '@aws-cdk/core';
-import { DockerImageFunction, DockerImageCode } from '@aws-cdk/aws-lambda';
-import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
-import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations';
-import { RetentionDays } from '@aws-cdk/aws-logs';
+import * as cdk from 'aws-cdk-lib';
+import { DockerImageFunction, DockerImageCode } from 'aws-cdk-lib/aws-lambda';
+import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2-alpha';
+import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
+import { RetentionDays } from 'aws-cdk-lib/aws-logs';
+import { Construct } from 'constructs';
 
 export interface HelloRustLambdaStackProps extends cdk.StackProps {
   name: string,
@@ -11,7 +12,7 @@ export interface HelloRustLambdaStackProps extends cdk.StackProps {
 }
 
 export class HelloRustLambdaStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props: HelloRustLambdaStackProps) {
+  constructor(scope: Construct, id: string, props: HelloRustLambdaStackProps) {
     super(scope, id, props);
 
     const fn = new DockerImageFunction(this, 'hello-rust-lambda-function', {

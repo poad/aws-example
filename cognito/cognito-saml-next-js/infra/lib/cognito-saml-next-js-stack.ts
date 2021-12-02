@@ -1,8 +1,9 @@
-import * as cdk from '@aws-cdk/core';
-import * as cognito from '@aws-cdk/aws-cognito';
-import * as iam from '@aws-cdk/aws-iam';
-import { AccountRecovery, ClientAttributes, Mfa, OAuthScope, UserPoolIdentityProvider } from '@aws-cdk/aws-cognito';
-import { Duration } from '@aws-cdk/core';
+import * as cdk from 'aws-cdk-lib';
+import * as cognito from 'aws-cdk-lib/aws-cognito';
+import * as iam from 'aws-cdk-lib/aws-iam';
+import { AccountRecovery, ClientAttributes, Mfa, OAuthScope, UserPoolIdentityProvider } from 'aws-cdk-lib/aws-cognito';
+import { Duration } from 'aws-cdk-lib';
+import { Construct } from 'constructs';
 
 interface CognitoSamlNextJsStackProps extends cdk.StackProps {
   environment: string,
@@ -13,7 +14,7 @@ interface CognitoSamlNextJsStackProps extends cdk.StackProps {
 }
 
 export class CognitoSamlNextJsStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props: CognitoSamlNextJsStackProps) {
+  constructor(scope: Construct, id: string, props: CognitoSamlNextJsStackProps) {
     super(scope, id, props);
 
     const { environment, domain, identityProviderMetadataURL, callbackUrls, logoutUrls } = props;
@@ -53,24 +54,24 @@ export class CognitoSamlNextJsStack extends cdk.Stack {
       }
     });
 
-    const idpName = identityProviderMetadataURL ? 
+    const idpName = identityProviderMetadataURL ?
       new cognito.CfnUserPoolIdentityProvider(this, "CfnCognitoSamlIdPAzureAD", {
-      providerName: 'AzureAD',
-      providerDetails: {
-        MetadataURL: identityProviderMetadataURL
-      },
-      providerType: "SAML",
-      attributeMapping: {
-        "email": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress",
-        "email_verified": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/email_verified",
-        "family_name": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
-        "given_name": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname",
-        "name": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
-        "username": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
-        "preferredUsername": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
-      },
-      userPoolId: userPool.userPoolId
-    }).providerName : undefined;
+        providerName: 'AzureAD',
+        providerDetails: {
+          MetadataURL: identityProviderMetadataURL
+        },
+        providerType: "SAML",
+        attributeMapping: {
+          "email": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress",
+          "email_verified": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/email_verified",
+          "family_name": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
+          "given_name": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname",
+          "name": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
+          "username": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
+          "preferredUsername": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
+        },
+        userPoolId: userPool.userPoolId
+      }).providerName : undefined;
 
     if (idpName !== undefined) {
       cognito.UserPoolClientIdentityProvider.custom(idpName);
@@ -131,7 +132,7 @@ export class CognitoSamlNextJsStack extends cdk.Stack {
       ],
       identityPoolName: `${environment} Cognito SAML idp`
     });
-    
+
     // TODO https://github.com/aws/aws-cdk/issues/2041 sts:TagSession support
 
     const unauthenticatedRole = new iam.Role(this, 'CognitoDefaultUnauthenticatedRole', {

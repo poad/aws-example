@@ -1,6 +1,8 @@
-import { BuildSpec, EventAction, FilterGroup, LinuxBuildImage, Project, Source } from '@aws-cdk/aws-codebuild';
-import { Repository } from '@aws-cdk/aws-ecr';
-import * as cdk from '@aws-cdk/core';
+import { BuildSpec, EventAction, FilterGroup, LinuxBuildImage, Project, Source } from 'aws-cdk-lib/aws-codebuild';
+import { Repository } from 'aws-cdk-lib/aws-ecr';
+import * as cdk from 'aws-cdk-lib/core';
+import { Construct } from 'constructs';
+
 
 export interface CustomImageTestStackProps extends cdk.StackProps {
   owner: string,
@@ -11,7 +13,7 @@ export interface CustomImageTestStackProps extends cdk.StackProps {
 }
 
 export class CustomImageTestStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props: CustomImageTestStackProps) {
+  constructor(scope: Construct, id: string, props: CustomImageTestStackProps) {
     super(scope, id, props);
 
     const repository = Repository.fromRepositoryName(this, 'ECR', 'aws-codebuild-docker-images');

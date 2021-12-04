@@ -327,13 +327,11 @@ const Users: React.FunctionComponent<UsersProps> = (props): JSX.Element => {
         </TableContainer>
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
-          component="div"
           count={users.length}
           rowsPerPage={page.rowsPerPage}
           page={page.page}
-          onChangePage={handleChangePage}
           onPageChange={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Container>
     </Box>

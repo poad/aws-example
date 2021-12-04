@@ -13,6 +13,7 @@ import awsconfig, { appConfig } from '../aws-config';
 Amplify.configure(awsconfig);
 
 interface HomeProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   signOut: (opts?: any) => Promise<any>
 }
 

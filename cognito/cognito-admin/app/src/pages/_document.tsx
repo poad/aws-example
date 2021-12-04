@@ -1,16 +1,22 @@
 import * as React from 'react';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import theme from '../styles/theme';
 import createCache from '@emotion/cache';
+import { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 
-export default class MyDocument extends Document {
-  render() {
+// https://github.com/vercel/next.js/pull/31939
+import Document, { DocumentInitialProps } from 'next/dist/pages/_document';
+
+export default class NextDocument extends Document {
+  static getInitialProps: (ctx: DocumentContext) => Promise<DocumentInitialProps>;
+
+  render(): JSX.Element {
     return (
       <Html lang="en">
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
+          {/* eslint-disable-next-line @next/next/no-page-custom-font */}
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
@@ -25,7 +31,7 @@ export default class MyDocument extends Document {
   }
 }
 
-MyDocument.getInitialProps = async (ctx) => {
+NextDocument.getInitialProps = async (ctx: DocumentContext) => {
 
   const originalRenderPage = ctx.renderPage;
 
@@ -34,11 +40,13 @@ MyDocument.getInitialProps = async (ctx) => {
 
   ctx.renderPage = () =>
     originalRenderPage({
-      // eslint-disable-next-line react/display-name,@typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any,react/display-name
       enhanceApp: (App: any) => (props) => <App emotionCache={cache} {...props} />,
     });
 
   const initialProps = await Document.getInitialProps(ctx);
+  // This is important. It prevents emotion to render invalid HTML.
+  // See https://github.com/mui-org/material-ui/issues/26561#issuecomment-855286153
   const emotionStyles = extractCriticalToChunks(initialProps.html);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const emotionStyleTags = emotionStyles.styles.map((style: { key: React.Key | null | undefined; ids: any[]; css: any; }) => (

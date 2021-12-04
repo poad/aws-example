@@ -267,7 +267,7 @@ const Groups: React.FunctionComponent<GroupsProps> = (props): JSX.Element => {
 
       <Box component="span" m={1}>
         <Container fixed>
-          <CreateGroupDialog client={client} iamClient={props.iamClient} onCreate={onCreate} onError={onError}/>
+          <CreateGroupDialog client={client} iamClient={props.iamClient} onCreate={onCreate} onError={onError} />
           <TableContainer>
             <Table size='small' stickyHeader>
               <TableHead>
@@ -314,14 +314,12 @@ const Groups: React.FunctionComponent<GroupsProps> = (props): JSX.Element => {
             </Table>
           </TableContainer>
           <TablePagination
-            component="div"
             count={groups.length}
             rowsPerPage={page.rowsPerPage}
             rowsPerPageOptions={[10, 25, 100]}
             page={page.page}
-            onChangePage={handleChangePage}
             onPageChange={handleChangePage}
-            onChangeRowsPerPage={handleChangeRowsPerPage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
           />
         </Container>
       </Box>

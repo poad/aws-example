@@ -1,7 +1,4 @@
-import { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
-
-// https://github.com/vercel/next.js/pull/31939
-import Document from 'next/dist/pages/_document';
+import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {

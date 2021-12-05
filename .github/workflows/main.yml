@@ -4,10 +4,11 @@ on:
   workflow_dispatch:
 
 permissions:
-  actions: write
+  actions: read
   checks: write
-  contents: write
+  contents: none
   deployments: none
+  id-token: write
   issues: none
   packages: none
   pull-requests: write

@@ -16,6 +16,7 @@ permissions:
   checks: write
   contents: none
   deployments: none
+  id-token: write
   issues: none
   packages: none
   pull-requests: write
@@ -24,7 +25,6 @@ permissions:
   statuses: write
 
 jobs:
-
   configure:
     runs-on: ubuntu-latest
     if: github.actor != 'dependabot[bot]'

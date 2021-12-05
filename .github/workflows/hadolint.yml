@@ -6,8 +6,20 @@ on:
 
   workflow_dispatch:
 
-jobs:
+permissions:
+  actions: read
+  checks: write
+  contents: none
+  deployments: none
+  id-token: write
+  issues: none
+  packages: none
+  pull-requests: write
+  repository-projects: none
+  security-events: write
+  statuses: write
 
+jobs:
   hadolint:
     runs-on: ubuntu-latest
 

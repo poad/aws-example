@@ -6,11 +6,13 @@ batch:
 phases:
   install:
     runtime-versions:
-      android: 29
-      java: openjdk8
+      java: openjdk11
+    commands:
+      - env JAVA_HOME=$JAVA_8_HOME JRE_HOME=$JRE_8_HOME JDK_HOME=$JDK_8_HOME sdkmanager "cmdline-tools;latest"
+      - PATH="${ANDROID_HOME}/cmdline-tools/bin:${PATH}"
+      - export "${PATH}
   build:
     commands:
-      - cd ./codebuild/custom-image-test/android
       - chmod +x gradlew
       - ./gradlew assembleDebug
 

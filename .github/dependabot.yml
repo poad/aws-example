@@ -208,17 +208,6 @@ updates:
     assignees:
       - poad
 
-  - package-ecosystem: gradle
-    directory: '/codebuild/custom-image-test/android/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-
   - package-ecosystem: cargo
     directory: '/lambda/container/hello-rust-lambda/lambda/'
     schedule:

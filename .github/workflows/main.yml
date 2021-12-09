@@ -59,7 +59,7 @@ jobs:
       uses: poad/update-node-modules@v1.0.5
       with:
         yarn: true
-        path: ${{github.workspace}}/cognito/cognito-s3-example/
+        path: ${{github.workspace}}/cognito/cognito-s3-example/app/
         ignore: '[ "eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser", "typescript" ]'
 
     - name: update (cognito/ccognito-s3-example/infra)

@@ -6,7 +6,7 @@ import {
 } from 'aws-cdk-lib/aws-cognito';
 import { Stack, StackProps, Duration, RemovalPolicy } from 'aws-cdk-lib/core';
 import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2-alpha';
-import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
+import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
 import { RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
@@ -691,32 +691,36 @@ export class CognitoConsoleStack extends Stack {
 
     const api = new HttpApi(this, "HttpApi", {
       apiName: `Cognito Console Lambda API (${props.environment})`,
-      defaultIntegration: new LambdaProxyIntegration({
-        handler: signInFn
-      })
+      defaultIntegration: new HttpLambdaIntegration(
+        'default-handler',
+        signInFn
+      )
     });
     api.addRoutes({
       path: "/signin",
       methods: [HttpMethod.ANY],
-      integration: new LambdaProxyIntegration({
-        handler: signInFn
-      }),
+      integration: new HttpLambdaIntegration(
+        'signin-handler',
+        signInFn
+      ),
     });
 
     api.addRoutes({
       path: "/signout",
       methods: [HttpMethod.ANY],
-      integration: new LambdaProxyIntegration({
-        handler: signOutFn
-      }),
+      integration: new HttpLambdaIntegration(
+        'signout-handler',
+        signOutFn
+      ),
     });
 
     api.addRoutes({
       path: "/userInfo",
       methods: [HttpMethod.ANY],
-      integration: new LambdaProxyIntegration({
-        handler: userInfoFn
-      }),
+      integration: new HttpLambdaIntegration(
+        'user-info-handler',
+        userInfoFn
+      ),
     });
 
     const callbackUrls = props.auth0Domain !== undefined ? [`${api.url}/signin`, `https://${props.auth0Domain}.auth0.com/login/callback`] : [`${api.url!}`];

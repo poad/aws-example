@@ -1,7 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import { DockerImageFunction, DockerImageCode } from 'aws-cdk-lib/aws-lambda';
 import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2-alpha';
-import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
+import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
 import { RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
 
@@ -26,16 +26,18 @@ export class HelloRustLambdaStack extends cdk.Stack {
 
     const api = new HttpApi(this, "HttpApi", {
       apiName: 'Hello Rust Lambda API',
-      defaultIntegration: new LambdaProxyIntegration({
-        handler: fn
-      })
+      defaultIntegration: new HttpLambdaIntegration(
+        'default-handler',
+        fn
+      )
     });
     api.addRoutes({
       path: "/{proxy+}",
       methods: [HttpMethod.ANY],
-      integration: new LambdaProxyIntegration({
-        handler: fn
-      }),
+      integration: new HttpLambdaIntegration(
+        'proxy-handler',
+        fn
+      ),
     });
   }
 }

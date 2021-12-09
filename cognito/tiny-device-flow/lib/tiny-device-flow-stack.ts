@@ -7,7 +7,7 @@ import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as cdk from 'aws-cdk-lib';
 import { Duration, RemovalPolicy } from 'aws-cdk-lib';
 import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2-alpha';
-import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
+import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
 import { Table, AttributeType } from 'aws-cdk-lib/aws-dynamodb';
 import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
 import assert from 'node:assert';
@@ -612,56 +612,63 @@ export class TinyDeviceFlowStack extends cdk.Stack {
     api.addRoutes({
       path: '/{proxy+}',
       methods: [HttpMethod.GET],
-      integration: new LambdaProxyIntegration({
-        handler: resourceEndpointFn
-      }),
+      integration: new HttpLambdaIntegration(
+        'proxy-handler',
+        resourceEndpointFn
+      ),
     });
 
 
     api.addRoutes({
       path: '/oauth/device/code',
       methods: [HttpMethod.POST],
-      integration: new LambdaProxyIntegration({
-        handler: deviceCodeEndpointFn
-      }),
+      integration: new HttpLambdaIntegration(
+        'code-handler',
+        deviceCodeEndpointFn
+      ),
     });
 
     api.addRoutes({
       path: '/oauth/token',
       methods: [HttpMethod.POST],
-      integration: new LambdaProxyIntegration({
-        handler: tokenEndpointFn
-      }),
+      integration: new HttpLambdaIntegration(
+        'token-handler',
+        tokenEndpointFn
+      ),
     });
 
     api.addRoutes({
       path: '/oauth/device/activate',
       methods: [HttpMethod.GET, HttpMethod.POST],
-      integration: new LambdaProxyIntegration({
-        handler: activateEndpointFn
-      }),
+      integration: new HttpLambdaIntegration(
+        'activate-handler',
+        activateEndpointFn
+      ),
     });
     api.addRoutes({
       path: '/oauth/device/activate/{proxy+}',
       methods: [HttpMethod.GET, HttpMethod.POST],
-      integration: new LambdaProxyIntegration({
-        handler: activateEndpointFn
-      }),
+      integration: new HttpLambdaIntegration(
+        'activate-proxy-handler',
+        activateEndpointFn
+      ),
     });
 
     api.addRoutes({
       path: '/oauth/complete',
       methods: [HttpMethod.GET],
-      integration: new LambdaProxyIntegration({
-        handler: activateCompleteEndpointFn
-      }),
+      integration: new HttpLambdaIntegration(
+        'complete-handler',
+        activateCompleteEndpointFn
+      ),
     });
     api.addRoutes({
       path: '/oauth/complete/{proxy+}',
       methods: [HttpMethod.GET],
-      integration: new LambdaProxyIntegration({
-        handler: activateCompleteEndpointFn
-      }),
+      integration: new HttpLambdaIntegration(
+        'complete-proxy-handler',
+        activateCompleteEndpointFn
+      ),
     });
   }
 }

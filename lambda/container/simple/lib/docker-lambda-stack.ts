@@ -2,7 +2,7 @@ import { DockerImageFunction, DockerImageCode } from 'aws-cdk-lib/aws-lambda';
 
 import { Stack, StackProps } from 'aws-cdk-lib';
 import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2-alpha';
-import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
+import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
 import { RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
 
@@ -27,16 +27,16 @@ export class DockerLambdaStack extends Stack {
 
     const api = new HttpApi(this, "HttpApi", {
       apiName: 'Docker Lambda API',
-      defaultIntegration: new LambdaProxyIntegration({
-        handler: fn
-      })
+      defaultIntegration: new HttpLambdaIntegration(
+        'default-handler' ,fn
+      )
     });
     api.addRoutes({
       path: "/{proxy+}",
       methods: [HttpMethod.ANY],
-      integration: new LambdaProxyIntegration({
-        handler: fn
-      }),
+      integration: new HttpLambdaIntegration(
+        'proxy-handler' ,fn
+      ),
     });
   }
 }

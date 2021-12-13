@@ -52,7 +52,7 @@ export class PythonLambdaStack extends cdk.Stack {
     const lambdaFn = new PythonFunction(this, 'Ec2InstanceKiller', {
       functionName: 'ec2-instance-killer',
       entry: path.resolve(__dirname, '../functions'),
-      runtime: lambda.Runtime.PYTHON_3_8,
+      runtime: lambda.Runtime.PYTHON_3_9,
       logRetention: RetentionDays.ONE_DAY,
       role: role,
       timeout: cdk.Duration.seconds(14.5 * 60),

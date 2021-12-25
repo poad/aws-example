@@ -406,16 +406,16 @@
     "@aws-sdk/util-utf8-node" "3.6.1"
     tslib "^2.0.0"
 
-"@aws-sdk/client-cognito-identity-provider@^3.43.0":
-  version "3.43.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/client-cognito-identity-provider/-/client-cognito-identity-provider-3.43.0.tgz#b5095ba6b9456c460cfb6e70a93b16b2abfdedc2"
-  integrity sha512-H0zwEkS6gFxr/4IY4uJ7uqLrP48ryDsEea5bA/Wz5CDIUIJGwBq7LUNGmZuyqtrkrok+5D1zBqydR39ImerdcQ==
+"@aws-sdk/client-cognito-identity-provider@^3.45.0":
+  version "3.45.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/client-cognito-identity-provider/-/client-cognito-identity-provider-3.45.0.tgz#651341975a3b649173a935272d609af3fc272821"
+  integrity sha512-MymWSaOPw31qT6iBrebS2sukIvhRZG8yXeyJSGjWkmFOqFLd4Q6fHoHHVbDYpphSxBCz0pnqzmyWqlfCGn/azQ==
   dependencies:
     "@aws-crypto/sha256-browser" "2.0.0"
     "@aws-crypto/sha256-js" "2.0.0"
-    "@aws-sdk/client-sts" "3.43.0"
-    "@aws-sdk/config-resolver" "3.40.0"
-    "@aws-sdk/credential-provider-node" "3.41.0"
+    "@aws-sdk/client-sts" "3.45.0"
+    "@aws-sdk/config-resolver" "3.45.0"
+    "@aws-sdk/credential-provider-node" "3.45.0"
     "@aws-sdk/fetch-http-handler" "3.40.0"
     "@aws-sdk/hash-node" "3.40.0"
     "@aws-sdk/invalid-dependency" "3.40.0"
@@ -424,7 +424,7 @@
     "@aws-sdk/middleware-logger" "3.40.0"
     "@aws-sdk/middleware-retry" "3.40.0"
     "@aws-sdk/middleware-serde" "3.40.0"
-    "@aws-sdk/middleware-signing" "3.40.0"
+    "@aws-sdk/middleware-signing" "3.45.0"
     "@aws-sdk/middleware-stack" "3.40.0"
     "@aws-sdk/middleware-user-agent" "3.40.0"
     "@aws-sdk/node-config-provider" "3.40.0"
@@ -1018,15 +1018,15 @@
     fast-xml-parser "3.19.0"
     tslib "^2.3.0"
 
-"@aws-sdk/client-sts@3.43.0":
-  version "3.43.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/client-sts/-/client-sts-3.43.0.tgz#c3d2dde8f3d3662235fd40f28cac249fa9247b2f"
-  integrity sha512-4CKYimjhIEixVtJH0Y8FR5FXc7zIepZtfScy8QHgH+DERXm/YL5cuUbkJiL6ZRTpek0vztVvE+mNSQU0z1eXag==
+"@aws-sdk/client-sts@3.45.0", "@aws-sdk/client-sts@^3.43.0":
+  version "3.45.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/client-sts/-/client-sts-3.45.0.tgz#753c850e5e3e427ce30bde851eb607a766316d59"
+  integrity sha512-D+VGhAg+1i7/WQhfkLn7nWHR+Uyp7FPVAQ/N2MBQvZxGbSSb2agU9DN2FnxeFljOEcGJ7NdJ9YSZCFlJo0bLWA==
   dependencies:
     "@aws-crypto/sha256-browser" "2.0.0"
     "@aws-crypto/sha256-js" "2.0.0"
-    "@aws-sdk/config-resolver" "3.40.0"
-    "@aws-sdk/credential-provider-node" "3.41.0"
+    "@aws-sdk/config-resolver" "3.45.0"
+    "@aws-sdk/credential-provider-node" "3.45.0"
     "@aws-sdk/fetch-http-handler" "3.40.0"
     "@aws-sdk/hash-node" "3.40.0"
     "@aws-sdk/invalid-dependency" "3.40.0"
@@ -1034,9 +1034,9 @@
     "@aws-sdk/middleware-host-header" "3.40.0"
     "@aws-sdk/middleware-logger" "3.40.0"
     "@aws-sdk/middleware-retry" "3.40.0"
-    "@aws-sdk/middleware-sdk-sts" "3.40.0"
+    "@aws-sdk/middleware-sdk-sts" "3.45.0"
     "@aws-sdk/middleware-serde" "3.40.0"
-    "@aws-sdk/middleware-signing" "3.40.0"
+    "@aws-sdk/middleware-signing" "3.45.0"
     "@aws-sdk/middleware-stack" "3.40.0"
     "@aws-sdk/middleware-user-agent" "3.40.0"
     "@aws-sdk/node-config-provider" "3.40.0"
@@ -7657,10 +7657,10 @@ react-generate-context@^1.0.0:
   resolved "https://registry.yarnpkg.com/react-generate-context/-/react-generate-context-1.0.1.tgz#4454cfecb0b3f27502185dfa5c63d5f5ec14b936"
   integrity sha512-rOFGh3KgC2Ot66DmVCcT1p8lVJCmmCjzGE5WK/KsyDFi43wpIbW1PYcr04cQ3mbF4LaIkY6SpK7k1DOgwtpUXA==
 
-react-hook-form@^7.22.3:
-  version "7.22.3"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.22.3.tgz#a66da5e0eaf19c3625f03af8a15266e08b4d000c"
-  integrity sha512-VhWJ531WbyP25C0O0nNTe6GNHmw/zFrJAXJLGKEeseNHitjcQXZ7OsdHbFSiH2KEYmY9tDFkMz9UzWUHdyFswQ==
+react-hook-form@^7.22.5:
+  version "7.22.5"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.22.5.tgz#85a135f3c5ae02ccf73096a03fc14b45607e9baa"
+  integrity sha512-Q2zaeQFXdVQ8l3hcywhltH+Nzj4vo50wMVujHDVN/1Xy9IOaSZJwYBXA2CYTpK6rq41fnXviw3jTLb04c7Gu9Q==
 
 react-is@17.0.2, react-is@^17.0.1, react-is@^17.0.2:
   version "17.0.2"

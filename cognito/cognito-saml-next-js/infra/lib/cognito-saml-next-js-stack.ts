@@ -173,7 +173,8 @@ export class CognitoSamlNextJsStack extends cdk.Stack {
         "ForAnyValue:StringLike": {
           "cognito-identity.amazonaws.com:amr": "authenticated"
         },
-      }, "sts:AssumeRoleWithWebIdentity"),
+      }, "sts:AssumeRoleWithWebIdentity")
+      .withSessionTags(),
       maxSessionDuration: Duration.hours(12),
     });
     authenticatedRole.addToPolicy(new iam.PolicyStatement({

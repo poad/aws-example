@@ -48,7 +48,6 @@ jobs:
         target: [
           ./codebuild/custom-image-test,
           ./lambda/cognito-console,
-          ./lambda/cognito-lambda,
           ./lambda/container/simple,
           ./lambda/container/hello-rust-lambda,
           # ./lambda/python,
@@ -56,10 +55,10 @@ jobs:
           ./cognito/tiny-device-flow/pages,
           ./cognito/cognito-saml-next-js/webapp,
           ./cognito/cognito-saml-next-js/infra,
+          ./cognito/cognito-admin/app,
+          ./cognito/cognito-admin/infra,
           ./cognito/cognito-aws-console-example/app,
-          ./cognito/cognito-aws-console-example/infra,
-          ./cognito/cognito-s3-example/app,
-          ./cognito/cognito-s3-example/infra
+          ./cognito/cognito-aws-console-example/infra
         ]
 
     steps:

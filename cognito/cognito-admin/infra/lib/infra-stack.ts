@@ -9,7 +9,9 @@ import { RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { Construct } from 'constructs';
-import { CognitoIdentityProvider } from '@aws-sdk/client-cognito-identity-provider';
+import { HttpApi } from '@aws-cdk/aws-apigatewayv2-alpha';
+import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
+import { HttpMethod } from 'aws-cdk-lib/aws-stepfunctions-tasks';
 
 
 export interface InfraStackStackProps extends StackProps {
@@ -39,6 +41,120 @@ export interface InfraStackStackProps extends StackProps {
 export class InfraStack extends Stack {
   constructor(scope: Construct, id: string, props: InfraStackStackProps) {
     super(scope, id, props);
+
+
+    const signInFn = new NodejsFunction(this, 'SignInLambdaFunction', {
+      runtime: Runtime.NODEJS_14_X,
+      entry: 'lambda/signin/index.ts',
+      functionName: `${props.environment}-cognito-admin-user-console-sign-in`,
+      logRetention: RetentionDays.ONE_DAY,
+      retryAttempts: 0,
+      environment: {
+        'DOMAIN': props.endUserDomain,
+        'REGION': props.region,
+      },
+      role: new Role(this, 'SignInLambdaExecutionRole', {
+        assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
+        inlinePolicies: {
+          'logs-policy': new PolicyDocument({
+            statements: [
+              new PolicyStatement({
+                effect: Effect.ALLOW,
+                actions: [
+                  'logs:CreateLogGroup',
+                  'logs:CreateLogStream',
+                  'logs:PutLogEvents'
+                ],
+                resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.environment}-cognito-admin-user-console-sign-in:*`],
+              })
+            ]
+          }),
+          'assumed-role-policy': new PolicyDocument(
+            {
+              statements: [
+                new PolicyStatement({
+                  effect: Effect.ALLOW,
+                  actions: [
+                    'cognito-identity:*',
+                    "cognito-idp:*",
+                    'sts:GetFederationToken',
+                    'sts:AssumeRoleWithWebIdentity',
+                  ],
+                  resources: ['*'],
+                })
+              ]
+            }
+          )
+        },
+      })
+    });
+
+    const signOutFn = new NodejsFunction(this, 'SignOutLambdaFunction', {
+      runtime: Runtime.NODEJS_14_X,
+      entry: 'lambda/signout/index.ts',
+      functionName: `${props.environment}-cognito-admin-user-console-sign-out`,
+      logRetention: RetentionDays.ONE_DAY,
+      retryAttempts: 0,
+      role: new Role(this, 'SignOutLambdaExecutionRole', {
+        assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
+        inlinePolicies: {
+          'logs-policy': new PolicyDocument({
+            statements: [
+              new PolicyStatement({
+                effect: Effect.ALLOW,
+                actions: [
+                  'logs:CreateLogGroup',
+                  'logs:CreateLogStream',
+                  'logs:PutLogEvents'
+                ],
+                resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.environment}-cognito-admin-user-console-sign-out:*`],
+              })
+            ]
+          }),
+          'assumed-role-policy': new PolicyDocument(
+            {
+              statements: [
+                new PolicyStatement({
+                  effect: Effect.ALLOW,
+                  actions: [
+                    'cognito-identity:*',
+                    "cognito-idp:*",
+                    'sts:GetFederationToken',
+                    'sts:AssumeRoleWithWebIdentity',
+                  ],
+                  resources: ['*'],
+                })
+              ]
+            }
+          )
+        },
+      })
+    });
+
+    const api = new HttpApi(this, "HttpApi", {
+      apiName: `Cognito Console Lambda API (${props.environment})`,
+      defaultIntegration: new HttpLambdaIntegration(
+        'default-handler',
+        signInFn
+      )
+    });
+    api.addRoutes({
+      path: "/signin",
+      methods: [HttpMethod.GET, HttpMethod.POST],
+      integration: new HttpLambdaIntegration(
+        'signin-handler',
+        signInFn
+      ),
+    });
+
+    api.addRoutes({
+      path: "/signout",
+      methods: [HttpMethod.GET, HttpMethod.POST],
+      integration: new HttpLambdaIntegration(
+        'signout-handler',
+        signOutFn
+      ),
+    });
 
     const blockExternalUserFn = new NodejsFunction(this, 'BlockExternalUserLambdaFunction', {
       runtime: Runtime.NODEJS_14_X,
@@ -327,7 +443,7 @@ export class InfraStack extends Stack {
     });
 
     const cfnIdp = new CfnUserPoolIdentityProvider(this, 'OIDCProvider', {
-      providerName: 'AdminPool',
+      providerName: props.provider,
       providerType: 'OIDC',
       userPoolId: endUserPool.userPoolId,
       providerDetails: {
@@ -351,8 +467,8 @@ export class InfraStack extends Stack {
         custom: true,
       },
       oAuth: {
-        callbackUrls: ['http://localhost:3000'],
-        // logoutUrls,
+        callbackUrls: ['http://localhost:3000', `${api.url}signin`],
+        logoutUrls: [`${api.url}signout`],
         flows: {
           authorizationCodeGrant: true,
           implicitCodeGrant: true,
@@ -481,6 +597,13 @@ export class InfraStack extends Stack {
             })
           }
         });
+
+        signInFn.addEnvironment('USER_POOL_ID', endUserPool.userPoolId);
+        signInFn.addEnvironment('CLIENT_ID', endUsersClient.userPoolClientId);
+        signInFn.addEnvironment('ID_POOL_ID', endUserPoolIdentityPool.ref);
+        signInFn.addEnvironment('IDENTITY_PROVIDER', endUserPool.userPoolProviderName);
+        signInFn.addEnvironment('API_URL', api.url!);
+
         if (props.groupRoleClassificationTag.name !== undefined && props.groupRoleClassificationTag.value !== undefined) {
           Tags.of(groupRole).add(props.groupRoleClassificationTag.name, props.groupRoleClassificationTag.value)
         }

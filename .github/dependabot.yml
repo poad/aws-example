@@ -55,17 +55,6 @@ updates:
       - poad
 
   - package-ecosystem: npm
-    directory: '/cognito/cognito-s3-example/app/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-
-  - package-ecosystem: npm
     directory: '/cognito/cognito-s3-example/infra/'
     schedule:
       interval: daily
@@ -133,28 +122,6 @@ updates:
 
   - package-ecosystem: npm
     directory: '/lambda/cognito-console/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-
-  - package-ecosystem: npm
-    directory: '/lambda/cognito-lambda/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-
-  - package-ecosystem: npm
-    directory: '/lambda/cognito-lambda/lambda/'
     schedule:
       interval: daily
       timezone: Asia/Tokyo

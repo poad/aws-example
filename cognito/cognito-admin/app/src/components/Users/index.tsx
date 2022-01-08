@@ -1,8 +1,8 @@
 import {
   Backdrop, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, TableSortLabel, Container, Box, Dialog,
-  DialogContent, DialogContentText, createStyles, Theme,
+  DialogContent, DialogContentText, Theme,
 } from '@mui/material';
-import { withStyles } from '@mui/styles';
+import { createStyles, withStyles } from '@mui/styles';
 import React, { useEffect, useState } from 'react';
 import Loader from 'react-loader';
 import CreateUserDialog from '../../components/CreateUserDialog';
@@ -80,15 +80,6 @@ interface SortOrder {
   orderBy: TableHeadLabel
 }
 
-// const groupBy = <K extends PropertyKey, V>(
-//     array: readonly V[],
-//     getKey: (cur: V, idx: number, src: readonly V[]) => K
-// ) =>
-//     array.reduce((obj, cur, idx, src) => {
-//         const key = getKey(cur, idx, src);
-//         (obj[key] || (obj[key] = []))!.push(cur);
-//         return obj;
-//     }, {} as Partial<Record<K, V[]>>);
 
 const Users: React.FunctionComponent<UsersProps> = (props): JSX.Element => {
   const [sortOrder, setSortOrder] = useState<SortOrder>({
@@ -327,6 +318,7 @@ const Users: React.FunctionComponent<UsersProps> = (props): JSX.Element => {
         </TableContainer>
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
+          component="div"
           count={users.length}
           rowsPerPage={page.rowsPerPage}
           page={page.page}

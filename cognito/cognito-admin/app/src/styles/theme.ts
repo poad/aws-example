@@ -19,7 +19,6 @@ const options = {
       useNextVariants: true,
     },
   },
-  drawerWidth: 240,
 };
 
 const theme = createTheme(options);

@@ -92,6 +92,7 @@ export class InfraStack extends Stack {
       },
       autoVerify: {
         email: true,
+        phone: false,
       },
       standardAttributes: {
         email: {
@@ -104,7 +105,12 @@ export class InfraStack extends Stack {
           required: false,
         },
       },
+      enableSmsRole: false,
       mfa: Mfa.OPTIONAL,
+      mfaSecondFactor: {
+        sms: false,
+        otp: true,
+      },
       passwordPolicy: {
         minLength: 6,
       },
@@ -190,7 +196,12 @@ export class InfraStack extends Stack {
           required: false,
         },
       },
+      enableSmsRole: false,
       mfa: Mfa.OPTIONAL,
+      mfaSecondFactor: {
+        sms: false,
+        otp: true,
+      },
       passwordPolicy: {
         minLength: 6,
       },

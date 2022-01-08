@@ -1,7 +1,7 @@
 import {
-  Backdrop, Box, Container, createStyles, Dialog, DialogContent, DialogContentText, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TableSortLabel, Theme,
+  Backdrop, Box, Container, Dialog, DialogContent, DialogContentText, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TableSortLabel, Theme,
 } from '@mui/material';
-import { withStyles } from '@mui/styles';
+import { createStyles, withStyles } from '@mui/styles';
 import Loader from 'react-loader';
 import React, { useEffect, useState } from 'react';
 import IamClient from '../../service/IamClient';
@@ -314,6 +314,7 @@ const Groups: React.FunctionComponent<GroupsProps> = (props): JSX.Element => {
             </Table>
           </TableContainer>
           <TablePagination
+            component="span"
             count={groups.length}
             rowsPerPage={page.rowsPerPage}
             rowsPerPageOptions={[10, 25, 100]}

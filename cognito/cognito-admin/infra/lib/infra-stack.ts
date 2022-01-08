@@ -2,13 +2,14 @@ import {
   Effect, FederatedPrincipal, PolicyDocument, PolicyStatement, Role, ServicePrincipal,
 } from 'aws-cdk-lib/aws-iam';
 import {
-  AccountRecovery, Mfa, OAuthScope, UserPoolClient, CfnIdentityPoolRoleAttachment, UserPool, CfnIdentityPool,
+  AccountRecovery, Mfa, OAuthScope, UserPoolClient, CfnIdentityPoolRoleAttachment, UserPool, CfnIdentityPool, CfnUserPoolIdentityProvider, UserPoolClientIdentityProvider,
 } from 'aws-cdk-lib/aws-cognito';
-import { Stack, StackProps, Duration, RemovalPolicy, Tags, Tag } from 'aws-cdk-lib';
+import { Stack, StackProps, Duration, RemovalPolicy, Tags } from 'aws-cdk-lib';
 import { RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { Construct } from 'constructs';
+import { CognitoIdentityProvider } from '@aws-sdk/client-cognito-identity-provider';
 
 
 export interface InfraStackStackProps extends StackProps {
@@ -245,7 +246,6 @@ export class InfraStack extends Stack {
       preventUserExistenceErrors: true,
     });
 
-
     const adminPoolIdentityPool = new CfnIdentityPool(this, 'AdminIdPool', {
       allowUnauthenticatedIdentities: false,
       cognitoIdentityProviders: [
@@ -326,6 +326,20 @@ export class InfraStack extends Stack {
       },
     });
 
+    const cfnIdp = new CfnUserPoolIdentityProvider(this, 'OIDCProvider', {
+      providerName: 'AdminPool',
+      providerType: 'OIDC',
+      userPoolId: endUserPool.userPoolId,
+      providerDetails: {
+        client_id: adminPoolClient.userPoolClientId,
+        authorize_scopes: 'email openid profile',
+        oidc_issuer: `https://cognito-idp.${props.region}.amazonaws.com/${adminUserPool.userPoolId}`,
+        attributes_request_method: 'GET',
+      },
+      attributeMapping: {
+        'email': 'email'
+      }
+    });
 
     const endUsersClient = new UserPoolClient(this, 'EndUserPoolAppClient', {
       userPool: endUserPool,
@@ -351,10 +365,15 @@ export class InfraStack extends Stack {
         ],
       },
       preventUserExistenceErrors: true,
+      supportedIdentityProviders: [
+        UserPoolClientIdentityProvider.COGNITO,
+        UserPoolClientIdentityProvider.custom(cfnIdp.providerName)
+      ],
     });
 
     const endUserPoolIdentityPool = new CfnIdentityPool(this, 'EndUserIdPool', {
       allowUnauthenticatedIdentities: false,
+      allowClassicFlow: true,
       cognitoIdentityProviders: [
         {
           clientId: endUsersClient.userPoolClientId,
@@ -402,7 +421,7 @@ export class InfraStack extends Stack {
         'ForAnyValue:StringLike': {
           'cognito-identity.amazonaws.com:amr': 'authenticated',
         },
-      }, 'sts:AssumeRoleWithWebIdentity'),
+      }, 'sts:AssumeRoleWithWebIdentity').withSessionTags(),
       maxSessionDuration: Duration.hours(12),
       inlinePolicies: {
         'allow-assume-role': new PolicyDocument({

@@ -88,8 +88,6 @@ export class CognitoAwsConsoleInfraStack extends cdk.Stack {
       identityPoolName: `${props.environment} cognito aws console idp`
     });
 
-    // TODO https://github.com/aws/aws-cdk/issues/2041 sts:TagSession support
-
     const unauthenticatedRole = new iam.Role(this, 'CognitoDefaultUnauthenticatedRole', {
       roleName: `${props.environment}-console-unauth-role`,
       assumedBy: new iam.FederatedPrincipal('cognito-identity.amazonaws.com', {
@@ -99,7 +97,8 @@ export class CognitoAwsConsoleInfraStack extends cdk.Stack {
         "ForAnyValue:StringLike": {
           "cognito-identity.amazonaws.com:amr": "unauthenticated"
         },
-      }, "sts:AssumeRoleWithWebIdentity"),
+      }, "sts:AssumeRoleWithWebIdentity")
+      .withSessionTags(),
       maxSessionDuration: Duration.hours(12),
     });
 

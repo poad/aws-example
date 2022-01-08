@@ -23,7 +23,7 @@ export const handler: PreSignUpTriggerHandler = async (
         }))).Users?.find((user) => user.UserStatus !== "EXTERNAL_PROVIDER");
 
         if (user === undefined) {
-            return callback('No such link target', event);
+            return callback(`No such link target. not found ${email}`, event);
         }
 
         const provider = event.userName.split('_')[0];
@@ -33,7 +33,7 @@ export const handler: PreSignUpTriggerHandler = async (
                     return JSON.parse(attribute.Value!) as StringMap[]
                 }) : [] as StringMap[];
         if (identities.find((identity) => identity.providerName !== undefined && identity.providerName !== provider) === undefined) {
-            return callback('No such link target', event);
+            return callback(`No such link target. identities ${JSON.stringify(identities)}`, event);
         }
         event.response.autoVerifyEmail = true;
 

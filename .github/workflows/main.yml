@@ -55,19 +55,6 @@ jobs:
         yarn: true
         path: ${{github.workspace}}/cognito/cognito-aws-console-example/infra/
 
-    - name: update (cognito/cognito-s3-example)
-      uses: poad/update-node-modules@v1.0.5
-      with:
-        yarn: true
-        path: ${{github.workspace}}/cognito/cognito-s3-example/app/
-        ignore: '[ "eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser", "typescript" ]'
-
-    - name: update (cognito/ccognito-s3-example/infra)
-      uses: poad/update-node-modules@v1.0.5
-      with:
-        yarn: true
-        path: ${{github.workspace}}/cognito/cognito-s3-example/infra/
-
     - name: update (cognito/cognito-saml-next-js/webapp)
       uses: poad/update-node-modules@v1.0.5
       with:
@@ -105,18 +92,6 @@ jobs:
       with:
         yarn: true
         path: ${{github.workspace}}/lambda/cognito-console/
-
-    - name: update (lambda/cognito-lambda)
-      uses: poad/update-node-modules@v1.0.5
-      with:
-        yarn: true
-        path: ${{github.workspace}}/lambda/cognito-lambda/
-
-    - name: update (lambda/cognito-lambda/lambda)
-      uses: poad/update-node-modules@v1.0.5
-      with:
-        yarn: true
-        path: ${{github.workspace}}/lambda/cognito-lambda/lambda/
 
     - name: update (lambda/container/hello-rust-lambda)
       uses: poad/update-node-modules@v1.0.5

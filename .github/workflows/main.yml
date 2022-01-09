@@ -42,19 +42,6 @@ jobs:
         yarn: true
         path: ${{github.workspace}}/cognito/cognito-admin/infra/
 
-    - name: update (cognito/cognito-aws-console-example/app)
-      uses: poad/update-node-modules@v1.0.5
-      with:
-        yarn: true
-        path: ${{github.workspace}}/cognito/cognito-aws-console-example/app/
-        ignore: '[ "eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser", "typescript" ]'
-
-    - name: update (cognito/cognito-aws-console-example/infra)
-      uses: poad/update-node-modules@v1.0.5
-      with:
-        yarn: true
-        path: ${{github.workspace}}/cognito/cognito-aws-console-example/infra/
-
     - name: update (cognito/cognito-saml-next-js/webapp)
       uses: poad/update-node-modules@v1.0.5
       with:

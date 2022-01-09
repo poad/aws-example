@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { AppBar, Box, Button, CssBaseline, Tab, Tabs, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, CssBaseline, Link, Tab, Tabs, Toolbar, Typography } from '@mui/material';
 import Amplify, { Auth } from 'aws-amplify';
 import {
   withAuthenticator,
 } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 import styles from '../styles/Home.module.css';
 import awsconfig, { appConfig } from '../aws-config';
@@ -26,6 +27,14 @@ const Home = ({ signOut }: HomeProps): JSX.Element => {
   const [iamClient, setIamClient] = useState<IamClient | undefined>(undefined);
   const [authenticated, setAuthenticated] = useState<boolean>(false);
   const [value, setValue] = React.useState<number>(0);
+
+  const endpoint = process.env.NEXT_PUBLIC_AWS_COGNITO_OAUTH_DOMAIN_CONSOLE!;
+  const idp = process.env.NEXT_PUBLIC_AWS_COGNITO_IDENTITY_PROVIDER !== undefined ? `identity_provider=${process.env.NEXT_PUBLIC_AWS_COGNITO_IDENTITY_PROVIDER}&` : '';
+  const redirect = process.env.NEXT_PUBLIC_SIGN_IN_ENDPOINT!;
+  const clientId = process.env.NEXT_PUBLIC_AWS_WEB_CLIENT_ID_CONSOLE!;
+  const scopes = process.env.NEXT_PUBLIC_SCOPES!;
+
+  const consoleUrl = `${endpoint}/oauth2/authorize?${idp}redirect_uri=${redirect}&response_type=CODE&client_id=${clientId}&scope=${scopes}`;
 
   const handleChange = (_event: React.SyntheticEvent<Element, Event>, newValue: number) => {
     setValue(newValue);
@@ -67,7 +76,16 @@ const Home = ({ signOut }: HomeProps): JSX.Element => {
               <Tab label="Users" />
               <Tab label="Groups" />
             </Tabs>
-            <Typography variant="h6" noWrap ><Button onClick={signOut} sx={{ color: '#fff' }}>Sign out</Button></Typography>
+            <Link href={consoleUrl} target="_blank" rel="noopener" underline="none">
+              <Typography variant="h6" noWrap >
+                <Button sx={{ backgroundColor: '#fff', '&:hover': { 
+                  backgroundColor: '#fff176'
+                }}}>Console<OpenInNewIcon fontSize='inherit' /></Button>
+              </Typography>
+            </Link>
+            <Typography variant="h6" noWrap >
+              <Button onClick={signOut} sx={{ color: '#fff' }}>Sign out</Button>
+            </Typography>
           </Toolbar>
         </AppBar>
         {

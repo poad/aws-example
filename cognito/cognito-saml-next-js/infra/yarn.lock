@@ -114,7 +114,7 @@
     "@aws-sdk/types" "3.50.0"
     tslib "^2.3.0"
 
-"@aws-sdk/client-cognito-identity-provider@^3.50.0":
+"@aws-sdk/client-cognito-identity-provider@^3.51.0":
   version "3.51.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/client-cognito-identity-provider/-/client-cognito-identity-provider-3.51.0.tgz#711719fb1b9e38776c24d02d4f36e3cd2583bfb9"
   integrity sha512-mIkFv80tpUT6WFIVXoijvnDSypelrsiaCXig9jR5Y3P9COCoe2VXJd39gNt/kpXqc5ThWY0a4lVemVh1fSgIJA==
@@ -1738,9 +1738,9 @@ camelcase@^6.2.0, camelcase@^6.3.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001286:
-  version "1.0.30001311"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001311.tgz#682ef3f4e617f1a177ad943de59775ed3032e511"
-  integrity sha512-mleTFtFKfykEeW34EyfhGIFjGCqzhh38Y0LhdQ9aWF+HorZTtdgKV/1hEE0NlFkG2ubvisPV6l400tlbPys98A==
+  version "1.0.30001312"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001312.tgz#e11eba4b87e24d22697dae05455d5aea28550d5f"
+  integrity sha512-Wiz1Psk2MEK0pX3rUzWaunLTZzqS2JYZFzNKqAiJGiuxIjRPLgV6+VDPOg6lQOUxmDwhTlh198JsTTi8Hzw6aQ==
 
 case@1.6.3:
   version "1.6.3"
@@ -1893,10 +1893,10 @@ concat-map@0.0.1:
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   integrity sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=
 
-constructs@^10.0.60:
-  version "10.0.60"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-10.0.60.tgz#5790dcf2357c222479e68bc93fa5a08693a28a6b"
-  integrity sha512-/w3eCUTnM8jW+1OwUAWMOMrxxKD+L5Ncmf4t956JtayX1KlxoxPonhQlzXSDPaq5F6D4952UlLESxF7UR3cozA==
+constructs@^10.0.61:
+  version "10.0.61"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-10.0.61.tgz#2d7bc21fe296598665508b327bc9ce3d3c06a736"
+  integrity sha512-0OyCuBTGRFwORpJ7cST9/gNFBTd3bu/Kx67O3UnGy6//o1T0XyDVWttkGegsC+aw7wdYu0OyhmJvu90lG/xznA==
 
 convert-source-map@^1.4.0, convert-source-map@^1.6.0, convert-source-map@^1.7.0:
   version "1.8.0"
@@ -3361,10 +3361,17 @@ mimic-fn@^2.1.0:
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-2.1.0.tgz#7ed2c2ccccaf84d3ffcb7a69b57711fc2083401b"
   integrity sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==
 
-minimatch@>=3.0, minimatch@^3.0.4, minimatch@^3.0.5:
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.5.tgz#4da8f1290ee0f0f8e83d60ca69f8f134068604a3"
-  integrity sha512-tUpxzX0VAzJHjLu0xUfFv1gwVp9ba3IOuRAVH2EGuRW8a5emA2FlACLqiT/lDVtS1W+TGNwqz3sWaNyLgDJWuw==
+minimatch@>=3.0:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-4.1.1.tgz#88d8172f2e1babcc3e249538b1a46970dfea1300"
+  integrity sha512-9ObkVPP8aM2KWHw1RMAaOoEzHjcqzE1dmEQHAOq9ySRhvVMru1VKqniUs/g6Us4KSwXKk0+uLko6caynDcWEWQ==
+  dependencies:
+    brace-expansion "^1.1.7"
+
+minimatch@^3.0.4, minimatch@^3.0.5:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.1.1.tgz#879ad447200773912898b46cd516a7abbb5e50b0"
+  integrity sha512-reLxBcKUPNBnc/sVtAbxgRVFSegoGeLaSjmphNhcwcolhYLRgtJscn5mRl6YRZNQv40Y7P6JM2YhSIsbL9OB5A==
   dependencies:
     brace-expansion "^1.1.7"
 

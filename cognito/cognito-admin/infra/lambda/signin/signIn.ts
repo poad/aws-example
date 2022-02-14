@@ -1,6 +1,6 @@
 import { CognitoIdentityClient, GetIdCommand, GetIdentityPoolRolesCommand, GetOpenIdTokenCommand } from '@aws-sdk/client-cognito-identity';
 import { CognitoIdentityProviderClient, InitiateAuthCommand } from '@aws-sdk/client-cognito-identity-provider';
-import { AssumeRoleWithWebIdentityCommand, STSClient, AssumeRoleCommand } from '@aws-sdk/client-sts';
+import { AssumeRoleWithWebIdentityCommand, STSClient } from '@aws-sdk/client-sts';
 import fetch from 'node-fetch';
 import * as jwt from 'jsonwebtoken';
 

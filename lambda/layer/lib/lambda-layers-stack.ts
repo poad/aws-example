@@ -1,5 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
+import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Construct } from 'constructs';
 
 export class LambdaLayersStack extends cdk.Stack {
@@ -11,10 +12,10 @@ export class LambdaLayersStack extends cdk.Stack {
       compatibleRuntimes: [lambda.Runtime.NODEJS_14_X],
     });
     
-    const testFunction = new lambda.Function(this, "function", {
-      code: lambda.Code.fromAsset("lambda/function"),
+    const testFunction = new NodejsFunction(this, "function", {
+      entry: 'lambda/function/index.ts',
       runtime: lambda.Runtime.NODEJS_14_X,
-      handler: "index.handler",
+      depsLockFilePath: 'lambda/function/yarn.lock',
       layers: [testLayer],
     });  
   }

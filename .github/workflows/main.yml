@@ -34,7 +34,6 @@ jobs:
       with:
         yarn: true
         path: ${{github.workspace}}/cognito/cognito-admin/app/
-        ignore: '[ "eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser", "typescript" ]'
 
     - name: update (cognito/cognito-admin/infra)
       uses: poad/update-node-modules@v1.0.5
@@ -47,7 +46,6 @@ jobs:
       with:
         yarn: true
         path: ${{github.workspace}}/cognito/cognito-saml-next-js/webapp/
-        ignore: '[ "eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser", "typescript" ]'
 
     - name: update (cognito/cognito-saml-next-js/infra)
       uses: poad/update-node-modules@v1.0.5
@@ -66,7 +64,6 @@ jobs:
       with:
         yarn: true
         path: ${{github.workspace}}/cognito/tiny-device-flow/pages/
-        ignore: '[ "eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser", "typescript" ]'
 
     - name: update (codebuild/custom-image-test)
       uses: poad/update-node-modules@v1.0.5
@@ -97,6 +94,30 @@ jobs:
       with:
         yarn: true
         path: ${{github.workspace}}/lambda/container/simple/lambda/
+
+    - name: update (lambda/layer/functions/function)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/lambda/layer/functions/function/
+
+    - name: update (lambda/layer/functions/function/handler)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/lambda/layer/functions/function/handler/
+
+    - name: update (lambda/layer/layer/)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/lambda/layer/layer/
+
+    - name: update (/ambda/layer/layer/src/nodejs)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/lambda/layer/layer/src/nodejs/
 
     # - name: update (lambda/python)
     #   uses: poad/update-node-modules@v1.0.5

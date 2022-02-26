@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as process from 'process';
 
-import * as log from "/opt/nodejs/log";
+import * as log from '/opt/nodejs/log';
 
 export const handler = async (event: any) => {
     const currentDir = process.cwd();

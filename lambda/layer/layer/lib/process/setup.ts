@@ -2,7 +2,7 @@ import * as childProcess from 'child_process';
 import * as fs from 'fs';
 
 export const compileBundles = () => {
-    ['lambda/layer/nodejs/', 'lambda/function']
+    ['src/nodejs/']
         .forEach(f => {
             fs.readdirSync(`${process.cwd()}/${f}`, {
                 withFileTypes: true

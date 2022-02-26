@@ -2,7 +2,9 @@
   "compilerOptions": {
     "target": "ES2018",
     "module": "commonjs",
-    "lib": ["es2018"],
+    "lib": [
+      "es2018"
+    ],
     "declaration": true,
     "strict": true,
     "noImplicitAny": true,
@@ -17,11 +19,18 @@
     "inlineSources": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "typeRoots": ["./node_modules/@types"],
     "baseUrl": ".",
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
     "paths": {
-      "/opt/nodejs/*": ["lambda/layer/nodejs/*"]
+      "/opt/nodejs/*": [
+        "../../layer/src/nodejs/*"
+      ]
     }
   },
-  "exclude": ["cdk.out"]
+  "exclude": [
+    "node_modules",
+    "cdk.out"
+  ]
 }

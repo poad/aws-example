@@ -153,6 +153,50 @@ updates:
     assignees:
       - poad
 
+  - package-ecosystem: npm
+    directory: '/lambda/layer/functions/function/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: npm
+    directory: '/lambda/layer/functions/function/handler/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: npm
+    directory: '/lambda/layer/layer/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: npm
+    directory: '/lambda/layer/layer/src/nodejs/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
   - package-ecosystem: cargo
     directory: '/lambda/container/hello-rust-lambda/lambda/'
     schedule:

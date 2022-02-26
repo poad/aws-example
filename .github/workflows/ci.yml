@@ -8,19 +8,20 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  pull_request_target:
 
   workflow_dispatch:
 
 permissions:
   actions: read
   checks: write
-  contents: none
+  contents: write
   deployments: none
   id-token: write
   issues: none
   packages: none
   pull-requests: write
-  repository-projects: none
+  repository-projects: read
   security-events: write
   statuses: write
 
@@ -50,7 +51,7 @@ jobs:
           ./lambda/cognito-console,
           ./lambda/container/simple,
           ./lambda/container/hello-rust-lambda,
-          # ./lambda/python,
+          ./lambda/python,
           ./cognito/tiny-device-flow,
           ./cognito/tiny-device-flow/pages,
           ./cognito/cognito-saml-next-js/webapp,
@@ -73,6 +74,66 @@ jobs:
         cd ${{ matrix.target }} && \
         yarn install && \
         yarn build
+
+  build-deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+        target: [
+          { paths: [ ./lambda/layer/layer, ./lambda/layer/functions/function ]},
+        ]
+    steps:
+    - name: generate timestamp
+      id: gen-timestamp
+      run: echo "::set-output name=timestamp::$(date +%Y%m%d-%H%M%S)"
+
+    - name: configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ secrets.AWS_OIDC_ROLE_ARN }}
+        role-session-name: GitHubActions
+        aws-region: us-west-2
+
+    - name: checkout
+      uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3.0.0
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Setup node modules
+      run: npm -g i npm && npm -g i yarn && yarn global add aws-cdk
+
+    - name: deploy
+      env:
+        TIMESTAMP: ${{ steps.gen-timestamp.outputs.timestamp }}
+      run: |
+        CUR=$(pwd) && \
+        cd ${{ matrix.target.paths[0] }} && \
+        pwd && \
+        yarn install && \
+        echo "cdk deploy -c timestamp=${TIMESTAMP}  --require-approval=never" && \
+        cdk deploy -c timestamp=${TIMESTAMP}  --require-approval=never && \
+        cd ${CUR}
+        cd ${{ matrix.target.paths[1] }} && \
+        pwd && \
+        yarn install && \
+        echo "cdk deploy -c timestamp=${TIMESTAMP}  --require-approval=never" && \
+        cdk deploy -c timestamp=${TIMESTAMP} --require-approval=never
+
+    - name: destroy
+      env:
+        TIMESTAMP: ${{ steps.gen-timestamp.outputs.timestamp }}
+      continue-on-error: true
+      run: |
+        CUR=$(pwd) && \
+        cd ${{ matrix.target.paths[1] }} && \
+        cdk destroy -f && \
+        cd ${CUR}
+        cd ${{ matrix.target.paths[0] }} && \
+        cdk destroy -f
 
   docker-build-multi-version:
     runs-on: ubuntu-latest

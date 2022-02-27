@@ -106,34 +106,38 @@ jobs:
     - name: Setup node modules
       run: npm -g i npm && npm -g i yarn && yarn global add aws-cdk
 
-    - name: deploy
+    - name: cdk deploy (${{ matrix.target.paths[0] }})
       env:
         TIMESTAMP: ${{ steps.gen-timestamp.outputs.timestamp }}
+      working-directory: ${{ matrix.target.paths[0] }}
       run: |
-        CUR=$(pwd) && \
-        cd ${{ matrix.target.paths[0] }} && \
-        pwd && \
         yarn install && \
-        echo "cdk deploy -c timestamp=${TIMESTAMP}  --require-approval=never" && \
-        cdk deploy -c timestamp=${TIMESTAMP}  --require-approval=never && \
-        cd ${CUR}
-        cd ${{ matrix.target.paths[1] }} && \
-        pwd && \
-        yarn install && \
-        echo "cdk deploy -c timestamp=${TIMESTAMP}  --require-approval=never" && \
-        cdk deploy -c timestamp=${TIMESTAMP} --require-approval=never
+        cdk deploy -c timestamp=${TIMESTAMP} --require-approval never
 
-    - name: destroy
+    - name: cdk deploy (${{ matrix.target.paths[1] }})
       env:
         TIMESTAMP: ${{ steps.gen-timestamp.outputs.timestamp }}
-      continue-on-error: true
+      working-directory: ${{ matrix.target.paths[1] }}
       run: |
-        CUR=$(pwd) && \
-        cd ${{ matrix.target.paths[1] }} && \
-        cdk destroy -f && \
-        cd ${CUR}
-        cd ${{ matrix.target.paths[0] }} && \
-        cdk destroy -f
+        yarn install && \
+        cdk deploy -c timestamp=${TIMESTAMP} --require-approval never
+
+    - name: wait 120 sec
+      run: sleep 120
+
+    - name: destroy (${{ matrix.target.paths[1] }})
+      env:
+        TIMESTAMP: ${{ steps.gen-timestamp.outputs.timestamp }}
+      working-directory: ${{ matrix.target.paths[1] }}
+      continue-on-error: true
+      run: cdk destroy -f
+
+    - name: destroy (${{ matrix.target.paths[0] }})
+      env:
+        TIMESTAMP: ${{ steps.gen-timestamp.outputs.timestamp }}
+      working-directory: ${{ matrix.target.paths[0] }}
+      continue-on-error: true
+      run: cdk destroy -f
 
   docker-build-multi-version:
     runs-on: ubuntu-latest

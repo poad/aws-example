@@ -122,8 +122,8 @@ jobs:
         yarn install && \
         cdk deploy -c timestamp=${TIMESTAMP} --require-approval never
 
-    - name: wait 120 sec
-      run: sleep 120
+    - name: wait 300 sec
+      run: sleep 300
 
     - name: destroy (${{ matrix.target.paths[1] }})
       env:

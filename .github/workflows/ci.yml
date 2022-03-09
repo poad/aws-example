@@ -225,6 +225,22 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           architecture: x64
+      
+      - name: generate dummy aws-exports.js
+        working-directory: amplify/amplified_todo/src
+        run: |
+          touch aws-exports.js
+          cat <<- EOF > aws-exports.js
+          const awsmobile = {
+              "aws_project_region": "us-west-2",
+              "aws_appsync_graphqlEndpoint": "",
+              "aws_appsync_region": "us-west-2",
+              "aws_appsync_authenticationType": "API_KEY",
+              "aws_appsync_apiKey": ""
+          };
+          
+          export default awsmobile;
+          EOS
 
       - name: Install node modules
         working-directory: amplify/amplified_todo/

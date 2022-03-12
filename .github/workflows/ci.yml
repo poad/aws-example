@@ -81,7 +81,7 @@ jobs:
       matrix:
         node-version: [14.x, 16.x]
         target: [
-          { paths: [ ./lambda/layer/layer, ./lambda/layer/functions/function ]},
+          { paths: [ ./lambda/layer/layer, ./lambda/layer/functions/function ] },
         ]
     steps:
     - name: generate timestamp
@@ -94,6 +94,13 @@ jobs:
         role-to-assume: ${{ secrets.AWS_OIDC_ROLE_ARN }}
         role-session-name: GitHubActions
         aws-region: us-west-2
+
+    - name: Install and Update aws cli
+      run: |
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip awscliv2.zip
+        sudo ./aws/install --update
+        aws --version
 
     - name: checkout
       uses: actions/checkout@v3
@@ -122,8 +129,22 @@ jobs:
         yarn install && \
         cdk deploy -c timestamp=${TIMESTAMP} --require-approval never
 
-    - name: wait 300 sec
-      run: sleep 300
+    - name: await
+      env:
+        LAYER_STACK: loose-linkage-lambda-layer-${{ steps.gen-timestamp.outputs.timestamp }}
+        FUNCTION_STACK: loose-linkage-lambda-layer-function-${{ steps.gen-timestamp.outputs.timestamp }}
+      run: |
+        for i in $(seq 1 10); do
+          LAYER_STACK_STATUS=$(aws cloudformation describe-stacks --stack-name ${LAYER_STACK} --query "Stacks[*].StackStatus | [0]")
+          FUNCTION_STACK_STATUS=$(aws cloudformation describe-stacks --stack-name ${FUNCTION_STACK} --query "Stacks[*].StackStatus | [0]")
+          if { [ "${LAYER_STACK_STATUS}" = "CREATE_COMPLETE" ] || [ "${LAYER_STACK_STATUS}" = "CREATE_FAILED" ] || [ "${LAYER_STACK_STATUS}" = "ROLLBACK_FAILED" ] || [ "${LAYER_STACK_STATUS}" = "ROLLBACK_COMPLETE" ] } && \
+              { [ "${FUNCTION_STACK_STATUS}" = "CREATE_COMPLETE" ] || [ "${FUNCTION_STACK_STATUS}" = "CREATE_FAILED" ] || [ "${FUNCTION_STACK_STATUS}" = "ROLLBACK_FAILED" ] || [ "${FUNCTION_STACK_STATUS}" = "ROLLBACK_COMPLETE" ] }
+          then
+            break
+          fi
+          
+          sleep 30
+        done
 
     - name: destroy (${{ matrix.target.paths[1] }})
       env:

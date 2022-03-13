@@ -1,0 +1,50 @@
+name: "AWS CloudFormation Stack completion await Action"
+description: "AWS CloudFormation Stack completion await Action"
+inputs:
+  stack-name:
+    required: true
+  max-loop-limit:
+    required: false
+    default: 30
+  interval-sec:
+    required: false
+    default: 10
+
+outputs:
+  stack-status:
+    description: "Stack status"
+    value: ${{ steps.await-completion.outputs.stack-status }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Checkout"
+      uses: actions/checkout@v2
+
+    - name: Install and Update aws cli
+      shell: bash
+      run: |
+        TEMP_DIR=$(mktemp -d)
+        cd ${TEMP_DIR}
+        curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip -qq awscliv2.zip
+        sudo ./aws/install --update
+        aws --version
+        cd ..
+        rm -rf ${TEMP_DIR}
+
+    - name: "Await CloudFormation Stack Completion"
+      shell: bash
+      id: await-completion
+      run: |
+        for i in $(seq 1 ${{ inputs.max-loop-limit }}); do
+          STACK_STATUS=$(aws cloudformation describe-stacks --stack-name ${{ inputs.stack-name }} --query "Stacks[*].StackStatus | [0]")
+          if [ "${STACK_STATUS}" = "CREATE_COMPLETE" ] || [ "${STACK_STATUS}" = "CREATE_FAILED" ] || [ "${STACK_STATUS}" = "ROLLBACK_FAILED" ] || [ "${STACK_STATUS}" = "ROLLBACK_COMPLETE" ]
+          then
+            echo "::set-output name=stack-status::${STACK_STATUS}"
+            echo "${STACK_STATUS}"
+            break
+          fi
+          echo "::set-output name=stack-status::${STACK_STATUS}"
+          sleep ${{ inputs.interval-sec }}
+        done

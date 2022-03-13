@@ -95,13 +95,6 @@ jobs:
         role-session-name: GitHubActions
         aws-region: us-west-2
 
-    - name: Install and Update aws cli
-      run: |
-        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-        unzip awscliv2.zip
-        sudo ./aws/install --update
-        aws --version
-
     - name: checkout
       uses: actions/checkout@v3
 
@@ -129,36 +122,65 @@ jobs:
         yarn install && \
         cdk deploy -c timestamp=${TIMESTAMP} --require-approval never
 
-    - name: await
+    - name: Awaiting completion of creation (function)
+      id: create-await-fn
+      env:
+        FUNCTION_STACK: loose-linkage-lambda-layer-function-${{ steps.gen-timestamp.outputs.timestamp }}
+      uses: ./.github/actions/cfn-await
+      with:
+          stack-name: ${FUNCTION_STACK}
+    
+    - name: check status (function)
+      run: if [ ! ${{ steps.create-await-fn.outputs.stack-status }} = 'CREATE_COMPLETE' ]; then exit 1; fi
+
+    - name: Awaiting completion of creation (layer)
+      id: create-await-layer
       env:
         LAYER_STACK: loose-linkage-lambda-layer-${{ steps.gen-timestamp.outputs.timestamp }}
-        FUNCTION_STACK: loose-linkage-lambda-layer-function-${{ steps.gen-timestamp.outputs.timestamp }}
-      run: |
-        for i in $(seq 1 10); do
-          LAYER_STACK_STATUS=$(aws cloudformation describe-stacks --stack-name ${LAYER_STACK} --query "Stacks[*].StackStatus | [0]")
-          FUNCTION_STACK_STATUS=$(aws cloudformation describe-stacks --stack-name ${FUNCTION_STACK} --query "Stacks[*].StackStatus | [0]")
-          if { [ "${LAYER_STACK_STATUS}" = "CREATE_COMPLETE" ] || [ "${LAYER_STACK_STATUS}" = "CREATE_FAILED" ] || [ "${LAYER_STACK_STATUS}" = "ROLLBACK_FAILED" ] || [ "${LAYER_STACK_STATUS}" = "ROLLBACK_COMPLETE" ] } && \
-              { [ "${FUNCTION_STACK_STATUS}" = "CREATE_COMPLETE" ] || [ "${FUNCTION_STACK_STATUS}" = "CREATE_FAILED" ] || [ "${FUNCTION_STACK_STATUS}" = "ROLLBACK_FAILED" ] || [ "${FUNCTION_STACK_STATUS}" = "ROLLBACK_COMPLETE" ] }
-          then
-            break
-          fi
-          
-          sleep 30
-        done
+      uses: ./.github/actions/cfn-await
+      with:
+          stack-name: ${LAYER_STACK}
+
+    - name: check status (layer)
+      run: if [ ! ${{ steps.create-await-layer.outputs.stack-status }} = 'CREATE_COMPLETE' ]; then exit 1; fi
 
     - name: destroy (${{ matrix.target.paths[1] }})
       env:
         TIMESTAMP: ${{ steps.gen-timestamp.outputs.timestamp }}
       working-directory: ${{ matrix.target.paths[1] }}
-      continue-on-error: true
-      run: cdk destroy -f
+      run: |
+        yarn install && \
+        cdk destroy -f
 
     - name: destroy (${{ matrix.target.paths[0] }})
       env:
         TIMESTAMP: ${{ steps.gen-timestamp.outputs.timestamp }}
       working-directory: ${{ matrix.target.paths[0] }}
-      continue-on-error: true
-      run: cdk destroy -f
+      run: |
+        yarn install && \
+        cdk destroy -f
+
+    - name: Awaiting completion of destroy (layer)
+      id: destroy-await-layer
+      env:
+        LAYER_STACK: loose-linkage-lambda-layer-${{ steps.gen-timestamp.outputs.timestamp }}
+      uses: ./.github/actions/cfn-await
+      with:
+          stack-name: ${LAYER_STACK}
+
+    - name: check destroy status (layer)
+      run: if [ ! ${{ steps.destroy-await-layer.outputs.stack-status }} = 'DELETE_COMPLETE' ]; then exit 1; fi
+
+    - name: Awaiting completion of creation (function)
+      id: destroy-await-fn
+      env:
+        FUNCTION_STACK: loose-linkage-lambda-layer-function-${{ steps.gen-timestamp.outputs.timestamp }}
+      uses: ./.github/actions/cfn-await
+      with:
+          stack-name: ${FUNCTION_STACK}
+
+    - name: check destroy status (function)
+      run: if [ ! ${{ steps.destroy-await-fn.outputs.stack-status }} = 'DELETE_COMPLETE' ]; then exit 1; fi
 
   docker-build-multi-version:
     runs-on: ubuntu-latest

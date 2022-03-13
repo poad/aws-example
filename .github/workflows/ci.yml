@@ -150,7 +150,7 @@ jobs:
       working-directory: ${{ matrix.target.paths[1] }}
       run: |
         yarn install && \
-        cdk destroy -f
+        cdk destroy -c timestamp=${TIMESTAMP} -f
 
     - name: destroy (${{ matrix.target.paths[0] }})
       env:
@@ -158,7 +158,7 @@ jobs:
       working-directory: ${{ matrix.target.paths[0] }}
       run: |
         yarn install && \
-        cdk destroy -f
+        cdk destroy -c timestamp=${TIMESTAMP} -f
 
     - name: Awaiting completion of destroy (layer)
       id: destroy-await-layer

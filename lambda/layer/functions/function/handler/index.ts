@@ -5,7 +5,7 @@ import fetch from 'cross-fetch';
 
 import * as log from '/opt/nodejs/log';
 
-export const handler = async (event: any) => {
+export const handler = async (__event: any) => {
     const currentDir = process.cwd();
     fs.readdirSync(currentDir, {
         withFileTypes: true

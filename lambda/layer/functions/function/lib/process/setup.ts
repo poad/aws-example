@@ -8,7 +8,7 @@ export const compileBundles = () => {
             fs.readdirSync(`${process.cwd()}/${f}`, {
                 withFileTypes: true
             }).filter(path => path.isFile() && (path.name.endsWith('.js') || path.name.endsWith('.d.ts')))
-                .map(path => `${process.cwd()}/${f}/path.name`)
+                .map(path => `${process.cwd()}/${f}/${path.name}`)
                 .forEach(file => {
                     if (fs.existsSync(file)) {
                         fs.rmSync(file, {

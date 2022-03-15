@@ -1,0 +1,107 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI (OCI Image)
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'lambda/container/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'lambda/container/**'
+  pull_request_target:
+    branches: [ main ]
+    paths:
+      - 'lambda/container/**'
+
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  checks: write
+  contents: write
+  deployments: none
+  id-token: write
+  issues: none
+  packages: none
+  pull-requests: write
+  repository-projects: read
+  security-events: write
+  statuses: write
+
+jobs:
+  configure:
+    runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
+    steps:
+    - name: Pull request auto merge enabler
+      if: github.event_name == 'pull_request'
+      uses: poad/github-pull-request-auto-merge-enable-action@v1.0.1
+      continue-on-error: true
+      with:
+        pull_request_id: ${{ github.event.pull_request.node_id }}
+        github_token: ${{ secrets.PERSONAL_TOKEN_FOR_GITHUB_ACTIONS }}
+        repository: ${{ github.event.repository.name }}
+        owner: ${{ github.repository_owner }}
+        merge_method: SQUASH      
+
+  docker-build-multi-version:
+    runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
+    strategy:
+      matrix:
+        pattern: [
+          { node: 14, os-dist: debian, app: hello-rust-lambda, image: lambda, test: true },
+          { node: 16, os-dist: debian, app: hello-rust-lambda, image: lambda, test: true },
+          { node: 14, os-dist: ubuntu, app: hello-rust-lambda, image: lambda, test: true },
+          { node: 16, os-dist: ubuntu, app: hello-rust-lambda, image: lambda, test: true },
+          { node: 14, os-dist: debian, app: simple, image: lambda-simple, test: true },
+          { node: 14, os-dist: ubuntu, app: simple, image: lambda-simple, test: true }
+        ]
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1 
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.PERSONAL_TOKEN_FOR_GITHUB_ACTIONS }}
+
+    - name: Build (debug) lambda/container/${{ matrix.pattern.app }}/lambda ${{ matrix.pattern.node }} ${{ matrix.pattern.os-dist }}
+      run: |
+        docker build --rm \
+          --build-arg NODE_VERSION=${{ matrix.pattern.node }} \
+          --build-arg DIST=${{ matrix.pattern.os-dist }} \
+          -t ${{ matrix.pattern.image }}:latest \
+          lambda/container/${{ matrix.pattern.app }}/lambda
+
+    - name: Build (release) lambda/container/${{ matrix.pattern.app }}/lambda ${{ matrix.pattern.node }} ${{ matrix.pattern.os-dist }}
+      run: |
+        docker build --rm \
+          --build-arg NODE_VERSION=${{ matrix.pattern.node }} \
+          --build-arg DIST=${{ matrix.pattern.os-dist }} \
+          --target=release \
+          -t ${{ matrix.pattern.image }}:release \
+          lambda/container/${{ matrix.pattern.app }}/lambda
+
+    - name: Test lambda/container/${{ matrix.pattern.app }} ${{ matrix.pattern.node }} ${{ matrix.pattern.os-dist }}
+      if: ${{ matrix.pattern.test }} == true
+      env:
+        DOCKER_BUILDKIT: 1
+        IMAGE: ${{ matrix.pattern.image }}:latest
+        CONTAINER: ${{ matrix.pattern.image }}
+      run: |
+        if [ "${{ matrix.pattern.test }}" == "true"  ]; then
+          docker run -p 9000:8080 --name ${CONTAINER} -d ${IMAGE} && \
+          RESULT=$(curl -sSL -i -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{}' | grep "HTTP/1.1 200" | wc -l) && \
+          if [ ${RESULT} -ne 1 ]; then \
+            echo ${RESULT} && \
+            docker logs ${CONTAINER} && \
+            exit -1;
+          fi
+        fi

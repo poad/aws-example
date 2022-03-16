@@ -1,4 +1,4 @@
-import { CognitoIdentityProviderClient, ListUsersCommand } from "@aws-sdk/client-cognito-identity-provider";
+// import { CognitoIdentityProviderClient, ListUsersCommand } from "@aws-sdk/client-cognito-identity-provider";
 import { Callback, Context, PreTokenGenerationTriggerEvent, PreTokenGenerationTriggerHandler } from "aws-lambda";
 
 export const handler: PreTokenGenerationTriggerHandler = async (

@@ -1,5 +1,5 @@
 import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
-import fetch from 'node-fetch';
+import fetch from 'cross-fetch';
 import signIn from './signIn';
 
 interface EnvironmentVariables {

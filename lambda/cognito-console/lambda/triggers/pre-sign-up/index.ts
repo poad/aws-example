@@ -1,4 +1,4 @@
-import { AdminLinkProviderForUserCommand, CognitoIdentityProviderClient, ListUsersCommand } from "@aws-sdk/client-cognito-identity-provider";
+import { CognitoIdentityProviderClient, ListUsersCommand } from "@aws-sdk/client-cognito-identity-provider";
 import { Callback, Context, PreSignUpTriggerEvent, PreSignUpTriggerHandler } from "aws-lambda";
 import { StringMap } from "aws-lambda/trigger/cognito-user-pool-trigger/_common";
 

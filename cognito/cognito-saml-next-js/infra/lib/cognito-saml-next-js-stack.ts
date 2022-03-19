@@ -133,8 +133,6 @@ export class CognitoSamlNextJsStack extends cdk.Stack {
       identityPoolName: `${environment} Cognito SAML idp`
     });
 
-    // TODO https://github.com/aws/aws-cdk/issues/2041 sts:TagSession support
-
     const unauthenticatedRole = new iam.Role(this, 'CognitoDefaultUnauthenticatedRole', {
       roleName: `${environment}-console-unauth-role`,
       assumedBy: new iam.FederatedPrincipal('cognito-identity.amazonaws.com', {

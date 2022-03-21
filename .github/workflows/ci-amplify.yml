@@ -63,7 +63,7 @@ jobs:
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         id: yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
@@ -103,7 +103,7 @@ jobs:
       - name: Show Xcode version
         run: xcodebuild -version
       - name: Configure Homebrew cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ~/Library/Caches/Homebrew/foo--*
@@ -138,7 +138,7 @@ jobs:
           bundler-cache: true
 
       - name: Cache Pods dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: Pods
           key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
@@ -146,7 +146,7 @@ jobs:
             ${{ runner.os }}-pods-
 
       - name: Cache Xcode archive
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: amplify/amplified_todo/ios/Pods
           key: ${{ runner.OS }}-archive-cache-${{ hashFiles('**/ios/amplified_todo.xcarchive') }}

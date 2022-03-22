@@ -10,12 +10,6 @@ on:
       - 'lambda/layer/**'
       - 'lambda/container/**'
       - 'amplify/**'
-  pull_request:
-    branches: [ main ]
-    paths-ignore:
-      - 'lambda/layer/**'
-      - 'lambda/container/**'
-      - 'amplify/**'
   pull_request_target:
     branches: [ main ]
     paths-ignore:

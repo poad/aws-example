@@ -26,8 +26,8 @@ jobs:
     strategy:
       matrix:
         pattern: [
-          { app: hello-rust-lambda, image: lambda },
-          { app: simple, image: lambda-simple },
+          { app: lambda/lambda-examples/lambda/container/hello-rust-lambda, image: lambda },
+          { app: lambda/lambda-examples/lambda/container/simple, image: lambda-simple },
         ]
 
     steps:
@@ -40,25 +40,25 @@ jobs:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.PERSONAL_TOKEN_FOR_GITHUB_ACTIONS }}
 
-    - name: Build (debug) lambda/container/${{ matrix.pattern.app }}/lambda
+    - name: Build (debug) ${{ matrix.pattern.app }}
       run: |
         docker build --rm \
           --build-arg NODE_VERSION=14 \
           --build-arg DIST=debian \
           -t ${{ matrix.pattern.image }}:latest \
-          lambda/container/${{ matrix.pattern.app }}/lambda
+          ${{ matrix.pattern.app }}
 
-    - name: Build (release) lambda/container/${{ matrix.pattern.app }}/lambda
+    - name: Build (release) ${{ matrix.pattern.app }}
       run: |
         docker build --rm \
           --build-arg NODE_VERSION=14 \
           --build-arg DIST=debian \
           --target=release \
           -t ${{ matrix.pattern.image }}:release \
-          lambda/container/${{ matrix.pattern.app }}/lambda
+          ${{ matrix.pattern.app }}
 
-    - name: Hadolint lambda/container/${{ matrix.pattern.app }}/lambda
+    - name: Hadolint ${{ matrix.pattern.app }}
       uses: hadolint/hadolint-action@v1.7.0
       with:
-        dockerfile: lambda/container/${{ matrix.pattern.app }}/lambda/Dockerfile
+        dockerfile: ${{ matrix.pattern.app }}/Dockerfile
   

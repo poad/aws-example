@@ -99,7 +99,7 @@ updates:
       - poad
 
   - package-ecosystem: npm
-    directory: '/lambda/cognito-console/'
+    directory: '/lambda/lambda-examples/'
     schedule:
       interval: daily
       timezone: Asia/Tokyo
@@ -110,29 +110,7 @@ updates:
       - poad
 
   - package-ecosystem: npm
-    directory: '/lambda/container/hello-rust-lambda/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-
-  - package-ecosystem: npm
-    directory: '/lambda/container/simple/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-
-  - package-ecosystem: npm
-    directory: '/lambda/container/simple/lambda/'
+    directory: '/lambda/lambda-examples/lambda/container/simple'
     schedule:
       interval: daily
       timezone: Asia/Tokyo
@@ -144,17 +122,6 @@ updates:
 
   - package-ecosystem: npm
     directory: '/lambda/python/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-
-  - package-ecosystem: npm
-    directory: '/lambda/layer/functions/function/'
     schedule:
       interval: daily
       timezone: Asia/Tokyo
@@ -198,7 +165,7 @@ updates:
       - poad
 
   - package-ecosystem: cargo
-    directory: '/lambda/container/hello-rust-lambda/lambda/'
+    directory: '/lambda/lambda-examples/lambda/container/hello-rust-lambda/'
     schedule:
       interval: daily
       timezone: Asia/Tokyo
@@ -209,7 +176,7 @@ updates:
       - poad
 
   - package-ecosystem: docker
-    directory: '/lambda/container/hello-rust-lambda/lambda/'
+    directory: '/lambda/lambda-examples/lambda/container/hello-rust-lambda/'
     schedule:
       interval: daily
       timezone: Asia/Tokyo
@@ -220,7 +187,7 @@ updates:
       - poad
 
   - package-ecosystem: docker
-    directory: '/lambda/container/simple/lambda'
+    directory: '/lambda/lambda-examples/lambda/container/simple'
     schedule:
       interval: daily
       timezone: Asia/Tokyo
@@ -231,7 +198,18 @@ updates:
       - poad
 
   - package-ecosystem: pip
-    directory: '/lambda/python/functions/'
+    directory: '/lambda/lambda-examples/lambda/python'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: npm
+    directory: '/amplify/amplified_todo/'
     schedule:
       interval: daily
       timezone: Asia/Tokyo

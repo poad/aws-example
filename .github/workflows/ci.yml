@@ -8,13 +8,13 @@ on:
     branches: [ main ]
     paths-ignore:
       - 'lambda/layer/**'
-      - 'lambda/container/**'
+      - 'lambda/lambda-examples/lambda/container/**'
       - 'amplify/**'
   pull_request_target:
     branches: [ main ]
     paths-ignore:
       - './lambda/layer/**'
-      - 'lambda/container/**'
+      - 'lambda/lambda-examples/lambda/container/**'
       - 'amplify/**'
 
   workflow_dispatch:
@@ -55,10 +55,8 @@ jobs:
         node-version: [14.x, 16.x]
         target: [
           ./codebuild/custom-image-test,
-          ./lambda/cognito-console,
-          ./lambda/container/simple,
-          ./lambda/container/hello-rust-lambda,
-          ./lambda/python,
+          ./lambda/lambda-examples,
+          ./lambda/lambda-examples/lambda/python,
           ./cognito/tiny-device-flow,
           ./cognito/tiny-device-flow/pages,
           ./cognito/cognito-saml-next-js/webapp,
@@ -77,7 +75,5 @@ jobs:
     - name: build
       env:
         BASE_PATH: /oauth/device/activate
-      run: |
-        cd ${{ matrix.target }} && \
-        yarn install && \
-        yarn build
+      working-directory: ${{ matrix.target }}
+      run: yarn install && yarn build

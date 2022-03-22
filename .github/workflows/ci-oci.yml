@@ -7,11 +7,11 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'lambda/container/**'
+      - 'lambda/lambda-examples/lambda/container/**'
   pull_request_target:
     branches: [ main ]
     paths:
-      - 'lambda/container/**'
+      - 'lambda/lambda-examples/lambda/container/**'
 
   workflow_dispatch:
 
@@ -68,24 +68,24 @@ jobs:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.PERSONAL_TOKEN_FOR_GITHUB_ACTIONS }}
 
-    - name: Build (debug) lambda/container/${{ matrix.pattern.app }}/lambda ${{ matrix.pattern.node }} ${{ matrix.pattern.os-dist }}
+    - name: Build (debug) lambda/lambda-examples/lambda/container/${{ matrix.pattern.app }}/lambda ${{ matrix.pattern.node }} ${{ matrix.pattern.os-dist }}
       run: |
         docker build --rm \
           --build-arg NODE_VERSION=${{ matrix.pattern.node }} \
           --build-arg DIST=${{ matrix.pattern.os-dist }} \
           -t ${{ matrix.pattern.image }}:latest \
-          lambda/container/${{ matrix.pattern.app }}/lambda
+          lambda/lambda-examples/lambda/container/${{ matrix.pattern.app }}/lambda
 
-    - name: Build (release) lambda/container/${{ matrix.pattern.app }}/lambda ${{ matrix.pattern.node }} ${{ matrix.pattern.os-dist }}
+    - name: Build (release) lambda/lambda-examples/lambda/container/${{ matrix.pattern.app }}/lambda ${{ matrix.pattern.node }} ${{ matrix.pattern.os-dist }}
       run: |
         docker build --rm \
           --build-arg NODE_VERSION=${{ matrix.pattern.node }} \
           --build-arg DIST=${{ matrix.pattern.os-dist }} \
           --target=release \
           -t ${{ matrix.pattern.image }}:release \
-          lambda/container/${{ matrix.pattern.app }}/lambda
+          lambda/lambda-examples/lambda/container/${{ matrix.pattern.app }}/lambda
 
-    - name: Test lambda/container/${{ matrix.pattern.app }} ${{ matrix.pattern.node }} ${{ matrix.pattern.os-dist }}
+    - name: Test lambda/lambda-examples/lambda/container/${{ matrix.pattern.app }} ${{ matrix.pattern.node }} ${{ matrix.pattern.os-dist }}
       if: ${{ matrix.pattern.test }} == true
       env:
         DOCKER_BUILDKIT: 1

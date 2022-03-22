@@ -58,7 +58,7 @@ jobs:
           lambda/container/${{ matrix.pattern.app }}/lambda
 
     - name: Hadolint lambda/container/${{ matrix.pattern.app }}/lambda
-      uses: hadolint/hadolint-action@v1.6.0
+      uses: hadolint/hadolint-action@v1.7.0
       with:
         dockerfile: lambda/container/${{ matrix.pattern.app }}/lambda/Dockerfile
   

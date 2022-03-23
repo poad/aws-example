@@ -95,9 +95,7 @@ jobs:
       id: create-await-fn
       env:
         FUNCTION_STACK: loose-linkage-lambda-layer-function-${{ steps.gen-timestamp.outputs.timestamp }}
-      uses: ./.github/actions/cfn-await
-      with:
-          stack-name: ${FUNCTION_STACK}
+      run: aws cloudformation wait stack-create-complete --stack-name ${FUNCTION_STACK}
     
     - name: check status (function)
       run: if [ ! ${{ steps.create-await-fn.outputs.stack-status }} = 'CREATE_COMPLETE' ]; then exit 1; fi
@@ -106,9 +104,7 @@ jobs:
       id: create-await-layer
       env:
         LAYER_STACK: loose-linkage-lambda-layer-${{ steps.gen-timestamp.outputs.timestamp }}
-      uses: ./.github/actions/cfn-await
-      with:
-          stack-name: ${LAYER_STACK}
+      run: aws cloudformation wait stack-create-complete --stack-name ${LAYER_STACK}
 
     - name: check status (layer)
       run: if [ ! ${{ steps.create-await-layer.outputs.stack-status }} = 'CREATE_COMPLETE' ]; then exit 1; fi
@@ -129,24 +125,20 @@ jobs:
         yarn install && \
         cdk destroy -c timestamp=${TIMESTAMP} -f
 
-    - name: Awaiting completion of destroy (layer)
-      id: destroy-await-layer
-      env:
-        LAYER_STACK: loose-linkage-lambda-layer-${{ steps.gen-timestamp.outputs.timestamp }}
-      uses: ./.github/actions/cfn-await
-      with:
-          stack-name: ${LAYER_STACK}
-
-    - name: check destroy status (layer)
-      run: if [ ! ${{ steps.destroy-await-layer.outputs.stack-status }} = 'DELETE_COMPLETE' ]; then exit 1; fi
-
     - name: Awaiting completion of creation (function)
       id: destroy-await-fn
       env:
         FUNCTION_STACK: loose-linkage-lambda-layer-function-${{ steps.gen-timestamp.outputs.timestamp }}
-      uses: ./.github/actions/cfn-await
-      with:
-          stack-name: ${FUNCTION_STACK}
+      run: aws cloudformation wait stack-delete-complete --stack-name ${FUNCTION_STACK}
 
     - name: check destroy status (function)
       run: if [ ! ${{ steps.destroy-await-fn.outputs.stack-status }} = 'DELETE_COMPLETE' ]; then exit 1; fi
+
+    - name: Awaiting completion of destroy (layer)
+      id: destroy-await-layer
+      env:
+        LAYER_STACK: loose-linkage-lambda-layer-${{ steps.gen-timestamp.outputs.timestamp }}
+      run: aws cloudformation wait stack-delete-complete --stack-name ${LAYER_STACK}
+
+    - name: check destroy status (layer)
+      run: if [ ! ${{ steps.destroy-await-layer.outputs.stack-status }} = 'DELETE_COMPLETE' ]; then exit 1; fi

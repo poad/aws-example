@@ -74,9 +74,9 @@ export class CognitoSamlNextJsStack extends cdk.Stack {
       }).providerName : undefined;
 
     if (idpName !== undefined) {
-      cognito.UserPoolClientIdentityProvider.custom(idpName);
       userPool.registerIdentityProvider(
         UserPoolIdentityProvider.fromProviderName(this, 'CognitoSamlIdPAzureAD', idpName));
+      cognito.UserPoolClientIdentityProvider.custom(idpName);
     }
 
     const client = new cognito.UserPoolClient(this, 'CognitoSamlAppClient', {

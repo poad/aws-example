@@ -58,7 +58,7 @@ jobs:
           ${{ matrix.pattern.app }}
 
     - name: Hadolint ${{ matrix.pattern.app }}
-      uses: hadolint/hadolint-action@v2.0.0
+      uses: hadolint/hadolint-action@v2.1.0
       with:
         dockerfile: ${{ matrix.pattern.app }}/Dockerfile
   

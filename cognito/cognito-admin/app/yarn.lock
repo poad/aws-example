@@ -178,11 +178,11 @@
     "@aws-amplify/ui-components" "1.7.2"
 
 "@aws-amplify/ui-react@*":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/ui-react/-/ui-react-2.15.0.tgz#2182e35d2a969111c7f244476d925661a3000286"
-  integrity sha512-JjOf28mXSOoZ7UV+EjyhgKxiYHlss/G+/i20sRUOWiN6MBRlkn5NCoVJUPBPaCbp+M+mR9df9XPHMwmO1kMlyw==
+  version "2.15.1"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/ui-react/-/ui-react-2.15.1.tgz#13015df0be1f137c93503e52a88d50729715326b"
+  integrity sha512-/h7ySkjWBydbe71jTBQ//vegrmMFg7Lk3Fu5wTplJQXGbla5d5FPwbM7N7+kKkXOU9/yfHOze77Cv8K216JjNQ==
   dependencies:
-    "@aws-amplify/ui" "3.6.0"
+    "@aws-amplify/ui" "3.6.1"
     "@aws-amplify/ui-react-v1" "npm:@aws-amplify/ui-react@1.2.9"
     "@radix-ui/react-accordion" "0.1.6"
     "@radix-ui/react-dropdown-menu" "0.1.6"
@@ -204,13 +204,13 @@
   resolved "https://registry.yarnpkg.com/@aws-amplify/ui/-/ui-2.0.5.tgz#0800938a0bf36ff51922637628b0889017da19f1"
   integrity sha512-atoc/zIJRhgpoSDDKgRxbTSD7D9S4wbOzHUHMqRlcEPRKqRrQPGvd6zCUVSBS0jqdrrw6+UTJbWj7ttWCfE4pQ==
 
-"@aws-amplify/ui@3.6.0":
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/ui/-/ui-3.6.0.tgz#35c7a1a09463ca4d98c70737a314f764e45432d6"
-  integrity sha512-MYyfZdZiOK5P4mAbAVZfkhjut4OMGkgWbYJHV5pQdlNlD0mngM2OA7hn9co0uB1GPOkN+zVACTSHmE30rNxFEg==
+"@aws-amplify/ui@3.6.1":
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/ui/-/ui-3.6.1.tgz#7b028232e20fffaa24ef05802754d4aacf936ac9"
+  integrity sha512-LhcbYnqsBUV1Olld6pYh09kGJ8AiSNBgnnW6aYpy6EpaWOPE9NTUG0mvrrIjzqf+xgxJg5teGyh6JA8RhDgZRg==
   dependencies:
     lodash "4.17.21"
-    style-dictionary "3.0.3"
+    style-dictionary "3.7.0"
     xstate "^4.30.6"
 
 "@aws-amplify/xr@3.0.37":
@@ -4710,10 +4710,10 @@ combined-stream@^1.0.8:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-5.1.0.tgz#46abbd1652f8e059bddaef99bbdcb2ad9cf179ae"
-  integrity sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==
+commander@^8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-8.3.0.tgz#4837ea1b2da67b9c616a67afbb0fafee567bca66"
+  integrity sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==
 
 concat-map@0.0.1:
   version "0.0.1"
@@ -5565,14 +5565,14 @@ form-data@^3.0.0:
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
-fs-extra@^8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-8.1.0.tgz#49d43c45a88cd9677668cb7be1b46efdb8d2e1c0"
-  integrity sha512-yhlQgA6mnOJUKOsRUFsgJdQCvkKhcz8tlZG5HBQfReYZy46OwLcY+Zia0mtdHsOo9y/hP+CxMN0TU9QxoOtG4g==
+fs-extra@^10.0.0:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-10.0.1.tgz#27de43b4320e833f6867cc044bfce29fdf0ef3b8"
+  integrity sha512-NbdoVMZso2Lsrn/QwLXOy6rm0ufY2zEOKCDzJR/0kBsb0E6qed0P3iYK+Ath3BfvXEeu4JhEtXLgILx5psUfag==
   dependencies:
     graceful-fs "^4.2.0"
-    jsonfile "^4.0.0"
-    universalify "^0.1.0"
+    jsonfile "^6.0.1"
+    universalify "^2.0.0"
 
 fs.realpath@^1.0.0:
   version "1.0.0"
@@ -6593,15 +6593,22 @@ json5@^1.0.1:
   dependencies:
     minimist "^1.2.0"
 
-json5@^2.1.3, json5@^2.2.1:
+json5@^2.2.0, json5@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.1.tgz#655d50ed1e6f95ad1a3caababd2b0efda10b395c"
   integrity sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==
 
-jsonfile@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/jsonfile/-/jsonfile-4.0.0.tgz#8771aae0799b64076b76640fca058f9c10e33ecb"
-  integrity sha1-h3Gq4HmbZAdrdmQPygWPnBDjPss=
+jsonc-parser@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/jsonc-parser/-/jsonc-parser-3.0.0.tgz#abdd785701c7e7eaca8a9ec8cf070ca51a745a22"
+  integrity sha512-fQzRfAbIBnR0IQvftw9FJveWiHp72Fg20giDrHz6TdfB12UH/uue0D3hm57UB5KgAVuniLMCaS8P1IMj9NR7cA==
+
+jsonfile@^6.0.1:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/jsonfile/-/jsonfile-6.1.0.tgz#bc55b2634793c679ec6403094eb13698a6ec0aae"
+  integrity sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==
+  dependencies:
+    universalify "^2.0.0"
   optionalDependencies:
     graceful-fs "^4.1.6"
 
@@ -7817,17 +7824,18 @@ strnum@^1.0.4:
   resolved "https://registry.yarnpkg.com/strnum/-/strnum-1.0.5.tgz#5c4e829fe15ad4ff0d20c3db5ac97b73c9b072db"
   integrity sha512-J8bbNyKKXl5qYcR36TIO8W3mVGVHrmmxsd5PAItGkmyzwJvybiw2IVq5nqd0i4LSNSkB/sx9VHllbfFdr9k1JA==
 
-style-dictionary@3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/style-dictionary/-/style-dictionary-3.0.3.tgz#251ac680303fe757f19af3af9898db1a66f7373e"
-  integrity sha512-4s8wK1o4M/o9AhwsMqOdu0swBJrvxXspcQ7efdKpER5OP7DnnGC5KeCPHlLdciNYDng+z7TWHUXlw1xs7rR50g==
+style-dictionary@3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/style-dictionary/-/style-dictionary-3.7.0.tgz#02f4b17232cbb1142a3fdc09a17dfb08aafde3b0"
+  integrity sha512-BL4AQS5kNDBXbFHWJhlCve6+ojnHgHkiwhf2nNByU698elXWdyK5b27OprphT4q0/tJ52zB+lodhqxIxbNOajQ==
   dependencies:
     chalk "^4.0.0"
     change-case "^4.1.2"
-    commander "^5.1.0"
-    fs-extra "^8.1.0"
-    glob "^7.1.6"
-    json5 "^2.1.3"
+    commander "^8.3.0"
+    fs-extra "^10.0.0"
+    glob "^7.2.0"
+    json5 "^2.2.0"
+    jsonc-parser "^3.0.0"
     lodash "^4.17.15"
     tinycolor2 "^1.4.1"
 
@@ -8094,10 +8102,15 @@ universal-cookie@^4.0.4:
     "@types/cookie" "^0.3.3"
     cookie "^0.4.0"
 
-universalify@^0.1.0, universalify@^0.1.2:
+universalify@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/universalify/-/universalify-0.1.2.tgz#b646f69be3942dabcecc9d6639c80dc105efaa66"
   integrity sha512-rBJeI5CXAlmy1pV+617WB9J63U6XcazHHF2f2dbJix4XzpUF0RS3Zbj0FGIOCAva5P/d/GBOYaACQ1w+0azUkg==
+
+universalify@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/universalify/-/universalify-2.0.0.tgz#75a4984efedc4b08975c5aeb73f530d02df25717"
+  integrity sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==
 
 upper-case-first@^2.0.2:
   version "2.0.2"

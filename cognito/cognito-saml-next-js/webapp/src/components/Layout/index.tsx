@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import {
   AppBar, Box, CssBaseline, Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography,
 } from '@mui/material';
@@ -11,7 +11,8 @@ import {
 const drawerWidth = 240;
 
 interface LayoutProps {
-  container?: Element
+  container?: Element,
+  children?: ReactNode
 }
 
 const Layout: React.FC<LayoutProps> = (props) => {

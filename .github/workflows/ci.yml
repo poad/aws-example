@@ -6,16 +6,8 @@ name: Node.js CI
 on:
   push:
     branches: [ main ]
-    paths-ignore:
-      - 'lambda/layer/**'
-      - 'lambda/lambda-examples/lambda/container/**'
-      - 'amplify/**'
   pull_request_target:
     branches: [ main ]
-    paths-ignore:
-      - './lambda/layer/**'
-      - 'lambda/lambda-examples/lambda/container/**'
-      - 'amplify/**'
 
   workflow_dispatch:
 

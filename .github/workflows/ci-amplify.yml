@@ -7,11 +7,11 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'amplify/**'
+      - 'amplify/amplified_todo'
   pull_request_target:
     branches: [ main ]
     paths:
-      - 'amplify/**'
+      - 'amplify/amplified_todo'
 
   workflow_dispatch:
 

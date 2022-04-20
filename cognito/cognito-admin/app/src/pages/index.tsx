@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AppBar, Box, Button, CssBaseline, Link, Tab, Tabs, Toolbar, Typography } from '@mui/material';
-import Amplify, { Auth } from 'aws-amplify';
+import { Amplify, Auth } from 'aws-amplify';
 import {
   withAuthenticator,
 } from '@aws-amplify/ui-react';
@@ -22,7 +22,7 @@ interface HomeProps {
   signOut: (opts?: any) => Promise<any>
 }
 
-const Home = ({ signOut }: HomeProps): JSX.Element => {
+const Home = (props: HomeProps | undefined): JSX.Element => {
   const [client, setClient] = useState<UserPoolClient | undefined>(undefined);
   const [iamClient, setIamClient] = useState<IamClient | undefined>(undefined);
   const [authenticated, setAuthenticated] = useState<boolean>(false);
@@ -33,6 +33,8 @@ const Home = ({ signOut }: HomeProps): JSX.Element => {
   const redirect = process.env.NEXT_PUBLIC_SIGN_IN_ENDPOINT;
   const clientId = process.env.NEXT_PUBLIC_AWS_WEB_CLIENT_ID_CONSOLE;
   const scopes = process.env.NEXT_PUBLIC_SCOPES;
+
+  const { signOut } = props ? props : { signOut: () => {} };
 
   const consoleUrl = `${endpoint}/oauth2/authorize?${idp}redirect_uri=${redirect}&response_type=CODE&client_id=${clientId}&scope=${scopes}`;
 
@@ -107,4 +109,4 @@ const Home = ({ signOut }: HomeProps): JSX.Element => {
   );
 };
 
-export default withAuthenticator(Home);
+export default withAuthenticator<HomeProps>(Home);

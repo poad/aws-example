@@ -3,12 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "test": "jest --passWithNoTests",
     "dev": "next",
     "build": "next build && next export",
     "start": "next start",
     "lint": "eslint --ext .ts,.js,.tsx,.jsx src",
-    "all": "yarn install && yarn lint && yarn build && yarn test"
+    "all": "yarn install && yarn lint && yarn build"
   },
   "dependencies": {
     "@aws-amplify/ui-react": "*",
@@ -44,13 +43,14 @@
     "eslint-import-resolver-typescript": "*",
     "eslint-plugin-flowtype": "*",
     "eslint-plugin-import": "*",
-    "eslint-plugin-jest": "*",
     "eslint-plugin-jsx-a11y": "*",
     "eslint-plugin-react": "*",
     "eslint-plugin-react-hooks": "*",
-    "jest": "*",
     "next-compose-plugins": "*",
     "next-transpile-modules": "*",
     "typescript": "*"
+  },
+  "resolutions": {
+    "use-subscription": "1.6.0"
   }
 }

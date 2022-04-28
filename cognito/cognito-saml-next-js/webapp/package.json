@@ -3,12 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "test": "jest --passWithNoTests",
     "dev": "next",
     "build": "next build && next export && rm -rf build && mv out build",
     "start": "next start",
     "lint": "eslint --ext .ts,.js,.tsx,.jsx src",
-    "all": "yarn install && yarn lint && yarn build && yarn test"
+    "all": "yarn install && yarn lint && yarn build"
   },
   "dependencies": {
     "@aws-amplify/ui-react": "*",
@@ -20,14 +19,12 @@
     "@mui/styles": "*",
     "aws-amplify": "*",
     "next": "*",
-    "react": "*",
-    "react-dom": "*"
+    "react": "~18",
+    "react-dom": "~18"
   },
   "devDependencies": {
-    "@swc/jest": "*",
-    "@types/jest": "*",
     "@types/node": "*",
-    "@types/react": "*",
+    "@types/react": "~18",
     "@typescript-eslint/eslint-plugin": "*",
     "@typescript-eslint/parser": "*",
     "eslint": "*",
@@ -38,13 +35,14 @@
     "eslint-import-resolver-typescript": "*",
     "eslint-plugin-flowtype": "*",
     "eslint-plugin-import": "*",
-    "eslint-plugin-jest": "*",
     "eslint-plugin-jsx-a11y": "*",
     "eslint-plugin-react": "*",
     "eslint-plugin-react-hooks": "*",
-    "jest": "*",
     "next-compose-plugins": "*",
     "next-transpile-modules": "*",
     "typescript": "*"
+  },
+  "resolutions": {
+    "use-subscription": "1.6.0"
   }
 }

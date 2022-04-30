@@ -171,17 +171,17 @@
     "@aws-amplify/ui-components" "1.7.2"
 
 "@aws-amplify/ui-react@*":
-  version "2.15.6"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/ui-react/-/ui-react-2.15.6.tgz#469816494f21a2f95f8067f1223edc0221cda42b"
-  integrity sha512-5RQvhqqoSPUyvhzYwP4CdY4Divk86wdIwsf3yF+5BUAlXYo4LwyHZ1TO+gJhRkmU9EtYkM5jWwPmDFABqQSz+A==
+  version "2.15.8"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/ui-react/-/ui-react-2.15.8.tgz#fa96609ab937ddab41e9024fff17201ba2162a97"
+  integrity sha512-lhsFKfYXPKByo2oiCNu55dW4kEFJ3YYMBFI/cQ3wF99Ep6o6G6+S8yTSYce7BkCnDOWyInSzcrZ/G59162aoLA==
   dependencies:
-    "@aws-amplify/ui" "3.6.6"
+    "@aws-amplify/ui" "3.6.8"
     "@aws-amplify/ui-react-v1" "npm:@aws-amplify/ui-react@1.2.9"
     "@radix-ui/react-accordion" "0.1.6"
     "@radix-ui/react-dropdown-menu" "0.1.6"
     "@radix-ui/react-slider" "0.1.4"
     "@radix-ui/react-tabs" "0.1.5"
-    "@xstate/react" "1.6.3"
+    "@xstate/react" "3.0.0"
     classnames "2.3.1"
     deepmerge "4.2.2"
     lodash "4.17.21"
@@ -197,10 +197,10 @@
   resolved "https://registry.yarnpkg.com/@aws-amplify/ui/-/ui-2.0.5.tgz#0800938a0bf36ff51922637628b0889017da19f1"
   integrity sha512-atoc/zIJRhgpoSDDKgRxbTSD7D9S4wbOzHUHMqRlcEPRKqRrQPGvd6zCUVSBS0jqdrrw6+UTJbWj7ttWCfE4pQ==
 
-"@aws-amplify/ui@3.6.6":
-  version "3.6.6"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/ui/-/ui-3.6.6.tgz#f5e502bee3d28b1e8b337f859d4a98d8a952630e"
-  integrity sha512-A/kFdhHig7k7fRDRknHCsjAT3MkkRcEihQI4HVwdag312CwJ6AZZW/XDZ4TxqD4vhNvCUzud4bCdQT9Unzz8SA==
+"@aws-amplify/ui@3.6.8":
+  version "3.6.8"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/ui/-/ui-3.6.8.tgz#b4591e511d1f3122750372e9da97015207c52e1b"
+  integrity sha512-vv0HOqWNcjVqt1S6Jvh1O0PRJusrAjuOUI6B8HlczJ4o2xfkDqGBnwxZTPs56MDjJZAO40Tt2Bojbbh7S5KNwg==
   dependencies:
     lodash "4.17.21"
     style-dictionary "3.7.0"
@@ -3635,13 +3635,13 @@
     "@typescript-eslint/types" "5.21.0"
     eslint-visitor-keys "^3.0.0"
 
-"@xstate/react@1.6.3":
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/@xstate/react/-/react-1.6.3.tgz#706f3beb7bc5879a78088985c8fd43b9dab7f725"
-  integrity sha512-NCUReRHPGvvCvj2yLZUTfR0qVp6+apc8G83oXSjN4rl89ZjyujiKrTff55bze/HrsvCsP/sUJASf2n0nzMF1KQ==
+"@xstate/react@3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@xstate/react/-/react-3.0.0.tgz#888d9a6f128c70b632c18ad55f1f851f6ab092ba"
+  integrity sha512-KHSCfwtb8gZ7QH2luihvmKYI+0lcdHQOmGNRUxUEs4zVgaJCyd8csCEmwPsudpliLdUmyxX2pzUBojFkINpotw==
   dependencies:
     use-isomorphic-layout-effect "^1.0.0"
-    use-subscription "^1.3.0"
+    use-sync-external-store "^1.0.0"
 
 acorn-jsx@^5.3.1:
   version "5.3.2"
@@ -6396,10 +6396,15 @@ use-sidecar@^1.1.2:
     detect-node-es "^1.1.0"
     tslib "^2.0.0"
 
-use-subscription@1.6.0, use-subscription@^1.3.0:
+use-subscription@1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/use-subscription/-/use-subscription-1.6.0.tgz#86ace4f60675a4c360712975c4933ac95c7e7f35"
   integrity sha512-0Y/cTLlZfw547tJhJMoRA16OUbVqRm6DmvGpiGbmLST6BIA5KU5cKlvlz8DVMrACnWpyEjCkgmhLatthP4jUbA==
+
+use-sync-external-store@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.1.0.tgz#3343c3fe7f7e404db70f8c687adf5c1652d34e82"
+  integrity sha512-SEnieB2FPKEVne66NpXPd1Np4R1lTNKfjuy3XdIoPQKYBAFdzbzSZlSn1KJZUiihQLQC5Znot4SBz1EOTBwQAQ==
 
 util-deprecate@~1.0.1:
   version "1.0.2"

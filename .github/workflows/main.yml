@@ -179,7 +179,7 @@ jobs:
 
     - name: Send result with Pull Request
       if: success() && env.CHANGE_STATE == 'changed' && github.event_name != 'pull_request'
-      uses: slackapi/slack-github-action@v1.18
+      uses: slackapi/slack-github-action@v1.19
       with:
         payload: "{ \"text\": \"${{ env.SLACKK_PAYLOAD }}\" }"
       env:
@@ -188,7 +188,7 @@ jobs:
 
     - name: Send result without Pull Request
       if: success() && env.CHANGE_STATE == 'changed' && github.event_name != 'pull_request'
-      uses: slackapi/slack-github-action@v1.18
+      uses: slackapi/slack-github-action@v1.19
       with:
         payload: "{ \"text\": \"${{ env.SLACKK_PAYLOAD }}\" }"
       env:

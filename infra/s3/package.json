@@ -1,0 +1,24 @@
+{
+  "name": "s3",
+  "version": "0.1.0",
+  "bin": {
+    "s3": "bin/s3.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@types/node": "*",
+    "aws-cdk": "*",
+    "ts-node": "*",
+    "typescript": "*"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "*",
+    "constructs": "*",
+    "source-map-support": "*"
+  }
+}

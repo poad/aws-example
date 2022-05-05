@@ -47,8 +47,14 @@ jobs:
         node-version: [14.x, 16.x]
         target: [
           ./codebuild/custom-image-test,
+          ./codebuild/codebuild-webhook-project/infra,
           ./lambda/lambda-examples,
           ./lambda/lambda-examples/lambda/python,
+          ./codepipeline/adoptium-temurin-jib/infra,
+          ./codepipeline/codebuild-custom-image/java-adopt-base/infra,
+          ./codepipeline/codebuild-github-tag/infra,
+          ./codepipeline/docker-build/infra,
+          ./codepipeline/vulnerability-scan/infra,
           ./cognito/tiny-device-flow,
           ./cognito/tiny-device-flow/pages,
           ./cognito/cognito-saml-next-js/webapp,

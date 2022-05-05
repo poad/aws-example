@@ -1,0 +1,54 @@
+{
+  "app": "npx ts-node --prefer-ts-exts bin/infra.ts",
+  "watch": {
+    "include": [
+      "**"
+    ],
+    "exclude": [
+      "README.md",
+      "cdk*.json",
+      "**/*.d.ts",
+      "**/*.js",
+      "tsconfig.json",
+      "package*.json",
+      "yarn.lock",
+      "node_modules",
+      "test"
+    ]
+  },
+  "requireApproval": "never",
+  "context": {
+    "@aws-cdk/aws-apigateway:usagePlanKeyOrderInsensitiveId": true,
+    "@aws-cdk/core:stackRelativeExports": true,
+    "@aws-cdk/aws-rds:lowercaseDbIdentifier": true,
+    "@aws-cdk/aws-lambda:recognizeVersionProps": true,
+    "@aws-cdk/aws-cloudfront:defaultSecurityPolicyTLSv1.2_2021": true,
+    "@aws-cdk-containers/ecs-service-extensions:enableDefaultLogDriver": true,
+    "@aws-cdk/aws-ec2:uniqueImdsv2TemplateName": true,
+    "@aws-cdk/core:target-partitions": [
+      "aws",
+      "aws-cn"
+    ],
+    "params": {
+      "infra": {
+        "repo": "aws-example",
+        "owner": "poad",
+        "branch": "main",
+        "tokenParam": "/github/OAuthToken"
+      },
+      "app": {
+        "repo": "mecab-java-api-server",
+        "owner": "poad",
+        "branch": "main",
+        "tokenParam": "/github/OAuthToken"
+      },
+      "jdk": {
+        "majorVersion": "11",
+        "minorRevision": "0.15",
+        "buildNumber": "10",
+        "esum": "5fdb4d5a1662f0cca73fec30f99e67662350b1fa61460fa72e91eb9f66b54d0b"
+      },
+      "archType": "x86"
+    }
+  }
+}

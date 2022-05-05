@@ -1,1 +1,0 @@
-# typescript-code-build-exaple

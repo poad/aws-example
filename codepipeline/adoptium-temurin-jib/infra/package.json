@@ -1,0 +1,28 @@
+{
+  "name": "adoptopenjdk-jib-infra",
+  "version": "0.0.1",
+  "license": "MIT",
+  "bin": {
+    "infra": "bin/infra.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@types/jest": "*",
+    "@types/node": "*",
+    "aws-cdk": "*",
+    "jest": "*",
+    "ts-jest": "*",
+    "ts-node": "*",
+    "typescript": "*"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "*",
+    "constructs": "*",
+    "source-map-support": "*"
+  }
+}

@@ -4,7 +4,7 @@ phases:
   install:
     commands:
       - apt-get -qq update
-      - apt-get -qqy install --no-install-recommends jq
+      - DEBIAN_FRONTEND=noninteractive apt-get -qqy install --no-install-recommends jq
 
   build: 
     commands:

@@ -11,6 +11,94 @@ updates:
       - poad
 
   - package-ecosystem: npm
+    directory: '/infra/s3/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: npm
+    directory: '/codebuild/custom-image-test/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: npm
+    directory: '/codebuild/codebuild-webhook-project/infra/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: npm
+    directory: '/codepipeline/adoptium-temurin-jib/infra/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: npm
+    directory: '/codepipeline/codebuild-custom-image/java-adopt-base/infra/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: npm
+    directory: '/codepipeline/codebuild-github-tag/infra/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: npm
+    directory: '/codepipeline/docker-build/infra/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: npm
+    directory: '/codepipeline/vulnerability-scan/infra/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: npm
     directory: '/cognito/cognito-admin/app/'
     schedule:
       interval: daily
@@ -78,17 +166,6 @@ updates:
 
   - package-ecosystem: npm
     directory: '/cognito/tiny-device-flow/pages/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-
-  - package-ecosystem: npm
-    directory: '/codebuild/custom-image-test/'
     schedule:
       interval: daily
       timezone: Asia/Tokyo

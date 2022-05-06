@@ -22,6 +22,18 @@ updates:
       - poad
 
   - package-ecosystem: npm
+    directory: '/infra/ecs/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+
+  - package-ecosystem: npm
     directory: '/codebuild/custom-image-test/'
     schedule:
       interval: daily

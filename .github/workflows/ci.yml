@@ -46,6 +46,8 @@ jobs:
       matrix:
         node-version: [14.x, 16.x]
         target: [
+          ./infra/s3,
+          ./infra/ecs,
           ./codebuild/custom-image-test,
           ./codebuild/codebuild-webhook-project/infra,
           ./lambda/lambda-examples,

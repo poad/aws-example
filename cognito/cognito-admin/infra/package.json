@@ -34,5 +34,16 @@
     "cross-fetch": "*",
     "jsonwebtoken": "*",
     "source-map-support": "*"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/test"
+    ],
+    "testMatch": [
+      "**/*.test.ts"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    }
   }
 }

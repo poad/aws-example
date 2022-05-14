@@ -297,6 +297,17 @@ updates:
     assignees:
       - poad
 
+  - package-ecosystem: npm
+    directory: '/amplify/amplified_todo/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
   - package-ecosystem: pip
     directory: '/lambda/lambda-examples/lambda/python/'
     schedule:
@@ -308,8 +319,19 @@ updates:
     assignees:
       - poad
 
-  - package-ecosystem: npm
-    directory: '/amplify/amplified_todo/'
+  - package-ecosystem: gradle
+    directory: '/codebuild/codebuild-webhook-project/app/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: gradle
+    directory: '/amplify/amplified_todo/android/'
     schedule:
       interval: daily
       timezone: Asia/Tokyo

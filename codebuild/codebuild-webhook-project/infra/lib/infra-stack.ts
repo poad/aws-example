@@ -85,7 +85,7 @@ export class InfraStack extends Stack {
           },
           build: {
             commands: [
-              'cd codebuild/codebuild-webhook-project',
+              'cd codebuild/codebuild-webhook-project/app',
               `JAVA_HOME=/usr/lib/jvm/bellsoft-java11-${archMap.findInMap(archType, "path")} ./gradlew clean test`,
             ]
           },
@@ -95,7 +95,7 @@ export class InfraStack extends Stack {
             files: [
               '**/*',
             ],
-            'base-directory': 'codebuild/codebuild-webhook-project/app/build/test-results',
+            'base-directory': 'codebuild/codebuild-webhook-project/app/app/build/test-results',
             'discard-paths': 'no',
             'file-format': 'JunitXml'
           }

@@ -7,6 +7,7 @@
     "build": "next build && next export && rm -rf build && mv out build",
     "start": "next start",
     "lint": "eslint --ext .ts,.js,.tsx,.jsx src",
+    "analyze": "ANALYZE=true next build",
     "all": "yarn install && yarn lint && yarn build"
   },
   "dependencies": {
@@ -23,6 +24,7 @@
     "react-dom": "*"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "*",
     "@types/node": "*",
     "@types/react": "*",
     "@typescript-eslint/eslint-plugin": "*",

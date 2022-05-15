@@ -9,6 +9,7 @@
     "build": "next build",
     "export": "next export",
     "start": "next start",
+    "analyze": "ANALYZE=true next build",
     "lint": "eslint --ext .ts,.js,.tsx,.jsx src",
     "all": "yarn lint --fix && yarn build && yarn test"
   },
@@ -21,6 +22,7 @@
     "tailwindcss": "*"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "*",
     "@types/node": "*",
     "@types/qs": "*",
     "@types/react": "*",

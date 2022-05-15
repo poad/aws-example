@@ -6,6 +6,7 @@
     "dev": "next",
     "build": "next build && next export",
     "start": "next start",
+    "analyze": "ANALYZE=true next build",
     "lint": "eslint --ext .ts,.js,.tsx,.jsx src",
     "all": "yarn install && yarn lint && yarn build"
   },
@@ -30,6 +31,7 @@
     "react-loader": "*"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "*",
     "@types/node": "*",
     "@types/react": "*",
     "@types/react-loader": "*",

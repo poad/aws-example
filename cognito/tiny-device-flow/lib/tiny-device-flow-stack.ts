@@ -1,5 +1,9 @@
-import { AccountRecovery, CfnIdentityPool, CfnIdentityPoolRoleAttachment, Mfa, OAuthScope, UserPool, UserPoolClient } from 'aws-cdk-lib/aws-cognito';
-import { Effect, FederatedPrincipal, PolicyDocument, PolicyStatement, Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
+import {
+  AccountRecovery, CfnIdentityPool, CfnIdentityPoolRoleAttachment, Mfa, OAuthScope, UserPool, UserPoolClient,
+} from 'aws-cdk-lib/aws-cognito';
+import {
+  Effect, FederatedPrincipal, PolicyDocument, PolicyStatement, Role, ServicePrincipal,
+} from 'aws-cdk-lib/aws-iam';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { RetentionDays } from 'aws-cdk-lib/aws-logs';
@@ -12,7 +16,6 @@ import { Table, AttributeType } from 'aws-cdk-lib/aws-dynamodb';
 import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
 import assert from 'node:assert';
 import { Construct } from 'constructs';
-
 
 export interface TinyDeviceFlowStackStackProps extends cdk.StackProps {
   name: string,
@@ -35,7 +38,7 @@ export class TinyDeviceFlowStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props: TinyDeviceFlowStackStackProps) {
     super(scope, id, props);
 
-    const api = new HttpApi(this, "HttpApi", {
+    const api = new HttpApi(this, 'HttpApi', {
       apiName: `Device Authentication Flow API (${props.environment})`,
     });
 
@@ -71,12 +74,12 @@ export class TinyDeviceFlowStack extends cdk.Stack {
 
     userPool.addDomain('UserPoolDomain', {
       cognitoDomain: {
-        domainPrefix: props.domain
-      }
+        domainPrefix: props.domain,
+      },
     });
 
     const appClient = new UserPoolClient(this, 'AppClient', {
-      userPool: userPool,
+      userPool,
       userPoolClientName: `${props.name}-user-pool-client`,
       authFlows: {
         adminUserPassword: true,
@@ -130,15 +133,15 @@ export class TinyDeviceFlowStack extends cdk.Stack {
               effect: Effect.ALLOW,
               actions: [
                 'cognito-identity:*',
-                "cognito-idp:*",
+                'cognito-idp:*',
                 'sts:GetFederationToken',
                 'sts:AssumeRoleWithWebIdentity',
               ],
               resources: ['*'],
-            })
-          ]
-        })
-      }
+            }),
+          ],
+        }),
+      },
     });
 
     const userAuthenticatedRole = new Role(this, 'UserCognitoDefaultAuthenticatedRole', {
@@ -159,17 +162,18 @@ export class TinyDeviceFlowStack extends cdk.Stack {
               effect: Effect.ALLOW,
               actions: [
                 'cognito-identity:*',
-                "cognito-idp:*",
+                'cognito-idp:*',
                 'sts:GetFederationToken',
                 'sts:AssumeRoleWithWebIdentity',
               ],
               resources: ['*'],
-            })
-          ]
-        })
-      }
+            }),
+          ],
+        }),
+      },
     });
 
+    // eslint-disable-next-line no-new
     new CfnIdentityPoolRoleAttachment(this, 'UsersIdPoolRoleAttachment', {
       identityPoolId: userPoolIdentityPool.ref,
       roles: {
@@ -182,16 +186,15 @@ export class TinyDeviceFlowStack extends cdk.Stack {
       tableName: `${props.name}-device-code`,
       partitionKey: {
         name: 'device_code',
-        type: AttributeType.STRING
+        type: AttributeType.STRING,
       },
       sortKey: {
         name: 'user_code',
-        type: AttributeType.STRING
+        type: AttributeType.STRING,
       },
       timeToLiveAttribute: 'expire',
-      removalPolicy: RemovalPolicy.DESTROY
+      removalPolicy: RemovalPolicy.DESTROY,
     });
-
 
     const s3bucket = new s3.Bucket(this, 'S3Bucket', {
       bucketName: `${props.name}-static-site`,
@@ -209,10 +212,11 @@ export class TinyDeviceFlowStack extends cdk.Stack {
       ],
     });
 
+    // eslint-disable-next-line no-new
     new s3deploy.BucketDeployment(this, 'DeployWebsite', {
       sources: [s3deploy.Source.asset(`${process.cwd()}/pages/out`)],
       destinationBucket: s3bucket,
-      destinationKeyPrefix: 'web/static' // optional prefix in destination bucket
+      destinationKeyPrefix: 'web/static', // optional prefix in destination bucket
     });
 
     const resourceEndpointFnName = `${props.name}-resource-endpoint`;
@@ -228,13 +232,13 @@ export class TinyDeviceFlowStack extends cdk.Stack {
         target: 'es2020',
         externalModules: [
           'aws-sdk',
-          'node'
+          'node',
         ],
         buildArgs: {
           '--bundle': '',
           '--platform': 'node',
           '--format': 'cjs',
-        }
+        },
       },
       environment: {
         REGION: props.region,
@@ -251,14 +255,14 @@ export class TinyDeviceFlowStack extends cdk.Stack {
                 actions: [
                   'logs:CreateLogGroup',
                   'logs:CreateLogStream',
-                  'logs:PutLogEvents'
+                  'logs:PutLogEvents',
                 ],
                 resources: [
                   `arn:aws:logs:${props.region}:${this.account}:log-group:/aws/lambda/${resourceEndpointFnName}`,
                   `arn:aws:logs:${props.region}:${this.account}:log-group:/aws/lambda/${resourceEndpointFnName}:*`,
                 ],
-              })
-            ]
+              }),
+            ],
           }),
           's3-role-policy': new PolicyDocument(
             {
@@ -266,41 +270,41 @@ export class TinyDeviceFlowStack extends cdk.Stack {
                 new PolicyStatement({
                   effect: Effect.ALLOW,
                   actions: [
-                    "s3:GetAccountPublicAccessBlock",
-                    "s3:GetBucketAcl",
-                    "s3:GetBucketLocation",
-                    "s3:GetBucketPolicyStatus",
-                    "s3:GetBucketPublicAccessBlock",
-                    "s3:ListAllMyBuckets"
+                    's3:GetAccountPublicAccessBlock',
+                    's3:GetBucketAcl',
+                    's3:GetBucketLocation',
+                    's3:GetBucketPolicyStatus',
+                    's3:GetBucketPublicAccessBlock',
+                    's3:ListAllMyBuckets',
                   ],
                   resources: [
-                    '*'
+                    '*',
                   ],
                 }),
                 new PolicyStatement({
                   effect: Effect.ALLOW,
                   actions: [
-                    's3:ListBucket'
-                  ],
-                  resources: [
-                    `${s3bucket.bucketArn}`
-                  ],
-                }),
-                new PolicyStatement({
-                  effect: Effect.ALLOW,
-                  actions: [
-                    "s3:Get*"
+                    's3:ListBucket',
                   ],
                   resources: [
                     `${s3bucket.bucketArn}`,
-                    `${s3bucket.bucketArn}/*`
                   ],
                 }),
-              ]
-            }
-          )
+                new PolicyStatement({
+                  effect: Effect.ALLOW,
+                  actions: [
+                    's3:Get*',
+                  ],
+                  resources: [
+                    `${s3bucket.bucketArn}`,
+                    `${s3bucket.bucketArn}/*`,
+                  ],
+                }),
+              ],
+            },
+          ),
         },
-      })
+      }),
     });
 
     const deviceCodeEndpointFnName = `${props.name}-device-code-endpoint`;
@@ -316,20 +320,20 @@ export class TinyDeviceFlowStack extends cdk.Stack {
         target: 'es2020',
         externalModules: [
           'aws-sdk',
-          'node'
+          'node',
         ],
         buildArgs: {
           '--bundle': '',
           '--platform': 'node',
           '--format': 'cjs',
-        }
+        },
       },
       environment: {
         REGION: props.region,
         TABLE_NAME: deviceCodeTable.tableName,
         CLIENT_ID: appClient.userPoolClientId,
         EXPIRE_IN_SEC: '300',
-        VERIFICATION_URI: `${api.url!}oauth/device/activate`
+        VERIFICATION_URI: `${api.url!}oauth/device/activate`,
       },
       role: new Role(this, 'DeviceCodeEndpointExecutionRole', {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
@@ -341,17 +345,17 @@ export class TinyDeviceFlowStack extends cdk.Stack {
                 actions: [
                   'logs:CreateLogGroup',
                   'logs:CreateLogStream',
-                  'logs:PutLogEvents'
+                  'logs:PutLogEvents',
                 ],
                 resources: [
                   `arn:aws:logs:${props.region}:${this.account}:log-group:/aws/lambda/${deviceCodeEndpointFnName}`,
                   `arn:aws:logs:${props.region}:${this.account}:log-group:/aws/lambda/${deviceCodeEndpointFnName}:*`,
                 ],
-              })
-            ]
+              }),
+            ],
           }),
         },
-      })
+      }),
     });
 
     const tokenEndpointFnName = `${props.name}-token-endpoint`;
@@ -372,13 +376,13 @@ export class TinyDeviceFlowStack extends cdk.Stack {
         target: 'es2020',
         externalModules: [
           'aws-sdk',
-          'node'
+          'node',
         ],
         buildArgs: {
           '--bundle': '',
           '--platform': 'node',
           '--format': 'cjs',
-        }
+        },
       },
       role: new Role(this, 'TokenEndpointLambdaExecutionRole', {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
@@ -390,31 +394,34 @@ export class TinyDeviceFlowStack extends cdk.Stack {
                 actions: [
                   'logs:CreateLogGroup',
                   'logs:CreateLogStream',
-                  'logs:PutLogEvents'
+                  'logs:PutLogEvents',
                 ],
                 resources: [
                   `arn:aws:logs:${props.region}:${this.account}:log-group:/aws/lambda/${tokenEndpointFnName}`,
                   `arn:aws:logs:${props.region}:${this.account}:log-group:/aws/lambda/${tokenEndpointFnName}:*`,
                 ],
-              })
-            ]
+              }),
+            ],
           }),
         },
-      })
+      }),
     });
-
 
     const { responseType, identityProvider, scopes } = props;
 
     const availableScopes = Object.entries(scopes)
-      .filter(scope => scope[1])
-      .map(scope => scope[0]);
+      // eslint-disable-next-line no-shadow
+      .filter((scope) => scope[1])
+      // eslint-disable-next-line no-shadow
+      .map((scope) => scope[0]);
     assert(availableScopes.length > 0, 'The scopes must have at least one true entry.');
 
     const scopeParam = Object.entries(scopes)
-      .filter(scope => scope[1])
-      .map(scope => scope[0])
-      .reduce((acc, cur) => `${acc}+${cur}`)
+      // eslint-disable-next-line no-shadow
+      .filter((scope) => scope[1])
+      // eslint-disable-next-line no-shadow
+      .map((scope) => scope[0])
+      .reduce((acc, cur) => `${acc}+${cur}`);
     const activateEndpointFnName = `${props.name}-activate-endpoint`;
     const activateEndpointFn = new NodejsFunction(this, 'ActivateEndpointLambdaFunction', {
       runtime: Runtime.NODEJS_14_X,
@@ -428,13 +435,13 @@ export class TinyDeviceFlowStack extends cdk.Stack {
         target: 'es2020',
         externalModules: [
           'aws-sdk',
-          'node'
+          'node',
         ],
         buildArgs: {
           '--bundle': '',
           '--platform': 'node',
           '--format': 'cjs',
-        }
+        },
       },
       environment: {
         REGION: props.region,
@@ -445,8 +452,8 @@ export class TinyDeviceFlowStack extends cdk.Stack {
         CLIENT_ID: appClient.userPoolClientId,
         REDIRECT_URI: responseType === 'token' ? `${api.url}oauth/process/index.html` : `${api.url}oauth/complete`,
         PATH_PREFIX: 'web/static',
-        RESPONSE_TYPE: responseType ? responseType : 'code',
-        IDENTITY_PROVIDER: identityProvider ? identityProvider : 'COGNITO',
+        RESPONSE_TYPE: responseType || 'code',
+        IDENTITY_PROVIDER: identityProvider || 'COGNITO',
         SCOPE: scopeParam === '' ? 'openid' : scopeParam,
       },
       role: new Role(this, 'ActivateEndpointLambdaExecutionRole', {
@@ -459,14 +466,14 @@ export class TinyDeviceFlowStack extends cdk.Stack {
                 actions: [
                   'logs:CreateLogGroup',
                   'logs:CreateLogStream',
-                  'logs:PutLogEvents'
+                  'logs:PutLogEvents',
                 ],
                 resources: [
                   `arn:aws:logs:${props.region}:${this.account}:log-group:/aws/lambda/${activateEndpointFnName}`,
                   `arn:aws:logs:${props.region}:${this.account}:log-group:/aws/lambda/${activateEndpointFnName}:*`,
                 ],
-              })
-            ]
+              }),
+            ],
           }),
           's3-role-policy': new PolicyDocument(
             {
@@ -474,41 +481,41 @@ export class TinyDeviceFlowStack extends cdk.Stack {
                 new PolicyStatement({
                   effect: Effect.ALLOW,
                   actions: [
-                    "s3:GetAccountPublicAccessBlock",
-                    "s3:GetBucketAcl",
-                    "s3:GetBucketLocation",
-                    "s3:GetBucketPolicyStatus",
-                    "s3:GetBucketPublicAccessBlock",
-                    "s3:ListAllMyBuckets"
+                    's3:GetAccountPublicAccessBlock',
+                    's3:GetBucketAcl',
+                    's3:GetBucketLocation',
+                    's3:GetBucketPolicyStatus',
+                    's3:GetBucketPublicAccessBlock',
+                    's3:ListAllMyBuckets',
                   ],
                   resources: [
-                    '*'
+                    '*',
                   ],
                 }),
                 new PolicyStatement({
                   effect: Effect.ALLOW,
                   actions: [
-                    's3:ListBucket'
-                  ],
-                  resources: [
-                    `${s3bucket.bucketArn}`
-                  ],
-                }),
-                new PolicyStatement({
-                  effect: Effect.ALLOW,
-                  actions: [
-                    "s3:Get*"
+                    's3:ListBucket',
                   ],
                   resources: [
                     `${s3bucket.bucketArn}`,
-                    `${s3bucket.bucketArn}/*`
                   ],
                 }),
-              ]
-            }
-          )
+                new PolicyStatement({
+                  effect: Effect.ALLOW,
+                  actions: [
+                    's3:Get*',
+                  ],
+                  resources: [
+                    `${s3bucket.bucketArn}`,
+                    `${s3bucket.bucketArn}/*`,
+                  ],
+                }),
+              ],
+            },
+          ),
         },
-      })
+      }),
     });
 
     const activateCompleteEndpointFnName = `${props.name}-activate-complete-endpoint`;
@@ -523,13 +530,13 @@ export class TinyDeviceFlowStack extends cdk.Stack {
         target: 'es2020',
         externalModules: [
           'aws-sdk',
-          'node'
+          'node',
         ],
         buildArgs: {
           '--bundle': '',
           '--platform': 'node',
           '--format': 'cjs',
-        }
+        },
       },
       retryAttempts: 0,
       environment: {
@@ -541,7 +548,7 @@ export class TinyDeviceFlowStack extends cdk.Stack {
         REDIRECT_URI: `${api.url}oauth/complete`,
         RETRY_URI: `${api.url}oauth/device/activate`,
         PATH_PREFIX: 'web/static',
-        RESPONSE_TYPE: responseType ? responseType : 'code',
+        RESPONSE_TYPE: responseType || 'code',
       },
       role: new Role(this, 'ActivateCompleteEndpointLambdaExecutionRole', {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
@@ -553,14 +560,14 @@ export class TinyDeviceFlowStack extends cdk.Stack {
                 actions: [
                   'logs:CreateLogGroup',
                   'logs:CreateLogStream',
-                  'logs:PutLogEvents'
+                  'logs:PutLogEvents',
                 ],
                 resources: [
                   `arn:aws:logs:${props.region}:${this.account}:log-group:/aws/lambda/${activateCompleteEndpointFnName}`,
                   `arn:aws:logs:${props.region}:${this.account}:log-group:/aws/lambda/${activateCompleteEndpointFnName}:*`,
                 ],
-              })
-            ]
+              }),
+            ],
           }),
           's3-role-policy': new PolicyDocument(
             {
@@ -568,63 +575,60 @@ export class TinyDeviceFlowStack extends cdk.Stack {
                 new PolicyStatement({
                   effect: Effect.ALLOW,
                   actions: [
-                    "s3:GetAccountPublicAccessBlock",
-                    "s3:GetBucketAcl",
-                    "s3:GetBucketLocation",
-                    "s3:GetBucketPolicyStatus",
-                    "s3:GetBucketPublicAccessBlock",
-                    "s3:ListAllMyBuckets"
+                    's3:GetAccountPublicAccessBlock',
+                    's3:GetBucketAcl',
+                    's3:GetBucketLocation',
+                    's3:GetBucketPolicyStatus',
+                    's3:GetBucketPublicAccessBlock',
+                    's3:ListAllMyBuckets',
                   ],
                   resources: [
-                    '*'
+                    '*',
                   ],
                 }),
                 new PolicyStatement({
                   effect: Effect.ALLOW,
                   actions: [
-                    's3:ListBucket'
-                  ],
-                  resources: [
-                    `${s3bucket.bucketArn}`
-                  ],
-                }),
-                new PolicyStatement({
-                  effect: Effect.ALLOW,
-                  actions: [
-                    "s3:Get*"
+                    's3:ListBucket',
                   ],
                   resources: [
                     `${s3bucket.bucketArn}`,
-                    `${s3bucket.bucketArn}/*`
                   ],
                 }),
-              ]
-            }
-          )
+                new PolicyStatement({
+                  effect: Effect.ALLOW,
+                  actions: [
+                    's3:Get*',
+                  ],
+                  resources: [
+                    `${s3bucket.bucketArn}`,
+                    `${s3bucket.bucketArn}/*`,
+                  ],
+                }),
+              ],
+            },
+          ),
         },
-      })
+      }),
     });
 
-
-    [deviceCodeEndpointFn, tokenEndpointFn, activateEndpointFn, activateCompleteEndpointFn].forEach(fn => deviceCodeTable.grantReadWriteData(fn));
-
+    [deviceCodeEndpointFn, tokenEndpointFn, activateEndpointFn, activateCompleteEndpointFn].forEach((fn) => deviceCodeTable.grantReadWriteData(fn));
 
     api.addRoutes({
       path: '/{proxy+}',
       methods: [HttpMethod.GET],
       integration: new HttpLambdaIntegration(
         'proxy-handler',
-        resourceEndpointFn
+        resourceEndpointFn,
       ),
     });
-
 
     api.addRoutes({
       path: '/oauth/device/code',
       methods: [HttpMethod.POST],
       integration: new HttpLambdaIntegration(
         'code-handler',
-        deviceCodeEndpointFn
+        deviceCodeEndpointFn,
       ),
     });
 
@@ -633,7 +637,7 @@ export class TinyDeviceFlowStack extends cdk.Stack {
       methods: [HttpMethod.POST],
       integration: new HttpLambdaIntegration(
         'token-handler',
-        tokenEndpointFn
+        tokenEndpointFn,
       ),
     });
 
@@ -642,7 +646,7 @@ export class TinyDeviceFlowStack extends cdk.Stack {
       methods: [HttpMethod.GET, HttpMethod.POST],
       integration: new HttpLambdaIntegration(
         'activate-handler',
-        activateEndpointFn
+        activateEndpointFn,
       ),
     });
     api.addRoutes({
@@ -650,7 +654,7 @@ export class TinyDeviceFlowStack extends cdk.Stack {
       methods: [HttpMethod.GET, HttpMethod.POST],
       integration: new HttpLambdaIntegration(
         'activate-proxy-handler',
-        activateEndpointFn
+        activateEndpointFn,
       ),
     });
 
@@ -659,7 +663,7 @@ export class TinyDeviceFlowStack extends cdk.Stack {
       methods: [HttpMethod.GET],
       integration: new HttpLambdaIntegration(
         'complete-handler',
-        activateCompleteEndpointFn
+        activateCompleteEndpointFn,
       ),
     });
     api.addRoutes({
@@ -667,7 +671,7 @@ export class TinyDeviceFlowStack extends cdk.Stack {
       methods: [HttpMethod.GET],
       integration: new HttpLambdaIntegration(
         'complete-proxy-handler',
-        activateCompleteEndpointFn
+        activateCompleteEndpointFn,
       ),
     });
   }

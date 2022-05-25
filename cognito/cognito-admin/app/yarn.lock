@@ -2,13 +2,13 @@
 # yarn lockfile v1
 
 
-"@aws-amplify/analytics@5.2.9":
-  version "5.2.9"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/analytics/-/analytics-5.2.9.tgz#2fdd2b6ffb147a15dc4eff7f87d29266c6bdd283"
-  integrity sha512-JpV9X70pfsxUuEtbSLnv4KrLALSuATfCr1LtOlNdb022fWHj4ciy1sUzu77TLuK+36y+8+weRzNJ9/NSWBPh1A==
+"@aws-amplify/analytics@5.2.9", "@aws-amplify/analytics@^5.2.8":
+  version "5.2.8"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/analytics/-/analytics-5.2.8.tgz#913a9d161fe94b33141b446e04fc7a1ee3897c29"
+  integrity sha512-rwAugHOrPX2PfTq+X1SlEms4FopI2ua0FoMX+40qbH1BH/F0yG9xyrsp4ySOUE3VSw10A4ZaN9eu8tS/i8QKAQ==
   dependencies:
-    "@aws-amplify/cache" "4.0.44"
-    "@aws-amplify/core" "4.5.6"
+    "@aws-amplify/cache" "4.0.43"
+    "@aws-amplify/core" "4.5.5"
     "@aws-sdk/client-firehose" "3.6.1"
     "@aws-sdk/client-kinesis" "3.6.1"
     "@aws-sdk/client-personalize-events" "3.6.1"
@@ -57,12 +57,33 @@
     amazon-cognito-identity-js "5.2.9"
     crypto-js "^4.1.1"
 
+"@aws-amplify/cache@4.0.43":
+  version "4.0.43"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/cache/-/cache-4.0.43.tgz#edd73def70ecda7019b908e4b5c35862199fc106"
+  integrity sha512-MyhrDG5gTuoEn5VCp7yNcgbHYBEVPfgoje+oXRq86IXIfIxIJUsogdVkbR+uYF1RNVci4wfjrksOSBNWPwQCjQ==
+  dependencies:
+    "@aws-amplify/core" "4.5.5"
+
 "@aws-amplify/cache@4.0.44":
   version "4.0.44"
   resolved "https://registry.yarnpkg.com/@aws-amplify/cache/-/cache-4.0.44.tgz#8d631665b8459250aff71976e5869f354d146166"
   integrity sha512-lfybDAXaJWzHPprPJILPcSNCfow9xkgskP5tkNdG2/dlkgTwN2aUJVkQdguO5q5zUxgM0xoS7bbVY3kvoQ2b6Q==
   dependencies:
     "@aws-amplify/core" "4.5.6"
+
+"@aws-amplify/core@4.5.5":
+  version "4.5.5"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/core/-/core-4.5.5.tgz#054e51b6fdf2d6b36d3aa6e9fc635530b59a07b4"
+  integrity sha512-j+pE7zgzDxqaIV0ay0Cqrl2KNw1rDE5WbUs2fnc1eVhzWNy/5Sg/jMVeOqwFlAPfyvyy9LViu8wH15eZUq1Lyg==
+  dependencies:
+    "@aws-crypto/sha256-js" "1.0.0-alpha.0"
+    "@aws-sdk/client-cloudwatch-logs" "3.6.1"
+    "@aws-sdk/client-cognito-identity" "3.6.1"
+    "@aws-sdk/credential-provider-cognito-identity" "3.6.1"
+    "@aws-sdk/types" "3.6.1"
+    "@aws-sdk/util-hex-encoding" "3.6.1"
+    universal-cookie "^4.0.4"
+    zen-observable-ts "0.8.19"
 
 "@aws-amplify/core@4.5.6":
   version "4.5.6"
@@ -171,11 +192,11 @@
     "@aws-amplify/ui-components" "1.7.2"
 
 "@aws-amplify/ui-react@*":
-  version "2.18.1"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/ui-react/-/ui-react-2.18.1.tgz#75db3f9b6deb1cb5bda1c43630612a7becc280fa"
-  integrity sha512-pgsUOy3kzJjhuss0/YaM2tiS/Rjmb8JSxqzrI0zJTFZ1Sr2ADu08OysABDEZKdXybFS7+vLqn+eDSKLL1f1xnQ==
+  version "2.18.2"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/ui-react/-/ui-react-2.18.2.tgz#7b5fd94450198dfb4b04084346c739e91c977cdb"
+  integrity sha512-ZYo+m/z/r3v/CQage+3woTqukcvIKH4w54n/4NuOeXqLPGOOWgGl1acIrvPSLk+Uum1YJQlLWorjSLWpacuL8w==
   dependencies:
-    "@aws-amplify/ui" "3.9.1"
+    "@aws-amplify/ui" "3.9.2"
     "@aws-amplify/ui-react-v1" "npm:@aws-amplify/ui-react@1.2.9"
     "@radix-ui/react-accordion" "0.1.6"
     "@radix-ui/react-dropdown-menu" "0.1.6"
@@ -190,17 +211,17 @@
     maplibre-gl-js-amplify "1.5.0"
     qrcode "1.5.0"
     react-generate-context "1.0.1"
-    react-map-gl "7.0.10"
+    react-map-gl "7.0.15"
 
 "@aws-amplify/ui@2.0.5":
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/@aws-amplify/ui/-/ui-2.0.5.tgz#0800938a0bf36ff51922637628b0889017da19f1"
   integrity sha512-atoc/zIJRhgpoSDDKgRxbTSD7D9S4wbOzHUHMqRlcEPRKqRrQPGvd6zCUVSBS0jqdrrw6+UTJbWj7ttWCfE4pQ==
 
-"@aws-amplify/ui@3.9.1":
-  version "3.9.1"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/ui/-/ui-3.9.1.tgz#9a61956c453bc8876d7fb58db05c6c8b624647bb"
-  integrity sha512-9DXvnv6o1QCnSA2ZYremGZtfq048YDr5rPI47N+8Co1k5YbGo7mG6iQSjWa3mhLqNjDUK5gpIkSNlVcfFcmk8A==
+"@aws-amplify/ui@3.9.2":
+  version "3.9.2"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/ui/-/ui-3.9.2.tgz#5f6eef42776023b397f1a886606be196d92542eb"
+  integrity sha512-ZynV3Hzqj+9f1X5E1xYma4ObJb1j8OALbnUPj1JiEnuwbC/ffeQ3VBeRLNvC7RF51M8AFUZKavzWCQQ8pr1Fdw==
   dependencies:
     lodash "4.17.21"
     style-dictionary "3.7.0"
@@ -408,9 +429,9 @@
     tslib "^2.0.0"
 
 "@aws-sdk/client-cognito-identity-provider@*":
-  version "3.95.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/client-cognito-identity-provider/-/client-cognito-identity-provider-3.95.0.tgz#aca1c7296d3ceb0417b6e411cd51fc4a68b06c09"
-  integrity sha512-WLEK/U8NDUObDatUhl+ZCi3A1haE5h+40B1zax3ygfR0gYwDlbhiU3hDdJRyAg/ijhIySyCWhOTGshVDumk1qQ==
+  version "3.98.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/client-cognito-identity-provider/-/client-cognito-identity-provider-3.98.0.tgz#7837cc016f24c3f4682cc942f537a066f671c161"
+  integrity sha512-z4rg9kul8oLkGxvApgKR0sDPZNbQS3dLnCLy06coOly1EX+21gHBAxatvsJS6EqDX4MaRKKqsPE7Bf3Q7NfQLA==
   dependencies:
     "@aws-crypto/sha256-browser" "2.0.0"
     "@aws-crypto/sha256-js" "2.0.0"
@@ -2649,24 +2670,24 @@
     "@babel/helper-plugin-utils" "^7.17.12"
 
 "@babel/runtime-corejs3@^7.10.2":
-  version "7.18.0"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.18.0.tgz#eed03023c5226b1e2b2ba32b8b6af5cb0518a6c7"
-  integrity sha512-G5FaGZOWORq9zthDjIrjib5XlcddeqLbIiDO3YQsut6j7aGf76xn0umUC/pA6+nApk3hQJF4JzLzg5PCl6ewJg==
+  version "7.18.2"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.18.2.tgz#c8bd68f520c8c5e82698a53ad3ec8b712b735580"
+  integrity sha512-HpagHkRJkbIS3jt9Vd/ESmaQ0AzkMZai0ahICwpTam+pVCaz7zExPlzLcEfsNokgKM9LJtk2jN/Su8OKdhFIKQ==
   dependencies:
     core-js-pure "^3.20.2"
     regenerator-runtime "^0.13.4"
 
 "@babel/runtime@^7.10.2", "@babel/runtime@^7.13.10", "@babel/runtime@^7.16.3", "@babel/runtime@^7.17.2", "@babel/runtime@^7.3.1", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.7":
-  version "7.18.0"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.18.0.tgz#6d77142a19cb6088f0af662af1ada37a604d34ae"
-  integrity sha512-YMQvx/6nKEaucl0MY56mwIG483xk8SDNdlUwb2Ts6FUpr7fm85DxEmsY18LXBNhcTz6tO6JwZV8w1W06v8UKeg==
+  version "7.18.2"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.18.2.tgz#674575748fa99cf03694e77fc00de8e5117b42a0"
+  integrity sha512-mTV1PibQHr88R1p4nH/uhR/TJ0mXGEgKTx6Mnd1cn/DSA9r8fqbd+d31xujI2C1pRWtxjy+HAcmtB+MEcF4VNg==
   dependencies:
     regenerator-runtime "^0.13.4"
 
 "@babel/types@^7.16.7":
-  version "7.18.0"
-  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.18.0.tgz#ef523ea349722849cb4bf806e9342ede4d071553"
-  integrity sha512-vhAmLPAiC8j9K2GnsnLPCIH5wCrPpYIVBCWRBFDCB7Y/BXLqi/O+1RSTTM2bsmg6U/551+FCf9PNPxjABmxHTw==
+  version "7.18.2"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.18.2.tgz#191abfed79ebe6f4242f643a9a5cbaa36b10b091"
+  integrity sha512-0On6B8A4/+mFUto5WERt3EEuG1NznDirvwca1O8UwXQHVY8g3R7OzYgxXdOfMwLO08UrpUD/2+3Bclyq+/C94Q==
   dependencies:
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
@@ -3985,9 +4006,9 @@ cookie@^0.4.0:
   integrity sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==
 
 core-js-pure@^3.20.2:
-  version "3.22.6"
-  resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.22.6.tgz#463af79691fd9093e3f9548ef2e22be332814b8c"
-  integrity sha512-u5yG2VL6NKXz9BZHr9RAm6eWD1DTNjG7jJnJgLGR+Im0whdPcPXqwqxd+dcUrZvpvPan5KMgn/3pI+Q/aGqPOA==
+  version "3.22.7"
+  resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.22.7.tgz#f58489d9b309fa7b26486a0f70d4ec19a418084e"
+  integrity sha512-wTriFxiZI+C8msGeh7fJcbC/a0V8fdInN1oS2eK79DMBGs8iIJiXhtFJCiT3rBa8w6zroHWW3p8ArlujZ/Mz+w==
 
 core-util-is@~1.0.0:
   version "1.0.3"
@@ -5772,10 +5793,10 @@ react-loader@*:
     prop-types "^15.5.8"
     spin.js "2.x"
 
-react-map-gl@7.0.10:
-  version "7.0.10"
-  resolved "https://registry.yarnpkg.com/react-map-gl/-/react-map-gl-7.0.10.tgz#4b92b748b9fbc376d88174c2e0c6099c73df96a7"
-  integrity sha512-4rhkwVa2HG+Uro7sTaVCTRMIF8nhlLjQnDSTUvKkWBLyHdCsKyoKkNqTfVp05OjqDXhcdXuixUDcg8aDvbr4xw==
+react-map-gl@7.0.15:
+  version "7.0.15"
+  resolved "https://registry.yarnpkg.com/react-map-gl/-/react-map-gl-7.0.15.tgz#ded08ccff49012099a9945b6c2ef7f266dfbde49"
+  integrity sha512-l7x8lBhIEcHTreSgrc7hsKv5HsMY1wQg2PVXuKAPmQtgRZc9C3NGwurVJFe24gOlAwzta5UavAHWDiZdU1ZNCw==
   dependencies:
     "@types/mapbox-gl" "^2.6.0"
 
@@ -6276,9 +6297,9 @@ type-fest@^0.20.2:
   integrity sha512-Ne+eE4r0/iWnpAxD852z3A+N0Bt5RN//NjJwRd2VFHEmrywxf5vsZlh4R6lixl6B+wz/8d+maTSAkN1FIkI3LQ==
 
 typescript@*:
-  version "4.6.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.4.tgz#caa78bbc3a59e6a5c510d35703f6a09877ce45e9"
-  integrity sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==
+  version "4.7.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.2.tgz#1f9aa2ceb9af87cca227813b4310fff0b51593c4"
+  integrity sha512-Mamb1iX2FDUpcTRzltPxgWMKy3fhg0TN378ylbktPGPK/99KbDtMQ4W1hwgsbPAsG3a0xKa1vmw4VKZQbkvz5A==
 
 ulid@2.3.0:
   version "2.3.0"

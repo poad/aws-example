@@ -1,6 +1,8 @@
-import { CognitoIdentityClient, GetIdCommand, GetIdentityPoolRolesCommand, GetOpenIdTokenCommand } from '@aws-sdk/client-cognito-identity';
+import {
+  CognitoIdentityClient, GetIdCommand, GetIdentityPoolRolesCommand, GetOpenIdTokenCommand,
+} from '@aws-sdk/client-cognito-identity';
 import { CognitoIdentityProviderClient, InitiateAuthCommand } from '@aws-sdk/client-cognito-identity-provider';
-import { AssumeRoleWithWebIdentityCommand, STSClient, AssumeRoleCommand } from '@aws-sdk/client-sts';
+import { AssumeRoleWithWebIdentityCommand, STSClient } from '@aws-sdk/client-sts';
 import fetch from 'cross-fetch';
 import * as jwt from 'jsonwebtoken';
 
@@ -151,12 +153,10 @@ const getDefaultRoles = async (
   client: CognitoIdentityClient,
   param: {
     idPoolId: string,
-  }
-) => {
-  return client.send(new GetIdentityPoolRolesCommand({
-    IdentityPoolId: param.idPoolId,
-  }));
-}
+  },
+) => client.send(new GetIdentityPoolRolesCommand({
+  IdentityPoolId: param.idPoolId,
+}));
 
 const getOpenIDToken = async (
   client: CognitoIdentityClient,
@@ -164,7 +164,7 @@ const getOpenIDToken = async (
     identityId: string,
     identityProvider: string,
     idToken: string,
-  }
+  },
 ) => {
   const logins: {
     [key: string]: string
@@ -179,9 +179,9 @@ const getOpenIDToken = async (
 
   return client.send(new GetOpenIdTokenCommand({
     IdentityId: param.identityId,
-    Logins: logins
+    Logins: logins,
   }));
-}
+};
 
 const assumeRoleWithWebIdentity = async (
   client: STSClient,
@@ -190,26 +190,24 @@ const assumeRoleWithWebIdentity = async (
     roleArn: string,
     roleSessionName: string,
     sessionDuration?: number,
-  }
+  },
 ) => {
   const request = new AssumeRoleWithWebIdentityCommand({
     WebIdentityToken: param.token,
     RoleArn: param.roleArn,
     RoleSessionName: param.roleSessionName,
-    DurationSeconds: param.sessionDuration
+    DurationSeconds: param.sessionDuration,
   });
   return client.send(request);
-}
+};
 
 const getCredentials = async (
   identityClient: CognitoIdentityClient,
   param: GetCredentialsParam,
 ): Promise<GetCredentialsResult> => {
-  let identityId;
   const {
     identityProvider, idPoolId, clientId, refreshToken,
   } = param;
-  let tokenExpiration;
   const idpClient = new CognitoIdentityProviderClient({});
 
   const initiateAuthResp = await initiateAuth(
@@ -220,10 +218,10 @@ const getCredentials = async (
     },
   );
 
-  let idToken = initiateAuthResp.idToken;
-  tokenExpiration = initiateAuthResp.expiresIn;
+  const { idToken } = initiateAuthResp;
+  const tokenExpiration = initiateAuthResp.expiresIn;
 
-  identityId = await getId(
+  const identityId = await getId(
     identityClient,
     {
       identityProvider,
@@ -240,7 +238,7 @@ const getCredentials = async (
   const payload = jwt.decode(idToken) as { [key: string]: string | string[] };
   const preferredRole = payload['cognito:preferred_role'] as string;
   const username = payload['cognito:username'] as string;
-  const email = payload.email;
+  const { email } = payload;
   console.log(`JWT: ${JSON.stringify(payload)}`);
 
   const roleArn = preferredRole !== undefined
@@ -249,13 +247,11 @@ const getCredentials = async (
 
   console.log(`role arn: ${roleArn}`);
   try {
-    const openIdToken = await getOpenIDToken(
-      identityClient, {
+    const openIdToken = await getOpenIDToken(identityClient, {
       identityId,
       identityProvider,
       idToken,
-    },
-    );
+    });
 
     const credentials = await assumeRoleWithWebIdentity(new STSClient({}), {
       token: openIdToken.Token!,
@@ -286,7 +282,7 @@ const signIn = async (param: SignInParam): Promise<SigninResult> => {
   const {
     domain, clientId, redirectUri, code, idPoolId, identityProvider,
   } = param;
-  let {
+  const {
     refreshToken,
   } = param;
   const identityClient = new CognitoIdentityClient({});
@@ -297,7 +293,7 @@ const signIn = async (param: SignInParam): Promise<SigninResult> => {
       idPoolId: param.idPoolId,
       identityProvider: param.identityProvider,
       clientId: param.clientId,
-      refreshToken: refreshToken,
+      refreshToken,
     });
   }
 
@@ -322,7 +318,7 @@ const signIn = async (param: SignInParam): Promise<SigninResult> => {
     code,
   });
 
-  const idToken = token.idToken;
+  const { idToken } = token;
   const tokenExpiration = token.expiresIn;
 
   const identityId = await getId(
@@ -342,7 +338,7 @@ const signIn = async (param: SignInParam): Promise<SigninResult> => {
   const payload = jwt.decode(idToken) as { [key: string]: string | string[] };
   const preferredRole = payload['cognito:preferred_role'] as string;
   const username = payload['cognito:username'] as string;
-  const email = payload.email;
+  const { email } = payload;
   console.log(`JWT: ${JSON.stringify(payload)}`);
 
   const roleArn = preferredRole !== undefined
@@ -351,13 +347,11 @@ const signIn = async (param: SignInParam): Promise<SigninResult> => {
 
   console.log(`role arn: ${roleArn}`);
   try {
-    const openIdToken = await getOpenIDToken(
-      identityClient, {
+    const openIdToken = await getOpenIDToken(identityClient, {
       identityId,
       identityProvider,
       idToken,
-    },
-    );
+    });
 
     const credentials = await assumeRoleWithWebIdentity(new STSClient({}), {
       token: openIdToken.Token!,
@@ -382,7 +376,6 @@ const signIn = async (param: SignInParam): Promise<SigninResult> => {
 
     throw e;
   }
-
 };
 
 export default signIn;

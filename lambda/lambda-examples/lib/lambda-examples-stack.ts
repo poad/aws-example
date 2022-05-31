@@ -3,23 +3,26 @@ import * as iam from 'aws-cdk-lib/aws-iam';
 import * as events from 'aws-cdk-lib/aws-events';
 import * as targets from 'aws-cdk-lib/aws-events-targets';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
-import { DockerImageFunction, DockerImageCode } from 'aws-cdk-lib/aws-lambda';
+import { DockerImageFunction, DockerImageCode, Runtime } from 'aws-cdk-lib/aws-lambda';
 import {
   Effect, FederatedPrincipal, ManagedPolicy, PolicyDocument, PolicyStatement, Role, ServicePrincipal, WebIdentityPrincipal,
 } from 'aws-cdk-lib/aws-iam';
 import {
   AccountRecovery, Mfa, OAuthScope, UserPoolClient, CfnIdentityPoolRoleAttachment, CfnUserPoolGroup, UserPool, CfnIdentityPool,
 } from 'aws-cdk-lib/aws-cognito';
-import { Stack, StackProps, Duration, RemovalPolicy } from 'aws-cdk-lib';
+import {
+  Stack, StackProps, Duration, RemovalPolicy,
+} from 'aws-cdk-lib';
 import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2-alpha';
 import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
 import { PythonFunction } from '@aws-cdk/aws-lambda-python-alpha';
 import { RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
-import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { Construct } from 'constructs';
 import path = require('path');
-
+import { DockerImageAsset } from 'aws-cdk-lib/aws-ecr-assets';
+import * as ecrdeploy from 'cdk-ecr-deployment';
+import { Repository } from 'aws-cdk-lib/aws-ecr';
 
 export interface GroupConfig {
   id: string,
@@ -100,8 +103,8 @@ export class LambdaExamplesStack extends Stack {
   constructor(scope: Construct, id: string, props: LambdaExamplesStackProps) {
     super(scope, id, props);
 
-    const preSignUpInFn = props.Lambda.triggers.preSignUp !== undefined ?
-      new NodejsFunction(this, 'PreSignUpLambdaFunction', {
+    const preSignUpInFn = props.Lambda.triggers.preSignUp !== undefined
+      ? new NodejsFunction(this, 'PreSignUpLambdaFunction', {
         runtime: Runtime.NODEJS_14_X,
         entry: props.Lambda.triggers.preSignUp.entry,
         functionName: props.Lambda.triggers.preSignUp.name,
@@ -117,11 +120,11 @@ export class LambdaExamplesStack extends Stack {
                   actions: [
                     'logs:CreateLogGroup',
                     'logs:CreateLogStream',
-                    'logs:PutLogEvents'
+                    'logs:PutLogEvents',
                   ],
                   resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.Lambda.triggers.preSignUp.name}:*`],
-                })
-              ]
+                }),
+              ],
             }),
             'assumed-role-policy': new PolicyDocument(
               {
@@ -130,22 +133,22 @@ export class LambdaExamplesStack extends Stack {
                     effect: Effect.ALLOW,
                     actions: [
                       'cognito-identity:*',
-                      "cognito-idp:*",
+                      'cognito-idp:*',
                     ],
                     resources: ['*'],
-                  })
-                ]
-              }
-            )
+                  }),
+                ],
+              },
+            ),
           },
-        })
+        }),
       }) : undefined;
     if (props.providers !== undefined) {
       preSignUpInFn?.addEnvironment('PROVIDERS', props.providers);
     }
 
-    const postConfirmInFn = props.Lambda.triggers.postConfirm !== undefined ?
-      new NodejsFunction(this, 'PostConfirmLambdaFunction', {
+    const postConfirmInFn = props.Lambda.triggers.postConfirm !== undefined
+      ? new NodejsFunction(this, 'PostConfirmLambdaFunction', {
         runtime: Runtime.NODEJS_14_X,
         entry: props.Lambda.triggers.postConfirm.entry,
         functionName: props.Lambda.triggers.postConfirm.name,
@@ -161,11 +164,11 @@ export class LambdaExamplesStack extends Stack {
                   actions: [
                     'logs:CreateLogGroup',
                     'logs:CreateLogStream',
-                    'logs:PutLogEvents'
+                    'logs:PutLogEvents',
                   ],
                   resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.Lambda.triggers.postConfirm.name}:*`],
-                })
-              ]
+                }),
+              ],
             }),
             'assumed-role-policy': new PolicyDocument(
               {
@@ -174,19 +177,19 @@ export class LambdaExamplesStack extends Stack {
                     effect: Effect.ALLOW,
                     actions: [
                       'cognito-identity:*',
-                      "cognito-idp:*",
+                      'cognito-idp:*',
                     ],
                     resources: ['*'],
-                  })
-                ]
-              }
-            )
+                  }),
+                ],
+              },
+            ),
           },
-        })
+        }),
       }) : undefined;
 
-    const preTokenGenInFn = props.Lambda.triggers.preGenToken !== undefined ?
-      new NodejsFunction(this, 'PreTokenGenLambdaFunction', {
+    const preTokenGenInFn = props.Lambda.triggers.preGenToken !== undefined
+      ? new NodejsFunction(this, 'PreTokenGenLambdaFunction', {
         runtime: Runtime.NODEJS_14_X,
         entry: props.Lambda.triggers.preGenToken.entry,
         functionName: props.Lambda.triggers.preGenToken.name,
@@ -202,11 +205,11 @@ export class LambdaExamplesStack extends Stack {
                   actions: [
                     'logs:CreateLogGroup',
                     'logs:CreateLogStream',
-                    'logs:PutLogEvents'
+                    'logs:PutLogEvents',
                   ],
                   resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.Lambda.triggers.preGenToken.name}:*`],
-                })
-              ]
+                }),
+              ],
             }),
             'assumed-role-policy': new PolicyDocument(
               {
@@ -215,19 +218,19 @@ export class LambdaExamplesStack extends Stack {
                     effect: Effect.ALLOW,
                     actions: [
                       'cognito-identity:*',
-                      "cognito-idp:*",
+                      'cognito-idp:*',
                     ],
                     resources: ['*'],
-                  })
-                ]
-              }
-            )
+                  }),
+                ],
+              },
+            ),
           },
-        })
+        }),
       }) : undefined;
 
-    const createAuthChallengeFn = props.Lambda.triggers.createAuthChallenge !== undefined ?
-      new NodejsFunction(this, 'CreateAuthChallengeLambdaFunction', {
+    const createAuthChallengeFn = props.Lambda.triggers.createAuthChallenge !== undefined
+      ? new NodejsFunction(this, 'CreateAuthChallengeLambdaFunction', {
         runtime: Runtime.NODEJS_14_X,
         entry: props.Lambda.triggers.createAuthChallenge.entry,
         functionName: props.Lambda.triggers.createAuthChallenge.name,
@@ -243,11 +246,11 @@ export class LambdaExamplesStack extends Stack {
                   actions: [
                     'logs:CreateLogGroup',
                     'logs:CreateLogStream',
-                    'logs:PutLogEvents'
+                    'logs:PutLogEvents',
                   ],
                   resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.Lambda.triggers.createAuthChallenge.name}:*`],
-                })
-              ]
+                }),
+              ],
             }),
             'assumed-role-policy': new PolicyDocument(
               {
@@ -256,19 +259,19 @@ export class LambdaExamplesStack extends Stack {
                     effect: Effect.ALLOW,
                     actions: [
                       'cognito-identity:*',
-                      "cognito-idp:*",
+                      'cognito-idp:*',
                     ],
                     resources: ['*'],
-                  })
-                ]
-              }
-            )
+                  }),
+                ],
+              },
+            ),
           },
-        })
+        }),
       }) : undefined;
 
-    const defAuthChallengeFn = props.Lambda.triggers.defAuthChallenge !== undefined ?
-      new NodejsFunction(this, 'DefAuthChallengeLambdaFunction', {
+    const defAuthChallengeFn = props.Lambda.triggers.defAuthChallenge !== undefined
+      ? new NodejsFunction(this, 'DefAuthChallengeLambdaFunction', {
         runtime: Runtime.NODEJS_14_X,
         entry: props.Lambda.triggers.defAuthChallenge.entry,
         functionName: props.Lambda.triggers.defAuthChallenge.name,
@@ -284,11 +287,11 @@ export class LambdaExamplesStack extends Stack {
                   actions: [
                     'logs:CreateLogGroup',
                     'logs:CreateLogStream',
-                    'logs:PutLogEvents'
+                    'logs:PutLogEvents',
                   ],
                   resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.Lambda.triggers.defAuthChallenge.name}:*`],
-                })
-              ]
+                }),
+              ],
             }),
             'assumed-role-policy': new PolicyDocument(
               {
@@ -297,19 +300,19 @@ export class LambdaExamplesStack extends Stack {
                     effect: Effect.ALLOW,
                     actions: [
                       'cognito-identity:*',
-                      "cognito-idp:*",
+                      'cognito-idp:*',
                     ],
                     resources: ['*'],
-                  })
-                ]
-              }
-            )
+                  }),
+                ],
+              },
+            ),
           },
-        })
+        }),
       }) : undefined;
 
-    const preAuthFn = props.Lambda.triggers.preAuth !== undefined ?
-      new NodejsFunction(this, 'PreAuthLambdaFunction', {
+    const preAuthFn = props.Lambda.triggers.preAuth !== undefined
+      ? new NodejsFunction(this, 'PreAuthLambdaFunction', {
         runtime: Runtime.NODEJS_14_X,
         entry: props.Lambda.triggers.preAuth.entry,
         functionName: props.Lambda.triggers.preAuth.name,
@@ -325,11 +328,11 @@ export class LambdaExamplesStack extends Stack {
                   actions: [
                     'logs:CreateLogGroup',
                     'logs:CreateLogStream',
-                    'logs:PutLogEvents'
+                    'logs:PutLogEvents',
                   ],
                   resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.Lambda.triggers.preAuth.name}:*`],
-                })
-              ]
+                }),
+              ],
             }),
             'assumed-role-policy': new PolicyDocument(
               {
@@ -338,19 +341,19 @@ export class LambdaExamplesStack extends Stack {
                     effect: Effect.ALLOW,
                     actions: [
                       'cognito-identity:*',
-                      "cognito-idp:*",
+                      'cognito-idp:*',
                     ],
                     resources: ['*'],
-                  })
-                ]
-              }
-            )
+                  }),
+                ],
+              },
+            ),
           },
-        })
+        }),
       }) : undefined;
 
-    const postAuthFn = props.Lambda.triggers.postAuth !== undefined ?
-      new NodejsFunction(this, 'PostAuthLambdaFunction', {
+    const postAuthFn = props.Lambda.triggers.postAuth !== undefined
+      ? new NodejsFunction(this, 'PostAuthLambdaFunction', {
         runtime: Runtime.NODEJS_14_X,
         entry: props.Lambda.triggers.postAuth.entry,
         functionName: props.Lambda.triggers.postAuth.name,
@@ -366,11 +369,11 @@ export class LambdaExamplesStack extends Stack {
                   actions: [
                     'logs:CreateLogGroup',
                     'logs:CreateLogStream',
-                    'logs:PutLogEvents'
+                    'logs:PutLogEvents',
                   ],
                   resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.Lambda.triggers.postAuth.name}:*`],
-                })
-              ]
+                }),
+              ],
             }),
             'assumed-role-policy': new PolicyDocument(
               {
@@ -379,23 +382,23 @@ export class LambdaExamplesStack extends Stack {
                     effect: Effect.ALLOW,
                     actions: [
                       'cognito-identity:*',
-                      "cognito-idp:*",
+                      'cognito-idp:*',
                     ],
                     resources: ['*'],
-                  })
-                ]
-              }
-            )
+                  }),
+                ],
+              },
+            ),
           },
-        })
+        }),
       }) : undefined;
 
     if (props.providers !== undefined) {
       postAuthFn?.addEnvironment('PROVIDERS', props.providers);
     }
 
-    const verifyAuthChallengeFn = props.Lambda.triggers.verifyAuthChallenge !== undefined ?
-      new NodejsFunction(this, 'VerifyAuthChallengeLambdaFunction', {
+    const verifyAuthChallengeFn = props.Lambda.triggers.verifyAuthChallenge !== undefined
+      ? new NodejsFunction(this, 'VerifyAuthChallengeLambdaFunction', {
         runtime: Runtime.NODEJS_14_X,
         entry: props.Lambda.triggers.verifyAuthChallenge.entry,
         functionName: props.Lambda.triggers.verifyAuthChallenge.name,
@@ -411,11 +414,11 @@ export class LambdaExamplesStack extends Stack {
                   actions: [
                     'logs:CreateLogGroup',
                     'logs:CreateLogStream',
-                    'logs:PutLogEvents'
+                    'logs:PutLogEvents',
                   ],
                   resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.Lambda.triggers.verifyAuthChallenge.name}:*`],
-                })
-              ]
+                }),
+              ],
             }),
             'assumed-role-policy': new PolicyDocument(
               {
@@ -424,19 +427,19 @@ export class LambdaExamplesStack extends Stack {
                     effect: Effect.ALLOW,
                     actions: [
                       'cognito-identity:*',
-                      "cognito-idp:*",
+                      'cognito-idp:*',
                     ],
                     resources: ['*'],
-                  })
-                ]
-              }
-            )
+                  }),
+                ],
+              },
+            ),
           },
-        })
+        }),
       }) : undefined;
 
-    const customMessageFn = props.Lambda.triggers.customMessge !== undefined ?
-      new NodejsFunction(this, 'CustomMessageLambdaFunction', {
+    const customMessageFn = props.Lambda.triggers.customMessge !== undefined
+      ? new NodejsFunction(this, 'CustomMessageLambdaFunction', {
         runtime: Runtime.NODEJS_14_X,
         entry: props.Lambda.triggers.customMessge.entry,
         functionName: props.Lambda.triggers.customMessge.name,
@@ -452,11 +455,11 @@ export class LambdaExamplesStack extends Stack {
                   actions: [
                     'logs:CreateLogGroup',
                     'logs:CreateLogStream',
-                    'logs:PutLogEvents'
+                    'logs:PutLogEvents',
                   ],
                   resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.Lambda.triggers.customMessge.name}:*`],
-                })
-              ]
+                }),
+              ],
             }),
             'assumed-role-policy': new PolicyDocument(
               {
@@ -465,19 +468,19 @@ export class LambdaExamplesStack extends Stack {
                     effect: Effect.ALLOW,
                     actions: [
                       'cognito-identity:*',
-                      "cognito-idp:*",
+                      'cognito-idp:*',
                     ],
                     resources: ['*'],
-                  })
-                ]
-              }
-            )
+                  }),
+                ],
+              },
+            ),
           },
-        })
+        }),
       }) : undefined;
 
-    const userMigrationFn = props.Lambda.triggers.userMigrate !== undefined ?
-      new NodejsFunction(this, 'UserMigrationLambdaFunction', {
+    const userMigrationFn = props.Lambda.triggers.userMigrate !== undefined
+      ? new NodejsFunction(this, 'UserMigrationLambdaFunction', {
         runtime: Runtime.NODEJS_14_X,
         entry: props.Lambda.triggers.userMigrate.entry,
         functionName: props.Lambda.triggers.userMigrate.name,
@@ -493,11 +496,11 @@ export class LambdaExamplesStack extends Stack {
                   actions: [
                     'logs:CreateLogGroup',
                     'logs:CreateLogStream',
-                    'logs:PutLogEvents'
+                    'logs:PutLogEvents',
                   ],
                   resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.Lambda.triggers.userMigrate.name}:*`],
-                })
-              ]
+                }),
+              ],
             }),
             'assumed-role-policy': new PolicyDocument(
               {
@@ -506,17 +509,16 @@ export class LambdaExamplesStack extends Stack {
                     effect: Effect.ALLOW,
                     actions: [
                       'cognito-identity:*',
-                      "cognito-idp:*",
+                      'cognito-idp:*',
                     ],
                     resources: ['*'],
-                  })
-                ]
-              }
-            )
+                  }),
+                ],
+              },
+            ),
           },
-        })
+        }),
       }) : undefined;
-
 
     const userPool = new UserPool(this, 'UserPool', {
       userPoolName: `${props.environment}-cognito-console-lambda`,
@@ -555,18 +557,17 @@ export class LambdaExamplesStack extends Stack {
         postAuthentication: postAuthFn,
         verifyAuthChallengeResponse: verifyAuthChallengeFn,
         customMessage: customMessageFn,
-        userMigration: userMigrationFn
+        userMigration: userMigrationFn,
       },
       removalPolicy: RemovalPolicy.DESTROY,
     });
 
-    const domain = props.domain;
+    const { domain } = props;
     userPool.addDomain('UserPoolDomain', {
       cognitoDomain: {
-        domainPrefix: domain
-      }
+        domainPrefix: domain,
+      },
     });
-
 
     const signInFn = new NodejsFunction(this, 'SignInLambdaFunction', {
       runtime: Runtime.NODEJS_14_X,
@@ -575,8 +576,8 @@ export class LambdaExamplesStack extends Stack {
       logRetention: RetentionDays.ONE_DAY,
       retryAttempts: 0,
       environment: {
-        'DOMAIN': domain,
-        'REGION': props.region,
+        DOMAIN: domain,
+        REGION: props.region,
       },
       role: new Role(this, 'SignInLambdaExecutionRole', {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
@@ -588,11 +589,11 @@ export class LambdaExamplesStack extends Stack {
                 actions: [
                   'logs:CreateLogGroup',
                   'logs:CreateLogStream',
-                  'logs:PutLogEvents'
+                  'logs:PutLogEvents',
                 ],
                 resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.Lambda.app.signIn.name}:*`],
-              })
-            ]
+              }),
+            ],
           }),
           'assumed-role-policy': new PolicyDocument(
             {
@@ -601,17 +602,17 @@ export class LambdaExamplesStack extends Stack {
                   effect: Effect.ALLOW,
                   actions: [
                     'cognito-identity:*',
-                    "cognito-idp:*",
+                    'cognito-idp:*',
                     'sts:GetFederationToken',
                     'sts:AssumeRoleWithWebIdentity',
                   ],
                   resources: ['*'],
-                })
-              ]
-            }
-          )
+                }),
+              ],
+            },
+          ),
         },
-      })
+      }),
     });
 
     const signOutFn = new NodejsFunction(this, 'SignOutLambdaFunction', {
@@ -630,11 +631,11 @@ export class LambdaExamplesStack extends Stack {
                 actions: [
                   'logs:CreateLogGroup',
                   'logs:CreateLogStream',
-                  'logs:PutLogEvents'
+                  'logs:PutLogEvents',
                 ],
                 resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.Lambda.app.signOut.name}:*`],
-              })
-            ]
+              }),
+            ],
           }),
           'assumed-role-policy': new PolicyDocument(
             {
@@ -643,17 +644,17 @@ export class LambdaExamplesStack extends Stack {
                   effect: Effect.ALLOW,
                   actions: [
                     'cognito-identity:*',
-                    "cognito-idp:*",
+                    'cognito-idp:*',
                     'sts:GetFederationToken',
                     'sts:AssumeRoleWithWebIdentity',
                   ],
                   resources: ['*'],
-                })
-              ]
-            }
-          )
+                }),
+              ],
+            },
+          ),
         },
-      })
+      }),
     });
 
     const userInfoFn = new NodejsFunction(this, 'UserInfoLambdaFunction', {
@@ -672,11 +673,11 @@ export class LambdaExamplesStack extends Stack {
                 actions: [
                   'logs:CreateLogGroup',
                   'logs:CreateLogStream',
-                  'logs:PutLogEvents'
+                  'logs:PutLogEvents',
                 ],
                 resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.Lambda.app.userInfo.name}:*`],
-              })
-            ]
+              }),
+            ],
           }),
           'assumed-role-policy': new PolicyDocument(
             {
@@ -685,50 +686,50 @@ export class LambdaExamplesStack extends Stack {
                   effect: Effect.ALLOW,
                   actions: [
                     'cognito-identity:*',
-                    "cognito-idp:*",
+                    'cognito-idp:*',
                     'sts:GetFederationToken',
                     'sts:AssumeRoleWithWebIdentity',
                   ],
                   resources: ['*'],
-                })
-              ]
-            }
-          )
+                }),
+              ],
+            },
+          ),
         },
-      })
+      }),
     });
 
-    const api = new HttpApi(this, "HttpApi", {
+    const api = new HttpApi(this, 'HttpApi', {
       apiName: `Cognito Console Lambda API (${props.environment})`,
       defaultIntegration: new HttpLambdaIntegration(
         'default-handler',
-        signInFn
-      )
+        signInFn,
+      ),
     });
     api.addRoutes({
-      path: "/signin",
+      path: '/signin',
       methods: [HttpMethod.ANY],
       integration: new HttpLambdaIntegration(
         'signin-handler',
-        signInFn
+        signInFn,
       ),
     });
 
     api.addRoutes({
-      path: "/signout",
+      path: '/signout',
       methods: [HttpMethod.ANY],
       integration: new HttpLambdaIntegration(
         'signout-handler',
-        signOutFn
+        signOutFn,
       ),
     });
 
     api.addRoutes({
-      path: "/userInfo",
+      path: '/userInfo',
       methods: [HttpMethod.ANY],
       integration: new HttpLambdaIntegration(
         'user-info-handler',
-        userInfoFn
+        userInfoFn,
       ),
     });
 
@@ -801,15 +802,15 @@ export class LambdaExamplesStack extends Stack {
               effect: Effect.ALLOW,
               actions: [
                 'cognito-identity:*',
-                "cognito-idp:*",
+                'cognito-idp:*',
                 'sts:GetFederationToken',
                 'sts:AssumeRoleWithWebIdentity',
               ],
               resources: ['*'],
-            })
-          ]
-        })
-      }
+            }),
+          ],
+        }),
+      },
     });
 
     const authenticatedRole = new Role(this, 'CognitoDefaultAuthenticatedRole', {
@@ -830,17 +831,18 @@ export class LambdaExamplesStack extends Stack {
               effect: Effect.ALLOW,
               actions: [
                 'cognito-identity:*',
-                "cognito-idp:*",
+                'cognito-idp:*',
                 'sts:GetFederationToken',
                 'sts:AssumeRoleWithWebIdentity',
               ],
               resources: ['*'],
-            })
-          ]
-        })
-      }
+            }),
+          ],
+        }),
+      },
     });
 
+    // eslint-disable-next-line no-new
     new CfnIdentityPoolRoleAttachment(this, 'IdPoolRoleAttachment', {
       identityPoolId: identityPool.ref,
       roles: {
@@ -878,7 +880,7 @@ export class LambdaExamplesStack extends Stack {
         effect: Effect.ALLOW,
         actions: [
           'cognito-identity:*',
-          "cognito-idp:*",
+          'cognito-idp:*',
           'sts:GetFederationToken',
           'sts:AssumeRoleWithWebIdentity',
         ],
@@ -888,6 +890,7 @@ export class LambdaExamplesStack extends Stack {
       return { id: group.id, name: group.name, role: groupRole };
     });
     roles.forEach((role) => {
+      // eslint-disable-next-line no-new
       new CfnUserPoolGroup(this, role.id, {
         groupName: `${props.environment}-${role.name}`,
         userPoolId: userPool.userPoolId,
@@ -908,8 +911,8 @@ export class LambdaExamplesStack extends Stack {
                 'ec2:TerminateInstances',
               ],
               resources: ['*'],
-            })
-          ]
+            }),
+          ],
         }),
         'logs-policy': new iam.PolicyDocument({
           statements: [
@@ -918,11 +921,11 @@ export class LambdaExamplesStack extends Stack {
               actions: [
                 'logs:CreateLogGroup',
                 'logs:CreateLogStream',
-                'logs:PutLogEvents'
+                'logs:PutLogEvents',
               ],
               resources: ['*'],
-            })
-          ]
+            }),
+          ],
         }),
       },
     });
@@ -932,66 +935,71 @@ export class LambdaExamplesStack extends Stack {
       entry: path.resolve(__dirname, '../lambda/python'),
       runtime: lambda.Runtime.PYTHON_3_9,
       logRetention: RetentionDays.ONE_DAY,
-      role: role,
+      role,
       timeout: cdk.Duration.seconds(14.5 * 60),
     });
 
     const schedule = new events.Rule(this, 'ec2-instance-killer', {
-      schedule: events.Schedule.expression('cron(0 0 * * ? *)')
+      schedule: events.Schedule.expression('cron(0 0 * * ? *)'),
     });
 
     const event = props.targetTags !== undefined ? ({
-      event: events.RuleTargetInput.fromObject({ tags: props.targetTags })
+      event: events.RuleTargetInput.fromObject({ tags: props.targetTags }),
     }) : ({});
 
     schedule.addTarget(new targets.LambdaFunction(lambdaFn, event));
 
+    const sinpleEcrRepository = new Repository(this, 'simple-ecr-repository', {
+      repositoryName: 'simple-lambda',
+    });
+    const simpleImage = new DockerImageAsset(this, 'docker-lambda-image', {
+      directory: path.join(__dirname, 'lambda/container/simple'),
+    });
+    // eslint-disable-next-line no-new
+    new ecrdeploy.ECRDeployment(this, 'DeployDockerImage', {
+      src: new ecrdeploy.DockerImageName(simpleImage.imageUri),
+      dest: new ecrdeploy.DockerImageName(`${sinpleEcrRepository.repositoryUri}:latest`),
+    });
     const simpleFn = new DockerImageFunction(this, 'docker-lambda-function', {
-      code: DockerImageCode.fromImageAsset('lambda/container/simple', {
-      }),
+      code: DockerImageCode.fromEcr(sinpleEcrRepository),
       functionName: `${props.environment}-docker-lambda`,
       logRetention: RetentionDays.ONE_DAY,
       retryAttempts: 0,
     });
 
-    const simpleFnApi = new HttpApi(this, "HttpApi", {
+    const simpleFnApi = new HttpApi(this, 'HttpApi', {
       apiName: 'Docker Lambda API',
-      defaultIntegration: new HttpLambdaIntegration(
-        'default-handler', simpleFn
-      )
+      defaultIntegration: new HttpLambdaIntegration('default-handler', simpleFn),
     });
     simpleFnApi.addRoutes({
-      path: "/{proxy+}",
+      path: '/{proxy+}',
       methods: [HttpMethod.ANY],
-      integration: new HttpLambdaIntegration(
-        'proxy-handler', simpleFn
-      ),
+      integration: new HttpLambdaIntegration('proxy-handler', simpleFn),
     });
 
     const rustFn = new DockerImageFunction(this, 'hello-rust-lambda-function', {
       code: DockerImageCode.fromImageAsset('lambda', {
-        target: 'release'
+        target: 'release',
       }),
       functionName: `${props.environment}-hello-rust-lambda`,
       logRetention: RetentionDays.ONE_DAY,
       retryAttempts: 0,
     });
 
-    const rustFnApi = new HttpApi(this, "HttpApi", {
+    const rustFnApi = new HttpApi(this, 'HttpApi', {
       apiName: 'Hello Rust Lambda API',
       defaultIntegration: new HttpLambdaIntegration(
         'default-handler',
-        rustFn
-      )
+        rustFn,
+      ),
     });
     rustFnApi.addRoutes({
-      path: "/{proxy+}",
+      path: '/{proxy+}',
       methods: [HttpMethod.ANY],
       integration: new HttpLambdaIntegration(
         'proxy-handler',
-        rustFn
+        rustFn,
       ),
     });
-
   }
 }

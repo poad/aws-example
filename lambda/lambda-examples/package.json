@@ -10,7 +10,8 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "lint": "eslint --ext .ts signin-lambda"
+    "lint": "eslint --ext .ts bin && eslint --ext .ts lambda && eslint --ext .ts lib",
+    "lint:fix": "eslint --fix --ext .ts bin && eslint --fix --ext .ts lambda && eslint --fix --ext .ts lib"
   },
   "devDependencies": {
     "@types/aws-lambda": "*",
@@ -37,6 +38,7 @@
     "@aws-sdk/client-sts": "*",
     "aws-cdk-lib": "*",
     "aws-lambda": "*",
+    "cdk-ecr-deployment": "*",
     "constructs": "*",
     "cross-fetch": "*",
     "jsonwebtoken": "*",

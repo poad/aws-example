@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 module.exports = {
   env: {
     es2021: true,
@@ -16,15 +17,17 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
-    "import/extensions": [
-      "error",
-      "always",
+    'max-len': ['error', { 'code': 300 }],
+    'no-console': 'off',
+    'import/extensions': [
+      'error',
+      'always',
       {
-        ts: "never",
-        tsx: "never",
-        js: "never",
-        jsx: "never"
-      }
-    ]
+        ts: 'never',
+        tsx: 'never',
+        js: 'never',
+        jsx: 'never',
+      },
+    ],
   },
 };

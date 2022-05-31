@@ -64,7 +64,7 @@ export const handler = async (
 
     const code = event.queryStringParameters?.code;
 
-    const { domain, clientId, region, } = environments;
+    const { domain, clientId, region } = environments;
     const { domainName, http } = event.requestContext;
 
     if (code === undefined) {
@@ -83,7 +83,7 @@ export const handler = async (
 
     try {
       const {
-        accessKeyId, secretKey, sessionToken, tokens
+        accessKeyId, secretKey, sessionToken, tokens,
       } = await signIn({
         domain,
         userPoolId: environments.userPoolId,
@@ -106,7 +106,7 @@ export const handler = async (
         };
       }
 
-      const { SigninToken } = await getSignInToken({ accessKeyId, secretKey, sessionToken, });
+      const { SigninToken } = await getSignInToken({ accessKeyId, secretKey, sessionToken });
 
       const issuer = environments.apiUrl;
       const destUrl = `https://signin.aws.amazon.com/federation?Action=login&Destination=${encodeURIComponent('https://console.aws.amazon.com/')}&SigninToken=${SigninToken}&Issuer=${encodeURIComponent(issuer)}`;
@@ -115,17 +115,16 @@ export const handler = async (
         headers: {
           Location: destUrl,
         },
-        cookies: [JSON.stringify({ refreshToken: tokens.refreshToken } as Session)]
+        cookies: [JSON.stringify({ refreshToken: tokens.refreshToken } as Session)],
       };
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
 
-      const redirectUri = `https://${domain}.auth.${region}.amazoncognito.com/login?response_type=code&client_id=${clientId}&redirect_uri=https://${domainName}${rawPath}`;
       return {
         cookies: [],
         statusCode: 308,
-        headers: { Location: redirectUri },
+        headers: { Location: `https://${domain}.auth.${region}.amazoncognito.com/login?response_type=code&client_id=${clientId}&redirect_uri=https://${domainName}${rawPath}` },
       };
     }
   } catch (e) {

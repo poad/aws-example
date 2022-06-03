@@ -2,12 +2,12 @@ import {
   Button, Container, Dialog, DialogContent, DialogContentText, DialogActions, Typography, useTheme, useMediaQuery, TextField, DialogTitle,
   Paper, MenuItem, Select, FormControl, InputLabel, SelectChangeEvent,
 } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import UserPoolClient from '../../service/UserPoolClient';
-import { Group, IamRole } from '../../interfaces';
+import { Group } from '../../interfaces';
 import IamClient from '../../service/IamClient';
-import { appConfig } from '../../aws-config';
+import { useListRoles } from 'hooks/useListRoles';
 
 interface CreateGroupDialogProps {
   /**
@@ -22,7 +22,7 @@ interface CreateGroupDialogProps {
   onError?: (error: any) => void
 }
 
-const CreateGroupDialog: React.FunctionComponent<CreateGroupDialogProps> = (props): JSX.Element => {
+const CreateGroupDialog: React.FunctionComponent<CreateGroupDialogProps> = ({ client, iamClient, onCreate, onError }): JSX.Element => {
     type Inputs = {
       groupName: string,
       description?: string,
@@ -33,37 +33,10 @@ const CreateGroupDialog: React.FunctionComponent<CreateGroupDialogProps> = (prop
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
+    const { roles } = useListRoles(iamClient);
+
     const [open, setOpen] = useState<boolean>(false);
-    const [roles, setRoles] = useState<IamRole[]>([]);
     const [role, setRole] = useState<string | undefined>(undefined);
-
-    const filterGroupRoles = (iamRoles: IamRole[]): IamRole[] => {
-      const name = appConfig.groupRoleClassificationTagName;
-      const value = appConfig.groupRoleClassificationTagValue;
-      const check = name !== undefined && value !== undefined;
-      const filered = check ? iamRoles
-        .filter((iamRole) => (iamRole.tags?.find((tag) => tag.key === name && tag.value === value)) !== undefined) : iamRoles;
-      return filered;
-    };
-
-    const listRoles = async (): Promise<IamRole[]> => {
-      const iamRoles = await props.iamClient.listRoles()
-        .then((r) => Promise.resolve(r));
-
-      return Promise
-        .all(iamRoles
-          .filter((r) => r.roleName !== undefined)
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          .map((r) => props.iamClient.getRole(r.roleName!)));
-    };
-
-    useEffect(
-      () => {
-        listRoles()
-          .then(filterGroupRoles)
-          .then(setRoles);
-      }, [],
-    );
 
     const {
       register, handleSubmit, reset, unregister,
@@ -75,15 +48,15 @@ const CreateGroupDialog: React.FunctionComponent<CreateGroupDialogProps> = (prop
         precedence: data.precedence,
         roleArn: role === '' ? undefined : role,
       };
-      props.client.createGroup(newGroup)
+      client.createGroup(newGroup)
         .then((group) => {
-          if (props.onCreate !== undefined) {
-            props.onCreate(group);
+          if (onCreate !== undefined) {
+            onCreate(group);
           }
         })
         .catch((error) => {
-          if (props.onError !== undefined) {
-            props.onError(error);
+          if (onError !== undefined) {
+            onError(error);
           }
         })
         .finally(() => {

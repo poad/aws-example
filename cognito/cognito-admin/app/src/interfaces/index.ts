@@ -53,3 +53,13 @@ export interface Tag {
   key: string | undefined,
   value: string | undefined,
 }
+
+export interface ErrorStatus {
+  error: boolean,
+  message?: string
+}
+
+export interface ErrorDialog {
+  open: boolean,
+  message?: string,
+}

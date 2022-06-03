@@ -3,32 +3,15 @@ import {
   DialogContent, DialogContentText, Theme,
 } from '@mui/material';
 import { createStyles, withStyles } from '@mui/styles';
+import { Page, usePagenationTable } from 'hooks/usePagenationTable';
+import { useUser } from 'hooks/useUser';
+import { useUsers } from 'hooks/useUsers';
 import React, { useEffect, useState } from 'react';
 import Loader from 'react-loader';
 import CreateUserDialog from '../../components/CreateUserDialog';
 import UserDetail from '../../components/UserDetail';
-import { User } from '../../interfaces';
+import { ErrorDialog, User } from '../../interfaces';
 import UserPoolClient from '../../service/UserPoolClient';
-
-interface Page {
-  page: number,
-  rowsPerPage: number,
-}
-
-interface Error {
-  error: boolean,
-  message?: string
-}
-
-interface UsersProps {
-  /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
-  container?: Element,
-  client: UserPoolClient,
-  page: Page,
-}
 
 const StyledTableCell = withStyles((theme: Theme) => createStyles({
   root: {
@@ -71,74 +54,81 @@ const LoadingBackdrop = withStyles((theme: Theme) => createStyles({
   },
 }))(Backdrop);
 
-type TableHeadLabel = 'email' | 'username' | 'createdAt' | 'lastModifiedAt' | 'enabled' | 'status';
-
-type Order = 'asc' | 'desc';
-
-interface SortOrder {
-  order: Order,
-  orderBy: TableHeadLabel
+interface UsersProps {
+  /**
+     * Injected by the documentation to work in an iframe.
+     * You won't need it on your project.
+     */
+  container?: Element,
+  client: UserPoolClient,
+  page: Page,
 }
 
+type TableHeadLabel = 'email' | 'username' | 'createdAt' | 'lastModifiedAt' | 'enabled' | 'status';
 
-const Users: React.FunctionComponent<UsersProps> = (props): JSX.Element => {
-  const [sortOrder, setSortOrder] = useState<SortOrder>({
+const Users: React.FunctionComponent<UsersProps> = ({ client, page: initPage }): JSX.Element => {
+  const {
+    page,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    createSortHandler,
+    getComparator,
+    stableSort,
+    sortOrder,
+  } = usePagenationTable<{
+    username: string,
+    attributes?: {
+      [key: string]: string,
+    },
+    createdAt: string,
+    lastModifiedAt: string,
+    enabled: string,
+    status: string,
+    mfa?: {
+      deliveryMedium?: string,
+      attributeName?: string,
+    }[],
+    group?: string,
+    groups?: string[],
+    email: string,
+    origin: User,
+  }, TableHeadLabel>(initPage, {
     order: 'asc',
     orderBy: 'email',
   });
-  const [error, setError] = useState<Error>({
-    error: false,
+
+  const [errorDialog, setErrorDialog] = useState<ErrorDialog>({
+    open: false,
   });
-  const [loaded, setLoaded] = useState<boolean>(false);
-  const [page, setPage] = useState<Page>({
-    page: 0,
-    rowsPerPage: 10,
-  });
-  const [users, setUsers] = useState<User[]>([]);
   const [openDetail, setOpenDetail] = useState<boolean>(false);
-  const [client] = useState<UserPoolClient>(props.client);
+  const {
+    users,
+    errorStatus,
+    loaded,
+    create: onCreate,
+    delete: onDelete,
+  } = useUsers(client);
 
-  const [detail, setDetail] = useState<User | undefined>(undefined);
+  const {
+    user,
+    setUser,
+    loadUser,
+  } = useUser(client);
 
-  useEffect(
-    () => {
-      client.listUsers()
-        .then((items) => {
-          setUsers(items.map((item) => {
-            const { attributes } = item;
-            const { email } = attributes;
-            return {
-              username: item.username,
-              attributes: item.attributes,
-              createdAt: item.createdAt,
-              lastModifiedAt: item.lastModifiedAt,
-              enabled: item.enabled,
-              status: item.status,
-              mfa: item.mfa,
-              email,
-            } as User;
-          }));
-          return items;
-        })
-        .then((items) => {
-          if (items.length > 0) {
-            setPage({
-              page: 0,
-              rowsPerPage: page.rowsPerPage,
-            });
-          }
-          setLoaded(true);
-        })
-        .catch((err) => {
-          // eslint-disable-next-line no-console
-          console.error(err);
-          setError({
-            error: true,
-            message: JSON.stringify(err),
-          });
-        });
-    }, [loaded, openDetail],
-  );
+  useEffect(() => {
+    setErrorDialog({ open: errorStatus.error, message: errorStatus.message });
+  }, [errorStatus]);
+
+  const openUserDetail = (origin: User) => {
+    loadUser(origin);
+    setOpenDetail(true);
+  };
+
+  const backdropClose = () => setErrorDialog({ open: false });
+
+  const handleCloseDetail = () => {
+    setOpenDetail(false);
+  };
 
   const headCells = [
     {
@@ -161,108 +151,21 @@ const Users: React.FunctionComponent<UsersProps> = (props): JSX.Element => {
     },
   ];
 
-  const handleRequestSort = (_: React.MouseEvent<unknown>, property: TableHeadLabel) => {
-    const isDesc = sortOrder.order === 'desc';
-    setSortOrder({
-      order: isDesc ? 'desc' : 'asc',
-      orderBy: property,
-    });
-  };
-
-  const setRowsPerPage = (newRowsPerPage: number) => {
-    setPage({
-      page: page.page,
-      rowsPerPage: newRowsPerPage,
-    });
-  };
-
-  const handleChangePage = (_: unknown, newPage: number) => {
-    setPage({
-      page: newPage,
-      rowsPerPage: page.rowsPerPage,
-    });
-  };
-
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(Number.parseInt(event.target.value, 10));
-  };
-
-  function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-    if (b[orderBy] < a[orderBy]) {
-      return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-      return 1;
-    }
-    return 0;
-  }
-
-  const createSortHandler = (property: TableHeadLabel) => (event: React.MouseEvent<unknown>) => {
-    handleRequestSort(event, property);
-  };
-
-  function getComparator<Key extends TableHeadLabel>(
-    order: Order,
-    orderBy: Key,
-  ): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
-    return order === 'desc'
-      ? (a, b) => descendingComparator(a, b, orderBy)
-      : (a, b) => -descendingComparator(a, b, orderBy);
-  }
-
-  function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
-    const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-    stabilizedThis.sort((a, b) => {
-      const order = comparator(a[0], b[0]);
-      if (order !== 0) return order;
-      return a[1] - b[1];
-    });
-    return stabilizedThis.map((el) => el[0]);
-  }
-
-  const openUserDetail = (origin: User) => {
-    client.listGroupsForUser(origin.username)
-      .then((groups) => {
-        setDetail({ ...origin, groups });
-        setOpenDetail(true);
-      });
-  };
-
-  const backdropClose = () => {
-    setError({ error: false });
-  };
-
-  const handleCloseDetail = () => {
-    setOpenDetail(false);
-    setDetail(undefined);
-  };
-
-  const onCreate = (user: User) => {
-    setUsers(users.concat(user));
-  };
-
-  const onDelete = (target: User) => {
-    const newUsers = users.filter((user) => user.email !== target.email);
-    if (newUsers !== undefined) {
-      setUsers(newUsers);
-    }
-  };
-
   return (<React.Fragment>
-    <LoadingBackdrop open={!loaded && !error.error} invisible={loaded || error.error}>
-      <StyledSpinner loaded={loaded || error.error} />
+    <LoadingBackdrop open={!loaded && !errorDialog.open} invisible={loaded || errorDialog.open}>
+      <StyledSpinner loaded={loaded || errorDialog.open} />
     </LoadingBackdrop>
-    <Dialog open={error.error} onClick={backdropClose}>
+    <Dialog open={errorDialog.open} onClick={backdropClose}>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          {error.message ? error.message : ''}
+          {errorDialog.message ? errorDialog.message : ''}
         </DialogContentText>
       </DialogContent>
     </Dialog>
 
     {
-      detail !== undefined
-        ? (<UserDetail client={client} user={detail} open={openDetail} onClose={handleCloseDetail} onUpdate={setDetail} onDelete={onDelete} />)
+      user !== undefined
+        ? (<UserDetail client={client} user={user} open={openDetail} onClose={handleCloseDetail} onUpdate={setUser} onDelete={onDelete} />)
         : ('')
     }
 
@@ -295,14 +198,14 @@ const Users: React.FunctionComponent<UsersProps> = (props): JSX.Element => {
             </TableHead>
             <TableBody>
               {
-                stableSort(users.map((user) => ({
-                  email: user.email || '',
-                  username: user.username,
-                  createdAt: user.createdAt?.toLocaleString() || '',
-                  lastModifiedAt: user.lastModifiedAt?.toLocaleString() || '',
-                  enabled: user.enabled,
-                  status: user.status,
-                  origin: user,
+                stableSort(users.map((item) => ({
+                  email: item.email || '',
+                  username: item.username,
+                  createdAt: item.createdAt?.toLocaleString() || '',
+                  lastModifiedAt: item.lastModifiedAt?.toLocaleString() || '',
+                  enabled: item.enabled,
+                  status: item.status,
+                  origin: item,
                 })), getComparator(sortOrder.order, sortOrder.orderBy))
                   .slice(page.page * page.rowsPerPage, page.page * page.rowsPerPage + page.rowsPerPage)
                   .map((item) => <TableRow key={item.email} onClick={() => { openUserDetail(item.origin); }}>

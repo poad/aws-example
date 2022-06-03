@@ -1,12 +1,13 @@
 import {
   Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText,
-  DialogTitle, FormControl, Input, InputLabel, List, ListItem, MenuItem, Paper, Select, SelectChangeEvent, TextField, Typography, useMediaQuery, useTheme,
+  DialogTitle, FormControl, Input, InputLabel, List, ListItem, MenuItem, Paper, Select, TextField, Typography, useMediaQuery, useTheme,
 } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { User } from '../../interfaces';
 import UserPoolClient from '../../service/UserPoolClient';
 import { appConfig } from '../../aws-config';
+import { useListGroups } from 'components/useListGroups';
 
 interface UsersDetailProps {
   /**
@@ -22,112 +23,24 @@ interface UsersDetailProps {
   onDelete?: (removeUser: User) => void
 }
 
-const UserDetail: React.FunctionComponent<UsersDetailProps> = (props): JSX.Element => {
+const UserDetail: React.FunctionComponent<UsersDetailProps> = ({ client, user, open: initOpen, onClose }): JSX.Element => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const [open, setOpen] = useState<boolean>(props.open);
+  const { 
+    open,
+    detail,
+    confirm,
+    groups,
+    deleteUser,
+    resetPassword,
+    disableUser,
+    enableUser,
 
-  const [detail, setDetail] = useState<User | undefined>(props.user);
-
-  const [confirm, setConfirm] = useState<boolean>(false);
-  const [client] = useState<UserPoolClient>(props.client);
-
-  const [groups, setGroups] = useState<string[]>([]);
-
-  useEffect(
-    () => {
-      client.listGroups()
-        .then((items) => items.map((item) => item.groupName))
-        .then(setGroups)
-        .then(() => {
-          setOpen(props.open);
-          setDetail(props.user);
-        });
-    }, [props.user, props.open],
-  );
-
-  const deleteUser = () => {
-    if (detail !== undefined) {
-      props.client.deleteUser(detail.username)
-        .then(() => {
-          if (props.onDelete !== undefined) {
-            props.onDelete(detail);
-          }
-          setDetail(undefined);
-        });
-    }
-    setConfirm(false);
-    setOpen(false);
-  };
-
-  const resetPassword = () => {
-    if (detail !== undefined && detail.attributes.status !== 'FORCE_CHANGE_PASSWORD') {
-      props.client.resetUserPassword(detail.username)
-        .then(() => {
-          const newDetail = { ...detail };
-          newDetail.enabled = 'false';
-          setDetail(newDetail);
-          if (props.onUpdate !== undefined) {
-            props.onUpdate(newDetail);
-          }
-          props.onClose();
-        });
-    }
-  };
-
-  const disableUser = () => {
-    if (detail !== undefined) {
-      props.client.disableUser(detail.username)
-        .then(() => {
-          const newDetail = { ...detail };
-          newDetail.enabled = 'false';
-          setDetail(newDetail);
-          if (props.onUpdate !== undefined) {
-            props.onUpdate(newDetail);
-          }
-          props.onClose();
-        });
-    }
-  };
-
-  const enableUser = () => {
-    if (detail !== undefined) {
-      props.client.enableUser(detail.username)
-        .then(() => {
-          const newDetail = { ...detail };
-          newDetail.enabled = 'true';
-          setDetail(newDetail);
-          if (props.onUpdate !== undefined) {
-            props.onUpdate(newDetail);
-          }
-          props.onClose();
-        });
-    }
-  };
-
-  const handleConfirm = () => {
-    setConfirm(true);
-  };
-
-  const handleCancel = () => {
-    setConfirm(false);
-  };
-
-  const handleGroupChange = (event: SelectChangeEvent<string[]>) => {
-    const newGroups = event.target.value as string[];
-    if (detail !== undefined) {
-      const currentGroups = detail.groups || [];
-
-      const deletionGroups = currentGroups.filter((current) => newGroups.indexOf(current) === -1);
-      const additionGroups = newGroups.filter((current) => currentGroups.indexOf(current) === -1);
-
-      deletionGroups.forEach((group) => props.client.removeUserFromGroup({ username: detail.username || '', groupName: group }));
-      additionGroups.forEach((group) => props.client.addUserToGroup({ username: detail.username || '', groupName: group }));
-
-      setDetail({ ...detail, groups: newGroups });
-    }
-  };
+    handleConfirm,
+    handleCancel,
+    handleGroupChange,
+  } = useListGroups(initOpen, user, client, onClose);
 
   return (
     <Container sx={{ width: '100%' }}>
@@ -198,7 +111,7 @@ const UserDetail: React.FunctionComponent<UsersDetailProps> = (props): JSX.Eleme
                 </FormControl>
               </Paper>
               <DialogActions>
-                <Button autoFocus style={{ margin: 8 }} onClick={props.onClose}>CLOSE</Button>
+                <Button autoFocus style={{ margin: 8 }} onClick={onClose}>CLOSE</Button>
                 <Button
                   style={{ margin: 8 }}
                   variant="contained"

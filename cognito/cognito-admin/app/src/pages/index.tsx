@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { AppBar, Box, Button, CssBaseline, Link, Tab, Tabs, Toolbar, Typography } from '@mui/material';
-import { Amplify, Auth } from 'aws-amplify';
+import { Amplify } from 'aws-amplify';
 import {
   withAuthenticator,
 } from '@aws-amplify/ui-react';
@@ -8,12 +8,11 @@ import '@aws-amplify/ui-react/styles.css';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 import styles from '../styles/Home.module.css';
-import awsconfig, { appConfig } from '../aws-config';
+import awsconfig from '../aws-config';
 import Users from '../components/Users';
-import UserPoolClient from '../service/UserPoolClient';
-import IamClient from '../service/IamClient';
 import TabPanel from '../components/TabPanel';
 import Groups from '../components/Groups';
+import { useClient } from 'hooks/useClient';
 
 Amplify.configure(awsconfig);
 
@@ -22,11 +21,9 @@ interface HomeProps {
   signOut: (opts?: any) => Promise<any>
 }
 
-const Home = (props: HomeProps | undefined): JSX.Element => {
-  const [client, setClient] = useState<UserPoolClient | undefined>(undefined);
-  const [iamClient, setIamClient] = useState<IamClient | undefined>(undefined);
-  const [authenticated, setAuthenticated] = useState<boolean>(false);
-  const [value, setValue] = React.useState<number>(0);
+const Home = (props?: HomeProps): JSX.Element => {
+  const { client, iamClient } = useClient();
+  const [value, setValue] = useState<number>(0);
 
   const endpoint = process.env.NEXT_PUBLIC_AWS_COGNITO_OAUTH_DOMAIN_CONSOLE;
   const idp = process.env.NEXT_PUBLIC_AWS_COGNITO_IDENTITY_PROVIDER !== undefined ? `identity_provider=${process.env.NEXT_PUBLIC_AWS_COGNITO_IDENTITY_PROVIDER}&` : '';
@@ -41,31 +38,6 @@ const Home = (props: HomeProps | undefined): JSX.Element => {
   const handleChange = (_event: React.SyntheticEvent<Element, Event>, newValue: number) => {
     setValue(newValue);
   };
-
-  useEffect(
-    () => {
-      Auth.currentUserCredentials()
-        .then(Auth.essentialCredentials)
-        .then((currentCredentials) => {
-          setAuthenticated(currentCredentials.authenticated);
-          if (currentCredentials.authenticated) {
-            setClient(new UserPoolClient(
-              currentCredentials,
-              appConfig.endUserPoolId,
-              awsconfig.Auth.region,
-            ));
-            setIamClient(new IamClient(
-              currentCredentials,
-              awsconfig.Auth.region,
-            ));
-            return currentCredentials;
-          }
-          return undefined;
-        })
-        // eslint-disable-next-line no-console
-        .catch(console.error);
-    }, [authenticated],
-  );
 
   return (
     <Box sx={{ display: 'flex', color: '#fff' }}>
@@ -91,14 +63,14 @@ const Home = (props: HomeProps | undefined): JSX.Element => {
           </Toolbar>
         </AppBar>
         {
-          client !== undefined ? (
+          client ? (
             <TabPanel value={value} index={0}>
               <Users client={client} page={{ page: 0, rowsPerPage: 10 }} />
             </TabPanel>
           ) : null
         }
         {
-          client !== undefined && iamClient !== undefined ? (
+          client && iamClient ? (
             <TabPanel value={value} index={1}>
               <Groups client={client} iamClient={iamClient} page={{ page: 0, rowsPerPage: 10 }} />
             </TabPanel>

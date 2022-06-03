@@ -3,33 +3,15 @@ import {
 } from '@mui/material';
 import { createStyles, withStyles } from '@mui/styles';
 import Loader from 'react-loader';
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import IamClient from '../../service/IamClient';
 import UserPoolClient from '../../service/UserPoolClient';
-import { Group } from '../../interfaces';
+import { ErrorDialog, Group } from '../../interfaces';
 import GroupDetail from '../../components/GroupDetail';
 import CreateGroupDialog from '../../components/CreateGroupDialog';
-
-interface Page {
-  page: number,
-  rowsPerPage: number,
-}
-
-interface Error {
-  error: boolean,
-  message?: string
-}
-
-interface GroupsProps {
-  /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
-  container?: Element,
-  client: UserPoolClient,
-  iamClient: IamClient,
-  page: Page,
-}
+import { Page, usePagenationTable } from 'hooks/usePagenationTable';
+import { usePagenationGroups } from 'hooks/usePagenationGroups';
+import { useGroup } from 'hooks/useGroup';
 
 const StyledTableCell = withStyles((theme: Theme) => createStyles({
   root: {
@@ -72,60 +54,59 @@ const LoadingBackdrop = withStyles((theme: Theme) => createStyles({
   },
 }))(Backdrop);
 
-type TableHeadLabel = 'groupName' | 'creationDate' | 'lastModifiedDate' | 'precedence';
-
-type Order = 'asc' | 'desc';
-
-interface SortOrder {
-  order: Order,
-  orderBy: TableHeadLabel
+interface GroupsProps {
+  /**
+     * Injected by the documentation to work in an iframe.
+     * You won't need it on your project.
+     */
+  container?: Element,
+  client: UserPoolClient,
+  iamClient: IamClient,
+  page: Page,
 }
 
-const Groups: React.FunctionComponent<GroupsProps> = (props): JSX.Element => {
-  const [sortOrder, setSortOrder] = useState<SortOrder>({
+type TableHeadLabel = 'groupName' | 'creationDate' | 'lastModifiedDate' | 'precedence';
+
+const Groups: React.FunctionComponent<GroupsProps> = ({ client, iamClient, page: initPage }): JSX.Element => {
+  const {
+    page,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    createSortHandler,
+    getComparator,
+    stableSort,
+    sortOrder,
+  } = usePagenationTable<{
+    groupName: string,
+    description: string,
+    precedence: string | number,
+    creationDate: string,
+    lastModifiedDate: string,
+    roleArn?: string,
+    origin: Group,
+  }, TableHeadLabel>(initPage, {
     order: 'asc',
     orderBy: 'groupName',
   });
-  const [error, setError] = useState<Error>({
-    error: false,
-  });
-  const [loaded, setLoaded] = useState<boolean>(false);
-  const [page, setPage] = useState<Page>({
-    page: 0,
-    rowsPerPage: 10,
-  });
-  const [client] = useState<UserPoolClient>(props.client);
-  const [openDetail, setOpenDetail] = useState<boolean>(false);
+  
+  const {
+    groups,
+    error,
+    loaded,
+    create: onCreate,
+    update,
+    delete: onDelete,
+  } = usePagenationGroups(client);
 
-  const [groups, setGroups] = useState<Group[]>([]);
-  const [detail, setDetail] = useState<Group | undefined>(undefined);
+  const { group, loadGroup } = useGroup(client);
 
-  useEffect(
-    () => {
-      client.listGroups()
-        .then((items) => {
-          setGroups(items);
-          return items;
-        })
-        .then((items) => {
-          if (items.length > 0) {
-            setPage({
-              page: 0,
-              rowsPerPage: page.rowsPerPage,
-            });
-          }
-          setLoaded(true);
-        })
-        .catch((err) => {
-          // eslint-disable-next-line no-console
-          console.error(err);
-          setError({
-            error: true,
-            message: JSON.stringify(err),
-          });
-        });
-    }, [loaded, openDetail],
-  );
+  const [openGroup, setOpenGroup] = useState<boolean>(false);
+
+  const [errorDialog, setErrorDialog] = useState <ErrorDialog>({ open: false });
+
+  useEffect(() => {
+    setErrorDialog({ open: error.error, message: error.message });
+  }, [error]);
 
   const headCells = [
     {
@@ -145,129 +126,52 @@ const Groups: React.FunctionComponent<GroupsProps> = (props): JSX.Element => {
     },
   ];
 
-  const handleRequestSort = (_: React.MouseEvent<unknown>, property: TableHeadLabel) => {
-    const isDesc = sortOrder.order === 'desc';
-    setSortOrder({
-      order: isDesc ? 'desc' : 'asc',
-      orderBy: property,
-    });
+  const backdropClose = () => setErrorDialog({ open: false });
+
+  const onOpenGroup = (origin: Group) => {
+    loadGroup(origin);
+    setOpenGroup(true);
   };
 
-  const setRowsPerPage = (newRowsPerPage: number) => {
-    setPage({
-      page: page.page,
-      rowsPerPage: newRowsPerPage,
-    });
-  };
-
-  const handleChangePage = (_: unknown, newPage: number) => {
-    setPage({
-      page: newPage,
-      rowsPerPage: page.rowsPerPage,
-    });
-  };
-
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(Number.parseInt(event.target.value, 10));
-  };
-
-  function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-    if (b[orderBy] < a[orderBy]) {
-      return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-      return 1;
-    }
-    return 0;
-  }
-
-  const createSortHandler = (property: TableHeadLabel) => (event: React.MouseEvent<unknown>) => {
-    handleRequestSort(event, property);
-  };
-
-  function getComparator<Key extends TableHeadLabel>(
-    order: Order,
-    orderBy: Key,
-  ): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
-    return order === 'desc'
-      ? (a, b) => descendingComparator(a, b, orderBy)
-      : (a, b) => -descendingComparator(a, b, orderBy);
-  }
-
-  function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
-    const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-    stabilizedThis.sort((a, b) => {
-      const order = comparator(a[0], b[0]);
-      if (order !== 0) return order;
-      return a[1] - b[1];
-    });
-    return stabilizedThis.map((el) => el[0]);
-  }
-  const backdropClose = () => {
-    setError({ error: false });
-  };
-
-  const openGroupDetail = (origin: Group) => {
-    client.listUsersInGroup(origin.groupName)
-      .then((users) => {
-        setDetail({ ...origin, users });
-        setOpenDetail(true);
-      });
-  };
-
-  const handleCloseDetail = () => {
-    setOpenDetail(false);
-    setDetail(undefined);
-  };
-
-  const onDelete = (target: Group) => {
-    const newUsers = groups.filter((group) => group.groupName !== target.groupName);
-    if (newUsers !== undefined) {
-      setGroups(newUsers);
-    }
-  };
-
-  const onCreate = (group: Group) => {
-    setGroups(groups.concat(group));
-  };
+  const handleCloseGroup = () => setOpenGroup(false);
 
   const onUpdate = (iamGroup: Group) => {
-    const index = groups.findIndex((group) => detail?.groupName === group.groupName);
+    const index = groups.findIndex((item) => group?.groupName === item.groupName);
     if (index === -1) {
       throw Error('Group not found');
     }
     groups[index] = iamGroup;
-    setDetail(iamGroup);
-    setGroups(groups);
+    loadGroup(iamGroup);
+    update(groups);
   };
 
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const onError = (err: any) => {
-    setError({ error: true, message: err.name !== undefined ? err.name : JSON.stringify(err) });
+    setErrorDialog({ open: true, message: err.name !== undefined ? err.name : JSON.stringify(err) });
   };
 
   return (
     <React.Fragment>
-      <LoadingBackdrop open={!loaded && !error.error} invisible={loaded || error.error}>
-        <StyledSpinner loaded={loaded || error.error} />
+      <LoadingBackdrop open={!loaded && !errorDialog.open} invisible={loaded || errorDialog.open}>
+        <StyledSpinner loaded={loaded || errorDialog.open} />
       </LoadingBackdrop>
-      <Dialog open={error.error} onClick={backdropClose}>
+      <Dialog open={errorDialog.open} onClick={backdropClose}>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            {error.message ? error.message : ''}
+            {errorDialog.message}
           </DialogContentText>
         </DialogContent>
       </Dialog>
 
       {
-        detail !== undefined
-          ? (<GroupDetail client={client} iamClient={props.iamClient} group={detail} open={openDetail} onClose={handleCloseDetail} onUpdate={onUpdate} onDelete={onDelete} />)
+        group !== undefined
+          ? (<GroupDetail client={client} iamClient={iamClient} group={group} open={openGroup} onClose={handleCloseGroup} onUpdate={onUpdate} onDelete={onDelete} />)
           : ('')
       }
 
       <Box component="span" m={1}>
         <Container fixed>
-          <CreateGroupDialog client={client} iamClient={props.iamClient} onCreate={onCreate} onError={onError} />
+          <CreateGroupDialog client={client} iamClient={iamClient} onCreate={onCreate} onError={onError} />
           <TableContainer>
             <Table size='small' stickyHeader>
               <TableHead>
@@ -294,16 +198,16 @@ const Groups: React.FunctionComponent<GroupsProps> = (props): JSX.Element => {
               </TableHead>
               <TableBody>
                 {
-                  stableSort(groups.map((group) => ({
-                    groupName: group.groupName,
-                    description: group.description || '',
-                    creationDate: group.creationDate?.toLocaleString() || '',
-                    lastModifiedDate: group.lastModifiedDate?.toLocaleString() || '',
-                    precedence: group.precedence || '',
-                    origin: group,
+                  stableSort(groups.map((item) => ({
+                    groupName: item.groupName,
+                    description: item.description || '',
+                    creationDate: item.creationDate?.toLocaleString() || '',
+                    lastModifiedDate: item.lastModifiedDate?.toLocaleString() || '',
+                    precedence: item.precedence || '',
+                    origin: item,
                   })), getComparator(sortOrder.order, sortOrder.orderBy))
                     .slice(page.page * page.rowsPerPage, page.page * page.rowsPerPage + page.rowsPerPage)
-                    .map((item) => <TableRow key={item.groupName} onClick={() => { openGroupDetail(item.origin); }}>
+                    .map((item) => <TableRow key={item.groupName} onClick={() => { onOpenGroup(item.origin); }}>
                       <TableCell>{item.groupName}</TableCell>
                       <TableCell>{item.description}</TableCell>
                       <TableCell>{item.precedence}</TableCell>

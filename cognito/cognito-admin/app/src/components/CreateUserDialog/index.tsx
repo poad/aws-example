@@ -16,7 +16,7 @@ interface CreateUserDialogProps {
   onCreate?: (newUser: User) => void
 }
 
-const CreateUserDialog: React.FunctionComponent<CreateUserDialogProps> = (props): JSX.Element => {
+const CreateUserDialog: React.FunctionComponent<CreateUserDialogProps> = ({ client, onCreate }): JSX.Element => {
     type Inputs = {
       username: string,
       email: string,
@@ -30,11 +30,11 @@ const CreateUserDialog: React.FunctionComponent<CreateUserDialogProps> = (props)
     // const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
     const { register, handleSubmit } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
-      props.client.createUser({
+      client.createUser({
         ...data,
       }).then((user) => {
-        if (props.onCreate !== undefined) {
-          props.onCreate(user);
+        if (onCreate !== undefined) {
+          onCreate(user);
         }
       })
         .finally(() => {

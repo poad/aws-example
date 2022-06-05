@@ -44,6 +44,7 @@ module.exports = {
     'import/extensions': ['off'],
     'import/no-extraneous-dependencies': ['off'],
     'jsx-a11y/anchor-is-valid': ['off'],
-    'no-return-assign': ['off']
+    'no-return-assign': ['off'],
+    'react/react-in-jsx-scope': ['off'],
   }
 }

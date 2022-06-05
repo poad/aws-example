@@ -2,12 +2,18 @@ import {
   Accordion, AccordionDetails, AccordionSummary, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText,
   DialogTitle, FormControl, InputLabel, List, ListItem, MenuItem, Paper, Select, SelectChangeEvent, TextField, Typography, useMediaQuery, useTheme,
 } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Group, IamRole } from '../../interfaces';
+import { Group } from '../../interfaces';
 import UserPoolClient from '../../service/UserPoolClient';
 import IamClient from '../../service/IamClient';
-import { appConfig } from '../../aws-config';
+import { useListRoles } from 'hooks/useListRoles';
+import { useGroupDetail } from 'hooks/useGroupDetail';
+
+interface DetailErrorDialog {
+  title: string | undefined,
+  message: string
+}
 
 interface GroupDetailProps {
   /**
@@ -24,124 +30,51 @@ interface GroupDetailProps {
   onDelete?: (removeGroup: Group) => void
 }
 
-const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Element => {
+const UserDetail: React.FunctionComponent<GroupDetailProps> = ({ client, iamClient, group, open: initOpen, onClose, onUpdate, onDelete }): JSX.Element => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const [open, setOpen] = useState<boolean>(props.open);
-
-  const [detail, setDetail] = useState<Group | undefined>(props.group);
+  const [open, setOpen] = useState<boolean>(initOpen);
 
   const [confirm, setConfirm] = useState<boolean>(false);
 
-  const [roles, setRoles] = useState<IamRole[]>([]);
+  const [detailErrorDialog, setDetailErrorDialog] = useState<DetailErrorDialog | undefined>(undefined);
 
-  const [error, setError] = useState<{
-    title: string | undefined,
-    message: string
-  } | undefined>(undefined);
+  const { roles } = useListRoles(iamClient);
 
-  const [attacheRole, setAttacheRole] = useState<string | undefined>(undefined);
+  const { detail, attacheRole, changeGroupRole, updateGroupRole, deleteGroup, clearAttacheRole } = useGroupDetail(client, group, onUpdate, onDelete);
 
-  const filterGroupRoles = (iamRoles: IamRole[]): IamRole[] => {
-    const name = appConfig.groupRoleClassificationTagName;
-    const value = appConfig.groupRoleClassificationTagValue;
-    const check = name !== undefined && value !== undefined;
-    const filered = check ? iamRoles.filter((role) => (role.tags?.find((tag) => tag.key === name && tag.value === value)) !== undefined) : iamRoles;
-    return filered;
-  };
-
-  const listRoles = async (): Promise<IamRole[]> => {
-    const iamRoles = await props.iamClient.listRoles()
-      .then((r) => Promise.resolve(r));
-
-    return Promise
-      .all(iamRoles
-        .filter((r) => r.roleName !== undefined)
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        .map((role) => props.iamClient.getRole(role.roleName!)));
-  };
-
-  useEffect(
-    () => {
-      listRoles()
-        .then(filterGroupRoles)
-        .then(setRoles);
-
-      setDetail(props.group);
-      setOpen(props.open);
-    }, [props.group],
-  );
-
-  const deleteGroup = () => {
-    if (detail !== undefined) {
-      props.client.deleteGroup(detail.groupName)
-        .then(() => {
-          if (props.onDelete !== undefined) {
-            props.onDelete(detail);
-          }
-          Promise.resolve(setDetail(undefined));
-        });
-    }
+  const onDeleteGroup = () => {
+    deleteGroup();
     setConfirm(false);
     setOpen(false);
   };
 
-  const handleConfirm = () => {
-    setConfirm(true);
-  };
+  const handleConfirm = () => setConfirm(true);
 
-  const handleCancel = () => {
-    setConfirm(false);
-  };
+  const handleCancel = () => setConfirm(false);
 
-  const handleRoleChange = (event: SelectChangeEvent<string>) => {
-    const newRole = event.target.value as string;
-    if ((detail?.roleArn === undefined || detail?.roleArn?.length === 0) && newRole.length !== 0) {
-      setAttacheRole(newRole);
-    } else if (detail?.roleArn !== newRole) {
-      props.client.updateGroup({ ...detail, roleArn: newRole.length > 0 ? newRole : undefined } as Group)
-        .then((newGroup) => {
-          if (props.onUpdate !== undefined) {
-            props.onUpdate(newGroup);
-          }
-          setDetail(newGroup);
-        });
-    }
-  };
+  const handleRoleChange = (event: SelectChangeEvent<string>) => changeGroupRole(event.target.value as string);
 
-  const onErrorClose = () => {
-    setError(undefined);
-  };
+  const onErrorClose = () => setDetailErrorDialog(undefined);
 
-  const handleCancelAttacheRole = () => {
-    setAttacheRole(undefined);
-  };
+  const handleCancelAttacheRole = () => clearAttacheRole();
 
-  const atttachRoleToGroup = () => {
-    props.client.updateGroup({ ...detail, roleArn: attacheRole } as Group)
-      .then((newGroup) => {
-        if (props.onUpdate !== undefined) {
-          props.onUpdate(newGroup);
-        }
-        setDetail(newGroup);
-        setAttacheRole(undefined);
-      });
-  };
+  const atttachRoleToGroup = () => updateGroupRole();
 
   return (
     <Container sx={{ width: '100%' }}>
-      <Dialog open={error !== undefined} onClick={onErrorClose}>
+      <Dialog open={detailErrorDialog !== undefined} onClick={onErrorClose}>
         <DialogContent>
           {
-            error?.title !== undefined ? (
+            detailErrorDialog?.title !== undefined ? (
               <DialogTitle id="user-detail-dialog-title">
-                <Typography variant="h4" component="span" gutterBottom>{error.title}</Typography>
+                <Typography variant="h4" component="span" gutterBottom>{detailErrorDialog.title}</Typography>
               </DialogTitle>
             ) : undefined
           }
           <DialogContentText id="alert-dialog-description" component='div'>
-            {error?.message !== undefined ? error.message : ''}
+            {detailErrorDialog?.message !== undefined ? detailErrorDialog.message : ''}
           </DialogContentText>
         </DialogContent>
       </Dialog>
@@ -151,34 +84,34 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Eleme
           <DialogTitle id="user-detail-dialog-title"><Typography variant="h4" component="span" gutterBottom>{detail?.groupName}</Typography></DialogTitle>
           <DialogContentText id="user-detail-dialog" component='div'>
             <Container>
-              <Paper variant="outlined" style={{
+              <Paper variant="outlined" sx={{
                 paddingLeft: 4, paddingRight: 4, paddingTop: 16, paddingBottom: 16,
               }}>
-                <TextField id="groupName" label="GroupName" style={{
+                <TextField id="groupName" label="GroupName" sx={{
                   paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4,
                 }} fullWidth variant="outlined" key='groupName' InputLabelProps={{ shrink: true }} InputProps={{ readOnly: true }} defaultValue={detail?.groupName} />
-                <TextField id="createdAt" label="CreatedAt" style={{
+                <TextField id="createdAt" label="CreatedAt" sx={{
                   paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4,
                 }} fullWidth variant="outlined" key='createdAt' InputProps={{ readOnly: true }} defaultValue={detail?.creationDate?.toLocaleString()} />
-                <TextField id="lastModifiedAt" label="LastModifiedAt" style={{
+                <TextField id="lastModifiedAt" label="LastModifiedAt" sx={{
                   paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4,
                 }} fullWidth variant="outlined" key='lastModifiedAt' InputProps={{ readOnly: true }} defaultValue={detail?.lastModifiedDate?.toLocaleString()} />
-                <FormControl variant="outlined" fullWidth style={{ paddingLeft: 2, paddingRight: 2 }}>
-                  <InputLabel id="roleArn-label" style={{ paddingLeft: 2, paddingRight: 2 }}>Role Arn</InputLabel>
-                  <Select labelId="roleArn-label" style={{ paddingLeft: 2, paddingRight: 2 }} id="roleArn" value={detail?.roleArn || ''} onChange={handleRoleChange} label="Role Arn" fullWidth>
+                <FormControl variant="outlined" fullWidth sx={{ paddingLeft: 2, paddingRight: 2 }}>
+                  <InputLabel id="roleArn-label" sx={{ paddingLeft: 2, paddingRight: 2 }}>Role Arn</InputLabel>
+                  <Select labelId="roleArn-label" sx={{ paddingLeft: 2, paddingRight: 2 }} id="roleArn" value={detail?.roleArn || ''} onChange={handleRoleChange} label="Role Arn" fullWidth>
                     {
-                      detail?.roleArn === undefined ? (<MenuItem key="None" value="" style={{ paddingLeft: 2, paddingRight: 2 }}><em>None</em></MenuItem>) : undefined
+                      detail?.roleArn === undefined ? (<MenuItem key="None" value="" sx={{ paddingLeft: 2, paddingRight: 2 }}><em>None</em></MenuItem>) : undefined
                     }
                     {
                       roles.map((role) => (
-                        <MenuItem key={role.arn} value={role.arn} style={{
+                        <MenuItem key={role.arn} value={role.arn} sx={{
                           paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4,
                         }}><em>{role.roleName}</em></MenuItem>
                       ))
                     }
                   </Select>
                 </FormControl>
-                <TextField id="precedence" label="Precedence" style={{
+                <TextField id="precedence" label="Precedence" sx={{
                   paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4,
                 }} fullWidth key='precedence' variant="outlined" InputProps={{ readOnly: true }} defaultValue={detail?.precedence} />
 
@@ -191,13 +124,13 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Eleme
                     }}>Users</Typography>
                   </AccordionSummary>
                   <AccordionDetails id="users-content">
-                    <List component="ul" id="users-list" style={{
+                    <List component="ul" id="users-list" sx={{
                       paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4,
                     }}>
                       {
                         detail?.users !== undefined ? detail?.users.map((user) => (
                           <ListItem component="li" key={`${detail?.groupName}-user-${user.username}`}>
-                            <TextField id={user.username} label={user.username} style={{
+                            <TextField id={user.username} label={user.username} sx={{
                               paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4,
                             }} fullWidth key={user.username} InputProps={{ readOnly: true }} defaultValue={user.username} />
                           </ListItem>
@@ -208,8 +141,8 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Eleme
                 </Accordion>
               </Paper>
               <DialogActions>
-                <Button autoFocus style={{ margin: 8 }} onClick={props.onClose}>CLOSE</Button>
-                <Button style={{ margin: 8 }} variant="contained" color="secondary" onClick={handleConfirm}>DELETE</Button>
+                <Button autoFocus sx={{ margin: 8 }} onClick={onClose}>CLOSE</Button>
+                <Button sx={{ margin: 8 }} variant="contained" color="secondary" onClick={handleConfirm}>DELETE</Button>
               </DialogActions>
             </Container>
           </DialogContentText>
@@ -231,7 +164,7 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = (props): JSX.Eleme
           <Button onClick={handleCancel} color="primary" autoFocus>
             CANCEL
           </Button>
-          <Button onClick={deleteGroup} color="secondary">
+          <Button onClick={onDeleteGroup} color="secondary">
             DELETE
           </Button>
         </DialogActions>

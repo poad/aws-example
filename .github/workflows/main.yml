@@ -197,7 +197,7 @@ jobs:
       
     - name: Pull request auto merge enabler
       if: success() && env.CHANGE_STATE == 'changed' && github.actor != 'dependabot[bot]'
-      uses: poad/github-pull-request-auto-merge-enable-action@v1.0.1
+      uses: poad/github-pull-request-auto-merge-enable-action@v1.0.2
       with:
         pull_request_id: ${{ env.PULL_REQUEST_ID }}
         github_token: ${{ secrets.PERSONAL_TOKEN_FOR_GITHUB_ACTIONS }}

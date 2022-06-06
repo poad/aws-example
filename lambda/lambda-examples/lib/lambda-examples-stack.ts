@@ -949,7 +949,7 @@ export class LambdaExamplesStack extends Stack {
 
     schedule.addTarget(new targets.LambdaFunction(lambdaFn, event));
 
-    const sinpleEcrRepository = new Repository(this, 'simple-ecr-repository', {
+    const simpleEcrRepository = new Repository(this, 'simple-ecr-repository', {
       repositoryName: 'simple-lambda',
     });
     const simpleImage = new DockerImageAsset(this, 'docker-lambda-image', {
@@ -958,10 +958,10 @@ export class LambdaExamplesStack extends Stack {
     // eslint-disable-next-line no-new
     new ecrdeploy.ECRDeployment(this, 'DeployDockerImage', {
       src: new ecrdeploy.DockerImageName(simpleImage.imageUri),
-      dest: new ecrdeploy.DockerImageName(`${sinpleEcrRepository.repositoryUri}:latest`),
+      dest: new ecrdeploy.DockerImageName(`${simpleEcrRepository.repositoryUri}:latest`),
     });
     const simpleFn = new DockerImageFunction(this, 'docker-lambda-function', {
-      code: DockerImageCode.fromEcr(sinpleEcrRepository),
+      code: DockerImageCode.fromEcr(simpleEcrRepository),
       functionName: `${props.environment}-docker-lambda`,
       logRetention: RetentionDays.ONE_DAY,
       retryAttempts: 0,

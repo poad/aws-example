@@ -1,6 +1,6 @@
-import { Group } from 'interfaces';
+import { Group } from '../interfaces';
 import { useState, useCallback } from 'react';
-import UserPoolClient from 'service/UserPoolClient';
+import UserPoolClient from '../service/UserPoolClient';
 
 export const useGroup = (client: UserPoolClient): { group?: Group, loadGroup: (origin: Group) => void } => {
   const [group, setGroup] = useState<Group | undefined>(undefined);

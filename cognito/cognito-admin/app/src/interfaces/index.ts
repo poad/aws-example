@@ -56,10 +56,12 @@ export interface Tag {
 
 export interface ErrorStatus {
   error: boolean,
-  message?: string
+  message?: string,
 }
 
-export interface ErrorDialog {
+export interface ErrorDialogProps {
+  id?: string,
   open: boolean,
   message?: string,
+  onClose?: () => void,
 }

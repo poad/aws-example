@@ -1,46 +1,50 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useAsync } from 'react-async';
-import UserPoolClient from 'service/UserPoolClient';
-import { ErrorStatus, Group } from '../interfaces';
+import { useState, useEffect } from 'react';
+import UserPoolClient from '../service/UserPoolClient';
+import { Group } from '../interfaces';
 
 export const usePagenationGroups = (client: UserPoolClient): {
-  groups: Group[],
-  error: ErrorStatus,
+  groups?: Group[],
+  error?: Error,
   loaded: boolean,
   create: (group: Group) => void,
   delete: (group: Group) => void,
-  update: (groups: Group[]) => void
+  update: (groups: Group[]) => void,
+  clearError: () => void,
 } => {
-  const { value, error, isPending } = useAsync(client.listGroups, []);
-  const [groups, setGroups] = useState<Group[]>([]);
-  const [errorStatus, setErrorStatus] = useState<ErrorStatus>({ error: false });
-  const [loaded, setLoaded] = useState(false);
+  const [state, setState] = useState<{
+    data?: Group[],
+    error?: Error,
+    loaded: boolean,
+  }>({ loaded: false });
 
-  useEffect(
-    () => {
-      const status = error ? {
-        error: true,
-        message: JSON.stringify(error),
-      } : { error: false };
-      setGroups(value && !error && !isPending ? value : []);
-      setErrorStatus(status);
-      setLoaded(!isPending);
-    },
-    [value, error, isPending],
-  );
+  const loadGroups = async () =>
+    client.listGroups()
+      .then((items) => setState({
+        data: items,
+        loaded: true,
+      }))
+      .catch((error) => setState({ error, loaded: false }));
+
+  useEffect(() => {
+    loadGroups();
+  }, [client]);
 
   return {
-    groups,
-    error: errorStatus,
-    loaded,
-    create: useCallback((group: Group) => groups.concat(group), []),
-    delete: useCallback((target: Group) => {
-      const newGroups = groups.filter((group) => group.groupName !== target.groupName);
-      if (newGroups) {
-        setGroups(newGroups);
+    groups: state.data,
+    error: state.error,
+    loaded: state.loaded,
+    create: (group: Group) => setState({ ...state, data: state.data ? state.data.concat(group) : [group] }),
+    delete: (target: Group) => {
+      const groups = state.data;
+      if (groups) {
+        const newGroups = groups.filter((group) => group.groupName !== target.groupName);
+        if (newGroups) {
+          setState({ ...state, data: newGroups });
+        }
       }
-    }, []),
-    update: useCallback((newGroups: Group[]) => setGroups(newGroups), []),
+    },
+    update: (newGroups: Group[]) => setState({ ...state, data: newGroups }),
+    clearError: () => setState({ ...state, error: undefined }),
   };
 };
 

@@ -1,19 +1,21 @@
 import {
   Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText,
-  DialogTitle, FormControl, Input, InputLabel, List, ListItem, MenuItem, Paper, Select, TextField, Typography, useMediaQuery, useTheme,
+  DialogTitle, FormControl, Input, InputLabel, List, ListItem, MenuItem, Paper, Select, Typography, useMediaQuery, useTheme,
+  SelectChangeEvent,
 } from '@mui/material';
 import React from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { User } from '../../interfaces';
 import UserPoolClient from '../../service/UserPoolClient';
 import { appConfig } from '../../aws-config';
-import { useListGroups } from 'components/useListGroups';
+import { useUserDetail } from '../../hooks/useUserDetail';
+import ReadOnlyTextField from '../ReadOnlyTextField';
 
 interface UsersDetailProps {
   /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
   container?: Element,
   client: UserPoolClient,
   user: User | undefined,
@@ -23,11 +25,11 @@ interface UsersDetailProps {
   onDelete?: (removeUser: User) => void
 }
 
-const UserDetail: React.FunctionComponent<UsersDetailProps> = ({ client, user, open: initOpen, onClose }): JSX.Element => {
+const UserDetail = ({ client, user, open: initOpen, onClose, onUpdate, onDelete }: UsersDetailProps): JSX.Element => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const { 
+  const {
     open,
     detail,
     confirm,
@@ -36,11 +38,47 @@ const UserDetail: React.FunctionComponent<UsersDetailProps> = ({ client, user, o
     resetPassword,
     disableUser,
     enableUser,
+    changeGroup,
 
     handleConfirm,
     handleCancel,
-    handleGroupChange,
-  } = useListGroups(initOpen, user, client, onClose);
+  } = useUserDetail(initOpen, user, client, onClose);
+
+  const handleResetPassword = () => {
+    const newDetail = resetPassword();
+    if (onUpdate && newDetail) {
+      onUpdate(newDetail);
+    }
+  };
+
+  const handleEnable = () => {
+    const newDetail = enableUser();
+    if (onUpdate && newDetail) {
+      onUpdate(newDetail);
+    }
+  };
+
+  const handleDisable = () => {
+    const newDetail = disableUser();
+    if (onUpdate && newDetail) {
+      onUpdate(newDetail);
+    }
+  };
+
+  const handleDelete = () => {
+    deleteUser();
+    if (onDelete && detail) {
+      onDelete(detail);
+    }
+  };
+
+  const handleGroupChange = (event: SelectChangeEvent<string[]>) => {
+    const newGroups = event.target.value as string[];
+    const newDetail = changeGroup(newGroups);
+    if (onUpdate && newDetail) {
+      onUpdate(newDetail);
+    }
+  };
 
   return (
     <Container sx={{ width: '100%' }}>
@@ -52,21 +90,13 @@ const UserDetail: React.FunctionComponent<UsersDetailProps> = ({ client, user, o
               <Paper variant="outlined" style={{
                 paddingLeft: 4, paddingRight: 4, paddingTop: 16, paddingBottom: 16,
               }}>
-                <TextField id="e-email" label="E-mail" style={{
-                  paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4,
-                }} fullWidth variant="outlined" key='e-mail' InputProps={{ readOnly: true }} defaultValue={detail?.email} />
-                <TextField id="createdAt" label="CreatedAt" style={{
-                  paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4,
-                }} fullWidth variant="outlined" key='createdAt' InputProps={{ readOnly: true }} defaultValue={detail?.createdAt?.toLocaleString()} />
-                <TextField id="lastModifiedAt" label="LastModifiedAt" style={{
-                  paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4,
-                }} fullWidth variant="outlined" key='lastModifiedAt' InputProps={{ readOnly: true }} defaultValue={detail?.lastModifiedAt?.toLocaleString()} />
-                <TextField id="enabled" label="Enabled" style={{
-                  paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4,
-                }} fullWidth variant="outlined" key='enabled' InputProps={{ readOnly: true }} defaultValue={detail?.enabled} />
-                <TextField id="status" label="Status" style={{
-                  paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4,
-                }} fullWidth variant="outlined" key='status' InputProps={{ readOnly: true }} defaultValue={detail?.status} />
+                <ReadOnlyTextField id="e-email" label="E-mail" variant="outlined" key='e-mail' defaultValue={detail?.email} />
+                <ReadOnlyTextField id="createdAt" label="CreatedAt"
+                  variant="outlined" key='createdAt' defaultValue={detail?.createdAt?.toLocaleString()} />
+                <ReadOnlyTextField id="lastModifiedAt" label="LastModifiedAt"
+                  variant="outlined" key='lastModifiedAt' defaultValue={detail?.lastModifiedAt?.toLocaleString()} />
+                <ReadOnlyTextField id="enabled" label="Enabled" variant="outlined" key='enabled' defaultValue={detail?.enabled} />
+                <ReadOnlyTextField id="status" label="Status" variant="outlined" key='status' defaultValue={detail?.status} />
 
                 <Accordion style={{ marginBottom: 16 }}>
                   <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="attributes-content" id="attributes-header">
@@ -78,9 +108,8 @@ const UserDetail: React.FunctionComponent<UsersDetailProps> = ({ client, user, o
                         {
                           detail?.attributes !== undefined ? Object.keys(detail.attributes).filter((attribute) => attribute !== 'email').map((attributeName) => (
                             <ListItem component="li" dense={true} key={`${detail.email}-attr-${attributeName}`} button={false} disabled={true}>
-                              <TextField id={attributeName} label={attributeName} style={{
-                                paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4,
-                              }} fullWidth variant="outlined" key={attributeName} InputProps={{ readOnly: true }} defaultValue={detail.attributes[attributeName]} />
+                              <ReadOnlyTextField id={attributeName} label={attributeName}
+                                variant="outlined" key={attributeName} defaultValue={detail.attributes[attributeName]} />
                             </ListItem>
                           )) : ('')
                         }
@@ -118,23 +147,23 @@ const UserDetail: React.FunctionComponent<UsersDetailProps> = ({ client, user, o
                   color="secondary"
                   disabled={detail?.attributes?.identities !== undefined && JSON.parse(detail.attributes.identities).providerName === appConfig.protectedIdPName}
                   onClick={handleConfirm}>
-                    DELETE
+                  DELETE
                 </Button>
                 {
                   detail?.enabled === 'true' ? (
                     <Button
                       style={{ margin: 8 }}
                       variant="contained"
-                      onClick={disableUser}>
-                        DISABLE
+                      onClick={handleDisable}>
+                      DISABLE
                     </Button>
                   ) : (
                     <Button
                       style={{ margin: 8 }}
                       variant="contained"
                       color="primary"
-                      onClick={enableUser}>
-                        ENABLE
+                      onClick={handleEnable}>
+                      ENABLE
                     </Button>
                   )
                 }
@@ -142,9 +171,9 @@ const UserDetail: React.FunctionComponent<UsersDetailProps> = ({ client, user, o
                   style={{ margin: 8 }}
                   variant="contained"
                   color="primary"
-                  onClick={resetPassword}
+                  onClick={handleResetPassword}
                   disabled={detail?.status === 'FORCE_CHANGE_PASSWORD'}>
-                    RESET PASSWORD
+                  RESET PASSWORD
                 </Button>
               </DialogActions>
             </Container>
@@ -160,15 +189,15 @@ const UserDetail: React.FunctionComponent<UsersDetailProps> = ({ client, user, o
         <DialogTitle id="alert-dialog-title">{'Delete User?'}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-                        Can&apost undo it. Do you want to delete user?
+            Can&apost undo it. Do you want to delete user?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCancel} color="primary" autoFocus>
-                        CANCEL
+            CANCEL
           </Button>
-          <Button onClick={deleteUser} color="secondary">
-                        DELETE
+          <Button onClick={handleDelete} color="secondary">
+            DELETE
           </Button>
         </DialogActions>
       </Dialog>

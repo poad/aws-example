@@ -1,10 +1,15 @@
-import { useMemo } from 'react';
 import { IamRole } from '../interfaces';
 import IamClient from '../service/IamClient';
-import { useAsync } from 'react-async';
-import { appConfig } from 'aws-config';
+import { appConfig } from '../aws-config';
+import { useState, useEffect } from 'react';
 
-export const useListRoles = (iamClient: IamClient): { roles: IamRole[], error?: Error, loaded: boolean } => {
+export const useListRoles = (iamClient: IamClient): { roles?: IamRole[], error?: Error, loaded: boolean } => {
+  const [state, setState] = useState<{
+    data?: IamRole[],
+    error?: Error,
+    loaded: boolean,
+  }>({ loaded: false });
+
   const filterGroupRoles = (iamRoles: IamRole[]): IamRole[] => {
     const name = appConfig.groupRoleClassificationTagName;
     const value = appConfig.groupRoleClassificationTagValue;
@@ -14,14 +19,30 @@ export const useListRoles = (iamClient: IamClient): { roles: IamRole[], error?: 
     return filered;
   };
 
-  return useMemo(() => {
-    const { value, error, isPending } = useAsync(async () => {
-      return Promise.all((await iamClient.listRoles())
-        .filter(async (r) => r.roleName !== undefined)
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        .map((r) => iamClient.getRole(r.roleName!)));
-    });
-    const roles = value && !error && !isPending ? filterGroupRoles(value) : [];
-    return { roles, error, loaded: !isPending };
+  const loadRoles = async () =>
+    iamClient.listRoles()
+      .then(items => {
+        return items;
+      })
+      .then(items => items
+        .filter((item) => item.roleName !== undefined)
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        .map(async item => iamClient.getRole(item.roleName!)))
+      .then(async (items) => {
+        const roles = (await Promise.all((items)));
+        const s = {
+          data: filterGroupRoles(roles),
+          loaded: true,
+        };
+        setState(s);
+        return s;
+      },
+      )
+      .catch((error) => setState({ error, loaded: false }));
+
+  useEffect(() => {
+    loadRoles();
   }, []);
+
+  return { roles: state.data, error: state.error, loaded: state.loaded };
 };

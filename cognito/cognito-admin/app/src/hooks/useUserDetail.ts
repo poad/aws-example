@@ -1,11 +1,8 @@
-import {
-  SelectChangeEvent,
-} from '@mui/material';
 import { useEffect, useState } from 'react';
 import { User } from '../interfaces';
 import UserPoolClient from '../service/UserPoolClient';
 
-export const useListGroups = (initOpen: boolean, user: User | undefined, client: UserPoolClient, onClose: () => void,
+export const useUserDetail = (initOpen: boolean, user: User | undefined, client: UserPoolClient, onClose: () => void,
   onUpdate?: (newUser: User) => void,
   onDelete?: (removeUser: User) => void): {
     open: boolean,
@@ -13,13 +10,13 @@ export const useListGroups = (initOpen: boolean, user: User | undefined, client:
     confirm: boolean,
     groups: string[],
     deleteUser: () => void,
-    resetPassword: () => void,
-    disableUser: () => void,
-    enableUser: () => void,
+    resetPassword: () => User | undefined,
+    disableUser: () => User | undefined,
+    enableUser: () => User | undefined,
+    changeGroup: (newGroups: string[]) => User | undefined,
 
     handleConfirm: () => void,
-    handleCancel: () => void,
-    handleGroupChange: (event: SelectChangeEvent<string[]>) => void,
+    handleCancel: () => void
   } => {
   const [open, setOpen] = useState<boolean>(initOpen);
 
@@ -42,75 +39,89 @@ export const useListGroups = (initOpen: boolean, user: User | undefined, client:
   );
 
   const deleteUser = () => {
-    if (detail !== undefined) {
+    if (detail) {
       client.deleteUser(detail.username)
         .then(() => {
-          if (onDelete !== undefined) {
+          if (onDelete) {
             onDelete(detail);
           }
           setDetail(undefined);
+        })
+        .finally(() => {
+          setConfirm(false);
+          setOpen(false);
         });
+    } else {
+      setConfirm(false);
+      setOpen(false);
     }
-    setConfirm(false);
-    setOpen(false);
   };
 
   const resetPassword = () => {
-    if (detail !== undefined && detail.attributes.status !== 'FORCE_CHANGE_PASSWORD') {
+    if (detail && detail.attributes.status !== 'FORCE_CHANGE_PASSWORD') {
+      const newDetail = { ...detail };
+      newDetail.status = 'FORCE_CHANGE_PASSWORD';
       client.resetUserPassword(detail.username)
         .then(() => {
-          const newDetail = { ...detail };
-          newDetail.enabled = 'false';
           setDetail(newDetail);
-          if (onUpdate !== undefined) {
+          if (onUpdate) {
             onUpdate(newDetail);
           }
+        })
+        .finally(() => {
           onClose();
         });
+      return newDetail;
+    } else {
+      onClose();
     }
+    return undefined;
   };
 
   const disableUser = () => {
-    if (detail !== undefined) {
+    if (detail) {
+      const newDetail = { ...detail };
+      newDetail.enabled = 'false';
       client.disableUser(detail.username)
         .then(() => {
-          const newDetail = { ...detail };
-          newDetail.enabled = 'false';
           setDetail(newDetail);
-          if (onUpdate !== undefined) {
+          if (onUpdate) {
             onUpdate(newDetail);
           }
+        })
+        .finally(() => {
           onClose();
         });
+      return newDetail;
+    } else {
+      onClose();
     }
+    return undefined;
   };
 
-  const enableUser = () => {
-    if (detail !== undefined) {
+  const enableUser = (): User | undefined => {
+    if (detail) {
+      const newDetail = { ...detail };
+      newDetail.enabled = 'true';
       client.enableUser(detail.username)
         .then(() => {
-          const newDetail = { ...detail };
-          newDetail.enabled = 'true';
           setDetail(newDetail);
-          if (onUpdate !== undefined) {
+          if (onUpdate) {
             onUpdate(newDetail);
           }
+        })
+        .finally(() => {
           onClose();
         });
+      return newDetail;
+    } else {
+      onClose();
     }
+    return undefined;
   };
 
-  const handleConfirm = () => {
-    setConfirm(true);
-  };
-
-  const handleCancel = () => {
-    setConfirm(false);
-  };
-
-  const handleGroupChange = (event: SelectChangeEvent<string[]>) => {
-    const newGroups = event.target.value as string[];
-    if (detail !== undefined) {
+  const changeGroup = (newGroups: string[]) => {
+    if (detail) {
       const currentGroups = detail.groups || [];
 
       const deletionGroups = currentGroups.filter((current) => newGroups.indexOf(current) === -1);
@@ -121,6 +132,15 @@ export const useListGroups = (initOpen: boolean, user: User | undefined, client:
 
       setDetail({ ...detail, groups: newGroups });
     }
+    return detail;
+  };
+
+  const handleConfirm = () => {
+    setConfirm(true);
+  };
+
+  const handleCancel = () => {
+    setConfirm(false);
   };
 
   return {
@@ -132,9 +152,11 @@ export const useListGroups = (initOpen: boolean, user: User | undefined, client:
     resetPassword,
     disableUser,
     enableUser,
+    changeGroup,
 
     handleConfirm,
     handleCancel,
-    handleGroupChange,
   };
 };
+
+export default useUserDetail;

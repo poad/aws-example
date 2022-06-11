@@ -6,7 +6,6 @@ test('Empty Stack', () => {
   const app = new cdk.App();
   // WHEN
   const stack = new Infra.InfraStack(app, 'MyTestStack', {
-    name: `test`,
     adminUserPool: `test-user-pool`,
     endUserPool: `test-end-user-pool`,
     region: 'us-west-2',
@@ -17,7 +16,7 @@ test('Empty Stack', () => {
     domain: 'test',
     endUserDomain: 'test',
     provider: 'test',
-    Lambda: {
+    lambda: {
       app: {
         userMaagement: {
           name: "dev-signin-api",

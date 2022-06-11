@@ -12,10 +12,10 @@ import { Construct } from 'constructs';
 import { HttpApi } from '@aws-cdk/aws-apigatewayv2-alpha';
 import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
 import { HttpMethod } from 'aws-cdk-lib/aws-stepfunctions-tasks';
+import { IdentityProviderType, IdentityProviderTypeType } from '@aws-sdk/client-cognito-identity-provider';
 
 
 export interface InfraStackStackProps extends StackProps {
-  name: string,
   adminUserPool: string,
   endUserPool: string,
   region: string,
@@ -23,7 +23,7 @@ export interface InfraStackStackProps extends StackProps {
   domain: string,
   endUserDomain: string,
   provider: string,
-  Lambda: {
+  lambda: {
     app: {
       userMaagement: {
         name: string,
@@ -42,16 +42,28 @@ export class InfraStack extends Stack {
   constructor(scope: Construct, id: string, props: InfraStackStackProps) {
     super(scope, id, props);
 
+    const {
+      adminUserPool: adminUserPoolName,
+      endUserPool: endUserPoolName,
+      region,
+      environment,
+      domain,
+      endUserDomain,
+      provider,
+      groupRoleClassificationTag,
+      testRoles
+    } = props;
+
 
     const signInFn = new NodejsFunction(this, 'SignInLambdaFunction', {
       runtime: Runtime.NODEJS_14_X,
       entry: 'lambda/signin/index.ts',
-      functionName: `${props.environment}-cognito-admin-user-console-sign-in`,
+      functionName: `${environment}-cognito-admin-user-console-sign-in`,
       logRetention: RetentionDays.ONE_DAY,
       retryAttempts: 0,
       environment: {
-        'DOMAIN': props.endUserDomain,
-        'REGION': props.region,
+        'DOMAIN': endUserDomain,
+        'REGION': region,
       },
       role: new Role(this, 'SignInLambdaExecutionRole', {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
@@ -65,7 +77,7 @@ export class InfraStack extends Stack {
                   'logs:CreateLogStream',
                   'logs:PutLogEvents'
                 ],
-                resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.environment}-cognito-admin-user-console-sign-in:*`],
+                resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${environment}-cognito-admin-user-console-sign-in:*`],
               })
             ]
           }),
@@ -92,7 +104,7 @@ export class InfraStack extends Stack {
     const signOutFn = new NodejsFunction(this, 'SignOutLambdaFunction', {
       runtime: Runtime.NODEJS_14_X,
       entry: 'lambda/signout/index.ts',
-      functionName: `${props.environment}-cognito-admin-user-console-sign-out`,
+      functionName: `${environment}-cognito-admin-user-console-sign-out`,
       logRetention: RetentionDays.ONE_DAY,
       retryAttempts: 0,
       role: new Role(this, 'SignOutLambdaExecutionRole', {
@@ -107,7 +119,7 @@ export class InfraStack extends Stack {
                   'logs:CreateLogStream',
                   'logs:PutLogEvents'
                 ],
-                resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${props.environment}-cognito-admin-user-console-sign-out:*`],
+                resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${environment}-cognito-admin-user-console-sign-out:*`],
               })
             ]
           }),
@@ -132,7 +144,7 @@ export class InfraStack extends Stack {
     });
 
     const api = new HttpApi(this, "HttpApi", {
-      apiName: `Cognito Console Lambda API (${props.environment})`,
+      apiName: `Cognito Console Lambda API (${environment})`,
       defaultIntegration: new HttpLambdaIntegration(
         'default-handler',
         signInFn
@@ -159,7 +171,7 @@ export class InfraStack extends Stack {
     const blockExternalUserFn = new NodejsFunction(this, 'BlockExternalUserLambdaFunction', {
       runtime: Runtime.NODEJS_14_X,
       entry: 'lambda/block-external-user/index.ts',
-      functionName: `${props.environment}-cognito-admin-block-external-user`,
+      functionName: `${environment}-cognito-admin-block-external-user`,
       logRetention: RetentionDays.ONE_DAY,
       retryAttempts: 0,
       role: new Role(this, 'BlockExternalUserExecutionRole', {
@@ -175,8 +187,8 @@ export class InfraStack extends Stack {
                   'logs:PutLogEvents'
                 ],
                 resources: [
-                  `arn:aws:logs:${props.region}:${this.account}:log-group:/aws/lambda/${props.environment}-cognito-admin-block-external-user`,
-                  `arn:aws:logs:${props.region}:${this.account}:log-group:/aws/lambda/${props.environment}-cognito-admin-block-external-user:*`,
+                  `arn:aws:logs:${region}:${this.account}:log-group:/aws/lambda/${environment}-cognito-admin-block-external-user`,
+                  `arn:aws:logs:${region}:${this.account}:log-group:/aws/lambda/${environment}-cognito-admin-block-external-user:*`,
                 ],
               })
             ]
@@ -199,8 +211,8 @@ export class InfraStack extends Stack {
       })
     });
 
-    const endUserPool = new UserPool(this, props.endUserPool, {
-      userPoolName: props.endUserPool,
+    const endUserPool = new UserPool(this, endUserPoolName, {
+      userPoolName: endUserPoolName,
       signInAliases: {
         username: true,
         email: true,
@@ -240,19 +252,19 @@ export class InfraStack extends Stack {
 
     endUserPool.addDomain('EndUserPoolDomain', {
       cognitoDomain: {
-        domainPrefix: props.endUserDomain
+        domainPrefix: endUserDomain
       }
     });
 
     const addAdminUserFn = new NodejsFunction(this, 'AddAdminUserLambdaFunction', {
       runtime: Runtime.NODEJS_14_X,
       entry: 'lambda/add-admin-user/index.ts',
-      functionName: `${props.environment}-cognito-admin-add-admin-user`,
+      functionName: `${environment}-cognito-admin-add-admin-user`,
       logRetention: RetentionDays.ONE_DAY,
       retryAttempts: 0,
       environment: {
         'DEST_USER_POOL_ID': endUserPool.userPoolId,
-        'PROVIDER': props.provider,
+        'PROVIDER': provider,
       },
       role: new Role(this, 'AddAdminUserExecutionRole', {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
@@ -267,8 +279,8 @@ export class InfraStack extends Stack {
                   'logs:PutLogEvents'
                 ],
                 resources: [
-                  `arn:aws:logs:${props.region}:${this.account}:log-group:/aws/lambda/${props.environment}-cognito-admin-add-admin-user`,
-                  `arn:aws:logs:${props.region}:${this.account}:log-group:/aws/lambda/${props.environment}-cognito-admin-add-admin-user:*`,
+                  `arn:aws:logs:${region}:${this.account}:log-group:/aws/lambda/${environment}-cognito-admin-add-admin-user`,
+                  `arn:aws:logs:${region}:${this.account}:log-group:/aws/lambda/${environment}-cognito-admin-add-admin-user:*`,
                 ],
               })
             ]
@@ -291,8 +303,8 @@ export class InfraStack extends Stack {
       })
     });
 
-    const adminUserPool = new UserPool(this, props.adminUserPool, {
-      userPoolName: props.adminUserPool,
+    const adminUserPool = new UserPool(this, adminUserPoolName, {
+      userPoolName: adminUserPoolName,
       signInAliases: {
         username: true,
         email: true,
@@ -332,13 +344,13 @@ export class InfraStack extends Stack {
 
     adminUserPool.addDomain('AdminnUserPoolDomain', {
       cognitoDomain: {
-        domainPrefix: props.domain
+        domainPrefix: domain
       }
     });
 
     const adminPoolClient = new UserPoolClient(this, 'AdminPoolAppClient', {
       userPool: adminUserPool,
-      userPoolClientName: `${props.environment}-admin-user-pool-client`,
+      userPoolClientName: `${environment}-admin-user-pool-client`,
       authFlows: {
         adminUserPassword: true,
         userSrp: true,
@@ -346,7 +358,7 @@ export class InfraStack extends Stack {
         custom: true,
       },
       oAuth: {
-        callbackUrls: ['http://localhost:3000', `https://${props.endUserDomain}.auth.${props.region}.amazoncognito.com/oauth2/idpresponse`],
+        callbackUrls: ['http://localhost:3000', `https://${endUserDomain}.auth.${region}.amazoncognito.com/oauth2/idpresponse`],
         // logoutUrls,
         flows: {
           authorizationCodeGrant: true,
@@ -371,11 +383,11 @@ export class InfraStack extends Stack {
           serverSideTokenCheck: true,
         },
       ],
-      identityPoolName: `${props.environment} admin users`,
+      identityPoolName: `${environment} admin users`,
     });
 
     const adminUnauthenticatedRole = new Role(this, 'AdminCognitoDefaultUnauthenticatedRole', {
-      roleName: `${props.environment}-cognito-admin-users-unauth-role`,
+      roleName: `${environment}-cognito-admin-users-unauth-role`,
       assumedBy: new FederatedPrincipal('cognito-identity.amazonaws.com', {
         StringEquals: {
           'cognito-identity.amazonaws.com:aud': adminPoolIdentityPool.ref,
@@ -403,7 +415,7 @@ export class InfraStack extends Stack {
     });
 
     const adminAuthenticatedRole = new Role(this, 'AdminCognitoDefaultAuthenticatedRole', {
-      roleName: `${props.environment}-cognito-admin-users-auth-role`,
+      roleName: `${environment}-cognito-admin-users-auth-role`,
       assumedBy: new FederatedPrincipal('cognito-identity.amazonaws.com', {
         StringEquals: {
           'cognito-identity.amazonaws.com:aud': adminPoolIdentityPool.ref,
@@ -443,13 +455,13 @@ export class InfraStack extends Stack {
     });
 
     const cfnIdp = new CfnUserPoolIdentityProvider(this, 'OIDCProvider', {
-      providerName: props.provider,
-      providerType: 'OIDC',
+      providerName: provider,
+      providerType: IdentityProviderTypeType.OIDC,
       userPoolId: endUserPool.userPoolId,
       providerDetails: {
         client_id: adminPoolClient.userPoolClientId,
         authorize_scopes: 'email openid profile',
-        oidc_issuer: `https://cognito-idp.${props.region}.amazonaws.com/${adminUserPool.userPoolId}`,
+        oidc_issuer: `https://cognito-idp.${region}.amazonaws.com/${adminUserPool.userPoolId}`,
         attributes_request_method: 'GET',
       },
       attributeMapping: {
@@ -457,9 +469,11 @@ export class InfraStack extends Stack {
       }
     });
 
+    cfnIdp.node.addDependency(adminPoolClient, endUserPool);    
+
     const endUsersClient = new UserPoolClient(this, 'EndUserPoolAppClient', {
       userPool: endUserPool,
-      userPoolClientName: `${props.environment}-end-user-pool-client`,
+      userPoolClientName: `${environment}-end-user-pool-client`,
       authFlows: {
         adminUserPassword: true,
         userSrp: true,
@@ -487,6 +501,8 @@ export class InfraStack extends Stack {
       ],
     });
 
+    endUsersClient.node.addDependency(endUserPool, cfnIdp);
+
     const endUserPoolIdentityPool = new CfnIdentityPool(this, 'EndUserIdPool', {
       allowUnauthenticatedIdentities: false,
       allowClassicFlow: true,
@@ -497,11 +513,11 @@ export class InfraStack extends Stack {
           serverSideTokenCheck: true,
         },
       ],
-      identityPoolName: `${props.environment} end users`,
+      identityPoolName: `${environment} end users`,
     });
 
     const endUserUnauthenticatedRole = new Role(this, 'EndUserCognitoDefaultUnauthenticatedRole', {
-      roleName: `${props.environment}-cognito-end-users-unauth-role`,
+      roleName: `${environment}-cognito-end-users-unauth-role`,
       assumedBy: new FederatedPrincipal('cognito-identity.amazonaws.com', {
         StringEquals: {
           'cognito-identity.amazonaws.com:aud': endUserPoolIdentityPool.ref,
@@ -529,7 +545,7 @@ export class InfraStack extends Stack {
     });
 
     const endUserAuthenticatedRole = new Role(this, 'EndUserCognitoDefaultAuthenticatedRole', {
-      roleName: `${props.environment}-cognito-end-users-auth-role`,
+      roleName: `${environment}-cognito-end-users-auth-role`,
       assumedBy: new FederatedPrincipal('cognito-identity.amazonaws.com', {
         StringEquals: {
           'cognito-identity.amazonaws.com:aud': endUserPoolIdentityPool.ref,
@@ -565,9 +581,9 @@ export class InfraStack extends Stack {
       },
     });
 
-    if (props.testRoles !== undefined && props.testRoles > 0) {
-      for (let i = 0; i < props.testRoles; i++) {
-        const roleName = `${props.environment}-test-group-role-${i + 1}`;
+    if (testRoles !== undefined && testRoles > 0) {
+      for (let i = 0; i < testRoles; i++) {
+        const roleName = `${environment}-test-group-role-${i + 1}`;
 
         const groupRole = new Role(this, `TestGroupRole${i + 1}`, {
           roleName,
@@ -604,8 +620,8 @@ export class InfraStack extends Stack {
         signInFn.addEnvironment('IDENTITY_PROVIDER', endUserPool.userPoolProviderName);
         signInFn.addEnvironment('API_URL', api.url!);
 
-        if (props.groupRoleClassificationTag.name !== undefined && props.groupRoleClassificationTag.value !== undefined) {
-          Tags.of(groupRole).add(props.groupRoleClassificationTag.name, props.groupRoleClassificationTag.value)
+        if (groupRoleClassificationTag.name !== undefined && groupRoleClassificationTag.value !== undefined) {
+          Tags.of(groupRole).add(groupRoleClassificationTag.name, groupRoleClassificationTag.value)
         }
       }
     }

@@ -1,20 +1,22 @@
 /** @type {import('next').NextConfig} */
-const withPlugins = require('next-compose-plugins');
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-    enabled: process.env.ANALYZE === 'true',
+import withPlugins from 'next-compose-plugins';
+import analyzer from '@next/bundle-analyzer';
+const withBundleAnalyzer = analyzer({
+  enabled: process.env.ANALYZE === 'true',
 });
 
-module.exports = withPlugins([
-    [withBundleAnalyzer],
+export default withPlugins([
+  [withBundleAnalyzer],
 ],
-    {
-        webpack5: true,
-        reactStrictMode: true,
-        esmExternals: true,
-        swcLoader: true,
-        swcMinify: true,
-        experimental: {
-            modern: true,
-        }
+  {
+    webpack5: true,
+    reactStrictMode: true,
+    esmExternals: true,
+    swcLoader: true,
+    swcMinify: false,
+    experimental: {
+      modern: true,
+      outputStandalone: true,
     }
+  }
 );

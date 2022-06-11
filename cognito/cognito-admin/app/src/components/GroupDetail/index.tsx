@@ -1,17 +1,19 @@
 import {
   Accordion, AccordionDetails, AccordionSummary, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText,
-  DialogTitle, FormControl, InputLabel, List, ListItem, MenuItem, Paper, Select, SelectChangeEvent, TextField, Typography, useMediaQuery, useTheme,
+  DialogTitle, FormControl, InputLabel, List, ListItem, MenuItem, Paper, Select, SelectChangeEvent, Typography, useMediaQuery, useTheme,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Group } from '../../interfaces';
 import UserPoolClient from '../../service/UserPoolClient';
 import IamClient from '../../service/IamClient';
-import { useListRoles } from 'hooks/useListRoles';
-import { useGroupDetail } from 'hooks/useGroupDetail';
+import { useListRoles } from '../../hooks/useListRoles';
+import { useGroupDetail } from '../../hooks/useGroupDetail';
+import StyledTextField from '../styled/StyledTextField';
+import ReadOnlyTextField from '../ReadOnlyTextField';
 
 interface DetailErrorDialog {
-  title: string | undefined,
+  title?: string,
   message: string
 }
 
@@ -30,24 +32,32 @@ interface GroupDetailProps {
   onDelete?: (removeGroup: Group) => void
 }
 
-const UserDetail: React.FunctionComponent<GroupDetailProps> = ({ client, iamClient, group, open: initOpen, onClose, onUpdate, onDelete }): JSX.Element => {
+const UserDetail = ({ client, iamClient, group, open, onClose, onUpdate, onDelete }: GroupDetailProps): JSX.Element => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
-  const [open, setOpen] = useState<boolean>(initOpen);
 
   const [confirm, setConfirm] = useState<boolean>(false);
 
   const [detailErrorDialog, setDetailErrorDialog] = useState<DetailErrorDialog | undefined>(undefined);
 
-  const { roles } = useListRoles(iamClient);
+  const { roles, error, loaded } = useListRoles(iamClient);
 
   const { detail, attacheRole, changeGroupRole, updateGroupRole, deleteGroup, clearAttacheRole } = useGroupDetail(client, group, onUpdate, onDelete);
+
+  useEffect(() => {
+    if (error) {
+      setDetailErrorDialog({
+        message: JSON.stringify(error),
+      });
+    }
+  }, [error, loaded]);
 
   const onDeleteGroup = () => {
     deleteGroup();
     setConfirm(false);
-    setOpen(false);
+    if (onDelete && detail) {
+      onDelete(detail);
+    }
   };
 
   const handleConfirm = () => setConfirm(true);
@@ -87,15 +97,12 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = ({ client, iamClie
               <Paper variant="outlined" sx={{
                 paddingLeft: 4, paddingRight: 4, paddingTop: 16, paddingBottom: 16,
               }}>
-                <TextField id="groupName" label="GroupName" sx={{
-                  paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4,
-                }} fullWidth variant="outlined" key='groupName' InputLabelProps={{ shrink: true }} InputProps={{ readOnly: true }} defaultValue={detail?.groupName} />
-                <TextField id="createdAt" label="CreatedAt" sx={{
-                  paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4,
-                }} fullWidth variant="outlined" key='createdAt' InputProps={{ readOnly: true }} defaultValue={detail?.creationDate?.toLocaleString()} />
-                <TextField id="lastModifiedAt" label="LastModifiedAt" sx={{
-                  paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4,
-                }} fullWidth variant="outlined" key='lastModifiedAt' InputProps={{ readOnly: true }} defaultValue={detail?.lastModifiedDate?.toLocaleString()} />
+                <ReadOnlyTextField id="groupName" label="GroupName"
+                  variant="outlined" key='groupName' InputLabelProps={{ shrink: true }} defaultValue={detail?.groupName} />
+                <ReadOnlyTextField id="createdAt" label="CreatedAt"
+                  variant="outlined" key='createdAt' defaultValue={detail?.creationDate?.toLocaleString()} />
+                <ReadOnlyTextField id="lastModifiedAt" label="LastModifiedAt"
+                  variant="outlined" key='lastModifiedAt' defaultValue={detail?.lastModifiedDate?.toLocaleString()} />
                 <FormControl variant="outlined" fullWidth sx={{ paddingLeft: 2, paddingRight: 2 }}>
                   <InputLabel id="roleArn-label" sx={{ paddingLeft: 2, paddingRight: 2 }}>Role Arn</InputLabel>
                   <Select labelId="roleArn-label" sx={{ paddingLeft: 2, paddingRight: 2 }} id="roleArn" value={detail?.roleArn || ''} onChange={handleRoleChange} label="Role Arn" fullWidth>
@@ -103,7 +110,7 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = ({ client, iamClie
                       detail?.roleArn === undefined ? (<MenuItem key="None" value="" sx={{ paddingLeft: 2, paddingRight: 2 }}><em>None</em></MenuItem>) : undefined
                     }
                     {
-                      roles.map((role) => (
+                      roles?.map((role) => (
                         <MenuItem key={role.arn} value={role.arn} sx={{
                           paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4,
                         }}><em>{role.roleName}</em></MenuItem>
@@ -111,9 +118,8 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = ({ client, iamClie
                     }
                   </Select>
                 </FormControl>
-                <TextField id="precedence" label="Precedence" sx={{
-                  paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4,
-                }} fullWidth key='precedence' variant="outlined" InputProps={{ readOnly: true }} defaultValue={detail?.precedence} />
+                <ReadOnlyTextField id="precedence" label="Precedence"
+                  key='precedence' variant="outlined" defaultValue={detail?.precedence} />
 
                 <Accordion variant="outlined">
                   <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="users-content" id="users-header">
@@ -130,9 +136,8 @@ const UserDetail: React.FunctionComponent<GroupDetailProps> = ({ client, iamClie
                       {
                         detail?.users !== undefined ? detail?.users.map((user) => (
                           <ListItem component="li" key={`${detail?.groupName}-user-${user.username}`}>
-                            <TextField id={user.username} label={user.username} sx={{
-                              paddingLeft: 2, paddingRight: 2, paddingTop: 4, paddingBottom: 4, marginTop: 4, marginBottom: 4,
-                            }} fullWidth key={user.username} InputProps={{ readOnly: true }} defaultValue={user.username} />
+                            <StyledTextField id={user.username} label={user.username}
+                              fullWidth key={user.username} InputProps={{ readOnly: true }} defaultValue={user.username} />
                           </ListItem>
                         )) : ('')
                       }

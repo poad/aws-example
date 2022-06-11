@@ -37,7 +37,6 @@ const context = app.node.tryGetContext(env) as Context;
 const { region, domain, endUserDomain, provider, testRoles, groupRoleClassificationTagName, groupRoleClassificationTagValue } = context;
 
 new InfraStack(app, `${env}-cognito-admin-stack`, {
-  name: `${env}-cognito-admin`,
   adminUserPool: `${env}-cognito-admin-user-pool`,
   endUserPool: `${env}-cognito-admin-end-user-pool`,
   region,
@@ -48,7 +47,7 @@ new InfraStack(app, `${env}-cognito-admin-stack`, {
   domain,
   endUserDomain,
   provider,
-  Lambda: {
+  lambda: {
     app: {
       userMaagement: {
         name: "dev-signin-api",

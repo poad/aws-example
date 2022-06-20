@@ -12,7 +12,7 @@ import { Construct } from 'constructs';
 import { HttpApi } from '@aws-cdk/aws-apigatewayv2-alpha';
 import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
 import { HttpMethod } from 'aws-cdk-lib/aws-stepfunctions-tasks';
-import { IdentityProviderType, IdentityProviderTypeType } from '@aws-sdk/client-cognito-identity-provider';
+import { IdentityProviderTypeType } from '@aws-sdk/client-cognito-identity-provider';
 
 
 export interface InfraStackStackProps extends StackProps {

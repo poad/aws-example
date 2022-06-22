@@ -44,7 +44,7 @@ const UserDetail = ({ client, user, open: initOpen, onClose, onUpdate, onDelete 
     handleCancel,
   } = useUserDetail(initOpen, user, client, onClose);
 
-  const detailValue = useDeferredValue(detail);
+  const detailValue = typeof useDeferredValue !== 'undefined' ? useDeferredValue(detail) : detail;
 
   const handleResetPassword = () => {
     const newDetail = resetPassword();

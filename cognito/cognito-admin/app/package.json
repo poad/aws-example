@@ -26,10 +26,13 @@
     "aws-amplify": "*",
     "cross-fetch": "*",
     "next": "*",
-    "react": "*",
-    "react-dom": "*",
+    "preact": "*",
+    "preact-render-to-string": "*",
+    "react": "npm:@preact/compat",
+    "react-dom": "npm:@preact/compat",
     "react-hook-form": "*",
     "react-loader": "*",
+    "react-ssr-prepass": "npm:preact-ssr-prepass",
     "web-vitals": "*"
   },
   "devDependencies": {
@@ -51,6 +54,7 @@
     "eslint-plugin-react": "*",
     "eslint-plugin-react-hooks": "*",
     "next-compose-plugins": "*",
+    "next-plugin-preact": "*",
     "next-transpile-modules": "*",
     "typescript": "*"
   }

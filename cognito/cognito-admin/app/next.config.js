@@ -4,9 +4,11 @@ import analyzer from '@next/bundle-analyzer';
 const withBundleAnalyzer = analyzer({
   enabled: process.env.ANALYZE === 'true',
 });
+import withPreact from 'next-plugin-preact';
+
 
 export default withPlugins([
-  [withBundleAnalyzer],
+  [withBundleAnalyzer, withPreact],
 ],
   {
     webpack5: true,

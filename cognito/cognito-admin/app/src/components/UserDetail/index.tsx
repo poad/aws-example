@@ -3,7 +3,7 @@ import {
   DialogTitle, FormControl, Input, InputLabel, List, ListItem, MenuItem, Paper, Select, Typography, useMediaQuery, useTheme,
   SelectChangeEvent,
 } from '@mui/material';
-import React from 'react';
+import React, { useDeferredValue } from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { User } from '../../interfaces';
 import UserPoolClient from '../../service/UserPoolClient';
@@ -44,6 +44,8 @@ const UserDetail = ({ client, user, open: initOpen, onClose, onUpdate, onDelete 
     handleCancel,
   } = useUserDetail(initOpen, user, client, onClose);
 
+  const detailValue = useDeferredValue(detail);
+
   const handleResetPassword = () => {
     const newDetail = resetPassword();
     if (onUpdate && newDetail) {
@@ -67,8 +69,8 @@ const UserDetail = ({ client, user, open: initOpen, onClose, onUpdate, onDelete 
 
   const handleDelete = () => {
     deleteUser();
-    if (onDelete && detail) {
-      onDelete(detail);
+    if (onDelete && detailValue) {
+      onDelete(detailValue);
     }
   };
 
@@ -84,19 +86,19 @@ const UserDetail = ({ client, user, open: initOpen, onClose, onUpdate, onDelete 
     <Container sx={{ width: '100%' }}>
       <Dialog fullScreen={fullScreen} open={open} aria-labelledby="responsive-dialog-title">
         <DialogContent>
-          <DialogTitle id="user-detail-dialog-title"><Typography variant="h3" component="span" gutterBottom>{detail?.username}</Typography></DialogTitle>
+          <DialogTitle id="user-detail-dialog-title"><Typography variant="h3" component="span" gutterBottom>{detailValue?.username}</Typography></DialogTitle>
           <DialogContentText id="user-detail-dialog" component='div'>
             <Container>
               <Paper variant="outlined" style={{
                 paddingLeft: 4, paddingRight: 4, paddingTop: 16, paddingBottom: 16,
               }}>
-                <ReadOnlyTextField id="e-email" label="E-mail" variant="outlined" key='e-mail' defaultValue={detail?.email} />
+                <ReadOnlyTextField id="e-email" label="E-mail" variant="outlined" key='e-mail' defaultValue={detailValue?.email} />
                 <ReadOnlyTextField id="createdAt" label="CreatedAt"
-                  variant="outlined" key='createdAt' defaultValue={detail?.createdAt?.toLocaleString()} />
+                  variant="outlined" key='createdAt' defaultValue={detailValue?.createdAt?.toLocaleString()} />
                 <ReadOnlyTextField id="lastModifiedAt" label="LastModifiedAt"
-                  variant="outlined" key='lastModifiedAt' defaultValue={detail?.lastModifiedAt?.toLocaleString()} />
-                <ReadOnlyTextField id="enabled" label="Enabled" variant="outlined" key='enabled' defaultValue={detail?.enabled} />
-                <ReadOnlyTextField id="status" label="Status" variant="outlined" key='status' defaultValue={detail?.status} />
+                  variant="outlined" key='lastModifiedAt' defaultValue={detailValue?.lastModifiedAt?.toLocaleString()} />
+                <ReadOnlyTextField id="enabled" label="Enabled" variant="outlined" key='enabled' defaultValue={detailValue?.enabled} />
+                <ReadOnlyTextField id="status" label="Status" variant="outlined" key='status' defaultValue={detailValue?.status} />
 
                 <Accordion style={{ marginBottom: 16 }}>
                   <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="attributes-content" id="attributes-header">
@@ -106,10 +108,10 @@ const UserDetail = ({ client, user, open: initOpen, onClose, onUpdate, onDelete 
                     <Box border={1}>
                       <List component="ul" id="attributes-list" dense={true} disablePadding={true}>
                         {
-                          detail?.attributes !== undefined ? Object.keys(detail.attributes).filter((attribute) => attribute !== 'email').map((attributeName) => (
-                            <ListItem component="li" dense={true} key={`${detail.email}-attr-${attributeName}`} button={false} disabled={true}>
+                          detailValue?.attributes !== undefined ? Object.keys(detailValue.attributes).filter((attribute) => attribute !== 'email').map((attributeName) => (
+                            <ListItem component="li" dense={true} key={`${detailValue.email}-attr-${attributeName}`} button={false} disabled={true}>
                               <ReadOnlyTextField id={attributeName} label={attributeName}
-                                variant="outlined" key={attributeName} defaultValue={detail.attributes[attributeName]} />
+                                variant="outlined" key={attributeName} defaultValue={detailValue.attributes[attributeName]} />
                             </ListItem>
                           )) : ('')
                         }
@@ -122,7 +124,7 @@ const UserDetail = ({ client, user, open: initOpen, onClose, onUpdate, onDelete 
                   <Select
                     labelId="groups-label"
                     style={{ paddingLeft: 2, paddingRight: 2 }}
-                    id="groups" value={detail?.groups || []}
+                    id="groups" value={detailValue?.groups || []}
                     onChange={handleGroupChange}
                     label="Groups"
                     fullWidth
@@ -145,12 +147,12 @@ const UserDetail = ({ client, user, open: initOpen, onClose, onUpdate, onDelete 
                   style={{ margin: 8 }}
                   variant="contained"
                   color="secondary"
-                  disabled={detail?.attributes?.identities !== undefined && JSON.parse(detail.attributes.identities).providerName === appConfig.protectedIdPName}
+                  disabled={detailValue?.attributes?.identities !== undefined && JSON.parse(detailValue.attributes.identities).providerName === appConfig.protectedIdPName}
                   onClick={handleConfirm}>
                   DELETE
                 </Button>
                 {
-                  detail?.enabled === 'true' ? (
+                  detailValue?.enabled === 'true' ? (
                     <Button
                       style={{ margin: 8 }}
                       variant="contained"
@@ -172,7 +174,7 @@ const UserDetail = ({ client, user, open: initOpen, onClose, onUpdate, onDelete 
                   variant="contained"
                   color="primary"
                   onClick={handleResetPassword}
-                  disabled={detail?.status === 'FORCE_CHANGE_PASSWORD'}>
+                  disabled={detailValue?.status === 'FORCE_CHANGE_PASSWORD'}>
                   RESET PASSWORD
                 </Button>
               </DialogActions>

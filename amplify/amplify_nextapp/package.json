@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "analyze": "ANALYZE=true next build",
     "lint": "next lint"
@@ -31,6 +31,7 @@
     "eslint-plugin-react-hooks": "*",
     "next-compose-plugins": "*",
     "prettier": "*",
+    "swc-loader": "*",
     "typescript": "*"
   }
 }

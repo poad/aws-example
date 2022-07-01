@@ -1,5 +1,5 @@
 {
-  "name": "next-ts-template",
+  "name": "next-ts-preact-template",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -22,8 +22,11 @@
     "autoprefixer": "*",
     "next": "*",
     "postcss": "*",
-    "react": "*",
-    "react-dom": "*",
+    "preact": "*",
+    "preact-render-to-string": "*",
+    "react": "npm:@preact/compat",
+    "react-dom": "npm:@preact/compat",
+    "react-ssr-prepass": "npm:preact-ssr-prepass",
     "tailwindcss": "*",
     "web-vitals": "*"
   },
@@ -45,6 +48,7 @@
     "eslint-plugin-react": "*",
     "eslint-plugin-react-hooks": "*",
     "next-compose-plugins": "*",
+    "next-plugin-preact": "*",
     "next-transpile-modules": "*",
     "rimraf": "*",
     "typescript": "*"

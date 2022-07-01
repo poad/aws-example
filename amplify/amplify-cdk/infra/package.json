@@ -1,0 +1,29 @@
+{
+  "name": "amplify-cdk",
+  "version": "0.1.0",
+  "bin": {
+    "amplify-cdk": "bin/amplify-cdk.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@types/jest": "*",
+    "@types/node": "*",
+    "@types/prettier": "*",
+    "aws-cdk": "*",
+    "jest": "*",
+    "ts-jest": "*",
+    "ts-node": "*",
+    "typescript": "*"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-amplify-alpha": "^2.29.1-alpha.0",
+    "aws-cdk-lib": "*",
+    "constructs": "*",
+    "source-map-support": "*"
+  }
+}

@@ -264,6 +264,28 @@ updates:
     assignees:
       - poad
 
+  - package-ecosystem: npm
+    directory: '/amplify/amplify-cdk/app/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: npm
+    directory: '/amplify/amplify-cdk/infra/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
   - package-ecosystem: cargo
     directory: '/lambda/lambda-examples/lambda/container/hello-rust-lambda/'
     schedule:

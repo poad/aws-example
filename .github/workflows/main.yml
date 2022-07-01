@@ -29,6 +29,30 @@ jobs:
         node-version: 14.x
         check-latest: true
 
+    - name: update (amplify/amplified_todo)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/amplify/amplified_todo/
+        
+    - name: update (amplify/amplify_nextapp)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/amplify/amplify_nextapp/
+
+    - name: update (amplify/amplify-cdk/app)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/amplify/amplify-cdk/app/
+
+    - name: update (amplify/amplify-cdk/infra)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/amplify/amplify-cdk/infra/
+
     - name: update (cognito/cognito-admin/app)
       uses: poad/update-node-modules@v1.0.5
       with:

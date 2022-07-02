@@ -8,6 +8,7 @@ applications:
         build:
           commands:
             - yarn build
+            - yarn export
       artifacts:
         baseDirectory: .next
         files:

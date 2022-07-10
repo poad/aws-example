@@ -3,6 +3,7 @@ import { Construct } from 'constructs';
 import * as amplify from '@aws-cdk/aws-amplify-alpha';
 import { GitHubSourceCodeProvider } from '@aws-cdk/aws-amplify-alpha';
 import { ManagedPolicy, Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
+import { BuildSpec } from 'aws-cdk-lib/aws-codebuild';
 
 interface AmplifyCdkStackProps extends StackProps {
   accessToken: string,
@@ -31,6 +32,39 @@ export class AmplifyCdkStack extends Stack {
         assumedBy: new ServicePrincipal('amplify.amazonaws.com'),
         managedPolicies: [
           ManagedPolicy.fromAwsManagedPolicyName('AdministratorAccess-Amplify')
+        ]
+      }),
+      buildSpec: BuildSpec.fromObjectToYaml({
+        version: 1,
+        applications: [
+          {
+            frontend: {
+              phases: {
+                preBuild: {
+                  commands: [
+                    'yum remove openssl-devel -y',
+                    'yum install openssl11 openssl11-devel -y',
+                    'yarn install'
+                  ],
+                },
+                build: {
+                  commands: [
+                    'yarn build'
+                  ],
+                },
+              },
+              artifacts: {
+                baseDirectory: '.next',
+                files: [
+                  '**/*'
+                ],
+              },
+              cache: {
+                paths: 'node_modules'
+              },
+            },
+            appRoot: 'amplify/amplify_nextapp'
+          }
         ]
       })
     });

@@ -191,9 +191,9 @@
     tslib "^2.3.1"
 
 "@aws-sdk/client-s3@*":
-  version "3.128.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/client-s3/-/client-s3-3.128.0.tgz#34a7c44972c6abb72b00c1f4ab159f767ccf3333"
-  integrity sha512-srkeosAien19NGCkGQH8dHdNDdhtnAd3mi+pI91iMSkyZU3CzsiGW+BFS03BmUJv9dhVVwwMfC+Jjw6tsW1Zxg==
+  version "3.129.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/client-s3/-/client-s3-3.129.0.tgz#308b982feb1f62a0f6a842ddd6b3207770f97962"
+  integrity sha512-cik8i2vXzC6dJrCngarMs2OaJn+S98ndrP8uJhuX7Qou9VRCM+PLMv10W28Mh1QWlZaaxOlbpWoF1+gflj/A0A==
   dependencies:
     "@aws-crypto/sha1-browser" "2.0.0"
     "@aws-crypto/sha256-browser" "2.0.0"
@@ -238,8 +238,8 @@
     "@aws-sdk/util-body-length-node" "3.55.0"
     "@aws-sdk/util-defaults-mode-browser" "3.127.0"
     "@aws-sdk/util-defaults-mode-node" "3.128.0"
-    "@aws-sdk/util-stream-browser" "3.127.0"
-    "@aws-sdk/util-stream-node" "3.127.0"
+    "@aws-sdk/util-stream-browser" "3.129.0"
+    "@aws-sdk/util-stream-node" "3.129.0"
     "@aws-sdk/util-user-agent-browser" "3.127.0"
     "@aws-sdk/util-user-agent-node" "3.127.0"
     "@aws-sdk/util-utf8-browser" "3.109.0"
@@ -887,20 +887,26 @@
   dependencies:
     tslib "^2.3.1"
 
-"@aws-sdk/util-stream-browser@3.127.0":
-  version "3.127.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/util-stream-browser/-/util-stream-browser-3.127.0.tgz#325f6807002811598276d1a087c039056be2c121"
-  integrity sha512-zmStIae7vYzsA0ZNcOcZQpT1jJLyFur8SqLJ11CilkRhTJeyiMABuI/9ljiYaJGZnd+m4+GRYKuovV6HhOFKLg==
+"@aws-sdk/util-stream-browser@3.129.0":
+  version "3.129.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/util-stream-browser/-/util-stream-browser-3.129.0.tgz#50f787f2779881a0ad43bbf922cfe3a2ea7cb437"
+  integrity sha512-Zo9oZuRsR1pcxvpES7uK08php9Dkw/ut8IBvJHzUs+J3o9TziyQRiRFegiQBs9Q4a6z7hyoMwUeoo+MMFulNVQ==
   dependencies:
+    "@aws-sdk/fetch-http-handler" "3.127.0"
     "@aws-sdk/types" "3.127.0"
+    "@aws-sdk/util-base64-browser" "3.109.0"
+    "@aws-sdk/util-hex-encoding" "3.109.0"
+    "@aws-sdk/util-utf8-browser" "3.109.0"
     tslib "^2.3.1"
 
-"@aws-sdk/util-stream-node@3.127.0":
-  version "3.127.0"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/util-stream-node/-/util-stream-node-3.127.0.tgz#4f754ffcbf3162a8bc74c2f4b26882dbbc94c8e7"
-  integrity sha512-qbwr5WgxUco1BTGxYskWrL3JVg6GABcFWwHfYq2856zqTAmtRvCvGtNVgTjRev4zvFo3lOzJc2IaqvkiwyqZEg==
+"@aws-sdk/util-stream-node@3.129.0":
+  version "3.129.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/util-stream-node/-/util-stream-node-3.129.0.tgz#e4c11674aeab5aa37a83748f4045944fdd736be0"
+  integrity sha512-1iWqsWvVXyP4JLPPPs8tBZKyzs7D5e7KctXuCtIjI+cnGOCeVLL+X4L/7KDZfV7sI2D6vONtIoTnUjMl5V/kEg==
   dependencies:
+    "@aws-sdk/node-http-handler" "3.127.0"
     "@aws-sdk/types" "3.127.0"
+    "@aws-sdk/util-buffer-from" "3.55.0"
     tslib "^2.3.1"
 
 "@aws-sdk/util-uri-escape@3.55.0":

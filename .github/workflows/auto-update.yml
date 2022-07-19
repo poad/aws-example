@@ -22,11 +22,11 @@ jobs:
     if: github.actor != 'dependabot[bot]'
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js 14.x
+    - name: Use Node.js 16.x
       if: github.event_name != 'pull_request'
       uses: actions/setup-node@v3.0.0
       with:
-        node-version: 14.x
+        node-version: 16.x
         check-latest: true
 
     - name: update (amplify/amplified_todo)
@@ -52,6 +52,42 @@ jobs:
       with:
         yarn: true
         path: ${{github.workspace}}/amplify/amplify-cdk/infra/
+
+    - name: update (codebuild/custom-image-test)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/codebuild/custom-image-test/
+
+    - name: update (codepipeline/adoptium-temurin-jib/infra/)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/codepipeline/adoptium-temurin-jib/infra/
+
+    - name: update (codepipeline/codebuild-custom-image/java-adopt-base/infra/)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/codepipeline/codebuild-custom-image/java-adopt-base/infra/
+
+    - name: update (codepipeline/codebuild-github-tag/infra/)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/codepipeline/codebuild-github-tag/infra/
+
+    - name: update (codepipeline/docker-build/infra/)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/codepipeline/docker-build/infra/
+
+    - name: update (codepipeline/vulnerability-scan/infra/)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/codepipeline/vulnerability-scan/infra/
 
     - name: update (cognito/cognito-admin/app)
       uses: poad/update-node-modules@v1.0.5
@@ -89,23 +125,17 @@ jobs:
         yarn: true
         path: ${{github.workspace}}/cognito/tiny-device-flow/pages/
 
-    - name: update (codebuild/custom-image-test)
+    - name: update (infra/ecs/)
       uses: poad/update-node-modules@v1.0.5
       with:
         yarn: true
-        path: ${{github.workspace}}/codebuild/custom-image-test/
+        path: ${{github.workspace}}/infra/ecs/
 
-    - name: update (lambda/cognito-console)
+    - name: update (infra/s3/)
       uses: poad/update-node-modules@v1.0.5
       with:
         yarn: true
-        path: ${{github.workspace}}/lambda/cognito-console/
-
-    - name: update (lambda/container/hello-rust-lambda)
-      uses: poad/update-node-modules@v1.0.5
-      with:
-        yarn: true
-        path: ${{github.workspace}}/lambda/container/hello-rust-lambda/
+        path: ${{github.workspace}}/infra/s3/
 
     - name: update (lambda/container/sample)
       uses: poad/update-node-modules@v1.0.5
@@ -142,12 +172,6 @@ jobs:
       with:
         yarn: true
         path: ${{github.workspace}}/lambda/layer/layer/src/nodejs/
-
-    # - name: update (lambda/python)
-    #   uses: poad/update-node-modules@v1.0.5
-    #   with:
-    #     yarn: true
-    #     path: ${{github.workspace}}/lambda/python/
 
     - name: Commit files
       run: |

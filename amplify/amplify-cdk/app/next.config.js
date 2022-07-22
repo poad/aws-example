@@ -2,17 +2,13 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer');
 const withPreact = require('next-plugin-preact');
 
-const analyzer = withBundleAnalyzer({
+const config = withBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
-});
-const config = analyzer(withPreact({
-  webpack5: true,
+})(withPreact({
   reactStrictMode: true,
-  esmExternals: true,
-  swcLoader: true,
   swcMinify: true,
   experimental: {
-    modern: true,
+    esmExternals: true,
   },
 }));
 

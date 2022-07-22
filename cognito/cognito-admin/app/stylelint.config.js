@@ -1,4 +1,8 @@
 module.exports = {
-  // add your custom config here
-  // https://stylelint.io/user-guide/configuration
+  overrides: [
+    {
+      files: ["**/*.{jsx,tsx}"],
+      customSyntax: "@stylelint/postcss-css-in-js",
+    },
+  ],
 }

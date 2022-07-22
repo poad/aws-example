@@ -1,5 +1,6 @@
 import { AppBar, Button, Link, Tab, Tabs, Toolbar, Typography } from '@mui/material';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+
 import '@aws-amplify/ui-react/styles.css';
 
 interface HeaderProps {

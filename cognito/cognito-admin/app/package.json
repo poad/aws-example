@@ -2,7 +2,6 @@
   "name": "cognito-admin",
   "version": "0.0.1",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "next",
     "build": "next build && next export",
@@ -26,17 +25,15 @@
     "aws-amplify": "*",
     "cross-fetch": "*",
     "next": "*",
-    "preact": "*",
-    "preact-render-to-string": "*",
-    "react": "npm:@preact/compat",
-    "react-dom": "npm:@preact/compat",
+    "react": "*",
+    "react-dom": "*",
     "react-hook-form": "*",
     "react-loader": "*",
-    "react-ssr-prepass": "npm:preact-ssr-prepass",
     "web-vitals": "*"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "*",
+    "@stylelint/postcss-css-in-js": "^0.38.0",
     "@types/node": "*",
     "@types/react": "*",
     "@types/react-loader": "*",
@@ -54,7 +51,6 @@
     "eslint-plugin-react": "*",
     "eslint-plugin-react-hooks": "*",
     "next-compose-plugins": "*",
-    "next-plugin-preact": "*",
     "next-transpile-modules": "*",
     "typescript": "*"
   }

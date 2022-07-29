@@ -143,6 +143,12 @@ jobs:
         yarn: true
         path: ${{github.workspace}}/lambda/container/simple/
 
+    - name: update (lambda/apollo-server)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/lambda/apollo-server/
+
     - name: update (lambda/container/sample/lambda)
       uses: poad/update-node-modules@v1.0.5
       with:

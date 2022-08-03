@@ -1,12 +1,15 @@
 import {
-  TableCell, Theme,
+  TableCell, styled, useTheme,
 } from '@mui/material';
-import { createStyles, withStyles } from '@mui/styles';
-export const StyledTableCell = withStyles((theme: Theme) => createStyles({
-  root: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-}))(TableCell);
+
+export const StyledTableCell = styled(TableCell)(() => {
+  const theme = useTheme();
+  return (({
+    root: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+  }));
+});
 
 export default StyledTableCell;

@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next",
-    "build": "next build && next export && rm -rf build && mv out build",
+    "build": "next build",
+    "export": "next export",
+    "release": "next build && next export",
     "start": "next start",
     "lint": "eslint --ext .ts,.js,.tsx,.jsx src",
     "analyze": "ANALYZE=true next build",
@@ -17,7 +19,6 @@
     "@emotion/styled": "*",
     "@mui/icons-material": "*",
     "@mui/material": "*",
-    "@mui/styles": "*",
     "aws-amplify": "*",
     "next": "^12",
     "react": "*",

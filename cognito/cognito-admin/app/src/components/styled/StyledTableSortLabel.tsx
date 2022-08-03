@@ -1,9 +1,8 @@
 import {
-  TableSortLabel,
+  TableSortLabel, styled,
 } from '@mui/material';
-import { createStyles, withStyles } from '@mui/styles';
 
-export const StyledTableSortLabel = withStyles(() => createStyles({
+export const StyledTableSortLabel = styled(TableSortLabel)(() => ({
   root: {
     '&$active': {
       color: '#ff9',
@@ -17,6 +16,6 @@ export const StyledTableSortLabel = withStyles(() => createStyles({
     },
   },
   iconDirectionAsc: {},
-}))(TableSortLabel);
+}));
 
 export default StyledTableSortLabel;

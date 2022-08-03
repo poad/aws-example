@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next",
-    "build": "next build && next export",
+    "build": "next build",
+    "export": "next export",
+    "release": "next build && next export",
     "start": "next start",
     "analyze": "ANALYZE=true next build",
     "lint": "eslint --ext .ts,.js,.tsx,.jsx src",
@@ -20,7 +22,6 @@
     "@emotion/styled": "*",
     "@mui/icons-material": "*",
     "@mui/material": "*",
-    "@mui/styles": "*",
     "amazon-cognito-identity-js": "*",
     "aws-amplify": "*",
     "cross-fetch": "*",

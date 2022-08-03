@@ -1,19 +1,10 @@
 
 import {
-  Backdrop, Theme,
+  Backdrop, useTheme, styled,
 } from '@mui/material';
-import { createStyles, withStyles } from '@mui/styles';
-
-export const LoadingBackdrop = withStyles((theme: Theme) => createStyles({
-  root: {
-    zIndex: theme.zIndex.drawer + 1,
-    color: '#fff',
-  },
-}))(Backdrop);
-
 import Loader from 'react-loader';
 
-export const StyledSpinner = withStyles(() => createStyles({
+export const StyledSpinner = styled(Loader)({
   root: {
     position: 'absolute',
     width: '40%',
@@ -22,12 +13,17 @@ export const StyledSpinner = withStyles(() => createStyles({
     left: '50%',
     border: '1px solid #000',
   },
-}))(Loader);
+});
 
-export const LoadingSpinner = ({ expose }: { expose: boolean }) => 
-  <LoadingBackdrop open={expose} invisible={!expose}>
-    <StyledSpinner loaded={expose} />
-  </LoadingBackdrop>
-;
+export const LoadingSpinner = ({ expose }: { expose: boolean }) => {
+  const theme = useTheme();
+  return (
+    <Backdrop open={expose} invisible={!expose} color='#fff' sx={{
+      zIndex: theme.zIndex.drawer + 1,
+    }}>
+      <StyledSpinner loaded={expose} />
+    </Backdrop>);
+};
+
 
 export default LoadingSpinner;

@@ -4,6 +4,10 @@ import { AssumeRoleWithWebIdentityCommand, STSClient } from '@aws-sdk/client-sts
 import fetch from 'cross-fetch';
 import * as jwt from 'jsonwebtoken';
 
+import { Logger } from '@aws-lambda-powertools/logger';
+
+const logger = new Logger();
+
 interface TokenAuthParam {
   domain: string,
   clientId: string,
@@ -115,7 +119,7 @@ const getId = async (
     return entity;
   }).reduce((cur, acc) => Object.assign(acc, cur));
 
-  // console.log(JSON.stringify(logins));
+  // logger.info(JSON.stringify(logins));
 
   const req = new GetIdCommand({
     IdentityPoolId: param.idPoolId,
@@ -144,7 +148,7 @@ const initiateAuth = async (
     ClientId: param.clientId,
   }));
 
-  // console.log(JSON.stringify(res));
+  // logger.info(JSON.stringify(res));
 
   return {
     idToken: res.AuthenticationResult!.IdToken!,
@@ -243,19 +247,19 @@ const getCredentials = async (
   // const user = await idProvider.send(new GetUserCommand({
   //   AccessToken: initiateAuthResp.idToken,
   // }));
-  // console.log(`Uer Info: ${JSON.stringify(user)}`);
+  // logger.info(`Uer Info: ${JSON.stringify(user)}`);
 
   const payload = jwt.decode(idToken) as { [key: string]: string | string[] };
   const preferredRole = payload['cognito:preferred_role'] as string;
   const username = payload['cognito:username'] as string;
   const email = payload.email;
-  console.log(`JWT: ${JSON.stringify(payload)}`);
+  logger.info(`JWT: ${JSON.stringify(payload)}`);
 
   const roleArn = preferredRole !== undefined
     ? preferredRole
     : (await getDefaultRoles(identityClient, { idPoolId })).Roles?.authenticated;
 
-  console.log(`role arn: ${roleArn}`);
+  logger.info(`role arn: ${roleArn}`);
   try {
     const openIdToken = await getOpenIDToken(
       identityClient, {
@@ -283,8 +287,7 @@ const getCredentials = async (
       },
     };
   } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error(e);
+    logger.error('', { error: e });
 
     throw e;
   }
@@ -345,19 +348,19 @@ const signIn = async (param: SignInParam): Promise<SigninResult> => {
   // const user = await idProvider.send(new GetUserCommand({
   //   AccessToken: initiateAuthResp.idToken,
   // }));
-  // console.log(`Uer Info: ${JSON.stringify(user)}`);
+  // logger.info(`Uer Info: ${JSON.stringify(user)}`);
 
   const payload = jwt.decode(idToken) as { [key: string]: string | string[] };
   const preferredRole = payload['cognito:preferred_role'] as string;
   const username = payload['cognito:username'] as string;
   const email = payload.email;
-  console.log(`JWT: ${JSON.stringify(payload)}`);
+  logger.info('JWT', payload);
 
   const roleArn = preferredRole !== undefined
     ? preferredRole
     : (await getDefaultRoles(identityClient, { idPoolId })).Roles?.authenticated;
 
-  console.log(`role arn: ${roleArn}`);
+  logger.info(`role arn: ${roleArn}`);
   try {
     const openIdToken = await getOpenIDToken(
       identityClient, {
@@ -385,8 +388,7 @@ const signIn = async (param: SignInParam): Promise<SigninResult> => {
       },
     };
   } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error(e);
+    logger.error('', { error: e });
 
     throw e;
   }

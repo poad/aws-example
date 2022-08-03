@@ -1,6 +1,9 @@
 import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 import fetch from 'cross-fetch';
 import signIn from './signIn';
+import { Logger } from '@aws-lambda-powertools/logger';
+
+const logger = new Logger();
 
 interface EnvironmentVariables {
   domain: string,
@@ -50,8 +53,7 @@ export const handler = async (
   event: APIGatewayProxyEventV2,
 ): Promise<APIGatewayProxyStructuredResultV2> => {
   try {
-    // eslint-disable-next-line no-console
-    console.log('request:', JSON.stringify(event, undefined, 2));
+    logger.info('request:', JSON.stringify(event, undefined, 2));
 
     const { rawPath } = event;
 
@@ -98,8 +100,7 @@ export const handler = async (
       if (accessKeyId === undefined
         || secretKey === undefined
         || sessionToken === undefined) {
-        // eslint-disable-next-line no-console
-        console.error('Credentials are empty');
+        logger.error('', 'Credentials are empty');
         return {
           statusCode: 500,
           headers: { 'Content-Type': 'text/plain' },
@@ -118,8 +119,7 @@ export const handler = async (
         cookies: [JSON.stringify({ refreshToken: tokens.refreshToken } as Session)]
       };
     } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e);
+      logger.error('', { error: e });
 
       const redirectUri = `https://${domain}.auth.${region}.amazoncognito.com/login?response_type=code&client_id=${clientId}&redirect_uri=https://${domainName}${rawPath}`;
       return {
@@ -129,8 +129,7 @@ export const handler = async (
       };
     }
   } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error(e);
+    logger.error('', { error: e });
     throw e;
   }
 };

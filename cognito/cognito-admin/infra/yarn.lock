@@ -75,6 +75,36 @@
     "@aws-sdk/util-utf8-browser" "^3.0.0"
     tslib "^1.11.1"
 
+"@aws-lambda-powertools/commons@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@aws-lambda-powertools/commons/-/commons-1.0.2.tgz#4fdfc656ae2214b20bc18cfbe8da44bd35bb77e9"
+  integrity sha512-9i/fs8TvMbLOnzVmuYILC4IQ2ZR1u8FUpI1EoPqUFY1YUcZ4MgU7zdmO0Mr6D4pIuVR42ZTLe7gV7+Mxsv7gKQ==
+
+"@aws-lambda-powertools/logger@*":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@aws-lambda-powertools/logger/-/logger-1.0.2.tgz#9d8c6d8544569dbc84797637c925ea147b1ffcfb"
+  integrity sha512-xE3HM5HS+o+QkZGPR0wJK2shySkF2BsK9qQpZpY3pAzqoIAsHymf7vvSqETksSrE2y0fahORsZEPRruAtkLC+g==
+  dependencies:
+    "@aws-lambda-powertools/commons" "^1.0.2"
+    lodash.clonedeep "^4.5.0"
+    lodash.merge "^4.6.2"
+    lodash.pickby "^4.6.0"
+
+"@aws-lambda-powertools/metrics@*":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@aws-lambda-powertools/metrics/-/metrics-1.0.2.tgz#670d61ef1943514c7fd75559ef7be93becc77bcd"
+  integrity sha512-dmQF50J5l4UARMstTXqcYtSm6x0Z7DZmxPJJe6LNx2XIbAXmqXefdAfKP6V029tkQKbPGPclyV9yEP/xrVolhA==
+  dependencies:
+    "@aws-lambda-powertools/commons" "^1.0.2"
+
+"@aws-lambda-powertools/tracer@*":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@aws-lambda-powertools/tracer/-/tracer-1.0.2.tgz#1ec4f35b0fb79f836a85413a42da1d331004469e"
+  integrity sha512-G/cPI3vigE7YmUylD37KKQ0HlSsqiWCg2tFhMOFBwnYXusWPzA4GYd4oBhcT/dyKtHi0i5cr1mEdaO8PHgXyxA==
+  dependencies:
+    "@aws-lambda-powertools/commons" "^1.0.2"
+    aws-xray-sdk-core "^3.3.6"
+
 "@aws-sdk/abort-controller@3.127.0":
   version "3.127.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/abort-controller/-/abort-controller-3.127.0.tgz#60c98bffdb185d8eb5d3e43f30f57a32cc8687d6"
@@ -516,7 +546,7 @@
     "@aws-sdk/types" "3.127.0"
     tslib "^2.3.1"
 
-"@aws-sdk/service-error-classification@3.127.0":
+"@aws-sdk/service-error-classification@3.127.0", "@aws-sdk/service-error-classification@^3.4.1":
   version "3.127.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/service-error-classification/-/service-error-classification-3.127.0.tgz#64b69215b2525e3b6806856187ef54b00c0f85d1"
   integrity sha512-wjZY9rnlA8SPrICUumTYicEKtK4/yKB62iadUk66hxe8MrH8JhuHH2NqIad0Pt/bK/YtNVhd3yb4pRapOeY5qQ==
@@ -549,7 +579,7 @@
     "@aws-sdk/types" "3.127.0"
     tslib "^2.3.1"
 
-"@aws-sdk/types@3.127.0", "@aws-sdk/types@^3.1.0":
+"@aws-sdk/types@3.127.0", "@aws-sdk/types@^3.1.0", "@aws-sdk/types@^3.4.1":
   version "3.127.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/types/-/types-3.127.0.tgz#a7bafc47ee2328eee2453087521e6c3a39e7278d"
   integrity sha512-e0wtx2IkOl7rwfKfLH5pPTzQ+d45V7b1WrjeL0WDI8kOu6w+sXmhNxI6uM2kf0k4NiTLN84lW290AEWupey9Og==
@@ -1239,6 +1269,11 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@middy/core@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@middy/core/-/core-3.1.0.tgz#fee9d808a4acfe731032a9ade17fd6842d6d0c1a"
+  integrity sha512-JhUIFi8zMjcMEk5VeZwU8vJKaaikrB2fnZKAZfrCKYhkXWaFtV6S6szP6q+jvOR/0Jq9RgsLTIou8/gGMJwc5w==
+
 "@sinclair/typebox@^0.24.1":
   version "0.24.26"
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.24.26.tgz#84f9e8c1d93154e734a7947609a1dc7c7a81cc22"
@@ -1315,6 +1350,13 @@
   integrity sha512-kVzjari1s2YVi77D3w1yuvohV2idweYXMCDzqBiVNN63TcDWrIlTVOYpqVrvbbyOE/IyzBoTKF0fdnLPEORFxA==
   dependencies:
     "@babel/types" "^7.3.0"
+
+"@types/cls-hooked@^4.3.3":
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/@types/cls-hooked/-/cls-hooked-4.3.3.tgz#c09e2f8dc62198522eaa18a5b6b873053154bd00"
+  integrity sha512-gNstDTb/ty5h6gJd6YpSPgsLX9LmRpaKJqGFp7MRlYxhwp4vXXKlJ9+bt1TZ9KbVNXE+Mbxy2AYXcpY21DDtJw==
+  dependencies:
+    "@types/node" "*"
 
 "@types/graceful-fs@^4.1.3":
   version "4.1.5"
@@ -1452,10 +1494,22 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
+async-hook-jl@^1.7.6:
+  version "1.7.6"
+  resolved "https://registry.yarnpkg.com/async-hook-jl/-/async-hook-jl-1.7.6.tgz#4fd25c2f864dbaf279c610d73bf97b1b28595e68"
+  integrity sha512-gFaHkFfSxTjvoxDMYqDuGHlcRyUuamF8s+ZTtJdDzqjws4mCt7v0vuV79/E2Wr2/riMQgtG4/yUtXWs1gZ7JMg==
+  dependencies:
+    stack-chain "^1.3.7"
+
 at-least-node@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/at-least-node/-/at-least-node-1.0.0.tgz#602cd4b46e844ad4effc92a8011a3c46e0238dc2"
   integrity sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==
+
+atomic-batcher@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/atomic-batcher/-/atomic-batcher-1.0.2.tgz#d16901d10ccec59516c197b9ccd8930689b813b4"
+  integrity sha512-EFGCRj4kLX1dHv1cDzTk+xbjBFj1GnJDpui52YmEcxxHHEWjYyT6l51U7n6WQ28osZH4S9gSybxe56Vm7vB61Q==
 
 available-typed-arrays@^1.0.5:
   version "1.0.5"
@@ -1509,6 +1563,18 @@ aws-sdk@^2.814.0:
     util "^0.12.4"
     uuid "8.0.0"
     xml2js "0.4.19"
+
+aws-xray-sdk-core@^3.3.6:
+  version "3.3.6"
+  resolved "https://registry.yarnpkg.com/aws-xray-sdk-core/-/aws-xray-sdk-core-3.3.6.tgz#57315496e13d41f15decae047bea6b2248e5d767"
+  integrity sha512-5pJnix2mNBshzBtVsJxus3YOX2gM8+AirjyAJ0U+4ZkLRAcofNzBJUabZyHZPoVKud/YjEmcRr36bh4T3vOL2A==
+  dependencies:
+    "@aws-sdk/service-error-classification" "^3.4.1"
+    "@aws-sdk/types" "^3.4.1"
+    "@types/cls-hooked" "^4.3.3"
+    atomic-batcher "^1.0.2"
+    cls-hooked "^4.2.2"
+    semver "^5.3.0"
 
 babel-jest@^28.1.3:
   version "28.1.3"
@@ -1717,6 +1783,15 @@ cliui@^7.0.2:
     strip-ansi "^6.0.0"
     wrap-ansi "^7.0.0"
 
+cls-hooked@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/cls-hooked/-/cls-hooked-4.2.2.tgz#ad2e9a4092680cdaffeb2d3551da0e225eae1908"
+  integrity sha512-J4Xj5f5wq/4jAvcdgoGsL3G103BtWpZrMo8NEinRltN+xpTZdI+M38pyQqhuFU/P792xkMFvnKSf+Lm81U1bxw==
+  dependencies:
+    async-hook-jl "^1.7.6"
+    emitter-listener "^1.0.1"
+    semver "^5.4.1"
+
 co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
@@ -1850,6 +1925,13 @@ electron-to-chromium@^1.4.202:
   version "1.4.210"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.210.tgz#12611fe874b833a3bf3671438b5893aba7858980"
   integrity sha512-kSiX4tuyZijV7Cz0MWVmGT8K2siqaOA4Z66K5dCttPPRh0HicOcOAEj1KlC8O8J1aOS/1M8rGofOzksLKaHWcQ==
+
+emitter-listener@^1.0.1:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/emitter-listener/-/emitter-listener-1.1.2.tgz#56b140e8f6992375b3d7cb2cab1cc7432d9632e8"
+  integrity sha512-Bt1sBAGFHY9DKY+4/2cV6izcKJUf5T7/gkdmkxzX/qv9CcGH8xSwVRW5mtX03SWJtRTWSOpzCuWN9rBFYZepZQ==
+  dependencies:
+    shimmer "^1.2.0"
 
 emittery@^0.10.2:
   version "0.10.2"
@@ -2877,6 +2959,11 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
+lodash.clonedeep@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
+  integrity sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ==
+
 lodash.includes@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.includes/-/lodash.includes-4.3.0.tgz#60bb98a87cb923c68ca1e51325483314849f553f"
@@ -2912,10 +2999,20 @@ lodash.memoize@4.x:
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   integrity sha512-t7j+NzmgnQzTAYXcsHYLgimltOV1MXHtlOWf6GjL9Kj8GK5FInw5JotxvbOs+IvV1/Dzo04/fCGfLVs7aXb4Ag==
 
+lodash.merge@^4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
+  integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
+
 lodash.once@^4.0.0:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lodash.once/-/lodash.once-4.1.1.tgz#0dd3971213c7c56df880977d504c88fb471a97ac"
   integrity sha512-Sb487aTOCr9drQVL8pIxOzVhafOjZN9UU54hiN8PU3uAiSV7lx1yYNpbNmex2PK6dSJoNTSJUUswT651yww3Mg==
+
+lodash.pickby@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/lodash.pickby/-/lodash.pickby-4.6.0.tgz#7dea21d8c18d7703a27c704c15d3b84a67e33aff"
+  integrity sha512-AZV+GsS/6ckvPOVQPXSiFFacKvKB4kOQu6ynt9wz0F3LO4R9Ij4K1ddYsIytDpSgLz88JHd9P+oaLeej5/Sl7Q==
 
 log4js@*:
   version "6.6.1"
@@ -3252,7 +3349,7 @@ semver@7.x, semver@^7.3.5, semver@^7.3.7:
   dependencies:
     lru-cache "^6.0.0"
 
-semver@^5.6.0:
+semver@^5.3.0, semver@^5.4.1, semver@^5.6.0:
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.1.tgz#a954f931aeba508d307bbf069eff0c01c96116f7"
   integrity sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==
@@ -3273,6 +3370,11 @@ shebang-regex@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
+
+shimmer@^1.2.0:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/shimmer/-/shimmer-1.2.1.tgz#610859f7de327b587efebf501fb43117f9aff337"
+  integrity sha512-sQTKC1Re/rM6XyFM6fIAGHRPVGvyXfgzIDvzoq608vM+jeyVD0Tu1E6Np0Kc2zAIFWIj963V2800iF/9LPieQw==
 
 side-channel@^1.0.4:
   version "1.0.4"
@@ -3323,6 +3425,11 @@ sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==
+
+stack-chain@^1.3.7:
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/stack-chain/-/stack-chain-1.3.7.tgz#d192c9ff4ea6a22c94c4dd459171e3f00cea1285"
+  integrity sha512-D8cWtWVdIe/jBA7v5p5Hwl5yOSOrmZPWDPe2KxQ5UAGD+nxbxU0lKXA4h85Ta6+qgdKVL3vUxsbIZjc1kBG7ug==
 
 stack-utils@^2.0.3:
   version "2.0.5"

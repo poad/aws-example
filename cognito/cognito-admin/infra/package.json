@@ -12,6 +12,7 @@
     "cdk": "cdk"
   },
   "devDependencies": {
+    "@middy/core": "^3.1.0",
     "@types/aws-lambda": "*",
     "@types/jest": "*",
     "@types/jsonwebtoken": "*",
@@ -26,6 +27,9 @@
   "dependencies": {
     "@aws-cdk/aws-apigatewayv2-alpha": "^2.35.0-alpha.0",
     "@aws-cdk/aws-apigatewayv2-integrations-alpha": "^2.35.0-alpha.0",
+    "@aws-lambda-powertools/logger": "*",
+    "@aws-lambda-powertools/metrics": "*",
+    "@aws-lambda-powertools/tracer": "*",
     "@aws-sdk/client-cognito-identity": "*",
     "@aws-sdk/client-cognito-identity-provider": "*",
     "@aws-sdk/client-sts": "*",

@@ -171,11 +171,11 @@
     "@aws-amplify/ui-components" "1.7.2"
 
 "@aws-amplify/ui-react@*":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/ui-react/-/ui-react-3.3.0.tgz#b4d049727b43d7872815a1f516e616b88a814bb7"
-  integrity sha512-hcNZtltTFAJT8tdI0HMsAXNnGIBbmoWZOfAopgh2nWpK8ma+gFbi+IiKIF0gfNPWszkmi1NDWOWB7fPIqFu0nA==
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/ui-react/-/ui-react-3.4.0.tgz#387c0e125c888d83abb7ac829105d14710b499fc"
+  integrity sha512-X5SR5iHHsCiQJQb9h0CSziT396C5/L+FsH2wwKqNHLhDH4bNVNUJDWNgFI0SXwjmmT6w0E0pOB0JFgoZxYDr2g==
   dependencies:
-    "@aws-amplify/ui" "3.12.5"
+    "@aws-amplify/ui" "3.13.0"
     "@aws-amplify/ui-react-v1" "npm:@aws-amplify/ui-react@1.2.9"
     "@radix-ui/react-accordion" "0.1.6"
     "@radix-ui/react-dropdown-menu" "0.1.6"
@@ -191,20 +191,22 @@
     qrcode "1.5.0"
     react-generate-context "1.0.1"
     react-map-gl "7.0.15"
+    tslib "2.4.0"
 
 "@aws-amplify/ui@2.0.5":
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/@aws-amplify/ui/-/ui-2.0.5.tgz#0800938a0bf36ff51922637628b0889017da19f1"
   integrity sha512-atoc/zIJRhgpoSDDKgRxbTSD7D9S4wbOzHUHMqRlcEPRKqRrQPGvd6zCUVSBS0jqdrrw6+UTJbWj7ttWCfE4pQ==
 
-"@aws-amplify/ui@3.12.5":
-  version "3.12.5"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/ui/-/ui-3.12.5.tgz#633ca6ab45bcae27502a9240f4e123ef25af3fd1"
-  integrity sha512-CDJFm3s9cdA/M7NXUhU9QFjks7yYnis9j3h6lPmBW41Tw+vjLrjjenwQxdUpN9q2zdmiVC6QiT3dMjD0xbSCFQ==
+"@aws-amplify/ui@3.13.0":
+  version "3.13.0"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/ui/-/ui-3.13.0.tgz#2a5d8e1cfa80f52a070b8d33d26c4d67376b8adc"
+  integrity sha512-4rq4zeyGLOBOXkmgrUetj9x6T5xEJqMrQlbq0NLQhewEssfhjjlV/T3a/RdA2SczCMUteDMQo6cV4HEQHIgcMg==
   dependencies:
     lodash "4.17.21"
     style-dictionary "3.7.0"
-    xstate "^4.30.6"
+    tslib "2.4.0"
+    xstate "^4.33.0"
 
 "@aws-amplify/xr@3.0.48":
   version "3.0.48"
@@ -5965,15 +5967,15 @@ tsconfig-paths@^3.14.1:
     minimist "^1.2.6"
     strip-bom "^3.0.0"
 
+tslib@2.4.0, tslib@^2.0.0, tslib@^2.0.3, tslib@^2.1.0, tslib@^2.3.0, tslib@^2.3.1, tslib@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
+  integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
+
 tslib@^1.0.0, tslib@^1.11.1, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.3:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
-
-tslib@^2.0.0, tslib@^2.0.3, tslib@^2.1.0, tslib@^2.3.0, tslib@^2.3.1, tslib@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
-  integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
 
 tsutils@^3.21.0:
   version "3.21.0"
@@ -6200,10 +6202,10 @@ ws@^7.3.1:
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.5.9.tgz#54fa7db29f4c7cec68b1ddd3a89de099942bb591"
   integrity sha512-F+P9Jil7UiSKSkppIiD94dN07AwvFixvLIj1Og1Rl9GGMuNipJnV9JzjD6XuqmAeiswGvUmNLjr5cFuXwNS77Q==
 
-xstate@^4.30.6:
-  version "4.33.0"
-  resolved "https://registry.yarnpkg.com/xstate/-/xstate-4.33.0.tgz#4377a11e92267ad01ea498c4fc69887f0eddf1c8"
-  integrity sha512-+oari/Nt2cBq79mklnGA9Tsb6kv7ln+cIMfrH6n642XpTEG6sMRHg4GkooAbGbcslG3Ff9uH2jmGRP+1uoZ/Xw==
+xstate@^4.33.0:
+  version "4.33.1"
+  resolved "https://registry.yarnpkg.com/xstate/-/xstate-4.33.1.tgz#07293258c78aa1cfaf798ca541e2ed7d71b6bb5b"
+  integrity sha512-C9A3esyOuw/xRpwQUkG2e1Gjd8sZYh42t66COq8DaJgaaLOqmE8zWRH1ouL9mHtQ3WV//uT5Ki3ijHGSUdLiww==
 
 xtend@^4.0.0, xtend@^4.0.1, xtend@^4.0.2:
   version "4.0.2"

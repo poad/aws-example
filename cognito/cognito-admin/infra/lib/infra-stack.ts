@@ -56,7 +56,7 @@ export class InfraStack extends Stack {
 
 
     const signInFn = new NodejsFunction(this, 'SignInLambdaFunction', {
-      runtime: Runtime.NODEJS_14_X,
+      runtime: Runtime.NODEJS_16_X,
       entry: 'lambda/signin/index.ts',
       functionName: `${environment}-cognito-admin-user-console-sign-in`,
       logRetention: RetentionDays.ONE_DAY,
@@ -102,7 +102,7 @@ export class InfraStack extends Stack {
     });
 
     const signOutFn = new NodejsFunction(this, 'SignOutLambdaFunction', {
-      runtime: Runtime.NODEJS_14_X,
+      runtime: Runtime.NODEJS_16_X,
       entry: 'lambda/signout/index.ts',
       functionName: `${environment}-cognito-admin-user-console-sign-out`,
       logRetention: RetentionDays.ONE_DAY,
@@ -169,7 +169,7 @@ export class InfraStack extends Stack {
     });
 
     const blockExternalUserFn = new NodejsFunction(this, 'BlockExternalUserLambdaFunction', {
-      runtime: Runtime.NODEJS_14_X,
+      runtime: Runtime.NODEJS_16_X,
       entry: 'lambda/block-external-user/index.ts',
       functionName: `${environment}-cognito-admin-block-external-user`,
       logRetention: RetentionDays.ONE_DAY,
@@ -257,7 +257,7 @@ export class InfraStack extends Stack {
     });
 
     const addAdminUserFn = new NodejsFunction(this, 'AddAdminUserLambdaFunction', {
-      runtime: Runtime.NODEJS_14_X,
+      runtime: Runtime.NODEJS_16_X,
       entry: 'lambda/add-admin-user/index.ts',
       functionName: `${environment}-cognito-admin-add-admin-user`,
       logRetention: RetentionDays.ONE_DAY,

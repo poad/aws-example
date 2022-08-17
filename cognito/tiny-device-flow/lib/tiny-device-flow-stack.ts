@@ -221,7 +221,7 @@ export class TinyDeviceFlowStack extends cdk.Stack {
 
     const resourceEndpointFnName = `${props.name}-resource-endpoint`;
     const resourceEndpointFn = new NodejsFunction(this, 'ResourceEndpointLambdaFunction', {
-      runtime: Runtime.NODEJS_14_X,
+      runtime: Runtime.NODEJS_16_X,
       entry: 'lambda/resource-endpoint/index.ts',
       functionName: resourceEndpointFnName,
       logRetention: RetentionDays.ONE_DAY,
@@ -309,7 +309,7 @@ export class TinyDeviceFlowStack extends cdk.Stack {
 
     const deviceCodeEndpointFnName = `${props.name}-device-code-endpoint`;
     const deviceCodeEndpointFn = new NodejsFunction(this, 'DeviceCodeEndpointLambdaFunction', {
-      runtime: Runtime.NODEJS_14_X,
+      runtime: Runtime.NODEJS_16_X,
       entry: 'lambda/device-code-endpoint/index.ts',
       functionName: deviceCodeEndpointFnName,
       logRetention: RetentionDays.ONE_DAY,
@@ -360,7 +360,7 @@ export class TinyDeviceFlowStack extends cdk.Stack {
 
     const tokenEndpointFnName = `${props.name}-token-endpoint`;
     const tokenEndpointFn = new NodejsFunction(this, 'TokenEndpointLambdaFunction', {
-      runtime: Runtime.NODEJS_14_X,
+      runtime: Runtime.NODEJS_16_X,
       entry: 'lambda/token-endpoint/index.ts',
       functionName: tokenEndpointFnName,
       logRetention: RetentionDays.ONE_DAY,
@@ -424,7 +424,7 @@ export class TinyDeviceFlowStack extends cdk.Stack {
       .reduce((acc, cur) => `${acc}+${cur}`);
     const activateEndpointFnName = `${props.name}-activate-endpoint`;
     const activateEndpointFn = new NodejsFunction(this, 'ActivateEndpointLambdaFunction', {
-      runtime: Runtime.NODEJS_14_X,
+      runtime: Runtime.NODEJS_16_X,
       entry: 'lambda/activate-endpoint/index.ts',
       functionName: activateEndpointFnName,
       logRetention: RetentionDays.ONE_DAY,
@@ -520,7 +520,7 @@ export class TinyDeviceFlowStack extends cdk.Stack {
 
     const activateCompleteEndpointFnName = `${props.name}-activate-complete-endpoint`;
     const activateCompleteEndpointFn = new NodejsFunction(this, 'ActivateCompleteEndpointLambdaFunction', {
-      runtime: Runtime.NODEJS_14_X,
+      runtime: Runtime.NODEJS_16_X,
       entry: 'lambda/activate-complete-endpoint/index.ts',
       functionName: activateCompleteEndpointFnName,
       logRetention: RetentionDays.ONE_DAY,

@@ -25,7 +25,7 @@ export class FunctionStack extends Stack {
       functionName: `${appName}${suffix}`,
       code: lambda.Code.fromAsset("handler"),
       handler: 'index.handler',
-      runtime: lambda.Runtime.NODEJS_14_X,
+      runtime: lambda.Runtime.NODEJS_16_X,
       layers: [LayerVersion.fromLayerVersionArn(this, "LambdaLayerVersion", parameter.stringValue)],
     });
 

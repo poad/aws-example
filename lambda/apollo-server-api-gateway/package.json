@@ -1,8 +1,8 @@
 {
-  "name": "apollo-server",
-  "version": "0.0.1",
+  "name": "apollo-server-api-gateway",
+  "version": "0.1.0",
   "bin": {
-    "appollo-server": "bin/apollo-server.js"
+    "apollo-server-api-gateway": "bin/apollo-server-api-gateway.js"
   },
   "scripts": {
     "build": "tsc",
@@ -13,6 +13,7 @@
   "devDependencies": {
     "@types/jest": "*",
     "@types/node": "*",
+    "@types/prettier": "*",
     "@typescript-eslint/eslint-plugin": "*",
     "@typescript-eslint/parser": "*",
     "aws-cdk": "*",
@@ -30,23 +31,15 @@
     "typescript": "*"
   },
   "dependencies": {
+    "@aws-cdk/aws-apigatewayv2-alpha": "^2.38.0-alpha.0",
+    "@aws-cdk/aws-apigatewayv2-integrations-alpha": "^2.38.0-alpha.0",
+    "@aws-lambda-powertools/logger": "*",
+    "@aws-lambda-powertools/metrics": "*",
+    "@aws-lambda-powertools/tracer": "*",
     "apollo-server-lambda": "*",
     "aws-cdk-lib": "*",
-    "aws-lambda": "*",
     "constructs": "*",
     "graphql": "*",
     "source-map-support": "*"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "roots": [
-      "<rootDir>/test"
-    ],
-    "testMatch": [
-      "**/*.test.ts"
-    ],
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    }
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "apollo-server-api-gateway",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "bin": {
     "apollo-server-api-gateway": "bin/apollo-server-api-gateway.js"
   },
@@ -8,7 +8,8 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "lint": "eslint --ext .ts,.gql lambda"
   },
   "devDependencies": {
     "@types/jest": "*",
@@ -20,6 +21,7 @@
     "esbuild": "*",
     "eslint": "*",
     "eslint-config-airbnb-base": "*",
+    "eslint-config-airbnb-typescript": "*",
     "eslint-config-prettier": "*",
     "eslint-plugin-import": "*",
     "eslint-plugin-jest": "*",
@@ -34,8 +36,6 @@
     "@aws-cdk/aws-apigatewayv2-alpha": "^2.38.1-alpha.0",
     "@aws-cdk/aws-apigatewayv2-integrations-alpha": "^2.38.1-alpha.0",
     "@aws-lambda-powertools/logger": "*",
-    "@aws-lambda-powertools/metrics": "*",
-    "@aws-lambda-powertools/tracer": "*",
     "apollo-server-lambda": "*",
     "aws-cdk-lib": "*",
     "constructs": "*",

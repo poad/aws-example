@@ -1,10 +1,13 @@
 import { HttpApi, HttpMethod, WebSocketApi } from '@aws-cdk/aws-apigatewayv2-alpha';
 import { HttpLambdaIntegration, WebSocketLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
 import * as cdk from 'aws-cdk-lib';
-import { Role, ServicePrincipal, PolicyDocument, PolicyStatement, Effect } from 'aws-cdk-lib/aws-iam';
+import { RemovalPolicy } from 'aws-cdk-lib';
+import {
+  Role, ServicePrincipal, PolicyDocument, PolicyStatement, Effect,
+} from 'aws-cdk-lib/aws-iam';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
-import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
-import { RetentionDays } from 'aws-cdk-lib/aws-logs';
+import { NodejsFunction, SourceMapMode } from 'aws-cdk-lib/aws-lambda-nodejs';
+import { LogGroup, RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
 
 export interface ApolloServerApiGatewayStackProps extends cdk.StackProps {
@@ -17,12 +20,29 @@ export class ApolloServerApiGatewayStack extends cdk.Stack {
 
     const { environment } = props;
 
+    const functionName = `${environment}-apollo-api-gateway`;
+    const logs = new LogGroup(this, 'ApolloLambdaFunctionLogGroup', {
+      logGroupName: `/aws/lambda/${functionName}`,
+      removalPolicy: RemovalPolicy.DESTROY,
+      retention: RetentionDays.ONE_DAY,
+    });
+
     const apolloFn = new NodejsFunction(this, 'ApolloLambdaFunction', {
       runtime: Runtime.NODEJS_16_X,
       entry: 'lambda/index.ts',
-      functionName: `${environment}-apollo-api-gateway`,
-      logRetention: RetentionDays.ONE_DAY,
+      functionName,
       retryAttempts: 0,
+      bundling: {
+        minify: true,
+        sourceMap: true,
+        sourceMapMode: SourceMapMode.BOTH,
+        sourcesContent: true,
+        loader: {
+          '.gql': 'copy',
+        },
+        keepNames: true,
+        target: 'esnext',
+      },
       role: new Role(this, 'ApolloLambdaFunctionExecutionRole', {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
         inlinePolicies: {
@@ -31,54 +51,37 @@ export class ApolloServerApiGatewayStack extends cdk.Stack {
               new PolicyStatement({
                 effect: Effect.ALLOW,
                 actions: [
-                  'logs:CreateLogGroup',
                   'logs:CreateLogStream',
-                  'logs:PutLogEvents'
+                  'logs:PutLogEvents',
                 ],
-                resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${environment}-apollo-api-gateway:*`],
-              })
-            ]
+                resources: [`${logs.logGroupArn}:*`],
+              }),
+            ],
           }),
-          'assumed-role-policy': new PolicyDocument(
-            {
-              statements: [
-                new PolicyStatement({
-                  effect: Effect.ALLOW,
-                  actions: [
-                    'cognito-identity:*',
-                    "cognito-idp:*",
-                    'sts:GetFederationToken',
-                    'sts:AssumeRoleWithWebIdentity',
-                  ],
-                  resources: ['*'],
-                })
-              ]
-            }
-          )
         },
-      })
+      }),
     });
-    new HttpApi(this, "HttpApi", {
+    new HttpApi(this, 'HttpApi', {
       apiName: `Apollo Server Lambda Http API (${environment})`,
       defaultIntegration: new HttpLambdaIntegration(
         'default-handler',
-        apolloFn
-      )
+        apolloFn,
+      ),
     }).addRoutes({
-      path: "/",
+      path: '/',
       methods: [HttpMethod.GET, HttpMethod.POST],
       integration: new HttpLambdaIntegration(
         'api-handler',
-        apolloFn
+        apolloFn,
       ),
     });
 
-    new WebSocketApi(this, "WebSocketApi", {
+    new WebSocketApi(this, 'WebSocketApi', {
       apiName: `Apollo Server Lambda WebSocket API (${environment})`,
     }).addRoute('$connect', {
       integration: new WebSocketLambdaIntegration(
         'scheme-handler',
-        apolloFn
+        apolloFn,
       ),
     });
   }

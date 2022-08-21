@@ -7,7 +7,7 @@ const app = new cdk.App();
 
 const environment = app.node.tryGetContext('env') as string;
 
-
+// eslint-disable-next-line no-new
 new ApolloServerApiGatewayStack(app, 'ApolloServerApiGatewayStack', {
   environment,
 });

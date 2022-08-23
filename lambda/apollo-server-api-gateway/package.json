@@ -9,11 +9,11 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "lint": "eslint --ext .ts,.gql lambda",
-    "dev": "ts-node lambda/express.ts"
+    "lint": "eslint --ext .ts,.gql ./lambda ./core",
+    "dev": "ts-node local/index.ts"
   },
   "devDependencies": {
-    "@middy/core": "*",
+    "@graphql-eslint/eslint-plugin": "*",
     "@types/jest": "*",
     "@types/node": "*",
     "@types/prettier": "*",
@@ -31,7 +31,7 @@
     "eslint-plugin-import": "*",
     "eslint-plugin-jest": "*",
     "eslint-plugin-prettier": "*",
-    "express": "^4.18.1",
+    "express": "*",
     "jest": "*",
     "prettier": "*",
     "ts-jest": "*",
@@ -42,6 +42,9 @@
     "@aws-cdk/aws-apigatewayv2-alpha": "^2.38.1-alpha.0",
     "@aws-cdk/aws-apigatewayv2-integrations-alpha": "^2.38.1-alpha.0",
     "@aws-lambda-powertools/logger": "*",
+    "@graphql-tools/graphql-file-loader": "*",
+    "@graphql-tools/load": "*",
+    "@graphql-tools/schema": "*",
     "apollo-server-lambda": "*",
     "aws-cdk-lib": "*",
     "constructs": "*",

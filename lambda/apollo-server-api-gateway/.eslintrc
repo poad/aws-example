@@ -4,9 +4,7 @@
       "files": ["*.graphql", "*.gql"],
       "parser": "@graphql-eslint/eslint-plugin",
       "plugins": ["@graphql-eslint"],
-      "rules": {
-        "@graphql-eslint/known-type-names": "error"
-      }
+      "rules": {}
     }
   ],
   "root": true,
@@ -20,7 +18,7 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 12,
+    "ecmaVersion": "latest",
     "sourceType": "module"
   },
   "extends": [

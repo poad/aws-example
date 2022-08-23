@@ -1,16 +1,9 @@
 import { ApolloServer } from 'apollo-server-lambda';
-import { Logger } from '@aws-lambda-powertools/logger';
+import schemaWithResolvers from '../core';
 
-import typeDefs from './scheme';
-import resolvers from './resolvers';
-
-const logger = new Logger();
-
-logger.error(JSON.stringify(typeDefs));
-
+const schema = schemaWithResolvers;
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+  schema,
   introspection: true,
   context: ({ event, context }) => ({
     headers: event.headers,

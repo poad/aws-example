@@ -29,7 +29,7 @@ export class ApolloServerApiGatewayStack extends cdk.Stack {
 
     const apolloFn = new NodejsFunction(this, 'ApolloLambdaFunction', {
       runtime: Runtime.NODEJS_16_X,
-      entry: 'lambda/index.ts',
+      entry: './lambda/index.ts',
       functionName,
       retryAttempts: 0,
       bundling: {
@@ -37,11 +37,21 @@ export class ApolloServerApiGatewayStack extends cdk.Stack {
         sourceMap: true,
         sourceMapMode: SourceMapMode.BOTH,
         sourcesContent: true,
-        loader: {
-          '.gql': 'copy',
-        },
         keepNames: true,
-        target: 'esnext',
+        commandHooks: {
+          beforeInstall(): string[] {
+            return [''];
+          },
+          beforeBundling(): string[] {
+            return [''];
+          },
+          afterBundling(inputDir: string, outputDir: string): string[] {
+            return [
+              // スキーマ定義を追加
+              `cp ${inputDir}/core/schema.gql ${outputDir}`,
+            ];
+          },
+        },
       },
       role: new Role(this, 'ApolloLambdaFunctionExecutionRole', {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),

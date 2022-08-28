@@ -179,11 +179,17 @@ jobs:
         yarn: true
         path: ${{github.workspace}}/lambda/layer/layer/
 
-    - name: update (/ambda/layer/layer/src/nodejs)
+    - name: update (/lambda/layer/layer/src/nodejs/)
       uses: poad/update-node-modules@v1.0.5
       with:
         yarn: true
         path: ${{github.workspace}}/lambda/layer/layer/src/nodejs/
+
+    - name: update (/node-sign-v4/)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/node-sign-v4/
 
     - name: Commit files
       run: |

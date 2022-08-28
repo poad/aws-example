@@ -1,0 +1,25 @@
+{
+  "name": "node-sign-v4",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node index.ts"
+  },
+  "dependencies": {
+    "@aws-crypto/sha256-universal": "*",
+    "@aws-sdk/client-sts": "*",
+    "@aws-sdk/credential-providers": "*",
+    "@aws-sdk/node-http-handler": "*",
+    "@aws-sdk/protocol-http": "*",
+    "@aws-sdk/signature-v4": "*",
+    "cross-fetch": "*",
+    "ts-node": "*",
+    "typescript": "*"
+  },
+  "devDependencies": {
+    "@swc/core": "*",
+    "@swc/helpers": "*",
+    "@types/node": "^16",
+    "regenerator-runtime": "*"
+  }
+}

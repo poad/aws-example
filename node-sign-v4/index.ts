@@ -75,7 +75,7 @@ const signRequest = (async (params: SignV4RequestParams) => {
       endpoint: {
         ...params.endpoint,
         endpoint: params.endpoint,
-        method: params.method ? params.method : 'POST',
+        method: params.method || 'POST',
         path: params.endpoint.pathname,
         hostname: params.endpoint.host,
         port,
@@ -87,15 +87,12 @@ const signRequest = (async (params: SignV4RequestParams) => {
 
   const queryString = params.query ? Object.entries(params.query)
     .map(entry => {
-      if (!entry[1]) {
-        return `${entry[0]}=`;
-      }
       if (Array.isArray(entry[1])) {
         return entry[1].map(value=> `${entry[0]}=${value}`).join('&');
       }
-      return `${entry[0]}=${entry[1]}`;
+      return `${entry[0]}=${entry[1] || ''}`;
     }).join('&') : undefined;
-  const res = await fetch(`${protocol}${hostname}${path}${queryString ? '?' + queryString : ''}`, {
+  const res = await fetch(`${protocol}${hostname}${path}${queryString ? `?${queryString}` : ''}`, {
     method,
     headers,
     ...(body ? { body } : {})

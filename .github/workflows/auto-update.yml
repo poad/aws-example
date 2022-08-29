@@ -155,6 +155,12 @@ jobs:
         yarn: true
         path: ${{github.workspace}}/lambda/apollo-server-api-gateway/
 
+    - name: update (lambda/eventbridge-lambda)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/lambda/eventbridge-lambda/
+
     - name: update (lambda/container/sample/lambda)
       uses: poad/update-node-modules@v1.0.5
       with:

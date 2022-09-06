@@ -1,9 +1,12 @@
 {
+  "ts-node": {
+    "swc": true
+  },
   "compilerOptions": {
-    "target": "es2019",
+    "target": "esnext",
     "module": "commonjs",
     "lib": [
-      "es2019",
+      "esnext",
       "DOM"
     ],
     "declaration": true,
@@ -22,5 +25,8 @@
     "strictPropertyInitialization": false,
     "esModuleInterop": true
   },
-  "exclude": ["cdk.out"]
+  "exclude": [
+    "node_modules",
+    "cdk.out"
+  ]
 }

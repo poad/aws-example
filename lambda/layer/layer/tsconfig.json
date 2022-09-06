@@ -1,9 +1,13 @@
 {
+  "ts-node": {
+    "swc": true
+  },
   "compilerOptions": {
-    "target": "ES2018",
+    "target": "esnext",
     "module": "commonjs",
     "lib": [
-      "es2018"
+      "esnext",
+      "DOM"
     ],
     "declaration": true,
     "strict": true,

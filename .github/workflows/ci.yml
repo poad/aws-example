@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        node-version: [16.x]
         target: [
           ./amplify/amplify_nextapp,
           ./amplify/amplify-cdk/app,
@@ -57,7 +57,6 @@ jobs:
           ./lambda/apollo-server-api-gateway,
           ./lambda/eventbridge-lambda,
           ./lambda/lambda-examples,
-          ./lambda/lambda-examples/lambda/python,
           ./codepipeline/adoptium-temurin-jib/infra,
           ./codepipeline/codebuild-custom-image/java-adopt-base/infra,
           ./codepipeline/codebuild-github-tag/infra,

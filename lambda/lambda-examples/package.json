@@ -14,6 +14,8 @@
     "lint:fix": "eslint --fix --ext .ts bin && eslint --fix --ext .ts lambda && eslint --fix --ext .ts lib"
   },
   "devDependencies": {
+    "@swc/core": "*",
+    "@swc/helpers": "*",
     "@types/aws-lambda": "*",
     "@types/jest": "*",
     "@types/jsonwebtoken": "*",
@@ -25,6 +27,7 @@
     "eslint-config-airbnb-base": "*",
     "eslint-plugin-import": "*",
     "jest": "*",
+    "regenerator-runtime": "*",
     "ts-jest": "*",
     "ts-node": "*",
     "typescript": "*"

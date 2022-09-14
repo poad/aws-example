@@ -4,6 +4,8 @@ updates:
     directory: /
     schedule:
       interval: daily
+      timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -15,6 +17,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -26,6 +29,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -38,6 +42,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -49,6 +54,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -60,6 +66,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -71,6 +78,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -82,6 +90,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -93,6 +102,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -104,6 +114,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -115,6 +126,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -126,6 +138,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -137,6 +150,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -148,6 +162,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -159,6 +174,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -170,6 +186,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -181,6 +198,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -192,6 +210,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -199,10 +218,22 @@ updates:
       - poad
 
   - package-ecosystem: npm
+    directory: '/lambda/apollo-server-api-gateway/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+      time: "12:00"
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+  - package-ecosystem: npm
     directory: '/lambda/lambda-examples/'
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -214,28 +245,32 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
     assignees:
       - poad
 
-  - package-ecosystem: npm
-    directory: '/lambda/python/'
+  - package-ecosystem: pip
+    directory: '/lambda/lambda-examples/lambda/python'
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
     assignees:
       - poad
+
 
   - package-ecosystem: npm
     directory: '/lambda/layer/functions/function/handler/'
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -247,6 +282,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -258,6 +294,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -269,6 +306,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -280,6 +318,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -291,6 +330,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -302,6 +342,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -313,6 +354,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -324,6 +366,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -335,6 +378,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -346,6 +390,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -358,17 +403,7 @@ updates:
       interval: daily
       timezone: Asia/Tokyo
     allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-
-  - package-ecosystem: pip
-    directory: '/lambda/lambda-examples/lambda/python/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-    allow:
+      time: "12:00"
       - dependency-type: all
     rebase-strategy: auto
     assignees:
@@ -379,6 +414,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -390,6 +426,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
+      time: "12:00"
     allow:
       - dependency-type: all
     rebase-strategy: auto

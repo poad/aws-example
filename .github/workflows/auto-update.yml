@@ -53,6 +53,12 @@ jobs:
         yarn: true
         path: ${{github.workspace}}/amplify/amplify-cdk/infra/
 
+    - name: update (cloud9)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/cloud9/
+
     - name: update (codebuild/custom-image-test)
       uses: poad/update-node-modules@v1.0.5
       with:

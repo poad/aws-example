@@ -48,7 +48,7 @@ export class ApolloServerApiGatewayStack extends cdk.Stack {
           afterBundling(inputDir: string, outputDir: string): string[] {
             return [
               // スキーマ定義を追加
-              `cp ${inputDir}/core/schema.gql ${outputDir}`,
+              `cp ${inputDir}/core/schema.graphqls ${outputDir}`,
             ];
           },
         },

@@ -13,7 +13,6 @@ const instanceType = app.node.tryGetContext('instanceType') || 't3a.small';
 
 const account = app.node.tryGetContext('account');
 const region = app.node.tryGetContext('region');
-const c9cidrs = app.node.tryGetContext('c9cidrs');
 
 new Cloud9Stack(app, `${name ? `${name}-` : ''}cloud9-stack`, {
   name: name || 'cloud9',
@@ -21,7 +20,6 @@ new Cloud9Stack(app, `${name ? `${name}-` : ''}cloud9-stack`, {
   vpc,
   subnet,
   instanceType,
-  c9cidrs,
   env: {
     account,
     region,

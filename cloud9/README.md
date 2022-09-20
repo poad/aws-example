@@ -25,23 +25,26 @@ cdk deploy -c name={Your EC2 Instance name for Cloud9}
 5. Connect to EC2 instance by Session Manager
 6. Open <https://console.aws.amazon.com/cloud9/home/product> in n another tab or window
 7. Create environment
-  a. Select `Create and run in remote server (SSH connection)` to Environment type
-  b. Input the follow values to SSH server connection
+
+#### Create environment
+
+1. Select `Create and run in remote server (SSH connection)` to Environment type. 
+2. Input the follow values to SSH server connection
   
-  | Item | Value | Description |
-  |:-----|-------|-------------|
-  | User | ubuntu | |
-  | Host | Public IP address of the copied EC2 instance |  |
-  c. Click `Copy key to clipboard`
-  d. Switch the window or tab to Session Manager
-  e. Input the `sudo -u ubuntu -s`
-  f. Type the following and append the keys copied to the clipboard to /home/ubuntu/.ssh/authorized_keys
+| Item | Value | Description |
+|:-----|-------|-------------|
+| User | ubuntu | |
+| Host | Public IP address of the copied EC2 instance |  |
+  
+3. Click `Copy key to clipboard`  
+4. Switch the window or tab to Session Manager  
+5. Input the `sudo -u ubuntu -s`  
+6. Type the following and append the keys copied to the clipboard to /home/ubuntu/.ssh/authorized_keys 
 
-　　  ```sh
-　　  cat << EOS >> /home/ubuntu/.ssh/authorized_keys
-  　　${key in clipboard}
-  　　EOS
-　　  ```
+```sh
+cat << EOS >> /home/ubuntu/.ssh/authorized_keys
+EOS
+```
 
-   g. Click 'Next Step'
-   h. Click 'Create environment'
+7. Click 'Next Step'
+8. Click 'Create environment'

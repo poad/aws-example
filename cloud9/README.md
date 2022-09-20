@@ -27,6 +27,7 @@ cdk deploy -c name={Your EC2 Instance name for Cloud9}
 7. Create environment
   a. Select `Create and run in remote server (SSH connection)` to Environment type
   b. Input the follow values to SSH server connection
+  
   | Item | Value | Description |
   |:-----|-------|-------------|
   | User | ubuntu | |

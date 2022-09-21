@@ -38,26 +38,27 @@ export class Cloud9Stack extends cdk.Stack {
     userData.addCommands(
       'apt update -qqq && DEBIAN_FRONTEND=noninteractive apt full-upgrade -qqy',
       'DEBIAN_FRONTEND=noninteractive curl -fsSL https://deb.nodesource.com/setup_lts.x -o /tmp/setup_lts.x && bash /tmp/setup_lts.x && rm -rf /tmp/setup_lts.x',
-      'DEBIAN_FRONTEND=noninteractive apt install -qqqy --no-install-recommends git build-essential python2 nodejs zsh software-properties-common',
+      'DEBIAN_FRONTEND=noninteractive apt install -qqqy --no-install-recommends git build-essential python2 nodejs zsh software-properties-common zip unzip zlib1g-dev libssl-dev libreadline-dev libbz2-dev libncurses-dev libffi-dev libsqlite3-dev liblzma-dev',
       'add-apt-repository ppa:git-core/ppa -y',
-      'CUR=$(pwd) && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip && cd /tmp && unzip awscliv2.zip && ./aws/install && cd ${CUR} && rm -rf /tmp/awscliv2.zip rm -rf /tmp/aws',
+      'CUR=$(pwd) && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip" && cd /tmp && unzip awscliv2.zip && ./aws/install && cd ${CUR} && rm -rf /tmp/awscliv2.zip rm -rf /tmp/aws',
       'wget -O- https://aka.ms/install-vscode-server/setup.sh | sh',
       `
       cat << EOS >> /usr/lib/systemd/system/code-server@.service
-      [Unit]
-      Description=code-server
-      After=network.target
+[Unit]
+Description=code-server
+After=network.target
 
-      [Service]
-      Type=exec
-      ExecStart=/usr/local/bin/code-server serve-local --accept-server-license-terms --host 0.0.0.0 --port 8080 --without-connection-token
-      #ExecStop=/usr/local/bin/code-server kill
-      #ExecStopPost=/usr/local/bin/code-server prune
-      Restart=always
-      User=%1
+[Service]
+Type=exec
+ExecStart=/usr/local/bin/code-server serve-local --accept-server-license-terms --host 0.0.0.0 --port 8080 --without-connection-token
+#ExecStop=/usr/local/bin/code-server kill
+#ExecStopPost=/usr/local/bin/code-server prune
+Restart=always
+User=%1
 
-      [Install]
-      WantedBy=default.target
+[Install]
+WantedBy=default.target
+EOS
       `,
       'mkdir -p /home/ubuntu/environment && chown -R ubuntu:ubuntu /home/ubuntu/environment',
       'DEBIAN_FRONTEND=noninteractive curl -L https://raw.githubusercontent.com/c9/install/master/install.sh -o /tmp/install.sh && sudo -u ubuntu -c "bash /tmp/install.sh" && rm -rf /tmp/install.sh',

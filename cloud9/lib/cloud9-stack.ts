@@ -67,14 +67,6 @@ EOS
 
 export PATH=$PATH:$HOME/.local/bin:$HOME/bin:/usr/local/bin
 
-# load nvm
-[ "$BASH_VERSION" ] && npm() {
-    # hack: avoid slow npm sanity check in nvm
-    if [ "$*" == "config get prefix" ]; then which node | sed "s/bin\/node//";
-    else $(which npm) "$@"; fi
-}
-
-
 # modifications needed only in interactive mode
 if [ "$PS1" != "" ]; then
     # Turn on checkwinsize
@@ -173,7 +165,7 @@ EOS
 
 EOS`,
       'chown ubuntu:ubuntu /home/ubuntu/.bash_profile',
-      'sudo -u ubuntu /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
+      'CI=1 sudo -u ubuntu /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
       'mkdir -p /home/ubuntu/environment && chown -R ubuntu:ubuntu /home/ubuntu/environment',
     );
 

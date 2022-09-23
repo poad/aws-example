@@ -43,6 +43,7 @@ cdk deploy -c name={Your EC2 Instance name for Cloud9}
 
 ```sh
 cat << EOS >> /home/ubuntu/.ssh/authorized_keys
+{Your public SSH key}
 EOS
 ```
 

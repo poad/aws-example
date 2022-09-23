@@ -92,7 +92,7 @@ if [ "$PS1" != "" ]; then
         fi
     }
 
-    PS1='\\[\\033[01;32m\\]$(_cloud9_prompt_user)\\[\\033[00m\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]$(__git_ps1 " (%s)" 2>/dev/null) $ '
+    PS1='\\[\\033[01;32m\\]$(_cloud9_prompt_user)\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]$(__git_ps1 " (%s)" 2>/dev/null) $ '
 fi
 EOS
 `,
@@ -165,8 +165,12 @@ EOS
 
 EOS`,
       'chown ubuntu:ubuntu /home/ubuntu/.bash_profile',
-      'CI=1 sudo -u ubuntu /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
+      'curl -sSL https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py && sudo -u ubuntu python3 /tmp/get-pip.py && rm -rf /tmp/get-pip.py',
       'mkdir -p /home/ubuntu/environment && chown -R ubuntu:ubuntu /home/ubuntu/environment',
+      'curl -sSL https://get.volta.sh -o /tmp/get.volta.sh && sudo -u ubuntu /bin/bash /tmp/get.volta.sh && rm -rf /tmp/get.volta.sh',
+      'sudo -u ubuntu /home/ubuntu/.volta/bin/volta install node@lts && npm -g install yarn',
+      'echo \'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"\' >> /home/ubuntu/.bash_profile',
+      'sudo -u ubuntu NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
     );
 
     const securityGroup = new SecurityGroup(this, 'SecurityGroup', {

@@ -169,11 +169,12 @@ EOS`,
       'mkdir -p /home/ubuntu/environment && chown -R ubuntu:ubuntu /home/ubuntu/environment',
       'curl -sSL https://get.volta.sh -o /tmp/get.volta.sh && sudo -u ubuntu /bin/bash /tmp/get.volta.sh && rm -rf /tmp/get.volta.sh',
       'sudo -u ubuntu /home/ubuntu/.volta/bin/volta install node@lts && npm -g install yarn',
-      'echo \'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"\' >> /home/ubuntu/.bash_profile',
-      'sudo -u ubuntu NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
+      'mkdir -p /home/ubuntu/.c9/',
+      'chown ubuntu:ubuntu /home/ubuntu/.c9',
       'echo "SHUTDOWN_TIME=30" > /home/ubuntu/.c9/autoshutdown-configuration',
       'chown ubuntu:ubuntu /home/ubuntu/.c9/autoshutdown-configuration',
-      `cat << 'EOS' >> /home/ubuntu/.c9/stop-if-inactive.sh
+      'export VFS_CHECK_FILE_PATH=/home/ubuntu/.c9/stop-if-inactive.sh',
+      `cat << 'EOS' > /home/ubuntu/.c9/stop-if-inactive.sh
 #!/bin/bash
 set -euo pipefail
 CONFIG=$(cat /home/ubuntu/.c9/autoshutdown-configuration)
@@ -221,15 +222,15 @@ else
     if [[ $SHUTDOWN_TIMEOUT =~ ^[0-9]+$ ]] && ! is_vfs_connected; then
         sudo shutdown -h $SHUTDOWN_TIMEOUT
     fi
-fi > "$VFS_CHECK_FILE_PATH"
-
-chmod +x "$VFS_CHECK_FILE_PATH"
-
-echo "* * * * * root $VFS_CHECK_FILE_PATH" > /etc/cron.d/c9-automatic-shutdown
-
+fi
 EOS`,
+      'chmod +x "$VFS_CHECK_FILE_PATH"',
+      'echo "* * * * * root $VFS_CHECK_FILE_PATH" > /etc/cron.d/c9-automatic-shutdown',
       'chown ubuntu:ubuntu /home/ubuntu/.c9/stop-if-inactive.sh',
       'chmod 744 /home/ubuntu/.c9/stop-if-inactive.sh',
+
+      'echo \'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"\' >> /home/ubuntu/.bash_profile',
+      'sudo -u ubuntu NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
     );
 
     const securityGroup = new SecurityGroup(this, 'SecurityGroup', {

@@ -167,6 +167,14 @@
     qrcode "^1.4.4"
     uuid "^8.2.0"
 
+"@aws-amplify/ui-react-core@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/ui-react-core/-/ui-react-core-1.0.0.tgz#123e89bd11f801f5ac970c38676397985ad7ca6c"
+  integrity sha512-K9ZQWIOVvf70JKrl03gp+YRvY8H5s9QQSnlXmF1n4bmhLxqX+M+QZeLFYci3gkdvkWpk/r3lmjTZkDNsbdtnGA==
+  dependencies:
+    "@aws-amplify/ui" "3.13.4"
+    "@xstate/react" "3.0.0"
+
 "@aws-amplify/ui-react-v1@npm:@aws-amplify/ui-react@1.2.9":
   version "1.2.9"
   resolved "https://registry.yarnpkg.com/@aws-amplify/ui-react/-/ui-react-1.2.9.tgz#bcaa93f021afc801f9d8e6aa98558128b2cb173f"
@@ -175,11 +183,12 @@
     "@aws-amplify/ui-components" "1.7.2"
 
 "@aws-amplify/ui-react@*":
-  version "3.5.4"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/ui-react/-/ui-react-3.5.4.tgz#cea2acdbcbbcbd3fcfaf6d2433e707ffca4eb0e1"
-  integrity sha512-7ADU9kUY7r3YNzxAAcxPtuDXMqbP7lg1RTTokVOW10nkvh6eti+pwgDqrSDkMc+CjI9DSAT3wXrhDxLg9d7g5w==
+  version "3.5.5"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/ui-react/-/ui-react-3.5.5.tgz#6313f0ffc010dcc8c5ca49928d7d9b42fa143f2a"
+  integrity sha512-Eb4PkbOMhhc5BMZ1VYo4Ufn9GScy8gQnxBmNvctV8PRiHreYUYjSDHabgVaQu8lX+0+9yBBF67Bco1VAFvHbXg==
   dependencies:
     "@aws-amplify/ui" "3.13.4"
+    "@aws-amplify/ui-react-core" "1.0.0"
     "@aws-amplify/ui-react-v1" "npm:@aws-amplify/ui-react@1.2.9"
     "@radix-ui/react-accordion" "0.1.6"
     "@radix-ui/react-dropdown-menu" "0.1.6"

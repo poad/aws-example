@@ -365,6 +365,13 @@
   dependencies:
     tslib "^2.3.1"
 
+"@aws-sdk/is-array-buffer@3.183.0":
+  version "3.183.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/is-array-buffer/-/is-array-buffer-3.183.0.tgz#2e57de7d25da4ae7d0d8744cbf144a6fd19789b8"
+  integrity sha512-s0ukhcjX1dUPRFPLyWJw9mg6SB+5YOdV2vHoKez0L7ry97p3C29wtImV2NOdw54fn/lKOtil22lFN7JpoaqU/w==
+  dependencies:
+    tslib "^2.3.1"
+
 "@aws-sdk/middleware-content-length@3.178.0":
   version "3.178.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/middleware-content-length/-/middleware-content-length-3.178.0.tgz#53ed59ff542b86e7cfe1223572fb68e5223db6f0"
@@ -526,7 +533,19 @@
   dependencies:
     tslib "^2.3.1"
 
-"@aws-sdk/signature-v4@*", "@aws-sdk/signature-v4@3.178.0":
+"@aws-sdk/signature-v4@*":
+  version "3.183.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/signature-v4/-/signature-v4-3.183.0.tgz#de6f9d64cf8753dc7b0359b91a87bd05d253e7c5"
+  integrity sha512-XlYaSVbC6acTdc7FI5hmfZqOLPBwNCbnutmoElTdJQKwhSS6LvwwUngM4L5tm3etlPkKVFSsWllG68Au/vFF4w==
+  dependencies:
+    "@aws-sdk/is-array-buffer" "3.183.0"
+    "@aws-sdk/types" "3.183.0"
+    "@aws-sdk/util-hex-encoding" "3.183.0"
+    "@aws-sdk/util-middleware" "3.183.0"
+    "@aws-sdk/util-uri-escape" "3.183.0"
+    tslib "^2.3.1"
+
+"@aws-sdk/signature-v4@3.178.0":
   version "3.178.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/signature-v4/-/signature-v4-3.178.0.tgz#02f874021725c328a7b044cd71af118fba7d6b11"
   integrity sha512-8oOx6o0uOqlCDPM0dszfR1WHqd0E1VuFqez8iNItp0DhmhaCuanEwKYYA6HOkVu/MA6CsG6zDIJaFr5ODU2NvQ==
@@ -547,10 +566,15 @@
     "@aws-sdk/types" "3.178.0"
     tslib "^2.3.1"
 
-"@aws-sdk/types@3.178.0", "@aws-sdk/types@^3.1.0", "@aws-sdk/types@^3.110.0":
+"@aws-sdk/types@3.178.0":
   version "3.178.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/types/-/types-3.178.0.tgz#2b79d705be218f8c9b5829ec71284549c37733be"
   integrity sha512-CrHxHzXSEr/Z3NLFvJgSGHGcD9tYUZ0Rhp8tFCSpD3TpBo3/Y7RIvqaEPvECsL52UEloeBhQf65AO8590YkVmQ==
+
+"@aws-sdk/types@3.183.0", "@aws-sdk/types@^3.1.0", "@aws-sdk/types@^3.110.0":
+  version "3.183.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/types/-/types-3.183.0.tgz#d58e5dead96ce7a68186e25dcec4d5e716caf01b"
+  integrity sha512-V5IU7q7Y2ADIFzvUxoGfpVahhVnGjCABTv9jZYUSyJW7/OwSB+eA2C1B8ZsKAYLWtc9xKxYpRl5FI5e7FBGUIQ==
 
 "@aws-sdk/url-parser@3.178.0":
   version "3.178.0"
@@ -634,6 +658,13 @@
   dependencies:
     tslib "^2.3.1"
 
+"@aws-sdk/util-hex-encoding@3.183.0":
+  version "3.183.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/util-hex-encoding/-/util-hex-encoding-3.183.0.tgz#b925e635187ff50db5642ce139072b12d88391d7"
+  integrity sha512-pcvgpSID2mFnkaWPd/cpP4H7Lpu9w9Sc2QcMc2kvkOgkNb7mNres+guybqIMIlsOfuVuFK6291KwtYEgYIWHjQ==
+  dependencies:
+    tslib "^2.3.1"
+
 "@aws-sdk/util-locate-window@^3.0.0":
   version "3.170.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/util-locate-window/-/util-locate-window-3.170.0.tgz#acc8717abe1e568de41d9b8ede33a49c6c1e108d"
@@ -648,10 +679,24 @@
   dependencies:
     tslib "^2.3.1"
 
+"@aws-sdk/util-middleware@3.183.0":
+  version "3.183.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/util-middleware/-/util-middleware-3.183.0.tgz#f1de9ada064fd19ea3f2e68698cdafb6e0603196"
+  integrity sha512-zbAFH5SkJ1kTFWPZVg4JdQEhfnJAyL/BDDtGPublVCbplXHAFxoYsneL0he4OEyJbf9KQyITOlzOcthB1kS9Qg==
+  dependencies:
+    tslib "^2.3.1"
+
 "@aws-sdk/util-uri-escape@3.170.0":
   version "3.170.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/util-uri-escape/-/util-uri-escape-3.170.0.tgz#1121fb47a59dab0f732b881742e9871c3690367c"
   integrity sha512-Fof0urZ3Lx6z6LNKSEO6T4DNaNh6sLJaSWFaC6gtVDPux/C3R7wy2RQRDp0baHxE8m1KMB0XnKzHizJNrbDI1w==
+  dependencies:
+    tslib "^2.3.1"
+
+"@aws-sdk/util-uri-escape@3.183.0":
+  version "3.183.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/util-uri-escape/-/util-uri-escape-3.183.0.tgz#a26e324570efda6ca67e72b9da9951ade07eff15"
+  integrity sha512-pBTwFR/s3ITNHDbsnjhGu6g47PUb5NFbAOWRMFukJME5glOTkFViGlSrEbq0xZB/A0jKFZBQWXLDtgR2G0N8TA==
   dependencies:
     tslib "^2.3.1"
 

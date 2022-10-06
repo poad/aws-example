@@ -10,9 +10,15 @@
     "test": "jest",
     "cdk": "cdk",
     "lint": "eslint --ext .ts,.gql ./lambda ./core",
-    "dev": "ts-node local/index.ts"
+    "dev": "ts-node local/index.ts",
+    "generate": "graphql-codegen --config codegen.yml"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "*",
+    "@graphql-codegen/introspection": "*",
+    "@graphql-codegen/jsdoc": "*",
+    "@graphql-codegen/typescript": "*",
+    "@graphql-codegen/typescript-resolvers": "*",
     "@graphql-eslint/eslint-plugin": "*",
     "@types/jest": "*",
     "@types/node": "*",
@@ -32,6 +38,7 @@
     "eslint-plugin-jest": "*",
     "eslint-plugin-prettier": "*",
     "express": "*",
+    "graphql-codegen-typescript-validation-schema": "*",
     "jest": "*",
     "prettier": "*",
     "ts-jest": "*",

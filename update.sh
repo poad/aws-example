@@ -463,4 +463,17 @@ if [ $result -ne 0 ]; then
   exit $result
 fi
 
+cd "${CURRENT}"
+result=$?
+if [ $result -ne 0 ]; then
+  cd "${CUR}"
+  exit $result
+fi
+git commit -am "Bumps node modules" && git push
+result=$?
+if [ $result -ne 0 ]; then
+  cd "${CUR}"
+  exit $result
+fi
+
 cd "${CUR}"

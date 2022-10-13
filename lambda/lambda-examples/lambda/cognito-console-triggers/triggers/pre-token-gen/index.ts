@@ -9,6 +9,7 @@ export const handler: PreTokenGenerationTriggerHandler = async (
   _: Context,
   callback: Callback<any>,
 ): Promise<any> => {
+  // eslint-disable-next-line no-console
   console.log(JSON.stringify(event));
 
   // const { userPoolId, request, triggerSource } = event;

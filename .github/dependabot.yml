@@ -13,6 +13,18 @@ updates:
       - poad
 
   - package-ecosystem: npm
+    directory: '/common/cognito-singin/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+      time: "12:00"
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: npm
     directory: '/infra/s3/'
     schedule:
       interval: daily

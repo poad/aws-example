@@ -1,16 +1,14 @@
 {
-  "ts-node": {
-    "swc": true
-  },
   "compilerOptions": {
-    "target": "ES2019",
+    "target": "esnext",
     "module": "commonjs",
     "lib": [
-      "DOM",
-      "es2019"
+      "esnext"
     ],
     "declaration": true,
     "strict": true,
+    "outDir": "./dist",
+    "sourceRoot": "./src",
     "noImplicitAny": true,
     "strictNullChecks": true,
     "noImplicitThis": true,
@@ -24,5 +22,5 @@
     "experimentalDecorators": true,
     "strictPropertyInitialization": false
   },
-  "exclude": ["cdk.out"]
+  "exclude": ["dist"]
 }

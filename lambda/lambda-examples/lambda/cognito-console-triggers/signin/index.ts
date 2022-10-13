@@ -1,6 +1,6 @@
 import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 import fetch from 'cross-fetch';
-import signIn from './signIn';
+import { cognitoSignInClient } from '@aws-example-common/cognito-singin';
 
 interface EnvironmentVariables {
   domain: string,
@@ -67,37 +67,34 @@ export const handler = async (
     const { domain, clientId, region } = environments;
     const { domainName, http } = event.requestContext;
 
-    if (code === undefined) {
-      const redirectUri = `https://${domain}.auth.${region}.amazoncognito.com/login?response_type=code&client_id=${clientId}&redirect_uri=https://${domainName}${rawPath}`;
+    if (code) {
       return {
         cookies: [],
-        statusCode: 308,
-        headers: { Location: redirectUri },
+        statusCode: 302,
+        // eslint-disable-next-line max-len
+        headers: { Location: `https://${domain}.auth.${region}.amazoncognito.com/login?response_type=code&client_id=${clientId}&redirect_uri=https://${domainName}${rawPath}` },
       };
     }
 
     const redirectUri = `https://${domainName}${http.path}`;
 
-    const { refreshToken } = event.cookies !== undefined && event.cookies.length > 0
+    const { refreshToken } = event.cookies && event.cookies.length > 0
       ? JSON.parse(event.cookies[0]) as Session : { refreshToken: undefined };
 
+    const cognito = cognitoSignInClient({});
     try {
       const {
         accessKeyId, secretKey, sessionToken, tokens,
-      } = await signIn({
+      } = await cognito.signIn({
+        ...environments,
         domain,
-        userPoolId: environments.userPoolId,
         clientId,
         redirectUri,
-        idPoolId: environments.idPoolId,
-        identityProvider: environments.identityProvider,
         code,
         refreshToken,
       });
 
-      if (accessKeyId === undefined
-        || secretKey === undefined
-        || sessionToken === undefined) {
+      if (!accessKeyId || !secretKey || !sessionToken) {
         // eslint-disable-next-line no-console
         console.error('Credentials are empty');
         return {
@@ -109,11 +106,11 @@ export const handler = async (
       const { SigninToken } = await getSignInToken({ accessKeyId, secretKey, sessionToken });
 
       const issuer = environments.apiUrl;
-      const destUrl = `https://signin.aws.amazon.com/federation?Action=login&Destination=${encodeURIComponent('https://console.aws.amazon.com/')}&SigninToken=${SigninToken}&Issuer=${encodeURIComponent(issuer)}`;
       return {
-        statusCode: 308,
+        statusCode: 302,
         headers: {
-          Location: destUrl,
+          // eslint-disable-next-line max-len
+          Location: `https://signin.aws.amazon.com/federation?Action=login&Destination=${encodeURIComponent('https://console.aws.amazon.com/')}&SigninToken=${SigninToken}&Issuer=${encodeURIComponent(issuer)}`,
         },
         cookies: [JSON.stringify({ refreshToken: tokens.refreshToken } as Session)],
       };
@@ -123,7 +120,7 @@ export const handler = async (
 
       return {
         cookies: [],
-        statusCode: 308,
+        statusCode: 302,
         headers: { Location: `https://${domain}.auth.${region}.amazoncognito.com/login?response_type=code&client_id=${clientId}&redirect_uri=https://${domainName}${rawPath}` },
       };
     }

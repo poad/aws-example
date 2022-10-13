@@ -2,7 +2,7 @@ import { CognitoIdentityProviderClient, GetUserCommand } from '@aws-sdk/client-c
 import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 
 interface EnvironmentVariables {
-    clientId: string,
+  clientId: string,
 }
 
 export const environments: EnvironmentVariables = {
@@ -12,6 +12,7 @@ export const environments: EnvironmentVariables = {
 export const handler = async (
   event: APIGatewayProxyEventV2,
 ): Promise<APIGatewayProxyStructuredResultV2> => {
+  // eslint-disable-next-line no-console
   console.trace(JSON.stringify(event));
 
   if (event.headers.authorization !== undefined) {

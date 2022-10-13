@@ -2,7 +2,7 @@ import { CognitoIdentityProviderClient, GlobalSignOutCommand, InitiateAuthComman
 import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 
 interface EnvironmentVariables {
-    clientId: string,
+  clientId: string,
 }
 
 export const environments: EnvironmentVariables = {
@@ -10,7 +10,7 @@ export const environments: EnvironmentVariables = {
 };
 
 interface Session {
-    refreshToken?: string,
+  refreshToken?: string,
 }
 
 export const handler = async (

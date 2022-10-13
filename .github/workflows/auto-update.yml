@@ -29,6 +29,12 @@ jobs:
         node-version: 16.x
         check-latest: true
 
+    - name: update (common/cognito-singin)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/common/cognito-singin/
+
     - name: update (amplify/amplified_todo)
       uses: poad/update-node-modules@v1.0.5
       with:

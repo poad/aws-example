@@ -1,0 +1,59 @@
+{
+  "name": "@aws-example-common/cognito-singin",
+  "private": false,
+  "version": "0.0.1",
+  "license": "MIT",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "files": [
+    "./dist/*"
+  ],
+  "exports": {
+    "default": "./dist/index.js",
+    "import": "./dist/index.js",
+    "node": "./dist/index.js",
+    "require": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint --ext .ts ./lambda"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "*",
+    "@types/node": "*",
+    "@types/prettier": "*",
+    "@typescript-eslint/eslint-plugin": "*",
+    "@typescript-eslint/parser": "*",
+    "eslint": "*",
+    "eslint-config-airbnb-base": "*",
+    "eslint-config-airbnb-typescript": "*",
+    "eslint-config-prettier": "*",
+    "eslint-plugin-import": "*",
+    "eslint-plugin-jest": "*",
+    "eslint-plugin-prettier": "*",
+    "prettier": "*",
+    "ts-node": "*",
+    "typescript": "*"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity": "*",
+    "@aws-sdk/client-cognito-identity-provider": "*",
+    "@aws-sdk/client-sts": "*",
+    "cross-fetch": "*",
+    "jsonwebtoken": "*",
+    "jwks-rsa": "*",
+    "source-map-support": "*"
+  },
+  "peerDependencies": {
+    "@aws-sdk/client-cognito-identity": "*",
+    "@aws-sdk/client-cognito-identity-provider": "*",
+    "@aws-sdk/client-sts": "*",
+    "cross-fetch": "*",
+    "jsonwebtoken": "*",
+    "jwks-rsa": "*",
+    "source-map-support": "*"
+  },
+  "engines": {
+    "node": ">=14.13.1 || >=16.0.0"
+  }
+}

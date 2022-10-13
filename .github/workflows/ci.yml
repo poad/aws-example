@@ -46,6 +46,7 @@ jobs:
       matrix:
         node-version: [16.x]
         target: [
+          ./common/cognito-singin,
           ./amplify/amplify_nextapp,
           ./amplify/amplify-cdk/app,
           ./amplify/amplify-cdk/infra,

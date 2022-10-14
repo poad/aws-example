@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
-import { InfraStack } from '../lib/infra-stack';
 import { App } from 'aws-cdk-lib';
-
+import { InfraStack } from '../lib/infra-stack';
 
 interface Context {
   region: string,
@@ -34,8 +33,11 @@ const app = new App();
 const env = app.node.tryGetContext('env') as string;
 
 const context = app.node.tryGetContext(env) as Context;
-const { region, domain, endUserDomain, provider, testRoles, groupRoleClassificationTagName, groupRoleClassificationTagValue } = context;
+const {
+  region, domain, endUserDomain, provider, testRoles, groupRoleClassificationTagName, groupRoleClassificationTagValue,
+} = context;
 
+// eslint-disable-next-line no-new
 new InfraStack(app, `${env}-cognito-admin-stack`, {
   adminUserPool: `${env}-cognito-admin-user-pool`,
   endUserPool: `${env}-cognito-admin-end-user-pool`,
@@ -50,14 +52,14 @@ new InfraStack(app, `${env}-cognito-admin-stack`, {
   lambda: {
     app: {
       userMaagement: {
-        name: "dev-signin-api",
-        entry: "lambda/signin/index.ts"
+        name: 'dev-signin-api',
+        entry: 'lambda/signin/index.ts',
       },
     },
   },
   groupRoleClassificationTag: {
     name: groupRoleClassificationTagName,
-    value: groupRoleClassificationTagValue
+    value: groupRoleClassificationTagValue,
   },
   testRoles,
 });

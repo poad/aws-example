@@ -1,11 +1,14 @@
 import { Stack, StackProps } from 'aws-cdk-lib';
-import { Role, ServicePrincipal, PolicyDocument, PolicyStatement, Effect } from 'aws-cdk-lib/aws-iam';
+import {
+  Role, ServicePrincipal, PolicyDocument, PolicyStatement, Effect,
+} from 'aws-cdk-lib/aws-iam';
 import { FunctionUrl, FunctionUrlAuthType, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { LogGroup, RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
 import path from 'path';
 
+// eslint-disable-next-line import/prefer-default-export
 export class ApolloServerStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
@@ -43,6 +46,7 @@ export class ApolloServerStack extends Stack {
       }),
     });
 
+    // eslint-disable-next-line no-new
     new FunctionUrl(this, 'ApolloServerLambdaFnUrl', {
       function: fn,
       authType: FunctionUrlAuthType.NONE,

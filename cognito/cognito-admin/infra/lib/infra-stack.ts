@@ -4,7 +4,9 @@ import {
 import {
   AccountRecovery, Mfa, OAuthScope, UserPoolClient, CfnIdentityPoolRoleAttachment, UserPool, CfnIdentityPool, CfnUserPoolIdentityProvider, UserPoolClientIdentityProvider,
 } from 'aws-cdk-lib/aws-cognito';
-import { Stack, StackProps, Duration, RemovalPolicy, Tags } from 'aws-cdk-lib';
+import {
+  Stack, StackProps, Duration, RemovalPolicy, Tags,
+} from 'aws-cdk-lib';
 import { RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
@@ -13,7 +15,6 @@ import { HttpApi } from '@aws-cdk/aws-apigatewayv2-alpha';
 import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
 import { HttpMethod } from 'aws-cdk-lib/aws-stepfunctions-tasks';
 import { IdentityProviderTypeType } from '@aws-sdk/client-cognito-identity-provider';
-
 
 export interface InfraStackStackProps extends StackProps {
   adminUserPool: string,
@@ -51,9 +52,8 @@ export class InfraStack extends Stack {
       endUserDomain,
       provider,
       groupRoleClassificationTag,
-      testRoles
+      testRoles,
     } = props;
-
 
     const signInFn = new NodejsFunction(this, 'SignInLambdaFunction', {
       runtime: Runtime.NODEJS_16_X,
@@ -62,8 +62,8 @@ export class InfraStack extends Stack {
       logRetention: RetentionDays.ONE_DAY,
       retryAttempts: 0,
       environment: {
-        'DOMAIN': endUserDomain,
-        'REGION': region,
+        DOMAIN: endUserDomain,
+        REGION: region,
       },
       role: new Role(this, 'SignInLambdaExecutionRole', {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
@@ -75,11 +75,11 @@ export class InfraStack extends Stack {
                 actions: [
                   'logs:CreateLogGroup',
                   'logs:CreateLogStream',
-                  'logs:PutLogEvents'
+                  'logs:PutLogEvents',
                 ],
                 resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${environment}-cognito-admin-user-console-sign-in:*`],
-              })
-            ]
+              }),
+            ],
           }),
           'assumed-role-policy': new PolicyDocument(
             {
@@ -88,17 +88,17 @@ export class InfraStack extends Stack {
                   effect: Effect.ALLOW,
                   actions: [
                     'cognito-identity:*',
-                    "cognito-idp:*",
+                    'cognito-idp:*',
                     'sts:GetFederationToken',
                     'sts:AssumeRoleWithWebIdentity',
                   ],
                   resources: ['*'],
-                })
-              ]
-            }
-          )
+                }),
+              ],
+            },
+          ),
         },
-      })
+      }),
     });
 
     const signOutFn = new NodejsFunction(this, 'SignOutLambdaFunction', {
@@ -117,11 +117,11 @@ export class InfraStack extends Stack {
                 actions: [
                   'logs:CreateLogGroup',
                   'logs:CreateLogStream',
-                  'logs:PutLogEvents'
+                  'logs:PutLogEvents',
                 ],
                 resources: [`arn:aws:logs:${this.region}:${this.account}:log-group:/aws/lambda/${environment}-cognito-admin-user-console-sign-out:*`],
-              })
-            ]
+              }),
+            ],
           }),
           'assumed-role-policy': new PolicyDocument(
             {
@@ -130,41 +130,41 @@ export class InfraStack extends Stack {
                   effect: Effect.ALLOW,
                   actions: [
                     'cognito-identity:*',
-                    "cognito-idp:*",
+                    'cognito-idp:*',
                     'sts:GetFederationToken',
                     'sts:AssumeRoleWithWebIdentity',
                   ],
                   resources: ['*'],
-                })
-              ]
-            }
-          )
+                }),
+              ],
+            },
+          ),
         },
-      })
+      }),
     });
 
-    const api = new HttpApi(this, "HttpApi", {
+    const api = new HttpApi(this, 'HttpApi', {
       apiName: `Cognito Console Lambda API (${environment})`,
       defaultIntegration: new HttpLambdaIntegration(
         'default-handler',
-        signInFn
-      )
+        signInFn,
+      ),
     });
     api.addRoutes({
-      path: "/signin",
+      path: '/signin',
       methods: [HttpMethod.GET, HttpMethod.POST],
       integration: new HttpLambdaIntegration(
         'signin-handler',
-        signInFn
+        signInFn,
       ),
     });
 
     api.addRoutes({
-      path: "/signout",
+      path: '/signout',
       methods: [HttpMethod.GET, HttpMethod.POST],
       integration: new HttpLambdaIntegration(
         'signout-handler',
-        signOutFn
+        signOutFn,
       ),
     });
 
@@ -184,14 +184,14 @@ export class InfraStack extends Stack {
                 actions: [
                   'logs:CreateLogGroup',
                   'logs:CreateLogStream',
-                  'logs:PutLogEvents'
+                  'logs:PutLogEvents',
                 ],
                 resources: [
                   `arn:aws:logs:${region}:${this.account}:log-group:/aws/lambda/${environment}-cognito-admin-block-external-user`,
                   `arn:aws:logs:${region}:${this.account}:log-group:/aws/lambda/${environment}-cognito-admin-block-external-user:*`,
                 ],
-              })
-            ]
+              }),
+            ],
           }),
           'assumed-role-policy': new PolicyDocument(
             {
@@ -203,12 +203,12 @@ export class InfraStack extends Stack {
                     'cognito-idp:*',
                   ],
                   resources: ['*'],
-                })
-              ]
-            }
-          )
+                }),
+              ],
+            },
+          ),
         },
-      })
+      }),
     });
 
     const endUserPool = new UserPool(this, endUserPoolName, {
@@ -252,8 +252,8 @@ export class InfraStack extends Stack {
 
     endUserPool.addDomain('EndUserPoolDomain', {
       cognitoDomain: {
-        domainPrefix: endUserDomain
-      }
+        domainPrefix: endUserDomain,
+      },
     });
 
     const addAdminUserFn = new NodejsFunction(this, 'AddAdminUserLambdaFunction', {
@@ -263,8 +263,8 @@ export class InfraStack extends Stack {
       logRetention: RetentionDays.ONE_DAY,
       retryAttempts: 0,
       environment: {
-        'DEST_USER_POOL_ID': endUserPool.userPoolId,
-        'PROVIDER': provider,
+        DEST_USER_POOL_ID: endUserPool.userPoolId,
+        PROVIDER: provider,
       },
       role: new Role(this, 'AddAdminUserExecutionRole', {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
@@ -276,14 +276,14 @@ export class InfraStack extends Stack {
                 actions: [
                   'logs:CreateLogGroup',
                   'logs:CreateLogStream',
-                  'logs:PutLogEvents'
+                  'logs:PutLogEvents',
                 ],
                 resources: [
                   `arn:aws:logs:${region}:${this.account}:log-group:/aws/lambda/${environment}-cognito-admin-add-admin-user`,
                   `arn:aws:logs:${region}:${this.account}:log-group:/aws/lambda/${environment}-cognito-admin-add-admin-user:*`,
                 ],
-              })
-            ]
+              }),
+            ],
           }),
           'assumed-role-policy': new PolicyDocument(
             {
@@ -295,12 +295,12 @@ export class InfraStack extends Stack {
                     'cognito-idp:*',
                   ],
                   resources: ['*'],
-                })
-              ]
-            }
-          )
+                }),
+              ],
+            },
+          ),
         },
-      })
+      }),
     });
 
     const adminUserPool = new UserPool(this, adminUserPoolName, {
@@ -344,8 +344,8 @@ export class InfraStack extends Stack {
 
     adminUserPool.addDomain('AdminnUserPoolDomain', {
       cognitoDomain: {
-        domainPrefix: domain
-      }
+        domainPrefix: domain,
+      },
     });
 
     const adminPoolClient = new UserPoolClient(this, 'AdminPoolAppClient', {
@@ -403,15 +403,15 @@ export class InfraStack extends Stack {
               effect: Effect.ALLOW,
               actions: [
                 'cognito-identity:*',
-                "cognito-idp:*",
+                'cognito-idp:*',
                 'sts:GetFederationToken',
                 'sts:AssumeRoleWithWebIdentity',
               ],
               resources: ['*'],
-            })
-          ]
-        })
-      }
+            }),
+          ],
+        }),
+      },
     });
 
     const adminAuthenticatedRole = new Role(this, 'AdminCognitoDefaultAuthenticatedRole', {
@@ -432,7 +432,7 @@ export class InfraStack extends Stack {
               effect: Effect.ALLOW,
               actions: [
                 'cognito-identity:*',
-                "cognito-idp:*",
+                'cognito-idp:*',
                 'sts:GetFederationToken',
                 'sts:AssumeRoleWithWebIdentity',
                 'iam:ListRoles',
@@ -440,12 +440,13 @@ export class InfraStack extends Stack {
                 'iam:GetRole',
               ],
               resources: ['*'],
-            })
-          ]
-        })
-      }
+            }),
+          ],
+        }),
+      },
     });
 
+    // eslint-disable-next-line no-new
     new CfnIdentityPoolRoleAttachment(this, 'AdminIdPoolRoleAttachment', {
       identityPoolId: adminPoolIdentityPool.ref,
       roles: {
@@ -465,11 +466,11 @@ export class InfraStack extends Stack {
         attributes_request_method: 'GET',
       },
       attributeMapping: {
-        'email': 'email'
-      }
+        email: 'email',
+      },
     });
 
-    cfnIdp.node.addDependency(adminPoolClient, endUserPool);    
+    cfnIdp.node.addDependency(adminPoolClient, endUserPool);
 
     const endUsersClient = new UserPoolClient(this, 'EndUserPoolAppClient', {
       userPool: endUserPool,
@@ -497,7 +498,7 @@ export class InfraStack extends Stack {
       preventUserExistenceErrors: true,
       supportedIdentityProviders: [
         UserPoolClientIdentityProvider.COGNITO,
-        UserPoolClientIdentityProvider.custom(cfnIdp.providerName)
+        UserPoolClientIdentityProvider.custom(cfnIdp.providerName),
       ],
     });
 
@@ -533,15 +534,15 @@ export class InfraStack extends Stack {
               effect: Effect.ALLOW,
               actions: [
                 'cognito-identity:*',
-                "cognito-idp:*",
+                'cognito-idp:*',
                 'sts:GetFederationToken',
                 'sts:AssumeRoleWithWebIdentity',
               ],
               resources: ['*'],
-            })
-          ]
-        })
-      }
+            }),
+          ],
+        }),
+      },
     });
 
     const endUserAuthenticatedRole = new Role(this, 'EndUserCognitoDefaultAuthenticatedRole', {
@@ -562,17 +563,18 @@ export class InfraStack extends Stack {
               effect: Effect.ALLOW,
               actions: [
                 'cognito-identity:*',
-                "cognito-idp:*",
+                'cognito-idp:*',
                 'sts:GetFederationToken',
                 'sts:AssumeRoleWithWebIdentity',
               ],
               resources: ['*'],
-            })
-          ]
-        })
-      }
+            }),
+          ],
+        }),
+      },
     });
 
+    // eslint-disable-next-line no-new
     new CfnIdentityPoolRoleAttachment(this, 'EndUsersIdPoolRoleAttachment', {
       identityPoolId: endUserPoolIdentityPool.ref,
       roles: {
@@ -582,7 +584,8 @@ export class InfraStack extends Stack {
     });
 
     if (testRoles !== undefined && testRoles > 0) {
-      for (let i = 0; i < testRoles; i++) {
+      const range = [...Array(testRoles).keys()];
+      range.forEach((i) => {
         const roleName = `${environment}-test-group-role-${i + 1}`;
 
         const groupRole = new Role(this, `TestGroupRole${i + 1}`, {
@@ -603,15 +606,15 @@ export class InfraStack extends Stack {
                   effect: Effect.ALLOW,
                   actions: [
                     'cognito-identity:*',
-                    "cognito-idp:*",
+                    'cognito-idp:*',
                     'sts:GetFederationToken',
                     'sts:AssumeRoleWithWebIdentity',
                   ],
                   resources: ['*'],
-                })
-              ]
-            })
-          }
+                }),
+              ],
+            }),
+          },
         });
 
         signInFn.addEnvironment('USER_POOL_ID', endUserPool.userPoolId);
@@ -621,9 +624,9 @@ export class InfraStack extends Stack {
         signInFn.addEnvironment('API_URL', api.url!);
 
         if (groupRoleClassificationTag.name !== undefined && groupRoleClassificationTag.value !== undefined) {
-          Tags.of(groupRole).add(groupRoleClassificationTag.name, groupRoleClassificationTag.value)
+          Tags.of(groupRole).add(groupRoleClassificationTag.name, groupRoleClassificationTag.value);
         }
-      }
+      });
     }
   }
 }

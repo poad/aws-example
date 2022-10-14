@@ -1,4 +1,4 @@
-import { gql, ApolloServer } from "apollo-server-lambda";
+import { gql, ApolloServer } from 'apollo-server-lambda';
 
 const typeDefs = gql`
   type Query {
@@ -8,7 +8,7 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    hello: () => "Hello, World!",
+    hello: () => 'Hello, World!',
   },
 };
 
@@ -18,4 +18,5 @@ const server = new ApolloServer({
   introspection: !!process.env.IS_LOCAL,
 });
 
+// eslint-disable-next-line import/prefer-default-export
 export const handler = server.createHandler();

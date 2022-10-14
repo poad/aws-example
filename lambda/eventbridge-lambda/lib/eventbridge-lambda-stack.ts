@@ -1,13 +1,16 @@
 import * as cdk from 'aws-cdk-lib';
 import { Rule, Schedule } from 'aws-cdk-lib/aws-events';
 import { LambdaFunction } from 'aws-cdk-lib/aws-events-targets';
-import { Role, ServicePrincipal, PolicyDocument, PolicyStatement, Effect } from 'aws-cdk-lib/aws-iam';
+import {
+  Role, ServicePrincipal, PolicyDocument, PolicyStatement, Effect,
+} from 'aws-cdk-lib/aws-iam';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { LogGroup, RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
 import path = require('path');
 
+// eslint-disable-next-line import/prefer-default-export
 export class EventbridgeLambdaStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
@@ -44,11 +47,12 @@ export class EventbridgeLambdaStack extends cdk.Stack {
       }),
     });
 
+    // eslint-disable-next-line no-new
     new Rule(this, 'ScheduleEventRule', {
       schedule: Schedule.cron({
-        minute: '*/5'
+        minute: '*/5',
       }),
-      targets: [new LambdaFunction(fn, {})]
+      targets: [new LambdaFunction(fn, {})],
     });
   }
 }

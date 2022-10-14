@@ -1,6 +1,9 @@
+import * as log4js from 'log4js';
 import {
   Author, AuthorResolvers, Post, PostResolvers, QueryAuthorArgs, QueryPostArgs, QueryResolvers, Resolvers,
 } from './generated/graphql';
+
+const logger = log4js.getLogger();
 
 // example data
 const authors: Author[] = [
@@ -27,14 +30,14 @@ const posts = [
 const resolvers: Resolvers = {
   Query: {
     posts: () => {
-      console.log('Query.posts');
+      logger.debug('Query.posts');
       return posts.map((it) => ({
         ...it,
         author: authors.find((author) => author.id === it.authorId),
       }));
     },
     post: (_, { id }: QueryPostArgs) => {
-      console.log('Query.post');
+      logger.debug('Query.post');
       const item = posts.find((it) => it.id === id);
       if (!item) {
         return null;
@@ -46,7 +49,7 @@ const resolvers: Resolvers = {
       } || null;
     },
     author: (_, { id }: QueryAuthorArgs): Author | null => {
-      console.log('Query.author');
+      logger.debug('Query.author');
       return authors.find((it) => it.id === id) || null;
     },
   } as QueryResolvers,
@@ -64,14 +67,14 @@ const resolvers: Resolvers = {
 
   Author: {
     posts: (author: Author): Post[] | null => {
-      console.log('Auther.posts');
+      logger.debug('Auther.posts');
       return posts.filter((it) => it.authorId === author.id) || null;
     },
   } as AuthorResolvers,
 
   Post: {
     author: (post: Post): Author | null => {
-      console.log('Post.author');
+      logger.debug('Post.author');
       return post.author ? authors.find((it) => it.id === post.author?.id) || null : null;
     },
   } as PostResolvers,

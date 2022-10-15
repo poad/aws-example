@@ -8,9 +8,12 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "lint": "eslint --ext .ts,.gql ./lambda ./bin ./lib"
   },
   "devDependencies": {
+    "@swc/core": "*",
+    "@swc/helpers": "*",
     "@types/aws-lambda": "*",
     "@types/jest": "*",
     "@types/node": "*",
@@ -20,8 +23,13 @@
     "esbuild": "*",
     "eslint": "*",
     "eslint-config-airbnb-base": "*",
+    "eslint-config-prettier": "*",
     "eslint-plugin-import": "*",
+    "eslint-plugin-jest": "*",
+    "eslint-plugin-prettier": "*",
     "jest": "*",
+    "prettier": "*",
+    "regenerator-runtime": "*",
     "ts-jest": "*",
     "ts-node": "*",
     "typescript": "*"

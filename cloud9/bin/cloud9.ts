@@ -14,6 +14,7 @@ const instanceType = app.node.tryGetContext('instanceType') || 't3a.small';
 const account = app.node.tryGetContext('account');
 const region = app.node.tryGetContext('region');
 
+// eslint-disable-next-line no-new
 new Cloud9Stack(app, `${name ? `${name}-` : ''}cloud9-stack`, {
   name: name || 'cloud9',
   ami,
@@ -23,5 +24,5 @@ new Cloud9Stack(app, `${name ? `${name}-` : ''}cloud9-stack`, {
   env: {
     account,
     region,
-  }
+  },
 });

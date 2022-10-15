@@ -8,6 +8,7 @@ interface LayerStackProps extends StackProps {
   timestamp: string | undefined
 }
 
+// eslint-disable-next-line import/prefer-default-export
 export class LayerStack extends Stack {
   constructor(scope: Construct, id: string, props: LayerStackProps) {
     super(scope, id, props);
@@ -15,15 +16,16 @@ export class LayerStack extends Stack {
     const { appName, timestamp } = props;
     const suffix = timestamp ? `-${timestamp}` : '';
 
-    const layer = new lambda.LayerVersion(this, "LambdaLayerVersion", {
-      code: lambda.Code.fromAsset("src"),
+    const layer = new lambda.LayerVersion(this, 'LambdaLayerVersion', {
+      code: lambda.Code.fromAsset('src'),
       compatibleRuntimes: [lambda.Runtime.NODEJS_16_X],
-      layerVersionName: `${appName}-lambda-layer-version${suffix}`
+      layerVersionName: `${appName}-lambda-layer-version${suffix}`,
     });
 
+    // eslint-disable-next-line no-new
     new StringParameter(this, 'LayerArnParameterStore', {
       parameterName: `${appName}-lambda-layer-version${suffix}-arn`,
-      stringValue: layer.layerVersionArn
+      stringValue: layer.layerVersionArn,
     });
   }
 }

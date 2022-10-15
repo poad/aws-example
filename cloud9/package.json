@@ -8,7 +8,8 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "lint": "eslint --ext .ts bin lib"
   },
   "devDependencies": {
     "@swc/core": "*",
@@ -18,7 +19,6 @@
     "@typescript-eslint/eslint-plugin": "*",
     "@typescript-eslint/parser": "*",
     "aws-cdk": "*",
-    "cross-fetch": "*",
     "eslint": "*",
     "eslint-config-airbnb-base": "*",
     "eslint-config-airbnb-typescript": "*",
@@ -32,6 +32,7 @@
   "dependencies": {
     "aws-cdk-lib": "*",
     "constructs": "*",
+    "cross-fetch": "*",
     "esbuild": "*",
     "source-map-support": "*"
   }

@@ -10,7 +10,7 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "lint": "eslint --ext .ts ./lambda"
+    "lint": "eslint --ext .ts ./lambda ./lib ./bin"
   },
   "devDependencies": {
     "@middy/core": "*",
@@ -39,8 +39,8 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@aws-cdk/aws-apigatewayv2-alpha": "^2.45.0-alpha.0",
-    "@aws-cdk/aws-apigatewayv2-integrations-alpha": "^2.45.0-alpha.0",
+    "@aws-cdk/aws-apigatewayv2-alpha": "^2.46.0-alpha.0",
+    "@aws-cdk/aws-apigatewayv2-integrations-alpha": "^2.46.0-alpha.0",
     "@aws-example-common/cognito-singin": "../../../common/cognito-singin/",
     "@aws-lambda-powertools/logger": "*",
     "aws-cdk-lib": "*",

@@ -9,6 +9,7 @@ interface FunctionStackProps extends StackProps {
   timestamp: string | undefined
 }
 
+// eslint-disable-next-line import/prefer-default-export
 export class FunctionStack extends Stack {
   constructor(scope: Construct, id: string, props: FunctionStackProps) {
     super(scope, id, props);
@@ -19,15 +20,16 @@ export class FunctionStack extends Stack {
     const parameter = StringParameter.fromStringParameterName(
       this,
       'LayerArnParameterStore',
-      `${appName}-lambda-layer-version${suffix}-arn`);
+      `${appName}-lambda-layer-version${suffix}-arn`,
+    );
 
-    new lambda.Function(this, "LambdaFunction", {
+    // eslint-disable-next-line no-new
+    new lambda.Function(this, 'LambdaFunction', {
       functionName: `${appName}${suffix}`,
-      code: lambda.Code.fromAsset("handler"),
+      code: lambda.Code.fromAsset('handler'),
       handler: 'index.handler',
       runtime: lambda.Runtime.NODEJS_16_X,
-      layers: [LayerVersion.fromLayerVersionArn(this, "LambdaLayerVersion", parameter.stringValue)],
+      layers: [LayerVersion.fromLayerVersionArn(this, 'LambdaLayerVersion', parameter.stringValue)],
     });
-
   }
 }

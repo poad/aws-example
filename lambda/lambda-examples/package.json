@@ -10,8 +10,8 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "lint": "eslint --ext .ts bin && eslint --ext .ts lambda && eslint --ext .ts lib",
-    "lint:fix": "eslint --fix --ext .ts bin && eslint --fix --ext .ts lambda && eslint --fix --ext .ts lib"
+    "lint": "eslint --ext .ts bin lambda lib",
+    "lint:fix": "eslint --fix --ext .ts bin lambda lib"
   },
   "devDependencies": {
     "@swc/core": "*",
@@ -19,6 +19,7 @@
     "@types/aws-lambda": "*",
     "@types/jest": "*",
     "@types/node": "*",
+    "@types/prettier": "*",
     "@typescript-eslint/eslint-plugin": "*",
     "@typescript-eslint/parser": "*",
     "aws-cdk": "*",
@@ -37,9 +38,9 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@aws-cdk/aws-apigatewayv2-alpha": "^2.45.0-alpha.0",
-    "@aws-cdk/aws-apigatewayv2-integrations-alpha": "^2.45.0-alpha.0",
-    "@aws-cdk/aws-lambda-python-alpha": "^2.45.0-alpha.0",
+    "@aws-cdk/aws-apigatewayv2-alpha": "^2.46.0-alpha.0",
+    "@aws-cdk/aws-apigatewayv2-integrations-alpha": "^2.46.0-alpha.0",
+    "@aws-cdk/aws-lambda-python-alpha": "^2.46.0-alpha.0",
     "@aws-example-common/cognito-singin": "../../common/cognito-singin/",
     "aws-cdk-lib": "*",
     "aws-lambda": "*",

@@ -101,6 +101,18 @@ jobs:
         yarn: true
         path: ${{github.workspace}}/codepipeline/vulnerability-scan/infra/
 
+    - name: update (cognito/authorizer-example/api)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/cognito/authorizer-example/api/
+
+    - name: update (cognito/authorizer-example/front)
+      uses: poad/update-node-modules@v1.0.5
+      with:
+        yarn: true
+        path: ${{github.workspace}}/cognito/authorizer-example/front/
+
     - name: update (cognito/cognito-admin/app)
       uses: poad/update-node-modules@v1.0.5
       with:

@@ -1,20 +1,19 @@
-type Fetcher = (token: string) => Promise<{
-  content: any;
-  error?: undefined;
-} | {
-  error: {
+type FetchResponse = {
+  error?: {
     http?: {
       status: number;
       statusText: string;
-      bodyText: string | undefined;
+      bodyText?: string;
     },
-    netrowk: boolean,
+    network: boolean,
   };
-  content?: undefined;
-}>;
+  content?: unknown;
+};
+
+type Fetcher = (token: string) => Promise<FetchResponse>;
 
 const useFetcher = (url: string, method: string, headers?: { [key: string]: string }, body?: string): Fetcher => {
-  const fetcher = async (token: string) => {
+  const fetcher = async (token: string): Promise<FetchResponse> => {
     try {
       const response = await fetch(
         url,

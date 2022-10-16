@@ -1,0 +1,62 @@
+{
+  "name": "authorizer-example",
+  "version": "0.1.0",
+  "bin": {
+    "authorizer-example": "bin/authorizer-example.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk",
+    "lint": "eslint --ext .ts bin lib lambda",
+    "generate": "graphql-codegen --config codegen.yml"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "*",
+    "@graphql-codegen/introspection": "*",
+    "@graphql-codegen/jsdoc": "*",
+    "@graphql-codegen/typescript": "*",
+    "@graphql-codegen/typescript-resolvers": "*",
+    "@graphql-eslint/eslint-plugin": "*",
+    "@swc/core": "*",
+    "@swc/helpers": "*",
+    "@types/aws-lambda": "*",
+    "@types/node": "*",
+    "@types/prettier": "*",
+    "@typescript-eslint/eslint-plugin": "*",
+    "@typescript-eslint/parser": "*",
+    "apollo-server": "*",
+    "apollo-server-core": "*",
+    "aws-cdk": "*",
+    "esbuild": "*",
+    "eslint": "*",
+    "eslint-config-airbnb-base": "*",
+    "eslint-config-airbnb-typescript": "*",
+    "eslint-config-prettier": "*",
+    "eslint-plugin-import": "*",
+    "eslint-plugin-jest": "*",
+    "eslint-plugin-prettier": "*",
+    "graphql-codegen-typescript-validation-schema": "*",
+    "prettier": "*",
+    "regenerator-runtime": "*",
+    "ts-node": "*",
+    "typescript": "*"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-apigatewayv2-alpha": "^2.46.0-alpha.0",
+    "@aws-cdk/aws-apigatewayv2-integrations-alpha": "^2.46.0-alpha.0",
+    "@aws-sdk/client-cognito-identity-provider": "*",
+    "@graphql-tools/graphql-file-loader": "*",
+    "@graphql-tools/load": "*",
+    "@graphql-tools/schema": "*",
+    "apollo-server-lambda": "*",
+    "aws-cdk-lib": "*",
+    "aws-lambda": "*",
+    "constructs": "*",
+    "cross-fetch": "*",
+    "graphql": "*",
+    "log4js": "*",
+    "source-map-support": "*"
+  }
+}

@@ -145,6 +145,30 @@ updates:
       - poad
 
   - package-ecosystem: npm
+    directory: '/cognito/authorizer-example/api/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+      time: "12:00"
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: npm
+    directory: '/cognito/authorizer-example/front/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+      time: "12:00"
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: npm
     directory: '/cognito/cognito-admin/app/'
     schedule:
       interval: daily

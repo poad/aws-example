@@ -208,6 +208,36 @@ if [ $result -ne 0 ]; then
   exit $result
 fi
 
+cd "${CURRENT}"/cognito/authorizer-example/api
+result=$?
+if [ $result -ne 0 ]; then
+  cd "${CUR}"
+  exit $result
+fi
+echo ""
+pwd
+yarn install && yarn upgrade
+result=$?
+if [ $result -ne 0 ]; then
+  cd "${CUR}"
+  exit $result
+fi
+
+cd "${CURRENT}"/cognito/authorizer-example/front
+result=$?
+if [ $result -ne 0 ]; then
+  cd "${CUR}"
+  exit $result
+fi
+echo ""
+pwd
+yarn install && yarn upgrade
+result=$?
+if [ $result -ne 0 ]; then
+  cd "${CUR}"
+  exit $result
+fi
+
 cd "${CURRENT}"/cognito/cognito-admin/app
 result=$?
 if [ $result -ne 0 ]; then

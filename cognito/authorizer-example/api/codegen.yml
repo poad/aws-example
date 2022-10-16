@@ -1,0 +1,16 @@
+override: true
+schema: "../schema.gql"
+documents: null
+generates:
+  lambda/graphql/types/generated/graphql.ts:
+    congig:
+      useIndexSignature: true
+      strictScalars: true
+    plugins:
+      - "typescript"
+      - "typescript-resolvers"
+      - "typescript-validation-schema"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"
+      - "jsdoc"

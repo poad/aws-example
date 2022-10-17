@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import Status from '../fetch/components/status';
 
-const GraphqlFetch = () => {
+const GraphQLFetch = () => {
   const { loading, error, data } = useQuery(gql`
   query Query {
     username
@@ -23,4 +23,4 @@ const GraphqlFetch = () => {
   );
 };
 
-export default GraphqlFetch;
+export default GraphQLFetch;

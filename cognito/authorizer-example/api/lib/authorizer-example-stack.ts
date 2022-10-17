@@ -3,7 +3,7 @@ import { WebSocketLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integratio
 import * as cdk from 'aws-cdk-lib';
 import { Duration, RemovalPolicy } from 'aws-cdk-lib';
 import {
-  CognitoUserPoolsAuthorizer, Cors, EndpointType, LambdaIntegration, RestApi,
+  CognitoUserPoolsAuthorizer, Cors, EndpointType, GatewayResponse, LambdaIntegration, ResponseType, RestApi,
 } from 'aws-cdk-lib/aws-apigateway';
 import {
   AccountRecovery, CfnIdentityPool, CfnIdentityPoolRoleAttachment, Mfa, OAuthScope, UserPool, UserPoolClient,
@@ -347,6 +347,34 @@ export class AuthorizerExampleStack extends cdk.Stack {
         authorizer,
       },
     );
+
+    // eslint-disable-next-line no-new
+    new GatewayResponse(this, 'UnauthorizedGatewayResponse', {
+      restApi: api,
+      type: ResponseType.UNAUTHORIZED,
+      statusCode: '401',
+      responseHeaders: {
+        'Access-Control-Allow-Origin': '\'*\'',
+      },
+    });
+
+    // eslint-disable-next-line no-new
+    new GatewayResponse(this, 'ClientErrorGatewayResponse', {
+      restApi: api,
+      type: ResponseType.DEFAULT_4XX,
+      responseHeaders: {
+        'Access-Control-Allow-Origin': '\'*\'',
+      },
+    });
+
+    // eslint-disable-next-line no-new
+    new GatewayResponse(this, 'ServerErrorGatewayResponse', {
+      restApi: api,
+      type: ResponseType.DEFAULT_5XX,
+      responseHeaders: {
+        'Access-Control-Allow-Origin': '\'*\'',
+      },
+    });
 
     new WebSocketApi(this, 'WebSocketApi', {
       apiName: `AuthorizerExample Server Lambda WebSocket API (${environment})`,

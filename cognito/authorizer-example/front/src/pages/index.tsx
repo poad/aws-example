@@ -9,7 +9,7 @@ import styles from '../styles/Home.module.css'
 import awsconfig from '../aws-config';
 import useSession from '../auth/hooks/useSession';
 import Fetch from '../fetch/components';
-import GraphqlFetch from '../graphql';
+import GraphQLFetch from '../graphql';
 
 Amplify.configure(awsconfig);
 
@@ -41,7 +41,7 @@ const Home: NextPage<HomeProps> = (props?: HomeProps): JSX.Element => {
         </div>
 
         <h2>GraphQL</h2>
-        <GraphqlFetch />
+        <GraphQLFetch />
 
       </main>
 

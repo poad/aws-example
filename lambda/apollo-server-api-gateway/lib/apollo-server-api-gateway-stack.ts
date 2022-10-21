@@ -1,5 +1,8 @@
-import { HttpApi, HttpMethod, WebSocketApi } from '@aws-cdk/aws-apigatewayv2-alpha';
-import { HttpLambdaIntegration, WebSocketLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
+import { WebSocketApi } from '@aws-cdk/aws-apigatewayv2-alpha';
+import { WebSocketLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
+import {
+  Cors, EndpointType, GatewayResponse, LambdaIntegration, ResponseType, RestApi,
+} from 'aws-cdk-lib/aws-apigateway';
 import * as cdk from 'aws-cdk-lib';
 import { RemovalPolicy } from 'aws-cdk-lib';
 import {
@@ -32,6 +35,9 @@ export class ApolloServerApiGatewayStack extends cdk.Stack {
       entry: './lambda/index.ts',
       functionName,
       retryAttempts: 0,
+      environment: {
+        NODE_OPTIONS: '--enable-source-maps',
+      },
       bundling: {
         minify: true,
         sourceMap: true,
@@ -48,7 +54,7 @@ export class ApolloServerApiGatewayStack extends cdk.Stack {
           afterBundling(inputDir: string, outputDir: string): string[] {
             return [
               // スキーマ定義を追加
-              `cp ${inputDir}/core/schema.graphqls ${outputDir}`,
+              `cp ${inputDir}/../schema.graphqls ${outputDir}`,
             ];
           },
         },
@@ -71,19 +77,61 @@ export class ApolloServerApiGatewayStack extends cdk.Stack {
         },
       }),
     });
-    new HttpApi(this, 'HttpApi', {
-      apiName: `Apollo Server Lambda Http API (${environment})`,
-      defaultIntegration: new HttpLambdaIntegration(
-        'default-handler',
+
+    const api = new RestApi(this, 'RestApi', {
+      restApiName: `Apollo Server Lambda API (${environment})`,
+      deployOptions: {
+        stageName: 'default',
+      },
+      endpointConfiguration: {
+        types: [
+          EndpointType.REGIONAL,
+        ],
+      },
+      defaultCorsPreflightOptions: {
+        allowOrigins: Cors.ALL_ORIGINS,
+        allowMethods: Cors.ALL_METHODS,
+        allowHeaders: Cors.DEFAULT_HEADERS,
+        allowCredentials: true,
+        disableCache: true,
+        statusCode: 204,
+      },
+    });
+    api.deploymentStage.urlForPath('/');
+
+    api.root.addMethod(
+      'ANY',
+      new LambdaIntegration(
         apolloFn,
       ),
-    }).addRoutes({
-      path: '/',
-      methods: [HttpMethod.GET, HttpMethod.POST],
-      integration: new HttpLambdaIntegration(
-        'api-handler',
-        apolloFn,
-      ),
+    );
+
+    // eslint-disable-next-line no-new
+    new GatewayResponse(this, 'UnauthorizedGatewayResponse', {
+      restApi: api,
+      type: ResponseType.UNAUTHORIZED,
+      statusCode: '401',
+      responseHeaders: {
+        'Access-Control-Allow-Origin': '\'*\'',
+      },
+    });
+
+    // eslint-disable-next-line no-new
+    new GatewayResponse(this, 'ClientErrorGatewayResponse', {
+      restApi: api,
+      type: ResponseType.DEFAULT_4XX,
+      responseHeaders: {
+        'Access-Control-Allow-Origin': '\'*\'',
+      },
+    });
+
+    // eslint-disable-next-line no-new
+    new GatewayResponse(this, 'ServerErrorGatewayResponse', {
+      restApi: api,
+      type: ResponseType.DEFAULT_5XX,
+      responseHeaders: {
+        'Access-Control-Allow-Origin': '\'*\'',
+      },
     });
 
     new WebSocketApi(this, 'WebSocketApi', {

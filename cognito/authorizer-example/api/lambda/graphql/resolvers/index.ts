@@ -9,21 +9,21 @@ const logger = log4js.getLogger();
 
 const resolvers: Resolvers = {
   Query: {
-    username: (_: unknown, __: unknown, { event }: { event: APIGatewayProxyEvent }) => {
-      logger.info(`context: ${JSON.stringify(event)}`);
-      return event.requestContext.authorizer?.claims['cognito:username'];
+    username: (_: unknown, __: unknown, context: unknown) => {
+      logger.info(`event: ${JSON.stringify(context)}`);
+      return (context as { event: APIGatewayProxyEvent }).event.requestContext.authorizer?.claims['cognito:username'];
     },
-    email: (_: unknown, __: unknown, { event }: { event: APIGatewayProxyEvent }) => {
-      logger.info(`context: ${JSON.stringify(event)}`);
+    email: (_: unknown, __: unknown, context: unknown) => {
+      logger.info(`event: ${JSON.stringify(context)}`);
 
-      const { authorizer } = event.requestContext;
+      const { authorizer } = (context as { event: APIGatewayProxyEvent }).event.requestContext;
       const email = authorizer?.claims.email;
       return email || null;
     },
-    github: async (_: unknown, __: unknown, { event }: { event: APIGatewayProxyEvent }): Promise<{ username: string | null }> => {
-      logger.info(`context: ${JSON.stringify(event)}`);
+    github: async (_: unknown, __: unknown, context: unknown): Promise<{ username: string | null }> => {
+      logger.info(`event: ${JSON.stringify(context)}`);
 
-      const { authorizer } = event.requestContext;
+      const { authorizer } = (context as { event: APIGatewayProxyEvent }).event.requestContext;
       const username = authorizer?.claims['cognito:username'];
       const iss = authorizer?.claims.iss;
       const index = iss?.lastIndexOf('amazonaws.com/');
@@ -41,10 +41,10 @@ const resolvers: Resolvers = {
     },
   },
   GitHub: {
-    username: async (parent: unknown, _: unknown, { event }: { event: APIGatewayProxyEvent }): Promise<string | null> => {
-      logger.info(`parent: ${JSON.stringify(parent)} context: ${JSON.stringify(event)}`);
+    username: async (parent: unknown, _: unknown, context: unknown): Promise<string | null> => {
+      logger.info(`parent: ${JSON.stringify(parent)} event: ${JSON.stringify(context)}`);
 
-      const { authorizer } = event.requestContext;
+      const { authorizer } = (context as { event: APIGatewayProxyEvent }).event.requestContext;
       const username = authorizer?.claims['cognito:username'];
       const iss = authorizer?.claims.iss;
       const index = iss?.lastIndexOf('amazonaws.com/');

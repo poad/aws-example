@@ -1,6 +1,7 @@
-import { gql, ApolloServer } from 'apollo-server-lambda';
+import { ApolloServer } from '@apollo/server';
+import { startServerAndCreateLambdaHandler } from '@as-integrations/aws-lambda';
 
-const typeDefs = gql`
+const typeDefs = `#graphql
   type Query {
     hello: String
   }
@@ -19,4 +20,9 @@ const server = new ApolloServer({
 });
 
 // eslint-disable-next-line import/prefer-default-export
-export const handler = server.createHandler();
+export const handler = startServerAndCreateLambdaHandler(server, {
+  context: async ({ event, context }) => ({
+    event,
+    context,
+  }),
+});

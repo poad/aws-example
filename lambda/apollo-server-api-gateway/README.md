@@ -14,11 +14,10 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
 ### test locally (mo working)
 
-```
+```sh
 sam local start-lambda -t ./cdk.out/ApolloServerApiGatewayStack.template.json
 ```
 
-```
+```sh
 sam local invoke -t ./cdk.out/ApolloServerApiGatewayStack.template.json ApolloLambdaFunction
 ```
-

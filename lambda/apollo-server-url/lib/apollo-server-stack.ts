@@ -1,4 +1,4 @@
-import { Stack, StackProps } from 'aws-cdk-lib';
+import { RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
 import {
   Role, ServicePrincipal, PolicyDocument, PolicyStatement, Effect,
 } from 'aws-cdk-lib/aws-iam';
@@ -19,6 +19,7 @@ export class ApolloServerStack extends Stack {
     const logGroup = new LogGroup(this, 'ApolloServerLambdaFnLogGroup', {
       logGroupName,
       retention: RetentionDays.ONE_DAY,
+      removalPolicy: RemovalPolicy.DESTROY,
     });
 
     const fn = new NodejsFunction(this, 'ApolloServerLambdaFn', {

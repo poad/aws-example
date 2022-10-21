@@ -1,4 +1,5 @@
-import { ApolloServer } from 'apollo-server-lambda';
+import { ApolloServer } from '@apollo/server';
+import { startServerAndCreateLambdaHandler } from '@as-integrations/aws-lambda';
 import * as log4js from 'log4js';
 import schemaWithResolvers from '../core';
 
@@ -11,13 +12,9 @@ const schema = schemaWithResolvers;
 const server = new ApolloServer({
   schema,
   introspection: true,
-  context: ({ event, context }) => ({
-    headers: event.headers,
-    functionName: context.functionName,
-    event,
-    context,
-  }),
 });
 
 // eslint-disable-next-line  import/prefer-default-export
-export const handler = server.createHandler();
+export const handler = startServerAndCreateLambdaHandler(server);
+
+export default handler;

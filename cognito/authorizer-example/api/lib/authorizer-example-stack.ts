@@ -200,6 +200,9 @@ export class AuthorizerExampleStack extends cdk.Stack {
       entry: './lambda/rest/index.ts',
       functionName: restFunctionName,
       retryAttempts: 0,
+      environment: {
+        NODE_OPTIONS: '--enable-source-maps',
+      },
       bundling: {
         minify: true,
         sourceMap: true,
@@ -250,6 +253,9 @@ export class AuthorizerExampleStack extends cdk.Stack {
       entry: './lambda/graphql/index.ts',
       functionName: graphqlFunctionName,
       retryAttempts: 0,
+      environment: {
+        NODE_OPTIONS: '--enable-source-maps',
+      },
       bundling: {
         minify: true,
         sourceMap: true,

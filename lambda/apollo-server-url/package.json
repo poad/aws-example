@@ -12,8 +12,11 @@
     "lint": "eslint --ext .ts,.gql ./lambda ./bin ./lib"
   },
   "devDependencies": {
+    "@apollo/server": "*",
+    "@as-integrations/aws-lambda": "*",
     "@swc/core": "*",
     "@swc/helpers": "*",
+    "@types/cors": "*",
     "@types/jest": "*",
     "@types/node": "*",
     "@typescript-eslint/eslint-plugin": "*",
@@ -34,7 +37,6 @@
     "typescript": "*"
   },
   "dependencies": {
-    "apollo-server-lambda": "*",
     "aws-cdk-lib": "*",
     "aws-lambda": "*",
     "constructs": "*",

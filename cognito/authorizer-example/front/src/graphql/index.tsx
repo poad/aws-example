@@ -14,7 +14,7 @@ const GraphQLFetch = () => {
   `);
 
   if (loading) return <p>Loading ...</p>;
-  if (error) return <p><Status status={false} /></p>;
+  if (error) return <div><Status status={false} /></div>;
   return (
     <>
       <Status status={true} />

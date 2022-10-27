@@ -2,21 +2,21 @@
 
 CUR=$(pwd)
 
-CURRENT=$(cd $(dirname $0);pwd)
+CURRENT=$(cd "$(dirname "$0")" || exit;pwd)
 echo "${CURRENT}"
 
-cd "${CURRENT}"
+cd "${CURRENT}" || exit
 git pull --prune
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/common/cognito-singin
+cd "${CURRENT}"/common/cognito-singin || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -24,14 +24,14 @@ pwd
 yarn install && yarn upgrade && yarn build
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/amplify/amplified_todo
+cd "${CURRENT}"/amplify/amplified_todo || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -39,14 +39,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/amplify/amplify_nextapp
+cd "${CURRENT}"/amplify/amplify_nextapp || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -54,14 +54,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/amplify/amplify-cdk/app
+cd "${CURRENT}"/amplify/amplify-cdk/app || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -69,14 +69,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/amplify/amplify-cdk/infra
+cd "${CURRENT}"/amplify/amplify-cdk/infra || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -84,14 +84,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/cloud9
+cd "${CURRENT}"/cloud9 || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -99,14 +99,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/codebuild/codebuild-webhook-project/infra
+cd "${CURRENT}"/codebuild/codebuild-webhook-project/infra || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -114,14 +114,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/codebuild/custom-image-test
+cd "${CURRENT}"/codebuild/custom-image-test || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -129,14 +129,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/codepipeline/adoptium-temurin-jib/infra
+cd "${CURRENT}"/codepipeline/adoptium-temurin-jib/infra || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -144,14 +144,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/codepipeline/codebuild-custom-image/java-adopt-base/infra
+cd "${CURRENT}"/codepipeline/codebuild-custom-image/java-adopt-base/infra || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -159,14 +159,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/codepipeline/codebuild-github-tag/infra
+cd "${CURRENT}"/codepipeline/codebuild-github-tag/infra || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -174,14 +174,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/codepipeline/docker-build/infra
+cd "${CURRENT}"/codepipeline/docker-build/infra || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -189,14 +189,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/codepipeline/vulnerability-scan/infra
+cd "${CURRENT}"/codepipeline/vulnerability-scan/infra || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -204,14 +204,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/cognito/authorizer-example/api
+cd "${CURRENT}"/cognito/authorizer-example/api || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -219,14 +219,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/cognito/authorizer-example/front
+cd "${CURRENT}"/cognito/authorizer-example/front || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -234,14 +234,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/cognito/cognito-admin/app
+cd "${CURRENT}"/cognito/cognito-admin/app || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -249,14 +249,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/cognito/cognito-admin/infra
+cd "${CURRENT}"/cognito/cognito-admin/infra || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -264,14 +264,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/cognito/cognito-saml-next-js/webapp
+cd "${CURRENT}"/cognito/cognito-saml-next-js/webapp || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -279,14 +279,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/cognito/cognito-saml-next-js/infra
+cd "${CURRENT}"/cognito/cognito-saml-next-js/infra || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -294,14 +294,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/cognito/tiny-device-flow
+cd "${CURRENT}"/cognito/tiny-device-flow || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -309,14 +309,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/cognito/tiny-device-flow/pages
+cd "${CURRENT}"/cognito/tiny-device-flow/pages || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -324,14 +324,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/infra/ecs
+cd "${CURRENT}"/infra/ecs || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -339,14 +339,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/infra/s3
+cd "${CURRENT}"/infra/s3 || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -354,14 +354,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/lambda/apollo-server-api-gateway
+cd "${CURRENT}"/lambda/apollo-server-api-gateway || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -369,14 +369,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/lambda/apollo-server-url
+cd "${CURRENT}"/lambda/apollo-server-url || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -384,14 +384,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/lambda/eventbridge-lambda
+cd "${CURRENT}"/lambda/eventbridge-lambda || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -399,14 +399,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/lambda/lambda-examples
+cd "${CURRENT}"/lambda/lambda-examples || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -414,14 +414,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/lambda/lambda-examples/lambda/container/simple
+cd "${CURRENT}"/lambda/lambda-examples/lambda/container/simple || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -429,14 +429,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/lambda/layer/functions/function
+cd "${CURRENT}"/lambda/layer/functions/function || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -444,14 +444,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/lambda/layer/functions/function/handler
+cd "${CURRENT}"/lambda/layer/functions/function/handler || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -459,14 +459,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/lambda/layer/layer
+cd "${CURRENT}"/lambda/layer/layer || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -474,14 +474,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/lambda/layer/layer/src/nodejs
+cd "${CURRENT}"/lambda/layer/layer/src/nodejs || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -489,14 +489,14 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"/node-sign-v4
+cd "${CURRENT}"/node-sign-v4 || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 echo ""
@@ -504,21 +504,22 @@ pwd
 yarn install && yarn upgrade
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CURRENT}"
+cd "${CURRENT}" || exit
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
+git pull --prune
 git commit -am "Bumps node modules" && git push
 result=$?
 if [ $result -ne 0 ]; then
-  cd "${CUR}"
+  cd "${CUR}" || exit
   exit $result
 fi
 
-cd "${CUR}"
+cd "${CUR}" || exit

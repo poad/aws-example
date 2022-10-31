@@ -489,7 +489,18 @@
     "@aws-sdk/types" "3.198.0"
     tslib "^2.3.1"
 
-"@aws-sdk/node-http-handler@*", "@aws-sdk/node-http-handler@3.198.0":
+"@aws-sdk/node-http-handler@*":
+  version "3.199.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/node-http-handler/-/node-http-handler-3.199.0.tgz#5bfd5456d2cd06293a4000ca0e47f89a72d32e84"
+  integrity sha512-F+6T7MHHm0b3+GVRxEnFCuIyqUQb0b8a3Hne3QFV4cxtnX58O/SSF8KlpuGZwobivdRC/AKDaTdI/eA0PQfegA==
+  dependencies:
+    "@aws-sdk/abort-controller" "3.198.0"
+    "@aws-sdk/protocol-http" "3.198.0"
+    "@aws-sdk/querystring-builder" "3.199.0"
+    "@aws-sdk/types" "3.198.0"
+    tslib "^2.3.1"
+
+"@aws-sdk/node-http-handler@3.198.0":
   version "3.198.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/node-http-handler/-/node-http-handler-3.198.0.tgz#a04c6c389b09a5c4d0278fa18db5c59037346c67"
   integrity sha512-RTiXbJ1r2O4K7oRjkakqILC71F2vPkoJcDuvOnD8Dde7hO/eIU4OCyGM2WOGsa9AtmQBoqq6x0myrlgTbiTEyQ==
@@ -520,6 +531,15 @@
   version "3.198.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/querystring-builder/-/querystring-builder-3.198.0.tgz#cd1bdfb910a9385c8eaeba6d3492051a42d7aeb7"
   integrity sha512-FNM+fVuGkdB9znSoSBmHWXQwnVAJsKKch1ewx1hwabh9dXxE6N1XGqRxw/T0KYHV929A4h57fgdfyKV8TLKWNg==
+  dependencies:
+    "@aws-sdk/types" "3.198.0"
+    "@aws-sdk/util-uri-escape" "3.188.0"
+    tslib "^2.3.1"
+
+"@aws-sdk/querystring-builder@3.199.0":
+  version "3.199.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/querystring-builder/-/querystring-builder-3.199.0.tgz#6b43704a5bba0ea78f91dae2f77812b4d406d675"
+  integrity sha512-P4MWPzCqtH3sgI9iXXVdYirYVgggtg4uq5MVefnfHW+osZu8ZR+UKJw5ojAFfOCqcnKOU/xJjz185RroOjrzYQ==
   dependencies:
     "@aws-sdk/types" "3.198.0"
     "@aws-sdk/util-uri-escape" "3.188.0"

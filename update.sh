@@ -21,7 +21,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade && yarn build
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R && yarn build
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -36,7 +36,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -51,7 +51,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -66,7 +66,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -81,7 +81,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -96,7 +96,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -111,7 +111,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -126,7 +126,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -141,7 +141,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -156,7 +156,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -171,7 +171,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -186,7 +186,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -201,7 +201,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -216,7 +216,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -231,7 +231,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -246,7 +246,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -261,7 +261,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -276,7 +276,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -291,7 +291,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -306,7 +306,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -321,7 +321,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -336,7 +336,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -351,7 +351,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -366,7 +366,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -381,7 +381,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -396,7 +396,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -411,7 +411,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -426,7 +426,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -441,7 +441,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -456,7 +456,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -471,7 +471,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -486,7 +486,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -501,7 +501,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn upgrade
+rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit

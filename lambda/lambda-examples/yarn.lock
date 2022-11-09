@@ -115,7 +115,7 @@ __metadata:
 
 "@aws-example-common/cognito-singin@file:../../common/cognito-singin/::locator=lambda-examples%40workspace%3A.":
   version: 0.0.1
-  resolution: "@aws-example-common/cognito-singin@file:../../common/cognito-singin/#../../common/cognito-singin/::hash=542716&locator=lambda-examples%40workspace%3A."
+  resolution: "@aws-example-common/cognito-singin@file:../../common/cognito-singin/#../../common/cognito-singin/::hash=31ec4d&locator=lambda-examples%40workspace%3A."
   dependencies:
     "@aws-sdk/client-cognito-identity": "*"
     "@aws-sdk/client-cognito-identity-provider": "*"
@@ -132,7 +132,7 @@ __metadata:
     jsonwebtoken: "*"
     jwks-rsa: "*"
     source-map-support: "*"
-  checksum: 6933a0ea17d347bd06a49647d922afaf5dca5f37c9988df2e4635383757bc7153f460c9efdbbfa8fbf2846b6c1d3a8e8196c2ae6153e405f1b0a7681936ba502
+  checksum: b113fa3477bab00a2117c11d4308185777acc1dbae8674ec5853238c0cf0f6391c71bc4e8fa5739dab27f68556369bff9e212bb0ae3187205f5734fbf8d403c8
   languageName: node
   linkType: hard
 
@@ -1634,6 +1634,20 @@ __metadata:
     "@types/yargs": ^17.0.8
     chalk: ^4.0.0
   checksum: a83f20727425179aa05974aa7553c307d207fbb6b7ae5ab1e37fbb6ba9b6655f26655301fc804f2545d33f4c4a6b59d41eed1737c005d2b83fce9e14841b4150
+  languageName: node
+  linkType: hard
+
+"@jest/types@npm:^29.3.1":
+  version: 29.3.1
+  resolution: "@jest/types@npm:29.3.1"
+  dependencies:
+    "@jest/schemas": ^29.0.0
+    "@types/istanbul-lib-coverage": ^2.0.0
+    "@types/istanbul-reports": ^3.0.0
+    "@types/node": "*"
+    "@types/yargs": ^17.0.8
+    chalk: ^4.0.0
+  checksum: 6f9faf27507b845ff3839c1adc6dbd038d7046d03d37e84c9fc956f60718711a801a5094c7eeee6b39ccf42c0ab61347fdc0fa49ab493ae5a8efd2fd41228ee8
   languageName: node
   linkType: hard
 
@@ -4979,10 +4993,10 @@ __metadata:
   linkType: hard
 
 "jest-haste-map@npm:^29.3.0":
-  version: 29.3.0
-  resolution: "jest-haste-map@npm:29.3.0"
+  version: 29.3.1
+  resolution: "jest-haste-map@npm:29.3.1"
   dependencies:
-    "@jest/types": ^29.2.1
+    "@jest/types": ^29.3.1
     "@types/graceful-fs": ^4.1.3
     "@types/node": "*"
     anymatch: ^3.0.3
@@ -4990,14 +5004,14 @@ __metadata:
     fsevents: ^2.3.2
     graceful-fs: ^4.2.9
     jest-regex-util: ^29.2.0
-    jest-util: ^29.2.1
-    jest-worker: ^29.3.0
+    jest-util: ^29.3.1
+    jest-worker: ^29.3.1
     micromatch: ^4.0.4
     walker: ^1.0.8
   dependenciesMeta:
     fsevents:
       optional: true
-  checksum: 5e979a70f3d881efefa8979e6b00f1efec04cbda6fcc7fb8d52495269386676d2c571e4c43d325e43c53ce60913d85f114121c6cc8c2173c3e6fb75486d04444
+  checksum: 97ea26af0c28a2ba568c9c65d06211487bbcd501cb4944f9d55e07fd2b00ad96653ea2cc9033f3d5b7dc1feda33e47ae9cc56b400191ea4533be213c9f82e67c
   languageName: node
   linkType: hard
 
@@ -5202,6 +5216,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jest-util@npm:^29.3.1":
+  version: 29.3.1
+  resolution: "jest-util@npm:29.3.1"
+  dependencies:
+    "@jest/types": ^29.3.1
+    "@types/node": "*"
+    chalk: ^4.0.0
+    ci-info: ^3.2.0
+    graceful-fs: ^4.2.9
+    picomatch: ^2.2.3
+  checksum: f67c60f062b94d21cb60e84b3b812d64b7bfa81fe980151de5c17a74eb666042d0134e2e756d099b7606a1fcf1d633824d2e58197d01d76dde1e2dc00dfcd413
+  languageName: node
+  linkType: hard
+
 "jest-validate@npm:^29.2.2":
   version: 29.2.2
   resolution: "jest-validate@npm:29.2.2"
@@ -5241,6 +5269,18 @@ __metadata:
     merge-stream: ^2.0.0
     supports-color: ^8.0.0
   checksum: 2db3d4c159cc5bc581d6dddbd6863e8d5011a75132724ed2fcacaf9321cf2673e0bd0bb80245ec1c97f4671974f008de27b22dfb1fa86617aed117270ae35da3
+  languageName: node
+  linkType: hard
+
+"jest-worker@npm:^29.3.1":
+  version: 29.3.1
+  resolution: "jest-worker@npm:29.3.1"
+  dependencies:
+    "@types/node": "*"
+    jest-util: ^29.3.1
+    merge-stream: ^2.0.0
+    supports-color: ^8.0.0
+  checksum: 38687fcbdc2b7ddc70bbb5dfc703ae095b46b3c7f206d62ecdf5f4d16e336178e217302138f3b906125576bb1cfe4cfe8d43681276fa5899d138ed9422099fb3
   languageName: node
   linkType: hard
 

@@ -48,6 +48,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@apollo/protobufjs@npm:1.2.7":
+  version: 1.2.7
+  resolution: "@apollo/protobufjs@npm:1.2.7"
+  dependencies:
+    "@protobufjs/aspromise": ^1.1.2
+    "@protobufjs/base64": ^1.1.2
+    "@protobufjs/codegen": ^2.0.4
+    "@protobufjs/eventemitter": ^1.1.0
+    "@protobufjs/fetch": ^1.1.0
+    "@protobufjs/float": ^1.0.2
+    "@protobufjs/inquire": ^1.1.0
+    "@protobufjs/path": ^1.1.2
+    "@protobufjs/pool": ^1.1.0
+    "@protobufjs/utf8": ^1.1.0
+    "@types/long": ^4.0.0
+    long: ^4.0.0
+  bin:
+    apollo-pbjs: bin/pbjs
+    apollo-pbts: bin/pbts
+  checksum: e01a33984ae06d6679f6796bb44e55260112ddd090ebc9f87d3f952c45153dd5df5c91ac4bf91ba60fb72ff8c1218059ce4bf8bb2eb08c5049c783de0098eec0
+  languageName: node
+  linkType: hard
+
 "@apollo/server-gateway-interface@npm:^1.0.5":
   version: 1.0.5
   resolution: "@apollo/server-gateway-interface@npm:1.0.5"
@@ -99,11 +122,11 @@ __metadata:
   linkType: hard
 
 "@apollo/usage-reporting-protobuf@npm:^4.0.0":
-  version: 4.0.1
-  resolution: "@apollo/usage-reporting-protobuf@npm:4.0.1"
+  version: 4.0.2
+  resolution: "@apollo/usage-reporting-protobuf@npm:4.0.2"
   dependencies:
-    "@apollo/protobufjs": 1.2.6
-  checksum: 0028bdd726ce36a33e89923fa6166ebf214c5b28d770e09b8d0868a20d07cdc793cd01fe206f0c7408b8c7bb6d34de1f71961c681c259c3e6d443d6d2963fa82
+    "@apollo/protobufjs": 1.2.7
+  checksum: 1c5d6db42f05b4f9f2254eab2283287083a7d8575a7e17e291683768733e29bf4a0c2810a341aedfd639c4ae6fb23253e2a505c628c5cf4f3e12b9770263264c
   languageName: node
   linkType: hard
 
@@ -288,22 +311,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-lambda-powertools/commons@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "@aws-lambda-powertools/commons@npm:1.4.0"
-  checksum: 1bcf533c00689552cfdb54131c11006f820aa84f9aabeba259a3cc3985f8270cabf10e8aec35e3873f94fc907792e5c04a2c28927b29165b1e3cea6d85780b7f
+"@aws-lambda-powertools/commons@npm:^1.4.1":
+  version: 1.4.1
+  resolution: "@aws-lambda-powertools/commons@npm:1.4.1"
+  checksum: 5422852a80d9eb11633e7e607a10808e8521888d2c10c139201ef48416362c29436997ffc2f1591ab9b4c93e5690085dd0d1ba9df9000454272e37a7f505b4c4
   languageName: node
   linkType: hard
 
 "@aws-lambda-powertools/logger@npm:*":
-  version: 1.4.0
-  resolution: "@aws-lambda-powertools/logger@npm:1.4.0"
+  version: 1.4.1
+  resolution: "@aws-lambda-powertools/logger@npm:1.4.1"
   dependencies:
-    "@aws-lambda-powertools/commons": ^1.4.0
+    "@aws-lambda-powertools/commons": ^1.4.1
     lodash.clonedeep: ^4.5.0
     lodash.merge: ^4.6.2
     lodash.pickby: ^4.6.0
-  checksum: b645407050cbbc3fe419328b567ff1b79c231326fb6d5474d8ba707daf1fa01791f305ddff767d8a2593535e96e746ff11da41d0cc474f4d55bd9dd8fd967463
+  checksum: 7b7c5e1f13f9fea69e240c4ec60cf6fc50688442889ee04e65ac4a359359151a05737305073e9a258cc0846480b0b839a7001dc0b16aa72cce83f9d1580d8f0b
   languageName: node
   linkType: hard
 
@@ -3293,8 +3316,8 @@ __metadata:
   linkType: hard
 
 "aws-sdk@npm:^2.814.0":
-  version: 2.1250.0
-  resolution: "aws-sdk@npm:2.1250.0"
+  version: 2.1251.0
+  resolution: "aws-sdk@npm:2.1251.0"
   dependencies:
     buffer: 4.9.2
     events: 1.1.1
@@ -3306,7 +3329,7 @@ __metadata:
     util: ^0.12.4
     uuid: 8.0.0
     xml2js: 0.4.19
-  checksum: d08ebd004a8006dfe3388f1538e443dbac5151303a7918e8f3d6b7243ac11e4b96895e8f1f561a4b5f088754b37c6d447011880870211f116c0e7c9a74439465
+  checksum: 5731901021d4cc3e5260ab015c6c75be62891897a61593f71a3c8edc4200479ce88a4269be343b74af4d98a2282d49971b25cc0bced1dc103311a4109563eccd
   languageName: node
   linkType: hard
 
@@ -3985,9 +4008,9 @@ __metadata:
   linkType: hard
 
 "constructs@npm:*":
-  version: 10.1.154
-  resolution: "constructs@npm:10.1.154"
-  checksum: c460562602067958b1f031fee1c2cd19778a4fe79bcec4275c61fb56323be029feaa62c7e3c8f4c030ef67da3fd4f122dcf366d5d4e07d43d133a894b09bd159
+  version: 10.1.155
+  resolution: "constructs@npm:10.1.155"
+  checksum: 3a14aa57a7f1917db4da6b169e276b3598188080459c1ce79706e504fbc819c5067e884061097233be403286437c0a7117cc0c7de316d0d7f1914f847afe232a
   languageName: node
   linkType: hard
 

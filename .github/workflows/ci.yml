@@ -82,8 +82,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm i -g yarn@^1 aws-cdk typescript
+    - run: yarn config set -H enableImmutableInstalls false
     - name: build
       env:
         BASE_PATH: /oauth/device/activate
       working-directory: ${{ matrix.target }}
-      run: yarn install --immutable && yarn build
+      run: yarn install && yarn build

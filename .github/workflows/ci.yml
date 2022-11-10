@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [16.x, 18.x]
         target: [
           ./common/cognito-singin,
           ./amplify/amplify_nextapp,
@@ -81,9 +81,9 @@ jobs:
       uses: actions/setup-node@v3.5.1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm i -g yarn aws-cdk typescript
+    - run: npm i -g yarn@^1 aws-cdk typescript
     - name: build
       env:
         BASE_PATH: /oauth/device/activate
       working-directory: ${{ matrix.target }}
-      run: yarn install && yarn build
+      run: yarn install --immutable && yarn build

@@ -1,42 +1,43 @@
 {
-    "name": "amplified_todo",
-    "version": "0.0.1",
-    "private": true,
-    "scripts": {
-        "android": "react-native run-android",
-        "ios": "react-native run-ios",
-        "start": "react-native start",
-        "test": "jest",
-        "lint": "eslint .",
-        "amplify-modelgen": "node amplify/scripts/amplify-modelgen.js",
-        "amplify-push": "node amplify/scripts/amplify-push.js"
-    },
-    "dependencies": {
-        "@react-native-async-storage/async-storage": "*",
-        "@react-native-community/netinfo": "*",
-        "@react-native-picker/picker": "*",
-        "amazon-cognito-identity-js": "*",
-        "aws-amplify": "*",
-        "aws-amplify-react-native": "*",
-        "react": "*",
-        "react-native": "*",
-        "typescript": "*"
-    },
-    "devDependencies": {
-        "@babel/core": "*",
-        "@babel/runtime": "*",
-        "@react-native-community/eslint-config": "*",
-        "@types/react": "*",
-        "@types/react-native": "*",
-        "babel-jest": "*",
-        "eslint": "*",
-        "ini": "*",
-        "inquirer": "*",
-        "jest": "*",
-        "metro-react-native-babel-preset": "*",
-        "react-test-renderer": "*"
-    },
-    "jest": {
-        "preset": "react-native"
-    }
+  "name": "amplified_todo",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint .",
+    "amplify-modelgen": "node amplify/scripts/amplify-modelgen.js",
+    "amplify-push": "node amplify/scripts/amplify-push.js"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "*",
+    "@react-native-community/netinfo": "*",
+    "@react-native-picker/picker": "*",
+    "amazon-cognito-identity-js": "*",
+    "aws-amplify": "*",
+    "aws-amplify-react-native": "*",
+    "react": "*",
+    "react-native": "*",
+    "typescript": "*"
+  },
+  "devDependencies": {
+    "@babel/core": "*",
+    "@babel/runtime": "*",
+    "@react-native-community/eslint-config": "*",
+    "@types/react": "*",
+    "@types/react-native": "*",
+    "babel-jest": "*",
+    "eslint": "*",
+    "ini": "*",
+    "inquirer": "*",
+    "jest": "*",
+    "metro-react-native-babel-preset": "*",
+    "react-test-renderer": "*"
+  },
+  "packageManager": "yarn@3.2.4",
+  "jest": {
+    "preset": "react-native"
+  }
 }

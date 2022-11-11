@@ -46,7 +46,6 @@ jobs:
       matrix:
         node-version: [16.x, 18.x]
         target: [
-          ./common/cognito-singin,
           ./amplify/amplify_nextapp,
           ./amplify/amplify-cdk/app,
           ./amplify/amplify-cdk/infra,
@@ -72,7 +71,8 @@ jobs:
           ./cognito/cognito-admin/infra,
           ./cognito/authorizer-example/api,
           ./cognito/authorizer-example/front,
-          ./node-sign-v4
+          ./node-sign-v4,
+          ./common/cognito-singin
         ]
 
     steps:

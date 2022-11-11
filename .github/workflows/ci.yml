@@ -88,4 +88,4 @@ jobs:
       env:
         BASE_PATH: /oauth/device/activate
       working-directory: ${{ matrix.target }}
-      run: yarn install --frozen-lockfile --immutable && yarn build
+      run: yarn install --immutable && yarn build

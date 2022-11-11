@@ -81,11 +81,11 @@ jobs:
       uses: actions/setup-node@v3.5.1
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
-        cache-dependency-path: ${{ matrix.target }}/yarn.lock
-    - run: npm i -g yarn@^1 aws-cdk typescript
+    - run: npm i -g yarn aws-cdk typescript
+    - run: corepack enable
+    - run: corepack prepare yarn@stable --activate
     - name: build
       env:
         BASE_PATH: /oauth/device/activate
       working-directory: ${{ matrix.target }}
-      run: yarn install --immutable && yarn build
+      run: yarn install && yarn build

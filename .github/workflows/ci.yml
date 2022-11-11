@@ -82,6 +82,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
+        cache-dependency-path: ${{ matrix.target }}/yarn.lock
     - run: npm i -g yarn@^1 aws-cdk typescript
     - name: build
       env:

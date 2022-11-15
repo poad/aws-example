@@ -465,7 +465,7 @@ __metadata:
 
 "@aws-example-common/cognito-singin@file:../../../common/cognito-singin/::locator=%40aws-example%2Fcognito-admin-infra%40workspace%3Acognito%2Fcognito-admin%2Finfra":
   version: 0.0.1
-  resolution: "@aws-example-common/cognito-singin@file:../../../common/cognito-singin/#../../../common/cognito-singin/::hash=57ae11&locator=%40aws-example%2Fcognito-admin-infra%40workspace%3Acognito%2Fcognito-admin%2Finfra"
+  resolution: "@aws-example-common/cognito-singin@file:../../../common/cognito-singin/#../../../common/cognito-singin/::hash=42a705&locator=%40aws-example%2Fcognito-admin-infra%40workspace%3Acognito%2Fcognito-admin%2Finfra"
   dependencies:
     "@aws-sdk/client-cognito-identity": "*"
     "@aws-sdk/client-cognito-identity-provider": "*"
@@ -482,7 +482,7 @@ __metadata:
     jsonwebtoken: "*"
     jwks-rsa: "*"
     source-map-support: "*"
-  checksum: 59f3bc2de9ae92d168b31f0ac78d6ffefc458bfc7680d05bca57c487b0a37455b0563800a6b012820eff0071cd7b4fe344cf2185bae7ecaf613fc73142f5a299
+  checksum: f33e3cae7cd591989669a9b81fe16bf1554eb8eec0dbb257308ea8b6c989527b548274ef18854fda711c32478dbc01c139d4b3d71ce6aee3bf689e3e23265326
   languageName: node
   linkType: hard
 
@@ -526,52 +526,6 @@ __metadata:
     typescript: "*"
   bin:
     cognito-admin-infra: bin/infra.js
-  languageName: unknown
-  linkType: soft
-
-"@aws-example/cognito-admin@workspace:cognito/cognito-admin/app":
-  version: 0.0.0-use.local
-  resolution: "@aws-example/cognito-admin@workspace:cognito/cognito-admin/app"
-  dependencies:
-    "@aws-amplify/ui-react": "*"
-    "@aws-sdk/client-cognito-identity-provider": "*"
-    "@aws-sdk/client-iam": "*"
-    "@aws-sdk/client-sts": "*"
-    "@emotion/react": "*"
-    "@emotion/server": "*"
-    "@emotion/styled": "*"
-    "@mui/icons-material": "*"
-    "@mui/material": "*"
-    "@next/bundle-analyzer": ^13
-    "@stylelint/postcss-css-in-js": "*"
-    "@types/node": "*"
-    "@types/react": "*"
-    "@types/react-loader": "*"
-    "@typescript-eslint/eslint-plugin": "*"
-    "@typescript-eslint/parser": "*"
-    amazon-cognito-identity-js: "*"
-    aws-amplify: "*"
-    cross-fetch: "*"
-    eslint: "*"
-    eslint-config-airbnb-base: "*"
-    eslint-config-airbnb-typescript: "*"
-    eslint-config-import: "*"
-    eslint-config-next: ^13
-    eslint-import-resolver-typescript: "*"
-    eslint-plugin-flowtype: "*"
-    eslint-plugin-import: "*"
-    eslint-plugin-jsx-a11y: "*"
-    eslint-plugin-react: "*"
-    eslint-plugin-react-hooks: "*"
-    next: ^13
-    next-compose-plugins: "*"
-    next-transpile-modules: "*"
-    react: "*"
-    react-dom: "*"
-    react-hook-form: "*"
-    react-loader: "*"
-    typescript: "*"
-    web-vitals: "*"
   languageName: unknown
   linkType: soft
 
@@ -7282,6 +7236,52 @@ __metadata:
   checksum: 5210d9223010eb95b29df06a91116f2cf7c8e0748a9013ed853b53f362ea0e822f1e5bb054fb3cefc645239a4cf966af1f6133a3b43f40d591f3b68ed6cf0510
   languageName: node
   linkType: hard
+
+"cognito-admin@workspace:cognito/cognito-admin/app":
+  version: 0.0.0-use.local
+  resolution: "cognito-admin@workspace:cognito/cognito-admin/app"
+  dependencies:
+    "@aws-amplify/ui-react": "*"
+    "@aws-sdk/client-cognito-identity-provider": "*"
+    "@aws-sdk/client-iam": "*"
+    "@aws-sdk/client-sts": "*"
+    "@emotion/react": "*"
+    "@emotion/server": "*"
+    "@emotion/styled": "*"
+    "@mui/icons-material": "*"
+    "@mui/material": "*"
+    "@next/bundle-analyzer": ^13
+    "@stylelint/postcss-css-in-js": "*"
+    "@types/node": "*"
+    "@types/react": "*"
+    "@types/react-loader": "*"
+    "@typescript-eslint/eslint-plugin": "*"
+    "@typescript-eslint/parser": "*"
+    amazon-cognito-identity-js: "*"
+    aws-amplify: "*"
+    cross-fetch: "*"
+    eslint: "*"
+    eslint-config-airbnb-base: "*"
+    eslint-config-airbnb-typescript: "*"
+    eslint-config-import: "*"
+    eslint-config-next: ^13
+    eslint-import-resolver-typescript: "*"
+    eslint-plugin-flowtype: "*"
+    eslint-plugin-import: "*"
+    eslint-plugin-jsx-a11y: "*"
+    eslint-plugin-react: "*"
+    eslint-plugin-react-hooks: "*"
+    next: ^13
+    next-compose-plugins: "*"
+    next-transpile-modules: "*"
+    react: "*"
+    react-dom: "*"
+    react-hook-form: "*"
+    react-loader: "*"
+    typescript: "*"
+    web-vitals: "*"
+  languageName: unknown
+  linkType: soft
 
 "collect-v8-coverage@npm:^1.0.0":
   version: 1.0.1

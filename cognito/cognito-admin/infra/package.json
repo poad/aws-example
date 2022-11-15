@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "bin": "bin/infra.js",
   "scripts": {
+    "preinstall": "yarn add @aws-example-common/cognito-singin@file://../../../common/cognito-singin/",
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",

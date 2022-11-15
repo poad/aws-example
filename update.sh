@@ -13,6 +13,21 @@ if [ $result -ne 0 ]; then
   exit $result
 fi
 
+cd "${CURRENT}" || exit
+result=$?
+if [ $result -ne 0 ]; then
+  cd "${CUR}" || exit
+  exit $result
+fi
+echo ""
+pwd
+yarn install && yarn build
+result=$?
+if [ $result -ne 0 ]; then
+  cd "${CUR}" || exit
+  exit $result
+fi
+
 cd "${CURRENT}"/common/cognito-singin || exit
 result=$?
 if [ $result -ne 0 ]; then
@@ -514,8 +529,7 @@ if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
   exit $result
 fi
-git pull --prune
-git commit -am "Bumps node modules" && git push
+git pull --prune && git commit -am "Bumps node modules" && git push
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit

@@ -71,8 +71,7 @@ jobs:
           ./cognito/cognito-admin/infra,
           ./cognito/authorizer-example/api,
           ./cognito/authorizer-example/front,
-          ./node-sign-v4,
-          ./common/cognito-singin
+          ./node-sign-v4
         ]
 
     steps:
@@ -84,6 +83,8 @@ jobs:
     - run: npm i -g yarn aws-cdk typescript
     - run: corepack enable
     - run: corepack prepare yarn@stable --activate
+    - name: pre build
+      run: yarn install && yarn build-all
     - name: build
       env:
         BASE_PATH: /oauth/device/activate

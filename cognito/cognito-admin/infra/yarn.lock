@@ -103,9 +103,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-example-common/cognito-singin@file:../../../common/cognito-singin/::locator=infra%40workspace%3A.":
+"@aws-example-common/cognito-singin@file:../../../common/cognito-singin/::locator=%40aws-example%2Fcognito-admin-infra%40workspace%3A.":
   version: 0.0.1
-  resolution: "@aws-example-common/cognito-singin@file:../../../common/cognito-singin/#../../../common/cognito-singin/::hash=82348f&locator=infra%40workspace%3A."
+  resolution: "@aws-example-common/cognito-singin@file:../../../common/cognito-singin/#../../../common/cognito-singin/::hash=f0965e&locator=%40aws-example%2Fcognito-admin-infra%40workspace%3A."
   dependencies:
     "@aws-sdk/client-cognito-identity": "*"
     "@aws-sdk/client-cognito-identity-provider": "*"
@@ -122,9 +122,52 @@ __metadata:
     jsonwebtoken: "*"
     jwks-rsa: "*"
     source-map-support: "*"
-  checksum: 00bf7fc26a98a56b3495c6759249e54b28bf03c1f88cca735a6f0a3366311a7561e43d20e1efad4f51d32cfe9d9ce53f2cc8225b026c4e83af7623cebf195681
+  checksum: 9a378c0a33ea8dd663800bdb053300f0007b3bf6302f3de23b18e048ff5514f94c20e5d1a986122dcda703eea1cd65098e805dc29ea0fc3a590ccfb07cda48b6
   languageName: node
   linkType: hard
+
+"@aws-example/cognito-admin-infra@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@aws-example/cognito-admin-infra@workspace:."
+  dependencies:
+    "@aws-cdk/aws-apigatewayv2-alpha": ^2.50.0-alpha.0
+    "@aws-cdk/aws-apigatewayv2-integrations-alpha": ^2.50.0-alpha.0
+    "@aws-example-common/cognito-singin": ../../../common/cognito-singin/
+    "@aws-lambda-powertools/logger": "*"
+    "@middy/core": "*"
+    "@swc/core": "*"
+    "@swc/helpers": "*"
+    "@types/aws-lambda": "*"
+    "@types/jest": "*"
+    "@types/node": "*"
+    "@types/prettier": "*"
+    "@typescript-eslint/eslint-plugin": "*"
+    "@typescript-eslint/parser": "*"
+    aws-cdk: "*"
+    aws-cdk-lib: "*"
+    aws-lambda: "*"
+    constructs: "*"
+    cross-fetch: "*"
+    esbuild: "*"
+    eslint: "*"
+    eslint-config-airbnb-base: "*"
+    eslint-config-airbnb-typescript: "*"
+    eslint-config-prettier: "*"
+    eslint-plugin-import: "*"
+    eslint-plugin-jest: "*"
+    eslint-plugin-prettier: "*"
+    jest: "*"
+    log4js: "*"
+    prettier: "*"
+    regenerator-runtime: "*"
+    source-map-support: "*"
+    ts-jest: "*"
+    ts-node: "*"
+    typescript: "*"
+  bin:
+    cognito-admin-infra: bin/infra.js
+  languageName: unknown
+  linkType: soft
 
 "@aws-lambda-powertools/commons@npm:^1.4.1":
   version: 1.4.1
@@ -1926,11 +1969,11 @@ __metadata:
   linkType: hard
 
 "@swc/helpers@npm:*":
-  version: 0.4.12
-  resolution: "@swc/helpers@npm:0.4.12"
+  version: 0.4.13
+  resolution: "@swc/helpers@npm:0.4.13"
   dependencies:
     tslib: ^2.4.0
-  checksum: 3f9112f37d87815b6d4270137fc78d22bb98c75138e9b0eac7cac203ec2cf2bffbf13b20a713067c292affd5e9e70a724eb245b8daf0963e7fe528b901771c28
+  checksum: a226950e8d086c112eab002ff91e672791867fcdf1a765a27c90d2cd479e0245b66286e2205d2f37a72ae4e3b9aa1d062e08b137771dc3a8100188265e0604dd
   languageName: node
   linkType: hard
 
@@ -4435,49 +4478,6 @@ __metadata:
   checksum: f4f76aa072ce19fae87ce1ef7d221e709afb59d445e05d47fba710e85470923a75de35bfae47da6de1b18afc3ce83d70facf44cfb0aff89f0a3f45c0a0244dfd
   languageName: node
   linkType: hard
-
-"infra@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "infra@workspace:."
-  dependencies:
-    "@aws-cdk/aws-apigatewayv2-alpha": ^2.50.0-alpha.0
-    "@aws-cdk/aws-apigatewayv2-integrations-alpha": ^2.50.0-alpha.0
-    "@aws-example-common/cognito-singin": ../../../common/cognito-singin/
-    "@aws-lambda-powertools/logger": "*"
-    "@middy/core": "*"
-    "@swc/core": "*"
-    "@swc/helpers": "*"
-    "@types/aws-lambda": "*"
-    "@types/jest": "*"
-    "@types/node": "*"
-    "@types/prettier": "*"
-    "@typescript-eslint/eslint-plugin": "*"
-    "@typescript-eslint/parser": "*"
-    aws-cdk: "*"
-    aws-cdk-lib: "*"
-    aws-lambda: "*"
-    constructs: "*"
-    cross-fetch: "*"
-    esbuild: "*"
-    eslint: "*"
-    eslint-config-airbnb-base: "*"
-    eslint-config-airbnb-typescript: "*"
-    eslint-config-prettier: "*"
-    eslint-plugin-import: "*"
-    eslint-plugin-jest: "*"
-    eslint-plugin-prettier: "*"
-    jest: "*"
-    log4js: "*"
-    prettier: "*"
-    regenerator-runtime: "*"
-    source-map-support: "*"
-    ts-jest: "*"
-    ts-node: "*"
-    typescript: "*"
-  bin:
-    infra: bin/infra.js
-  languageName: unknown
-  linkType: soft
 
 "inherits@npm:2, inherits@npm:^2.0.3":
   version: 2.0.4

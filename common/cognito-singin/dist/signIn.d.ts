@@ -10,7 +10,7 @@ interface GetCredentialsResult {
         expiration: number | undefined;
     };
 }
-declare type SigninResult = GetCredentialsResult;
+type SigninResult = GetCredentialsResult;
 export declare const cognitoSignInClient: (initParam: {
     logger?: SimpleLogger;
 }) => {

@@ -21,7 +21,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn install && yarn build
+yarn install && yarn build-all
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit

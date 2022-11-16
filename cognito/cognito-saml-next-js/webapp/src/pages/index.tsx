@@ -27,10 +27,10 @@ const Home = (): JSX.Element => {
                       <Button onClick={authenticator.signOut}>Sign Out</Button>
                     </Box>
                     <Box sx={{ color: '#2d2d2d', whiteSpace: 'pre-wrap' }}>
-                      {auth.user.attributes.name}
+                      {auth.user.attributes?.name}
                     </Box>
                     <Box sx={{ color: '#2d2d2d', whiteSpace: 'pre-wrap' }}>
-                      {auth.user.attributes.email}
+                      {auth.user.attributes?.email}
                     </Box>
                   </>
                 )

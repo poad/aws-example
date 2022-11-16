@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Auth } from 'aws-amplify';
-import { CognitoUserInterface } from '@aws-amplify/ui-components';
+import { AmplifyUser } from '@aws-amplify/ui';
 
-const useAuth = (): { user: CognitoUserInterface | undefined, token: string | undefined } => {
-  const [user, setUser] = React.useState<CognitoUserInterface | undefined>();
+const useAuth = (): { user: AmplifyUser | undefined, token: string | undefined } => {
+  const [user, setUser] = React.useState<AmplifyUser | undefined>();
   const [token, setToken] = React.useState<string | undefined>(undefined);
 
   const handleAuth = async () => {    

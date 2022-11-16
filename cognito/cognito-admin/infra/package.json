@@ -4,7 +4,6 @@
   "version": "0.0.1",
   "bin": "bin/infra.js",
   "scripts": {
-    "preinstall": "yarn add @aws-example-common/cognito-singin@file://../../../common/cognito-singin/",
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
@@ -48,6 +47,9 @@
     "cross-fetch": "*",
     "log4js": "*",
     "source-map-support": "*"
+  },
+  "resolutions": {
+    "@aws-example-common/cognito-singin": "../../../common/cognito-singin/"
   },
   "packageManager": "yarn@3.2.4",
   "jest": {

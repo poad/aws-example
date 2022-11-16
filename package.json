@@ -4,7 +4,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build-all": "yarn build:common/cognito-singin --skip-integrity-check && yarn build:cognito/cognito-admin/infra --skip-integrity-check"
+    "build-all": "yarn build:common/cognito-singin && yarn build:cognito/cognito-admin/infra"
   },
   "workspaces": [
     "./common/cognito-singin",

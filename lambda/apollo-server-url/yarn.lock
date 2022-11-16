@@ -24,30 +24,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/protobufjs@npm:1.2.6":
-  version: 1.2.6
-  resolution: "@apollo/protobufjs@npm:1.2.6"
-  dependencies:
-    "@protobufjs/aspromise": ^1.1.2
-    "@protobufjs/base64": ^1.1.2
-    "@protobufjs/codegen": ^2.0.4
-    "@protobufjs/eventemitter": ^1.1.0
-    "@protobufjs/fetch": ^1.1.0
-    "@protobufjs/float": ^1.0.2
-    "@protobufjs/inquire": ^1.1.0
-    "@protobufjs/path": ^1.1.2
-    "@protobufjs/pool": ^1.1.0
-    "@protobufjs/utf8": ^1.1.0
-    "@types/long": ^4.0.0
-    "@types/node": ^10.1.0
-    long: ^4.0.0
-  bin:
-    apollo-pbjs: bin/pbjs
-    apollo-pbts: bin/pbts
-  checksum: 1410e94f87f7ce202491f2c45633ddea0590f5279bd3eaaeb25aa114345d09a5041f15d79b75e5915b23813dc71ec52e71fc1fda858fee21dead890dcb768416
-  languageName: node
-  linkType: hard
-
 "@apollo/protobufjs@npm:1.2.7":
   version: 1.2.7
   resolution: "@apollo/protobufjs@npm:1.2.7"
@@ -219,18 +195,18 @@ __metadata:
   linkType: hard
 
 "@apollo/utils.usagereporting@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@apollo/utils.usagereporting@npm:1.0.0"
+  version: 1.0.1
+  resolution: "@apollo/utils.usagereporting@npm:1.0.1"
   dependencies:
+    "@apollo/usage-reporting-protobuf": ^4.0.0
     "@apollo/utils.dropunuseddefinitions": ^1.1.0
     "@apollo/utils.printwithreducedwhitespace": ^1.1.0
     "@apollo/utils.removealiases": 1.0.0
     "@apollo/utils.sortast": ^1.1.0
     "@apollo/utils.stripsensitiveliterals": ^1.2.0
-    apollo-reporting-protobuf: ^3.3.1
   peerDependencies:
     graphql: 14.x || 15.x || 16.x
-  checksum: 9f4d1b8381fc7930619c51ce96580e61e604455e01701de9c822245d3a7583553a0cc4c050450ddf80d8e556682b2ac79ed784c58a8b98b52cf097d344c5d1d8
+  checksum: 20d79f2b6d177f1f78421175d7b1db6a3cb2bc2fa67e0e09850450657914f5adaa7e8d2e5f3906bc07fa4f1c5a28221f2421eb284b9170f4b0acfabdb71212f6
   languageName: node
   linkType: hard
 
@@ -1225,90 +1201,90 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-arm64@npm:1.3.17":
-  version: 1.3.17
-  resolution: "@swc/core-darwin-arm64@npm:1.3.17"
+"@swc/core-darwin-arm64@npm:1.3.18":
+  version: 1.3.18
+  resolution: "@swc/core-darwin-arm64@npm:1.3.18"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-x64@npm:1.3.17":
-  version: 1.3.17
-  resolution: "@swc/core-darwin-x64@npm:1.3.17"
+"@swc/core-darwin-x64@npm:1.3.18":
+  version: 1.3.18
+  resolution: "@swc/core-darwin-x64@npm:1.3.18"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm-gnueabihf@npm:1.3.17":
-  version: 1.3.17
-  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.17"
+"@swc/core-linux-arm-gnueabihf@npm:1.3.18":
+  version: 1.3.18
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.18"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-gnu@npm:1.3.17":
-  version: 1.3.17
-  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.17"
+"@swc/core-linux-arm64-gnu@npm:1.3.18":
+  version: 1.3.18
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.18"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-musl@npm:1.3.17":
-  version: 1.3.17
-  resolution: "@swc/core-linux-arm64-musl@npm:1.3.17"
+"@swc/core-linux-arm64-musl@npm:1.3.18":
+  version: 1.3.18
+  resolution: "@swc/core-linux-arm64-musl@npm:1.3.18"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-gnu@npm:1.3.17":
-  version: 1.3.17
-  resolution: "@swc/core-linux-x64-gnu@npm:1.3.17"
+"@swc/core-linux-x64-gnu@npm:1.3.18":
+  version: 1.3.18
+  resolution: "@swc/core-linux-x64-gnu@npm:1.3.18"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-musl@npm:1.3.17":
-  version: 1.3.17
-  resolution: "@swc/core-linux-x64-musl@npm:1.3.17"
+"@swc/core-linux-x64-musl@npm:1.3.18":
+  version: 1.3.18
+  resolution: "@swc/core-linux-x64-musl@npm:1.3.18"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-win32-arm64-msvc@npm:1.3.17":
-  version: 1.3.17
-  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.17"
+"@swc/core-win32-arm64-msvc@npm:1.3.18":
+  version: 1.3.18
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.18"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-win32-ia32-msvc@npm:1.3.17":
-  version: 1.3.17
-  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.17"
+"@swc/core-win32-ia32-msvc@npm:1.3.18":
+  version: 1.3.18
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.18"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/core-win32-x64-msvc@npm:1.3.17":
-  version: 1.3.17
-  resolution: "@swc/core-win32-x64-msvc@npm:1.3.17"
+"@swc/core-win32-x64-msvc@npm:1.3.18":
+  version: 1.3.18
+  resolution: "@swc/core-win32-x64-msvc@npm:1.3.18"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
 "@swc/core@npm:*":
-  version: 1.3.17
-  resolution: "@swc/core@npm:1.3.17"
+  version: 1.3.18
+  resolution: "@swc/core@npm:1.3.18"
   dependencies:
-    "@swc/core-darwin-arm64": 1.3.17
-    "@swc/core-darwin-x64": 1.3.17
-    "@swc/core-linux-arm-gnueabihf": 1.3.17
-    "@swc/core-linux-arm64-gnu": 1.3.17
-    "@swc/core-linux-arm64-musl": 1.3.17
-    "@swc/core-linux-x64-gnu": 1.3.17
-    "@swc/core-linux-x64-musl": 1.3.17
-    "@swc/core-win32-arm64-msvc": 1.3.17
-    "@swc/core-win32-ia32-msvc": 1.3.17
-    "@swc/core-win32-x64-msvc": 1.3.17
+    "@swc/core-darwin-arm64": 1.3.18
+    "@swc/core-darwin-x64": 1.3.18
+    "@swc/core-linux-arm-gnueabihf": 1.3.18
+    "@swc/core-linux-arm64-gnu": 1.3.18
+    "@swc/core-linux-arm64-musl": 1.3.18
+    "@swc/core-linux-x64-gnu": 1.3.18
+    "@swc/core-linux-x64-musl": 1.3.18
+    "@swc/core-win32-arm64-msvc": 1.3.18
+    "@swc/core-win32-ia32-msvc": 1.3.18
+    "@swc/core-win32-x64-msvc": 1.3.18
   dependenciesMeta:
     "@swc/core-darwin-arm64":
       optional: true
@@ -1332,16 +1308,16 @@ __metadata:
       optional: true
   bin:
     swcx: run_swcx.js
-  checksum: daf59b866ebfaa99460050591012792f957f96e5e400fbef5ad730cb85fae9e0179143104f01436a6c6fbbe0859bf485119056cf19cf9d63d4e77b3a9286c546
+  checksum: 5b9bef826366bf691b9ba8b91c17df1fc725d979b45840d3dcfcc8c224753a161fb07132bcf3d9c666e70d680c928d9379a9bfbe968b43f2c47c7e13ca9cf008
   languageName: node
   linkType: hard
 
 "@swc/helpers@npm:*":
-  version: 0.4.12
-  resolution: "@swc/helpers@npm:0.4.12"
+  version: 0.4.13
+  resolution: "@swc/helpers@npm:0.4.13"
   dependencies:
     tslib: ^2.4.0
-  checksum: 3f9112f37d87815b6d4270137fc78d22bb98c75138e9b0eac7cac203ec2cf2bffbf13b20a713067c292affd5e9e70a724eb245b8daf0963e7fe528b901771c28
+  checksum: a226950e8d086c112eab002ff91e672791867fcdf1a765a27c90d2cd479e0245b66286e2205d2f37a72ae4e3b9aa1d062e08b137771dc3a8100188265e0604dd
   languageName: node
   linkType: hard
 
@@ -1563,13 +1539,6 @@ __metadata:
   version: 18.11.9
   resolution: "@types/node@npm:18.11.9"
   checksum: cc0aae109e9b7adefc32eecb838d6fad931663bb06484b5e9cbbbf74865c721b03d16fd8d74ad90e31dbe093d956a7c2c306ba5429ba0c00f3f7505103d7a496
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^10.1.0":
-  version: 10.17.60
-  resolution: "@types/node@npm:10.17.60"
-  checksum: 2cdb3a77d071ba8513e5e8306fa64bf50e3c3302390feeaeff1fd325dd25c8441369715dfc8e3701011a72fed5958c7dfa94eb9239a81b3c286caa4d97db6eef
   languageName: node
   linkType: hard
 
@@ -1889,15 +1858,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-reporting-protobuf@npm:^3.3.1":
-  version: 3.3.3
-  resolution: "apollo-reporting-protobuf@npm:3.3.3"
-  dependencies:
-    "@apollo/protobufjs": 1.2.6
-  checksum: 6900db30476ef2e888ecef4c291e26579eba9695dc874ca8b3d1f93064bea307689172790b9d574849e5bdb371953ea38f2caddc5abb51e1ca197197f3d56d28
-  languageName: node
-  linkType: hard
-
 "apollo-server-url@workspace:.":
   version: 0.0.0-use.local
   resolution: "apollo-server-url@workspace:."
@@ -2092,8 +2052,8 @@ __metadata:
   linkType: hard
 
 "aws-sdk@npm:^2.814.0":
-  version: 2.1254.0
-  resolution: "aws-sdk@npm:2.1254.0"
+  version: 2.1255.0
+  resolution: "aws-sdk@npm:2.1255.0"
   dependencies:
     buffer: 4.9.2
     events: 1.1.1
@@ -2105,7 +2065,7 @@ __metadata:
     util: ^0.12.4
     uuid: 8.0.0
     xml2js: 0.4.19
-  checksum: 4ac135e3d2edc10903f0bb8af183966cc7302cb9e44d1ba82a168227d6c3926170ad36ac477cd90d1853f9b2d8725c3c9ea6339ce8bb8c8924e92f10e395c639
+  checksum: aa2029b6d0dfa2605fcfc86e9b48468222b2eb7eb40f95d28be2ebf39426a6cdf0ea7871fd0e5d14f1639c4d533e7547fcdbd205120284463801b88b7de0890e
   languageName: node
   linkType: hard
 
@@ -2535,9 +2495,9 @@ __metadata:
   linkType: hard
 
 "constructs@npm:*":
-  version: 10.1.160
-  resolution: "constructs@npm:10.1.160"
-  checksum: 441fd94017263c11a102e99b276b9b60461d9462fb601059f58deaca60f87fc85583606e00d25c37c0b01eed1d8e7693d020a587cf88fc4dc4ecd4a71109226c
+  version: 10.1.161
+  resolution: "constructs@npm:10.1.161"
+  checksum: ab614a635b1b9667115a45eb129206512a80ec21063731e9c2a00fb261d3dedba1b04d9f21594f20b7f2e92736a08c19e79fdc5431fedcf89a594e28567cece2
   languageName: node
   linkType: hard
 
@@ -6547,22 +6507,22 @@ __metadata:
   linkType: hard
 
 "typescript@npm:*":
-  version: 4.8.4
-  resolution: "typescript@npm:4.8.4"
+  version: 4.9.3
+  resolution: "typescript@npm:4.9.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 3e4f061658e0c8f36c820802fa809e0fd812b85687a9a2f5430bc3d0368e37d1c9605c3ce9b39df9a05af2ece67b1d844f9f6ea8ff42819f13bcb80f85629af0
+  checksum: 17b8f816050b412403e38d48eef0e893deb6be522d6dc7caf105e54a72e34daf6835c447735fd2b28b66784e72bfbf87f627abb4818a8e43d1fa8106396128dc
   languageName: node
   linkType: hard
 
 "typescript@patch:typescript@*#~builtin<compat/typescript>":
-  version: 4.8.4
-  resolution: "typescript@patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=701156"
+  version: 4.9.3
+  resolution: "typescript@patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=701156"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 301459fc3eb3b1a38fe91bf96d98eb55da88a9cb17b4ef80b4d105d620f4d547ba776cc27b44cc2ef58b66eda23fe0a74142feb5e79a6fb99f54fc018a696afa
+  checksum: ef65c22622d864497d0a0c5db693523329b3284c15fe632e93ad9aa059e8dc38ef3bd767d6f26b1e5ecf9446f49bd0f6c4e5714a2eeaf352805dc002479843d1
   languageName: node
   linkType: hard
 

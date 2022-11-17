@@ -46,6 +46,7 @@ jobs:
       matrix:
         node-version: [16.x, 18.x]
         target: [
+          ./,
           ./amplify/amplify_nextapp,
           ./amplify/amplify-cdk/app,
           ./amplify/amplify-cdk/infra,
@@ -83,10 +84,6 @@ jobs:
     - run: npm i -g yarn aws-cdk typescript
     - run: corepack enable
     - run: corepack prepare yarn@stable --activate
-    - name: pre install
-      run: yarn install --immutable
-    - name: pre build
-      run: yarn build-all
     - name: build
       env:
         BASE_PATH: /oauth/device/activate

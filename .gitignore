@@ -66,10 +66,16 @@ env
 .cdk.staging
 cdk.out
 
-.yarn/install-state.gz
-.yarn/cache
-!.yarn/releases/*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
-**/.yarn/install-state.gz
-**/.yarn/cache
-!**/.yarn/releases/*
+**/.yarn/*
+!**/.yarn/patches
+!**/.yarn/plugins
+!**/.yarn/releases
+!**/.yarn/sdks
+!**/.yarn/versions

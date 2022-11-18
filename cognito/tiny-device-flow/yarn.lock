@@ -212,12 +212,12 @@ __metadata:
   linkType: hard
 
 "@aws-sdk/client-dynamodb@npm:*":
-  version: 3.212.0
-  resolution: "@aws-sdk/client-dynamodb@npm:3.212.0"
+  version: 3.213.0
+  resolution: "@aws-sdk/client-dynamodb@npm:3.213.0"
   dependencies:
     "@aws-crypto/sha256-browser": 2.0.0
     "@aws-crypto/sha256-js": 2.0.0
-    "@aws-sdk/client-sts": 3.212.0
+    "@aws-sdk/client-sts": 3.213.0
     "@aws-sdk/config-resolver": 3.212.0
     "@aws-sdk/credential-provider-node": 3.212.0
     "@aws-sdk/fetch-http-handler": 3.212.0
@@ -253,7 +253,7 @@ __metadata:
     "@aws-sdk/util-waiter": 3.212.0
     tslib: ^2.3.1
     uuid: ^8.3.2
-  checksum: aa18379d295d6aa2c14099cc0fce2dd904fd692edc146535616a6421703647b8d18986164b8364f7cc7becee27cd931a07b34f4e2c04712cd78877a5ecb88266
+  checksum: 2368b8e6086431577c7f6cb355b92f7c3226143096f27feb19f5f7cf075a5a11421d8a58491d419f0be33e9e3088227dcff305eda7c21cf97ddfdb6ea8c5bd62
   languageName: node
   linkType: hard
 
@@ -440,6 +440,50 @@ __metadata:
     fast-xml-parser: 4.0.11
     tslib: ^2.3.1
   checksum: 6ac588957b3546dc4996201bd25c7903ab5fbe533cf74d210753164ef67a87198e82efba19943518189b7aa587e6dfa0b592efd46f67718b23becf849421fdec
+  languageName: node
+  linkType: hard
+
+"@aws-sdk/client-sts@npm:3.213.0":
+  version: 3.213.0
+  resolution: "@aws-sdk/client-sts@npm:3.213.0"
+  dependencies:
+    "@aws-crypto/sha256-browser": 2.0.0
+    "@aws-crypto/sha256-js": 2.0.0
+    "@aws-sdk/config-resolver": 3.212.0
+    "@aws-sdk/credential-provider-node": 3.212.0
+    "@aws-sdk/fetch-http-handler": 3.212.0
+    "@aws-sdk/hash-node": 3.212.0
+    "@aws-sdk/invalid-dependency": 3.212.0
+    "@aws-sdk/middleware-content-length": 3.212.0
+    "@aws-sdk/middleware-endpoint": 3.212.0
+    "@aws-sdk/middleware-host-header": 3.212.0
+    "@aws-sdk/middleware-logger": 3.212.0
+    "@aws-sdk/middleware-recursion-detection": 3.212.0
+    "@aws-sdk/middleware-retry": 3.212.0
+    "@aws-sdk/middleware-sdk-sts": 3.212.0
+    "@aws-sdk/middleware-serde": 3.212.0
+    "@aws-sdk/middleware-signing": 3.212.0
+    "@aws-sdk/middleware-stack": 3.212.0
+    "@aws-sdk/middleware-user-agent": 3.212.0
+    "@aws-sdk/node-config-provider": 3.212.0
+    "@aws-sdk/node-http-handler": 3.212.0
+    "@aws-sdk/protocol-http": 3.212.0
+    "@aws-sdk/smithy-client": 3.212.0
+    "@aws-sdk/types": 3.212.0
+    "@aws-sdk/url-parser": 3.212.0
+    "@aws-sdk/util-base64": 3.208.0
+    "@aws-sdk/util-body-length-browser": 3.188.0
+    "@aws-sdk/util-body-length-node": 3.208.0
+    "@aws-sdk/util-defaults-mode-browser": 3.212.0
+    "@aws-sdk/util-defaults-mode-node": 3.212.0
+    "@aws-sdk/util-endpoints": 3.212.0
+    "@aws-sdk/util-user-agent-browser": 3.212.0
+    "@aws-sdk/util-user-agent-node": 3.212.0
+    "@aws-sdk/util-utf8-browser": 3.188.0
+    "@aws-sdk/util-utf8-node": 3.208.0
+    fast-xml-parser: 4.0.11
+    tslib: ^2.3.1
+  checksum: 6d375d8d22bdd08130ea624d6b980e366ce556b3178a4dbfcfd7ec7b9ab629dd57d34b350129231bd96be078778df0de6c61783c49a739142b055882f943f7d2
   languageName: node
   linkType: hard
 
@@ -4273,7 +4317,7 @@ __metadata:
 
 "fsevents@patch:fsevents@2.3.2#~builtin<compat/fsevents>, fsevents@patch:fsevents@^2.3.2#~builtin<compat/fsevents>":
   version: 2.3.2
-  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=18f3a7"
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"
   dependencies:
     node-gyp: latest
   conditions: os=darwin
@@ -6343,7 +6387,7 @@ __metadata:
 
 "resolve@patch:resolve@^1.20.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.22.0#~builtin<compat/resolve>":
   version: 1.22.1
-  resolution: "resolve@patch:resolve@npm%3A1.22.1#~builtin<compat/resolve>::version=1.22.1&hash=07638b"
+  resolution: "resolve@patch:resolve@npm%3A1.22.1#~builtin<compat/resolve>::version=1.22.1&hash=c3c19d"
   dependencies:
     is-core-module: ^2.9.0
     path-parse: ^1.0.7
@@ -6971,11 +7015,11 @@ __metadata:
 
 "typescript@patch:typescript@*#~builtin<compat/typescript>":
   version: 4.9.3
-  resolution: "typescript@patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=701156"
+  resolution: "typescript@patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=d73830"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: ef65c22622d864497d0a0c5db693523329b3284c15fe632e93ad9aa059e8dc38ef3bd767d6f26b1e5ecf9446f49bd0f6c4e5714a2eeaf352805dc002479843d1
+  checksum: 67ca21a387c0572f1c04936e638dde7782c5aa520c3754aadc7cc9b7c915da9ebc3e27c601bfff4ccb7d7264e82dce6d277ada82ec09dc75024349e0ef64926d
   languageName: node
   linkType: hard
 

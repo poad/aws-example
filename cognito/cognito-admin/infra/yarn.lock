@@ -15,6 +15,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@aws-cdk/asset-awscli-v1@npm:^2.2.9":
+  version: 2.2.11
+  resolution: "@aws-cdk/asset-awscli-v1@npm:2.2.11"
+  checksum: 2a4cc5ff83c6677a6b8c2781452bcae62599b2216b984c1903e309e99448518451638231e29068f3bf23dc87d6bb831c6dbe765eaa49581a6cce8146f211cf3c
+  languageName: node
+  linkType: hard
+
+"@aws-cdk/asset-kubectl-v20@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "@aws-cdk/asset-kubectl-v20@npm:2.1.1"
+  checksum: f5883fae7b6d3d17e5125560a6efa5065d8b319c11ea6639caa68e315427c4fa266433db04b1a776cf12ccc8c8f8e9a3dfc0ac8cc3c0e73545f80b07808281e2
+  languageName: node
+  linkType: hard
+
+"@aws-cdk/asset-node-proxy-agent-v5@npm:^2.0.15":
+  version: 2.0.17
+  resolution: "@aws-cdk/asset-node-proxy-agent-v5@npm:2.0.17"
+  checksum: 8d7fc81438e5bd9415a0cb3c0045ee26752623162b871868c547c3cebb4b3114c9d995b050d4d1283cce22ab1b33d81f1a21a20211676f7f1028dd50a604fb8b
+  languageName: node
+  linkType: hard
+
 "@aws-cdk/aws-apigatewayv2-alpha@npm:^2.50.0-alpha.0":
   version: 2.50.0-alpha.0
   resolution: "@aws-cdk/aws-apigatewayv2-alpha@npm:2.50.0-alpha.0"
@@ -105,7 +126,7 @@ __metadata:
 
 "@aws-example-common/cognito-singin@file:../../../common/cognito-singin/::locator=%40aws-example%2Fcognito-admin-infra%40workspace%3A.":
   version: 0.0.1
-  resolution: "@aws-example-common/cognito-singin@file:../../../common/cognito-singin/#../../../common/cognito-singin/::hash=6800c9&locator=%40aws-example%2Fcognito-admin-infra%40workspace%3A."
+  resolution: "@aws-example-common/cognito-singin@file:../../../common/cognito-singin/#../../../common/cognito-singin/::hash=0fca52&locator=%40aws-example%2Fcognito-admin-infra%40workspace%3A."
   dependencies:
     "@aws-sdk/client-cognito-identity": "*"
     "@aws-sdk/client-cognito-identity-provider": "*"
@@ -122,7 +143,7 @@ __metadata:
     jsonwebtoken: "*"
     jwks-rsa: "*"
     source-map-support: "*"
-  checksum: 6f088cfea4a6a3ddf30dc48e81487d7df07756120a18efbbcff290c3520b134f1a1c66485fb0c2aa49f9b6679e952753e4dc0afd1b0a438caf5456bc727aec51
+  checksum: 8461f4ba19b3c0ed4e6db073e4b5e20afbbe4f39242c2d476faab014b902c944ad6a50089d73ec74ebfc774a516a694fb0c49ee4f916115b5f3f635246ab9994
   languageName: node
   linkType: hard
 
@@ -2576,9 +2597,12 @@ __metadata:
   linkType: hard
 
 "aws-cdk-lib@npm:*":
-  version: 2.50.0
-  resolution: "aws-cdk-lib@npm:2.50.0"
+  version: 2.51.0
+  resolution: "aws-cdk-lib@npm:2.51.0"
   dependencies:
+    "@aws-cdk/asset-awscli-v1": ^2.2.9
+    "@aws-cdk/asset-kubectl-v20": ^2.1.1
+    "@aws-cdk/asset-node-proxy-agent-v5": ^2.0.15
     "@balena/dockerignore": ^1.0.2
     case: 1.6.3
     fs-extra: ^9.1.0
@@ -2590,7 +2614,7 @@ __metadata:
     yaml: 1.10.2
   peerDependencies:
     constructs: ^10.0.0
-  checksum: 81a5734399d0577f2e9cc74e9cc6c182f9630ebf522b8f3b40c2463f8e956df39ec24bc9c3a23a38d4d50225799f39d6ddbabd7eb3f22ad907eb0c582816d1bb
+  checksum: afa018620338c20d1a34029a9345d1da0550c522114eaedd10278d5acd9c16afa790c237d07fdd8549a4b1d723a2e50c4d6cf2c923846072f5e5d37014852aa6
   languageName: node
   linkType: hard
 
@@ -4080,7 +4104,7 @@ __metadata:
 
 "fsevents@patch:fsevents@2.3.2#~builtin<compat/fsevents>, fsevents@patch:fsevents@^2.3.2#~builtin<compat/fsevents>":
   version: 2.3.2
-  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=18f3a7"
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"
   dependencies:
     node-gyp: latest
   conditions: os=darwin
@@ -6307,7 +6331,7 @@ __metadata:
 
 "resolve@patch:resolve@^1.20.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.22.0#~builtin<compat/resolve>":
   version: 1.22.1
-  resolution: "resolve@patch:resolve@npm%3A1.22.1#~builtin<compat/resolve>::version=1.22.1&hash=07638b"
+  resolution: "resolve@patch:resolve@npm%3A1.22.1#~builtin<compat/resolve>::version=1.22.1&hash=c3c19d"
   dependencies:
     is-core-module: ^2.9.0
     path-parse: ^1.0.7
@@ -6915,11 +6939,11 @@ __metadata:
 
 "typescript@patch:typescript@*#~builtin<compat/typescript>":
   version: 4.9.3
-  resolution: "typescript@patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=701156"
+  resolution: "typescript@patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=d73830"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: ef65c22622d864497d0a0c5db693523329b3284c15fe632e93ad9aa059e8dc38ef3bd767d6f26b1e5ecf9446f49bd0f6c4e5714a2eeaf352805dc002479843d1
+  checksum: 67ca21a387c0572f1c04936e638dde7782c5aa520c3754aadc7cc9b7c915da9ebc3e27c601bfff4ccb7d7264e82dce6d277ada82ec09dc75024349e0ef64926d
   languageName: node
   linkType: hard
 

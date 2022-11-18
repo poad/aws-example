@@ -4,8 +4,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "postinstall": "yarn install:common/cognito-singin && yarn install:cognito/cognito-admin/infra",
-    "build": "yarn build:common/cognito-singin && yarn build:cognito/cognito-admin/infra"
+    "build": "yarn build:cognito/cognito-admin/infra"
   },
   "workspaces": [
     "./common/cognito-singin",

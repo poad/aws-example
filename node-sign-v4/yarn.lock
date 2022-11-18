@@ -110,13 +110,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-cognito-identity@npm:3.212.0":
-  version: 3.212.0
-  resolution: "@aws-sdk/client-cognito-identity@npm:3.212.0"
+"@aws-sdk/client-cognito-identity@npm:3.213.0":
+  version: 3.213.0
+  resolution: "@aws-sdk/client-cognito-identity@npm:3.213.0"
   dependencies:
     "@aws-crypto/sha256-browser": 2.0.0
     "@aws-crypto/sha256-js": 2.0.0
-    "@aws-sdk/client-sts": 3.212.0
+    "@aws-sdk/client-sts": 3.213.0
     "@aws-sdk/config-resolver": 3.212.0
     "@aws-sdk/credential-provider-node": 3.212.0
     "@aws-sdk/fetch-http-handler": 3.212.0
@@ -149,7 +149,7 @@ __metadata:
     "@aws-sdk/util-utf8-browser": 3.188.0
     "@aws-sdk/util-utf8-node": 3.208.0
     tslib: ^2.3.1
-  checksum: 65725ee9cabd77a838ad32d3a25940eae3ba80b1659c12ed2951925cc4d633b95f76c5b45fe53a625bb10da48286f73bfbf3f667e89724a5b76d1ae2fb1998e3
+  checksum: dc3229f0fb4ae92dafdaa582d0f47d40dbb318eed529ad1acfaeecaba275d318c45eb884ebde02c937ef83154830cec44286eaa47b5ae4dd81f8ee77ec0b0dca
   languageName: node
   linkType: hard
 
@@ -233,9 +233,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-sts@npm:*, @aws-sdk/client-sts@npm:3.212.0":
-  version: 3.212.0
-  resolution: "@aws-sdk/client-sts@npm:3.212.0"
+"@aws-sdk/client-sts@npm:*, @aws-sdk/client-sts@npm:3.213.0":
+  version: 3.213.0
+  resolution: "@aws-sdk/client-sts@npm:3.213.0"
   dependencies:
     "@aws-crypto/sha256-browser": 2.0.0
     "@aws-crypto/sha256-js": 2.0.0
@@ -273,7 +273,7 @@ __metadata:
     "@aws-sdk/util-utf8-node": 3.208.0
     fast-xml-parser: 4.0.11
     tslib: ^2.3.1
-  checksum: 6ac588957b3546dc4996201bd25c7903ab5fbe533cf74d210753164ef67a87198e82efba19943518189b7aa587e6dfa0b592efd46f67718b23becf849421fdec
+  checksum: 6d375d8d22bdd08130ea624d6b980e366ce556b3178a4dbfcfd7ec7b9ab629dd57d34b350129231bd96be078778df0de6c61783c49a739142b055882f943f7d2
   languageName: node
   linkType: hard
 
@@ -290,15 +290,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/credential-provider-cognito-identity@npm:3.212.0":
-  version: 3.212.0
-  resolution: "@aws-sdk/credential-provider-cognito-identity@npm:3.212.0"
+"@aws-sdk/credential-provider-cognito-identity@npm:3.213.0":
+  version: 3.213.0
+  resolution: "@aws-sdk/credential-provider-cognito-identity@npm:3.213.0"
   dependencies:
-    "@aws-sdk/client-cognito-identity": 3.212.0
+    "@aws-sdk/client-cognito-identity": 3.213.0
     "@aws-sdk/property-provider": 3.212.0
     "@aws-sdk/types": 3.212.0
     tslib: ^2.3.1
-  checksum: 4a96d5bcac1e9e6f212b5547b0f361f3289f896366f4a0bc1c71f50b811c4742f44ee76b6eacbf38c62156f28e47223a33f25250248e83e8108af7fa0127df84
+  checksum: 8473f2ee55920cb132900b3dcb4561789f362758b36bab58935d0ac684dae04bf6282de632e0bf7c7d234b9fba2cdda902c61fc41d1c5bd12766597c30293d85
   languageName: node
   linkType: hard
 
@@ -398,13 +398,13 @@ __metadata:
   linkType: hard
 
 "@aws-sdk/credential-providers@npm:*":
-  version: 3.212.0
-  resolution: "@aws-sdk/credential-providers@npm:3.212.0"
+  version: 3.213.0
+  resolution: "@aws-sdk/credential-providers@npm:3.213.0"
   dependencies:
-    "@aws-sdk/client-cognito-identity": 3.212.0
+    "@aws-sdk/client-cognito-identity": 3.213.0
     "@aws-sdk/client-sso": 3.212.0
-    "@aws-sdk/client-sts": 3.212.0
-    "@aws-sdk/credential-provider-cognito-identity": 3.212.0
+    "@aws-sdk/client-sts": 3.213.0
+    "@aws-sdk/credential-provider-cognito-identity": 3.213.0
     "@aws-sdk/credential-provider-env": 3.212.0
     "@aws-sdk/credential-provider-imds": 3.212.0
     "@aws-sdk/credential-provider-ini": 3.212.0
@@ -416,7 +416,7 @@ __metadata:
     "@aws-sdk/shared-ini-file-loader": 3.212.0
     "@aws-sdk/types": 3.212.0
     tslib: ^2.3.1
-  checksum: d74428fadebd972845bd9c1886eac1fa1228a54725f7998d5da860f9036073a8386adb417a7eff2b0a5d5d7ed5009be2ea7f059cc5372131efd3ea437e692864
+  checksum: 4eaa01428b686603c0e0ee1748d8515c93c87b5552dd4f9a936e3bb94d63d2b1fe46755438dbeecc228d346cb20c5e21c7e0e755ac3a83793d7a7d3109490072
   languageName: node
   linkType: hard
 
@@ -1276,11 +1276,11 @@ __metadata:
 
 "typescript@patch:typescript@*#~builtin<compat/typescript>":
   version: 4.9.3
-  resolution: "typescript@patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=701156"
+  resolution: "typescript@patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=d73830"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: ef65c22622d864497d0a0c5db693523329b3284c15fe632e93ad9aa059e8dc38ef3bd767d6f26b1e5ecf9446f49bd0f6c4e5714a2eeaf352805dc002479843d1
+  checksum: 67ca21a387c0572f1c04936e638dde7782c5aa520c3754aadc7cc9b7c915da9ebc3e27c601bfff4ccb7d7264e82dce6d277ada82ec09dc75024349e0ef64926d
   languageName: node
   linkType: hard
 

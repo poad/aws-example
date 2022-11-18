@@ -16,40 +16,61 @@ __metadata:
   linkType: hard
 
 "@aws-cdk/assert@npm:*":
-  version: 2.50.0
-  resolution: "@aws-cdk/assert@npm:2.50.0"
+  version: 2.51.0
+  resolution: "@aws-cdk/assert@npm:2.51.0"
   dependencies:
-    "@aws-cdk/cloudformation-diff": 2.50.0
+    "@aws-cdk/cloudformation-diff": 2.51.0
   peerDependencies:
-    aws-cdk-lib: ^2.50.0
+    aws-cdk-lib: ^2.51.0
     constructs: ^10.0.0
     jest: ">=26.6.3"
-  checksum: 7bb64d4ea08155629d9753281bc6d32d03cc9e5c142663573e790f9168a1a2aa77e49d81bee8885a2e0a7ab14ef1d2fc052590618ed608039cb135fa62900947
+  checksum: 2115e9b24405357ec9aba2e0ce53a5a5fa83097c09fb0312f928d81168cb4e8b8dd83f62fd308832f879705fd39f2d545475d4990ae373fba5a7f49f4f6ba8f0
   languageName: node
   linkType: hard
 
-"@aws-cdk/cfnspec@npm:2.50.0":
-  version: 2.50.0
-  resolution: "@aws-cdk/cfnspec@npm:2.50.0"
+"@aws-cdk/asset-awscli-v1@npm:^2.2.9":
+  version: 2.2.11
+  resolution: "@aws-cdk/asset-awscli-v1@npm:2.2.11"
+  checksum: 2a4cc5ff83c6677a6b8c2781452bcae62599b2216b984c1903e309e99448518451638231e29068f3bf23dc87d6bb831c6dbe765eaa49581a6cce8146f211cf3c
+  languageName: node
+  linkType: hard
+
+"@aws-cdk/asset-kubectl-v20@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "@aws-cdk/asset-kubectl-v20@npm:2.1.1"
+  checksum: f5883fae7b6d3d17e5125560a6efa5065d8b319c11ea6639caa68e315427c4fa266433db04b1a776cf12ccc8c8f8e9a3dfc0ac8cc3c0e73545f80b07808281e2
+  languageName: node
+  linkType: hard
+
+"@aws-cdk/asset-node-proxy-agent-v5@npm:^2.0.15":
+  version: 2.0.17
+  resolution: "@aws-cdk/asset-node-proxy-agent-v5@npm:2.0.17"
+  checksum: 8d7fc81438e5bd9415a0cb3c0045ee26752623162b871868c547c3cebb4b3114c9d995b050d4d1283cce22ab1b33d81f1a21a20211676f7f1028dd50a604fb8b
+  languageName: node
+  linkType: hard
+
+"@aws-cdk/cfnspec@npm:2.51.0":
+  version: 2.51.0
+  resolution: "@aws-cdk/cfnspec@npm:2.51.0"
   dependencies:
     fs-extra: ^9.1.0
     md5: ^2.3.0
-  checksum: eeeacb671bfd6eafde1e6431484baf296324f9e38781e3147d5a0e76a91cf762b29665bb508b819dd36b58864b6e238d642e68da51e3ad5f96c5cfbfec276f38
+  checksum: 190c323c8b794c0f331825f2fabc1dcd9890eb82884f7e7ca9b29639139b7a3f1eef93dac8e0d3374400c84fd1fc735d11cff43786e4c80bdbe484223a5fcd65
   languageName: node
   linkType: hard
 
-"@aws-cdk/cloudformation-diff@npm:2.50.0":
-  version: 2.50.0
-  resolution: "@aws-cdk/cloudformation-diff@npm:2.50.0"
+"@aws-cdk/cloudformation-diff@npm:2.51.0":
+  version: 2.51.0
+  resolution: "@aws-cdk/cloudformation-diff@npm:2.51.0"
   dependencies:
-    "@aws-cdk/cfnspec": 2.50.0
-    "@types/node": ^14.18.32
+    "@aws-cdk/cfnspec": 2.51.0
+    "@types/node": ^14.18.33
     chalk: ^4
     diff: ^5.1.0
     fast-deep-equal: ^3.1.3
     string-width: ^4.2.3
-    table: ^6.8.0
-  checksum: c886d6f475264a39a02c13914f3ec303bdaa2aaf7f54569d77b123dd00f7da476fd8edd4ac82f28cf7f844a025d2218814ad93adf3aa7478f7783a999a091943
+    table: ^6.8.1
+  checksum: 4ef133b2917899c5982aa1701f430240e45409e4734069f5feac252a584ece46959d6f2783342610e45b78a5e2580df4a6e257781bab2c3a61f26e1131991751
   languageName: node
   linkType: hard
 
@@ -1228,7 +1249,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^14.18.32":
+"@types/node@npm:^14.18.33":
   version: 14.18.33
   resolution: "@types/node@npm:14.18.33"
   checksum: 4e23f95186d8ae1d38c999bc6b46fe94e790da88744b0a3bfeedcbd0d9ffe2cb0ff39e85f43014f6739e5270292c1a1f6f97a1fc606fd573a0c17fda9a1d42de
@@ -1640,9 +1661,12 @@ __metadata:
   linkType: hard
 
 "aws-cdk-lib@npm:*":
-  version: 2.50.0
-  resolution: "aws-cdk-lib@npm:2.50.0"
+  version: 2.51.0
+  resolution: "aws-cdk-lib@npm:2.51.0"
   dependencies:
+    "@aws-cdk/asset-awscli-v1": ^2.2.9
+    "@aws-cdk/asset-kubectl-v20": ^2.1.1
+    "@aws-cdk/asset-node-proxy-agent-v5": ^2.0.15
     "@balena/dockerignore": ^1.0.2
     case: 1.6.3
     fs-extra: ^9.1.0
@@ -1654,13 +1678,13 @@ __metadata:
     yaml: 1.10.2
   peerDependencies:
     constructs: ^10.0.0
-  checksum: 81a5734399d0577f2e9cc74e9cc6c182f9630ebf522b8f3b40c2463f8e956df39ec24bc9c3a23a38d4d50225799f39d6ddbabd7eb3f22ad907eb0c582816d1bb
+  checksum: afa018620338c20d1a34029a9345d1da0550c522114eaedd10278d5acd9c16afa790c237d07fdd8549a4b1d723a2e50c4d6cf2c923846072f5e5d37014852aa6
   languageName: node
   linkType: hard
 
 "aws-cdk@npm:*":
-  version: 2.50.0
-  resolution: "aws-cdk@npm:2.50.0"
+  version: 2.51.0
+  resolution: "aws-cdk@npm:2.51.0"
   dependencies:
     fsevents: 2.3.2
   dependenciesMeta:
@@ -1668,7 +1692,7 @@ __metadata:
       optional: true
   bin:
     cdk: bin/cdk
-  checksum: 17351804dfc2709c08e2aed9da3692ca96438ff0e54a29ebab51fc849f29e6830b52245749cae274b4869be3e2cb4f37f79220313beb5cdce649df2b02b2374e
+  checksum: ec697cb971a999797f6401c830a5d932700672c29c70da9169b029d42db832d3d9b4fc647436e44d615c6c20f182525ede282876e96654fe17930d6d5704a6b2
   languageName: node
   linkType: hard
 
@@ -2044,9 +2068,9 @@ __metadata:
   linkType: hard
 
 "constructs@npm:*":
-  version: 10.1.162
-  resolution: "constructs@npm:10.1.162"
-  checksum: fe4dc13f25cffb46b5ab4979c1c3dd3431f6bda40019b8cd3515202aaecfff8f6e4476f67f65ae1755386df592b31aaf50d00d292613d77e9c3e0bba93b28aec
+  version: 10.1.163
+  resolution: "constructs@npm:10.1.163"
+  checksum: 4111866752ed7c79a90e0e7e825082ec036dc661dcf411e7d5f23bf7c933f17dd71b4a5441b159534052746f9278d40cc1fd0aef8f1e895ce766b4dd7eb94258
   languageName: node
   linkType: hard
 
@@ -2715,8 +2739,8 @@ __metadata:
   linkType: hard
 
 "eslint@npm:*":
-  version: 8.27.0
-  resolution: "eslint@npm:8.27.0"
+  version: 8.28.0
+  resolution: "eslint@npm:8.28.0"
   dependencies:
     "@eslint/eslintrc": ^1.3.3
     "@humanwhocodes/config-array": ^0.11.6
@@ -2759,7 +2783,7 @@ __metadata:
     text-table: ^0.2.0
   bin:
     eslint: bin/eslint.js
-  checksum: 153b022d309e1b647a73b1bb0fa98912add699b06e279084155f23c6f2b5fc5abd05411fc1ba81608a24bbfaf044ca079544c16fffa6fc987b8f676c9960a2c4
+  checksum: 1b793486b2ec80f0602d75fff7116f7c39a3286f523608a999eead9bec4154a06841785d2b4fb87f8292a94cf85778c1dbfaec727772a09c4d604fdb9ff0809a
   languageName: node
   linkType: hard
 
@@ -3165,11 +3189,11 @@ __metadata:
   linkType: hard
 
 "globals@npm:^13.15.0":
-  version: 13.17.0
-  resolution: "globals@npm:13.17.0"
+  version: 13.18.0
+  resolution: "globals@npm:13.18.0"
   dependencies:
     type-fest: ^0.20.2
-  checksum: fbaf4112e59b92c9f5575e85ce65e9e17c0b82711196ec5f58beb08599bbd92fd72703d6dfc9b080381fd35b644e1b11dcf25b38cc2341ec21df942594cbc8ce
+  checksum: 9fdaa74cfd5d4ac91319662f512c29b11d1d2deb9c8a20d3998097671deba83d195f20730b2345887de3ddab958a6fa68952feed9ae836ee4594a82ace62fdb4
   languageName: node
   linkType: hard
 
@@ -5388,7 +5412,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"table@npm:^6.8.0":
+"table@npm:^6.8.1":
   version: 6.8.1
   resolution: "table@npm:6.8.1"
   dependencies:

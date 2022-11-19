@@ -1,17 +1,17 @@
 {
-  "name": "@aws-example/cognito-admin-infra",
+  "name": "lambda-examples",
+  "version": "0.1.0",
   "private": true,
-  "version": "0.0.1",
-  "bin": "bin/infra.js",
+  "bin": "bin/lambda-examples.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc bin/*.ts lib/*.ts",
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "lint": "eslint --ext .ts ./lambda ./lib ./bin"
+    "lint": "eslint --ext .ts bin lambda lib",
+    "lint:fix": "eslint --fix --ext .ts bin lambda lib"
   },
   "devDependencies": {
-    "@middy/core": "*",
     "@swc/core": "*",
     "@swc/helpers": "*",
     "@types/aws-lambda": "*",
@@ -27,7 +27,6 @@
     "eslint-config-airbnb-typescript": "*",
     "eslint-config-prettier": "*",
     "eslint-plugin-import": "*",
-    "eslint-plugin-jest": "*",
     "eslint-plugin-prettier": "*",
     "jest": "*",
     "prettier": "*",
@@ -39,17 +38,12 @@
   "dependencies": {
     "@aws-cdk/aws-apigatewayv2-alpha": "^2.51.1-alpha.0",
     "@aws-cdk/aws-apigatewayv2-integrations-alpha": "^2.51.1-alpha.0",
-    "@aws-example-common/cognito-singin": "../../../common/cognito-singin/",
-    "@aws-lambda-powertools/logger": "*",
+    "@aws-example-common/cognito-singin": "../../common/cognito-singin/",
     "aws-cdk-lib": "*",
     "aws-lambda": "*",
     "constructs": "*",
     "cross-fetch": "*",
-    "log4js": "*",
     "source-map-support": "*"
-  },
-  "resolutions": {
-    "@aws-example-common/cognito-singin": "../../../common/cognito-singin/"
   },
   "packageManager": "yarn@3.3.0",
   "jest": {

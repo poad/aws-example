@@ -36,6 +36,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@aws-cdk/aws-apigatewayv2-alpha@npm:^2.51.1-alpha.0":
+  version: 2.51.1-alpha.0
+  resolution: "@aws-cdk/aws-apigatewayv2-alpha@npm:2.51.1-alpha.0"
+  peerDependencies:
+    aws-cdk-lib: ^2.51.1
+    constructs: ^10.0.0
+  checksum: b1ded1269f902e189a0285b1fe0c3de9e4f0981dee90e0a5d06c04645506fedc3f4e0dfc0a9050d67537d19c497a9f3273de0b3f6f8e9d407d61accfd3413944
+  languageName: node
+  linkType: hard
+
+"@aws-cdk/aws-apigatewayv2-integrations-alpha@npm:^2.51.1-alpha.0":
+  version: 2.51.1-alpha.0
+  resolution: "@aws-cdk/aws-apigatewayv2-integrations-alpha@npm:2.51.1-alpha.0"
+  peerDependencies:
+    "@aws-cdk/aws-apigatewayv2-alpha": 2.51.1-alpha.0
+    aws-cdk-lib: ^2.51.1
+    constructs: ^10.0.0
+  checksum: 2be108269c8dd33b4647d986a796bc48fe44d27da95893196cf184d0557295f856eede22841e535b5ac67700b8a6a291525ab230d3c073dc8694fe1fc5e2ef30
+  languageName: node
+  linkType: hard
+
 "@aws-cdk/aws-lambda-python-alpha@npm:^2.51.1-alpha.0":
   version: 2.51.1-alpha.0
   resolution: "@aws-cdk/aws-lambda-python-alpha@npm:2.51.1-alpha.0"
@@ -4422,6 +4443,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "lambda-examples@workspace:."
   dependencies:
+    "@aws-cdk/aws-apigatewayv2-alpha": ^2.51.1-alpha.0
+    "@aws-cdk/aws-apigatewayv2-integrations-alpha": ^2.51.1-alpha.0
     "@aws-cdk/aws-lambda-python-alpha": ^2.51.1-alpha.0
     "@swc/core": "*"
     "@swc/helpers": "*"

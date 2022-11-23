@@ -223,20 +223,20 @@ if [ $result -ne 0 ]; then
   exit $result
 fi
 
-cd "${CURRENT}"/cognito/authorizer-example/api || exit
-result=$?
-if [ $result -ne 0 ]; then
-  cd "${CUR}" || exit
-  exit $result
-fi
-echo ""
-pwd
-rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
-result=$?
-if [ $result -ne 0 ]; then
-  cd "${CUR}" || exit
-  exit $result
-fi
+# cd "${CURRENT}"/cognito/authorizer-example/api || exit
+# result=$?
+# if [ $result -ne 0 ]; then
+#   cd "${CUR}" || exit
+#   exit $result
+# fi
+# echo ""
+# pwd
+# rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+# result=$?
+# if [ $result -ne 0 ]; then
+#   cd "${CUR}" || exit
+#   exit $result
+# fi
 
 cd "${CURRENT}"/cognito/authorizer-example/front || exit
 result=$?
@@ -388,35 +388,35 @@ if [ $result -ne 0 ]; then
   exit $result
 fi
 
-cd "${CURRENT}"/lambda/apollo-server-api-gateway || exit
-result=$?
-if [ $result -ne 0 ]; then
-  cd "${CUR}" || exit
-  exit $result
-fi
-echo ""
-pwd
-rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
-result=$?
-if [ $result -ne 0 ]; then
-  cd "${CUR}" || exit
-  exit $result
-fi
+# cd "${CURRENT}"/lambda/apollo-server-api-gateway || exit
+# result=$?
+# if [ $result -ne 0 ]; then
+#   cd "${CUR}" || exit
+#   exit $result
+# fi
+# echo ""
+# pwd
+# rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+# result=$?
+# if [ $result -ne 0 ]; then
+#   cd "${CUR}" || exit
+#   exit $result
+# fi
 
-cd "${CURRENT}"/lambda/apollo-server-url || exit
-result=$?
-if [ $result -ne 0 ]; then
-  cd "${CUR}" || exit
-  exit $result
-fi
-echo ""
-pwd
-rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
-result=$?
-if [ $result -ne 0 ]; then
-  cd "${CUR}" || exit
-  exit $result
-fi
+# cd "${CURRENT}"/lambda/apollo-server-url || exit
+# result=$?
+# if [ $result -ne 0 ]; then
+#   cd "${CUR}" || exit
+#   exit $result
+# fi
+# echo ""
+# pwd
+# rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+# result=$?
+# if [ $result -ne 0 ]; then
+#   cd "${CUR}" || exit
+#   exit $result
+# fi
 
 cd "${CURRENT}"/lambda/eventbridge-lambda || exit
 result=$?

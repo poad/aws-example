@@ -295,27 +295,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-amplify/ui-react-core@npm:2.1.1":
-  version: 2.1.1
-  resolution: "@aws-amplify/ui-react-core@npm:2.1.1"
+"@aws-amplify/ui-react-core@npm:2.1.2":
+  version: 2.1.2
+  resolution: "@aws-amplify/ui-react-core@npm:2.1.2"
   dependencies:
-    "@aws-amplify/ui": 5.1.1
+    "@aws-amplify/ui": 5.2.0
     "@xstate/react": 3.0.1
     lodash: 4.17.21
     xstate: ^4.33.6
   peerDependencies:
     aws-amplify: ">= 5.0.1"
     react: ">= 16.14.0"
-  checksum: 75683887ab1e5b95b1e3e18937ff4fa41c313dbbe36e9bb0c88a7b5b450034a29d9a88cf9af1f8f615b2ea1ac03d79a53c1609555e415ab2088e1e6f7c37a19b
+  checksum: c6f07e058a95392e38baa1e52cce30a862121b9254982c0f6fe573bd860dd6472ae068388ae92a8e906a77ce2cea57d35bf79e67a7f6ae98859261f2e12cdc27
   languageName: node
   linkType: hard
 
 "@aws-amplify/ui-react@npm:*":
-  version: 4.0.3
-  resolution: "@aws-amplify/ui-react@npm:4.0.3"
+  version: 4.1.0
+  resolution: "@aws-amplify/ui-react@npm:4.1.0"
   dependencies:
-    "@aws-amplify/ui": 5.1.1
-    "@aws-amplify/ui-react-core": 2.1.1
+    "@aws-amplify/ui": 5.2.0
+    "@aws-amplify/ui-react-core": 2.1.2
     "@radix-ui/react-accordion": 1.0.0
     "@radix-ui/react-direction": 1.0.0
     "@radix-ui/react-dropdown-menu": 1.0.0
@@ -340,13 +340,13 @@ __metadata:
   peerDependenciesMeta:
     aws-amplify:
       optional: true
-  checksum: 6c5e2fe7f5b1a1241ce1832fcf7acbf826b96f6b89a5200069e9efc4aef74a00cb97014ec55c62ff493164dc2ba061201194c34e6c397f8ca97decc130160a14
+  checksum: d695d8a0345a2d5f68f54dce0d1c954a14d2f3a69e5e0aa3ed3a9ccb0f9e8890617240652cefa80204ea5a7558505e42ba98200928eb310a92c855019b39bd02
   languageName: node
   linkType: hard
 
-"@aws-amplify/ui@npm:5.1.1":
-  version: 5.1.1
-  resolution: "@aws-amplify/ui@npm:5.1.1"
+"@aws-amplify/ui@npm:5.2.0":
+  version: 5.2.0
+  resolution: "@aws-amplify/ui@npm:5.2.0"
   dependencies:
     csstype: ^3.1.1
     lodash: 4.17.21
@@ -358,7 +358,7 @@ __metadata:
   peerDependenciesMeta:
     xstate:
       optional: true
-  checksum: 78f2a3db4e344d810131e0757dc71e9a3b2375ce438ab28d52bce291930fde53ee6bc3cddc6cb02c4e8e1f16c568bc422263decec3ae645e26f2aa17946fb55b
+  checksum: f278806cf351ec0211fed7be86620dcc4aa1a22ef3ed52bd0d5a665c08ef7f352c625bccb66ea2ea767ae805850a37d7dd99a90d6091357c9c5045b572dd7a6a
   languageName: node
   linkType: hard
 
@@ -3874,10 +3874,10 @@ __metadata:
   linkType: hard
 
 "@graphql-tools/prisma-loader@npm:^7.2.7":
-  version: 7.2.40
-  resolution: "@graphql-tools/prisma-loader@npm:7.2.40"
+  version: 7.2.42
+  resolution: "@graphql-tools/prisma-loader@npm:7.2.42"
   dependencies:
-    "@graphql-tools/url-loader": 7.16.20
+    "@graphql-tools/url-loader": 7.16.22
     "@graphql-tools/utils": 9.1.1
     "@types/js-yaml": ^4.0.0
     "@types/json-stable-stringify": ^1.0.32
@@ -3898,7 +3898,7 @@ __metadata:
     yaml-ast-parser: ^0.0.43
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: bcf0067a0d8d0eff06bb01ae0b3684ffaf2bca604786b40bb6b412f00ebd6d2316c7a28854c1a6950e77ca40631b9bef6b909df21669da9848d1e4b304a5c397
+  checksum: 911d5851f634e0e79050de7b64d07e254785bbc2c4dc092b280da95b50223d6104f8ac4fe6615f0ee0fe6d7264d9cd537091ae85bbb951164ce4358427859e01
   languageName: node
   linkType: hard
 
@@ -3943,9 +3943,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/url-loader@npm:7.16.20, @graphql-tools/url-loader@npm:^7.13.2, @graphql-tools/url-loader@npm:^7.9.7":
-  version: 7.16.20
-  resolution: "@graphql-tools/url-loader@npm:7.16.20"
+"@graphql-tools/url-loader@npm:7.16.22, @graphql-tools/url-loader@npm:^7.13.2, @graphql-tools/url-loader@npm:^7.9.7":
+  version: 7.16.22
+  resolution: "@graphql-tools/url-loader@npm:7.16.22"
   dependencies:
     "@ardatan/sync-fetch": 0.0.1
     "@graphql-tools/delegate": 9.0.17
@@ -3953,7 +3953,7 @@ __metadata:
     "@graphql-tools/executor-http": 0.0.4
     "@graphql-tools/executor-legacy-ws": 0.0.3
     "@graphql-tools/utils": 9.1.1
-    "@graphql-tools/wrap": 9.2.16
+    "@graphql-tools/wrap": 9.2.18
     "@types/ws": ^8.0.0
     "@whatwg-node/fetch": ^0.5.0
     isomorphic-ws: 5.0.0
@@ -3962,7 +3962,7 @@ __metadata:
     ws: 8.11.0
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: d6674530adb8d19a86c1007f214dd0bbcc435cbc965139904a7d0ca61ce588082b73d270e37bd45937123960ba344a5a5220184f01811cdebb9977b5c69cba32
+  checksum: f368ed58a465fb23936f4e446749c4ba498ee8e464d165d4ab78f07a93dafd54fac8c1545bc0129f3c3c032fdb820054d90127174d232711a9c080174824729f
   languageName: node
   linkType: hard
 
@@ -3999,9 +3999,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/wrap@npm:9.2.16":
-  version: 9.2.16
-  resolution: "@graphql-tools/wrap@npm:9.2.16"
+"@graphql-tools/wrap@npm:9.2.18":
+  version: 9.2.18
+  resolution: "@graphql-tools/wrap@npm:9.2.18"
   dependencies:
     "@graphql-tools/delegate": 9.0.17
     "@graphql-tools/schema": 9.0.10
@@ -4010,7 +4010,7 @@ __metadata:
     value-or-promise: 1.0.11
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: ffd58c711bdbc7ca55b9f0acb0672ba8948f59cd73994be1fa37da19cc4e9ffa51e2904e5227336d5cf58a5846c5cd7fe2109cfde3aae0e5e8dea23ed2c9538d
+  checksum: 2f3dc0aab85033199e81b4d7a91bdfcd2318b10dc5bf2495a2f044673e3797aa0ad2177ba2e440172271d9f5f9e26fb98922c35aad91b26e0f4b8cb0a4a3334c
   languageName: node
   linkType: hard
 
@@ -5266,9 +5266,9 @@ __metadata:
   linkType: hard
 
 "@types/lodash@npm:^4.14.175":
-  version: 4.14.190
-  resolution: "@types/lodash@npm:4.14.190"
-  checksum: 353a55a1222a57224ead8bd3379fabb2e3e3f6685f599c48b1b66f099d8e9e015e6c6352c6e2275954004c3bb510377804c63117233c6f187700b6ab78adfa02
+  version: 4.14.191
+  resolution: "@types/lodash@npm:4.14.191"
+  checksum: ba0d5434e10690869f32d5ea49095250157cae502f10d57de0a723fd72229ce6c6a4979576f0f13e0aa9fbe3ce2457bfb9fa7d4ec3d6daba56730a51906d1491
   languageName: node
   linkType: hard
 
@@ -5300,9 +5300,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 18.11.9
-  resolution: "@types/node@npm:18.11.9"
-  checksum: cc0aae109e9b7adefc32eecb838d6fad931663bb06484b5e9cbbbf74865c721b03d16fd8d74ad90e31dbe093d956a7c2c306ba5429ba0c00f3f7505103d7a496
+  version: 18.11.10
+  resolution: "@types/node@npm:18.11.10"
+  checksum: 0f60cb090b2ee91fcd3dc4311bc1ed7889b92f14644c0069f100776f86474c12eebbcc6c75bc0d7d96b975a103b4d5d6b3c22b4e88bea6e7f4e2b1bb0daf5ea8
   languageName: node
   linkType: hard
 

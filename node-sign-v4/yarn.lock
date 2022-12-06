@@ -110,6 +110,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@aws-sdk/abort-controller@npm:3.224.0":
+  version: 3.224.0
+  resolution: "@aws-sdk/abort-controller@npm:3.224.0"
+  dependencies:
+    "@aws-sdk/types": 3.224.0
+    tslib: ^2.3.1
+  checksum: 6d272d21e7cc0aa020f44f97c002b13dd2ad164fe96d6c6caa73b96e429101cb867188b50c452462e8f0092e680fe87f3d033beacda1366c632b5cf41f5b7207
+  languageName: node
+  linkType: hard
+
 "@aws-sdk/client-cognito-identity@npm:3.223.0":
   version: 3.223.0
   resolution: "@aws-sdk/client-cognito-identity@npm:3.223.0"
@@ -606,7 +616,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/node-http-handler@npm:*, @aws-sdk/node-http-handler@npm:3.222.0":
+"@aws-sdk/node-http-handler@npm:*":
+  version: 3.224.0
+  resolution: "@aws-sdk/node-http-handler@npm:3.224.0"
+  dependencies:
+    "@aws-sdk/abort-controller": 3.224.0
+    "@aws-sdk/protocol-http": 3.224.0
+    "@aws-sdk/querystring-builder": 3.224.0
+    "@aws-sdk/types": 3.224.0
+    tslib: ^2.3.1
+  checksum: 14ea9f596919cd6b577e9dac59131aea5ec3651ed3ad45a4010ac46ec240a3b608116b0da0fe5d2c945bfb4015630592bb1ccea1736513d4af070c6225f357be
+  languageName: node
+  linkType: hard
+
+"@aws-sdk/node-http-handler@npm:3.222.0":
   version: 3.222.0
   resolution: "@aws-sdk/node-http-handler@npm:3.222.0"
   dependencies:
@@ -639,6 +662,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@aws-sdk/protocol-http@npm:3.224.0":
+  version: 3.224.0
+  resolution: "@aws-sdk/protocol-http@npm:3.224.0"
+  dependencies:
+    "@aws-sdk/types": 3.224.0
+    tslib: ^2.3.1
+  checksum: 148d8884566823a7bec10b2bf85c123891ddd23b9e1a544e60a9f55902e390a469699964ddfe19810883ca8a72170918a0a57415e8dfe1da0ed26162d8dedb05
+  languageName: node
+  linkType: hard
+
 "@aws-sdk/querystring-builder@npm:3.222.0":
   version: 3.222.0
   resolution: "@aws-sdk/querystring-builder@npm:3.222.0"
@@ -647,6 +680,17 @@ __metadata:
     "@aws-sdk/util-uri-escape": 3.201.0
     tslib: ^2.3.1
   checksum: 418bc648f3597e1b96765784acb6964dc3aaca6853582d7e91aaaaf793d9ee1fe8170da31cddff72b36b95456fc5566589120c94988711726dc80ddf345e9839
+  languageName: node
+  linkType: hard
+
+"@aws-sdk/querystring-builder@npm:3.224.0":
+  version: 3.224.0
+  resolution: "@aws-sdk/querystring-builder@npm:3.224.0"
+  dependencies:
+    "@aws-sdk/types": 3.224.0
+    "@aws-sdk/util-uri-escape": 3.201.0
+    tslib: ^2.3.1
+  checksum: 6435f62feb5bfa478a4f40b7bf4525de8cf021a69b05dd73951eb03c6bea610477942b5c79beca5c4f9c0544948a105c4ef38eb0470b8266cec9c2d656047c68
   languageName: node
   linkType: hard
 
@@ -719,6 +763,13 @@ __metadata:
   version: 3.222.0
   resolution: "@aws-sdk/types@npm:3.222.0"
   checksum: 41d70038c69b1e9b9dbf0489a8aa416da1c96c4ff84e8d5db01ea4877efceb4c0fdd0ce27bdeea8c67afc4d168151dc63938302a3f945922143f37472c4fd9da
+  languageName: node
+  linkType: hard
+
+"@aws-sdk/types@npm:3.224.0":
+  version: 3.224.0
+  resolution: "@aws-sdk/types@npm:3.224.0"
+  checksum: fa6682baf21dbd50b54e8ccde97ce26c69f18c60a6a7a8e4099526d89b46159d77534b1756db8d3e7ca408b9283b8e5685d329572c85ea9686a49f2e42b9c822
   languageName: node
   linkType: hard
 

@@ -15,7 +15,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-cdk/asset-awscli-v1@npm:^2.2.9":
+"@aws-cdk/asset-awscli-v1@npm:^2.2.16":
   version: 2.2.30
   resolution: "@aws-cdk/asset-awscli-v1@npm:2.2.30"
   checksum: 28f7da11f1c65b828afb49fe31001984db239b7e158250cc14f79ca6e9d0365b6a72dab94b948d0fb8e1449546b7f2fe4a6ec717a88199a20b5573569b47e40d
@@ -29,7 +29,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-cdk/asset-node-proxy-agent-v5@npm:^2.0.15":
+"@aws-cdk/asset-node-proxy-agent-v5@npm:^2.0.21":
   version: 2.0.36
   resolution: "@aws-cdk/asset-node-proxy-agent-v5@npm:2.0.36"
   checksum: b4d43f968504a50fc5fb45f01addcacb7740873ad53b2a2ab785940ae9d1e848822f98214f09fe96bccb14080ad760289e610f0e4660a69dd78444df3ca2c526
@@ -958,11 +958,11 @@ __metadata:
   linkType: hard
 
 "@types/yargs@npm:^17.0.8":
-  version: 17.0.16
-  resolution: "@types/yargs@npm:17.0.16"
+  version: 17.0.17
+  resolution: "@types/yargs@npm:17.0.17"
   dependencies:
     "@types/yargs-parser": "*"
-  checksum: a92e0fbeba641f657f5aa052fbbb94a591b1b9cd52613c51627f0efc04291623c088503015ac9badd755ac91a3473cd7b75b730e070705e5ff9c3ea20228b746
+  checksum: 4f1b5149e794c8960652b4339dc96655e53b48fdbe1b847fcb0db95e72e760724a4c5c616a7fccb3c0ae8beb0e57e06e37391d492e916e3ff179aafeb890e426
   languageName: node
   linkType: hard
 
@@ -1111,12 +1111,12 @@ __metadata:
   linkType: hard
 
 "aws-cdk-lib@npm:*":
-  version: 2.53.0
-  resolution: "aws-cdk-lib@npm:2.53.0"
+  version: 2.54.0
+  resolution: "aws-cdk-lib@npm:2.54.0"
   dependencies:
-    "@aws-cdk/asset-awscli-v1": ^2.2.9
+    "@aws-cdk/asset-awscli-v1": ^2.2.16
     "@aws-cdk/asset-kubectl-v20": ^2.1.1
-    "@aws-cdk/asset-node-proxy-agent-v5": ^2.0.15
+    "@aws-cdk/asset-node-proxy-agent-v5": ^2.0.21
     "@balena/dockerignore": ^1.0.2
     case: 1.6.3
     fs-extra: ^9.1.0
@@ -1128,13 +1128,13 @@ __metadata:
     yaml: 1.10.2
   peerDependencies:
     constructs: ^10.0.0
-  checksum: 58250bcb318342210291a6a4bce23aa71879cee6eddf57cec598832a2ef9d3376626c1643908a339887c3f4415e8210ee6c90cfe731aa98eaa57973359c9a857
+  checksum: b90d309bd1c77955ab854ee26d046e6b24211e5fed31cca1711369439d2e25a16e5aff9fe705353fb1ed009cfd13f5fbb9ac3a6f7a74c66ab668bccf7d0eff77
   languageName: node
   linkType: hard
 
 "aws-cdk@npm:*":
-  version: 2.53.0
-  resolution: "aws-cdk@npm:2.53.0"
+  version: 2.54.0
+  resolution: "aws-cdk@npm:2.54.0"
   dependencies:
     fsevents: 2.3.2
   dependenciesMeta:
@@ -1142,7 +1142,7 @@ __metadata:
       optional: true
   bin:
     cdk: bin/cdk
-  checksum: 9f9b909a3bd51ac6281b45aba4ead9feb6461c337ddfa34e566b82160e17203b9a9395875df6f0e163dc30f35494fedd13c5f8867de8a963cccf0780bd860bc7
+  checksum: c2a3b6fff3ba4dc7ca4f8ade42a9efc9a0ce03d1b9f6f33bb078aea8e155bf593ee5707e5147a9e84f1a76ef0b4b93229dd677da9ec4461d04f7dd795a56ba5a
   languageName: node
   linkType: hard
 
@@ -2881,6 +2881,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"minipass@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "minipass@npm:4.0.0"
+  dependencies:
+    yallist: ^4.0.0
+  checksum: 7a609afbf394abfcf9c48e6c90226f471676c8f2a67f07f6838871afb03215ede431d1433feffe1b855455bcb13ef0eb89162841b9796109d6fed8d89790f381
+  languageName: node
+  linkType: hard
+
 "minizlib@npm:^2.1.1, minizlib@npm:^2.1.2":
   version: 2.1.2
   resolution: "minizlib@npm:2.1.2"
@@ -3522,16 +3531,16 @@ __metadata:
   linkType: hard
 
 "tar@npm:^6.1.11, tar@npm:^6.1.2":
-  version: 6.1.12
-  resolution: "tar@npm:6.1.12"
+  version: 6.1.13
+  resolution: "tar@npm:6.1.13"
   dependencies:
     chownr: ^2.0.0
     fs-minipass: ^2.0.0
-    minipass: ^3.0.0
+    minipass: ^4.0.0
     minizlib: ^2.1.1
     mkdirp: ^1.0.3
     yallist: ^4.0.0
-  checksum: 49d72e4420944e7ede2782d6b0826a6ede6cdab23c7de63470917e7a78166bc4d5b1a96279d3d79a85f1ba5a17cd37c0acbb3cbff19a07447691445b8b051c55
+  checksum: 8a278bed123aa9f53549b256a36b719e317c8b96fe86a63406f3c62887f78267cea9b22dc6f7007009738509800d4a4dccc444abd71d762287c90f35b002eb1c
   languageName: node
   linkType: hard
 

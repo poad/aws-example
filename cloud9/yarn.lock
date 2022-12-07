@@ -5,7 +5,7 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@aws-cdk/asset-awscli-v1@npm:^2.2.9":
+"@aws-cdk/asset-awscli-v1@npm:^2.2.16":
   version: 2.2.30
   resolution: "@aws-cdk/asset-awscli-v1@npm:2.2.30"
   checksum: 28f7da11f1c65b828afb49fe31001984db239b7e158250cc14f79ca6e9d0365b6a72dab94b948d0fb8e1449546b7f2fe4a6ec717a88199a20b5573569b47e40d
@@ -19,7 +19,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-cdk/asset-node-proxy-agent-v5@npm:^2.0.15":
+"@aws-cdk/asset-node-proxy-agent-v5@npm:^2.0.21":
   version: 2.0.36
   resolution: "@aws-cdk/asset-node-proxy-agent-v5@npm:2.0.36"
   checksum: b4d43f968504a50fc5fb45f01addcacb7740873ad53b2a2ab785940ae9d1e848822f98214f09fe96bccb14080ad760289e610f0e4660a69dd78444df3ca2c526
@@ -712,12 +712,12 @@ __metadata:
   linkType: hard
 
 "aws-cdk-lib@npm:*":
-  version: 2.53.0
-  resolution: "aws-cdk-lib@npm:2.53.0"
+  version: 2.54.0
+  resolution: "aws-cdk-lib@npm:2.54.0"
   dependencies:
-    "@aws-cdk/asset-awscli-v1": ^2.2.9
+    "@aws-cdk/asset-awscli-v1": ^2.2.16
     "@aws-cdk/asset-kubectl-v20": ^2.1.1
-    "@aws-cdk/asset-node-proxy-agent-v5": ^2.0.15
+    "@aws-cdk/asset-node-proxy-agent-v5": ^2.0.21
     "@balena/dockerignore": ^1.0.2
     case: 1.6.3
     fs-extra: ^9.1.0
@@ -729,13 +729,13 @@ __metadata:
     yaml: 1.10.2
   peerDependencies:
     constructs: ^10.0.0
-  checksum: 58250bcb318342210291a6a4bce23aa71879cee6eddf57cec598832a2ef9d3376626c1643908a339887c3f4415e8210ee6c90cfe731aa98eaa57973359c9a857
+  checksum: b90d309bd1c77955ab854ee26d046e6b24211e5fed31cca1711369439d2e25a16e5aff9fe705353fb1ed009cfd13f5fbb9ac3a6f7a74c66ab668bccf7d0eff77
   languageName: node
   linkType: hard
 
 "aws-cdk@npm:*":
-  version: 2.53.0
-  resolution: "aws-cdk@npm:2.53.0"
+  version: 2.54.0
+  resolution: "aws-cdk@npm:2.54.0"
   dependencies:
     fsevents: 2.3.2
   dependenciesMeta:
@@ -743,7 +743,7 @@ __metadata:
       optional: true
   bin:
     cdk: bin/cdk
-  checksum: 9f9b909a3bd51ac6281b45aba4ead9feb6461c337ddfa34e566b82160e17203b9a9395875df6f0e163dc30f35494fedd13c5f8867de8a963cccf0780bd860bc7
+  checksum: c2a3b6fff3ba4dc7ca4f8ade42a9efc9a0ce03d1b9f6f33bb078aea8e155bf593ee5707e5147a9e84f1a76ef0b4b93229dd677da9ec4461d04f7dd795a56ba5a
   languageName: node
   linkType: hard
 
@@ -1085,8 +1085,8 @@ __metadata:
   linkType: hard
 
 "es-abstract@npm:^1.19.0, es-abstract@npm:^1.20.4":
-  version: 1.20.4
-  resolution: "es-abstract@npm:1.20.4"
+  version: 1.20.5
+  resolution: "es-abstract@npm:1.20.5"
   dependencies:
     call-bind: ^1.0.2
     es-to-primitive: ^1.2.1
@@ -1094,6 +1094,7 @@ __metadata:
     function.prototype.name: ^1.1.5
     get-intrinsic: ^1.1.3
     get-symbol-description: ^1.0.0
+    gopd: ^1.0.1
     has: ^1.0.3
     has-property-descriptors: ^1.0.0
     has-symbols: ^1.0.3
@@ -1109,10 +1110,10 @@ __metadata:
     object.assign: ^4.1.4
     regexp.prototype.flags: ^1.4.3
     safe-regex-test: ^1.0.0
-    string.prototype.trimend: ^1.0.5
-    string.prototype.trimstart: ^1.0.5
+    string.prototype.trimend: ^1.0.6
+    string.prototype.trimstart: ^1.0.6
     unbox-primitive: ^1.0.2
-  checksum: 89297cc785c31aedf961a603d5a07ed16471e435d3a1b6d070b54f157cf48454b95cda2ac55e4b86ff4fe3276e835fcffd2771578e6fa634337da49b26826141
+  checksum: 00564779ddaf7fb977ab5aa2b8ea2cbd4fa2335ad5368f788bd0bb094c86bc1790335dd9c3e30374bb0af2fa54c724fb4e0c73659dcfe8e427355a56f2b65946
   languageName: node
   linkType: hard
 
@@ -1737,6 +1738,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gopd@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "gopd@npm:1.0.1"
+  dependencies:
+    get-intrinsic: ^1.1.3
+  checksum: a5ccfb8806e0917a94e0b3de2af2ea4979c1da920bc381667c260e00e7cafdbe844e2cb9c5bcfef4e5412e8bf73bab837285bc35c7ba73aaaf0134d4583393a6
+  languageName: node
+  linkType: hard
+
 "graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0, graceful-fs@npm:^4.2.6":
   version: 4.2.10
   resolution: "graceful-fs@npm:4.2.10"
@@ -2313,6 +2323,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"minipass@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "minipass@npm:4.0.0"
+  dependencies:
+    yallist: ^4.0.0
+  checksum: 7a609afbf394abfcf9c48e6c90226f471676c8f2a67f07f6838871afb03215ede431d1433feffe1b855455bcb13ef0eb89162841b9796109d6fed8d89790f381
+  languageName: node
+  linkType: hard
+
 "minizlib@npm:^2.1.1, minizlib@npm:^2.1.2":
   version: 2.1.2
   resolution: "minizlib@npm:2.1.2"
@@ -2597,11 +2616,11 @@ __metadata:
   linkType: hard
 
 "prettier@npm:*":
-  version: 2.8.0
-  resolution: "prettier@npm:2.8.0"
+  version: 2.8.1
+  resolution: "prettier@npm:2.8.1"
   bin:
     prettier: bin-prettier.js
-  checksum: 72004ce0cc9bb097daf3e3833f62495768724392c1d5b178dd47372337616e9e50ecbb0804f236596223f7b5eb1bbe69cefc8957dca21112c5777e77ef73a564
+  checksum: 4f21a0f1269f76fb36f54e9a8a1ea4c11e27478958bf860661fb4b6d7ac69aac1581f8724fa98ea3585e56d42a2ea317a17ff6e3324f40cb11ff9e20b73785cc
   languageName: node
   linkType: hard
 
@@ -2897,7 +2916,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"string.prototype.trimend@npm:^1.0.5":
+"string.prototype.trimend@npm:^1.0.6":
   version: 1.0.6
   resolution: "string.prototype.trimend@npm:1.0.6"
   dependencies:
@@ -2908,7 +2927,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"string.prototype.trimstart@npm:^1.0.5":
+"string.prototype.trimstart@npm:^1.0.6":
   version: 1.0.6
   resolution: "string.prototype.trimstart@npm:1.0.6"
   dependencies:
@@ -2968,16 +2987,16 @@ __metadata:
   linkType: hard
 
 "tar@npm:^6.1.11, tar@npm:^6.1.2":
-  version: 6.1.12
-  resolution: "tar@npm:6.1.12"
+  version: 6.1.13
+  resolution: "tar@npm:6.1.13"
   dependencies:
     chownr: ^2.0.0
     fs-minipass: ^2.0.0
-    minipass: ^3.0.0
+    minipass: ^4.0.0
     minizlib: ^2.1.1
     mkdirp: ^1.0.3
     yallist: ^4.0.0
-  checksum: 49d72e4420944e7ede2782d6b0826a6ede6cdab23c7de63470917e7a78166bc4d5b1a96279d3d79a85f1ba5a17cd37c0acbb3cbff19a07447691445b8b051c55
+  checksum: 8a278bed123aa9f53549b256a36b719e317c8b96fe86a63406f3c62887f78267cea9b22dc6f7007009738509800d4a4dccc444abd71d762287c90f35b002eb1c
   languageName: node
   linkType: hard
 

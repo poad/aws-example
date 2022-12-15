@@ -15,7 +15,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-cdk/asset-awscli-v1@npm:^2.2.16":
+"@aws-cdk/asset-awscli-v1@npm:^2.2.30":
   version: 2.2.30
   resolution: "@aws-cdk/asset-awscli-v1@npm:2.2.30"
   checksum: 28f7da11f1c65b828afb49fe31001984db239b7e158250cc14f79ca6e9d0365b6a72dab94b948d0fb8e1449546b7f2fe4a6ec717a88199a20b5573569b47e40d
@@ -29,7 +29,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-cdk/asset-node-proxy-agent-v5@npm:^2.0.21":
+"@aws-cdk/asset-node-proxy-agent-v5@npm:^2.0.38":
   version: 2.0.38
   resolution: "@aws-cdk/asset-node-proxy-agent-v5@npm:2.0.38"
   checksum: 05303f68aa9cd772cb93c2d9c6eef42da1b559ed3fd80d7257d07cda57290b1a2dca87eaf7b92e54e5ab7051cc84564f94e24c209ebb85100728c87b1827d88c
@@ -126,7 +126,7 @@ __metadata:
 
 "@aws-example-common/cognito-singin@file:../../common/cognito-singin/::locator=lambda-examples%40workspace%3A.":
   version: 0.0.1
-  resolution: "@aws-example-common/cognito-singin@file:../../common/cognito-singin/#../../common/cognito-singin/::hash=b5e83d&locator=lambda-examples%40workspace%3A."
+  resolution: "@aws-example-common/cognito-singin@file:../../common/cognito-singin/#../../common/cognito-singin/::hash=1e67a1&locator=lambda-examples%40workspace%3A."
   dependencies:
     "@aws-sdk/client-cognito-identity": "*"
     "@aws-sdk/client-cognito-identity-provider": "*"
@@ -143,7 +143,7 @@ __metadata:
     jsonwebtoken: "*"
     jwks-rsa: "*"
     source-map-support: "*"
-  checksum: 2958a0bf437520b24a3de9a6e32e5361ea767e9a2b986e9c30d0c17b4bebe2211f8251c594066dcb32b8e6f5614e5a8bf9324d3ebfcaf67231341b721e3ce23d
+  checksum: 0b30f419c8ea87a29f6cab85ecefa05fcd1cc89313532759fe236d2d6008bd134b7c6fecf2e36b90038594d6e143e854cc4eb97eabde252e0712af324ebc9d79
   languageName: node
   linkType: hard
 
@@ -158,14 +158,14 @@ __metadata:
   linkType: hard
 
 "@aws-sdk/client-cognito-identity-provider@npm:*":
-  version: 3.229.0
-  resolution: "@aws-sdk/client-cognito-identity-provider@npm:3.229.0"
+  version: 3.231.0
+  resolution: "@aws-sdk/client-cognito-identity-provider@npm:3.231.0"
   dependencies:
     "@aws-crypto/sha256-browser": 2.0.0
     "@aws-crypto/sha256-js": 2.0.0
-    "@aws-sdk/client-sts": 3.229.0
-    "@aws-sdk/config-resolver": 3.226.0
-    "@aws-sdk/credential-provider-node": 3.229.0
+    "@aws-sdk/client-sts": 3.231.0
+    "@aws-sdk/config-resolver": 3.231.0
+    "@aws-sdk/credential-provider-node": 3.231.0
     "@aws-sdk/fetch-http-handler": 3.226.0
     "@aws-sdk/hash-node": 3.226.0
     "@aws-sdk/invalid-dependency": 3.226.0
@@ -189,7 +189,7 @@ __metadata:
     "@aws-sdk/util-body-length-browser": 3.188.0
     "@aws-sdk/util-body-length-node": 3.208.0
     "@aws-sdk/util-defaults-mode-browser": 3.226.0
-    "@aws-sdk/util-defaults-mode-node": 3.226.0
+    "@aws-sdk/util-defaults-mode-node": 3.231.0
     "@aws-sdk/util-endpoints": 3.226.0
     "@aws-sdk/util-retry": 3.229.0
     "@aws-sdk/util-user-agent-browser": 3.226.0
@@ -197,19 +197,19 @@ __metadata:
     "@aws-sdk/util-utf8-browser": 3.188.0
     "@aws-sdk/util-utf8-node": 3.208.0
     tslib: ^2.3.1
-  checksum: c851dedcc4f9d6edb2051e22ad56c65c938c94a04c43690c95ca394c84c35b3a8d8aa90c6dbc3c613eb31907cc90f442db3f0f2c5166416dea575fcbf4501ad9
+  checksum: 1a5d1a9f8d8de6039c980e6705bd8dda77546500194157ff3787f4d8b29eb4160980489c6234ae68de6de04610663cdabf17b1398046b42762af7d40359eeff7
   languageName: node
   linkType: hard
 
 "@aws-sdk/client-cognito-identity@npm:*":
-  version: 3.229.0
-  resolution: "@aws-sdk/client-cognito-identity@npm:3.229.0"
+  version: 3.231.0
+  resolution: "@aws-sdk/client-cognito-identity@npm:3.231.0"
   dependencies:
     "@aws-crypto/sha256-browser": 2.0.0
     "@aws-crypto/sha256-js": 2.0.0
-    "@aws-sdk/client-sts": 3.229.0
-    "@aws-sdk/config-resolver": 3.226.0
-    "@aws-sdk/credential-provider-node": 3.229.0
+    "@aws-sdk/client-sts": 3.231.0
+    "@aws-sdk/config-resolver": 3.231.0
+    "@aws-sdk/credential-provider-node": 3.231.0
     "@aws-sdk/fetch-http-handler": 3.226.0
     "@aws-sdk/hash-node": 3.226.0
     "@aws-sdk/invalid-dependency": 3.226.0
@@ -233,7 +233,7 @@ __metadata:
     "@aws-sdk/util-body-length-browser": 3.188.0
     "@aws-sdk/util-body-length-node": 3.208.0
     "@aws-sdk/util-defaults-mode-browser": 3.226.0
-    "@aws-sdk/util-defaults-mode-node": 3.226.0
+    "@aws-sdk/util-defaults-mode-node": 3.231.0
     "@aws-sdk/util-endpoints": 3.226.0
     "@aws-sdk/util-retry": 3.229.0
     "@aws-sdk/util-user-agent-browser": 3.226.0
@@ -241,17 +241,17 @@ __metadata:
     "@aws-sdk/util-utf8-browser": 3.188.0
     "@aws-sdk/util-utf8-node": 3.208.0
     tslib: ^2.3.1
-  checksum: 742e26278a61685b276e4dbaa15e3e3fc5702606ec2be72f59a210eedba99b8b66fabfd2d00927e76f7941dbe63701176f5e8c6cad82224f30dfeca2b125c186
+  checksum: 309c433d0005c072db5298d75df4f37826350ffc2bdab940c1147f719f5285207e9761ee8f87884b23ea2cf5f8bf7157fcf992008f0a838491954cbe6925a47a
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-sso-oidc@npm:3.229.0":
-  version: 3.229.0
-  resolution: "@aws-sdk/client-sso-oidc@npm:3.229.0"
+"@aws-sdk/client-sso-oidc@npm:3.231.0":
+  version: 3.231.0
+  resolution: "@aws-sdk/client-sso-oidc@npm:3.231.0"
   dependencies:
     "@aws-crypto/sha256-browser": 2.0.0
     "@aws-crypto/sha256-js": 2.0.0
-    "@aws-sdk/config-resolver": 3.226.0
+    "@aws-sdk/config-resolver": 3.231.0
     "@aws-sdk/fetch-http-handler": 3.226.0
     "@aws-sdk/hash-node": 3.226.0
     "@aws-sdk/invalid-dependency": 3.226.0
@@ -274,7 +274,7 @@ __metadata:
     "@aws-sdk/util-body-length-browser": 3.188.0
     "@aws-sdk/util-body-length-node": 3.208.0
     "@aws-sdk/util-defaults-mode-browser": 3.226.0
-    "@aws-sdk/util-defaults-mode-node": 3.226.0
+    "@aws-sdk/util-defaults-mode-node": 3.231.0
     "@aws-sdk/util-endpoints": 3.226.0
     "@aws-sdk/util-retry": 3.229.0
     "@aws-sdk/util-user-agent-browser": 3.226.0
@@ -282,17 +282,17 @@ __metadata:
     "@aws-sdk/util-utf8-browser": 3.188.0
     "@aws-sdk/util-utf8-node": 3.208.0
     tslib: ^2.3.1
-  checksum: 031bedebd213f7f2522321abb55bb50a2271e4d63ad38e3596eab6daeddb39044a4d72f554fc3e716ea4108317b3169ffb681b6e75f45ec83f730619b588eac6
+  checksum: 4ec5e5f0f25969df5d5341cd1f291a763ed2edaeb317228a7873f18f16471f2cbd83bd575f766a4f0f22c3ebfcf69ecd75891fd0518a205c69eb20ded8734c98
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-sso@npm:3.229.0":
-  version: 3.229.0
-  resolution: "@aws-sdk/client-sso@npm:3.229.0"
+"@aws-sdk/client-sso@npm:3.231.0":
+  version: 3.231.0
+  resolution: "@aws-sdk/client-sso@npm:3.231.0"
   dependencies:
     "@aws-crypto/sha256-browser": 2.0.0
     "@aws-crypto/sha256-js": 2.0.0
-    "@aws-sdk/config-resolver": 3.226.0
+    "@aws-sdk/config-resolver": 3.231.0
     "@aws-sdk/fetch-http-handler": 3.226.0
     "@aws-sdk/hash-node": 3.226.0
     "@aws-sdk/invalid-dependency": 3.226.0
@@ -315,7 +315,7 @@ __metadata:
     "@aws-sdk/util-body-length-browser": 3.188.0
     "@aws-sdk/util-body-length-node": 3.208.0
     "@aws-sdk/util-defaults-mode-browser": 3.226.0
-    "@aws-sdk/util-defaults-mode-node": 3.226.0
+    "@aws-sdk/util-defaults-mode-node": 3.231.0
     "@aws-sdk/util-endpoints": 3.226.0
     "@aws-sdk/util-retry": 3.229.0
     "@aws-sdk/util-user-agent-browser": 3.226.0
@@ -323,18 +323,18 @@ __metadata:
     "@aws-sdk/util-utf8-browser": 3.188.0
     "@aws-sdk/util-utf8-node": 3.208.0
     tslib: ^2.3.1
-  checksum: 970e6ea9666a6e976f0b4e7f693e286ade8c090aca1ae780835050623f5d8bd3ecbc0336d1b3f4037e92d50c48b5d18d5ad6d595ddb62db7efe38b90ab928129
+  checksum: 3551984b8c14f611daa93c7082f2a361caa0c8e985fbfc6d66674ec7f3624364aa7d3c8011aa334729022e3866e5323c6ac18a4ba3e840023128000994d99165
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-sts@npm:*, @aws-sdk/client-sts@npm:3.229.0":
-  version: 3.229.0
-  resolution: "@aws-sdk/client-sts@npm:3.229.0"
+"@aws-sdk/client-sts@npm:*, @aws-sdk/client-sts@npm:3.231.0":
+  version: 3.231.0
+  resolution: "@aws-sdk/client-sts@npm:3.231.0"
   dependencies:
     "@aws-crypto/sha256-browser": 2.0.0
     "@aws-crypto/sha256-js": 2.0.0
-    "@aws-sdk/config-resolver": 3.226.0
-    "@aws-sdk/credential-provider-node": 3.229.0
+    "@aws-sdk/config-resolver": 3.231.0
+    "@aws-sdk/credential-provider-node": 3.231.0
     "@aws-sdk/fetch-http-handler": 3.226.0
     "@aws-sdk/hash-node": 3.226.0
     "@aws-sdk/invalid-dependency": 3.226.0
@@ -359,7 +359,7 @@ __metadata:
     "@aws-sdk/util-body-length-browser": 3.188.0
     "@aws-sdk/util-body-length-node": 3.208.0
     "@aws-sdk/util-defaults-mode-browser": 3.226.0
-    "@aws-sdk/util-defaults-mode-node": 3.226.0
+    "@aws-sdk/util-defaults-mode-node": 3.231.0
     "@aws-sdk/util-endpoints": 3.226.0
     "@aws-sdk/util-retry": 3.229.0
     "@aws-sdk/util-user-agent-browser": 3.226.0
@@ -368,20 +368,20 @@ __metadata:
     "@aws-sdk/util-utf8-node": 3.208.0
     fast-xml-parser: 4.0.11
     tslib: ^2.3.1
-  checksum: 18d357f2433ef832948f867c0e22ba34ac57c096e8b5209e0203d892acab9de60d9114a513f8ec9354ec83a89652a8285a49f89ee3203cededc514a25eea67f5
+  checksum: 377eabf0ff0523b7847fe1677084293c322d5525443a859f522b83363eb647a87721245f7b48f7232e2f2f3b49dfdaefdf274e9578915c24617c5d7540624aca
   languageName: node
   linkType: hard
 
-"@aws-sdk/config-resolver@npm:3.226.0":
-  version: 3.226.0
-  resolution: "@aws-sdk/config-resolver@npm:3.226.0"
+"@aws-sdk/config-resolver@npm:3.231.0":
+  version: 3.231.0
+  resolution: "@aws-sdk/config-resolver@npm:3.231.0"
   dependencies:
     "@aws-sdk/signature-v4": 3.226.0
     "@aws-sdk/types": 3.226.0
     "@aws-sdk/util-config-provider": 3.208.0
     "@aws-sdk/util-middleware": 3.226.0
     tslib: ^2.3.1
-  checksum: 08bfbc0528da98cba2b46bda05cd9af46f6eced3dbe5e415b11465501fe672d99b869adc9f08cfd2f138c9b61ac119b43eb9a90a490395aec705e1b795022d4d
+  checksum: 67ec8d1f547cdde45f9c0daec21864225cfc04fba732e5e157b59d23f987d588fdc1738e1ce43012f885bdb6e65da8105511f5816e5844a5b839192b5feecc64
   languageName: node
   linkType: hard
 
@@ -409,37 +409,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/credential-provider-ini@npm:3.229.0":
-  version: 3.229.0
-  resolution: "@aws-sdk/credential-provider-ini@npm:3.229.0"
+"@aws-sdk/credential-provider-ini@npm:3.231.0":
+  version: 3.231.0
+  resolution: "@aws-sdk/credential-provider-ini@npm:3.231.0"
   dependencies:
     "@aws-sdk/credential-provider-env": 3.226.0
     "@aws-sdk/credential-provider-imds": 3.226.0
-    "@aws-sdk/credential-provider-sso": 3.229.0
+    "@aws-sdk/credential-provider-sso": 3.231.0
     "@aws-sdk/credential-provider-web-identity": 3.226.0
     "@aws-sdk/property-provider": 3.226.0
     "@aws-sdk/shared-ini-file-loader": 3.226.0
     "@aws-sdk/types": 3.226.0
     tslib: ^2.3.1
-  checksum: fb573675c0c34c7fa0e207c78190bce73e42fc1713d93a25868b50002352a70f3584e2ab0a0b249103bcf25c3a60c26261ad3dcfc1d6280b4f5dc8ad4e4b3f49
+  checksum: f6b11d4876602e65464bc25804781b78a6e0c66b39c293178d7e97f2f11c151bd6e23e1e31158c0442dfbc3076f417aeecf44c315d4e509b48e7cfc3be2e7472
   languageName: node
   linkType: hard
 
-"@aws-sdk/credential-provider-node@npm:3.229.0":
-  version: 3.229.0
-  resolution: "@aws-sdk/credential-provider-node@npm:3.229.0"
+"@aws-sdk/credential-provider-node@npm:3.231.0":
+  version: 3.231.0
+  resolution: "@aws-sdk/credential-provider-node@npm:3.231.0"
   dependencies:
     "@aws-sdk/credential-provider-env": 3.226.0
     "@aws-sdk/credential-provider-imds": 3.226.0
-    "@aws-sdk/credential-provider-ini": 3.229.0
+    "@aws-sdk/credential-provider-ini": 3.231.0
     "@aws-sdk/credential-provider-process": 3.226.0
-    "@aws-sdk/credential-provider-sso": 3.229.0
+    "@aws-sdk/credential-provider-sso": 3.231.0
     "@aws-sdk/credential-provider-web-identity": 3.226.0
     "@aws-sdk/property-provider": 3.226.0
     "@aws-sdk/shared-ini-file-loader": 3.226.0
     "@aws-sdk/types": 3.226.0
     tslib: ^2.3.1
-  checksum: a8ad0f6aeb3c7ee03937e7389dbcabeb81f2a6e23c3bfeb84f518b063fb156a2d2f2e4a7267655c6bdfa178ba51e9e0ea74c98397dd6dd58b9a315d9e5a4a6de
+  checksum: e28266dce53130c6e28eb7e82028e29cb2db2f06e1f40c98ae7875bcf2e17553976899f02b93576070c7fd77c131046ec752f543f9aa7e32078e1f3a44c3acf5
   languageName: node
   linkType: hard
 
@@ -455,17 +455,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/credential-provider-sso@npm:3.229.0":
-  version: 3.229.0
-  resolution: "@aws-sdk/credential-provider-sso@npm:3.229.0"
+"@aws-sdk/credential-provider-sso@npm:3.231.0":
+  version: 3.231.0
+  resolution: "@aws-sdk/credential-provider-sso@npm:3.231.0"
   dependencies:
-    "@aws-sdk/client-sso": 3.229.0
+    "@aws-sdk/client-sso": 3.231.0
     "@aws-sdk/property-provider": 3.226.0
     "@aws-sdk/shared-ini-file-loader": 3.226.0
-    "@aws-sdk/token-providers": 3.229.0
+    "@aws-sdk/token-providers": 3.231.0
     "@aws-sdk/types": 3.226.0
     tslib: ^2.3.1
-  checksum: 9497a8c5dfddf70a4740e9e485cea757070a6e9c5c94469cc51599918f2689f6ca794fcaba98320b20aa7b81e7e56c3b91f11d3cf8111335e445638825d0ee58
+  checksum: 0aa69ec7ea5b0115c53972c6ae0419687e0bebc7500fbefa77c1108ecb81e735227982b586180b2fe111427cba17fad75f6db61f69a8b5cf5ad079f7ee09107c
   languageName: node
   linkType: hard
 
@@ -762,16 +762,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/token-providers@npm:3.229.0":
-  version: 3.229.0
-  resolution: "@aws-sdk/token-providers@npm:3.229.0"
+"@aws-sdk/token-providers@npm:3.231.0":
+  version: 3.231.0
+  resolution: "@aws-sdk/token-providers@npm:3.231.0"
   dependencies:
-    "@aws-sdk/client-sso-oidc": 3.229.0
+    "@aws-sdk/client-sso-oidc": 3.231.0
     "@aws-sdk/property-provider": 3.226.0
     "@aws-sdk/shared-ini-file-loader": 3.226.0
     "@aws-sdk/types": 3.226.0
     tslib: ^2.3.1
-  checksum: b099537ba47f3c2520f8081590ef97d22279aea39fcb1f3883f611273c8f15f4190d7b44f3f2debfdb36900f124e5f188193b039ce95c45c6e20d3b48ef9a3da
+  checksum: 3fe2b2776232f2aad499d74ec540431db013520a1c4e3cee6ed4ab4d5cb2a402b1b50dd60f64d1c95e9ebb2bcc44c2244462d62453b9f6226b73082930dcc119
   languageName: node
   linkType: hard
 
@@ -854,17 +854,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/util-defaults-mode-node@npm:3.226.0":
-  version: 3.226.0
-  resolution: "@aws-sdk/util-defaults-mode-node@npm:3.226.0"
+"@aws-sdk/util-defaults-mode-node@npm:3.231.0":
+  version: 3.231.0
+  resolution: "@aws-sdk/util-defaults-mode-node@npm:3.231.0"
   dependencies:
-    "@aws-sdk/config-resolver": 3.226.0
+    "@aws-sdk/config-resolver": 3.231.0
     "@aws-sdk/credential-provider-imds": 3.226.0
     "@aws-sdk/node-config-provider": 3.226.0
     "@aws-sdk/property-provider": 3.226.0
     "@aws-sdk/types": 3.226.0
     tslib: ^2.3.1
-  checksum: cb34426f745aa3965fe25d5c8e38eb4d1c3f85f6f071995b15ecad48afcd0ca01a01b7f572c26dacd917134d9c676625492df8f6fb01d702ad6becb65bd34105
+  checksum: 6dca6704798145569f25002605c4918890ebd2b7bf56d20909192993eea5bcf8fdceff7f51484c9ab7e009a77c3d371e0935666d204c819e703128e857859e73
   languageName: node
   linkType: hard
 
@@ -1379,156 +1379,156 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esbuild/android-arm64@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/android-arm64@npm:0.16.6"
+"@esbuild/android-arm64@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/android-arm64@npm:0.16.7"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
-"@esbuild/android-arm@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/android-arm@npm:0.16.6"
+"@esbuild/android-arm@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/android-arm@npm:0.16.7"
   conditions: os=android & cpu=arm
   languageName: node
   linkType: hard
 
-"@esbuild/android-x64@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/android-x64@npm:0.16.6"
+"@esbuild/android-x64@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/android-x64@npm:0.16.7"
   conditions: os=android & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/darwin-arm64@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/darwin-arm64@npm:0.16.6"
+"@esbuild/darwin-arm64@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/darwin-arm64@npm:0.16.7"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@esbuild/darwin-x64@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/darwin-x64@npm:0.16.6"
+"@esbuild/darwin-x64@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/darwin-x64@npm:0.16.7"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/freebsd-arm64@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/freebsd-arm64@npm:0.16.6"
+"@esbuild/freebsd-arm64@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/freebsd-arm64@npm:0.16.7"
   conditions: os=freebsd & cpu=arm64
   languageName: node
   linkType: hard
 
-"@esbuild/freebsd-x64@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/freebsd-x64@npm:0.16.6"
+"@esbuild/freebsd-x64@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/freebsd-x64@npm:0.16.7"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/linux-arm64@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/linux-arm64@npm:0.16.6"
+"@esbuild/linux-arm64@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/linux-arm64@npm:0.16.7"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"@esbuild/linux-arm@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/linux-arm@npm:0.16.6"
+"@esbuild/linux-arm@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/linux-arm@npm:0.16.7"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@esbuild/linux-ia32@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/linux-ia32@npm:0.16.6"
+"@esbuild/linux-ia32@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/linux-ia32@npm:0.16.7"
   conditions: os=linux & cpu=ia32
   languageName: node
   linkType: hard
 
-"@esbuild/linux-loong64@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/linux-loong64@npm:0.16.6"
+"@esbuild/linux-loong64@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/linux-loong64@npm:0.16.7"
   conditions: os=linux & cpu=loong64
   languageName: node
   linkType: hard
 
-"@esbuild/linux-mips64el@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/linux-mips64el@npm:0.16.6"
+"@esbuild/linux-mips64el@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/linux-mips64el@npm:0.16.7"
   conditions: os=linux & cpu=mips64el
   languageName: node
   linkType: hard
 
-"@esbuild/linux-ppc64@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/linux-ppc64@npm:0.16.6"
+"@esbuild/linux-ppc64@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/linux-ppc64@npm:0.16.7"
   conditions: os=linux & cpu=ppc64
   languageName: node
   linkType: hard
 
-"@esbuild/linux-riscv64@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/linux-riscv64@npm:0.16.6"
+"@esbuild/linux-riscv64@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/linux-riscv64@npm:0.16.7"
   conditions: os=linux & cpu=riscv64
   languageName: node
   linkType: hard
 
-"@esbuild/linux-s390x@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/linux-s390x@npm:0.16.6"
+"@esbuild/linux-s390x@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/linux-s390x@npm:0.16.7"
   conditions: os=linux & cpu=s390x
   languageName: node
   linkType: hard
 
-"@esbuild/linux-x64@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/linux-x64@npm:0.16.6"
+"@esbuild/linux-x64@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/linux-x64@npm:0.16.7"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/netbsd-x64@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/netbsd-x64@npm:0.16.6"
+"@esbuild/netbsd-x64@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/netbsd-x64@npm:0.16.7"
   conditions: os=netbsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/openbsd-x64@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/openbsd-x64@npm:0.16.6"
+"@esbuild/openbsd-x64@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/openbsd-x64@npm:0.16.7"
   conditions: os=openbsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/sunos-x64@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/sunos-x64@npm:0.16.6"
+"@esbuild/sunos-x64@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/sunos-x64@npm:0.16.7"
   conditions: os=sunos & cpu=x64
   languageName: node
   linkType: hard
 
-"@esbuild/win32-arm64@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/win32-arm64@npm:0.16.6"
+"@esbuild/win32-arm64@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/win32-arm64@npm:0.16.7"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@esbuild/win32-ia32@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/win32-ia32@npm:0.16.6"
+"@esbuild/win32-ia32@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/win32-ia32@npm:0.16.7"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@esbuild/win32-x64@npm:0.16.6":
-  version: 0.16.6
-  resolution: "@esbuild/win32-x64@npm:0.16.6"
+"@esbuild/win32-x64@npm:0.16.7":
+  version: 0.16.7
+  resolution: "@esbuild/win32-x64@npm:0.16.7"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -1558,13 +1558,13 @@ __metadata:
   linkType: hard
 
 "@humanwhocodes/config-array@npm:^0.11.6":
-  version: 0.11.7
-  resolution: "@humanwhocodes/config-array@npm:0.11.7"
+  version: 0.11.8
+  resolution: "@humanwhocodes/config-array@npm:0.11.8"
   dependencies:
     "@humanwhocodes/object-schema": ^1.2.1
     debug: ^4.1.1
     minimatch: ^3.0.5
-  checksum: cf506dc45d9488af7fbf108ea6ac2151ba1a25e6d2b94b9b4fc36d2c1e4099b89ff560296dbfa13947e44604d4ca4a90d97a4fb167370bf8dd01a6ca2b6d83ac
+  checksum: 0fd6b3c54f1674ce0a224df09b9c2f9846d20b9e54fabae1281ecfc04f2e6ad69bf19e1d6af6a28f88e8aa3990168b6cb9e1ef755868c3256a630605ec2cb1d3
   languageName: node
   linkType: hard
 
@@ -1966,90 +1966,90 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-arm64@npm:1.3.22":
-  version: 1.3.22
-  resolution: "@swc/core-darwin-arm64@npm:1.3.22"
+"@swc/core-darwin-arm64@npm:1.3.23":
+  version: 1.3.23
+  resolution: "@swc/core-darwin-arm64@npm:1.3.23"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-x64@npm:1.3.22":
-  version: 1.3.22
-  resolution: "@swc/core-darwin-x64@npm:1.3.22"
+"@swc/core-darwin-x64@npm:1.3.23":
+  version: 1.3.23
+  resolution: "@swc/core-darwin-x64@npm:1.3.23"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm-gnueabihf@npm:1.3.22":
-  version: 1.3.22
-  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.22"
+"@swc/core-linux-arm-gnueabihf@npm:1.3.23":
+  version: 1.3.23
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.23"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-gnu@npm:1.3.22":
-  version: 1.3.22
-  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.22"
+"@swc/core-linux-arm64-gnu@npm:1.3.23":
+  version: 1.3.23
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.23"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-musl@npm:1.3.22":
-  version: 1.3.22
-  resolution: "@swc/core-linux-arm64-musl@npm:1.3.22"
+"@swc/core-linux-arm64-musl@npm:1.3.23":
+  version: 1.3.23
+  resolution: "@swc/core-linux-arm64-musl@npm:1.3.23"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-gnu@npm:1.3.22":
-  version: 1.3.22
-  resolution: "@swc/core-linux-x64-gnu@npm:1.3.22"
+"@swc/core-linux-x64-gnu@npm:1.3.23":
+  version: 1.3.23
+  resolution: "@swc/core-linux-x64-gnu@npm:1.3.23"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-musl@npm:1.3.22":
-  version: 1.3.22
-  resolution: "@swc/core-linux-x64-musl@npm:1.3.22"
+"@swc/core-linux-x64-musl@npm:1.3.23":
+  version: 1.3.23
+  resolution: "@swc/core-linux-x64-musl@npm:1.3.23"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-win32-arm64-msvc@npm:1.3.22":
-  version: 1.3.22
-  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.22"
+"@swc/core-win32-arm64-msvc@npm:1.3.23":
+  version: 1.3.23
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.23"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-win32-ia32-msvc@npm:1.3.22":
-  version: 1.3.22
-  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.22"
+"@swc/core-win32-ia32-msvc@npm:1.3.23":
+  version: 1.3.23
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.23"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/core-win32-x64-msvc@npm:1.3.22":
-  version: 1.3.22
-  resolution: "@swc/core-win32-x64-msvc@npm:1.3.22"
+"@swc/core-win32-x64-msvc@npm:1.3.23":
+  version: 1.3.23
+  resolution: "@swc/core-win32-x64-msvc@npm:1.3.23"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
 "@swc/core@npm:*":
-  version: 1.3.22
-  resolution: "@swc/core@npm:1.3.22"
+  version: 1.3.23
+  resolution: "@swc/core@npm:1.3.23"
   dependencies:
-    "@swc/core-darwin-arm64": 1.3.22
-    "@swc/core-darwin-x64": 1.3.22
-    "@swc/core-linux-arm-gnueabihf": 1.3.22
-    "@swc/core-linux-arm64-gnu": 1.3.22
-    "@swc/core-linux-arm64-musl": 1.3.22
-    "@swc/core-linux-x64-gnu": 1.3.22
-    "@swc/core-linux-x64-musl": 1.3.22
-    "@swc/core-win32-arm64-msvc": 1.3.22
-    "@swc/core-win32-ia32-msvc": 1.3.22
-    "@swc/core-win32-x64-msvc": 1.3.22
+    "@swc/core-darwin-arm64": 1.3.23
+    "@swc/core-darwin-x64": 1.3.23
+    "@swc/core-linux-arm-gnueabihf": 1.3.23
+    "@swc/core-linux-arm64-gnu": 1.3.23
+    "@swc/core-linux-arm64-musl": 1.3.23
+    "@swc/core-linux-x64-gnu": 1.3.23
+    "@swc/core-linux-x64-musl": 1.3.23
+    "@swc/core-win32-arm64-msvc": 1.3.23
+    "@swc/core-win32-ia32-msvc": 1.3.23
+    "@swc/core-win32-x64-msvc": 1.3.23
   dependenciesMeta:
     "@swc/core-darwin-arm64":
       optional: true
@@ -2073,7 +2073,7 @@ __metadata:
       optional: true
   bin:
     swcx: run_swcx.js
-  checksum: 5c6fa613502cbfae9985c7e97452649120e50e65695c8243111b422f6dddfebabdbc5ec94a9238e199e6a823a86906635e18e731f8ed45470bca8e4964d11659
+  checksum: 2a92949c33f292a369f4a750a8a9759f88f6f399bc0beef54768fce3d1af5cf0c33a4c8f3c2478020ae95e99d99b7c17f301b79163cdbcdf533b91675f1d2e8d
   languageName: node
   linkType: hard
 
@@ -2685,16 +2685,16 @@ __metadata:
   linkType: hard
 
 "aws-cdk-lib@npm:*":
-  version: 2.54.0
-  resolution: "aws-cdk-lib@npm:2.54.0"
+  version: 2.55.0
+  resolution: "aws-cdk-lib@npm:2.55.0"
   dependencies:
-    "@aws-cdk/asset-awscli-v1": ^2.2.16
+    "@aws-cdk/asset-awscli-v1": ^2.2.30
     "@aws-cdk/asset-kubectl-v20": ^2.1.1
-    "@aws-cdk/asset-node-proxy-agent-v5": ^2.0.21
+    "@aws-cdk/asset-node-proxy-agent-v5": ^2.0.38
     "@balena/dockerignore": ^1.0.2
     case: 1.6.3
     fs-extra: ^9.1.0
-    ignore: ^5.2.0
+    ignore: ^5.2.1
     jsonschema: ^1.4.1
     minimatch: ^3.1.2
     punycode: ^2.1.1
@@ -2702,13 +2702,13 @@ __metadata:
     yaml: 1.10.2
   peerDependencies:
     constructs: ^10.0.0
-  checksum: b90d309bd1c77955ab854ee26d046e6b24211e5fed31cca1711369439d2e25a16e5aff9fe705353fb1ed009cfd13f5fbb9ac3a6f7a74c66ab668bccf7d0eff77
+  checksum: c31fc0912dc3f1c0e249d122a1e88ae89d8d2b21aba464be759e0b08efb6a44156078f293115930ab8c1d23348c1a4e4369d448adb0983823cb2cf8ffdd835d7
   languageName: node
   linkType: hard
 
 "aws-cdk@npm:*":
-  version: 2.54.0
-  resolution: "aws-cdk@npm:2.54.0"
+  version: 2.55.0
+  resolution: "aws-cdk@npm:2.55.0"
   dependencies:
     fsevents: 2.3.2
   dependenciesMeta:
@@ -2716,7 +2716,7 @@ __metadata:
       optional: true
   bin:
     cdk: bin/cdk
-  checksum: c2a3b6fff3ba4dc7ca4f8ade42a9efc9a0ce03d1b9f6f33bb078aea8e155bf593ee5707e5147a9e84f1a76ef0b4b93229dd677da9ec4461d04f7dd795a56ba5a
+  checksum: 027a8945c89c2f118a87e15773e973efa0d07f01493d9dcd7c436c574511286722d5b1e8ddb80767749d490687044a5318a628512d6d0786542e3f06c7dd6883
   languageName: node
   linkType: hard
 
@@ -2735,8 +2735,8 @@ __metadata:
   linkType: hard
 
 "aws-sdk@npm:^2.814.0":
-  version: 2.1274.0
-  resolution: "aws-sdk@npm:2.1274.0"
+  version: 2.1275.0
+  resolution: "aws-sdk@npm:2.1275.0"
   dependencies:
     buffer: 4.9.2
     events: 1.1.1
@@ -2748,7 +2748,7 @@ __metadata:
     util: ^0.12.4
     uuid: 8.0.0
     xml2js: 0.4.19
-  checksum: 7fb383f6952ee48f1d99353ca2101f34712478531c42720a6a765884855d4c3dff62de2ee6409df26409e49087886c8e0ccc357f344bdc5ca29786857d423fff
+  checksum: 2908bbde5b9668f157be55f2e20c5ced4b93d6e7106be152c2eaa2015bd990847ce0ce1e03168a5fc4af423e1596f6e687f4001f57f15e203a0cef6ac2392dd1
   languageName: node
   linkType: hard
 
@@ -3156,9 +3156,9 @@ __metadata:
   linkType: hard
 
 "constructs@npm:*":
-  version: 10.1.189
-  resolution: "constructs@npm:10.1.189"
-  checksum: 12345d2c683f64fb33f5d4c9c0787226b0de121d291d79fc81ac34bf405e72cf90b050dcc33a07a335d71be453347606f7917d702da1ad2a8dda67a6f3786a2b
+  version: 10.1.190
+  resolution: "constructs@npm:10.1.190"
+  checksum: ee6a3167a00c619297abf9aff472b0f98aa875f69a0a4eb20c44adbc0af2c75ad0fc4a62dd73f301afbcc56b91cbb742a4a7ee34dd184ffa26bff167a28eb470
   languageName: node
   linkType: hard
 
@@ -3442,31 +3442,31 @@ __metadata:
   linkType: hard
 
 "esbuild@npm:*":
-  version: 0.16.6
-  resolution: "esbuild@npm:0.16.6"
+  version: 0.16.7
+  resolution: "esbuild@npm:0.16.7"
   dependencies:
-    "@esbuild/android-arm": 0.16.6
-    "@esbuild/android-arm64": 0.16.6
-    "@esbuild/android-x64": 0.16.6
-    "@esbuild/darwin-arm64": 0.16.6
-    "@esbuild/darwin-x64": 0.16.6
-    "@esbuild/freebsd-arm64": 0.16.6
-    "@esbuild/freebsd-x64": 0.16.6
-    "@esbuild/linux-arm": 0.16.6
-    "@esbuild/linux-arm64": 0.16.6
-    "@esbuild/linux-ia32": 0.16.6
-    "@esbuild/linux-loong64": 0.16.6
-    "@esbuild/linux-mips64el": 0.16.6
-    "@esbuild/linux-ppc64": 0.16.6
-    "@esbuild/linux-riscv64": 0.16.6
-    "@esbuild/linux-s390x": 0.16.6
-    "@esbuild/linux-x64": 0.16.6
-    "@esbuild/netbsd-x64": 0.16.6
-    "@esbuild/openbsd-x64": 0.16.6
-    "@esbuild/sunos-x64": 0.16.6
-    "@esbuild/win32-arm64": 0.16.6
-    "@esbuild/win32-ia32": 0.16.6
-    "@esbuild/win32-x64": 0.16.6
+    "@esbuild/android-arm": 0.16.7
+    "@esbuild/android-arm64": 0.16.7
+    "@esbuild/android-x64": 0.16.7
+    "@esbuild/darwin-arm64": 0.16.7
+    "@esbuild/darwin-x64": 0.16.7
+    "@esbuild/freebsd-arm64": 0.16.7
+    "@esbuild/freebsd-x64": 0.16.7
+    "@esbuild/linux-arm": 0.16.7
+    "@esbuild/linux-arm64": 0.16.7
+    "@esbuild/linux-ia32": 0.16.7
+    "@esbuild/linux-loong64": 0.16.7
+    "@esbuild/linux-mips64el": 0.16.7
+    "@esbuild/linux-ppc64": 0.16.7
+    "@esbuild/linux-riscv64": 0.16.7
+    "@esbuild/linux-s390x": 0.16.7
+    "@esbuild/linux-x64": 0.16.7
+    "@esbuild/netbsd-x64": 0.16.7
+    "@esbuild/openbsd-x64": 0.16.7
+    "@esbuild/sunos-x64": 0.16.7
+    "@esbuild/win32-arm64": 0.16.7
+    "@esbuild/win32-ia32": 0.16.7
+    "@esbuild/win32-x64": 0.16.7
   dependenciesMeta:
     "@esbuild/android-arm":
       optional: true
@@ -3514,7 +3514,7 @@ __metadata:
       optional: true
   bin:
     esbuild: bin/esbuild
-  checksum: b77f9f516824f5a4e5670367b6cc5f3e649ac629f2d2b70811ff06c1cd6fb71941f470ed40e85c57f357f4e7a984540304f20b3c6090a0a4e12b4fe1850e2734
+  checksum: 53732942109a8a22d647810d90623dd48418f49fd9d1613688585a6f81677fd8525f53658778a7b92f1124cdfbf73e6efb74385be52cf6aa11aa97f8397ec93c
   languageName: node
   linkType: hard
 
@@ -4357,7 +4357,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ignore@npm:^5.2.0":
+"ignore@npm:^5.2.0, ignore@npm:^5.2.1":
   version: 5.2.1
   resolution: "ignore@npm:5.2.1"
   checksum: 7251d00cba49fe88c4f3565fadeb4aa726ba38294a9a79ffed542edc47bafd989d4b2ccf65700c5b1b26a1e91dfc7218fb23017937c79216025d5caeec0ee9d5

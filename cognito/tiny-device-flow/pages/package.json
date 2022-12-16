@@ -10,7 +10,7 @@
     "export": "next export",
     "start": "next start",
     "analyze": "ANALYZE=true next build",
-    "lint": "eslint --ext .ts,.js,.tsx,.jsx src",
+    "lint": "next lint --ext .ts,.js,.tsx,.jsx src",
     "all": "yarn lint --fix && yarn build && yarn test"
   },
   "dependencies": {

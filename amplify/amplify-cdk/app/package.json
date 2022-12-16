@@ -7,7 +7,7 @@
     "build": "next build",
     "export": "next export",
     "start": "next start",
-    "lint": "eslint --ext .ts,.js,.tsx,.jsx src",
+    "lint": "next lint --ext .ts,.js,.tsx,.jsx src",
     "clean": "rimraf build",
     "analyze": "ANALYZE=true next build",
     "all": "yarn install && yarn lint && yarn build"

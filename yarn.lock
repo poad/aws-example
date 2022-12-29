@@ -319,24 +319,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-cdk/aws-apigatewayv2-alpha@npm:^2.51.1-alpha.0":
-  version: 2.51.1-alpha.0
-  resolution: "@aws-cdk/aws-apigatewayv2-alpha@npm:2.51.1-alpha.0"
+"@aws-cdk/aws-apigatewayv2-alpha@npm:^2.57.0-alpha.0":
+  version: 2.57.0-alpha.0
+  resolution: "@aws-cdk/aws-apigatewayv2-alpha@npm:2.57.0-alpha.0"
   peerDependencies:
-    aws-cdk-lib: ^2.51.1
+    aws-cdk-lib: ^2.57.0
     constructs: ^10.0.0
-  checksum: b1ded1269f902e189a0285b1fe0c3de9e4f0981dee90e0a5d06c04645506fedc3f4e0dfc0a9050d67537d19c497a9f3273de0b3f6f8e9d407d61accfd3413944
+  checksum: 762723a5edf53025c0fce48501256ed2ec8898fbd54a557893359e71ebdc63266a8d7ef292149dba0b69dec622c0c7c29f2f9d9412b8d0ff9647c3a5047b0c58
   languageName: node
   linkType: hard
 
-"@aws-cdk/aws-apigatewayv2-integrations-alpha@npm:^2.51.1-alpha.0":
-  version: 2.51.1-alpha.0
-  resolution: "@aws-cdk/aws-apigatewayv2-integrations-alpha@npm:2.51.1-alpha.0"
+"@aws-cdk/aws-apigatewayv2-integrations-alpha@npm:^2.57.0-alpha.0":
+  version: 2.57.0-alpha.0
+  resolution: "@aws-cdk/aws-apigatewayv2-integrations-alpha@npm:2.57.0-alpha.0"
   peerDependencies:
-    "@aws-cdk/aws-apigatewayv2-alpha": 2.51.1-alpha.0
-    aws-cdk-lib: ^2.51.1
+    "@aws-cdk/aws-apigatewayv2-alpha": 2.57.0-alpha.0
+    aws-cdk-lib: ^2.57.0
     constructs: ^10.0.0
-  checksum: 2be108269c8dd33b4647d986a796bc48fe44d27da95893196cf184d0557295f856eede22841e535b5ac67700b8a6a291525ab230d3c073dc8694fe1fc5e2ef30
+  checksum: b87945f8fb671f98bf17375f3c2db32d2bf73a898921e63f2132a0e7bdfbeaba653bef7b9dbb604c8f391aa86c150fe591c0f5068d46bc5fb91fdd4fe1f1cc19
   languageName: node
   linkType: hard
 
@@ -486,7 +486,7 @@ __metadata:
 
 "@aws-example-common/cognito-singin@file:../../../common/cognito-singin/::locator=%40aws-example%2Fcognito-admin-infra%40workspace%3Acognito%2Fcognito-admin%2Finfra":
   version: 0.0.1
-  resolution: "@aws-example-common/cognito-singin@file:../../../common/cognito-singin/#../../../common/cognito-singin/::hash=36c4cf&locator=%40aws-example%2Fcognito-admin-infra%40workspace%3Acognito%2Fcognito-admin%2Finfra"
+  resolution: "@aws-example-common/cognito-singin@file:../../../common/cognito-singin/#../../../common/cognito-singin/::hash=bc011b&locator=%40aws-example%2Fcognito-admin-infra%40workspace%3Acognito%2Fcognito-admin%2Finfra"
   dependencies:
     "@aws-sdk/client-cognito-identity": "*"
     "@aws-sdk/client-cognito-identity-provider": "*"
@@ -503,7 +503,7 @@ __metadata:
     jsonwebtoken: "*"
     jwks-rsa: "*"
     source-map-support: "*"
-  checksum: 4841b94235e9b1a4cb5385f963ee56e77ea09b16d0a9e8eb4d9d558c0aeaa0c3964770b79bce5046ea3b870995f3abd350c36de0fbe5bf86578c329cd69c0700
+  checksum: 9fc1c51265c6a047a0a771a39141b6238576827898180ea8d0943f9fec5fa381e1870c3f0962eb16c80acc54804370be605066e1518a9f3f016f1e256cc1689e
   languageName: node
   linkType: hard
 
@@ -511,8 +511,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aws-example/cognito-admin-infra@workspace:cognito/cognito-admin/infra"
   dependencies:
-    "@aws-cdk/aws-apigatewayv2-alpha": ^2.51.1-alpha.0
-    "@aws-cdk/aws-apigatewayv2-integrations-alpha": ^2.51.1-alpha.0
+    "@aws-cdk/aws-apigatewayv2-alpha": ^2.57.0-alpha.0
+    "@aws-cdk/aws-apigatewayv2-integrations-alpha": ^2.57.0-alpha.0
     "@aws-example-common/cognito-singin": ../../../common/cognito-singin/
     "@aws-lambda-powertools/logger": "*"
     "@middy/core": "*"
@@ -10284,18 +10284,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json5@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "json5@npm:1.0.1"
-  dependencies:
-    minimist: ^1.2.0
-  bin:
-    json5: lib/cli.js
-  checksum: e76ea23dbb8fc1348c143da628134a98adf4c5a4e8ea2adaa74a80c455fc2cdf0e2e13e6398ef819bfe92306b610ebb2002668ed9fc1af386d593691ef346fc3
-  languageName: node
-  linkType: hard
-
-"json5@npm:^2.2.0, json5@npm:^2.2.1":
+"json5@npm:>=2.2.2":
   version: 2.2.2
   resolution: "json5@npm:2.2.2"
   bin:
@@ -10809,7 +10798,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimist@npm:^1.2.0, minimist@npm:^1.2.5, minimist@npm:^1.2.6, minimist@npm:~1.2.5":
+"minimist@npm:^1.2.5, minimist@npm:^1.2.6, minimist@npm:~1.2.5":
   version: 1.2.7
   resolution: "minimist@npm:1.2.7"
   checksum: 7346574a1038ca23c32e02252f603801f09384dd1d78b69a943a4e8c2c28730b80e96193882d3d3b22a063445f460e48316b29b8a25addca2d7e5e8f75478bec

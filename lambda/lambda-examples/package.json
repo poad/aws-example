@@ -36,15 +36,18 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@aws-cdk/aws-apigatewayv2-alpha": "^2.51.1-alpha.0",
+    "@aws-cdk/aws-apigatewayv2-alpha": "^2.57.0-alpha.0",
     "@aws-cdk/aws-apigatewayv2-integrations-alpha": "^2.51.1-alpha.0",
-    "@aws-cdk/aws-lambda-python-alpha": "^2.51.1-alpha.0",
+    "@aws-cdk/aws-lambda-python-alpha": "^2.57.0-alpha.0",
     "aws-cdk-lib": "*",
     "aws-lambda": "*",
     "cdk-ecr-deployment": "*",
     "constructs": "*",
     "cross-fetch": "*",
     "source-map-support": "*"
+  },
+  "resolutions": {
+    "json5": ">=2.2.2"
   },
   "packageManager": "yarn@3.3.1",
   "jest": {

@@ -38,8 +38,8 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@aws-cdk/aws-apigatewayv2-alpha": "^2.51.1-alpha.0",
-    "@aws-cdk/aws-apigatewayv2-integrations-alpha": "^2.51.1-alpha.0",
+    "@aws-cdk/aws-apigatewayv2-alpha": "^2.57.0-alpha.0",
+    "@aws-cdk/aws-apigatewayv2-integrations-alpha": "^2.57.0-alpha.0",
     "@aws-sdk/client-cognito-identity-provider": "*",
     "@aws-sdk/client-dynamodb": "*",
     "@aws-sdk/client-s3": "*",
@@ -51,6 +51,9 @@
     "randombytes": "*",
     "source-map-support": "*",
     "uuid": "*"
+  },
+  "resolutions": {
+    "json5": ">=2.2.2"
   },
   "packageManager": "yarn@3.3.1",
   "jest": {

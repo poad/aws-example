@@ -9,17 +9,20 @@
     "cdk": "cdk"
   },
   "devDependencies": {
+    "@swc/core": "*",
+    "@swc/helpers": "*",
     "@types/jest": "*",
     "@types/node": "*",
     "@types/prettier": "*",
     "aws-cdk": "*",
     "jest": "*",
+    "regenerator-runtime": "*",
     "ts-jest": "*",
     "ts-node": "*",
     "typescript": "*"
   },
   "dependencies": {
-    "@aws-cdk/aws-amplify-alpha": "^2.57.0-alpha.0",
+    "@aws-cdk/aws-amplify-alpha": "^2.58.0-alpha.0",
     "aws-cdk-lib": "*",
     "constructs": "*",
     "source-map-support": "*"

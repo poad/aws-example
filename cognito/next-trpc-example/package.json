@@ -1,0 +1,40 @@
+{
+  "name": "next-trpc-example",
+  "version": "0.0.1",
+  "bin": "bin/next-trpc-example.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "lint-format": "rome format --write bin lambda batch lib",
+    "lint-style": "rome format bin lambda lib",
+    "lint-check-fix": "rome check --apply-suggested bin lambda batch lib",
+    "lint-check": "rome check bin lambda batch lib",
+    "lint-fix": "yarn lint-check-fix && yarn lint-format",
+    "lint": "yarn lint-check && lint-style",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@swc/core": "*",
+    "@swc/helpers": "*",
+    "@trpc/server": "*",
+    "@types/aws-lambda": "*",
+    "@types/node": "*",
+    "aws-cdk": "*",
+    "regenerator-runtime": "*",
+    "rome": "*",
+    "ts-node": "*",
+    "typescript": "*"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "*",
+    "aws-cdk-lib": "*",
+    "aws-lambda": "*",
+    "constructs": "*",
+    "esbuild": "*",
+    "graphql": "*",
+    "graphql-request": "*",
+    "source-map-support": "*",
+    "zod": "*"
+  },
+  "packageManager": "yarn@3.3.1"
+}

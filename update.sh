@@ -343,6 +343,36 @@ if [ $result -ne 0 ]; then
   exit $result
 fi
 
+cd "${CURRENT}"/cognito/next-trpc-example || exit
+result=$?
+if [ $result -ne 0 ]; then
+  cd "${CUR}" || exit
+  exit $result
+fi
+echo ""
+pwd
+yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+result=$?
+if [ $result -ne 0 ]; then
+  cd "${CUR}" || exit
+  exit $result
+fi
+
+cd "${CURRENT}"/cognito/next-trpc-example/front || exit
+result=$?
+if [ $result -ne 0 ]; then
+  cd "${CUR}" || exit
+  exit $result
+fi
+echo ""
+pwd
+yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+result=$?
+if [ $result -ne 0 ]; then
+  cd "${CUR}" || exit
+  exit $result
+fi
+
 cd "${CURRENT}"/cognito/trigger-examples || exit
 result=$?
 if [ $result -ne 0 ]; then

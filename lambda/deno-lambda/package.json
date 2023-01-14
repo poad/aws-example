@@ -1,0 +1,32 @@
+{
+  "name": "deno-lambda",
+  "version": "0.1.0",
+  "bin": "bin/deno-lambda.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "format-check": "rome format lambda",
+    "format": "rome format --write lambda",
+    "check": "rome check lambda",
+    "check-fix": "rome check --apply-suggested lambda",
+    "lint": "yarn format-check && yarn check",
+    "lint-fix": "yarn format && yarn check-fix",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@swc/core": "*",
+    "@swc/helpers": "*",
+    "@types/cors": "*",
+    "@types/node": "*",
+    "aws-cdk": "*",
+    "rome": "*",
+    "ts-node": "*",
+    "typescript": "*"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "*",
+    "aws-lambda": "*",
+    "constructs": "*",
+    "source-map-support": "*"
+  }
+}

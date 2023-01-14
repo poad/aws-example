@@ -275,6 +275,7 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+
   - package-ecosystem: npm
     directory: '/lambda/lambda-examples/'
     schedule:
@@ -338,6 +339,18 @@ updates:
 
   - package-ecosystem: npm
     directory: '/lambda/layer/layer/src/nodejs/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+      time: "12:00"
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: npm
+    directory: '/lambda/deno-lambda/'
     schedule:
       interval: daily
       timezone: Asia/Tokyo

@@ -1,9 +1,12 @@
 {
+  "ts-node": {
+    "swc": true
+  },
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "esnext",
     "module": "commonjs",
     "lib": [
-      "es2020"
+      "esnext"
     ],
     "declaration": true,
     "strict": true,

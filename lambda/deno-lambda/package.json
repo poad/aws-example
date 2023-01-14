@@ -5,10 +5,10 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "format-check": "rome format lambda",
-    "format": "rome format --write lambda",
-    "check": "rome check lambda",
-    "check-fix": "rome check --apply-suggested lambda",
+    "format-check": "rome format bin lib lambda",
+    "format": "rome format --write bin lib lambda",
+    "check": "rome check bin lib lambda",
+    "check-fix": "rome check --apply-suggested bin lib lambda",
     "lint": "yarn format-check && yarn check",
     "lint-fix": "yarn format && yarn check-fix",
     "cdk": "cdk"
@@ -19,13 +19,13 @@
     "@types/cors": "*",
     "@types/node": "*",
     "aws-cdk": "*",
+    "regenerator-runtime": "*",
     "rome": "*",
     "ts-node": "*",
     "typescript": "*"
   },
   "dependencies": {
     "aws-cdk-lib": "*",
-    "aws-lambda": "*",
     "constructs": "*",
     "source-map-support": "*"
   }

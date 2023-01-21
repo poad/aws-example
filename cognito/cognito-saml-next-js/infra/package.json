@@ -5,30 +5,27 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "format-check": "rome format bin lib",
+    "format": "rome format --write bin lib",
+    "check": "rome check bin lib",
+    "check-fix": "rome check --apply-suggested bin lib",
+    "lint": "yarn format-check && yarn check",
+    "lint-fix": "yarn format && yarn check-fix",
+    "clean": "rimraf build",
+    "prelint": "yarn install",
+    "prebuild": "yarn install",
+    "predev": "yarn install",
+    "all": "yarn lint && yarn build"
   },
   "devDependencies": {
     "@swc/core": "*",
     "@swc/helpers": "*",
     "@types/aws-lambda": "*",
-    "@types/jest": "*",
     "@types/node": "*",
-    "@types/prettier": "*",
-    "@typescript-eslint/eslint-plugin": "*",
-    "@typescript-eslint/parser": "*",
     "aws-cdk": "*",
-    "eslint": "*",
-    "eslint-config-airbnb-base": "*",
-    "eslint-config-airbnb-typescript": "*",
-    "eslint-config-prettier": "*",
-    "eslint-plugin-import": "*",
-    "eslint-plugin-jest": "*",
-    "eslint-plugin-prettier": "*",
-    "jest": "*",
-    "prettier": "*",
     "regenerator-runtime": "*",
-    "ts-jest": "*",
+    "rome": "*",
     "ts-node": "*",
     "typescript": "*"
   },
@@ -40,19 +37,7 @@
     "source-map-support": "*"
   },
   "resolutions": {
-    "json5": ">=2.2.2"
+    "json5": ">=2.2.3"
   },
-  "packageManager": "yarn@3.3.1",
-  "jest": {
-    "testEnvironment": "node",
-    "roots": [
-      "<rootDir>/test"
-    ],
-    "testMatch": [
-      "**/*.test.ts"
-    ],
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    }
-  }
+  "packageManager": "yarn@3.3.1"
 }

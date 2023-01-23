@@ -16,15 +16,19 @@
       "test"
     ]
   },
+  "requireApproval": "never",
   "context": {
-    "@aws-cdk/aws-apigateway:usagePlanKeyOrderInsensitiveId": true,
-    "@aws-cdk/core:stackRelativeExports": true,
-    "@aws-cdk/aws-rds:lowercaseDbIdentifier": true,
-    "@aws-cdk/aws-lambda:recognizeVersionProps": true,
-    "@aws-cdk/aws-cloudfront:defaultSecurityPolicyTLSv1.2_2021": true,
-    "environment": "dev",
     "dev": {
       "domain": "dev-azure-saml-test",
+      "callbackUrls": [
+        "http://localhost:3000/"
+      ],
+      "logoutUrls": [
+        "http://localhost:3000/"
+      ]
+    },
+    "dev2": {
+      "domain": "dev2-azure-saml-test",
       "callbackUrls": [
         "http://localhost:3000/"
       ],

@@ -298,7 +298,7 @@ if [ $result -ne 0 ]; then
   exit $result
 fi
 
-cd "${CURRENT}"/cognito/cognito-saml-next-js/infra || exit
+cd "${CURRENT}"/cognito/cognito-saml-next-js/infra/aws || exit
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit

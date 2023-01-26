@@ -8,7 +8,7 @@ on:
     branches: [ main ]
     paths:
       - 'lambda/lambda-examples/lambda/container/**'
-  pull_request_target:
+  pull_request:
     branches: [ main ]
     paths:
       - 'lambda/lambda-examples/lambda/container/**'
@@ -35,10 +35,10 @@ jobs:
     strategy:
       matrix:
         pattern: [
-          { node: 16, os-dist: debian, app: hello-rust-lambda, image: lambda, test: true },
-          { node: 16, os-dist: ubuntu, app: hello-rust-lambda, image: lambda, test: true },
-          { node: 16, os-dist: debian, app: simple, image: lambda-simple, test: true },
-          { node: 16, os-dist: ubuntu, app: simple, image: lambda-simple, test: true }
+          { node: 18, os-dist: debian, app: hello-rust-lambda, image: lambda, test: true },
+          { node: 18, os-dist: ubuntu, app: hello-rust-lambda, image: lambda, test: true },
+          { node: 18, os-dist: debian, app: simple, image: lambda-simple, test: true },
+          { node: 18, os-dist: ubuntu, app: simple, image: lambda-simple, test: true }
         ]
 
     steps:

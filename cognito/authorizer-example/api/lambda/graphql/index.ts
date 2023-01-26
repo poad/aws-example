@@ -1,7 +1,7 @@
 import { ApolloServer } from '@apollo/server';
-import { GatewayEvent, startServerAndCreateLambdaHandler } from '@as-integrations/aws-lambda';
+import { startServerAndCreateLambdaHandler, handlers } from '@as-integrations/aws-lambda';
 import {
-  APIGatewayProxyResult, APIGatewayProxyStructuredResultV2, Callback, Context,
+  APIGatewayProxyEvent, APIGatewayProxyResult, Callback, Context,
 } from 'aws-lambda';
 import * as log4js from 'log4js';
 import schemaWithResolvers from './schema';
@@ -21,8 +21,8 @@ const server = new ApolloServer({
   logger,
 });
 
-export async function handler(event: GatewayEvent, context: Context, callback: Callback<APIGatewayProxyStructuredResultV2 | APIGatewayProxyResult>) {
-  const apolloHandler = startServerAndCreateLambdaHandler(server, {
+export async function handler(event: APIGatewayProxyEvent, context: Context, callback: Callback<APIGatewayProxyResult>) {
+  const apolloHandler = startServerAndCreateLambdaHandler(server, handlers.createAPIGatewayProxyEventRequestHandler(), {
     context: async (currentContext) => ({
       ...currentContext,
       context: {

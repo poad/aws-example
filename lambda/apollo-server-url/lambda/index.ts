@@ -1,5 +1,5 @@
 import { ApolloServer } from '@apollo/server';
-import { startServerAndCreateLambdaHandler } from '@as-integrations/aws-lambda';
+import { startServerAndCreateLambdaHandler, handlers } from '@as-integrations/aws-lambda';
 
 const typeDefs = `#graphql
   type Query {
@@ -20,7 +20,7 @@ const server = new ApolloServer({
 });
 
 // eslint-disable-next-line import/prefer-default-export
-export const handler = startServerAndCreateLambdaHandler(server, {
+export const handler = startServerAndCreateLambdaHandler(server, handlers.createAPIGatewayProxyEventV2RequestHandler(), {
   context: async ({ event, context }) => ({
     event,
     context,

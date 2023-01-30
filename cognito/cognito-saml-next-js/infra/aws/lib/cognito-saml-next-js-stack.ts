@@ -1,15 +1,8 @@
 import * as cdk from 'aws-cdk-lib';
 import * as cognito from 'aws-cdk-lib/aws-cognito';
 import * as iam from 'aws-cdk-lib/aws-iam';
-import {
-  AccountRecovery,
-  ClientAttributes,
-  Mfa,
-  OAuthScope,
-  UserPoolIdentityProvider,
-} from 'aws-cdk-lib/aws-cognito';
-import { Duration } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
+import * as ssm from 'aws-cdk-lib/aws-ssm';
 
 interface CognitoSamlNextJsStackProps extends cdk.StackProps {
   environment: string;
@@ -57,11 +50,11 @@ export class CognitoSamlNextJsStack extends cdk.Stack {
           required: false,
         },
       },
-      mfa: Mfa.OFF,
+      mfa: cognito.Mfa.OFF,
       passwordPolicy: {
         minLength: 8,
       },
-      accountRecovery: AccountRecovery.EMAIL_ONLY,
+      accountRecovery: cognito.AccountRecovery.EMAIL_ONLY,
     });
 
     userPool.addDomain('UserPoolDomain', {
@@ -103,7 +96,7 @@ export class CognitoSamlNextJsStack extends cdk.Stack {
 
     if (idpName !== undefined) {
       userPool.registerIdentityProvider(
-        UserPoolIdentityProvider.fromProviderName(
+        cognito.UserPoolIdentityProvider.fromProviderName(
           this,
           'CognitoSamlIdPAzureAD',
           idpName,
@@ -128,13 +121,13 @@ export class CognitoSamlNextJsStack extends cdk.Stack {
           implicitCodeGrant: true,
         },
         scopes: [
-          OAuthScope.COGNITO_ADMIN,
-          OAuthScope.EMAIL,
-          OAuthScope.OPENID,
-          OAuthScope.PROFILE,
+          cognito.OAuthScope.COGNITO_ADMIN,
+          cognito.OAuthScope.EMAIL,
+          cognito.OAuthScope.OPENID,
+          cognito.OAuthScope.PROFILE,
         ],
       },
-      readAttributes: new ClientAttributes().withStandardAttributes({
+      readAttributes: new cognito.ClientAttributes().withStandardAttributes({
         email: true,
         familyName: true,
         givenName: true,
@@ -143,7 +136,7 @@ export class CognitoSamlNextJsStack extends cdk.Stack {
         emailVerified: true,
         profilePage: true,
       }),
-      writeAttributes: new ClientAttributes().withStandardAttributes({
+      writeAttributes: new cognito.ClientAttributes().withStandardAttributes({
         email: true,
         familyName: true,
         givenName: true,
@@ -185,7 +178,7 @@ export class CognitoSamlNextJsStack extends cdk.Stack {
           },
           'sts:AssumeRoleWithWebIdentity',
         ),
-        maxSessionDuration: Duration.hours(12),
+        maxSessionDuration: cdk.Duration.hours(12),
       },
     );
 
@@ -221,7 +214,7 @@ export class CognitoSamlNextJsStack extends cdk.Stack {
           },
           'sts:AssumeRoleWithWebIdentity',
         ).withSessionTags(),
-        maxSessionDuration: Duration.hours(12),
+        maxSessionDuration: cdk.Duration.hours(12),
       },
     );
     authenticatedRole.addToPolicy(
@@ -259,5 +252,16 @@ export class CognitoSamlNextJsStack extends cdk.Stack {
         'cognito-identity.amazonaws.com:amr': 'authenticated',
       },
     };
+    
+    new ssm.StringParameter(this, 'CognitoDomainUrl', {
+      parameterName: `/${environment}/cognito-saml-next-js/CognitoDomainUrl`,
+      stringValue: `https://${domain}.auth.${this.region}.amazoncognito.com`,
+    })
+    
+    new ssm.StringParameter(this, 'CognitoAppClientIdl', {
+      parameterName: `/${environment}/cognito-saml-next-js/CognitoAppClientId`,
+      stringValue: client.userPoolClientId,
+    })
+    
   }
 }

@@ -298,7 +298,7 @@ if [ $result -ne 0 ]; then
   exit $result
 fi
 
-cd "${CURRENT}"/cognito/cognito-saml-next-js/infra || exit
+cd "${CURRENT}"/cognito/cognito-saml-next-js/infra/aws || exit
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -313,6 +313,20 @@ if [ $result -ne 0 ]; then
   exit $result
 fi
 
+cd "${CURRENT}"/cognito/cognito-saml-next-js/infra/azuread || exit
+result=$?
+if [ $result -ne 0 ]; then
+  cd "${CUR}" || exit
+  exit $result
+fi
+echo ""
+pwd
+yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+result=$?
+if [ $result -ne 0 ]; then
+  cd "${CUR}" || exit
+  exit $result
+fi
 cd "${CURRENT}"/cognito/tiny-device-flow || exit
 result=$?
 if [ $result -ne 0 ]; then

@@ -217,7 +217,19 @@ updates:
       - poad
 
   - package-ecosystem: npm
-    directory: '/cognito/cognito-saml-next-js/infra/'
+    directory: '/cognito/cognito-saml-next-js/infra/aws/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+      time: "12:00"
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: npm
+    directory: '/cognito/cognito-saml-next-js/infra/azuread/'
     schedule:
       interval: daily
       timezone: Asia/Tokyo

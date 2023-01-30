@@ -1,0 +1,44 @@
+{
+  "name": "azuread",
+  "version": "1.0.0",
+  "main": "main.js",
+  "types": "main.ts",
+  "license": "MPL-2.0",
+  "private": true,
+  "scripts": {
+    "get": "cdktf get",
+    "build": "tsc",
+    "synth": "cdktf synth",
+    "compile": "tsc --pretty",
+    "watch": "tsc -w",
+    "format-check": "rome format bin lib",
+    "format": "rome format --write bin lib",
+    "check": "rome check bin lib",
+    "check-fix": "rome check --apply-suggested bin lib",
+    "lint": "yarn format-check && yarn check",
+    "lint-fix": "yarn format && yarn check-fix",
+    "clean": "rimraf build",
+    "prelint": "yarn install",
+    "prebuild": "yarn install",
+    "all": "yarn lint && yarn build",
+    "upgrade": "yarn add \"cdktf@*\" \"cdktf-cli@*\"",
+    "upgrade:next": "yarn add cdktf@next cdktf-cli@next"
+  },
+  "engines": {
+    "node": ">=14.0"
+  },
+  "dependencies": {
+    "@cdktf/provider-azuread": "*",
+    "cdktf": "*",
+    "constructs": ">=10.0.0"
+  },
+  "devDependencies": {
+    "@swc/core": "*",
+    "@swc/helpers": "*",
+    "@types/node": "*",
+    "regenerator-runtime": "*",
+    "rome": "*",
+    "ts-node": "*",
+    "typescript": "*"
+  }
+}

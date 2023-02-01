@@ -15,7 +15,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-cdk/asset-awscli-v1@npm:^2.2.49":
+"@aws-cdk/asset-awscli-v1@npm:^2.2.52":
   version: 2.2.52
   resolution: "@aws-cdk/asset-awscli-v1@npm:2.2.52"
   checksum: 7fd5a64d1f6993acad9f95db8da820517d210a71241a6f8710a9b1313539b3400ecf8be9fcf723e2eb2324d614641a494b712961f37072ee29015e635af99526
@@ -29,7 +29,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-cdk/asset-node-proxy-agent-v5@npm:^2.0.38":
+"@aws-cdk/asset-node-proxy-agent-v5@npm:^2.0.42":
   version: 2.0.42
   resolution: "@aws-cdk/asset-node-proxy-agent-v5@npm:2.0.42"
   checksum: dd06260cef7cd36928d63c93076bc57b1eb09946e4c1b32112c9898195264b0ca0508795dfabc7654b17225c719f58adf9c347ddd59861c340f6d8aa74800386
@@ -115,7 +115,7 @@ __metadata:
 
 "@aws-example-common/cognito-singin@file:../../../common/cognito-singin/::locator=%40aws-example%2Fcognito-admin-infra%40workspace%3A.":
   version: 0.0.1
-  resolution: "@aws-example-common/cognito-singin@file:../../../common/cognito-singin/#../../../common/cognito-singin/::hash=d029a2&locator=%40aws-example%2Fcognito-admin-infra%40workspace%3A."
+  resolution: "@aws-example-common/cognito-singin@file:../../../common/cognito-singin/#../../../common/cognito-singin/::hash=30818f&locator=%40aws-example%2Fcognito-admin-infra%40workspace%3A."
   dependencies:
     "@aws-sdk/client-cognito-identity": "*"
     "@aws-sdk/client-cognito-identity-provider": "*"
@@ -132,7 +132,7 @@ __metadata:
     jsonwebtoken: "*"
     jwks-rsa: "*"
     source-map-support: "*"
-  checksum: dc99b05aa4b74567b22039b0f6330b61ed035f2ce71a0d755aa79d8a9096b33c86a0fdd9cfe8f8991b86b6075aea84ec83cb5e99bf681bbc67b09cfb97f5eb53
+  checksum: 140dce956c1c71e8dac0c845569b7e61d05847c0dbee01d245f2f88c0689c8a03ff3d6fd6ac7258300593ad4b7a29ad20e4920433ccf17f6801f47b7cb0f333f
   languageName: node
   linkType: hard
 
@@ -2752,24 +2752,24 @@ __metadata:
   linkType: hard
 
 "aws-cdk-lib@npm:*":
-  version: 2.62.2
-  resolution: "aws-cdk-lib@npm:2.62.2"
+  version: 2.63.0
+  resolution: "aws-cdk-lib@npm:2.63.0"
   dependencies:
-    "@aws-cdk/asset-awscli-v1": ^2.2.49
+    "@aws-cdk/asset-awscli-v1": ^2.2.52
     "@aws-cdk/asset-kubectl-v20": ^2.1.1
-    "@aws-cdk/asset-node-proxy-agent-v5": ^2.0.38
+    "@aws-cdk/asset-node-proxy-agent-v5": ^2.0.42
     "@balena/dockerignore": ^1.0.2
     case: 1.6.3
     fs-extra: ^9.1.0
     ignore: ^5.2.4
     jsonschema: ^1.4.1
     minimatch: ^3.1.2
-    punycode: ^2.2.0
+    punycode: ^2.3.0
     semver: ^7.3.8
     yaml: 1.10.2
   peerDependencies:
     constructs: ^10.0.0
-  checksum: 10dab79dff6715c12e87dcfdf40549284b2454c7acefdff9f05d37c397bf7384adeece7a1cca056b3663153f4b06d87b6591d9ac4e57c61f259de2be2cf6c0de
+  checksum: 0a24ca370c07898dbe1e8e5c6255e6c32e48edab5fd9f4a1e0b65fbf33a02a11d0575a44638e1b421592a77e4d93f8e9e799cfcbc273501131a2a1c6e1d02cb2
   languageName: node
   linkType: hard
 
@@ -6215,7 +6215,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"punycode@npm:^2.1.0, punycode@npm:^2.2.0":
+"punycode@npm:^2.1.0, punycode@npm:^2.3.0":
   version: 2.3.0
   resolution: "punycode@npm:2.3.0"
   checksum: 39f760e09a2a3bbfe8f5287cf733ecdad69d6af2fe6f97ca95f24b8921858b91e9ea3c9eeec6e08cede96181b3bb33f95c6ffd8c77e63986508aa2e8159fa200

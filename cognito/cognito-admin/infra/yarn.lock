@@ -115,7 +115,7 @@ __metadata:
 
 "@aws-example-common/cognito-singin@file:../../../common/cognito-singin/::locator=%40aws-example%2Fcognito-admin-infra%40workspace%3A.":
   version: 0.0.1
-  resolution: "@aws-example-common/cognito-singin@file:../../../common/cognito-singin/#../../../common/cognito-singin/::hash=d029a2&locator=%40aws-example%2Fcognito-admin-infra%40workspace%3A."
+  resolution: "@aws-example-common/cognito-singin@file:../../../common/cognito-singin/#../../../common/cognito-singin/::hash=30818f&locator=%40aws-example%2Fcognito-admin-infra%40workspace%3A."
   dependencies:
     "@aws-sdk/client-cognito-identity": "*"
     "@aws-sdk/client-cognito-identity-provider": "*"
@@ -132,7 +132,7 @@ __metadata:
     jsonwebtoken: "*"
     jwks-rsa: "*"
     source-map-support: "*"
-  checksum: dc99b05aa4b74567b22039b0f6330b61ed035f2ce71a0d755aa79d8a9096b33c86a0fdd9cfe8f8991b86b6075aea84ec83cb5e99bf681bbc67b09cfb97f5eb53
+  checksum: 140dce956c1c71e8dac0c845569b7e61d05847c0dbee01d245f2f88c0689c8a03ff3d6fd6ac7258300593ad4b7a29ad20e4920433ccf17f6801f47b7cb0f333f
   languageName: node
   linkType: hard
 
@@ -207,12 +207,12 @@ __metadata:
   linkType: hard
 
 "@aws-sdk/client-cognito-identity-provider@npm:*":
-  version: 3.261.0
-  resolution: "@aws-sdk/client-cognito-identity-provider@npm:3.261.0"
+  version: 3.262.0
+  resolution: "@aws-sdk/client-cognito-identity-provider@npm:3.262.0"
   dependencies:
     "@aws-crypto/sha256-browser": 3.0.0
     "@aws-crypto/sha256-js": 3.0.0
-    "@aws-sdk/client-sts": 3.261.0
+    "@aws-sdk/client-sts": 3.262.0
     "@aws-sdk/config-resolver": 3.259.0
     "@aws-sdk/credential-provider-node": 3.261.0
     "@aws-sdk/fetch-http-handler": 3.257.0
@@ -245,7 +245,7 @@ __metadata:
     "@aws-sdk/util-user-agent-node": 3.259.0
     "@aws-sdk/util-utf8": 3.254.0
     tslib: ^2.3.1
-  checksum: 39ca420985bf1a8e15b56e346bcaaa1ef1eadd5be97b8fb2f6a6799362ce9878cd3d70861f8d995412ed62e35059d43709c69bf0c293316214ff5b74a7b6cf1b
+  checksum: 5969b464ea89eec1a9178a2670542fe15a2f83e136d65de1ca14e134e7b7f8d6e57fbb362d0ee63409b202fbdadba31f126f3e78368ff5f0ceec7ffeace3b3d0
   languageName: node
   linkType: hard
 
@@ -413,6 +413,50 @@ __metadata:
     fast-xml-parser: 4.0.11
     tslib: ^2.3.1
   checksum: e7be888c97351bb3b52e50de5e6830849c97c9d2b2ad2b14daea66f7dd2e7a4eaae26ccb78aeb874b1719c73a8d8ccf2bb02915eca4cabeb34226e1a10ae1ebd
+  languageName: node
+  linkType: hard
+
+"@aws-sdk/client-sts@npm:3.262.0":
+  version: 3.262.0
+  resolution: "@aws-sdk/client-sts@npm:3.262.0"
+  dependencies:
+    "@aws-crypto/sha256-browser": 3.0.0
+    "@aws-crypto/sha256-js": 3.0.0
+    "@aws-sdk/config-resolver": 3.259.0
+    "@aws-sdk/credential-provider-node": 3.261.0
+    "@aws-sdk/fetch-http-handler": 3.257.0
+    "@aws-sdk/hash-node": 3.257.0
+    "@aws-sdk/invalid-dependency": 3.257.0
+    "@aws-sdk/middleware-content-length": 3.257.0
+    "@aws-sdk/middleware-endpoint": 3.257.0
+    "@aws-sdk/middleware-host-header": 3.257.0
+    "@aws-sdk/middleware-logger": 3.257.0
+    "@aws-sdk/middleware-recursion-detection": 3.257.0
+    "@aws-sdk/middleware-retry": 3.259.0
+    "@aws-sdk/middleware-sdk-sts": 3.257.0
+    "@aws-sdk/middleware-serde": 3.257.0
+    "@aws-sdk/middleware-signing": 3.257.0
+    "@aws-sdk/middleware-stack": 3.257.0
+    "@aws-sdk/middleware-user-agent": 3.257.0
+    "@aws-sdk/node-config-provider": 3.259.0
+    "@aws-sdk/node-http-handler": 3.257.0
+    "@aws-sdk/protocol-http": 3.257.0
+    "@aws-sdk/smithy-client": 3.261.0
+    "@aws-sdk/types": 3.257.0
+    "@aws-sdk/url-parser": 3.257.0
+    "@aws-sdk/util-base64": 3.208.0
+    "@aws-sdk/util-body-length-browser": 3.188.0
+    "@aws-sdk/util-body-length-node": 3.208.0
+    "@aws-sdk/util-defaults-mode-browser": 3.261.0
+    "@aws-sdk/util-defaults-mode-node": 3.261.0
+    "@aws-sdk/util-endpoints": 3.257.0
+    "@aws-sdk/util-retry": 3.257.0
+    "@aws-sdk/util-user-agent-browser": 3.257.0
+    "@aws-sdk/util-user-agent-node": 3.259.0
+    "@aws-sdk/util-utf8": 3.254.0
+    fast-xml-parser: 4.0.11
+    tslib: ^2.3.1
+  checksum: a971b916535a498915434e87052288838416f2272aac41dc9c5e401256c8da99d37d6eaa2a0b75a549b38e61e0c705b36994183f4664574d49b8f060733c79a0
   languageName: node
   linkType: hard
 

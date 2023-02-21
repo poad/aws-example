@@ -6,11 +6,11 @@ __metadata:
   cacheKey: 8
 
 "@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.6.2, @babel/runtime@npm:^7.7.2":
-  version: 7.20.13
-  resolution: "@babel/runtime@npm:7.20.13"
+  version: 7.21.0
+  resolution: "@babel/runtime@npm:7.21.0"
   dependencies:
     regenerator-runtime: ^0.13.11
-  checksum: 09b7a97a05c80540db6c9e4ddf8c5d2ebb06cae5caf3a87e33c33f27f8c4d49d9c67a2d72f1570e796045288fad569f98a26ceba0c4f5fad2af84b6ad855c4fb
+  checksum: 7b33e25bfa9e0e1b9e8828bb61b2d32bdd46b41b07ba7cb43319ad08efc6fda8eb89445193e67d6541814627df0ca59122c0ea795e412b99c5183a0540d338ab
   languageName: node
   linkType: hard
 
@@ -170,18 +170,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:4.24.6":
-  version: 4.24.6
-  resolution: "@tanstack/query-core@npm:4.24.6"
-  checksum: 495dff04f27d72174051f97676fce0fbe322bca966edb7f174f0005a3363ac0300c31eb06255dafa7ee519a430840542379f5ec9f6846903b6bb878e46c33656
+"@tanstack/query-core@npm:4.24.9":
+  version: 4.24.9
+  resolution: "@tanstack/query-core@npm:4.24.9"
+  checksum: 7b84e960d82c046c9eef6083cbc13b21c2ed8552fe8a5f092a66ca2586af66b770ca71ad838135ef49ac8b990e5f85d34a1d8b8de13fffb3abb0fb780a64a532
   languageName: node
   linkType: hard
 
 "@tanstack/react-query@npm:*":
-  version: 4.24.6
-  resolution: "@tanstack/react-query@npm:4.24.6"
+  version: 4.24.9
+  resolution: "@tanstack/react-query@npm:4.24.9"
   dependencies:
-    "@tanstack/query-core": 4.24.6
+    "@tanstack/query-core": 4.24.9
     use-sync-external-store: ^1.2.0
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -192,60 +192,60 @@ __metadata:
       optional: true
     react-native:
       optional: true
-  checksum: 250bc2cba8dd7da61680a8e360fac87ee057d079ee3be950c76dbc063f941119817634857c1cb0d9b12042dd5d4fbe847c02af5dfb89ae8daa0f9339f87ad605
+  checksum: 409c945c5043d11fa2f3c219254df5b0505bdf7d9dc94821f5db495d87a38fe27e0a373144446cef42fc829d1449a64e3fa873adf37e8abe15562e5832d59516
   languageName: node
   linkType: hard
 
 "@trpc/client@npm:*":
-  version: 10.11.1
-  resolution: "@trpc/client@npm:10.11.1"
+  version: 10.12.0
+  resolution: "@trpc/client@npm:10.12.0"
   peerDependencies:
-    "@trpc/server": 10.11.1
-  checksum: 82f33e3b101426bae188e9ebdd9ddaa5f4cb2b5c59aa47bcc67603f24ecc9497003bef0ae5fdde9f33673d0dbecb3a5aaf6976508125736971eff381aa30f1c9
+    "@trpc/server": 10.12.0
+  checksum: b4bb7b45ea94558d1926df007543bcb7ce0912005f265a47dc19c8687073186bf3cad4ec3b82ae880c6807c4303b7f09cf617ed13b934a7cb46d705a27872574
   languageName: node
   linkType: hard
 
 "@trpc/next@npm:*":
-  version: 10.11.1
-  resolution: "@trpc/next@npm:10.11.1"
+  version: 10.12.0
+  resolution: "@trpc/next@npm:10.12.0"
   dependencies:
     react-ssr-prepass: ^1.5.0
   peerDependencies:
     "@tanstack/react-query": ^4.3.8
-    "@trpc/client": 10.11.1
+    "@trpc/client": 10.12.0
     "@trpc/react-query": ^10.8.0
-    "@trpc/server": 10.11.1
+    "@trpc/server": 10.12.0
     next: "*"
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: 20ec89606b10b28bda0af429a80a7c875affd65be03df3e0a235febfca57fbd23561a8af3044c09dc3804b14b26fbda95cf2d96ac718ad481e0d4f72291e0c7c
+  checksum: 49dbc03215772f6b16da2d354950c88cf833ea4946857d3515b7e3d9e83819d52b663d2993478a94d789d7c8522b0907b36173d0480be1aa4e5d9933379057ad
   languageName: node
   linkType: hard
 
 "@trpc/react-query@npm:*":
-  version: 10.11.1
-  resolution: "@trpc/react-query@npm:10.11.1"
+  version: 10.12.0
+  resolution: "@trpc/react-query@npm:10.12.0"
   peerDependencies:
     "@tanstack/react-query": ^4.3.8
-    "@trpc/client": 10.11.1
-    "@trpc/server": 10.11.1
+    "@trpc/client": 10.12.0
+    "@trpc/server": 10.12.0
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: 2442c96640494b74bcd60f30a1c4d212cf305762de8ef653db3eac2078663469b0ddf3e5c560b9174f85b2d5f2d375423b47a8be146b568e0b8ebcf7bcebe8ee
+  checksum: 4c4cfa106c3e971d545dc402376194bff136d91311cc08c118e176255ea10bc28c1b763fcca1202e25f75ce86d2c5bc25ab94420e413cd28f7a9762f5789ab5c
   languageName: node
   linkType: hard
 
 "@trpc/server@npm:*":
-  version: 10.11.1
-  resolution: "@trpc/server@npm:10.11.1"
-  checksum: 337ed1e6b4a5550eb0659c891d21688e26ceb124d9cb9046bdc4590b37187a2558e121e911e736120a9a7356ed6ae1c7f738770a8a8620107cc291f9be90ba63
+  version: 10.12.0
+  resolution: "@trpc/server@npm:10.12.0"
+  checksum: 0429616b8b1776c156110d53ca897961882f98798a3361280f37702a894af5c9b333782447b95f21882010cc8493a079bacb2e2e6c2071be8be84a7498f2631b
   languageName: node
   linkType: hard
 
 "@types/node@npm:*":
-  version: 18.13.0
-  resolution: "@types/node@npm:18.13.0"
-  checksum: 4ea10f8802848b01672bce938f678b6774ca2cee0c9774f12275ab064ae07818419c3e2e41d6257ce7ba846d1ea26c63214aa1dfa4166fa3746291752b8c6416
+  version: 18.14.0
+  resolution: "@types/node@npm:18.14.0"
+  checksum: d83fcf5e4ed544755dd9028f5cbb6b9d46235043159111bb2ad62223729aee581c0144a9f6df8ba73d74011db9ed4ebd7af2fd5e0996714e3beb508a5da8ac5c
   languageName: node
   linkType: hard
 
@@ -324,9 +324,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001406":
-  version: 1.0.30001456
-  resolution: "caniuse-lite@npm:1.0.30001456"
-  checksum: c2cc479962149abd09a25b64699ee7484d9c433db2bad0a489f7b51b09a463c991f6efd7b8e201bc1a1ccf3294263f88503a3adf0a57db9046939ee7e58b76a6
+  version: 1.0.30001457
+  resolution: "caniuse-lite@npm:1.0.30001457"
+  checksum: f311a7c5098681962402a86a0a367014ee91c3135395ee68bbfaf45caf0e36d581e42d7c5b1526ce99484a228e6cf5cf0e400678292c65f5a21512a3fc7a5fb6
   languageName: node
   linkType: hard
 

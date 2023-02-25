@@ -4,8 +4,8 @@
 name: Deploy
 
 on:
-  push:
-    branches: [ main ]
+  # push:
+  #   branches: [ main ]
 
   workflow_dispatch:
 
@@ -14,7 +14,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
 

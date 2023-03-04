@@ -19,7 +19,7 @@ export class InfraStack extends Stack {
     const archMap = new CfnMapping(this, 'ArchMapping', {
       mapping: {
         'x86': {
-          'image': LinuxBuildImage.STANDARD_5_0.imageId,
+          'image': LinuxBuildImage.STANDARD_6_0.imageId,
           'path': 'amd64',
         },
         'arm': {

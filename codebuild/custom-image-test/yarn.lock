@@ -2465,7 +2465,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-haste-map@npm:^29.4.3":
+"jest-haste-map@npm:^29.4.3, jest-haste-map@npm:^29.5.0":
   version: 29.5.0
   resolution: "jest-haste-map@npm:29.5.0"
   dependencies:
@@ -2568,19 +2568,19 @@ __metadata:
   linkType: hard
 
 "jest-resolve@npm:^29.4.3":
-  version: 29.4.3
-  resolution: "jest-resolve@npm:29.4.3"
+  version: 29.5.0
+  resolution: "jest-resolve@npm:29.5.0"
   dependencies:
     chalk: ^4.0.0
     graceful-fs: ^4.2.9
-    jest-haste-map: ^29.4.3
+    jest-haste-map: ^29.5.0
     jest-pnp-resolver: ^1.2.2
-    jest-util: ^29.4.3
-    jest-validate: ^29.4.3
+    jest-util: ^29.5.0
+    jest-validate: ^29.5.0
     resolve: ^1.20.0
     resolve.exports: ^2.0.0
     slash: ^3.0.0
-  checksum: 056a66beccf833f3c7e5a8fc9bfec218886e87b0b103decdbdf11893669539df489d1490cd6d5f0eea35731e8be0d2e955a6710498f970d2eae734da4df029dc
+  checksum: 9a125f3cf323ceef512089339d35f3ee37f79fe16a831fb6a26773ea6a229b9e490d108fec7af334142e91845b5996de8e7cdd85a4d8d617078737d804e29c8f
   languageName: node
   linkType: hard
 
@@ -2714,6 +2714,20 @@ __metadata:
     leven: ^3.1.0
     pretty-format: ^29.4.3
   checksum: 983e56430d86bed238448cae031535c1d908f760aa312cd4a4ec0e92f3bc1b6675415ddf57cdeceedb8ad9c698e5bcd10f0a856dfc93a8923bdecc7733f4ba80
+  languageName: node
+  linkType: hard
+
+"jest-validate@npm:^29.5.0":
+  version: 29.5.0
+  resolution: "jest-validate@npm:29.5.0"
+  dependencies:
+    "@jest/types": ^29.5.0
+    camelcase: ^6.2.0
+    chalk: ^4.0.0
+    jest-get-type: ^29.4.3
+    leven: ^3.1.0
+    pretty-format: ^29.5.0
+  checksum: 43ca5df7cb75572a254ac3e92fbbe7be6b6a1be898cc1e887a45d55ea003f7a112717d814a674d37f9f18f52d8de40873c8f084f17664ae562736c78dd44c6a1
   languageName: node
   linkType: hard
 
@@ -3319,6 +3333,17 @@ __metadata:
     ansi-styles: ^5.0.0
     react-is: ^18.0.0
   checksum: 3258b9a010bd79b3cf73783ad1e4592b6326fc981b6e31b742f316f14e7fbac09b48a9dbf274d092d9bde404db9fe16f518370e121837dc078a597392e6e5cc5
+  languageName: node
+  linkType: hard
+
+"pretty-format@npm:^29.5.0":
+  version: 29.5.0
+  resolution: "pretty-format@npm:29.5.0"
+  dependencies:
+    "@jest/schemas": ^29.4.3
+    ansi-styles: ^5.0.0
+    react-is: ^18.0.0
+  checksum: 4065356b558e6db25b4d41a01efb386935a6c06a0c9c104ef5ce59f2f476b8210edb8b3949b386e60ada0a6dc5ebcb2e6ccddc8c64dfd1a9943c3c3a9e7eaf89
   languageName: node
   linkType: hard
 

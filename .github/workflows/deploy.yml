@@ -67,7 +67,7 @@ jobs:
       run: yarn install
 
     - name: Deploy
-      uses: hashicorp/terraform-cdk-action@v0.1.12
+      uses: hashicorp/terraform-cdk-action@v0.1.13
       env:
         CI: true
         ARM_USE_OIDC: true

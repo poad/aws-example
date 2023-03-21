@@ -139,6 +139,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@aws-sdk/abort-controller@npm:3.295.0":
+  version: 3.295.0
+  resolution: "@aws-sdk/abort-controller@npm:3.295.0"
+  dependencies:
+    "@aws-sdk/types": 3.295.0
+    tslib: ^2.5.0
+  checksum: 73067abed748eacfa5298d84f4c4a67fa764cc41af8a1d80fb61fedf5a50ffe88ed06e51f70ce8dedb6e1ff53cdddabb7b909898e6c666d6abcf8c7584cd5511
+  languageName: node
+  linkType: hard
+
 "@aws-sdk/client-cognito-identity@npm:3.294.0":
   version: 3.294.0
   resolution: "@aws-sdk/client-cognito-identity@npm:3.294.0"
@@ -639,7 +649,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/node-http-handler@npm:*, @aws-sdk/node-http-handler@npm:3.292.0":
+"@aws-sdk/node-http-handler@npm:*":
+  version: 3.295.0
+  resolution: "@aws-sdk/node-http-handler@npm:3.295.0"
+  dependencies:
+    "@aws-sdk/abort-controller": 3.295.0
+    "@aws-sdk/protocol-http": 3.295.0
+    "@aws-sdk/querystring-builder": 3.295.0
+    "@aws-sdk/types": 3.295.0
+    tslib: ^2.5.0
+  checksum: b8cef019fe989bce4d4f0cb1c70355519e8d05f084ab0c9799b959dbaa5ac88c6efd00d72e76636f999afac896787dfdde69b06695efcbf77e7b868bc618bae4
+  languageName: node
+  linkType: hard
+
+"@aws-sdk/node-http-handler@npm:3.292.0":
   version: 3.292.0
   resolution: "@aws-sdk/node-http-handler@npm:3.292.0"
   dependencies:
@@ -672,6 +695,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@aws-sdk/protocol-http@npm:3.295.0":
+  version: 3.295.0
+  resolution: "@aws-sdk/protocol-http@npm:3.295.0"
+  dependencies:
+    "@aws-sdk/types": 3.295.0
+    tslib: ^2.5.0
+  checksum: 88b4cb31027b372d1b00e136db49e6170dc24782c31f064ce45971dc7b0324a6af491cab061e56b7cd5abfdc0af887899f8d4f9eba967c808c46cf1f99ba9b5e
+  languageName: node
+  linkType: hard
+
 "@aws-sdk/querystring-builder@npm:3.292.0":
   version: 3.292.0
   resolution: "@aws-sdk/querystring-builder@npm:3.292.0"
@@ -680,6 +713,17 @@ __metadata:
     "@aws-sdk/util-uri-escape": 3.292.0
     tslib: ^2.3.1
   checksum: 134810b9c8a248a13faad270592e75ff5afc6ce0df2598a5f319774b29a5a0cc7a05334e62eb04eda9ce0dc921a4407223e96ed6b6345c0c487814d31d1fdcac
+  languageName: node
+  linkType: hard
+
+"@aws-sdk/querystring-builder@npm:3.295.0":
+  version: 3.295.0
+  resolution: "@aws-sdk/querystring-builder@npm:3.295.0"
+  dependencies:
+    "@aws-sdk/types": 3.295.0
+    "@aws-sdk/util-uri-escape": 3.295.0
+    tslib: ^2.5.0
+  checksum: 328c9ab43cc8216298d8ca35b398eaf94f87d7819f38d62763eecfbaeeb9abe5919de24b861d6e5d4b1537477c150cc313dd6f24ad03d1f94f96c31c858fa815
   languageName: node
   linkType: hard
 
@@ -755,6 +799,15 @@ __metadata:
   dependencies:
     tslib: ^2.3.1
   checksum: 0c3c62092f3b400da57cd817d73c7e54bf193f649a508fed550bd927e0307b4f2b873036f8df9977e9f7bf2bcfc4a1233c6f662dcaeea4e049586bea93003cb7
+  languageName: node
+  linkType: hard
+
+"@aws-sdk/types@npm:3.295.0":
+  version: 3.295.0
+  resolution: "@aws-sdk/types@npm:3.295.0"
+  dependencies:
+    tslib: ^2.5.0
+  checksum: 4f2661b9f7ac7e441bf07f720c1cdecfa9d24089bc262693aebc9e747fc72e8dbd11dc69415a4abea4c8065564a8f135eac6705302b9fece0687b427028bf66e
   languageName: node
   linkType: hard
 
@@ -895,6 +948,15 @@ __metadata:
   dependencies:
     tslib: ^2.3.1
   checksum: 34cbe5ba5cc2678cfa9d88adb1adab2810f1a7879a105c4a2827a95af8903505190a8fc4d73cfeb3548ae024caf50420e7377120e59bb62018b0c783a9e4fb71
+  languageName: node
+  linkType: hard
+
+"@aws-sdk/util-uri-escape@npm:3.295.0":
+  version: 3.295.0
+  resolution: "@aws-sdk/util-uri-escape@npm:3.295.0"
+  dependencies:
+    tslib: ^2.5.0
+  checksum: 2334baedd339161aa2fb6ae880c04730b072a217ed42b40aa0c0df526aba5a663302da50ba550ad657a4b3cf44070696d91501bf2ba33722f452247f5c2d0fde
   languageName: node
   linkType: hard
 
@@ -1301,7 +1363,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.3.1, tslib@npm:^2.4.0":
+"tslib@npm:^2.3.1, tslib@npm:^2.4.0, tslib@npm:^2.5.0":
   version: 2.5.0
   resolution: "tslib@npm:2.5.0"
   checksum: ae3ed5f9ce29932d049908ebfdf21b3a003a85653a9a140d614da6b767a93ef94f460e52c3d787f0e4f383546981713f165037dc2274df212ea9f8a4541004e1

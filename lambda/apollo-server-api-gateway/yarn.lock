@@ -6,12 +6,12 @@ __metadata:
   cacheKey: 8
 
 "@ampproject/remapping@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "@ampproject/remapping@npm:2.2.0"
+  version: 2.2.1
+  resolution: "@ampproject/remapping@npm:2.2.1"
   dependencies:
-    "@jridgewell/gen-mapping": ^0.1.0
+    "@jridgewell/gen-mapping": ^0.3.0
     "@jridgewell/trace-mapping": ^0.3.9
-  checksum: d74d170d06468913921d72430259424b7e4c826b5a7d39ff839a29d547efb97dc577caa8ba3fb5cf023624e9af9d09651afc3d4112a45e2050328abc9b3a2292
+  checksum: 03c04fd526acc64a1f4df22651186f3e5ef0a9d6d6530ce4482ec9841269cf7a11dbb8af79237c282d721c5312024ff17529cd72cc4768c11e999b58e2302079
   languageName: node
   linkType: hard
 
@@ -267,9 +267,9 @@ __metadata:
   linkType: hard
 
 "@aws-cdk/asset-awscli-v1@npm:^2.2.97":
-  version: 2.2.130
-  resolution: "@aws-cdk/asset-awscli-v1@npm:2.2.130"
-  checksum: e575f6e8b54112976f39c2c2af559fa5e71aa4a84ce2a929fcdf799b8528755c47cdfcc75ccd37a67448d8b9af1170c43ebb07bed42f4f015c0a921f21807a59
+  version: 2.2.131
+  resolution: "@aws-cdk/asset-awscli-v1@npm:2.2.131"
+  checksum: d5b5f8a2dcb99b406ab5686d36faa58cd12e8f98f6fa20dce9873a99748f6b6071c3c0dde73de387a309a86ab2b79e10fa56dc060467402f0db8d7409acfdce5
   languageName: node
   linkType: hard
 
@@ -281,9 +281,9 @@ __metadata:
   linkType: hard
 
 "@aws-cdk/asset-node-proxy-agent-v5@npm:^2.0.77":
-  version: 2.0.106
-  resolution: "@aws-cdk/asset-node-proxy-agent-v5@npm:2.0.106"
-  checksum: 2df16d72e944333a30b337f7a137d7c9af0b56555feff57e3d88198630ebf30c50d61658c41e70d9226f000a0e77f235b302879fd5112640d6290ee87a219f01
+  version: 2.0.107
+  resolution: "@aws-cdk/asset-node-proxy-agent-v5@npm:2.0.107"
+  checksum: 4db0ce2a06db8c6f8a9dd007fcf76bd0dc2f35f8646440c23095e2fb6bc8067c6b4a016286660fa1570c0ce273d29ab5f99135e0d3fdaf99f24b0c19c666c759
   languageName: node
   linkType: hard
 
@@ -308,20 +308,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-lambda-powertools/commons@npm:^1.7.0":
-  version: 1.7.0
-  resolution: "@aws-lambda-powertools/commons@npm:1.7.0"
-  checksum: 4a81943e8c3c2d0394c79de1f846f69668e20ad1d666aeebb0e1ea9e6444cc1e4d95e044d6756ff667ce8191bff74b88fa0b15321b01937f0b23d502b1737c26
+"@aws-lambda-powertools/commons@npm:^1.8.0":
+  version: 1.8.0
+  resolution: "@aws-lambda-powertools/commons@npm:1.8.0"
+  checksum: 50a6231d1b93158bd2660ea48a36a5f02f3e96264eb9c2fe50513d21844f30d814f0dafb41661f2125dbd17081dfc2fee1c9f0fba4606f542c1cf4823299a63d
   languageName: node
   linkType: hard
 
 "@aws-lambda-powertools/logger@npm:*":
-  version: 1.7.0
-  resolution: "@aws-lambda-powertools/logger@npm:1.7.0"
+  version: 1.8.0
+  resolution: "@aws-lambda-powertools/logger@npm:1.8.0"
   dependencies:
-    "@aws-lambda-powertools/commons": ^1.7.0
+    "@aws-lambda-powertools/commons": ^1.8.0
     lodash.merge: ^4.6.2
-  checksum: ba4400d093ad8eec0bb1fe06e6bcddb8cc2fe1283dcf81a745d095a536267ecc97e99d058714f3e3c99a77d025feff6bce521a42205d2cb15cf6db7f3d6c754a
+  checksum: 3e8b082979ec78fe2853960253866fb627d2dd88841e4687115c923f3767f4bff036d819f55db0d673aaea9452a7c45aca131e34298d8fa8487139a6675aea69
   languageName: node
   linkType: hard
 
@@ -1674,7 +1674,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/executor-http@npm:^0.1.7":
+"@graphql-tools/executor-http@npm:^0.1.7, @graphql-tools/executor-http@npm:^0.1.9":
   version: 0.1.9
   resolution: "@graphql-tools/executor-http@npm:0.1.9"
   dependencies:
@@ -1739,17 +1739,19 @@ __metadata:
   linkType: hard
 
 "@graphql-tools/github-loader@npm:^7.3.20":
-  version: 7.3.27
-  resolution: "@graphql-tools/github-loader@npm:7.3.27"
+  version: 7.3.28
+  resolution: "@graphql-tools/github-loader@npm:7.3.28"
   dependencies:
     "@ardatan/sync-fetch": ^0.0.1
+    "@graphql-tools/executor-http": ^0.1.9
     "@graphql-tools/graphql-tag-pluck": ^7.4.6
     "@graphql-tools/utils": ^9.2.1
     "@whatwg-node/fetch": ^0.8.0
     tslib: ^2.4.0
+    value-or-promise: ^1.0.12
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: 467d5c9f0df5a26656dbd5939768335277eb25023331a359fd4748c2cd85de85affe8d7ac93ac9d51202ed208c54357561e32e2520fae28fdbc42dda72dd99f4
+  checksum: 1ef168d72b0615e5e05408794fef549e841c399a12b7074ae4764fee28d145aebdf50ba573f0695159edced626f5757b7825be2b246c437bbdf5457aeff13e5b
   languageName: node
   linkType: hard
 
@@ -1849,10 +1851,10 @@ __metadata:
   linkType: hard
 
 "@graphql-tools/prisma-loader@npm:^7.2.49":
-  version: 7.2.68
-  resolution: "@graphql-tools/prisma-loader@npm:7.2.68"
+  version: 7.2.69
+  resolution: "@graphql-tools/prisma-loader@npm:7.2.69"
   dependencies:
-    "@graphql-tools/url-loader": 7.17.16
+    "@graphql-tools/url-loader": 7.17.17
     "@graphql-tools/utils": 9.2.1
     "@types/js-yaml": ^4.0.0
     "@types/json-stable-stringify": ^1.0.32
@@ -1872,7 +1874,7 @@ __metadata:
     yaml-ast-parser: ^0.0.43
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: 158dae58ce019fbe9a363a8ddda4d8b1fd302972ccd199cb09f76d283961d3ece48461e449c56a7fb3265019bed7996badd52c505d60e61b3c3f96248d80073c
+  checksum: bea7effa896f68ce568f6bbc872c411132e94227e42aa637a356a608684fa1ca015fe87ce77025d6380cebb754487ddb8a56a615dee0f652e5359f9aded4c60e
   languageName: node
   linkType: hard
 
@@ -1903,9 +1905,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/url-loader@npm:7.17.16, @graphql-tools/url-loader@npm:^7.13.2, @graphql-tools/url-loader@npm:^7.9.7":
-  version: 7.17.16
-  resolution: "@graphql-tools/url-loader@npm:7.17.16"
+"@graphql-tools/url-loader@npm:7.17.17, @graphql-tools/url-loader@npm:^7.13.2, @graphql-tools/url-loader@npm:^7.9.7":
+  version: 7.17.17
+  resolution: "@graphql-tools/url-loader@npm:7.17.17"
   dependencies:
     "@ardatan/sync-fetch": ^0.0.1
     "@graphql-tools/delegate": ^9.0.30
@@ -1922,7 +1924,7 @@ __metadata:
     ws: ^8.12.0
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: 302b9021087a92ccb4a74a6dfac7045f4bc11b1e127e0a994b9db03bdf5055b5f753f8c586bee6fc5787ae8f46562c86b2ed38bb3f264663c5634dbae0b834b9
+  checksum: daf1357dafc8d5175b6886b116a574c09c4914e2f04858cf6da289955a51fb8b5a323ecbfe7af63d4921ada1a2f5c83cfdeb0297eca3f48082967b984b4adcdf
   languageName: node
   linkType: hard
 
@@ -2255,45 +2257,49 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jridgewell/gen-mapping@npm:^0.1.0":
-  version: 0.1.1
-  resolution: "@jridgewell/gen-mapping@npm:0.1.1"
-  dependencies:
-    "@jridgewell/set-array": ^1.0.0
-    "@jridgewell/sourcemap-codec": ^1.4.10
-  checksum: 3bcc21fe786de6ffbf35c399a174faab05eb23ce6a03e8769569de28abbf4facc2db36a9ddb0150545ae23a8d35a7cf7237b2aa9e9356a7c626fb4698287d5cc
-  languageName: node
-  linkType: hard
-
-"@jridgewell/gen-mapping@npm:^0.3.2":
-  version: 0.3.2
-  resolution: "@jridgewell/gen-mapping@npm:0.3.2"
+"@jridgewell/gen-mapping@npm:^0.3.0, @jridgewell/gen-mapping@npm:^0.3.2":
+  version: 0.3.3
+  resolution: "@jridgewell/gen-mapping@npm:0.3.3"
   dependencies:
     "@jridgewell/set-array": ^1.0.1
     "@jridgewell/sourcemap-codec": ^1.4.10
     "@jridgewell/trace-mapping": ^0.3.9
-  checksum: 1832707a1c476afebe4d0fbbd4b9434fdb51a4c3e009ab1e9938648e21b7a97049fa6009393bdf05cab7504108413441df26d8a3c12193996e65493a4efb6882
+  checksum: 4a74944bd31f22354fc01c3da32e83c19e519e3bbadafa114f6da4522ea77dd0c2842607e923a591d60a76699d819a2fbb6f3552e277efdb9b58b081390b60ab
   languageName: node
   linkType: hard
 
-"@jridgewell/resolve-uri@npm:3.1.0, @jridgewell/resolve-uri@npm:^3.0.3":
+"@jridgewell/resolve-uri@npm:3.1.0":
   version: 3.1.0
   resolution: "@jridgewell/resolve-uri@npm:3.1.0"
   checksum: b5ceaaf9a110fcb2780d1d8f8d4a0bfd216702f31c988d8042e5f8fbe353c55d9b0f55a1733afdc64806f8e79c485d2464680ac48a0d9fcadb9548ee6b81d267
   languageName: node
   linkType: hard
 
-"@jridgewell/set-array@npm:^1.0.0, @jridgewell/set-array@npm:^1.0.1":
+"@jridgewell/resolve-uri@npm:^3.0.3":
+  version: 3.1.1
+  resolution: "@jridgewell/resolve-uri@npm:3.1.1"
+  checksum: f5b441fe7900eab4f9155b3b93f9800a916257f4e8563afbcd3b5a5337b55e52bd8ae6735453b1b745457d9f6cdb16d74cd6220bbdd98cf153239e13f6cbb653
+  languageName: node
+  linkType: hard
+
+"@jridgewell/set-array@npm:^1.0.1":
   version: 1.1.2
   resolution: "@jridgewell/set-array@npm:1.1.2"
   checksum: 69a84d5980385f396ff60a175f7177af0b8da4ddb81824cb7016a9ef914eee9806c72b6b65942003c63f7983d4f39a5c6c27185bbca88eb4690b62075602e28e
   languageName: node
   linkType: hard
 
-"@jridgewell/sourcemap-codec@npm:1.4.14, @jridgewell/sourcemap-codec@npm:^1.4.10":
+"@jridgewell/sourcemap-codec@npm:1.4.14":
   version: 1.4.14
   resolution: "@jridgewell/sourcemap-codec@npm:1.4.14"
   checksum: 61100637b6d173d3ba786a5dff019e1a74b1f394f323c1fee337ff390239f053b87266c7a948777f4b1ee68c01a8ad0ab61e5ff4abb5a012a0b091bec391ab97
+  languageName: node
+  linkType: hard
+
+"@jridgewell/sourcemap-codec@npm:^1.4.10":
+  version: 1.4.15
+  resolution: "@jridgewell/sourcemap-codec@npm:1.4.15"
+  checksum: b881c7e503db3fc7f3c1f35a1dd2655a188cc51a3612d76efc8a6eb74728bef5606e6758ee77423e564092b4a518aba569bbb21c9bac5ab7a35b0c6ae7e344c8
   languageName: node
   linkType: hard
 
@@ -2308,12 +2314,12 @@ __metadata:
   linkType: hard
 
 "@jridgewell/trace-mapping@npm:^0.3.12, @jridgewell/trace-mapping@npm:^0.3.15, @jridgewell/trace-mapping@npm:^0.3.17, @jridgewell/trace-mapping@npm:^0.3.9":
-  version: 0.3.17
-  resolution: "@jridgewell/trace-mapping@npm:0.3.17"
+  version: 0.3.18
+  resolution: "@jridgewell/trace-mapping@npm:0.3.18"
   dependencies:
     "@jridgewell/resolve-uri": 3.1.0
     "@jridgewell/sourcemap-codec": 1.4.14
-  checksum: 9d703b859cff5cd83b7308fd457a431387db5db96bd781a63bf48e183418dd9d3d44e76b9e4ae13237f6abeeb25d739ec9215c1d5bfdd08f66f750a50074a339
+  checksum: 0572669f855260808c16fe8f78f5f1b4356463b11d3f2c7c0b5580c8ba1cbf4ae53efe9f627595830856e57dbac2325ac17eb0c3dd0ec42102e6f227cc289c02
   languageName: node
   linkType: hard
 
@@ -3536,8 +3542,8 @@ __metadata:
   linkType: hard
 
 "aws-sdk@npm:^2.814.0":
-  version: 2.1351.0
-  resolution: "aws-sdk@npm:2.1351.0"
+  version: 2.1353.0
+  resolution: "aws-sdk@npm:2.1353.0"
   dependencies:
     buffer: 4.9.2
     events: 1.1.1
@@ -3549,7 +3555,7 @@ __metadata:
     util: ^0.12.4
     uuid: 8.0.0
     xml2js: 0.4.19
-  checksum: e0ff895e40e10ca79cd9af6706a6f0a731112812caea7a08cffcb0ab9d21146100ad8795c29f441f7c5fa19f42f50824d75da98e43f0e1ed52f13d5d4bb5fb2e
+  checksum: 099efb3148249bc66870360a28a6d9c940b5443dd060c1c7e0806595dae16488a99b58f66b317b0281d98792633fd154add1a29dbfe28d25935cf7cee072d1bb
   languageName: node
   linkType: hard
 
@@ -4233,9 +4239,9 @@ __metadata:
   linkType: hard
 
 "constructs@npm:*":
-  version: 10.1.303
-  resolution: "constructs@npm:10.1.303"
-  checksum: 5ef170a4c0b37d0f9e5e038e9c6079c753d82c28260ff6318b47b6fa0b587d85f0f46f24eb3cfd8752d71819451d33e60d16f715d8c6f7a5f7157865dfe894bd
+  version: 10.1.304
+  resolution: "constructs@npm:10.1.304"
+  checksum: 99b6bbc71e87261a5bdaeddd912517fee0328793b4e5cec3f6b25ccf1dd2396b2e35f25718dbff21505b0891dcfa2f1555616222b9b5b9106071a6a6371393d7
   languageName: node
   linkType: hard
 
@@ -4565,9 +4571,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.284":
-  version: 1.4.353
-  resolution: "electron-to-chromium@npm:1.4.353"
-  checksum: 4508922707740c7f95a58a8a0ad43acf7c202535cf97d3a21218ebfb4ad99edb9200d20d6ef9f474f42711b9f0ba0f59b9612c33d17376c3ec93e548e255996c
+  version: 1.4.356
+  resolution: "electron-to-chromium@npm:1.4.356"
+  checksum: 5a61003c574f5fb6d32dcfc0ae2220a45a6a395ccadd9495c8227e9c33f36ea97cb34aa925c2b039d17dfea5a8040825026db2df01a352d2d1c0037f53dbeebb
   languageName: node
   linkType: hard
 
@@ -8617,9 +8623,9 @@ __metadata:
   linkType: hard
 
 "shell-quote@npm:^1.7.3":
-  version: 1.8.0
-  resolution: "shell-quote@npm:1.8.0"
-  checksum: 6ef7c5e308b9c77eedded882653a132214fa98b4a1512bb507588cf6cd2fc78bfee73e945d0c3211af028a1eabe09c6a19b96edd8977dc149810797e93809749
+  version: 1.8.1
+  resolution: "shell-quote@npm:1.8.1"
+  checksum: 5f01201f4ef504d4c6a9d0d283fa17075f6770bfbe4c5850b074974c68062f37929ca61700d95ad2ac8822e14e8c4b990ca0e6e9272e64befd74ce5e19f0736b
   languageName: node
   linkType: hard
 
@@ -9267,22 +9273,22 @@ __metadata:
   linkType: hard
 
 "typescript@npm:*":
-  version: 5.0.3
-  resolution: "typescript@npm:5.0.3"
+  version: 5.0.4
+  resolution: "typescript@npm:5.0.4"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 3cce0576d218cb4277ff8b6adfef1a706e9114a98b4261a38ad658a7642f1b274a8396394f6cbff8c0ba852996d7ed2e233e9b8431d5d55ac7c2f6fea645af02
+  checksum: 82b94da3f4604a8946da585f7d6c3025fff8410779e5bde2855ab130d05e4fd08938b9e593b6ebed165bda6ad9292b230984f10952cf82f0a0ca07bbeaa08172
   languageName: node
   linkType: hard
 
 "typescript@patch:typescript@*#~builtin<compat/typescript>":
-  version: 5.0.3
-  resolution: "typescript@patch:typescript@npm%3A5.0.3#~builtin<compat/typescript>::version=5.0.3&hash=85af82"
+  version: 5.0.4
+  resolution: "typescript@patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=85af82"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 5580367025ff7ee1f2a61e5affdbddccfe6e893bc662aa33fefdbf12de7e493173fa7d47475e9e15121828691004c4ed13bcd115e57866baed97b54c60954e1c
+  checksum: bb309d320c59a26565fb3793dba550576ab861018ff3fd1b7fccabbe46ae4a35546bc45f342c0a0b6f265c801ccdf64ffd68f548f117ceb7f0eac4b805cd52a9
   languageName: node
   linkType: hard
 

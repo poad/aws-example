@@ -287,24 +287,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-cdk/aws-apigatewayv2-alpha@npm:^2.62.0-alpha.0":
-  version: 2.62.0-alpha.0
-  resolution: "@aws-cdk/aws-apigatewayv2-alpha@npm:2.62.0-alpha.0"
+"@aws-cdk/aws-apigatewayv2-alpha@npm:^2.73.0-alpha.0":
+  version: 2.73.0-alpha.0
+  resolution: "@aws-cdk/aws-apigatewayv2-alpha@npm:2.73.0-alpha.0"
   peerDependencies:
-    aws-cdk-lib: ^2.62.0
+    aws-cdk-lib: 2.73.0
     constructs: ^10.0.0
-  checksum: 569589666e0e695f84b1cc2aba0bf1d9c77747ec1df60d1fb48bac2132df03cdcc8d2fb092f85d48e5a90c62648e514106c157da9b59bd8483cac87fb291796f
+  checksum: 7acab14268e1cad77d2ef6bc299fc9b7d227fa2ac7e72da22648d5b2c650d84fa11c9996e006771f65ab2e57936062244538decaab98009523a9475165a55390
   languageName: node
   linkType: hard
 
-"@aws-cdk/aws-apigatewayv2-integrations-alpha@npm:^2.62.0-alpha.0":
-  version: 2.62.0-alpha.0
-  resolution: "@aws-cdk/aws-apigatewayv2-integrations-alpha@npm:2.62.0-alpha.0"
+"@aws-cdk/aws-apigatewayv2-integrations-alpha@npm:^2.73.0-alpha.0":
+  version: 2.73.0-alpha.0
+  resolution: "@aws-cdk/aws-apigatewayv2-integrations-alpha@npm:2.73.0-alpha.0"
   peerDependencies:
-    "@aws-cdk/aws-apigatewayv2-alpha": 2.62.0-alpha.0
-    aws-cdk-lib: ^2.62.0
+    "@aws-cdk/aws-apigatewayv2-alpha": 2.73.0-alpha.0
+    aws-cdk-lib: 2.73.0
     constructs: ^10.0.0
-  checksum: 8ce4b3fdaf1993e16a3d2774b952ed662be38317df3b94ed1e9e38829ee99f57950a990325c542e5c131c2f1dcd20144108e3616bbb8faf96e791b7f8bcd5bc8
+  checksum: 943d45955631ca90ac1804fb097c73a64ab6f883b4296ceb36b521e87875b7f74828934a9147d820878d2a9de4f60f454c5c259e21e1b041035ff511b2025b18
   languageName: node
   linkType: hard
 
@@ -3659,8 +3659,8 @@ __metadata:
   dependencies:
     "@apollo/server": "*"
     "@as-integrations/aws-lambda": "*"
-    "@aws-cdk/aws-apigatewayv2-alpha": ^2.62.0-alpha.0
-    "@aws-cdk/aws-apigatewayv2-integrations-alpha": ^2.62.0-alpha.0
+    "@aws-cdk/aws-apigatewayv2-alpha": ^2.73.0-alpha.0
+    "@aws-cdk/aws-apigatewayv2-integrations-alpha": ^2.73.0-alpha.0
     "@aws-sdk/client-cognito-identity-provider": "*"
     "@graphql-codegen/cli": "*"
     "@graphql-codegen/introspection": "*"
@@ -6523,7 +6523,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json5@npm:>=2.2.2":
+"json5@npm:^1.0.1":
+  version: 1.0.2
+  resolution: "json5@npm:1.0.2"
+  dependencies:
+    minimist: ^1.2.0
+  bin:
+    json5: lib/cli.js
+  checksum: 866458a8c58a95a49bef3adba929c625e82532bcff1fe93f01d29cb02cac7c3fe1f4b79951b7792c2da9de0b32871a8401a6e3c5b36778ad852bf5b8a61165d7
+  languageName: node
+  linkType: hard
+
+"json5@npm:^2.2.2":
   version: 2.2.3
   resolution: "json5@npm:2.2.3"
   bin:
@@ -6571,7 +6582,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsonwebtoken@npm:>=9.0.0":
+"jsonwebtoken@npm:^9.0.0":
   version: 9.0.0
   resolution: "jsonwebtoken@npm:9.0.0"
   dependencies:
@@ -6942,6 +6953,13 @@ __metadata:
   dependencies:
     brace-expansion: ^2.0.1
   checksum: 7564208ef81d7065a370f788d337cd80a689e981042cb9a1d0e6580b6c6a8c9279eba80010516e258835a988363f99f54a6f711a315089b8b42694f5da9d0d77
+  languageName: node
+  linkType: hard
+
+"minimist@npm:^1.2.0":
+  version: 1.2.8
+  resolution: "minimist@npm:1.2.8"
+  checksum: 75a6d645fb122dad29c06a7597bddea977258957ed88d7a6df59b5cd3fe4a527e253e9bbf2e783e4b73657f9098b96a5fe96ab8a113655d4109108577ecf85b0
   languageName: node
   linkType: hard
 

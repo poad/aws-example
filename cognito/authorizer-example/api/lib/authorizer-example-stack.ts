@@ -196,7 +196,7 @@ export class AuthorizerExampleStack extends cdk.Stack {
     });
 
     const restFunction = new NodejsFunction(this, 'AuthorizerExampleLambdaRestFunction', {
-      runtime: Runtime.NODEJS_16_X,
+      runtime: Runtime.NODEJS_18_X,
       entry: './lambda/rest/index.ts',
       functionName: restFunctionName,
       retryAttempts: 0,
@@ -249,7 +249,7 @@ export class AuthorizerExampleStack extends cdk.Stack {
     });
 
     const graphqlFunction = new NodejsFunction(this, 'AuthorizerExampleLambdaGraphQLFunction', {
-      runtime: Runtime.NODEJS_16_X,
+      runtime: Runtime.NODEJS_18_X,
       entry: './lambda/graphql/index.ts',
       functionName: graphqlFunctionName,
       retryAttempts: 0,

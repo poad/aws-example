@@ -57,4 +57,4 @@ jobs:
       env:
         BASE_PATH: /oauth/device/activate
       working-directory: ${{ matrix.target }}
-      run: yarn install && yarn build
+      run: yarn install --immutable && yarn build

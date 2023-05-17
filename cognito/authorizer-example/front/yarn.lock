@@ -303,27 +303,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-amplify/ui-react-core@npm:2.1.20":
-  version: 2.1.20
-  resolution: "@aws-amplify/ui-react-core@npm:2.1.20"
+"@aws-amplify/ui-react-core@npm:2.1.21":
+  version: 2.1.21
+  resolution: "@aws-amplify/ui-react-core@npm:2.1.21"
   dependencies:
-    "@aws-amplify/ui": 5.6.1
+    "@aws-amplify/ui": 5.6.2
     "@xstate/react": 3.0.1
     lodash: 4.17.21
     xstate: ^4.33.6
   peerDependencies:
     aws-amplify: ">= 5.0.1"
     react: ">= 16.14.0"
-  checksum: 43638b2d57d215648f4ebf2a5725baf9b5cbcb1703bcca40f7be398fdbae9d1fe29cb32d95482bc4a928b2777d7da03479e2fa9cc252adc4685d56031d2e925e
+  checksum: 8d26a0217435cd580686dae8e0a98ba9bfe2299e8f296cb8135518a9ebc641e5467a6eca8db32ceed7e23e49d6f0e29fad572cb7dcc8c85dffeea5912d6c2042
   languageName: node
   linkType: hard
 
 "@aws-amplify/ui-react@npm:*":
-  version: 4.6.1
-  resolution: "@aws-amplify/ui-react@npm:4.6.1"
+  version: 4.6.2
+  resolution: "@aws-amplify/ui-react@npm:4.6.2"
   dependencies:
-    "@aws-amplify/ui": 5.6.1
-    "@aws-amplify/ui-react-core": 2.1.20
+    "@aws-amplify/ui": 5.6.2
+    "@aws-amplify/ui-react-core": 2.1.21
     "@radix-ui/react-accordion": 1.0.0
     "@radix-ui/react-direction": 1.0.0
     "@radix-ui/react-dropdown-menu": 1.0.0
@@ -348,13 +348,13 @@ __metadata:
   peerDependenciesMeta:
     aws-amplify:
       optional: true
-  checksum: 52c986649ffed0a17384893d046061e9739a9375f351592f0c5c944e917b00b788349bae3f8b3f01b30114b9d85f23ae063aa1f9c52480d2537d7dc1a20ebbb0
+  checksum: becdde23de14ab330975469bef4e2c23e74900b022acfb1332d23cdd2b8e0022cdde3982af83b0d5a2194e7ce03f7d86a822e0cfcffa550d1566209db7df9b45
   languageName: node
   linkType: hard
 
-"@aws-amplify/ui@npm:5.6.1":
-  version: 5.6.1
-  resolution: "@aws-amplify/ui@npm:5.6.1"
+"@aws-amplify/ui@npm:5.6.2":
+  version: 5.6.2
+  resolution: "@aws-amplify/ui@npm:5.6.2"
   dependencies:
     csstype: ^3.1.1
     lodash: 4.17.21
@@ -366,7 +366,7 @@ __metadata:
   peerDependenciesMeta:
     xstate:
       optional: true
-  checksum: f3da716c27b91a8a14ae228037327fb823ab8903bf4e0af2303543b1bec496ea7979673691f6e3724ff5cbf02306795f61f96ad732d923a51630d7ea06a2d198
+  checksum: 98de01572faba0335419a2c046559a600aa483bccbffa57bb4614abec2360af383f3e040ffa4b5d0c52d75322e9ccc781fe15b43275d31ae5dea89d24809745c
   languageName: node
   linkType: hard
 
@@ -5227,9 +5227,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 20.1.5
-  resolution: "@types/node@npm:20.1.5"
-  checksum: 0d073ed7b9cc51e2354dcf3a8ccca84d08c7d513fa8fac9462cabc164435b30f2ad296e9f2f911e6ce72da837b704f1075379be84a93bb24f76d328a2d9e8561
+  version: 20.1.7
+  resolution: "@types/node@npm:20.1.7"
+  checksum: b722794290d22db1741e739c256876ca774b76ea2d647d9ec9d52c49b1b01049cc6f6332499a01ac81d641e8d078b33e4c5c59e409db80390ac6b8d7ef0c08a7
   languageName: node
   linkType: hard
 
@@ -5423,7 +5423,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@whatwg-node/fetch@npm:^0.8.0, @whatwg-node/fetch@npm:^0.8.1, @whatwg-node/fetch@npm:^0.8.2, @whatwg-node/fetch@npm:^0.8.3, @whatwg-node/fetch@npm:^0.8.4":
+"@whatwg-node/events@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@whatwg-node/events@npm:0.1.0"
+  checksum: 374d43ee53fcb29f178e7ad5646a88eb35987bfa6a3638eac1a50bd27e3f9f64be9069cdd13254f7b4ea53370550bf91e087b467f5f0b96d65b575a34bfe48fa
+  languageName: node
+  linkType: hard
+
+"@whatwg-node/fetch@npm:^0.8.0, @whatwg-node/fetch@npm:^0.8.1, @whatwg-node/fetch@npm:^0.8.2, @whatwg-node/fetch@npm:^0.8.4":
   version: 0.8.8
   resolution: "@whatwg-node/fetch@npm:0.8.8"
   dependencies:
@@ -5433,6 +5440,16 @@ __metadata:
     urlpattern-polyfill: ^8.0.0
     web-streams-polyfill: ^3.2.1
   checksum: 891407ba57e32e5af70a3b0a86980c4466dcf2ba8581b6927475c85400280b163085519e98821dd94776da9aa1b0b1e221e718009e2abed9c8a0d4721025b2ab
+  languageName: node
+  linkType: hard
+
+"@whatwg-node/fetch@npm:^0.9.0":
+  version: 0.9.0
+  resolution: "@whatwg-node/fetch@npm:0.9.0"
+  dependencies:
+    "@whatwg-node/node-fetch": ^0.4.0
+    urlpattern-polyfill: ^8.0.0
+  checksum: 7f656101fa17dfe0df513e8663938b6168cc99106be7d32f66836200e63545633a24ea2dcda31660c3fa8411b031a9ee1a5bbf042153f78c86f63a43bca9aacf
   languageName: node
   linkType: hard
 
@@ -5449,13 +5466,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@whatwg-node/server@npm:^0.7.3":
-  version: 0.7.5
-  resolution: "@whatwg-node/server@npm:0.7.5"
+"@whatwg-node/node-fetch@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "@whatwg-node/node-fetch@npm:0.4.0"
   dependencies:
-    "@whatwg-node/fetch": ^0.8.3
+    "@whatwg-node/events": ^0.1.0
+    busboy: ^1.6.0
+    fast-querystring: ^1.1.1
+    fast-url-parser: ^1.1.3
     tslib: ^2.3.1
-  checksum: eaf67dc6c7988629abac9b11d7f95d267d9b83bb430192ab4af90f1c58950842148dd0b337a6e7d1930d061d6c404b7081a2cf0e64dbbc00029728fa035fb2ab
+  checksum: a18dca862f3fa1e5bc6f35f5df00f99feb56fa47462e7fe516aa108740e5b7381ea215018d27e4f97752885fa4cf7d1608d1f79317f01706e9dfd571729f1f8b
+  languageName: node
+  linkType: hard
+
+"@whatwg-node/server@npm:^0.7.3":
+  version: 0.7.6
+  resolution: "@whatwg-node/server@npm:0.7.6"
+  dependencies:
+    "@whatwg-node/fetch": ^0.9.0
+    tslib: ^2.3.1
+  checksum: fcf430ff7b0d23cf4229a502a42d6aaebe4b2b568ed73290efc59a0382e54b648204a723880c6f1079e9be98c017a67dc50a3bca6623d024ddb65f1c411c9dc6
   languageName: node
   linkType: hard
 
@@ -6116,9 +6146,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001406, caniuse-lite@npm:^1.0.30001449":
-  version: 1.0.30001487
-  resolution: "caniuse-lite@npm:1.0.30001487"
-  checksum: b5a9e72ec165765fb3e07913cc389685ce8a30ac48967f99baec773a4353d2037fb534241e87b3c95d40a5081079be2263710b784883183bb2998b73f7202233
+  version: 1.0.30001488
+  resolution: "caniuse-lite@npm:1.0.30001488"
+  checksum: ef0caf2914f9fca700b75d22921f500241f4e988ded9985e62737136031787052185d8136a65a3a6d6d12b559cf75ab99f5488931f8bd060f1b7810a2c1ee1d1
   languageName: node
   linkType: hard
 
@@ -6726,9 +6756,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.284":
-  version: 1.4.396
-  resolution: "electron-to-chromium@npm:1.4.396"
-  checksum: 868f49ad1b83774349bc7cc4a9c5ca62692f205ce36d7b23834e0e4e22460227032d555f5bcc00c74d260487eee42b194e58f0fa2c0b87eb3ef0cd6952a08182
+  version: 1.4.397
+  resolution: "electron-to-chromium@npm:1.4.397"
+  checksum: d3551c0624d4eb29a514ef5e2161beb62c06c359c5340e765d349ea114e0eaf6a13eb4adc655d7eec880b0edcb493118888ce07b37e92476baf05ec5a96e99a3
   languageName: node
   linkType: hard
 
@@ -8347,11 +8377,11 @@ __metadata:
   linkType: hard
 
 "is-core-module@npm:^2.11.0, is-core-module@npm:^2.12.0, is-core-module@npm:^2.9.0":
-  version: 2.12.0
-  resolution: "is-core-module@npm:2.12.0"
+  version: 2.12.1
+  resolution: "is-core-module@npm:2.12.1"
   dependencies:
     has: ^1.0.3
-  checksum: f7f7eb2ab71fd769ee9fb2385c095d503aa4b5ce0028c04557de03f1e67a87c85e5bac1f215945fc3c955867a139a415a3ec4c4234a0bffdf715232660f440a6
+  checksum: f04ea30533b5e62764e7b2e049d3157dc0abd95ef44275b32489ea2081176ac9746ffb1cdb107445cf1ff0e0dfcad522726ca27c27ece64dadf3795428b8e468
   languageName: node
   linkType: hard
 
@@ -11074,8 +11104,8 @@ __metadata:
   linkType: hard
 
 "tar@npm:^6.1.11, tar@npm:^6.1.2":
-  version: 6.1.14
-  resolution: "tar@npm:6.1.14"
+  version: 6.1.15
+  resolution: "tar@npm:6.1.15"
   dependencies:
     chownr: ^2.0.0
     fs-minipass: ^2.0.0
@@ -11083,7 +11113,7 @@ __metadata:
     minizlib: ^2.1.1
     mkdirp: ^1.0.3
     yallist: ^4.0.0
-  checksum: a1be0815a9bdc97dfca7c6c2d71d1b836f8ba9314684e2c412832f0f59cc226d4c13da303d6bc30925e82f634cc793f40da79ae72f3e96fb87c23d0f4efd5207
+  checksum: f23832fceeba7578bf31907aac744ae21e74a66f4a17a9e94507acf460e48f6db598c7023882db33bab75b80e027c21f276d405e4a0322d58f51c7088d428268
   languageName: node
   linkType: hard
 

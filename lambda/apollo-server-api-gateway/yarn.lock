@@ -267,9 +267,9 @@ __metadata:
   linkType: hard
 
 "@aws-cdk/asset-awscli-v1@npm:^2.2.165":
-  version: 2.2.178
-  resolution: "@aws-cdk/asset-awscli-v1@npm:2.2.178"
-  checksum: 61214db17785fea1b4b7e6eca0e1d8fc7fee801527fa78d2784f4bf2bf9239c169c3c4bbea0e2e5b8464904b214aca97e37399721a7d07ee90e466ebb7525010
+  version: 2.2.179
+  resolution: "@aws-cdk/asset-awscli-v1@npm:2.2.179"
+  checksum: f5c54d818264af6b68e6f424c5543d697d20c80364f0bc78801072d1ef1759448dbc6fbc6f118893c143cad4093f0dd61b9bc131efe8172f810e1d7b463a5ed2
   languageName: node
   linkType: hard
 
@@ -281,9 +281,9 @@ __metadata:
   linkType: hard
 
 "@aws-cdk/asset-node-proxy-agent-v5@npm:^2.0.139":
-  version: 2.0.149
-  resolution: "@aws-cdk/asset-node-proxy-agent-v5@npm:2.0.149"
-  checksum: 57494835d3e4a3ce404ebde0d9f6c7bfa8a6a6fc7748a2ed29f81feade492216fb8d63a8b7e14cd151c8275898a0908140816b9609f07aff02f6e9e43e353365
+  version: 2.0.150
+  resolution: "@aws-cdk/asset-node-proxy-agent-v5@npm:2.0.150"
+  checksum: e44f8ffed4973e8b14ceddc45f2d8f29416475a6f18843697df6cbe9246acd4ebecccc70e6c3cb322685a664102fe0d730bcb47f15486643deb47f29f7bebd4b
   languageName: node
   linkType: hard
 
@@ -1691,7 +1691,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/graphql-file-loader@npm:*, @graphql-tools/graphql-file-loader@npm:^7.3.7, @graphql-tools/graphql-file-loader@npm:^7.5.0":
+"@graphql-tools/graphql-file-loader@npm:*":
+  version: 8.0.0
+  resolution: "@graphql-tools/graphql-file-loader@npm:8.0.0"
+  dependencies:
+    "@graphql-tools/import": 7.0.0
+    "@graphql-tools/utils": ^10.0.0
+    globby: ^11.0.3
+    tslib: ^2.4.0
+    unixify: ^1.0.0
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+  checksum: 62c5150132a044c396dddd55b6acfe88e1bee21911bbe7905eb35516e0dd969e18ca558a77bb62c5b243bf877fee0a66a5ef2e7dce611d44ef1d5ad8edda151b
+  languageName: node
+  linkType: hard
+
+"@graphql-tools/graphql-file-loader@npm:^7.3.7, @graphql-tools/graphql-file-loader@npm:^7.5.0":
   version: 7.5.17
   resolution: "@graphql-tools/graphql-file-loader@npm:7.5.17"
   dependencies:
@@ -1735,6 +1750,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@graphql-tools/import@npm:7.0.0":
+  version: 7.0.0
+  resolution: "@graphql-tools/import@npm:7.0.0"
+  dependencies:
+    "@graphql-tools/utils": ^10.0.0
+    resolve-from: 5.0.0
+    tslib: ^2.4.0
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+  checksum: 24f7f2096b635b84983932b53d2953edf77f2d35f22d892569aa0c8303a5eb1dd5cff5922dc0264cfe22891730a17cf69392a9fd4b1b682a89553d8e16247498
+  languageName: node
+  linkType: hard
+
 "@graphql-tools/json-file-loader@npm:^7.3.7, @graphql-tools/json-file-loader@npm:^7.4.1":
   version: 7.4.18
   resolution: "@graphql-tools/json-file-loader@npm:7.4.18"
@@ -1749,7 +1777,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/load@npm:*, @graphql-tools/load@npm:^7.5.5, @graphql-tools/load@npm:^7.8.0":
+"@graphql-tools/load@npm:*":
+  version: 8.0.0
+  resolution: "@graphql-tools/load@npm:8.0.0"
+  dependencies:
+    "@graphql-tools/schema": ^10.0.0
+    "@graphql-tools/utils": ^10.0.0
+    p-limit: 3.1.0
+    tslib: ^2.4.0
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+  checksum: e1126bef8917e8a7e89c12cc95b127de727c04502e57f379d93dd3027ce72dc38b16a52a417263959a938b4660a1d362836eed59f941cd30ee3d5452c793a50d
+  languageName: node
+  linkType: hard
+
+"@graphql-tools/load@npm:^7.5.5, @graphql-tools/load@npm:^7.8.0":
   version: 7.8.14
   resolution: "@graphql-tools/load@npm:7.8.14"
   dependencies:
@@ -1772,6 +1814,18 @@ __metadata:
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
   checksum: 96d57a3e810055a2883bf9d3450e88082da207ffb1406222c9fa954e47bac4a328696785fdb7eec95a030d5f75504f7b4c6484c94f248cee13e6ad25aca70c75
+  languageName: node
+  linkType: hard
+
+"@graphql-tools/merge@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "@graphql-tools/merge@npm:9.0.0"
+  dependencies:
+    "@graphql-tools/utils": ^10.0.0
+    tslib: ^2.4.0
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+  checksum: e93794260faa477979bdc22f05da26c0eff02bd82c11565a1197152b70b5ab1c73dc6f8a05caf06737bcb18cb244bd19ee99d62bfc41af3bffb3c17eddb70edf
   languageName: node
   linkType: hard
 
@@ -1827,7 +1881,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/schema@npm:*, @graphql-tools/schema@npm:^9.0.0, @graphql-tools/schema@npm:^9.0.18, @graphql-tools/schema@npm:^9.0.19":
+"@graphql-tools/schema@npm:*, @graphql-tools/schema@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "@graphql-tools/schema@npm:10.0.0"
+  dependencies:
+    "@graphql-tools/merge": ^9.0.0
+    "@graphql-tools/utils": ^10.0.0
+    tslib: ^2.4.0
+    value-or-promise: ^1.0.12
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+  checksum: 550e9a4528584a4d108892f1553fb5b2590e63e88b9a9d3c1ad80b01c974ca9947adb9d1448a6969230d90c15dc96e8e84d62f32ef0fde804c389b43ac5bd739
+  languageName: node
+  linkType: hard
+
+"@graphql-tools/schema@npm:^9.0.0, @graphql-tools/schema@npm:^9.0.18, @graphql-tools/schema@npm:^9.0.19":
   version: 9.0.19
   resolution: "@graphql-tools/schema@npm:9.0.19"
   dependencies:
@@ -1861,6 +1929,18 @@ __metadata:
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
   checksum: e4deccaa4b333a91022e9a19594e6c696c4463c94f091893c8d056e4090b2c8c5e5036b0e7bcce79f0c4c0ad2f0e6f3c8d170a765f0d5a2ba29965bee096f355
+  languageName: node
+  linkType: hard
+
+"@graphql-tools/utils@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "@graphql-tools/utils@npm:10.0.0"
+  dependencies:
+    "@graphql-typed-document-node/core": ^3.1.1
+    tslib: ^2.4.0
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+  checksum: 641910970627ce711b8bb709161111ee9acd3003b5e4fd388a7125f6a18a47d556c3e14f229807481af82a25ac0bb420ce540e5c185bfc6bd49ac2efad5da9d3
   languageName: node
   linkType: hard
 
@@ -2449,98 +2529,98 @@ __metadata:
   linkType: hard
 
 "@sinonjs/fake-timers@npm:^10.0.2":
-  version: 10.1.0
-  resolution: "@sinonjs/fake-timers@npm:10.1.0"
+  version: 10.2.0
+  resolution: "@sinonjs/fake-timers@npm:10.2.0"
   dependencies:
     "@sinonjs/commons": ^3.0.0
-  checksum: f8f7e23a136e32ba0128493207e4223f453e033471257a971acb43840927e738a0838004b1e4fa046279609762a2dd8d700606616e9264dc3891c4f8d45889a2
+  checksum: 586c76e1dd90d03b0c4e754f2011325b38ac6055878c81c52434c900f36d9d245438c96ef69e08e28d9fbecf2335fb347b67850962d8b6e539dd7359d8c62802
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-arm64@npm:1.3.58":
-  version: 1.3.58
-  resolution: "@swc/core-darwin-arm64@npm:1.3.58"
+"@swc/core-darwin-arm64@npm:1.3.59":
+  version: 1.3.59
+  resolution: "@swc/core-darwin-arm64@npm:1.3.59"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-x64@npm:1.3.58":
-  version: 1.3.58
-  resolution: "@swc/core-darwin-x64@npm:1.3.58"
+"@swc/core-darwin-x64@npm:1.3.59":
+  version: 1.3.59
+  resolution: "@swc/core-darwin-x64@npm:1.3.59"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm-gnueabihf@npm:1.3.58":
-  version: 1.3.58
-  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.58"
+"@swc/core-linux-arm-gnueabihf@npm:1.3.59":
+  version: 1.3.59
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.59"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-gnu@npm:1.3.58":
-  version: 1.3.58
-  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.58"
+"@swc/core-linux-arm64-gnu@npm:1.3.59":
+  version: 1.3.59
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.59"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-musl@npm:1.3.58":
-  version: 1.3.58
-  resolution: "@swc/core-linux-arm64-musl@npm:1.3.58"
+"@swc/core-linux-arm64-musl@npm:1.3.59":
+  version: 1.3.59
+  resolution: "@swc/core-linux-arm64-musl@npm:1.3.59"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-gnu@npm:1.3.58":
-  version: 1.3.58
-  resolution: "@swc/core-linux-x64-gnu@npm:1.3.58"
+"@swc/core-linux-x64-gnu@npm:1.3.59":
+  version: 1.3.59
+  resolution: "@swc/core-linux-x64-gnu@npm:1.3.59"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-musl@npm:1.3.58":
-  version: 1.3.58
-  resolution: "@swc/core-linux-x64-musl@npm:1.3.58"
+"@swc/core-linux-x64-musl@npm:1.3.59":
+  version: 1.3.59
+  resolution: "@swc/core-linux-x64-musl@npm:1.3.59"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-win32-arm64-msvc@npm:1.3.58":
-  version: 1.3.58
-  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.58"
+"@swc/core-win32-arm64-msvc@npm:1.3.59":
+  version: 1.3.59
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.59"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-win32-ia32-msvc@npm:1.3.58":
-  version: 1.3.58
-  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.58"
+"@swc/core-win32-ia32-msvc@npm:1.3.59":
+  version: 1.3.59
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.59"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/core-win32-x64-msvc@npm:1.3.58":
-  version: 1.3.58
-  resolution: "@swc/core-win32-x64-msvc@npm:1.3.58"
+"@swc/core-win32-x64-msvc@npm:1.3.59":
+  version: 1.3.59
+  resolution: "@swc/core-win32-x64-msvc@npm:1.3.59"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
 "@swc/core@npm:*":
-  version: 1.3.58
-  resolution: "@swc/core@npm:1.3.58"
+  version: 1.3.59
+  resolution: "@swc/core@npm:1.3.59"
   dependencies:
-    "@swc/core-darwin-arm64": 1.3.58
-    "@swc/core-darwin-x64": 1.3.58
-    "@swc/core-linux-arm-gnueabihf": 1.3.58
-    "@swc/core-linux-arm64-gnu": 1.3.58
-    "@swc/core-linux-arm64-musl": 1.3.58
-    "@swc/core-linux-x64-gnu": 1.3.58
-    "@swc/core-linux-x64-musl": 1.3.58
-    "@swc/core-win32-arm64-msvc": 1.3.58
-    "@swc/core-win32-ia32-msvc": 1.3.58
-    "@swc/core-win32-x64-msvc": 1.3.58
+    "@swc/core-darwin-arm64": 1.3.59
+    "@swc/core-darwin-x64": 1.3.59
+    "@swc/core-linux-arm-gnueabihf": 1.3.59
+    "@swc/core-linux-arm64-gnu": 1.3.59
+    "@swc/core-linux-arm64-musl": 1.3.59
+    "@swc/core-linux-x64-gnu": 1.3.59
+    "@swc/core-linux-x64-musl": 1.3.59
+    "@swc/core-win32-arm64-msvc": 1.3.59
+    "@swc/core-win32-ia32-msvc": 1.3.59
+    "@swc/core-win32-x64-msvc": 1.3.59
   peerDependencies:
     "@swc/helpers": ^0.5.0
   dependenciesMeta:
@@ -2567,7 +2647,7 @@ __metadata:
   peerDependenciesMeta:
     "@swc/helpers":
       optional: true
-  checksum: 34e5a1046aab51e55b35b966e54de8f1bcdef2535c297d76a9b0e38cba126599c24b5062c9c6ce9d4c6b5745c91e8a2eda596fe39ab27093459e8aa2934cf387
+  checksum: 0283f39cf49cd12a6dc7062ef9ea4fa93e1a4f622ce46903a09605219f4f47ed5ad03925c6146d09ffe6ee02a89bb14e3c82eb86b4c60ecce4985ea6e078ffcf
   languageName: node
   linkType: hard
 
@@ -2819,9 +2899,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 20.2.0
-  resolution: "@types/node@npm:20.2.0"
-  checksum: 9b937367448a07482af14e3518125ae531bff99e16d51e0945f4f93dbd7051d8a270811bdeb57f0b52c629fb0c9c401a238a7352dfbc87e26495b6f0f59cbdb6
+  version: 20.2.1
+  resolution: "@types/node@npm:20.2.1"
+  checksum: ed774afa6e9b4ad7868ed0182a8ca40ad0dd54815a70d3051b23fa850f3bca6bea4d0cb55e1fc769666786ac2cc4c1b37aeade313cb4c4634133f18ebcded496
   languageName: node
   linkType: hard
 
@@ -3124,12 +3204,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"agent-base@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "agent-base@npm:7.0.1"
+"agent-base@npm:^7.0.2":
+  version: 7.0.2
+  resolution: "agent-base@npm:7.0.2"
   dependencies:
     debug: ^4.3.4
-  checksum: 38d4eed432734b8115baa2a034ddee618f7a27f273c1d31b374f4cc431ed5c56aae4b66a3e8ffe02747e40fd6b4322daf4b44f77ba4375c543cbdfb89bddebf1
+  checksum: a8f31048f91d801943490496dccffcc17779cd99d0df2f1e4601b73cb05b43b938ede1e6584f7c44971d5b7185b7bf019f8364d2801c17600d4cdf28b490a177
   languageName: node
   linkType: hard
 
@@ -3501,8 +3581,8 @@ __metadata:
   linkType: hard
 
 "aws-sdk@npm:^2.814.0":
-  version: 2.1379.0
-  resolution: "aws-sdk@npm:2.1379.0"
+  version: 2.1380.0
+  resolution: "aws-sdk@npm:2.1380.0"
   dependencies:
     buffer: 4.9.2
     events: 1.1.1
@@ -3514,7 +3594,7 @@ __metadata:
     util: ^0.12.4
     uuid: 8.0.0
     xml2js: 0.5.0
-  checksum: 919c7aa2bc8f96e21a4e98fe1a1cbf982ecb176b375d15e00c04f42796d37d8b94bfb3c3f4c3c9f7816076e675ce58fadc4600f62a0dd99833cdd889dea8de15
+  checksum: d73cd1aeefd6940655cccfd4f76af100da4ac77e6c5520cd6e491c2f5017e808795042a143f8fc52240c971701605b8996dd98abe6a17719bfeaa1bad3bb2dc5
   languageName: node
   linkType: hard
 
@@ -4198,9 +4278,9 @@ __metadata:
   linkType: hard
 
 "constructs@npm:*":
-  version: 10.2.27
-  resolution: "constructs@npm:10.2.27"
-  checksum: 40c0509f979b26cab769a42a861836cbbb7caefe2c3861def63f6a59bb68482b1c8833990dbfae346f650bcf1b04b31396196d3ceb6965f1240181d65aab7c69
+  version: 10.2.28
+  resolution: "constructs@npm:10.2.28"
+  checksum: 04045a17752a3eb6398ec3ce3229c58dcb3beb9f9c3df0d4ea585b473737dea2b192f076399905878ff13a3fd093b8b54fc20617eb90492eee6515c056ed4575
   languageName: node
   linkType: hard
 
@@ -4530,9 +4610,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.284":
-  version: 1.4.399
-  resolution: "electron-to-chromium@npm:1.4.399"
-  checksum: 51995e6e4dd6d2f630d56b21bd0ae47d8078dc7414b9648e644ba11fad99631da742ffd7a0f8af0abcb0bdb1749a678f95c87ead9b604fbc4625395b4236c94a
+  version: 1.4.401
+  resolution: "electron-to-chromium@npm:1.4.401"
+  checksum: 1bedceac7374b128b4ce06b63fef7d1c5cf8bb0647d90d11f331066f6e7070ff2b509a46fd4ba22d0f4032e389307da1961be1a6737c8410a72ad1abfc3151a7
   languageName: node
   linkType: hard
 
@@ -5154,9 +5234,9 @@ __metadata:
   linkType: hard
 
 "fast-diff@npm:^1.1.2":
-  version: 1.2.0
-  resolution: "fast-diff@npm:1.2.0"
-  checksum: 1b5306eaa9e826564d9e5ffcd6ebd881eb5f770b3f977fcbf38f05c824e42172b53c79920e8429c54eb742ce15a0caf268b0fdd5b38f6de52234c4a8368131ae
+  version: 1.3.0
+  resolution: "fast-diff@npm:1.3.0"
+  checksum: d22d371b994fdc8cce9ff510d7b8dc4da70ac327bcba20df607dd5b9cae9f908f4d1028f5fe467650f058d1e7270235ae0b8230809a262b4df587a3b3aa216c3
   languageName: node
   linkType: hard
 
@@ -5829,12 +5909,12 @@ __metadata:
   linkType: hard
 
 "http-proxy-agent@npm:^6.0.0":
-  version: 6.0.1
-  resolution: "http-proxy-agent@npm:6.0.1"
+  version: 6.1.0
+  resolution: "http-proxy-agent@npm:6.1.0"
   dependencies:
-    agent-base: ^7.0.1
+    agent-base: ^7.0.2
     debug: ^4.3.4
-  checksum: 59f446ece640828b8265163259b2cca7bf27a141959fb863746cf83a762645983495c0755c8cdd322281c0817185c8e019be9c9a29b3d5208dbdd0e929f47f35
+  checksum: c96bc19ab9223d752b383dad91b5d2d526ed5dbc75f0a65e0eadd9b4d479cd47d23ea434044832525dd1592a7f2be7d839e330bd87b3c76c62169cb9dc5fb0f3
   languageName: node
   linkType: hard
 
@@ -5849,12 +5929,12 @@ __metadata:
   linkType: hard
 
 "https-proxy-agent@npm:^6.0.0":
-  version: 6.1.0
-  resolution: "https-proxy-agent@npm:6.1.0"
+  version: 6.2.0
+  resolution: "https-proxy-agent@npm:6.2.0"
   dependencies:
-    agent-base: ^7.0.1
+    agent-base: ^7.0.2
     debug: 4
-  checksum: ede8d54fcca7611cc1afeca8d522a43a5ce138e7d8fb393d5c6714ae824e893a35bc8fd261ce5f02ca48ab948e424f0e51be00c1beea1d52ea80cc1257d39ea6
+  checksum: 30aba162590d2324d2ff1fc7dcc26a980082f572cb51c6b99c3eeb6431c1c1e4216d97dfa6d6f81df6477aaf944914a02bf23c976c771d5eddc4b38f37d62d2d
   languageName: node
   linkType: hard
 
@@ -9139,9 +9219,9 @@ __metadata:
   linkType: hard
 
 "tslib@npm:^2.0.0, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.3.1, tslib@npm:^2.4.0, tslib@npm:^2.4.1, tslib@npm:^2.5.0, tslib@npm:~2.5.0":
-  version: 2.5.1
-  resolution: "tslib@npm:2.5.1"
-  checksum: 535e41e956b32d21aeff007a2c74989d1a6bf3fecb2b0141d80e5b9920bf90e23b4f0cd3772704bc03637c762dbdc1a314d75a407dd7189afbe3e83d80df9392
+  version: 2.5.2
+  resolution: "tslib@npm:2.5.2"
+  checksum: 4d3c1e238b94127ed0e88aa0380db3c2ddae581dc0f4bae5a982345e9f50ee5eda90835b8bfba99b02df10a5734470be197158c36f9129ac49fdc14a6a9da222
   languageName: node
   linkType: hard
 

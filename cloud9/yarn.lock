@@ -5,10 +5,10 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@aws-cdk/asset-awscli-v1@npm:^2.2.165":
-  version: 2.2.179
-  resolution: "@aws-cdk/asset-awscli-v1@npm:2.2.179"
-  checksum: f5c54d818264af6b68e6f424c5543d697d20c80364f0bc78801072d1ef1759448dbc6fbc6f118893c143cad4093f0dd61b9bc131efe8172f810e1d7b463a5ed2
+"@aws-cdk/asset-awscli-v1@npm:^2.2.177":
+  version: 2.2.182
+  resolution: "@aws-cdk/asset-awscli-v1@npm:2.2.182"
+  checksum: 228e5958b435fdf4ac573f195eeda3a924e19f030cbcf234cd635f8c4e935526ad3a3f3efbec9bafce7f68fdca625bbc26d697db80e6ed171c7c3b7adb57b8c6
   languageName: node
   linkType: hard
 
@@ -19,10 +19,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-cdk/asset-node-proxy-agent-v5@npm:^2.0.139":
-  version: 2.0.150
-  resolution: "@aws-cdk/asset-node-proxy-agent-v5@npm:2.0.150"
-  checksum: e44f8ffed4973e8b14ceddc45f2d8f29416475a6f18843697df6cbe9246acd4ebecccc70e6c3cb322685a664102fe0d730bcb47f15486643deb47f29f7bebd4b
+"@aws-cdk/asset-node-proxy-agent-v5@npm:^2.0.148":
+  version: 2.0.153
+  resolution: "@aws-cdk/asset-node-proxy-agent-v5@npm:2.0.153"
+  checksum: 8ffc624012c8efcfdb18e0d4e17460c1aead3333a26d32ed5cc806f07f14ca156c32a940300153c9059ba7c7aa529d5fe14d7cba12d4609cad471e090f8415ae
   languageName: node
   linkType: hard
 
@@ -222,10 +222,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:8.40.0":
-  version: 8.40.0
-  resolution: "@eslint/js@npm:8.40.0"
-  checksum: e84936b8ebd1c8fd90e860182e95d1404006da4cbca722b14950b298aeeca102b080aa9b62c8e69f90824ec54e19f1ba79b239046223624d1414ee82e8e628ac
+"@eslint/js@npm:8.41.0":
+  version: 8.41.0
+  resolution: "@eslint/js@npm:8.41.0"
+  checksum: af013d70fe8d0429cdf5cd8b5dcc6fc384ed026c1eccb0cfe30f5849b968ab91645111373fd1b83282b38955b1bdfbe667c1a7dbda3b06cae753521223cad775
   languageName: node
   linkType: hard
 
@@ -453,9 +453,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 20.2.1
-  resolution: "@types/node@npm:20.2.1"
-  checksum: ed774afa6e9b4ad7868ed0182a8ca40ad0dd54815a70d3051b23fa850f3bca6bea4d0cb55e1fc769666786ac2cc4c1b37aeade313cb4c4634133f18ebcded496
+  version: 20.2.3
+  resolution: "@types/node@npm:20.2.3"
+  checksum: 576065e8fc1fa45798c8f59a6bf809169582d04abc2e25fab1a048ffc734975b9992ae31be0d960cf705a21fb37112f7fcde11aa322beddf7491e73d5a5a988c
   languageName: node
   linkType: hard
 
@@ -782,12 +782,12 @@ __metadata:
   linkType: hard
 
 "aws-cdk-lib@npm:*":
-  version: 2.79.1
-  resolution: "aws-cdk-lib@npm:2.79.1"
+  version: 2.80.0
+  resolution: "aws-cdk-lib@npm:2.80.0"
   dependencies:
-    "@aws-cdk/asset-awscli-v1": ^2.2.165
+    "@aws-cdk/asset-awscli-v1": ^2.2.177
     "@aws-cdk/asset-kubectl-v20": ^2.1.1
-    "@aws-cdk/asset-node-proxy-agent-v5": ^2.0.139
+    "@aws-cdk/asset-node-proxy-agent-v5": ^2.0.148
     "@balena/dockerignore": ^1.0.2
     case: 1.6.3
     fs-extra: ^11.1.1
@@ -795,18 +795,18 @@ __metadata:
     jsonschema: ^1.4.1
     minimatch: ^3.1.2
     punycode: ^2.3.0
-    semver: ^7.5.0
+    semver: ^7.5.1
     table: ^6.8.1
     yaml: 1.10.2
   peerDependencies:
     constructs: ^10.0.0
-  checksum: 76c6fc9b95e3b460073c119d9db99dd48526333be7505b75d5b9831a44afdf2c23d2acb3d026ad3eafdd8967637f246dded305e60e4e844e1c7a63f74382a299
+  checksum: 80a0c4883ef12cf2bcb826ff2f02a0be181d0ced654ad608d9c471f982053e7350b4778a4853568a0378d7403aae7a73082b89f6dfa27bd83f9f0fa816b68d5a
   languageName: node
   linkType: hard
 
 "aws-cdk@npm:*":
-  version: 2.79.1
-  resolution: "aws-cdk@npm:2.79.1"
+  version: 2.80.0
+  resolution: "aws-cdk@npm:2.80.0"
   dependencies:
     fsevents: 2.3.2
   dependenciesMeta:
@@ -814,7 +814,7 @@ __metadata:
       optional: true
   bin:
     cdk: bin/cdk
-  checksum: d35964d5ffabd9b10fbb8cc82bbd9fc2b18dd5157a9309d4560c73f25a81db61f5f2871964d72b4e2d16ec04904f4dc426915ac3cda0131ca1516bf436d214d3
+  checksum: a057b4f6fbe788392eee6ecbfbc540854311ac8c35106cdeaecd44bb4ecbd4667405c8ed3b2cf0b35416f700a6c5706337d37fb0e0124ccc2b4c2b57a6edcc13
   languageName: node
   linkType: hard
 
@@ -1011,9 +1011,9 @@ __metadata:
   linkType: hard
 
 "constructs@npm:*":
-  version: 10.2.28
-  resolution: "constructs@npm:10.2.28"
-  checksum: 04045a17752a3eb6398ec3ce3229c58dcb3beb9f9c3df0d4ea585b473737dea2b192f076399905878ff13a3fd093b8b54fc20617eb90492eee6515c056ed4575
+  version: 10.2.31
+  resolution: "constructs@npm:10.2.31"
+  checksum: fc1457a39b05d4ace5a493684d31f77b64e9f11f723b817e99b8112fc83e10c1a0109951f298a732a2b5fa0b0b6c1b51841ab41b41b4e4cdf6689f05645fb8cc
   languageName: node
   linkType: hard
 
@@ -1434,13 +1434,13 @@ __metadata:
   linkType: hard
 
 "eslint@npm:*":
-  version: 8.40.0
-  resolution: "eslint@npm:8.40.0"
+  version: 8.41.0
+  resolution: "eslint@npm:8.41.0"
   dependencies:
     "@eslint-community/eslint-utils": ^4.2.0
     "@eslint-community/regexpp": ^4.4.0
     "@eslint/eslintrc": ^2.0.3
-    "@eslint/js": 8.40.0
+    "@eslint/js": 8.41.0
     "@humanwhocodes/config-array": ^0.11.8
     "@humanwhocodes/module-importer": ^1.0.1
     "@nodelib/fs.walk": ^1.2.8
@@ -1460,13 +1460,12 @@ __metadata:
     find-up: ^5.0.0
     glob-parent: ^6.0.2
     globals: ^13.19.0
-    grapheme-splitter: ^1.0.4
+    graphemer: ^1.4.0
     ignore: ^5.2.0
     import-fresh: ^3.0.0
     imurmurhash: ^0.1.4
     is-glob: ^4.0.0
     is-path-inside: ^3.0.3
-    js-sdsl: ^4.1.4
     js-yaml: ^4.1.0
     json-stable-stringify-without-jsonify: ^1.0.1
     levn: ^0.4.1
@@ -1479,7 +1478,7 @@ __metadata:
     text-table: ^0.2.0
   bin:
     eslint: bin/eslint.js
-  checksum: b79eba37f52f517a420eec99a80ae9f284d2cbe73afc0d4d3d4d5ed1cce0b06f21badc0374bfb7ac239efd2d49a1fd7c6111d6c3d52888521f377ba33de77e61
+  checksum: 09979a6f8451dcc508a7005b6670845c8a518376280b3fd96657a406b8b6ef29d0e480d1ba11b4eb48da93d607e0c55c9b877676fe089d09973ec152354e23b2
   languageName: node
   linkType: hard
 
@@ -1847,6 +1846,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"graphemer@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "graphemer@npm:1.4.0"
+  checksum: bab8f0be9b568857c7bec9fda95a89f87b783546d02951c40c33f84d05bb7da3fd10f863a9beb901463669b6583173a8c8cc6d6b306ea2b9b9d5d3d943c3a673
+  languageName: node
+  linkType: hard
+
 "has-bigints@npm:^1.0.1, has-bigints@npm:^1.0.2":
   version: 1.0.2
   resolution: "has-bigints@npm:1.0.2"
@@ -2206,13 +2212,6 @@ __metadata:
   version: 2.0.0
   resolution: "isexe@npm:2.0.0"
   checksum: 26bf6c5480dda5161c820c5b5c751ae1e766c587b1f951ea3fcfc973bafb7831ae5b54a31a69bd670220e42e99ec154475025a468eae58ea262f813fdc8d1c62
-  languageName: node
-  linkType: hard
-
-"js-sdsl@npm:^4.1.4":
-  version: 4.4.0
-  resolution: "js-sdsl@npm:4.4.0"
-  checksum: 7bb08a2d746ab7ff742720339aa006c631afe05e77d11eda988c1c35fae8e03e492e4e347e883e786e3ce6170685d4780c125619111f0730c11fdb41b04059c7
   languageName: node
   linkType: hard
 
@@ -2912,7 +2911,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.3.5, semver@npm:^7.3.7, semver@npm:^7.5.0":
+"semver@npm:^7.3.5, semver@npm:^7.3.7, semver@npm:^7.5.1":
   version: 7.5.1
   resolution: "semver@npm:7.5.1"
   dependencies:

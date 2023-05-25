@@ -3905,8 +3905,8 @@ __metadata:
   linkType: hard
 
 "@graphql-tools/prisma-loader@npm:^8.0.0":
-  version: 8.0.0
-  resolution: "@graphql-tools/prisma-loader@npm:8.0.0"
+  version: 8.0.1
+  resolution: "@graphql-tools/prisma-loader@npm:8.0.1"
   dependencies:
     "@graphql-tools/url-loader": ^8.0.0
     "@graphql-tools/utils": ^10.0.0
@@ -3917,8 +3917,8 @@ __metadata:
     debug: ^4.3.1
     dotenv: ^16.0.0
     graphql-request: ^6.0.0
-    http-proxy-agent: ^6.0.0
-    https-proxy-agent: ^6.0.0
+    http-proxy-agent: ^7.0.0
+    https-proxy-agent: ^7.0.0
     jose: ^4.11.4
     js-yaml: ^4.0.0
     json-stable-stringify: ^1.0.1
@@ -3928,7 +3928,7 @@ __metadata:
     yaml-ast-parser: ^0.0.43
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: 6251cc2ee97dbece8acb5da77a7a9f7984225644d53cc3024b476b0f4e655a75b56076cd3f8fdff11fe07e3ddd82a765304ab9073ad20ae15f373b563cbea9ee
+  checksum: 71f2d888c28ae7e634b3b62320853d31ea1dabb649e9478bc161d44bb177abf9919063be4348829c41f47edc8d5fce4def6e4eadd2a4c50edbb6dd7881bc4a51
   languageName: node
   linkType: hard
 
@@ -5480,9 +5480,9 @@ __metadata:
   linkType: hard
 
 "@whatwg-node/events@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "@whatwg-node/events@npm:0.1.0"
-  checksum: 374d43ee53fcb29f178e7ad5646a88eb35987bfa6a3638eac1a50bd27e3f9f64be9069cdd13254f7b4ea53370550bf91e087b467f5f0b96d65b575a34bfe48fa
+  version: 0.1.1
+  resolution: "@whatwg-node/events@npm:0.1.1"
+  checksum: 3a356ca23522190201e27446cfd7ebf1cf96815ddb9d1ba5da0a00bbe6c1d28b4094862104411101fbedd47c758b25fe3683033f6a3e80933029efd664c33567
   languageName: node
   linkType: hard
 
@@ -5651,12 +5651,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"agent-base@npm:^7.0.2":
-  version: 7.0.2
-  resolution: "agent-base@npm:7.0.2"
+"agent-base@npm:^7.0.2, agent-base@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "agent-base@npm:7.1.0"
   dependencies:
     debug: ^4.3.4
-  checksum: a8f31048f91d801943490496dccffcc17779cd99d0df2f1e4601b73cb05b43b938ede1e6584f7c44971d5b7185b7bf019f8364d2801c17600d4cdf28b490a177
+  checksum: f7828f991470a0cc22cb579c86a18cbae83d8a3cbed39992ab34fc7217c4d126017f1c74d0ab66be87f71455318a8ea3e757d6a37881b8d0f2a2c6aa55e5418f
   languageName: node
   linkType: hard
 
@@ -6799,9 +6799,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.284":
-  version: 1.4.405
-  resolution: "electron-to-chromium@npm:1.4.405"
-  checksum: d1cf421eaf63dbd5481bcc4296a94e5db5cf831bdc5cbdad283b4b0d53d8fd87254b64fa6cda88f1cb4789eab012f078c1eed4cbb01c5a34bd0ce657dcfe08c8
+  version: 1.4.407
+  resolution: "electron-to-chromium@npm:1.4.407"
+  checksum: 44619c189c082953c0d12454c38aaf9c2e0226bbe4bcc2b6aef70fb5f655fd9e4e9630e2fedb256ec972327225f610ef5ddcc299c4f7f436a45ed48d1b8367f9
   languageName: node
   linkType: hard
 
@@ -8150,13 +8150,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http-proxy-agent@npm:^6.0.0":
-  version: 6.1.0
-  resolution: "http-proxy-agent@npm:6.1.0"
+"http-proxy-agent@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "http-proxy-agent@npm:7.0.0"
   dependencies:
-    agent-base: ^7.0.2
+    agent-base: ^7.1.0
     debug: ^4.3.4
-  checksum: c96bc19ab9223d752b383dad91b5d2d526ed5dbc75f0a65e0eadd9b4d479cd47d23ea434044832525dd1592a7f2be7d839e330bd87b3c76c62169cb9dc5fb0f3
+  checksum: 48d4fac997917e15f45094852b63b62a46d0c8a4f0b9c6c23ca26d27b8df8d178bed88389e604745e748bd9a01f5023e25093722777f0593c3f052009ff438b6
   languageName: node
   linkType: hard
 
@@ -8170,13 +8170,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"https-proxy-agent@npm:^6.0.0":
-  version: 6.2.1
-  resolution: "https-proxy-agent@npm:6.2.1"
+"https-proxy-agent@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "https-proxy-agent@npm:7.0.0"
   dependencies:
     agent-base: ^7.0.2
     debug: 4
-  checksum: d0615fb6ae69241d6faaeb9fe51e071d093fba504e5111cb64ede40e8d701b3ddc762525c96f594e7df266b00dfeb3822bd8abbda33ab6f050a3f679062d74c4
+  checksum: c1365f5202b6a9c5c5fb1e6718e941254c2782bc51e8c57b1a7cacdccf1017278224434c963dfcdbdd4a3147a29c97d782316fabeef4e099968a627049de3347
   languageName: node
   linkType: hard
 

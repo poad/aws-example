@@ -101,9 +101,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-amplify/datastore@npm:4.3.0":
-  version: 4.3.0
-  resolution: "@aws-amplify/datastore@npm:4.3.0"
+"@aws-amplify/datastore@npm:4.4.0":
+  version: 4.4.0
+  resolution: "@aws-amplify/datastore@npm:4.4.0"
   dependencies:
     "@aws-amplify/api": 5.1.0
     "@aws-amplify/auth": 5.3.6
@@ -116,7 +116,7 @@ __metadata:
     uuid: 3.4.0
     zen-observable-ts: 0.8.19
     zen-push: 0.2.1
-  checksum: ad27460978e0dcb84063b2583fb635e3f68fed15a2527b15751138e342beb98fa7a30b2afa8d9ea2ae2e5be4b78867de6204335c8caa0498b2d9709c45504d17
+  checksum: d0425b45c3fd6c1f30fbb7200f8e6ed01d5b714c59f20971860be78cf2eb804eb269004c5222f73c5df59df3ce474c5a6866c31bc928408eb6f5126ae386a981
   languageName: node
   linkType: hard
 
@@ -162,12 +162,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-amplify/predictions@npm:5.1.7":
-  version: 5.1.7
-  resolution: "@aws-amplify/predictions@npm:5.1.7"
+"@aws-amplify/predictions@npm:5.2.0":
+  version: 5.2.0
+  resolution: "@aws-amplify/predictions@npm:5.2.0"
   dependencies:
     "@aws-amplify/core": 5.3.0
-    "@aws-amplify/storage": 5.2.6
+    "@aws-amplify/storage": 5.3.0
     "@aws-sdk/client-comprehend": 3.6.1
     "@aws-sdk/client-polly": 3.6.1
     "@aws-sdk/client-rekognition": 3.6.1
@@ -178,7 +178,7 @@ __metadata:
     buffer: 4.9.2
     tslib: ^1.8.0
     uuid: ^3.2.1
-  checksum: ae490d408b953b51b489850d6cb45aa381bf8c1cd6f396a81dcfa029dd2ebdc81d1ccca474149f99f888f7305e5acedf853f6e7917ff0facc6d126ea52caab76
+  checksum: df72c94347032d00513770bf4a5fa0f1b094a756b3f289ae03dcc26dd167eaaaba911adb29d8874b7cc0fb9119e3be2f524f7e1a48b9e4d025956eb778ddb9f7
   languageName: node
   linkType: hard
 
@@ -204,9 +204,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-amplify/storage@npm:5.2.6":
-  version: 5.2.6
-  resolution: "@aws-amplify/storage@npm:5.2.6"
+"@aws-amplify/storage@npm:5.3.0":
+  version: 5.3.0
+  resolution: "@aws-amplify/storage@npm:5.3.0"
   dependencies:
     "@aws-amplify/core": 5.3.0
     "@aws-sdk/client-s3": 3.6.2
@@ -216,31 +216,45 @@ __metadata:
     axios: 0.26.0
     events: ^3.1.0
     tslib: ^1.8.0
-  checksum: b28d5fc9780489161a30fbd893940ca0f120fa8b74c7ea5444394be2828c7dbff7fd72ec5384c4a05d4a2169d8fcf8d663571a9aa3ee37920ff576c1ab74a461
+  checksum: 7b1baef8851f26576c077d0d805a9a39db115cb2067775ad68aab6dca6b3d50934f14eba98cf78c7d9c1da5712697e20aa9c76352d108cef43057a7c8b243353
   languageName: node
   linkType: hard
 
-"@aws-amplify/ui-react-core@npm:2.1.22":
-  version: 2.1.22
-  resolution: "@aws-amplify/ui-react-core@npm:2.1.22"
+"@aws-amplify/ui-react-core-notifications@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@aws-amplify/ui-react-core-notifications@npm:1.0.0"
   dependencies:
-    "@aws-amplify/ui": 5.6.3
+    "@aws-amplify/ui": 5.6.4
+    "@aws-amplify/ui-react-core": 2.1.23
+  peerDependencies:
+    aws-amplify: ">= 5.0.1"
+    react: ">= 16.14.0"
+  checksum: 15427d3690f3153db089c7eabbff9c1e24459cbe1bc28827457f90869da9c266a0bddcffc5fa280f3c9bda05f487bcca2c6c562ca4ae5213e304ec186c12ae8b
+  languageName: node
+  linkType: hard
+
+"@aws-amplify/ui-react-core@npm:2.1.23":
+  version: 2.1.23
+  resolution: "@aws-amplify/ui-react-core@npm:2.1.23"
+  dependencies:
+    "@aws-amplify/ui": 5.6.4
     "@xstate/react": 3.0.1
     lodash: 4.17.21
     xstate: ^4.33.6
   peerDependencies:
     aws-amplify: ">= 5.0.1"
     react: ">= 16.14.0"
-  checksum: 05a85b24389fb88856097a72493a0e257ce4e4a2775e12846763e4de46db5e3229af300d835befea9a42a6bc4f10d6eb99e9cfd720b5271c52fd78c7dd9fc0a6
+  checksum: 6060e6210b01a7afd762e30ef88f338166248ace5d2dd32b3e5158df4623c1258f5c35f8a377322ae25275233e5ecf50763cd7b710e61e20741292098ae7b87b
   languageName: node
   linkType: hard
 
 "@aws-amplify/ui-react@npm:*":
-  version: 4.6.3
-  resolution: "@aws-amplify/ui-react@npm:4.6.3"
+  version: 4.6.4
+  resolution: "@aws-amplify/ui-react@npm:4.6.4"
   dependencies:
-    "@aws-amplify/ui": 5.6.3
-    "@aws-amplify/ui-react-core": 2.1.22
+    "@aws-amplify/ui": 5.6.4
+    "@aws-amplify/ui-react-core": 2.1.23
+    "@aws-amplify/ui-react-core-notifications": 1.0.0
     "@radix-ui/react-accordion": 1.0.0
     "@radix-ui/react-direction": 1.0.0
     "@radix-ui/react-dropdown-menu": 1.0.0
@@ -265,13 +279,13 @@ __metadata:
   peerDependenciesMeta:
     aws-amplify:
       optional: true
-  checksum: d6661cfc1600a2c3a64e5583656ef4edeef362b39a3aa86c52b7bb4bac7e111a8eaf222c30bea042f02e8aea8437c3bfe0f26083ecd91915cb56c3022fb3075a
+  checksum: 48eaef88454ea1786b79b2ff36dc5d4e74b18dab7b33b5ba70b10ddcf3f6fb4b0734db0f49a460df8d7dab4d6e2feb2389b8a2eba719fe72918429b3e2f6dee2
   languageName: node
   linkType: hard
 
-"@aws-amplify/ui@npm:5.6.3":
-  version: 5.6.3
-  resolution: "@aws-amplify/ui@npm:5.6.3"
+"@aws-amplify/ui@npm:5.6.4":
+  version: 5.6.4
+  resolution: "@aws-amplify/ui@npm:5.6.4"
   dependencies:
     csstype: ^3.1.1
     lodash: 4.17.21
@@ -283,7 +297,7 @@ __metadata:
   peerDependenciesMeta:
     xstate:
       optional: true
-  checksum: b0b16b15ae4b13562befa26743cb4084e9d688d877de13b8343223ab2db61a68e3f52e0b80221e1742c51d815b325e1e4dd3031e6861b2cd5bb44edf2e4b07f9
+  checksum: 8be4b0b07e5772916dac820e406f4433ba81a6fe967d94ade5d1bf3adf7ad0f3081bce2906cd78ce5e1a553a8d47d8332f8c651e0b384f6533d27b696d5d24f7
   languageName: node
   linkType: hard
 
@@ -3242,89 +3256,89 @@ __metadata:
   linkType: hard
 
 "@next/bundle-analyzer@npm:^13":
-  version: 13.4.3
-  resolution: "@next/bundle-analyzer@npm:13.4.3"
+  version: 13.4.4
+  resolution: "@next/bundle-analyzer@npm:13.4.4"
   dependencies:
     webpack-bundle-analyzer: 4.7.0
-  checksum: 221743db81ab67f84b240cdbb08975c70a46ac99c59bc01ad426294797c63b8c416f8013d58a5aa85a89fabb3fb3a8fb244ef9a5633181f2b127df23fa3307c3
+  checksum: a97430091106c5705efb9220250deb86d7f19f129577ca2b13379ffecbbdf2d89b107b97ba58bc9b60a4374098dc814d88e1e30fc34bcb1ec0410f8c5e4b28b5
   languageName: node
   linkType: hard
 
-"@next/env@npm:13.4.3":
-  version: 13.4.3
-  resolution: "@next/env@npm:13.4.3"
-  checksum: e45f7b7a469e59a8b9b5e8b9969643907b8f6bf54037eee42eb10cb21d6d9455d10f92721eb65cc102e281fdebcb5b93e6e534dc0bacb65b368f85e9d3de49a8
+"@next/env@npm:13.4.4":
+  version: 13.4.4
+  resolution: "@next/env@npm:13.4.4"
+  checksum: 9ab9b9ac4e5920cb9911273a776a5e2564844ac735a9c483bf584e090a7f534ce4a8fcda313132d338837e634513f680885c6b4ee811d5175db1b98b0bba4b35
   languageName: node
   linkType: hard
 
-"@next/eslint-plugin-next@npm:13.4.3":
-  version: 13.4.3
-  resolution: "@next/eslint-plugin-next@npm:13.4.3"
+"@next/eslint-plugin-next@npm:13.4.4":
+  version: 13.4.4
+  resolution: "@next/eslint-plugin-next@npm:13.4.4"
   dependencies:
     glob: 7.1.7
-  checksum: 3d49270e79ab4d3fcd67bad3b56a1810816db7dc73edc3442e2f2d5b17b05bea59308f96c442a42be2e7a98c4d29bc4707a718659ba17bb5b1aca9516513c87f
+  checksum: 0a14780aed31d5faa6fa4b0a28f1ee7852d5ed5ed2dad166f05b2ed614bd1802fa033d7b313bcfb053b523f708c379052081069802b087f8ce22c787f361621a
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-arm64@npm:13.4.3":
-  version: 13.4.3
-  resolution: "@next/swc-darwin-arm64@npm:13.4.3"
+"@next/swc-darwin-arm64@npm:13.4.4":
+  version: 13.4.4
+  resolution: "@next/swc-darwin-arm64@npm:13.4.4"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-x64@npm:13.4.3":
-  version: 13.4.3
-  resolution: "@next/swc-darwin-x64@npm:13.4.3"
+"@next/swc-darwin-x64@npm:13.4.4":
+  version: 13.4.4
+  resolution: "@next/swc-darwin-x64@npm:13.4.4"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-gnu@npm:13.4.3":
-  version: 13.4.3
-  resolution: "@next/swc-linux-arm64-gnu@npm:13.4.3"
+"@next/swc-linux-arm64-gnu@npm:13.4.4":
+  version: 13.4.4
+  resolution: "@next/swc-linux-arm64-gnu@npm:13.4.4"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-musl@npm:13.4.3":
-  version: 13.4.3
-  resolution: "@next/swc-linux-arm64-musl@npm:13.4.3"
+"@next/swc-linux-arm64-musl@npm:13.4.4":
+  version: 13.4.4
+  resolution: "@next/swc-linux-arm64-musl@npm:13.4.4"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-gnu@npm:13.4.3":
-  version: 13.4.3
-  resolution: "@next/swc-linux-x64-gnu@npm:13.4.3"
+"@next/swc-linux-x64-gnu@npm:13.4.4":
+  version: 13.4.4
+  resolution: "@next/swc-linux-x64-gnu@npm:13.4.4"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-musl@npm:13.4.3":
-  version: 13.4.3
-  resolution: "@next/swc-linux-x64-musl@npm:13.4.3"
+"@next/swc-linux-x64-musl@npm:13.4.4":
+  version: 13.4.4
+  resolution: "@next/swc-linux-x64-musl@npm:13.4.4"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@next/swc-win32-arm64-msvc@npm:13.4.3":
-  version: 13.4.3
-  resolution: "@next/swc-win32-arm64-msvc@npm:13.4.3"
+"@next/swc-win32-arm64-msvc@npm:13.4.4":
+  version: 13.4.4
+  resolution: "@next/swc-win32-arm64-msvc@npm:13.4.4"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-win32-ia32-msvc@npm:13.4.3":
-  version: 13.4.3
-  resolution: "@next/swc-win32-ia32-msvc@npm:13.4.3"
+"@next/swc-win32-ia32-msvc@npm:13.4.4":
+  version: 13.4.4
+  resolution: "@next/swc-win32-ia32-msvc@npm:13.4.4"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@next/swc-win32-x64-msvc@npm:13.4.3":
-  version: 13.4.3
-  resolution: "@next/swc-win32-x64-msvc@npm:13.4.3"
+"@next/swc-win32-x64-msvc@npm:13.4.4":
+  version: 13.4.4
+  resolution: "@next/swc-win32-x64-msvc@npm:13.4.4"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -4032,9 +4046,9 @@ __metadata:
   linkType: hard
 
 "@types/json-schema@npm:^7.0.9":
-  version: 7.0.11
-  resolution: "@types/json-schema@npm:7.0.11"
-  checksum: 527bddfe62db9012fccd7627794bd4c71beb77601861055d87e3ee464f2217c85fca7a4b56ae677478367bbd248dbde13553312b7d4dbc702a2f2bbf60c4018d
+  version: 7.0.12
+  resolution: "@types/json-schema@npm:7.0.12"
+  checksum: 00239e97234eeb5ceefb0c1875d98ade6e922bfec39dd365ec6bd360b5c2f825e612ac4f6e5f1d13601b8b30f378f15e6faa805a3a732f4a1bbe61915163d293
   languageName: node
   linkType: hard
 
@@ -4073,9 +4087,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 20.2.3
-  resolution: "@types/node@npm:20.2.3"
-  checksum: 576065e8fc1fa45798c8f59a6bf809169582d04abc2e25fab1a048ffc734975b9992ae31be0d960cf705a21fb37112f7fcde11aa322beddf7491e73d5a5a988c
+  version: 20.2.4
+  resolution: "@types/node@npm:20.2.4"
+  checksum: 6bc45fdc1c1c0c0e03ca9aded926a5ce0f5e8154ae476a996f22832c530a8c909cfa2979b0b08c506477e836910f8b888bbe6eb9ebb698c4cd6f1f602456a9d4
   languageName: node
   linkType: hard
 
@@ -4491,30 +4505,30 @@ __metadata:
   linkType: hard
 
 "aws-amplify@npm:*":
-  version: 5.2.2
-  resolution: "aws-amplify@npm:5.2.2"
+  version: 5.2.3
+  resolution: "aws-amplify@npm:5.2.3"
   dependencies:
     "@aws-amplify/analytics": 6.1.0
     "@aws-amplify/api": 5.1.0
     "@aws-amplify/auth": 5.3.6
     "@aws-amplify/cache": 5.0.32
     "@aws-amplify/core": 5.3.0
-    "@aws-amplify/datastore": 4.3.0
+    "@aws-amplify/datastore": 4.4.0
     "@aws-amplify/geo": 2.0.32
     "@aws-amplify/interactions": 5.0.32
     "@aws-amplify/notifications": 1.1.6
-    "@aws-amplify/predictions": 5.1.7
+    "@aws-amplify/predictions": 5.2.0
     "@aws-amplify/pubsub": 5.1.15
-    "@aws-amplify/storage": 5.2.6
+    "@aws-amplify/storage": 5.3.0
     tslib: ^2.0.0
-  checksum: 4a08c2531d3185ceaabbf7496be7390a1d0662f4ba389a4c99d6d7a3388e4dd28b9978a1c18e94316f630a80f156ce5e27e999bc1e158fa0263e10d582acbc07
+  checksum: 8233cca9d448af8fd3d7a912498c1c4c3ff842e5ecfe3f948f8f3a1b636ce87588beb318301e1d898c910f7627dbdf83080cdea3d4a0cca5d5658f619eab8433
   languageName: node
   linkType: hard
 
 "axe-core@npm:^4.6.2":
-  version: 4.7.1
-  resolution: "axe-core@npm:4.7.1"
-  checksum: ff6fb92d6cadb749977af72b7d28009dec2b1842d4fdc4114a295ce973a39d0ac477e541be360eb9482a8d63f55840196813d7d892c0bd8437f52d9f7349c788
+  version: 4.7.2
+  resolution: "axe-core@npm:4.7.2"
+  checksum: 5d86fa0f45213b0e54cbb5d713ce885c4a8fe3a72b92dd915a47aa396d6fd149c4a87fec53aa978511f6d941402256cfeb26f2db35129e370f25a453c688655a
   languageName: node
   linkType: hard
 
@@ -5317,10 +5331,10 @@ __metadata:
   linkType: hard
 
 "eslint-config-next@npm:^13":
-  version: 13.4.3
-  resolution: "eslint-config-next@npm:13.4.3"
+  version: 13.4.4
+  resolution: "eslint-config-next@npm:13.4.4"
   dependencies:
-    "@next/eslint-plugin-next": 13.4.3
+    "@next/eslint-plugin-next": 13.4.4
     "@rushstack/eslint-patch": ^1.1.3
     "@typescript-eslint/parser": ^5.42.0
     eslint-import-resolver-node: ^0.3.6
@@ -5335,7 +5349,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 618313f0bc23d3600734b6abbd6a8469c64084ddc365a9ba77d662f40e044d28ab3c205718028d2dc197a5771f8178be92542826e5ae20f240ac978c727f905a
+  checksum: 8f35474e3222d7c83966a716ed9bc5973643677da790596939c9c5a36216d01aae55027d0c14a6a4ba88e632f0e48129a9f05370540c6b9e07d4737a49b02d8c
   languageName: node
   linkType: hard
 
@@ -7088,19 +7102,19 @@ __metadata:
   linkType: hard
 
 "next@npm:^13":
-  version: 13.4.3
-  resolution: "next@npm:13.4.3"
+  version: 13.4.4
+  resolution: "next@npm:13.4.4"
   dependencies:
-    "@next/env": 13.4.3
-    "@next/swc-darwin-arm64": 13.4.3
-    "@next/swc-darwin-x64": 13.4.3
-    "@next/swc-linux-arm64-gnu": 13.4.3
-    "@next/swc-linux-arm64-musl": 13.4.3
-    "@next/swc-linux-x64-gnu": 13.4.3
-    "@next/swc-linux-x64-musl": 13.4.3
-    "@next/swc-win32-arm64-msvc": 13.4.3
-    "@next/swc-win32-ia32-msvc": 13.4.3
-    "@next/swc-win32-x64-msvc": 13.4.3
+    "@next/env": 13.4.4
+    "@next/swc-darwin-arm64": 13.4.4
+    "@next/swc-darwin-x64": 13.4.4
+    "@next/swc-linux-arm64-gnu": 13.4.4
+    "@next/swc-linux-arm64-musl": 13.4.4
+    "@next/swc-linux-x64-gnu": 13.4.4
+    "@next/swc-linux-x64-musl": 13.4.4
+    "@next/swc-win32-arm64-msvc": 13.4.4
+    "@next/swc-win32-ia32-msvc": 13.4.4
+    "@next/swc-win32-x64-msvc": 13.4.4
     "@swc/helpers": 0.5.1
     busboy: 1.6.0
     caniuse-lite: ^1.0.30001406
@@ -7110,7 +7124,6 @@ __metadata:
   peerDependencies:
     "@opentelemetry/api": ^1.1.0
     fibers: ">= 3.1.0"
-    node-sass: ^6.0.0 || ^7.0.0
     react: ^18.2.0
     react-dom: ^18.2.0
     sass: ^1.3.0
@@ -7138,13 +7151,11 @@ __metadata:
       optional: true
     fibers:
       optional: true
-    node-sass:
-      optional: true
     sass:
       optional: true
   bin:
     next: dist/bin/next
-  checksum: 65f13be0600b8b64de7ee51b5cf06b062f2f9f484bddf79002107750d6e92ab01542cb7de62f03a5be6eafbb060ee68fa688714ef02956c7e603e67bdd28cd84
+  checksum: d84686f3ca313c57d283872a2946a5c18ecd656c4235ad879cbaa0f2f2886c9bcff94656ff07c4998fa672f40023978235150ce760e4c5b1edab6feaa7ed9fa9
   languageName: node
   linkType: hard
 

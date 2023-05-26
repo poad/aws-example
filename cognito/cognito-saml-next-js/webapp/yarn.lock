@@ -220,27 +220,41 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-amplify/ui-react-core@npm:2.1.22":
-  version: 2.1.22
-  resolution: "@aws-amplify/ui-react-core@npm:2.1.22"
+"@aws-amplify/ui-react-core-notifications@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@aws-amplify/ui-react-core-notifications@npm:1.0.0"
   dependencies:
-    "@aws-amplify/ui": 5.6.3
+    "@aws-amplify/ui": 5.6.4
+    "@aws-amplify/ui-react-core": 2.1.23
+  peerDependencies:
+    aws-amplify: ">= 5.0.1"
+    react: ">= 16.14.0"
+  checksum: 15427d3690f3153db089c7eabbff9c1e24459cbe1bc28827457f90869da9c266a0bddcffc5fa280f3c9bda05f487bcca2c6c562ca4ae5213e304ec186c12ae8b
+  languageName: node
+  linkType: hard
+
+"@aws-amplify/ui-react-core@npm:2.1.23":
+  version: 2.1.23
+  resolution: "@aws-amplify/ui-react-core@npm:2.1.23"
+  dependencies:
+    "@aws-amplify/ui": 5.6.4
     "@xstate/react": 3.0.1
     lodash: 4.17.21
     xstate: ^4.33.6
   peerDependencies:
     aws-amplify: ">= 5.0.1"
     react: ">= 16.14.0"
-  checksum: 05a85b24389fb88856097a72493a0e257ce4e4a2775e12846763e4de46db5e3229af300d835befea9a42a6bc4f10d6eb99e9cfd720b5271c52fd78c7dd9fc0a6
+  checksum: 6060e6210b01a7afd762e30ef88f338166248ace5d2dd32b3e5158df4623c1258f5c35f8a377322ae25275233e5ecf50763cd7b710e61e20741292098ae7b87b
   languageName: node
   linkType: hard
 
 "@aws-amplify/ui-react@npm:*":
-  version: 4.6.3
-  resolution: "@aws-amplify/ui-react@npm:4.6.3"
+  version: 4.6.4
+  resolution: "@aws-amplify/ui-react@npm:4.6.4"
   dependencies:
-    "@aws-amplify/ui": 5.6.3
-    "@aws-amplify/ui-react-core": 2.1.22
+    "@aws-amplify/ui": 5.6.4
+    "@aws-amplify/ui-react-core": 2.1.23
+    "@aws-amplify/ui-react-core-notifications": 1.0.0
     "@radix-ui/react-accordion": 1.0.0
     "@radix-ui/react-direction": 1.0.0
     "@radix-ui/react-dropdown-menu": 1.0.0
@@ -265,13 +279,13 @@ __metadata:
   peerDependenciesMeta:
     aws-amplify:
       optional: true
-  checksum: d6661cfc1600a2c3a64e5583656ef4edeef362b39a3aa86c52b7bb4bac7e111a8eaf222c30bea042f02e8aea8437c3bfe0f26083ecd91915cb56c3022fb3075a
+  checksum: 48eaef88454ea1786b79b2ff36dc5d4e74b18dab7b33b5ba70b10ddcf3f6fb4b0734db0f49a460df8d7dab4d6e2feb2389b8a2eba719fe72918429b3e2f6dee2
   languageName: node
   linkType: hard
 
-"@aws-amplify/ui@npm:5.6.3":
-  version: 5.6.3
-  resolution: "@aws-amplify/ui@npm:5.6.3"
+"@aws-amplify/ui@npm:5.6.4":
+  version: 5.6.4
+  resolution: "@aws-amplify/ui@npm:5.6.4"
   dependencies:
     csstype: ^3.1.1
     lodash: 4.17.21
@@ -283,7 +297,7 @@ __metadata:
   peerDependenciesMeta:
     xstate:
       optional: true
-  checksum: b0b16b15ae4b13562befa26743cb4084e9d688d877de13b8343223ab2db61a68e3f52e0b80221e1742c51d815b325e1e4dd3031e6861b2cd5bb44edf2e4b07f9
+  checksum: 8be4b0b07e5772916dac820e406f4433ba81a6fe967d94ade5d1bf3adf7ad0f3081bce2906cd78ce5e1a553a8d47d8332f8c651e0b384f6533d27b696d5d24f7
   languageName: node
   linkType: hard
 

@@ -21,7 +21,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R && yarn build
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r && pnpm build
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -36,7 +36,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -51,7 +51,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -66,7 +66,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -81,7 +81,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -96,7 +96,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -111,7 +111,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -126,7 +126,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -141,7 +141,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -156,7 +156,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -171,7 +171,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -186,7 +186,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -201,7 +201,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -216,7 +216,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -231,7 +231,7 @@ fi
 # fi
 # echo ""
 # pwd
-# rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+# rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 # result=$?
 # if [ $result -ne 0 ]; then
 #   cd "${CUR}" || exit
@@ -246,7 +246,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -261,7 +261,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -276,7 +276,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -291,7 +291,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -306,7 +306,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -321,7 +321,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -335,7 +335,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -350,7 +350,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -365,7 +365,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -380,7 +380,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -395,7 +395,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -410,7 +410,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -425,7 +425,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -440,7 +440,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -455,7 +455,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -470,7 +470,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -485,7 +485,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -500,7 +500,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -515,7 +515,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -530,7 +530,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -545,7 +545,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -560,7 +560,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -575,7 +575,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit
@@ -590,7 +590,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-yarn set version berry && git add .yarn/releases && rm -rf node_modules yarn.lock .yarn/cache && touch yarn.lock && yarn install && yarn up -R
+rm -rf node_modules pnpm-lock.yaml && pnpm install && pnpm -r
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit

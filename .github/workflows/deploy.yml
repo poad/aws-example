@@ -39,32 +39,21 @@ jobs:
         subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
         allow-no-subscriptions: true
 
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2
+      id: pnpm-install
+      with:
+        version: 8.5.1
+        run_install: false
+  
     - name: Use Node.js 18.x
       uses: actions/setup-node@v3.6.0
       with:
         node-version: 18.x
 
-
-    - name: Setup yarn
-      run: |
-        corepack enable
-        corepack prepare yarn@stable --activate
-
-    - name: Get yarn cache directory path
-      id: yarn-cache-dir-path
-      run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
-
-    - uses: actions/cache@v3
-      id: yarn-cache
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-
-    - name: yarn install
+    - name: pnpm install
       working-directory: cognito/cognito-saml-next-js/infra/azuread
-      run: yarn install
+      run: pnpm install
 
     - name: Deploy
       uses: hashicorp/terraform-cdk-action@v0.1.17

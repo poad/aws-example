@@ -16,7 +16,7 @@ export const compileBundles = () => {
             });
           }
         });
-      ['yarn install'].forEach(((cmd) => {
+      ['pnpm install'].forEach(((cmd) => {
         childProcess.execSync(cmd, {
           cwd: `${process.cwd()}/${f}/`,
           stdio: ['ignore', 'inherit', 'inherit'],
@@ -25,7 +25,7 @@ export const compileBundles = () => {
         });
       }));
     });
-  childProcess.execSync('yarn build', {
+  childProcess.execSync('pnpm build', {
     cwd: `${process.cwd()}`,
     stdio: ['ignore', 'inherit', 'inherit'],
     env: { ...process.env },

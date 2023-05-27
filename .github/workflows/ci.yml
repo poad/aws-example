@@ -53,15 +53,23 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2
+      id: pnpm-install
+      with:
+        version: 8.5.1
+        run_install: false
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3.6.0
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm i -g yarn aws-cdk typescript
-    - run: corepack enable
-    - run: corepack prepare yarn@stable --activate
+
+    - run: pnpm i -g aws-cdk typescript
+
     - name: build
       env:
         BASE_PATH: /oauth/device/activate
       working-directory: ${{ matrix.target }}
-      run: yarn install && yarn build
+      run: pnpm install -r && pnpm build

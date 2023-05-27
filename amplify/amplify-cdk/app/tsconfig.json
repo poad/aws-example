@@ -40,7 +40,12 @@
         "../*"
       ]
     },
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "exclude": [
     "node_modules",
@@ -54,6 +59,7 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.js",
-    "src/**/*.jsx"
+    "src/**/*.jsx",
+    ".next/types/**/*.ts"
   ]
 }

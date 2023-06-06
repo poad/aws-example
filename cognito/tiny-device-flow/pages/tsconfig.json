@@ -3,7 +3,7 @@
     "target": "esnext",
     "module": "esnext",
     "jsx": "preserve",
-    "allowJs": false,
+    "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
@@ -26,10 +26,9 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "baseUrl": "src",
+    "sourceRoot": "src",
     "typeRoots": [
-      "./node_modules/@types",
-      ".next"
+      "./node_modules/@types"
     ],
     "paths": {
       "~/*": [
@@ -41,11 +40,7 @@
       "../*": [
         "../*"
       ]
-    },
-    "types": [
-      "@types/node",
-      "@types/react"
-    ]
+    }
   },
   "exclude": [
     "node_modules",

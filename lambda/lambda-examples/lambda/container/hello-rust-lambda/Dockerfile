@@ -1,4 +1,4 @@
-ARG LLVM_VERSION=14
+ARG LLVM_VERSION=16
 ARG NODE_VERSION=16
 ARG DIST=debian
 
@@ -50,8 +50,8 @@ RUN apt-get update -qq \
  && apt-get install --no-install-recommends -qqy \
     unzip \
     libcurl4-openssl-dev \
-    python3.9-minimal \
-    python3.9-dev \
+    python3.10-minimal \
+    python3.10-dev \
     lsb-release \
     curl \
     ca-certificates \

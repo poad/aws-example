@@ -30,38 +30,27 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-        target: [
-          ./amplify/amplify_nextapp,
-          ./amplify/amplify-cdk/app,
-          ./amplify/amplify-cdk/infra,
-          ./infra/s3,
-          ./cloud9,
-          ./infra/ecs,
-          ./codebuild/custom-image-test,
-          ./codebuild/codebuild-webhook-project/infra,
-          ./lambda/apollo-server-url,
-          ./lambda/apollo-server-api-gateway,
-          ./lambda/eventbridge-lambda,
-          ./lambda/lambda-examples,
-          ./codepipeline/adoptium-temurin-jib/infra,
-          ./codepipeline/codebuild-custom-image/java-adopt-base/infra,
-          ./codepipeline/codebuild-github-tag/infra,
-          ./codepipeline/docker-build/infra,
-          ./codepipeline/vulnerability-scan/infra,
-          ./node-sign-v4
-        ]
 
     steps:
     - uses: actions/checkout@v3
+
+    - uses: pnpm/action-setup@v2
+      name: Install pnpm
+      id: pnpm-install
+      with:
+        version: 8.6.1
+        run_install: |
+          - recursive: true
+            args: [--frozen-lockfile, --strict-peer-dependencies]
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3.6.0
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm i -g yarn aws-cdk typescript
-    - run: corepack enable
-    - run: corepack prepare yarn@stable --activate
+        check-latest: true
+        cache: pnpm
+
     - name: build
       env:
         BASE_PATH: /oauth/device/activate
-      working-directory: ${{ matrix.target }}
-      run: yarn install && yarn build
+      run: pnpm -r build

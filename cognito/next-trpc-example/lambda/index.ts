@@ -3,7 +3,6 @@ import { awsLambdaRequestHandler } from '@trpc/server/adapters/aws-lambda';
 import type { CreateAWSLambdaContextOptions } from '@trpc/server/adapters/aws-lambda';
 import type { APIGatewayProxyEvent } from 'aws-lambda';
 import { pokemon } from './routers';
-import { z } from 'zod';
 
 function createContext({
   event,

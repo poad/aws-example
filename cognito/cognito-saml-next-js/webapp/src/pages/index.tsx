@@ -5,8 +5,8 @@ import { Amplify } from 'aws-amplify';
 import { Authenticator, Button } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import awsconfig from '../aws-exports';
-import AuthButton from 'components/AuthButton';
-import useAuth from 'hooks/useAuth';
+import AuthButton from '../components/AuthButton';
+import useAuth from '../hooks/useAuth';
 
 Amplify.configure(awsconfig);
 

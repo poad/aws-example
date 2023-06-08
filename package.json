@@ -4,7 +4,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "yarn build:cognito/cognito-admin/infra"
+    "build": "pnpm build:cognito/cognito-admin/infra"
   },
   "workspaces": [
     "./common/cognito-singin",
@@ -14,6 +14,5 @@
     "./cognito/cognito-saml-next-js/infra/azuread",
     "./cognito/cognito-saml-next-js/webapp",
     "./lambda/deno-lambda"
-  ],
-  "packageManager": "yarn@3.6.0"
+  ]
 }

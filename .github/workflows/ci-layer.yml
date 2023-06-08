@@ -4,14 +4,14 @@
 name: Node.js CI (Lambda Layer)
 
 on:
-  push:
-    branches: [ main ]
-    paths:
-      - 'lambda/layer/**'
-  pull_request:
-    branches: [ main ]
-    paths:
-      - 'lambda/layer/**'
+  # push:
+  #   branches: [ main ]
+  #   paths:
+  #     - 'lambda/layer/**'
+  # pull_request:
+  #   branches: [ main ]
+  #   paths:
+  #     - 'lambda/layer/**'
 
   workflow_dispatch:
 
@@ -52,29 +52,34 @@ jobs:
     - name: checkout
       uses: actions/checkout@v3
 
+    - uses: pnpm/action-setup@v2
+      name: Install pnpm
+      id: pnpm-install
+      with:
+        version: 8.6.1
+        run_install: |
+          - recursive: true
+            args: [--no-frozen-lockfile, --strict-peer-dependencies]
+          - args: [--global, aws-cdk]
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3.6.0
       with:
         node-version: ${{ matrix.node-version }}
-
-    - name: Setup node modules
-      run: npm -g i npm yarn
+        check-latest: true
+        cache: pnpm
 
     - name: cdk deploy (${{ matrix.target.paths[0] }})
       env:
         TIMESTAMP: ${{ steps.gen-timestamp.outputs.timestamp }}
       working-directory: ${{ matrix.target.paths[0] }}
-      run: |
-        yarn install && \
-        yarn dlx aws-cdk deploy -c timestamp=${TIMESTAMP} --require-approval never
+      run: cdk deploy -c timestamp=${TIMESTAMP} --require-approval never
 
     - name: cdk deploy (${{ matrix.target.paths[1] }})
       env:
         TIMESTAMP: ${{ steps.gen-timestamp.outputs.timestamp }}
       working-directory: ${{ matrix.target.paths[1] }}
-      run: |
-        yarn install && \
-        yarn dlx aws-cdk deploy -c timestamp=${TIMESTAMP} --require-approval never
+      run: cdk deploy -c timestamp=${TIMESTAMP} --require-approval never
 
     - name: Awaiting completion of creation (function)
       id: create-await-fn
@@ -98,17 +103,13 @@ jobs:
       env:
         TIMESTAMP: ${{ steps.gen-timestamp.outputs.timestamp }}
       working-directory: ${{ matrix.target.paths[1] }}
-      run: |
-        yarn install && \
-        yarn dlx aws-cdk destroy -c timestamp=${TIMESTAMP} -f
+      run: cdk destroy -c timestamp=${TIMESTAMP} -f
 
     - name: destroy (${{ matrix.target.paths[0] }})
       env:
         TIMESTAMP: ${{ steps.gen-timestamp.outputs.timestamp }}
       working-directory: ${{ matrix.target.paths[0] }}
-      run: |
-        yarn install && \
-        yarn dlx aws-cdk destroy -c timestamp=${TIMESTAMP} -f
+      run: cdk destroy -c timestamp=${TIMESTAMP} -f
 
     - name: Awaiting completion of creation (function)
       id: destroy-await-fn

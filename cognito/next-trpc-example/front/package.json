@@ -11,26 +11,25 @@
     "lint-style": "rome format src",
     "lint-check-fix": "rome check --apply-suggested src",
     "lint-check": "rome check src",
-    "lint-fix": "yarn lint-check-fix && yarn lint-format",
-    "lint": "yarn lint-check && lint-style"
+    "lint-fix": "pnpm lint-check-fix && pnpm lint-format",
+    "lint": "pnpm lint-check && lint-style"
   },
   "dependencies": {
-    "@next/font": "*",
-    "@tanstack/react-query": "*",
-    "@trpc/client": "*",
-    "@trpc/next": "*",
-    "@trpc/react-query": "*",
-    "@trpc/server": "*",
-    "@types/node": "*",
-    "@types/react": "*",
-    "@types/react-dom": "*",
-    "next": "*",
-    "react": "*",
-    "react-dom": "*",
-    "react-query": "*",
-    "rome": "*",
-    "typescript": "*",
-    "zod": "*"
-  },
-  "packageManager": "yarn@3.6.0"
+    "@next/font": "^13.4.4",
+    "@tanstack/react-query": "^4.29.12",
+    "@trpc/client": "^10.29.1",
+    "@trpc/next": "^10.29.1",
+    "@trpc/react-query": "^10.29.1",
+    "@trpc/server": "^10.29.1",
+    "@types/node": "^20.2.5",
+    "@types/react": "^18.2.9",
+    "@types/react-dom": "^18.2.4",
+    "next": "^13.4.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-query": "^3.39.3",
+    "rome": "^12.1.3",
+    "typescript": "^5.1.3",
+    "zod": "^3.21.4"
+  }
 }

@@ -15,31 +15,30 @@
     "format": "rome format --write bin lib",
     "check": "rome check bin lib",
     "check-fix": "rome check --apply-suggested bin lib",
-    "lint": "yarn format-check && yarn check",
-    "lint-fix": "yarn format && yarn check-fix",
+    "lint": "pnpm format-check && pnpm check",
+    "lint-fix": "pnpm format && pnpm check-fix",
     "clean": "rimraf build",
-    "prelint": "yarn install",
-    "prebuild": "yarn install",
-    "all": "yarn lint && yarn build",
-    "upgrade": "yarn add \"cdktf@*\" \"cdktf-cli@*\"",
-    "upgrade:next": "yarn add cdktf@next cdktf-cli@next"
+    "prelint": "pnpm install",
+    "prebuild": "pnpm install",
+    "all": "pnpm lint && pnpm build",
+    "upgrade": "pnpm add \"cdktf@*\" \"cdktf-cli@*\"",
+    "upgrade:next": "pnpm add cdktf@next cdktf-cli@next"
   },
   "engines": {
     "node": ">=16.0"
   },
   "dependencies": {
-    "@cdktf/provider-azuread": "*",
-    "cdktf": "*",
-    "constructs": ">=10.0.0"
+    "@cdktf/provider-azuread": "^7.0.4",
+    "cdktf": "^0.16.3",
+    "constructs": "^10.2.46"
   },
   "devDependencies": {
-    "@swc/core": "*",
-    "@swc/helpers": "*",
-    "@types/node": "*",
-    "regenerator-runtime": "*",
-    "rome": "*",
-    "ts-node": "*",
-    "typescript": "*"
-  },
-  "packageManager": "yarn@3.6.0"
+    "@swc/core": "^1.3.62",
+    "@swc/helpers": "^0.5.1",
+    "@types/node": "^20.2.5",
+    "regenerator-runtime": "^0.13.11",
+    "rome": "^12.1.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.3"
+  }
 }

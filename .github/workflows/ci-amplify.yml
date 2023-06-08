@@ -40,29 +40,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8.6.1
+          run_install: |
+            - recursive: true
+              args: [--no-frozen-lockfile, --strict-peer-dependencies]
+            - args: [--global, aws-cdk]
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3.6.0
         with:
           node-version: ${{ matrix.node-version }}
+          check-latest: true
+          cache: pnpm
           architecture: x64
       
-      - name: Use yarn@stable
-        run: |
-          corepack enable && \
-          corepack prepare yarn@stable --activate
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v3
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
       - name: generate dummy aws-exports.js
         working-directory: amplify/amplified_todo/src
         run: |
@@ -81,10 +77,10 @@ jobs:
 
       - name: Install node modules
         working-directory: amplify/amplified_todo/
-        run: yarn install
+        run: pnpm -r install
 
       - name: Set Xcode version
-        run: sudo xcode-select -s "/Applications/Xcode_13.2.1.app"
+        run: sudo xcode-select -s "/Applications/Xcode_13.3.1.app"
 
       - name: Show Xcode version
         run: xcodebuild -version

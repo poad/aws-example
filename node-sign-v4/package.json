@@ -7,21 +7,20 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@aws-crypto/sha256-universal": "*",
-    "@aws-sdk/client-sts": "*",
-    "@aws-sdk/credential-providers": "*",
-    "@aws-sdk/node-http-handler": "*",
-    "@aws-sdk/protocol-http": "*",
-    "@aws-sdk/signature-v4": "*",
-    "cross-fetch": "*",
-    "ts-node": "*",
-    "typescript": "*"
+    "@aws-crypto/sha256-universal": "^4.0.1",
+    "@aws-sdk/client-sts": "^3.348.0",
+    "@aws-sdk/credential-providers": "^3.348.0",
+    "@aws-sdk/node-http-handler": "^3.348.0",
+    "@aws-sdk/protocol-http": "^3.347.0",
+    "@aws-sdk/signature-v4": "^3.347.0",
+    "cross-fetch": "^3.1.6",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.3"
   },
   "devDependencies": {
-    "@swc/core": "*",
-    "@swc/helpers": "*",
-    "@types/node": "^20",
-    "regenerator-runtime": "*"
-  },
-  "packageManager": "yarn@3.6.0"
+    "@swc/core": "^1.3.62",
+    "@swc/helpers": "^0.5.1",
+    "@types/node": "^20.2.5",
+    "regenerator-runtime": "^0.13.11"
+  }
 }

@@ -11,7 +11,7 @@ export const nextJsExport = () => {
     }
   });
 
-  ['yarn build', 'yarn export'].forEach(((cmd) => {
+  ['pnpm build'].forEach(((cmd) => {
     childProcess.execSync(cmd, {
       cwd: `${process.cwd()}/pages`,
       stdio: ['ignore', 'inherit', 'inherit'],

@@ -1,3 +1,4 @@
+'use client';
 import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
 import { useCallback, useEffect, useState } from 'react';
 import { PokemonJson } from '../../../batch';

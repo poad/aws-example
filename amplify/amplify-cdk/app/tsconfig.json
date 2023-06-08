@@ -25,7 +25,7 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "baseUrl": "src",
+    "sourceRoot": "src",
     "typeRoots": [
       "./node_modules/@types"
     ],
@@ -40,7 +40,12 @@
         "../*"
       ]
     },
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "exclude": [
     "node_modules",
@@ -54,6 +59,7 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.js",
-    "src/**/*.jsx"
+    "src/**/*.jsx",
+    ".next/types/**/*.ts"
   ]
 }

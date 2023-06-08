@@ -24,10 +24,9 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "baseUrl": "src",
+    "sourceRoot": "src",
     "typeRoots": [
-      "./node_modules/@types",
-      ".next"
+      "./node_modules/@types"
     ],
     "paths": {
       "~/*": [
@@ -40,10 +39,6 @@
         "../*"
       ]
     },
-    "types": [
-      "@types/node",
-      "@types/react"
-    ],
     "incremental": true
   },
   "exclude": [
@@ -56,6 +51,7 @@
   "include": [
     "next-env.d.ts",
     "src/**/*.ts",
-    "src/**/*.tsx"
-, "src/aws-exports.js"  ]
+    "src/**/*.tsx",
+    "src/aws-exports.js"
+  ]
 }

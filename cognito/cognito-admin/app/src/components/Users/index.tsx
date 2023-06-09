@@ -3,7 +3,7 @@ import {
 } from '@mui/material';
 import { Page } from '../../hooks/usePagenationTable';
 import { useUser } from '../../hooks/useUser';
-import React, { useState } from 'react';
+import { useState, Fragment } from 'react';
 import CreateUserDialog from '../CreateUserDialog';
 import UserDetail from '../UserDetail';
 import { User } from '../../interfaces';
@@ -60,7 +60,7 @@ const Users = ({ client, page: initPage }: UsersProps): JSX.Element => {
     setUsers(users?.filter((u) => u.email !== target.email));
   };
 
-  return (<React.Fragment>
+  return (<Fragment>
     <LoadingSpinner expose={!loaded && !error} />
     <ErrorDialog id="alert-dialog" open={error != undefined} message={JSON.stringify(error)} onClose={backdropClose} />
 
@@ -78,7 +78,7 @@ const Users = ({ client, page: initPage }: UsersProps): JSX.Element => {
         }
       </Container>
     </Box>
-  </React.Fragment>
+  </Fragment>
   );
 };
 

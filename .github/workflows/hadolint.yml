@@ -19,6 +19,9 @@ permissions:
   security-events: write
   statuses: write
 
+env:
+  NODE_VERSION: 18
+
 jobs:
   hadolint:
     runs-on: ubuntu-latest
@@ -43,7 +46,7 @@ jobs:
     - name: Build (debug) ${{ matrix.pattern.app }}
       run: |
         docker build --rm \
-          --build-arg NODE_VERSION=14 \
+          --build-arg NODE_VERSION=${{ env.NODE_VERSION }} \
           --build-arg DIST=debian \
           -t ${{ matrix.pattern.image }}:latest \
           ${{ matrix.pattern.app }}
@@ -51,7 +54,7 @@ jobs:
     - name: Build (release) ${{ matrix.pattern.app }}
       run: |
         docker build --rm \
-          --build-arg NODE_VERSION=14 \
+          --build-arg NODE_VERSION=${{ env.NODE_VERSION }} \
           --build-arg DIST=debian \
           --target=release \
           -t ${{ matrix.pattern.image }}:release \

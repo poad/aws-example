@@ -1,5 +1,6 @@
+'use client';
 import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import qs from 'qs';
 
 export default function Process(): JSX.Element {

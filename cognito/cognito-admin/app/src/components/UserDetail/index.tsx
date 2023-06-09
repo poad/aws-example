@@ -3,7 +3,7 @@ import {
   DialogTitle, FormControl, Input, InputLabel, List, ListItem, MenuItem, Paper, Select, Typography, useMediaQuery, useTheme,
   SelectChangeEvent,
 } from '@mui/material';
-import React, { useDeferredValue } from 'react';
+import { useDeferredValue } from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { User } from '../../interfaces';
 import UserPoolClient from '../../service/UserPoolClient';

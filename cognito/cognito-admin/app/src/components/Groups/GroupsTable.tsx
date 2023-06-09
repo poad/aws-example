@@ -3,7 +3,6 @@ import {
 } from '@mui/material';
 import StyledTableCell from '../styled/StyledTableCell';
 import StyledTableSortLabel from '../styled/StyledTableSortLabel';
-import React, {  } from 'react';
 import { Group } from '../../interfaces';
 import { Page, usePagenationTable } from '../../hooks/usePagenationTable';
 

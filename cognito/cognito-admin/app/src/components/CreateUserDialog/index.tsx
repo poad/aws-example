@@ -1,7 +1,7 @@
 import {
   Button, Container, Dialog, DialogContent, DialogContentText, DialogActions, Typography, useTheme, useMediaQuery, TextField, DialogTitle,
 } from '@mui/material';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import UserPoolClient from '../../service/UserPoolClient';
 import { User } from '../../interfaces';
@@ -18,7 +18,7 @@ interface CreateUserDialogProps {
   onError?: (error: any) => void
 }
 
-const CreateUserDialog: React.FunctionComponent<CreateUserDialogProps> = ({ client, onCreate, onError }): JSX.Element => {
+function CreateUserDialog({ client, onCreate, onError }: CreateUserDialogProps): JSX.Element {
   type Inputs = {
     username: string,
     email: string,
@@ -77,6 +77,6 @@ const CreateUserDialog: React.FunctionComponent<CreateUserDialogProps> = ({ clie
       </Dialog>
     </Container>
   );
-};
+}
 
 export default CreateUserDialog;

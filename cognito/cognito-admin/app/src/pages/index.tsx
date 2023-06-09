@@ -4,7 +4,6 @@ import { Amplify, Auth } from 'aws-amplify';
 import {
   withAuthenticator,
 } from '@aws-amplify/ui-react';
-import { ICredentials } from '@aws-amplify/core';
 import '@aws-amplify/ui-react/styles.css';
 
 import styles from '../styles/Home.module.css';
@@ -13,7 +12,7 @@ import Users from '../components/Users';
 import TabPanel from '../components/TabPanel';
 import Groups from '../components/Groups';
 import React from 'react';
-import IamClient from '../service/IamClient';
+import IamClient, { ICredentials } from '../service/IamClient';
 import UserPoolClient from '../service/UserPoolClient';
 import { useEffect } from 'react';
 import LoadingSpinner from '../components/styled/LoadingSpinner';
@@ -28,7 +27,7 @@ interface HomeProps {
   signOut: (opts?: any) => Promise<any>
 }
 
-const Home = (props?: HomeProps): JSX.Element => {
+function Home(props?: HomeProps): JSX.Element {
 
   const [state, setState] = useState<{
     data?: {
@@ -106,6 +105,6 @@ const Home = (props?: HomeProps): JSX.Element => {
       </Box>
     </React.Fragment>
   );
-};
+}
 
 export default withAuthenticator<HomeProps>(Home);

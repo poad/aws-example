@@ -2,17 +2,5 @@
   "name": "aws-examples",
   "version": "0.0.1",
   "license": "MIT",
-  "private": true,
-  "scripts": {
-    "build": "pnpm build:cognito/cognito-admin/infra"
-  },
-  "workspaces": [
-    "./common/cognito-singin",
-    "./cognito/cognito-admin/app",
-    "./cognito/cognito-admin/infra",
-    "./cognito/cognito-saml-next-js/infra/aws",
-    "./cognito/cognito-saml-next-js/infra/azuread",
-    "./cognito/cognito-saml-next-js/webapp",
-    "./lambda/deno-lambda"
-  ]
+  "private": true
 }

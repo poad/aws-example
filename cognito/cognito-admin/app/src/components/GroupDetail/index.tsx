@@ -2,7 +2,7 @@ import {
   Accordion, AccordionDetails, AccordionSummary, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText,
   DialogTitle, FormControl, InputLabel, List, ListItem, MenuItem, Paper, Select, SelectChangeEvent, Typography, useMediaQuery, useTheme,
 } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Group } from '../../interfaces';
 import UserPoolClient from '../../service/UserPoolClient';

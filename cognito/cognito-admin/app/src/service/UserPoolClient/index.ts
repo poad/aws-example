@@ -1,4 +1,3 @@
-import { ICredentials } from '@aws-amplify/core';
 import {
   AdminAddUserToGroupCommand, AdminCreateUserCommand, AdminDeleteUserCommand, AdminDisableUserCommand, AdminEnableUserCommand,
   AdminListGroupsForUserCommand, AdminRemoveUserFromGroupCommand, AdminResetUserPasswordCommand,
@@ -6,6 +5,7 @@ import {
   ListUsersInGroupCommand, UpdateGroupCommand, UserType,
 } from '@aws-sdk/client-cognito-identity-provider';
 import { User, Group } from '../../interfaces';
+import { ICredentials } from '../IamClient';
 
 interface CreateUserParam {
   username: string,

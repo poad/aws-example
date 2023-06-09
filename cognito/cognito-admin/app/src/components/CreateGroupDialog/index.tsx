@@ -2,7 +2,7 @@ import {
   Button, Container, Dialog, DialogContent, DialogContentText, DialogActions, Typography, useTheme, useMediaQuery, DialogTitle,
   Paper, MenuItem, Select, FormControl, InputLabel, SelectChangeEvent,
 } from '@mui/material';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import UserPoolClient from '../../service/UserPoolClient';
 import { Group } from '../../interfaces';

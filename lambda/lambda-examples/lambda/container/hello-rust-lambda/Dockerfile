@@ -1,7 +1,7 @@
 ARG LLVM_VERSION=16
-ARG NODE_VERSION=16
-ARG DIST=debian
-
+ARG NODE_VERSION=18
+ARG DIST=ubuntu
+ARG PYTHON_VERSION=3.11
 ARG BASE_IMAGE=ghcr.io/poad/docker-aws-lambda-container-images/${DIST}
 ARG DEBUG_IMAGE=ghcr.io/poad/docker-aws-lambda-container-images/${DIST}-debug
 
@@ -46,12 +46,13 @@ WORKDIR /var/task/
 ENV PATH ${PATH}:/root/.cargo/bin
 ARG DEBIAN_FRONTEND=noninteractive
 
+ARG PYTHON_VERSION
+
 RUN apt-get update -qq \
  && apt-get install --no-install-recommends -qqy \
     unzip \
     libcurl4-openssl-dev \
-    python3.10-minimal \
-    python3.10-dev \
+    python${PYTHON_VERSION}-dev \
     lsb-release \
     curl \
     ca-certificates \

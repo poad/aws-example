@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { Children } from 'react';
 import createEmotionServer from '@emotion/server/create-instance';
 import theme from '../styles/theme';
 import createCache from '@emotion/cache';
@@ -57,6 +57,6 @@ NextDocument.getInitialProps = async (ctx: DocumentContext) => {
 
   return {
     ...initialProps,
-    styles: [...React.Children.toArray(initialProps.styles), ...emotionStyleTags],
+    styles: [...Children.toArray(initialProps.styles), ...emotionStyleTags],
   };
 };

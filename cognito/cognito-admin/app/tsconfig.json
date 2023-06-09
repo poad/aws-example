@@ -16,17 +16,16 @@
       "dom",
       "dom.iterable",
       "esnext.asynciterable",
-      "esnext.promise",
       "esnext"
     ],
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "incremental": true,
     "noEmit": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "sourceRoot": "src",
+    "jsxImportSource": "@emotion/react",
     "typeRoots": [
       "./node_modules/@types"
     ],
@@ -40,7 +39,13 @@
       "../*": [
         "../*"
       ]
-    }
+    },
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "exclude": [
     "node_modules",
@@ -52,6 +57,8 @@
   "include": [
     "next-env.d.ts",
     "src/**/*.ts",
-    "src/**/*.tsx"
+    "src/**/*.tsx",
+    "src/aws-exports.js",
+    ".next/types/**/*.ts"
   ]
 }

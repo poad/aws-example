@@ -1,8 +1,16 @@
-import { ICredentials } from '@aws-amplify/core';
 import {
   GetRoleCommand, GetRoleResponse, IAMClient, ListRolesCommand, ListRolesResponse,
 } from '@aws-sdk/client-iam';
 import { IamRole } from '../../interfaces';
+
+export interface ICredentials {
+  accessKeyId: string;
+  sessionToken: string;
+  secretAccessKey: string;
+  identityId: string;
+  authenticated: boolean;
+  expiration?: Date;
+}
 
 class IamClient {
   private client: IAMClient;

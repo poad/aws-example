@@ -21,7 +21,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-pnpm -r install && pnpm up -r && pnpm -r build
+pnpm install -r && pnpm up -r && pnpm -r build
 result=$?
 if [ $result -ne 0 ]; then
   cd "${CUR}" || exit

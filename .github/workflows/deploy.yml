@@ -60,7 +60,7 @@ jobs:
       run: pnpm -r install
 
     - name: Deploy
-      uses: hashicorp/terraform-cdk-action@v0.1.26
+      uses: hashicorp/terraform-cdk-action@v0.1.27
       env:
         CI: true
         ARM_USE_OIDC: true

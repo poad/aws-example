@@ -56,10 +56,10 @@ jobs:
       name: Install pnpm
       id: pnpm-install
       with:
-        version: 8.6.1
+        version: 8.6.5
         run_install: |
           - recursive: true
-            args: [--no-frozen-lockfile, --strict-peer-dependencies]
+            args: [--no-frozen-lockfile]
           - args: [--global, aws-cdk]
 
     - name: Use Node.js ${{ matrix.node-version }}

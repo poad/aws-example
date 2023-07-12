@@ -3,8 +3,8 @@ import { defaultProvider } from '@aws-sdk/credential-provider-node';
 import { Sha256 } from '@aws-crypto/sha256-universal';
 import { HttpRequest } from '@aws-sdk/protocol-http';
 import { STSClient } from '@aws-sdk/client-sts';
-import { Credentials, Provider, QueryParameterBag, HeaderBag } from '@aws-sdk/types';
-import fetch from 'cross-fetch';
+import { AwsCredentialIdentity, Provider, QueryParameterBag, HeaderBag } from '@aws-sdk/types';
+import fetch from 'node-fetch';
 
 
 interface EndpointParam {
@@ -25,7 +25,7 @@ interface SignParams {
   body?: BodyInit | null | undefined,
   region: string | Provider<string>,
   service: string,
-  credentials: Credentials | Provider<Credentials>,
+  credentials: AwsCredentialIdentity | Provider<AwsCredentialIdentity>,
 }
 
 interface SignV4RequestParams {
@@ -36,7 +36,7 @@ interface SignV4RequestParams {
   body?: BodyInit | null | undefined,
   region?: string,
   service: string,
-  credentials?: Credentials | Provider<Credentials>,
+  credentials?: AwsCredentialIdentity | Provider<AwsCredentialIdentity>,
   fetchOption?: any
 };
 

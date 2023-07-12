@@ -1,5 +1,5 @@
 import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
-import fetch from 'cross-fetch';
+import fetch from 'node-fetch';
 import { cognitoSignInClient } from '@aws-example-common/cognito-singin';
 
 interface EnvironmentVariables {
@@ -103,7 +103,7 @@ export const handler = async (
         };
       }
 
-      const { SigninToken } = await getSignInToken({ accessKeyId, secretKey, sessionToken });
+      const { SigninToken } = await getSignInToken({ accessKeyId, secretKey, sessionToken }) as { SigninToken: string };
 
       const issuer = environments.apiUrl;
       return {

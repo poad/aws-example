@@ -4,7 +4,7 @@ import { marshall } from '@aws-sdk/util-dynamodb';
 import { URLSearchParams } from 'url';
 import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { Stream } from 'stream';
-import fetch from 'cross-fetch';
+import fetch from 'node-fetch';
 import { DeviceCodeTable, ErrorResponse } from '../types';
 
 interface Environments {

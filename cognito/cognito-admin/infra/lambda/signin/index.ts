@@ -1,5 +1,5 @@
 import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
-import fetch from 'cross-fetch';
+import fetch from 'node-fetch';
 import { Logger } from '@aws-lambda-powertools/logger';
 import { cognitoSignInClient } from '@aws-example-common/cognito-singin';
 

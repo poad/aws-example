@@ -10,6 +10,7 @@ import {
 } from '@mui/material/styles';
 import theme from './theme';
 import './globals.css';
+import StyledJsxRegistry from './registry';
 
 const drawerWidth = 240;
 
@@ -94,14 +95,16 @@ export default function Layout({ children }: { children: ReactNode }) {
         />
       </head>
       <body>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Box sx={{ color: theme.palette.primary.contrastText, display: 'flex', maxHeight: '100vh' }}>
-            {appBar}
-            {drawerBox}
-            {children}
-          </Box>
-        </ThemeProvider>
+        <StyledJsxRegistry>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Box sx={{ color: theme.palette.primary.contrastText, display: 'flex', maxHeight: '100vh' }}>
+              {appBar}
+              {drawerBox}
+              {children}
+            </Box>
+          </ThemeProvider>
+        </StyledJsxRegistry>
       </body>
     </html>
   );

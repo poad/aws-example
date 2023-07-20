@@ -192,7 +192,7 @@ importers:
         version: 3.373.0
       '@trpc/react':
         specifier: ^9.27.4
-        version: 9.27.4(@trpc/client@9.27.4)(@trpc/server@10.34.0)(react-dom@18.2.0)(react-query@3.39.3)(react@18.2.0)
+        version: 9.27.4(@trpc/client@9.27.4)(@trpc/server@10.35.0)(react-dom@18.2.0)(react-query@3.39.3)(react@18.2.0)
       aws-cdk-lib:
         specifier: ^2.87.0
         version: 2.87.0(constructs@10.2.69)
@@ -225,8 +225,8 @@ importers:
         specifier: ^0.5.1
         version: 0.5.1
       '@trpc/server':
-        specifier: ^10.34.0
-        version: 10.34.0
+        specifier: ^10.35.0
+        version: 10.35.0
       '@types/aws-lambda':
         specifier: ^8.10.119
         version: 8.10.119
@@ -1461,8 +1461,8 @@ packages:
     resolution: {integrity: sha512-3M2tELJOxQv0apCIiuKQ4pAbncz9GuLwnKFqxifWfe77wuMxyTRPmxssYHs42ePqzap1LT6GDcPygGs+hHstLg==}
     dev: false
 
-  /@aws-cdk/asset-node-proxy-agent-v5@2.0.165:
-    resolution: {integrity: sha512-bsyLQD/vqXQcc9RDmlM1XqiFNO/yewgVFXmkMcQkndJbmE/jgYkzewwYGrBlfL725hGLQipXq19+jwWwdsXQqg==}
+  /@aws-cdk/asset-node-proxy-agent-v5@2.0.166:
+    resolution: {integrity: sha512-j0xnccpUQHXJKPgCwQcGGNu4lRiC1PptYfdxBIH1L4dRK91iBxtSQHESRQX+yB47oGLaF/WfNN/aF3WXwlhikg==}
     dev: false
 
   /@aws-cdk/aws-apigatewayv2-alpha@2.82.0-alpha.0(aws-cdk-lib@2.87.0)(constructs@10.2.69):
@@ -8044,17 +8044,17 @@ packages:
       defer-to-connect: 2.0.1
     dev: false
 
-  /@trpc/client@9.27.4(@trpc/server@10.34.0):
+  /@trpc/client@9.27.4(@trpc/server@10.35.0):
     resolution: {integrity: sha512-NyS3J333xy8PJWGTSKO0egvj3x/s4SaSPx7XDWHf/i51W/i5Fla+sNxYpv+4z+SwE2xyJKszN2EZbvKIW2X/wA==}
     deprecated: 'Migrate to v10: https://trpc.io/docs/migrate-from-v9-to-v10'
     peerDependencies:
       '@trpc/server': 9.27.4
     dependencies:
       '@babel/runtime': 7.22.6
-      '@trpc/server': 10.34.0
+      '@trpc/server': 10.35.0
     dev: false
 
-  /@trpc/react@9.27.4(@trpc/client@9.27.4)(@trpc/server@10.34.0)(react-dom@18.2.0)(react-query@3.39.3)(react@18.2.0):
+  /@trpc/react@9.27.4(@trpc/client@9.27.4)(@trpc/server@10.35.0)(react-dom@18.2.0)(react-query@3.39.3)(react@18.2.0):
     resolution: {integrity: sha512-bP74Tf6vWcMoWYiTAvbWrieV9cFQiKUDKRoRj0+VeGJbxdbhdJyUzv4zos0T4SiSKuhgoEm9bP4jWU2NhNhpIA==}
     deprecated: 'Migrate to v10: https://trpc.io/docs/migrate-from-v9-to-v10. Also, this package has changed name to `@trpc/react-query`.'
     peerDependencies:
@@ -8065,15 +8065,15 @@ packages:
       react-query: ^3.37.0
     dependencies:
       '@babel/runtime': 7.22.6
-      '@trpc/client': 9.27.4(@trpc/server@10.34.0)
-      '@trpc/server': 10.34.0
+      '@trpc/client': 9.27.4(@trpc/server@10.35.0)
+      '@trpc/server': 10.35.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-query: 3.39.3(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
-  /@trpc/server@10.34.0:
-    resolution: {integrity: sha512-2VMW44Fpaoyqb50dBtzdSWMhqt8lmoJiocEyBBeDb03R0W+XrzbVD5kU/wqKPlcp1DWeNCkOEIMtetMZCfo1hA==}
+  /@trpc/server@10.35.0:
+    resolution: {integrity: sha512-UntbE9gG+kB2nEwuJ0hw7AmQuRWw67voKaVBPBA7Ow6+aGZc00gva7015Ey5BT7Qf1wq7xJMLUdgw4QiVU+VpQ==}
 
   /@tsconfig/node10@1.0.9:
     resolution: {integrity: sha512-jNsYVVxU8v5g43Erja32laIDHXeoNvFEpX33OK4d6hljo3jDhCBDhx5dhCCTMWUojscpAagGiRkBKxpdl9fxqA==}
@@ -9193,7 +9193,7 @@ packages:
     dependencies:
       '@aws-cdk/asset-awscli-v1': 2.2.200
       '@aws-cdk/asset-kubectl-v20': 2.1.2
-      '@aws-cdk/asset-node-proxy-agent-v5': 2.0.165
+      '@aws-cdk/asset-node-proxy-agent-v5': 2.0.166
       '@balena/dockerignore': 1.0.2
       case: 1.6.3
       constructs: 10.2.69
@@ -9558,7 +9558,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001517
-      electron-to-chromium: 1.4.465
+      electron-to-chromium: 1.4.466
       node-releases: 2.0.13
       update-browserslist-db: 1.0.11(browserslist@4.21.9)
 
@@ -10398,8 +10398,8 @@ packages:
   /ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  /electron-to-chromium@1.4.465:
-    resolution: {integrity: sha512-XQcuHvEJRMU97UJ75e170mgcITZoz0lIyiaVjk6R+NMTJ8KBIvUHYd1779swgOppUlzxR+JsLpq59PumaXS1jQ==}
+  /electron-to-chromium@1.4.466:
+    resolution: {integrity: sha512-TSkRvbXRXD8BwhcGlZXDsbI2lRoP8dvqR7LQnqQNk9KxXBc4tG8O+rTuXgTyIpEdiqSGKEBSqrxdqEntnjNncA==}
 
   /emittery@0.13.1:
     resolution: {integrity: sha512-DeWwawk6r5yR9jFgnDKYt4sLS0LmHJJi3ZOnb5/JdbYwj3nW+FxQnHIjhBKz8YLC7oRNPVM9NQ47I3CVx34eqQ==}

@@ -1,9 +1,9 @@
-override: true
+overwrite: true
 schema: "../schema.gql"
 documents: null
 generates:
   lambda/graphql/types/generated/graphql.ts:
-    congig:
+    config:
       useIndexSignature: true
       strictScalars: true
     plugins:

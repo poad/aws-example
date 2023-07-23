@@ -40,7 +40,7 @@ cdk deploy -c env=dev
 
 | クレーム名 | 値 |
 |:---|:---|
-| `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress` | user.email |
+| `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress` | user.mail |
 | `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname` | user.givenname |
 | `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name` | Join (user.surname, " ", user.givenname) |
 | `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname` | user.surname |

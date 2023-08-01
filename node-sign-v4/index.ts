@@ -1,7 +1,7 @@
-import { SignatureV4 } from '@aws-sdk/signature-v4';
+import { SignatureV4 } from '@smithy/signature-v4';
 import { defaultProvider } from '@aws-sdk/credential-provider-node';
 import { Sha256 } from '@aws-crypto/sha256-universal';
-import { HttpRequest } from '@aws-sdk/protocol-http';
+import { HttpRequest } from '@smithy/protocol-http';
 import { STSClient } from '@aws-sdk/client-sts';
 import { AwsCredentialIdentity, Provider, QueryParameterBag, HeaderBag } from '@aws-sdk/types';
 import fetch from 'node-fetch';

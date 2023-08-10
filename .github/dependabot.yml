@@ -23,6 +23,10 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      cognito-singin:
+        - "*"
+
 
   - package-ecosystem: npm
     directory: '/infra/s3/'
@@ -35,6 +39,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      s3:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/infra/ecs/'
@@ -47,6 +54,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      ecs:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/cloud9/'
@@ -59,6 +69,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      c9:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/codebuild/custom-image-test/'
@@ -71,6 +84,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      codebuild-custom-image-test:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/codebuild/codebuild-webhook-project/infra/'
@@ -83,6 +99,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      codebuild-webhook-project:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/codepipeline/adoptium-temurin-jib/infra/'
@@ -95,6 +114,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      codepipeline-adoptium-temurin-jib:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/codepipeline/codebuild-custom-image/java-adopt-base/infra/'
@@ -107,6 +129,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      codepipeline-codebuild-custom-image:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/codepipeline/codebuild-github-tag/infra/'
@@ -119,6 +144,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      codepipeline-codebuild-github-tag:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/codepipeline/docker-build/infra/'
@@ -131,6 +159,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      codepipeline-docker-build:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/codepipeline/vulnerability-scan/infra/'
@@ -143,6 +174,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      codepipeline-vulnerability-scan:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/cognito/authorizer-example/api/'
@@ -155,6 +189,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      authorizer-example-api:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/cognito/authorizer-example/front/'
@@ -167,6 +204,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      authorizer-example-front:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/cognito/cognito-admin/app/'
@@ -179,6 +219,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      cognito-admin-app:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/cognito/cognito-admin/infra/'
@@ -191,6 +234,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      cognito-admin-infra:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/cognito/cognito-s3-example/infra/'
@@ -203,6 +249,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      cognito-s3-example-infra:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/cognito/cognito-saml-next-js/webapp/'
@@ -215,6 +264,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      cognito-saml-next-js-webapp:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/cognito/cognito-saml-next-js/infra/aws/'
@@ -227,6 +279,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      cognito-saml-next-js-infra-aws:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/cognito/cognito-saml-next-js/infra/azuread/'
@@ -239,6 +294,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      cognito-saml-next-js-infra-azuread:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/cognito/tiny-device-flow/'
@@ -251,6 +309,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      tiny-device-flow:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/cognito/tiny-device-flow/pages/'
@@ -263,6 +324,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      tiny-device-flow-pages:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/lambda/apollo-server-url/'
@@ -275,6 +339,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      lambda-apollo-server-url:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/lambda/apollo-server-api-gateway/'
@@ -287,6 +354,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      lambda-apollo-server-api-gateway:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/lambda/lambda-examples/'
@@ -299,6 +369,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      lambda-examples:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/lambda/lambda-examples/lambda/container/simple'
@@ -311,6 +384,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      lambda-examples-lambda-container-nodejs:
+        - "*"
 
   - package-ecosystem: pip
     directory: '/lambda/lambda-examples/lambda/python'
@@ -323,7 +399,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
-
+    groups:
+      boto:
+        - "boto"
 
   - package-ecosystem: npm
     directory: '/lambda/layer/functions/function/handler/'
@@ -336,6 +414,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      lambda-layer-handler:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/lambda/layer/layer/'
@@ -348,6 +429,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      lambda-layer-layer:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/lambda/layer/layer/src/nodejs/'
@@ -360,6 +444,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      lambda-layer-layer-src:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/lambda/deno-lambda/'
@@ -372,6 +459,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      lambda-deno:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/amplify/amplify_nextapp/'
@@ -384,6 +474,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      amplify-nextappr:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/amplify/amplify-cdk/app/'
@@ -396,6 +489,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      amplify-cdk-app:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/amplify/amplify-cdk/infra/'
@@ -408,6 +504,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      amplify-cdk-infraq:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/amplify/amplified_todo/'
@@ -420,6 +519,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      amplify-amplified-todo:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/node-sign-v4/'
@@ -432,6 +534,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      node-sign-v4:
+        - "*"
 
   - package-ecosystem: npm
     directory: '/lambda/eventbridge-lambda/'
@@ -444,6 +549,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      eventbridge-lambda:
+        - "*"
 
   - package-ecosystem: cargo
     directory: '/lambda/lambda-examples/lambda/container/hello-rust-lambda/'
@@ -456,6 +564,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      hello-rust-lambda-cargo:
+        - "*"
 
   - package-ecosystem: docker
     directory: '/lambda/lambda-examples/lambda/container/hello-rust-lambda/'
@@ -468,6 +579,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      hello-rust-lambda-oci:
+        - "*"
 
   - package-ecosystem: docker
     directory: '/lambda/lambda-examples/lambda/container/simple/'
@@ -480,6 +594,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      ambda-examples-nodejs-oci:
+        - "*"
 
   - package-ecosystem: gradle
     directory: '/codebuild/codebuild-webhook-project/app/'
@@ -492,6 +609,9 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      codebuild-webhook-project:
+        - "*"
 
   - package-ecosystem: gradle
     directory: '/amplify/amplified_todo/android/'
@@ -504,3 +624,6 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
+    groups:
+      amplified-todo-android:
+        - "*"

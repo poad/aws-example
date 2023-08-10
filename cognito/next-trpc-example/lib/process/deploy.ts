@@ -5,7 +5,7 @@ export const nextJsExport = (apiUrl: string) => {
   [`${process.cwd()}/front/.next`, `${process.cwd()}/front/out`].forEach(
     (dir) => {
       if (fs.existsSync(dir)) {
-        fs.rmdirSync(dir, {
+        fs.rmSync(dir, {
           recursive: true,
         });
       }

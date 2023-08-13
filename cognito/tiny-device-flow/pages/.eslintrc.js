@@ -44,5 +44,6 @@ module.exports = {
     '@next/next/no-img-element': ['off'],
     'react/display-name': ['off'],
     'react-hooks/exhaustive-deps': ['off'],
+    'import/no-extraneous-dependencies': ['off'],
   }
 }

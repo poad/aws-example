@@ -18,9 +18,9 @@ export const usePokemon = () => {
     try {
       const q = await client.pokemon.query();
       setPokemon(q);
-    } catch (error) {
-      console.log('error', error);
-      setError(error);
+    } catch (e) {
+      console.log('error', e);
+      setError(e);
     }
   }, []);
 

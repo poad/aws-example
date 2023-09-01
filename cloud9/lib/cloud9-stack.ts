@@ -6,7 +6,6 @@ import {
 import { ManagedPolicy } from 'aws-cdk-lib/aws-iam';
 import { StringParameter } from 'aws-cdk-lib/aws-ssm';
 import { Construct } from 'constructs';
-import fetch from 'node-fetch';
 
 interface Cloud9StackProps extends cdk.StackProps {
   name: string,

@@ -38,9 +38,9 @@ jobs:
       name: Install pnpm
       id: pnpm-install
       with:
-        version: 8.6.10
         run_install: |
           - recursive: true
+            cwd: .
             args: [--no-frozen-lockfile]
 
     - name: Use Node.js ${{ matrix.node-version }}

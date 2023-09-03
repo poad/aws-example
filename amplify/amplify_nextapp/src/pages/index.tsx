@@ -13,14 +13,11 @@ const Home: NextPage = () => (
 
     <main className={styles.main}>
       <h1 className={styles.title}>
-        Welcome to
-        {' '}
-        <a href="https://nextjs.org">Next.js!</a>
+        Welcome to <a href="https://nextjs.org">Next.js!</a>
       </h1>
 
       <p className={styles.description}>
-        Get started by editing
-        {' '}
+        Get started by editing{' '}
         <code className={styles.code}>pages/index.tsx</code>
       </p>
 
@@ -48,9 +45,7 @@ const Home: NextPage = () => (
           className={styles.card}
         >
           <h2>Deploy &rarr;</h2>
-          <p>
-            Instantly deploy your Next.js site to a public URL with Vercel.
-          </p>
+          <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
         </a>
       </div>
     </main>

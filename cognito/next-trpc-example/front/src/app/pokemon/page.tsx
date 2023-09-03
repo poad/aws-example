@@ -20,10 +20,10 @@ const Pokemon = (): JSX.Element => {
       </tr>
       {pokemon
         ? pokemon.map((item) => (
-            <tr>
-              <td>{item.id}</td>
-              <td>{item.name}</td>
-              <td>
+            <tr key={`row-${item.id}`}>
+              <td key={`${item.id}-id`}>{item.id}</td>
+              <td key={`${item.id}-name`}>{item.name}</td>
+              <td key={`${item.id}-value`}>
                 {item.visual ? (
                   <Image src={item.visual} alt={item.name} />
                 ) : undefined}

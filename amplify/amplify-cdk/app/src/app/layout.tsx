@@ -1,13 +1,22 @@
 'use client';
 import React, { ReactNode } from 'react';
 import {
-  AppBar, Box, CssBaseline, Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography,
+  AppBar,
+  Box,
+  CssBaseline,
+  Divider,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Toolbar,
+  Typography,
 } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import MenuIcon from '@mui/icons-material/Menu';
-import {
-  ThemeProvider,
-} from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme';
 import './globals.css';
 import StyledJsxRegistry from './registry';
@@ -22,20 +31,32 @@ export default function Layout({ children }: { children: ReactNode }) {
   }
 
   const drawer = (
-    <Box sx={{ width: drawerWidth, backgroundColor: theme.palette.primary.main, color: theme.palette.primary.contrastText }}>
+    <Box
+      sx={{
+        width: drawerWidth,
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.primary.contrastText,
+      }}
+    >
       <Box sx={theme.mixins.toolbar} />
       <Divider />
       <List>
         {['Info'].map((text) => (
-          <ListItem button key={text} sx={{
-            width: drawerWidth,
-            backgroundColor: theme.palette.primary.main,
-            '&:hover': {
-              backgroundColor: theme.palette.primary.light,
-            },
-          }}>
+          <ListItem
+            button
+            key={text}
+            sx={{
+              width: drawerWidth,
+              backgroundColor: theme.palette.primary.main,
+              '&:hover': {
+                backgroundColor: theme.palette.primary.light,
+              },
+            }}
+          >
             <ListItemIcon>
-              <DashboardIcon sx={{ color: theme.palette.primary.contrastText }} />
+              <DashboardIcon
+                sx={{ color: theme.palette.primary.contrastText }}
+              />
             </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
@@ -62,19 +83,23 @@ export default function Layout({ children }: { children: ReactNode }) {
 
   const drawerBox = (
     <Box
-      component='nav'
-      textAlign='center'
+      component="nav"
+      textAlign="center"
       sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
       aria-label="folders"
-      display='contents'
+      display="contents"
     >
       <Drawer
         variant="temporary"
-        anchor='left'
+        anchor="left"
         open={mobileOpen}
         onClose={handleDrawerToggle}
         sx={{
-          '& .MuiDrawer-paper': { backgroundColor: theme.palette.primary.main, boxSizing: 'border-box', width: drawerWidth },
+          '& .MuiDrawer-paper': {
+            backgroundColor: theme.palette.primary.main,
+            boxSizing: 'border-box',
+            width: drawerWidth,
+          },
         }}
         ModalProps={{ keepMounted: true }}
       >
@@ -98,7 +123,13 @@ export default function Layout({ children }: { children: ReactNode }) {
         <StyledJsxRegistry>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Box sx={{ color: theme.palette.primary.contrastText, display: 'flex', maxHeight: '100vh' }}>
+            <Box
+              sx={{
+                color: theme.palette.primary.contrastText,
+                display: 'flex',
+                maxHeight: '100vh',
+              }}
+            >
               {appBar}
               {drawerBox}
               {children}

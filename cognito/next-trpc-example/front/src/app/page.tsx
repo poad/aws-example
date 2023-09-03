@@ -120,7 +120,7 @@ export default function Home() {
           </a>
         </div>
         <div>
-          <Link href='/pokemon'>pokemon</Link>
+          <Link href="/pokemon">pokemon</Link>
         </div>
       </main>
     </>

@@ -1,5 +1,5 @@
 ARG LLVM_VERSION=16
-ARG NODE_VERSION=18
+ARG NODE_VERSION=20
 ARG DIST=debian
 
 ARG BASE_IMAGE=ghcr.io/poad/docker-aws-lambda-container-images/${DIST}

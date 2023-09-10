@@ -3,7 +3,7 @@ import { Peer, Port, SecurityGroup, Subnet, Vpc } from 'aws-cdk-lib/aws-ec2';
 import { Cluster, CpuArchitecture, FargateTaskDefinition, LogDriver, OperatingSystemFamily, Protocol, RepositoryImage } from 'aws-cdk-lib/aws-ecs';
 import { ApplicationLoadBalancedFargateService } from 'aws-cdk-lib/aws-ecs-patterns';
 import { AlbScheme } from 'aws-cdk-lib/aws-eks';
-import { ApplicationListener, ApplicationLoadBalancer, ApplicationProtocol, ApplicationTargetGroup, ListenerAction, TargetType } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+import { ApplicationLoadBalancer, ApplicationProtocol, ApplicationTargetGroup, ListenerAction, TargetType } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import { Effect, PolicyDocument, PolicyStatement, Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { LogGroup, RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
@@ -72,14 +72,6 @@ export class EcsStack extends Stack {
       vpc
     });
     targetGroup.node.addDependency(alb);
-
-    // const listener = new ApplicationListener(this, 'AlbListener', {
-    //   loadBalancer: alb,
-    //   port,
-    //   protocol,
-    //   defaultAction: ListenerAction.forward([targetGroup])
-    // });
-    // listener.node.addDependency(alb, targetGroup);
 
     const ecsLogs = new LogGroup(this, 'ECSLogGroup', {
       logGroupName: `/ecs/logs/${ecsLogGroupName}`,

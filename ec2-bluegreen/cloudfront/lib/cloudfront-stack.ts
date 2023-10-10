@@ -2,7 +2,6 @@ import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 import * as ssm from "aws-cdk-lib/aws-ssm";
 import * as acm from "aws-cdk-lib/aws-certificatemanager";
-import * as route53 from "aws-cdk-lib/aws-route53";
 import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
 import * as elbv2 from "aws-cdk-lib/aws-elasticloadbalancingv2";

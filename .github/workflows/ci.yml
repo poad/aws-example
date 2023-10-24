@@ -44,7 +44,7 @@ jobs:
             args: [--no-frozen-lockfile]
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3.8.1
+      uses: actions/setup-node@v4.0.0
       with:
         node-version: ${{ matrix.node-version }}
         check-latest: true

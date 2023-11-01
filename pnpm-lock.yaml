@@ -530,8 +530,8 @@ importers:
   cognito/next-trpc-example:
     dependencies:
       '@aws-sdk/client-s3':
-        specifier: ^3.438.0
-        version: 3.438.0
+        specifier: ^3.440.0
+        version: 3.440.0
       aws-cdk-lib:
         specifier: ^2.103.1
         version: 2.103.1(constructs@10.3.0)
@@ -1260,8 +1260,8 @@ importers:
         specifier: ^3.438.0
         version: 3.438.0
       '@aws-sdk/client-s3':
-        specifier: ^3.438.0
-        version: 3.438.0
+        specifier: ^3.440.0
+        version: 3.440.0
       '@types/node':
         specifier: ^20.8.10
         version: 20.8.10
@@ -2790,8 +2790,8 @@ packages:
       - react-native
     dev: false
 
-  /@aws-sdk/client-s3@3.438.0:
-    resolution: {integrity: sha512-5VxdfyZ9oovbK5qzIYW4ZeJ1waD6VqfclSDQLHmgulekM2JYo/goEQJSjWnI4VMWuMsopzvqyeA+L9xq9uXLBQ==}
+  /@aws-sdk/client-s3@3.440.0:
+    resolution: {integrity: sha512-BIALZvf7BNfiY68YwNhQv2OPHER6q+AMTXrpKNXUAL5xJid86FqXiLDB0JmJXjZM4DOf+QUYuT6Ee60LVQgmaQ==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@aws-crypto/sha1-browser': 3.0.0
@@ -2807,7 +2807,7 @@ packages:
       '@aws-sdk/middleware-location-constraint': 3.433.0
       '@aws-sdk/middleware-logger': 3.433.0
       '@aws-sdk/middleware-recursion-detection': 3.433.0
-      '@aws-sdk/middleware-sdk-s3': 3.433.0
+      '@aws-sdk/middleware-sdk-s3': 3.440.0
       '@aws-sdk/middleware-signing': 3.433.0
       '@aws-sdk/middleware-ssec': 3.433.0
       '@aws-sdk/middleware-user-agent': 3.438.0
@@ -3763,8 +3763,8 @@ packages:
       - react-native
     dev: false
 
-  /@aws-sdk/middleware-sdk-s3@3.433.0:
-    resolution: {integrity: sha512-mkn3DiSuMVh4NTLsduC42Av+ApcOor52LMoQY0Wc6M5Mx7Xd05U+G1j8sjI9n/1bs5cZ/PoeRYJ/9bL1Xxznnw==}
+  /@aws-sdk/middleware-sdk-s3@3.440.0:
+    resolution: {integrity: sha512-DVTSr+82Z8jR9xTwDN3YHzxX7qvi0n96V92OfxvSRDq2BldCEx/KEL1orUZjw97SAXhINOlUWjRR7j4HpwWQtQ==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@aws-sdk/types': 3.433.0
@@ -7551,7 +7551,7 @@ packages:
       slash: 3.0.0
     dev: true
 
-  /@jest/core@29.7.0:
+  /@jest/core@29.7.0(ts-node@10.9.1):
     resolution: {integrity: sha512-n7aeXWKMnGtDA48y8TLWJPJmLmmZ642Ceo78cYWEpiD7FzDgmNDV/GCVRorPABdXLJZ/9wzzgZAlHjXjxDHGsg==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     peerDependencies:
@@ -7573,49 +7573,6 @@ packages:
       graceful-fs: 4.2.11
       jest-changed-files: 29.7.0
       jest-config: 29.7.0(@types/node@20.8.10)(ts-node@10.9.1)
-      jest-haste-map: 29.7.0
-      jest-message-util: 29.7.0
-      jest-regex-util: 29.6.3
-      jest-resolve: 29.7.0
-      jest-resolve-dependencies: 29.7.0
-      jest-runner: 29.7.0
-      jest-runtime: 29.7.0
-      jest-snapshot: 29.7.0
-      jest-util: 29.7.0
-      jest-validate: 29.7.0
-      jest-watcher: 29.7.0
-      micromatch: 4.0.5
-      pretty-format: 29.7.0
-      slash: 3.0.0
-      strip-ansi: 6.0.1
-    transitivePeerDependencies:
-      - babel-plugin-macros
-      - supports-color
-      - ts-node
-    dev: true
-
-  /@jest/core@29.7.0(ts-node@10.9.1):
-    resolution: {integrity: sha512-n7aeXWKMnGtDA48y8TLWJPJmLmmZ642Ceo78cYWEpiD7FzDgmNDV/GCVRorPABdXLJZ/9wzzgZAlHjXjxDHGsg==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-    peerDependencies:
-      node-notifier: ^8.0.1 || ^9.0.0 || ^10.0.0
-    peerDependenciesMeta:
-      node-notifier:
-        optional: true
-    dependencies:
-      '@jest/console': 29.7.0
-      '@jest/reporters': 29.7.0
-      '@jest/test-result': 29.7.0
-      '@jest/transform': 29.7.0
-      '@jest/types': 29.6.3
-      '@types/node': 20.7.1
-      ansi-escapes: 4.3.2
-      chalk: 4.1.2
-      ci-info: 3.9.0
-      exit: 0.1.2
-      graceful-fs: 4.2.11
-      jest-changed-files: 29.7.0
-      jest-config: 29.7.0(@types/node@20.7.1)(ts-node@10.9.1)
       jest-haste-map: 29.7.0
       jest-message-util: 29.7.0
       jest-regex-util: 29.6.3
@@ -8533,7 +8490,7 @@ packages:
       '@react-native-community/cli-tools': 11.3.7
       chalk: 4.1.2
       command-exists: 1.2.9
-      envinfo: 7.10.0
+      envinfo: 7.11.0
       execa: 5.1.1
       hermes-profile-transformer: 0.0.6
       ip: 1.1.8
@@ -10739,13 +10696,13 @@ packages:
     resolution: {integrity: sha512-9GNFMRrEMG5y3Jvv+V4azWvc+qNWdWLTjDdhf/zgMlz8haaaLWv0xeAIWxz9PuWUBawsVxy0zZotjCdR3Xq+2w==}
     hasBin: true
     dependencies:
-      aws-sdk: 2.1484.0
+      aws-sdk: 2.1485.0
       commander: 3.0.2
       js-yaml: 3.14.1
       watchpack: 2.4.0
 
-  /aws-sdk@2.1484.0:
-    resolution: {integrity: sha512-emfCmb5j/UtaB7U8tvLpGdVNAlZMg4xZOhoFvL8jBQwIVJyCRyaqcshe31JXTwJdafThn2pNPtQOeYbZJCE0Ow==}
+  /aws-sdk@2.1485.0:
+    resolution: {integrity: sha512-Lm+eLtZEOuVuLu9fWztAFhVFOiVpWprgVwauoS7Dd/IeXt4WafUWe+AnWQ46F8HuHZG+CuD+iUUNa/HDZWWP1g==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
@@ -11057,7 +11014,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001559
-      electron-to-chromium: 1.4.571
+      electron-to-chromium: 1.4.572
       node-releases: 2.0.13
       update-browserslist-db: 1.0.13(browserslist@4.22.1)
 
@@ -11989,8 +11946,8 @@ packages:
   /ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  /electron-to-chromium@1.4.571:
-    resolution: {integrity: sha512-Sc+VtKwKCDj3f/kLBjdyjMpNzoZsU6WuL/wFb6EH8USmHEcebxRXcRrVpOpayxd52tuey4RUDpUsw5OS5LhJqg==}
+  /electron-to-chromium@1.4.572:
+    resolution: {integrity: sha512-RlFobl4D3ieetbnR+2EpxdzFl9h0RAJkPK3pfiwMug2nhBin2ZCsGIAJWdpNniLz43sgXam/CgipOmvTA+rUiA==}
 
   /emittery@0.13.1:
     resolution: {integrity: sha512-DeWwawk6r5yR9jFgnDKYt4sLS0LmHJJi3ZOnb5/JdbYwj3nW+FxQnHIjhBKz8YLC7oRNPVM9NQ47I3CVx34eqQ==}
@@ -12026,8 +11983,8 @@ packages:
     resolution: {integrity: sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==}
     dev: false
 
-  /envinfo@7.10.0:
-    resolution: {integrity: sha512-ZtUjZO6l5mwTHvc1L9+1q5p/R3wTopcfqMW8r5t8SJSKqeVI/LtajORwRFEKpEFuekjD0VBjwu1HMxL4UalIRw==}
+  /envinfo@7.11.0:
+    resolution: {integrity: sha512-G9/6xF1FPbIw0TtalAMaVPpiq2aDEuKLXM314jPVAO9r2fo2a4BLqMNkmRS7O/xPPZ+COAhGIz3ETvHEV3eUcg==}
     engines: {node: '>=4'}
     hasBin: true
 
@@ -14258,14 +14215,14 @@ packages:
       node-notifier:
         optional: true
     dependencies:
-      '@jest/core': 29.7.0
+      '@jest/core': 29.7.0(ts-node@10.9.1)
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
       chalk: 4.1.2
-      create-jest: 29.7.0(@types/node@20.6.3)(ts-node@10.9.1)
+      create-jest: 29.7.0(@types/node@20.7.1)(ts-node@10.9.1)
       exit: 0.1.2
       import-local: 3.1.0
-      jest-config: 29.7.0(@types/node@20.6.3)(ts-node@10.9.1)
+      jest-config: 29.7.0(@types/node@20.7.1)(ts-node@10.9.1)
       jest-util: 29.7.0
       jest-validate: 29.7.0
       yargs: 17.7.2
@@ -14436,7 +14393,7 @@ packages:
       pretty-format: 29.7.0
       slash: 3.0.0
       strip-json-comments: 3.1.1
-      ts-node: 10.9.1(@types/node@20.8.10)(typescript@5.2.2)
+      ts-node: 10.9.1(@types/node@20.7.1)(typescript@5.2.2)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -14671,7 +14628,7 @@ packages:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.7.1
+      '@types/node': 20.8.10
       chalk: 4.1.2
       cjs-module-lexer: 1.2.3
       collect-v8-coverage: 1.0.2
@@ -14793,7 +14750,7 @@ packages:
       node-notifier:
         optional: true
     dependencies:
-      '@jest/core': 29.7.0
+      '@jest/core': 29.7.0(ts-node@10.9.1)
       '@jest/types': 29.6.3
       import-local: 3.1.0
       jest-cli: 29.7.0

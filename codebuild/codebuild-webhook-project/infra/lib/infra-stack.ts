@@ -78,7 +78,7 @@ export class InfraStack extends Stack {
               'curl -sSL https://download.bell-sw.com/pki/GPG-KEY-bellsoft | apt-key add -',
               'echo "deb [arch=amd64] https://apt.bell-sw.com/ stable main" > /etc/apt/sources.list.d/bellsoft.list',
               'apt-get update -qq',
-              'apt-get purge -qqy java-1.8.0-amazon-corretto-jdk java-11-amazon-corretto-jdk',
+              'apt-get purge -qqy java-11-amazon-corretto-jdk java-17-amazon-corretto-jdk java-21-amazon-corretto-jdk',
               'DEBIAN_FRONTEND=noninteractive apt-get full-upgrade -qqy --no-install-recommends',
               'DEBIAN_FRONTEND=noninteractive apt-get install -qqy --no-install-recommends bellsoft-java11',
             ]
@@ -86,7 +86,7 @@ export class InfraStack extends Stack {
           build: {
             commands: [
               'cd codebuild/codebuild-webhook-project/app',
-              `JAVA_HOME=/usr/lib/jvm/bellsoft-java11-${archMap.findInMap(archType, "path")} ./gradlew clean test`,
+              `JAVA_HOME=/usr/lib/jvm/bellsoft-java21-${archMap.findInMap(archType, "path")} ./gradlew clean test`,
             ]
           },
         },

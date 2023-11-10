@@ -19,11 +19,11 @@ export class InfraStack extends Stack {
     const archMap = new CfnMapping(this, 'ArchMapping', {
       mapping: {
         'x86': {
-          'image': LinuxBuildImage.STANDARD_6_0.imageId,
+          'image': LinuxBuildImage.STANDARD_7_0.imageId,
           'path': 'amd64',
         },
         'arm': {
-          'image': LinuxArmBuildImage.AMAZON_LINUX_2_STANDARD_2_0.imageId,
+          'image': LinuxArmBuildImage.AMAZON_LINUX_2_STANDARD_3_0.imageId,
           'path': 'aarch64',
         },
       }
@@ -72,7 +72,7 @@ export class InfraStack extends Stack {
         phases: {
           install: {
             'runtime-versions': {
-              python: 3.9
+              python: 3.11
             },
             commands: [
               'curl -sSL https://download.bell-sw.com/pki/GPG-KEY-bellsoft | apt-key add -',

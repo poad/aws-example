@@ -10,8 +10,8 @@ import {
 import {
   Stack, StackProps,
 } from 'aws-cdk-lib';
-import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2-alpha';
-import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
+import { HttpApi, HttpMethod } from 'aws-cdk-lib/aws-apigatewayv2';
+import { HttpLambdaIntegration } from 'aws-cdk-lib/aws-apigatewayv2-integrations';
 import { PythonFunction } from '@aws-cdk/aws-lambda-python-alpha';
 import { RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';

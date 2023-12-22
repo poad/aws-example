@@ -57,7 +57,7 @@ export class NextTRpcExampleStack extends cdk.Stack {
       this,
       'tRPCExampleLambdaBatchFunction',
       {
-        runtime: lambda.Runtime.NODEJS_18_X,
+        runtime: lambda.Runtime.NODEJS_20_X,
         entry: './batch/index.ts',
         functionName: batchFunctionName,
         retryAttempts: 2,
@@ -234,7 +234,7 @@ export class NextTRpcExampleStack extends cdk.Stack {
       this,
       'tRPCExampleLambdaFunction',
       {
-        runtime: lambda.Runtime.NODEJS_18_X,
+        runtime: lambda.Runtime.NODEJS_20_X,
         entry: './lambda/index.ts',
         functionName: trpcFunctionName,
         retryAttempts: 0,

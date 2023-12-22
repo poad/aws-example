@@ -24,7 +24,7 @@ export class DenoLambdaStack extends cdk.Stack {
     );
 
     const name = new lambda.Function(this, "HelloHandler", {
-      runtime: lambda.Runtime.PROVIDED_AL2,
+      runtime: lambda.Runtime.PROVIDED_AL2023,
       code: lambda.Code.fromAsset("lambda"),
       handler: "index.handler",
       layers: [layer],

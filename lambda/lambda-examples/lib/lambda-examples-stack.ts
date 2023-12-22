@@ -134,7 +134,7 @@ export class LambdaExamplesStack extends Stack {
     const lambdaFn = new PythonFunction(this, 'Ec2InstanceKiller', {
       functionName: 'ec2-instance-killer',
       entry: path.resolve(__dirname, '../lambda/python'),
-      runtime: lambda.Runtime.PYTHON_3_10,
+      runtime: lambda.Runtime.PYTHON_3_12,
       logRetention: RetentionDays.ONE_DAY,
       role,
       timeout: cdk.Duration.seconds(14.5 * 60),

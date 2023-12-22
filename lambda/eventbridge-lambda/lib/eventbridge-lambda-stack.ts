@@ -24,7 +24,7 @@ export class EventbridgeLambdaStack extends cdk.Stack {
     });
 
     const fn = new NodejsFunction(this, 'EventBridgeLambdaFn', {
-      runtime: Runtime.NODEJS_18_X,
+      runtime: Runtime.NODEJS_20_X,
       entry: path.resolve(__dirname, '../lambda/index.ts'),
       functionName,
       retryAttempts: 0,

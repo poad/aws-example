@@ -45,22 +45,6 @@ updates:
           - "*"
 
   - package-ecosystem: npm
-    directory: '/cloud9/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      c9:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
     directory: '/codebuild/custom-image-test/'
     schedule:
       interval: daily

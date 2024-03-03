@@ -15,7 +15,7 @@ import { HttpLambdaIntegration } from 'aws-cdk-lib/aws-apigatewayv2-integrations
 import { PythonFunction } from '@aws-cdk/aws-lambda-python-alpha';
 import { RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
-import path = require('path');
+import * as path from 'path';
 import { DockerImageAsset } from 'aws-cdk-lib/aws-ecr-assets';
 import * as ecrdeploy from 'cdk-ecr-deployment';
 import { Repository } from 'aws-cdk-lib/aws-ecr';
@@ -144,7 +144,7 @@ export class LambdaExamplesStack extends Stack {
       schedule: events.Schedule.expression('cron(0 0 * * ? *)'),
     });
 
-    const event = props.targetTags !== undefined ? ({
+    const event = !props.targetTags ? ({
       event: events.RuleTargetInput.fromObject({ tags: props.targetTags }),
     }) : ({});
 

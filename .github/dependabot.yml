@@ -317,22 +317,6 @@ updates:
           - "*"
 
   - package-ecosystem: npm
-    directory: '/lambda/deno-lambda/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      lambda-deno:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
     directory: '/amplify/amplify_nextapp/'
     schedule:
       interval: daily

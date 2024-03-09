@@ -12,10 +12,10 @@ export const pokemon = async () => {
     Key: key,
   });
 
-  const pokemon = await result.Body?.transformToString();
-  if (pokemon) {
-    console.log(JSON.parse(pokemon));
-    return JSON.parse(pokemon) as PokemonJson;
+  const pkm = await result.Body?.transformToString();
+  if (pkm) {
+    console.log(JSON.parse(pkm));
+    return JSON.parse(pkm) as PokemonJson;
   }
   return undefined;
 };

@@ -35,8 +35,8 @@ jobs:
     strategy:
       matrix:
         pattern: [
-          { node: 18, os-dist: ubuntu, app: hello-rust-lambda, image: lambda, test: true },
-          { node: 18, os-dist: ubuntu, app: simple, image: lambda-simple, test: true }
+          { node: 20, os-dist: ubuntu, app: hello-rust-lambda, image: lambda, test: true },
+          { node: 20, os-dist: ubuntu, app: simple, image: lambda-simple, test: true }
         ]
 
     steps:

@@ -16,9 +16,6 @@ import { PythonFunction } from '@aws-cdk/aws-lambda-python-alpha';
 import { RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
 import * as path from 'path';
-import { DockerImageAsset } from 'aws-cdk-lib/aws-ecr-assets';
-import * as ecrdeploy from 'cdk-ecr-deployment';
-import { Repository } from 'aws-cdk-lib/aws-ecr';
 
 export interface GroupConfig {
   id: string,
@@ -149,34 +146,6 @@ export class LambdaExamplesStack extends Stack {
     }) : ({});
 
     schedule.addTarget(new targets.LambdaFunction(lambdaFn, event));
-
-    const simpleEcrRepository = new Repository(this, 'simple-ecr-repository', {
-      repositoryName: 'simple-lambda',
-    });
-    const simpleImage = new DockerImageAsset(this, 'docker-lambda-image', {
-      directory: path.join(__dirname, 'lambda/container/simple'),
-    });
-    // eslint-disable-next-line no-new
-    new ecrdeploy.ECRDeployment(this, 'DeployDockerImage', {
-      src: new ecrdeploy.DockerImageName(simpleImage.imageUri),
-      dest: new ecrdeploy.DockerImageName(`${simpleEcrRepository.repositoryUri}:latest`),
-    });
-    const simpleFn = new DockerImageFunction(this, 'docker-lambda-function', {
-      code: DockerImageCode.fromEcr(simpleEcrRepository),
-      functionName: `${props.environment}-docker-lambda`,
-      logRetention: RetentionDays.ONE_DAY,
-      retryAttempts: 0,
-    });
-
-    const simpleFnApi = new HttpApi(this, 'HttpApi', {
-      apiName: 'Docker Lambda API',
-      defaultIntegration: new HttpLambdaIntegration('default-handler', simpleFn),
-    });
-    simpleFnApi.addRoutes({
-      path: '/{proxy+}',
-      methods: [HttpMethod.ANY],
-      integration: new HttpLambdaIntegration('proxy-handler', simpleFn),
-    });
 
     const rustFn = new DockerImageFunction(this, 'hello-rust-lambda-function', {
       code: DockerImageCode.fromImageAsset('lambda', {

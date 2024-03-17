@@ -220,22 +220,6 @@ updates:
         patterns:
           - "*"
 
-  - package-ecosystem: npm
-    directory: '/lambda/lambda-examples/lambda/container/simple'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      lambda-examples-lambda-container-nodejs:
-        patterns:
-          - "*"
-
   - package-ecosystem: pip
     directory: '/lambda/lambda-examples/lambda/python'
     schedule:
@@ -425,22 +409,6 @@ updates:
       - poad
     groups:
       hello-rust-lambda-oci:
-        patterns:
-          - "*"
-
-  - package-ecosystem: docker
-    directory: '/lambda/lambda-examples/lambda/container/simple/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      ambda-examples-nodejs-oci:
         patterns:
           - "*"
 

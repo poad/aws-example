@@ -29,8 +29,7 @@ jobs:
     strategy:
       matrix:
         pattern: [
-          { app: lambda/lambda-examples/lambda/container/hello-rust-lambda, image: lambda },
-          { app: lambda/lambda-examples/lambda/container/simple, image: lambda-simple },
+          { app: lambda/lambda-examples/lambda/container/hello-rust-lambda, image: lambda }
         ]
 
     steps:

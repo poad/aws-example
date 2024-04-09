@@ -1,8 +1,6 @@
 import * as fs from 'fs';
 import * as process from 'process';
 
-import fetch from 'node-fetch';
-
 // eslint-disable-next-line import/no-unresolved, import/no-absolute-path
 import * as log from '/opt/nodejs/log';
 

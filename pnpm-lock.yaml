@@ -51,8 +51,8 @@ importers:
         specifier: ^7.34.1
         version: 7.34.1(eslint@9.1.1)
       eslint-plugin-react-hooks:
-        specifier: ^4.6.1
-        version: 4.6.1(eslint@9.1.1)
+        specifier: ^4.6.2
+        version: 4.6.2(eslint@9.1.1)
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
@@ -61,28 +61,28 @@ importers:
     dependencies:
       '@react-native-async-storage/async-storage':
         specifier: ^1.23.1
-        version: 1.23.1(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.0)(react@18.3.0))
+        version: 1.23.1(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.1)(react@18.3.1))
       '@react-native-community/netinfo':
         specifier: ^11.3.1
-        version: 11.3.1(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.0)(react@18.3.0))
+        version: 11.3.1(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.1)(react@18.3.1))
       '@react-native-picker/picker':
         specifier: ^2.7.5
-        version: 2.7.5(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.0)(react@18.3.0))(react@18.3.0)
+        version: 2.7.5(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.1)(react@18.3.1))(react@18.3.1)
       amazon-cognito-identity-js:
         specifier: ^6.3.12
         version: 6.3.12
       aws-amplify:
         specifier: ^6.1.4
-        version: 6.1.4(aws-cdk-lib@2.139.0(constructs@10.3.0))(constructs@10.3.0)
+        version: 6.1.4
       aws-amplify-react-native:
         specifier: ^7.0.8
-        version: 7.0.8(@react-native-picker/picker@2.7.5(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.0)(react@18.3.0))(react@18.3.0))(aws-amplify@6.1.4(aws-cdk-lib@2.139.0(constructs@10.3.0))(constructs@10.3.0))(graphql@16.8.1)
+        version: 7.0.8(@react-native-picker/picker@2.7.5(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.1)(react@18.3.1))(react@18.3.1))(aws-amplify@6.1.4)(graphql@16.8.1)
       react:
-        specifier: ^18.3.0
-        version: 18.3.0
+        specifier: ^18.3.1
+        version: 18.3.1
       react-native:
         specifier: ^0.74.0
-        version: 0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.0)(react@18.3.0)
+        version: 0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.1)(react@18.3.1)
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
@@ -97,8 +97,8 @@ importers:
         specifier: 0.75.0-nightly-20240425-2876fae8d
         version: 0.75.0-nightly-20240425-2876fae8d
       '@types/react':
-        specifier: ^18.3.0
-        version: 18.3.0
+        specifier: ^18.3.1
+        version: 18.3.1
       babel-jest:
         specifier: ^29.7.0
         version: 29.7.0(@babel/core@7.24.4)
@@ -109,8 +109,8 @@ importers:
         specifier: ^4.1.2
         version: 4.1.2
       inquirer:
-        specifier: ^9.2.19
-        version: 9.2.19
+        specifier: ^9.2.20
+        version: 9.2.20
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@20.12.7)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.4.5))
@@ -118,8 +118,8 @@ importers:
         specifier: ^0.77.0
         version: 0.77.0(@babel/core@7.24.4)
       react-test-renderer:
-        specifier: ^18.3.0
-        version: 18.3.0(react@18.3.0)
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
 
   amplify/amplify-cdk/app:
     dependencies:
@@ -128,34 +128,34 @@ importers:
         version: 11.11.0
       '@emotion/react':
         specifier: ^11.11.4
-        version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
+        version: 11.11.4(@types/react@18.3.1)(react@18.3.1)
       '@emotion/server':
         specifier: ^11.11.0
         version: 11.11.0
       '@emotion/styled':
         specifier: ^11.11.5
-        version: 11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
+        version: 11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1)
       '@mui/icons-material':
         specifier: ^5.15.15
-        version: 5.15.15(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
+        version: 5.15.15(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(react@18.3.1)
       '@mui/material':
         specifier: ^5.15.15
-        version: 5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.15.15(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.38)
       next:
         specifier: ^14.2.3
-        version: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       postcss:
         specifier: ^8.4.38
         version: 8.4.38
       react:
-        specifier: ^18.3.0
-        version: 18.3.0
+        specifier: ^18.3.1
+        version: 18.3.1
       react-dom:
-        specifier: ^18.3.0
-        version: 18.3.0(react@18.3.0)
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
       tailwindcss:
         specifier: ^3.4.3
         version: 3.4.3(ts-node@10.9.2(@types/node@20.12.7)(typescript@5.4.5))
@@ -170,8 +170,8 @@ importers:
         specifier: ^20.12.7
         version: 20.12.7
       '@types/react':
-        specifier: ^18.3.0
-        version: 18.3.0
+        specifier: ^18.3.1
+        version: 18.3.1
       next-transpile-modules:
         specifier: ^10.0.1
         version: 10.0.1
@@ -223,13 +223,13 @@ importers:
     dependencies:
       next:
         specifier: ^14.2.3
-        version: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
-        specifier: ^18.3.0
-        version: 18.3.0
+        specifier: ^18.3.1
+        version: 18.3.1
       react-dom:
-        specifier: ^18.3.0
-        version: 18.3.0(react@18.3.0)
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
     devDependencies:
       '@next/bundle-analyzer':
         specifier: ^14.2.3
@@ -238,8 +238,8 @@ importers:
         specifier: ^20.12.7
         version: 20.12.7
       '@types/react':
-        specifier: ^18.3.0
-        version: 18.3.0
+        specifier: ^18.3.1
+        version: 18.3.1
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
@@ -965,10 +965,10 @@ importers:
         version: 5.2.0
       '@aws-sdk/client-sts':
         specifier: ^3.556.0
-        version: 3.556.0(@aws-sdk/credential-provider-node@3.563.0)
+        version: 3.556.0(@aws-sdk/credential-provider-node@3.564.0)
       '@aws-sdk/credential-providers':
-        specifier: ^3.563.0
-        version: 3.563.0
+        specifier: ^3.564.0
+        version: 3.564.0
       '@smithy/hash-node':
         specifier: ^2.2.0
         version: 2.2.0
@@ -996,10 +996,6 @@ importers:
         version: 20.12.7
 
 packages:
-
-  '@aashutoshrathi/word-wrap@1.2.6':
-    resolution: {integrity: sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==}
-    engines: {node: '>=0.10.0'}
 
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -1132,8 +1128,8 @@ packages:
   '@aws-amplify/core@6.0.28':
     resolution: {integrity: sha512-bjp/MgIkFmB7JleBRhFQ9C7tD+Y294F+XXKkpvxGnR1WlPdz2h1P51fCk0j3kpKJRVeo7VyVMTAY21QiWHBS6g==}
 
-  '@aws-amplify/data-schema-types@0.10.0':
-    resolution: {integrity: sha512-HIfSGPcqDu7ZyHzncGiTPDElOKl7N/ZGBF1T0RWlm7jqNVOl6AYzr9dMyPSw7/e8p5SxlKNxhUoyvo7iwkWXww==}
+  '@aws-amplify/data-schema-types@1.0.0':
+    resolution: {integrity: sha512-sjw68YTpGNSDoNI1WBAgFWaUFpmmwFtkZQE/r+P9jWrVZPyBlfDeRIc3RhPgUrtW91hLCm4WA8TzYf1eZzJstg==}
 
   '@aws-amplify/data-schema@0.17.1':
     resolution: {integrity: sha512-E9Iq68arbBCjtVg1vIrjQ7/WQ6cg4EzulPAJPBFHEFlF23p9XDT1gX2kSkm4u+X0Nptb3EaMdjYzpMz4WcO3Dg==}
@@ -1147,13 +1143,6 @@ packages:
     resolution: {integrity: sha512-XnB1/V4lQxtk46iJsD6EhXXwVmz08IZYQne/JAK8+3k1GDFVvjZlpSMITqh0y8QrrrPzQCAGdffme5XK0ERXrQ==}
     peerDependencies:
       '@aws-amplify/core': ^6.0.0
-
-  '@aws-amplify/plugin-types@0.9.0':
-    resolution: {integrity: sha512-dOwuyjRWKHvKSxcCwycdBTb6clRr2/soW1hL+HaXyTN69+dQanQegpS6ylmVwbPPiy9q2LCbqaw+5Np7bacLgw==}
-    peerDependencies:
-      '@aws-sdk/types': ^3.465.0
-      aws-cdk-lib: ^2.127.0
-      constructs: ^10.0.0
 
   '@aws-amplify/storage@6.3.1':
     resolution: {integrity: sha512-k8W89ySzzoXCCl3Vn2DZPj7bXEJkBUS8GTPKG7kvD/Cn6IQRupINqzDWSw9P47XE0tJzbp6evyn7NMVd1W5Hbg==}
@@ -1250,8 +1239,8 @@ packages:
       '@middy/core':
         optional: true
 
-  '@aws-sdk/client-cognito-identity@3.563.0':
-    resolution: {integrity: sha512-hBgxRHmy099lEEJVbAP807HiCZO2RHPldG1ppwyQdPSqGMisAkaw9sgHog/tCSaSty2pkG/YvZtiH9mrhcYwpA==}
+  '@aws-sdk/client-cognito-identity@3.564.0':
+    resolution: {integrity: sha512-AJGd0RXAyycNqb8RBySVkIrzNOd8JzI4sVVC/7pA41t4EeUGM6b2tcsOlt1eVqcNxR1hvn2ZbwnNI8e3OlEnhQ==}
     engines: {node: '>=14.0.0'}
 
   '@aws-sdk/client-firehose@3.398.0':
@@ -1266,11 +1255,11 @@ packages:
     resolution: {integrity: sha512-dynXr8ZVMC2FxQS5QRr7cu90xAGfwgfZM5XDW2jm81UPK5Qqo2FbbEF4wvdXXbnkbvU5rsmxL1IjQiMGm+lWVg==}
     engines: {node: '>=14.0.0'}
 
-  '@aws-sdk/client-sso-oidc@3.556.0':
-    resolution: {integrity: sha512-AXKd2TB6nNrksu+OfmHl8uI07PdgzOo4o8AxoRO8SHlwoMAGvcT9optDGVSYoVfgOKTymCoE7h8/UoUfPc11wQ==}
+  '@aws-sdk/client-sso-oidc@3.564.0':
+    resolution: {integrity: sha512-LWBXiwA0qlGhpJx3fbFQagVEyVPoecGtJh3+5hoc+CTVnT00J7T0jLe3kgemvEI9kjhIyDW+MFkq1jCttrGNJw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      '@aws-sdk/credential-provider-node': ^3.556.0
+      '@aws-sdk/credential-provider-node': ^3.564.0
 
   '@aws-sdk/client-sso@3.398.0':
     resolution: {integrity: sha512-CygL0jhfibw4kmWXG/3sfZMFNjcXo66XUuPC4BqZBk8Rj5vFoxp1vZeMkDLzTIk97Nvo5J5Bh+QnXKhub6AckQ==}
@@ -1294,8 +1283,8 @@ packages:
     resolution: {integrity: sha512-vJaSaHw2kPQlo11j/Rzuz0gk1tEaKdz+2ser0f0qZ5vwFlANjt08m/frU17ctnVKC1s58bxpctO/1P894fHLrA==}
     engines: {node: '>=14.0.0'}
 
-  '@aws-sdk/credential-provider-cognito-identity@3.563.0':
-    resolution: {integrity: sha512-FnvqvH+tLfJKqMJrUjuV1irWb5d++ByeX/3XPj8o/QmajhwCOEJ9akiEEGrawKnssqJWVPX6RIm+8XsiIzmduw==}
+  '@aws-sdk/credential-provider-cognito-identity@3.564.0':
+    resolution: {integrity: sha512-rjpj+VR9NbF9hg2H0gfuhbQL+6WlRVEBBxI8rweSsSm5r5exENqP+xmEdL6mmFCyM/EjDQswNs0td2tVSc/onw==}
     engines: {node: '>=14.0.0'}
 
   '@aws-sdk/credential-provider-env@3.398.0':
@@ -1314,16 +1303,16 @@ packages:
     resolution: {integrity: sha512-AsK1lStK3nB9Cn6S6ODb1ktGh7SRejsNVQVKX3t5d3tgOaX+aX1Iwy8FzM/ZEN8uCloeRifUGIY9uQFygg5mSw==}
     engines: {node: '>=14.0.0'}
 
-  '@aws-sdk/credential-provider-ini@3.556.0':
-    resolution: {integrity: sha512-0Nz4ErOlXhe3muxWYMbPwRMgfKmVbBp36BAE2uv/z5wTbfdBkcgUwaflEvlKCLUTdHzuZsQk+BFS/gVyaUeOuA==}
+  '@aws-sdk/credential-provider-ini@3.564.0':
+    resolution: {integrity: sha512-kiEfBoKRcbX7I/rjhVGJrTUQ0895ANhPu6KE1GRZW7wc1gIGgKGJ+0tvAqRtQjYX0U9pivEDb0dh16OF9PBFFw==}
     engines: {node: '>=14.0.0'}
 
   '@aws-sdk/credential-provider-node@3.398.0':
     resolution: {integrity: sha512-odmI/DSKfuWUYeDnGTCEHBbC8/MwnF6yEq874zl6+owoVv0ZsYP8qBHfiJkYqrwg7wQ7Pi40sSAPC1rhesGwzg==}
     engines: {node: '>=14.0.0'}
 
-  '@aws-sdk/credential-provider-node@3.563.0':
-    resolution: {integrity: sha512-cNGT93uuAzM2ZnWT0rHbT/bjnVRCIQDTi8ylnvNpsOj+zFCn2q2eQAh6fgACPjKhCA7Szc38AX0hH2PDXH6+yg==}
+  '@aws-sdk/credential-provider-node@3.564.0':
+    resolution: {integrity: sha512-HXD5ZCXzfcd6cJ/pW8frh8DuYlKaCd/JKmwzuCRUxgxZwbLEeNmyRYvF+D7osETJJZ4VIwgVbpEw1yLqRz1onw==}
     engines: {node: '>=14.0.0'}
 
   '@aws-sdk/credential-provider-process@3.398.0':
@@ -1338,8 +1327,8 @@ packages:
     resolution: {integrity: sha512-2Dl35587xbnzR/GGZqA2MnFs8+kS4wbHQO9BioU0okA+8NRueohNMdrdQmQDdSNK4BfIpFspiZmFkXFNyEAfgw==}
     engines: {node: '>=14.0.0'}
 
-  '@aws-sdk/credential-provider-sso@3.556.0':
-    resolution: {integrity: sha512-ETuBgcnpfxqadEAqhQFWpKoV1C/NAgvs5CbBc5EJbelJ8f4prTdErIHjrRtVT8c02MXj92QwczsiNYd5IoOqyw==}
+  '@aws-sdk/credential-provider-sso@3.564.0':
+    resolution: {integrity: sha512-Wv0NV8tDwtydEpsp/kVZ22Z+40bsSBDYgYZ1Uxx+KR8a1PvT6B5FnEtccWTJ371sQG/uqLum7dXSbJq1Qqze1w==}
     engines: {node: '>=14.0.0'}
 
   '@aws-sdk/credential-provider-web-identity@3.398.0':
@@ -1350,8 +1339,8 @@ packages:
     resolution: {integrity: sha512-R/YAL8Uh8i+dzVjzMnbcWLIGeeRi2mioHVGnVF+minmaIkCiQMZg2HPrdlKm49El+RljT28Nl5YHRuiqzEIwMA==}
     engines: {node: '>=14.0.0'}
 
-  '@aws-sdk/credential-providers@3.563.0':
-    resolution: {integrity: sha512-lXZeYWJw3AWbY8M5xxY3ehUyP7L+UL/snQgEgHTVhdDbLrSF+lG06sFI0UPNxtlc85pkVYaKFHPkiLdGbdIGRA==}
+  '@aws-sdk/credential-providers@3.564.0':
+    resolution: {integrity: sha512-QQrVTPuRRK37IEtCqzGpStfvr5fZMqxlCQFNJ6mDpHOkL1oyrYIrBpWCB4N95dJyoyLsogleDoFZelfjM9HIzQ==}
     engines: {node: '>=14.0.0'}
 
   '@aws-sdk/hash-node@3.374.0':
@@ -1407,8 +1396,8 @@ packages:
     resolution: {integrity: sha512-nrYgjzavGCKJL/48Vt0EL+OlIc5UZLfNGpgyUW9cv3XZwl+kXV0QB+HH0rHZZLfpbBgZ2RBIJR9uD5ieu/6hpQ==}
     engines: {node: '>=14.0.0'}
 
-  '@aws-sdk/token-providers@3.556.0':
-    resolution: {integrity: sha512-tvIiugNF0/+2wfuImMrpKjXMx4nCnFWQjQvouObny+wrif/PGqqQYrybwxPJDvzbd965bu1I+QuSv85/ug7xsg==}
+  '@aws-sdk/token-providers@3.564.0':
+    resolution: {integrity: sha512-Kk5ixcl9HjqwzfBJZGQAtsqwKa7Z8P7Mdug837BG8zCJbhf7wwNsmItzXTiAlpVrDZyT8P1yWIxsLOS1YUtmow==}
     engines: {node: '>=14.0.0'}
 
   '@aws-sdk/types@3.387.0':
@@ -2694,8 +2683,8 @@ packages:
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
 
-  '@graphql-tools/delegate@10.0.5':
-    resolution: {integrity: sha512-3By/bLc2gYIYV/beoKaqRH4qoXc8zFeRNNS6aP28/11++CMJRFJ2vnkzNdKqR3ZbIdp4vfgaQ6mhOm65DAc9qg==}
+  '@graphql-tools/delegate@10.0.6':
+    resolution: {integrity: sha512-UKr4qt4JAms+e6nKvI3oJSdYDef4iEqZIxH51/GM3noRpgj7UDRaze1uZ6/7bZCMoB4MyKH8hYk0bwABzedemA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
@@ -2844,8 +2833,8 @@ packages:
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
 
-  '@graphql-tools/prisma-loader@8.0.3':
-    resolution: {integrity: sha512-oZhxnMr3Jw2WAW1h9FIhF27xWzIB7bXWM8olz4W12oII4NiZl7VRkFw9IT50zME2Bqi9LGh9pkmMWkjvbOpl+Q==}
+  '@graphql-tools/prisma-loader@8.0.4':
+    resolution: {integrity: sha512-hqKPlw8bOu/GRqtYr0+dINAI13HinTVYBDqhwGAPIFmLr5s+qKskzgCiwbsckdrb5LWVFmVZc+UXn80OGiyBzg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
@@ -3724,9 +3713,6 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
-  '@types/json-stable-stringify@1.0.36':
-    resolution: {integrity: sha512-b7bq23s4fgBB76n34m2b3RBf6M369B0Z9uRR8aHTMd8kZISRkmDEpPD8hhpYvDFzr3bJCPES96cm3Q6qRNDbQw==}
-
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
 
@@ -3766,8 +3752,8 @@ packages:
   '@types/react-transition-group@4.4.10':
     resolution: {integrity: sha512-hT/+s0VQs2ojCX823m60m5f0sL5idt9SO6Tj6Dg+rdphGPIeJbJ6CxvBYkgkGKrYeDjvIpKTR38UzmtHJOGW3Q==}
 
-  '@types/react@18.3.0':
-    resolution: {integrity: sha512-DiUcKjzE6soLyln8NNZmyhcQjVv+WsUIFSqetMN0p8927OztKT4VTfFTqsbAi5oAGIcgOmOajlfBqyptDDjZRw==}
+  '@types/react@18.3.1':
+    resolution: {integrity: sha512-V0kuGBX3+prX+DQ/7r2qsv1NsdfnCLnTgnRJ1pYnxykBhGMz+qj+box5lq7XsO5mtZsBqpjwwTu/7wszPfMBcw==}
 
   '@types/semver@7.5.8':
     resolution: {integrity: sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ==}
@@ -4171,8 +4157,8 @@ packages:
     resolution: {integrity: sha512-9GNFMRrEMG5y3Jvv+V4azWvc+qNWdWLTjDdhf/zgMlz8haaaLWv0xeAIWxz9PuWUBawsVxy0zZotjCdR3Xq+2w==}
     hasBin: true
 
-  aws-sdk@2.1607.0:
-    resolution: {integrity: sha512-U1iO2SeT+taFkE+cEpaju6itcdxBuqQo7bFngC6zrsae20p/KHcAPk/QHZGjrWgcEBAHWB26USgQxmEcbLuGUw==}
+  aws-sdk@2.1608.0:
+    resolution: {integrity: sha512-qqmKS6PRNTRO+O3ZVp9+tvB6asy5uRYDpR6AhSrnhu46JtDpI47aB/O9vyykqQf3JsFu0loinDJjl2hxQoal9A==}
     engines: {node: '>= 10.0.0'}
 
   axe-core@4.7.0:
@@ -4782,8 +4768,8 @@ packages:
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  electron-to-chromium@1.4.749:
-    resolution: {integrity: sha512-LRMMrM9ITOvue0PoBrvNIraVmuDbJV5QC9ierz/z5VilMdPOVMjOtpICNld3PuXuTZ3CHH/UPxX9gHhAPwi+0Q==}
+  electron-to-chromium@1.4.750:
+    resolution: {integrity: sha512-9ItEpeu15hW5m8jKdriL+BQrgwDTXEL9pn4SkillWFu73ZNNNQ2BKKLS+ZHv2vC9UkNhosAeyfxOf/5OSeTCPA==}
 
   emittery@0.13.1:
     resolution: {integrity: sha512-DeWwawk6r5yR9jFgnDKYt4sLS0LmHJJi3ZOnb5/JdbYwj3nW+FxQnHIjhBKz8YLC7oRNPVM9NQ47I3CVx34eqQ==}
@@ -4980,8 +4966,8 @@ packages:
       eslint-config-prettier:
         optional: true
 
-  eslint-plugin-react-hooks@4.6.1:
-    resolution: {integrity: sha512-Ck77j8hF7l9N4S/rzSLOWEKpn994YH6iwUK8fr9mXIaQvGpQYmOnQLbiue1u5kI5T1y+gdgqosnEAO9NCz0DBg==}
+  eslint-plugin-react-hooks@4.6.2:
+    resolution: {integrity: sha512-QzliNJq4GinDBcD8gPB5v0wh6g8q3SUi6EFF0x8N/BL9PoVs0atuGc47ozMRyOWAKdwaZ5OnbOEa3WR+dSGKuQ==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
@@ -5520,8 +5506,8 @@ packages:
     resolution: {integrity: sha512-M1WuAmb7pn9zdFRtQYk26ZBoY043Sse0wVDdk4Bppr+JOXyQYybdtvK+l9wUibhtjdjvtoiNy8tk+EgsYIUqKg==}
     engines: {node: '>=12.0.0'}
 
-  inquirer@9.2.19:
-    resolution: {integrity: sha512-WpxOT71HGsFya6/mj5PUue0sWwbpbiPfAR+332zLj/siB0QA1PZM8v3GepegFV1Op189UxHUCF6y8AySdtOMVA==}
+  inquirer@9.2.20:
+    resolution: {integrity: sha512-SFwJJPS+Ms75NV+wzFBHjirG4z3tzvis31h+9NyH1tqjIu2c7vCavlXILZ73q/nPYy8/aw4W+DNzLH5MjfYXiA==}
     engines: {node: '>=18'}
 
   internal-slot@1.0.7:
@@ -5983,10 +5969,6 @@ packages:
   json-stable-stringify-without-jsonify@1.0.1:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
 
-  json-stable-stringify@1.1.1:
-    resolution: {integrity: sha512-SU/971Kt5qVQfJpyDveVhQ/vya+5hvrjClFOcr8c0Fq5aODJjMwutrOfCU+eCnVD5gpx1Q3fEqkyom77zH1iIg==}
-    engines: {node: '>= 0.4'}
-
   json-to-pretty-yaml@1.2.2:
     resolution: {integrity: sha512-rvm6hunfCcqegwYaG5T4yKJWxc9FXFgBVrcTZ4XfSVRwa5HA/Xs+vB/Eo9treYYHCeNM0nrSUr82V/M31Urc7A==}
     engines: {node: '>= 0.2.0'}
@@ -6005,9 +5987,6 @@ packages:
 
   jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
-
-  jsonify@0.0.1:
-    resolution: {integrity: sha512-2/Ki0GcmuqSrgFyelQq9M05y7PS0mEwuIzrf3f1fPqkVDVRvZrPZtVSMHxdgo8Aq0sxAOb/cr2aqqA3LeWHVPg==}
 
   jsx-ast-utils@3.3.5:
     resolution: {integrity: sha512-ZZow9HBI5O6EPgSJLUb8n2NKgmVWTwCvHGwFuJlMjvLFqlGG6pjirPhtdsseaLZjSibD8eegzmYpUZwoIlj2cQ==}
@@ -6520,8 +6499,8 @@ packages:
     resolution: {integrity: sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==}
     hasBin: true
 
-  optionator@0.9.3:
-    resolution: {integrity: sha512-JjCoypp+jKn1ttEFExxhetCKeJt9zhAgAve5FXHixTvFDW/5aEktX9bufBKLRRMdU7bNtpLfcGu94B3cdEJgjg==}
+  optionator@0.9.4:
+    resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
 
   ora@5.4.1:
@@ -6798,10 +6777,10 @@ packages:
   react-devtools-core@5.1.0:
     resolution: {integrity: sha512-NRtLBqYVLrIY+lOa2oTpFiAhI7Hru0AUXI0tP9neCyaPPAzlZyeH0i+VZ0shIyRTJbpvyqbD/uCsewA2hpfZHw==}
 
-  react-dom@18.3.0:
-    resolution: {integrity: sha512-zaKdLBftQJnvb7FtDIpZtsAIb2MZU087RM8bRDZU8LVCCFYjPTsDZJNFUWPcVz3HFSN1n/caxi0ca4B/aaVQGQ==}
+  react-dom@18.3.1:
+    resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
     peerDependencies:
-      react: ^18.3.0
+      react: ^18.3.1
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -6809,8 +6788,8 @@ packages:
   react-is@17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
 
-  react-is@18.3.0:
-    resolution: {integrity: sha512-wRiUsea88TjKDc4FBEn+sLvIDesp6brMbGWnJGjew2waAc9evdhja/2LvePc898HJbHw0L+MTWy7NhpnELAvLQ==}
+  react-is@18.3.1:
+    resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
   react-native@0.74.0:
     resolution: {integrity: sha512-Vpp9WPmkCm4TUH5YDxwQhqktGVon/yLpjbTgjgLqup3GglOgWagYCX3MlmK1iksIcqtyMJHMEWa+UEzJ3G9T8w==}
@@ -6823,8 +6802,8 @@ packages:
       '@types/react':
         optional: true
 
-  react-refresh@0.14.1:
-    resolution: {integrity: sha512-iZiRCtNGY3QYP3pYOSSBOvQmBpQTcJccr/VcK2blpJrpPTUDjeN51mxm5nsrkCzBwsbGUj+TN9q2oPz5E13FLg==}
+  react-refresh@0.14.2:
+    resolution: {integrity: sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==}
     engines: {node: '>=0.10.0'}
 
   react-refresh@0.4.3:
@@ -6836,10 +6815,10 @@ packages:
     peerDependencies:
       react: ^16.0.0 || ^17.0.0 || ^18.0.0
 
-  react-test-renderer@18.3.0:
-    resolution: {integrity: sha512-eFnJU8sSYq9I6VI8ISrXDm+7F0igeFlTc0Ngq2XCkVasR5AsyJRg8SuwcD9D5E+VvDS2NrYGZ+gKpO43/wIDHw==}
+  react-test-renderer@18.3.1:
+    resolution: {integrity: sha512-KkAgygexHUkQqtvvx/otwxtuFu5cVjfzTCtjXLH9boS19/Nbtg84zS7wIQn39G8IlrhThBpQsMKkq5ZHZIYFXA==}
     peerDependencies:
-      react: ^18.3.0
+      react: ^18.3.1
 
   react-transition-group@4.4.5:
     resolution: {integrity: sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==}
@@ -6847,8 +6826,8 @@ packages:
       react: '>=16.6.0'
       react-dom: '>=16.6.0'
 
-  react@18.3.0:
-    resolution: {integrity: sha512-RPutkJftSAldDibyrjuku7q11d3oy6wKOyPe5K1HA/HwwrXcEqBdHsLypkC2FFYjP7bPUa6gbzSBhw4sY2JcDg==}
+  react@18.3.1:
+    resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
     engines: {node: '>=0.10.0'}
 
   read-cache@1.0.0:
@@ -7023,8 +7002,8 @@ packages:
   sax@1.2.1:
     resolution: {integrity: sha512-8I2a3LovHTOpm7NV5yOyO8IHqgVsfK4+UuySrXU8YXkSRX7k6hCV9b3HrkKCr3nMpgj+0bmocaJJWpvp1oc7ZA==}
 
-  scheduler@0.23.1:
-    resolution: {integrity: sha512-5GKS5JGfiah1O38Vfa9srZE4s3wdHbwjlCrvIookrg2FO9aIwKLOJXuJQFlEfNcVSOXuaL2hzDeY20uVXcUtrw==}
+  scheduler@0.23.2:
+    resolution: {integrity: sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==}
 
   scheduler@0.24.0-canary-efb381bbf-20230505:
     resolution: {integrity: sha512-ABvovCDe/k9IluqSh4/ISoq8tIJnW8euVAWYt5j/bg6dRnqwQwiGO1F/V4AyK96NGF/FB04FhOUDuWj8IKfABA==}
@@ -7685,6 +7664,10 @@ packages:
     engines: {node: '>= 8'}
     hasBin: true
 
+  word-wrap@1.2.5:
+    resolution: {integrity: sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==}
+    engines: {node: '>=0.10.0'}
+
   wrap-ansi@6.2.0:
     resolution: {integrity: sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==}
     engines: {node: '>=8'}
@@ -7823,8 +7806,6 @@ packages:
     resolution: {integrity: sha512-wPbgkJRCqIf+OHyiTBQoJiP5PFuAXaWiJK6AmYkzQAh5/c2K9hzSApBZG5wV9KoKSePF7sAxmNSvh/13YHkFDg==}
 
 snapshots:
-
-  '@aashutoshrathi/word-wrap@1.2.6': {}
 
   '@alloc/quick-lru@5.2.0': {}
 
@@ -7991,34 +7972,29 @@ snapshots:
     transitivePeerDependencies:
       - aws-crt
 
-  '@aws-amplify/api-graphql@4.0.30(aws-cdk-lib@2.139.0(constructs@10.3.0))(constructs@10.3.0)':
+  '@aws-amplify/api-graphql@4.0.30':
     dependencies:
       '@aws-amplify/api-rest': 4.0.28(@aws-amplify/core@6.0.28)
       '@aws-amplify/core': 6.0.28
-      '@aws-amplify/data-schema': 0.17.1(@aws-sdk/types@3.387.0)(aws-cdk-lib@2.139.0(constructs@10.3.0))(constructs@10.3.0)
+      '@aws-amplify/data-schema': 0.17.1
       '@aws-sdk/types': 3.387.0
       graphql: 15.8.0
       rxjs: 7.8.1
       tslib: 2.6.2
       uuid: 9.0.1
-    transitivePeerDependencies:
-      - aws-cdk-lib
-      - constructs
 
   '@aws-amplify/api-rest@4.0.28(@aws-amplify/core@6.0.28)':
     dependencies:
       '@aws-amplify/core': 6.0.28
       tslib: 2.6.2
 
-  '@aws-amplify/api@6.0.30(@aws-amplify/core@6.0.28)(aws-cdk-lib@2.139.0(constructs@10.3.0))(constructs@10.3.0)':
+  '@aws-amplify/api@6.0.30(@aws-amplify/core@6.0.28)':
     dependencies:
-      '@aws-amplify/api-graphql': 4.0.30(aws-cdk-lib@2.139.0(constructs@10.3.0))(constructs@10.3.0)
+      '@aws-amplify/api-graphql': 4.0.30
       '@aws-amplify/api-rest': 4.0.28(@aws-amplify/core@6.0.28)
       tslib: 2.6.2
     transitivePeerDependencies:
       - '@aws-amplify/core'
-      - aws-cdk-lib
-      - constructs
 
   '@aws-amplify/auth@6.2.1(@aws-amplify/core@6.0.28)':
     dependencies:
@@ -8036,50 +8012,32 @@ snapshots:
       tslib: 2.6.2
       uuid: 9.0.1
 
-  '@aws-amplify/data-schema-types@0.10.0(@aws-sdk/types@3.387.0)(aws-cdk-lib@2.139.0(constructs@10.3.0))(constructs@10.3.0)':
+  '@aws-amplify/data-schema-types@1.0.0':
     dependencies:
-      '@aws-amplify/plugin-types': 0.9.0(@aws-sdk/types@3.387.0)(aws-cdk-lib@2.139.0(constructs@10.3.0))(constructs@10.3.0)
       graphql: 15.8.0
       rxjs: 7.8.1
-    transitivePeerDependencies:
-      - '@aws-sdk/types'
-      - aws-cdk-lib
-      - constructs
 
-  '@aws-amplify/data-schema@0.17.1(@aws-sdk/types@3.387.0)(aws-cdk-lib@2.139.0(constructs@10.3.0))(constructs@10.3.0)':
+  '@aws-amplify/data-schema@0.17.1':
     dependencies:
-      '@aws-amplify/data-schema-types': 0.10.0(@aws-sdk/types@3.387.0)(aws-cdk-lib@2.139.0(constructs@10.3.0))(constructs@10.3.0)
+      '@aws-amplify/data-schema-types': 1.0.0
       '@types/aws-lambda': 8.10.137
       rxjs: 7.8.1
-    transitivePeerDependencies:
-      - '@aws-sdk/types'
-      - aws-cdk-lib
-      - constructs
 
-  '@aws-amplify/datastore@5.0.30(@aws-amplify/core@6.0.28)(aws-cdk-lib@2.139.0(constructs@10.3.0))(constructs@10.3.0)':
+  '@aws-amplify/datastore@5.0.30(@aws-amplify/core@6.0.28)':
     dependencies:
-      '@aws-amplify/api': 6.0.30(@aws-amplify/core@6.0.28)(aws-cdk-lib@2.139.0(constructs@10.3.0))(constructs@10.3.0)
+      '@aws-amplify/api': 6.0.30(@aws-amplify/core@6.0.28)
       '@aws-amplify/core': 6.0.28
       buffer: 4.9.2
       idb: 5.0.6
       immer: 9.0.6
       rxjs: 7.8.1
       ulid: 2.3.0
-    transitivePeerDependencies:
-      - aws-cdk-lib
-      - constructs
 
   '@aws-amplify/notifications@2.0.28(@aws-amplify/core@6.0.28)':
     dependencies:
       '@aws-amplify/core': 6.0.28
       lodash: 4.17.21
       tslib: 2.6.2
-
-  '@aws-amplify/plugin-types@0.9.0(@aws-sdk/types@3.387.0)(aws-cdk-lib@2.139.0(constructs@10.3.0))(constructs@10.3.0)':
-    dependencies:
-      '@aws-sdk/types': 3.387.0
-      aws-cdk-lib: 2.139.0(constructs@10.3.0)
-      constructs: 10.3.0
 
   '@aws-amplify/storage@6.3.1(@aws-amplify/core@6.0.28)':
     dependencies:
@@ -8216,13 +8174,12 @@ snapshots:
       '@aws-lambda-powertools/commons': 2.1.0
       lodash.merge: 4.6.2
 
-  '@aws-sdk/client-cognito-identity@3.563.0':
+  '@aws-sdk/client-cognito-identity@3.564.0':
     dependencies:
       '@aws-crypto/sha256-browser': 3.0.0
       '@aws-crypto/sha256-js': 3.0.0
-      '@aws-sdk/client-sts': 3.556.0(@aws-sdk/credential-provider-node@3.563.0)
       '@aws-sdk/core': 3.556.0
-      '@aws-sdk/credential-provider-node': 3.563.0
+      '@aws-sdk/credential-provider-node': 3.564.0
       '@aws-sdk/middleware-host-header': 3.535.0
       '@aws-sdk/middleware-logger': 3.535.0
       '@aws-sdk/middleware-recursion-detection': 3.535.0
@@ -8388,13 +8345,12 @@ snapshots:
     transitivePeerDependencies:
       - aws-crt
 
-  '@aws-sdk/client-sso-oidc@3.556.0(@aws-sdk/credential-provider-node@3.563.0)':
+  '@aws-sdk/client-sso-oidc@3.564.0(@aws-sdk/credential-provider-node@3.564.0)':
     dependencies:
       '@aws-crypto/sha256-browser': 3.0.0
       '@aws-crypto/sha256-js': 3.0.0
-      '@aws-sdk/client-sts': 3.556.0(@aws-sdk/credential-provider-node@3.563.0)
       '@aws-sdk/core': 3.556.0
-      '@aws-sdk/credential-provider-node': 3.563.0
+      '@aws-sdk/credential-provider-node': 3.564.0
       '@aws-sdk/middleware-host-header': 3.535.0
       '@aws-sdk/middleware-logger': 3.535.0
       '@aws-sdk/middleware-recursion-detection': 3.535.0
@@ -8556,12 +8512,12 @@ snapshots:
     transitivePeerDependencies:
       - aws-crt
 
-  '@aws-sdk/client-sts@3.556.0(@aws-sdk/credential-provider-node@3.563.0)':
+  '@aws-sdk/client-sts@3.556.0(@aws-sdk/credential-provider-node@3.564.0)':
     dependencies:
       '@aws-crypto/sha256-browser': 3.0.0
       '@aws-crypto/sha256-js': 3.0.0
       '@aws-sdk/core': 3.556.0
-      '@aws-sdk/credential-provider-node': 3.563.0
+      '@aws-sdk/credential-provider-node': 3.564.0
       '@aws-sdk/middleware-host-header': 3.535.0
       '@aws-sdk/middleware-logger': 3.535.0
       '@aws-sdk/middleware-recursion-detection': 3.535.0
@@ -8610,9 +8566,9 @@ snapshots:
       fast-xml-parser: 4.2.5
       tslib: 2.6.2
 
-  '@aws-sdk/credential-provider-cognito-identity@3.563.0':
+  '@aws-sdk/credential-provider-cognito-identity@3.564.0':
     dependencies:
-      '@aws-sdk/client-cognito-identity': 3.563.0
+      '@aws-sdk/client-cognito-identity': 3.564.0
       '@aws-sdk/types': 3.535.0
       '@smithy/property-provider': 2.2.0
       '@smithy/types': 2.12.0
@@ -8661,13 +8617,13 @@ snapshots:
     transitivePeerDependencies:
       - aws-crt
 
-  '@aws-sdk/credential-provider-ini@3.556.0(@aws-sdk/credential-provider-node@3.563.0)':
+  '@aws-sdk/credential-provider-ini@3.564.0(@aws-sdk/credential-provider-node@3.564.0)':
     dependencies:
-      '@aws-sdk/client-sts': 3.556.0(@aws-sdk/credential-provider-node@3.563.0)
+      '@aws-sdk/client-sts': 3.556.0(@aws-sdk/credential-provider-node@3.564.0)
       '@aws-sdk/credential-provider-env': 3.535.0
       '@aws-sdk/credential-provider-process': 3.535.0
-      '@aws-sdk/credential-provider-sso': 3.556.0(@aws-sdk/credential-provider-node@3.563.0)
-      '@aws-sdk/credential-provider-web-identity': 3.556.0(@aws-sdk/credential-provider-node@3.563.0)
+      '@aws-sdk/credential-provider-sso': 3.564.0(@aws-sdk/credential-provider-node@3.564.0)
+      '@aws-sdk/credential-provider-web-identity': 3.556.0(@aws-sdk/credential-provider-node@3.564.0)
       '@aws-sdk/types': 3.535.0
       '@smithy/credential-provider-imds': 2.3.0
       '@smithy/property-provider': 2.2.0
@@ -8694,14 +8650,14 @@ snapshots:
     transitivePeerDependencies:
       - aws-crt
 
-  '@aws-sdk/credential-provider-node@3.563.0':
+  '@aws-sdk/credential-provider-node@3.564.0':
     dependencies:
       '@aws-sdk/credential-provider-env': 3.535.0
       '@aws-sdk/credential-provider-http': 3.552.0
-      '@aws-sdk/credential-provider-ini': 3.556.0(@aws-sdk/credential-provider-node@3.563.0)
+      '@aws-sdk/credential-provider-ini': 3.564.0(@aws-sdk/credential-provider-node@3.564.0)
       '@aws-sdk/credential-provider-process': 3.535.0
-      '@aws-sdk/credential-provider-sso': 3.556.0(@aws-sdk/credential-provider-node@3.563.0)
-      '@aws-sdk/credential-provider-web-identity': 3.556.0(@aws-sdk/credential-provider-node@3.563.0)
+      '@aws-sdk/credential-provider-sso': 3.564.0(@aws-sdk/credential-provider-node@3.564.0)
+      '@aws-sdk/credential-provider-web-identity': 3.556.0(@aws-sdk/credential-provider-node@3.564.0)
       '@aws-sdk/types': 3.535.0
       '@smithy/credential-provider-imds': 2.3.0
       '@smithy/property-provider': 2.2.0
@@ -8739,10 +8695,10 @@ snapshots:
     transitivePeerDependencies:
       - aws-crt
 
-  '@aws-sdk/credential-provider-sso@3.556.0(@aws-sdk/credential-provider-node@3.563.0)':
+  '@aws-sdk/credential-provider-sso@3.564.0(@aws-sdk/credential-provider-node@3.564.0)':
     dependencies:
       '@aws-sdk/client-sso': 3.556.0
-      '@aws-sdk/token-providers': 3.556.0(@aws-sdk/credential-provider-node@3.563.0)
+      '@aws-sdk/token-providers': 3.564.0(@aws-sdk/credential-provider-node@3.564.0)
       '@aws-sdk/types': 3.535.0
       '@smithy/property-provider': 2.2.0
       '@smithy/shared-ini-file-loader': 2.4.0
@@ -8759,9 +8715,9 @@ snapshots:
       '@smithy/types': 2.12.0
       tslib: 2.6.2
 
-  '@aws-sdk/credential-provider-web-identity@3.556.0(@aws-sdk/credential-provider-node@3.563.0)':
+  '@aws-sdk/credential-provider-web-identity@3.556.0(@aws-sdk/credential-provider-node@3.564.0)':
     dependencies:
-      '@aws-sdk/client-sts': 3.556.0(@aws-sdk/credential-provider-node@3.563.0)
+      '@aws-sdk/client-sts': 3.556.0(@aws-sdk/credential-provider-node@3.564.0)
       '@aws-sdk/types': 3.535.0
       '@smithy/property-provider': 2.2.0
       '@smithy/types': 2.12.0
@@ -8770,19 +8726,19 @@ snapshots:
       - '@aws-sdk/credential-provider-node'
       - aws-crt
 
-  '@aws-sdk/credential-providers@3.563.0':
+  '@aws-sdk/credential-providers@3.564.0':
     dependencies:
-      '@aws-sdk/client-cognito-identity': 3.563.0
+      '@aws-sdk/client-cognito-identity': 3.564.0
       '@aws-sdk/client-sso': 3.556.0
-      '@aws-sdk/client-sts': 3.556.0(@aws-sdk/credential-provider-node@3.563.0)
-      '@aws-sdk/credential-provider-cognito-identity': 3.563.0
+      '@aws-sdk/client-sts': 3.556.0(@aws-sdk/credential-provider-node@3.564.0)
+      '@aws-sdk/credential-provider-cognito-identity': 3.564.0
       '@aws-sdk/credential-provider-env': 3.535.0
       '@aws-sdk/credential-provider-http': 3.552.0
-      '@aws-sdk/credential-provider-ini': 3.556.0(@aws-sdk/credential-provider-node@3.563.0)
-      '@aws-sdk/credential-provider-node': 3.563.0
+      '@aws-sdk/credential-provider-ini': 3.564.0(@aws-sdk/credential-provider-node@3.564.0)
+      '@aws-sdk/credential-provider-node': 3.564.0
       '@aws-sdk/credential-provider-process': 3.535.0
-      '@aws-sdk/credential-provider-sso': 3.556.0(@aws-sdk/credential-provider-node@3.563.0)
-      '@aws-sdk/credential-provider-web-identity': 3.556.0(@aws-sdk/credential-provider-node@3.563.0)
+      '@aws-sdk/credential-provider-sso': 3.564.0(@aws-sdk/credential-provider-node@3.564.0)
+      '@aws-sdk/credential-provider-web-identity': 3.556.0(@aws-sdk/credential-provider-node@3.564.0)
       '@aws-sdk/types': 3.535.0
       '@smithy/credential-provider-imds': 2.3.0
       '@smithy/property-provider': 2.2.0
@@ -8918,9 +8874,9 @@ snapshots:
     transitivePeerDependencies:
       - aws-crt
 
-  '@aws-sdk/token-providers@3.556.0(@aws-sdk/credential-provider-node@3.563.0)':
+  '@aws-sdk/token-providers@3.564.0(@aws-sdk/credential-provider-node@3.564.0)':
     dependencies:
-      '@aws-sdk/client-sso-oidc': 3.556.0(@aws-sdk/credential-provider-node@3.563.0)
+      '@aws-sdk/client-sso-oidc': 3.564.0(@aws-sdk/credential-provider-node@3.564.0)
       '@aws-sdk/types': 3.535.0
       '@smithy/property-provider': 2.2.0
       '@smithy/shared-ini-file-loader': 2.4.0
@@ -9902,19 +9858,19 @@ snapshots:
 
   '@emotion/memoize@0.8.1': {}
 
-  '@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0)':
+  '@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.4
       '@emotion/babel-plugin': 11.11.0
       '@emotion/cache': 11.11.0
       '@emotion/serialize': 1.1.4
-      '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.3.0)
+      '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.3.1)
       '@emotion/utils': 1.2.1
       '@emotion/weak-memoize': 0.3.1
       hoist-non-react-statics: 3.3.2
-      react: 18.3.0
+      react: 18.3.1
     optionalDependencies:
-      '@types/react': 18.3.0
+      '@types/react': 18.3.1
 
   '@emotion/serialize@1.1.4':
     dependencies:
@@ -9933,24 +9889,24 @@ snapshots:
 
   '@emotion/sheet@1.2.2': {}
 
-  '@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)':
+  '@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.4
       '@emotion/babel-plugin': 11.11.0
       '@emotion/is-prop-valid': 1.2.2
-      '@emotion/react': 11.11.4(@types/react@18.3.0)(react@18.3.0)
+      '@emotion/react': 11.11.4(@types/react@18.3.1)(react@18.3.1)
       '@emotion/serialize': 1.1.4
-      '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.3.0)
+      '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.3.1)
       '@emotion/utils': 1.2.1
-      react: 18.3.0
+      react: 18.3.1
     optionalDependencies:
-      '@types/react': 18.3.0
+      '@types/react': 18.3.1
 
   '@emotion/unitless@0.8.1': {}
 
-  '@emotion/use-insertion-effect-with-fallbacks@1.0.1(react@18.3.0)':
+  '@emotion/use-insertion-effect-with-fallbacks@1.0.1(react@18.3.1)':
     dependencies:
-      react: 18.3.0
+      react: 18.3.1
 
   '@emotion/utils@1.2.1': {}
 
@@ -10123,11 +10079,11 @@ snapshots:
       '@floating-ui/core': 1.6.0
       '@floating-ui/utils': 0.2.1
 
-  '@floating-ui/react-dom@2.0.8(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@floating-ui/react-dom@2.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@floating-ui/dom': 1.6.3
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   '@floating-ui/utils@0.2.1': {}
 
@@ -10152,7 +10108,7 @@ snapshots:
       '@graphql-tools/graphql-file-loader': 8.0.1(graphql@16.8.1)
       '@graphql-tools/json-file-loader': 8.0.1(graphql@16.8.1)
       '@graphql-tools/load': 8.0.2(graphql@16.8.1)
-      '@graphql-tools/prisma-loader': 8.0.3(@types/node@20.12.7)(graphql@16.8.1)
+      '@graphql-tools/prisma-loader': 8.0.4(@types/node@20.12.7)(graphql@16.8.1)
       '@graphql-tools/url-loader': 8.0.2(@types/node@20.12.7)(graphql@16.8.1)
       '@graphql-tools/utils': 10.1.3(graphql@16.8.1)
       '@whatwg-node/fetch': 0.8.8
@@ -10437,7 +10393,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@graphql-tools/delegate@10.0.5(graphql@16.8.1)':
+  '@graphql-tools/delegate@10.0.6(graphql@16.8.1)':
     dependencies:
       '@graphql-tools/batch-execute': 9.0.4(graphql@16.8.1)
       '@graphql-tools/executor': 1.2.6(graphql@16.8.1)
@@ -10699,12 +10655,11 @@ snapshots:
       graphql: 16.8.1
       tslib: 2.6.2
 
-  '@graphql-tools/prisma-loader@8.0.3(@types/node@20.12.7)(graphql@16.8.1)':
+  '@graphql-tools/prisma-loader@8.0.4(@types/node@20.12.7)(graphql@16.8.1)':
     dependencies:
       '@graphql-tools/url-loader': 8.0.2(@types/node@20.12.7)(graphql@16.8.1)
       '@graphql-tools/utils': 10.1.3(graphql@16.8.1)
       '@types/js-yaml': 4.0.9
-      '@types/json-stable-stringify': 1.0.36
       '@whatwg-node/fetch': 0.9.17
       chalk: 4.1.2
       debug: 4.3.4
@@ -10715,7 +10670,6 @@ snapshots:
       https-proxy-agent: 7.0.4
       jose: 5.2.4
       js-yaml: 4.1.0
-      json-stable-stringify: 1.1.1
       lodash: 4.17.21
       scuid: 1.1.0
       tslib: 2.6.2
@@ -10788,7 +10742,7 @@ snapshots:
   '@graphql-tools/url-loader@8.0.2(@types/node@20.12.7)(graphql@16.8.1)':
     dependencies:
       '@ardatan/sync-fetch': 0.0.1
-      '@graphql-tools/delegate': 10.0.5(graphql@16.8.1)
+      '@graphql-tools/delegate': 10.0.6(graphql@16.8.1)
       '@graphql-tools/executor-graphql-ws': 1.1.2(graphql@16.8.1)
       '@graphql-tools/executor-http': 1.0.9(@types/node@20.12.7)(graphql@16.8.1)
       '@graphql-tools/executor-legacy-ws': 1.0.6(graphql@16.8.1)
@@ -10828,7 +10782,7 @@ snapshots:
 
   '@graphql-tools/wrap@10.0.5(graphql@16.8.1)':
     dependencies:
-      '@graphql-tools/delegate': 10.0.5(graphql@16.8.1)
+      '@graphql-tools/delegate': 10.0.6(graphql@16.8.1)
       '@graphql-tools/schema': 10.0.3(graphql@16.8.1)
       '@graphql-tools/utils': 10.1.3(graphql@16.8.1)
       graphql: 16.8.1
@@ -11100,100 +11054,100 @@ snapshots:
     dependencies:
       call-bind: 1.0.7
 
-  '@mui/base@5.0.0-beta.40(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@mui/base@5.0.0-beta.40(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.4
-      '@floating-ui/react-dom': 2.0.8(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@mui/types': 7.2.14(@types/react@18.3.0)
-      '@mui/utils': 5.15.14(@types/react@18.3.0)(react@18.3.0)
+      '@floating-ui/react-dom': 2.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mui/types': 7.2.14(@types/react@18.3.1)
+      '@mui/utils': 5.15.14(@types/react@18.3.1)(react@18.3.1)
       '@popperjs/core': 2.11.8
       clsx: 2.1.1
       prop-types: 15.8.1
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
     optionalDependencies:
-      '@types/react': 18.3.0
+      '@types/react': 18.3.1
 
   '@mui/core-downloads-tracker@5.15.15': {}
 
-  '@mui/icons-material@5.15.15(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)':
+  '@mui/icons-material@5.15.15(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.4
-      '@mui/material': 5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      react: 18.3.0
+      '@mui/material': 5.15.15(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react: 18.3.1
     optionalDependencies:
-      '@types/react': 18.3.0
+      '@types/react': 18.3.1
 
-  '@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.4
-      '@mui/base': 5.0.0-beta.40(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@mui/base': 5.0.0-beta.40(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/core-downloads-tracker': 5.15.15
-      '@mui/system': 5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
-      '@mui/types': 7.2.14(@types/react@18.3.0)
-      '@mui/utils': 5.15.14(@types/react@18.3.0)(react@18.3.0)
+      '@mui/system': 5.15.15(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1)
+      '@mui/types': 7.2.14(@types/react@18.3.1)
+      '@mui/utils': 5.15.14(@types/react@18.3.1)(react@18.3.1)
       '@types/react-transition-group': 4.4.10
       clsx: 2.1.1
       csstype: 3.1.3
       prop-types: 15.8.1
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
-      react-is: 18.3.0
-      react-transition-group: 4.4.5(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-is: 18.3.1
+      react-transition-group: 4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     optionalDependencies:
-      '@emotion/react': 11.11.4(@types/react@18.3.0)(react@18.3.0)
-      '@emotion/styled': 11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
-      '@types/react': 18.3.0
+      '@emotion/react': 11.11.4(@types/react@18.3.1)(react@18.3.1)
+      '@emotion/styled': 11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1)
+      '@types/react': 18.3.1
 
-  '@mui/private-theming@5.15.14(@types/react@18.3.0)(react@18.3.0)':
+  '@mui/private-theming@5.15.14(@types/react@18.3.1)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.4
-      '@mui/utils': 5.15.14(@types/react@18.3.0)(react@18.3.0)
+      '@mui/utils': 5.15.14(@types/react@18.3.1)(react@18.3.1)
       prop-types: 15.8.1
-      react: 18.3.0
+      react: 18.3.1
     optionalDependencies:
-      '@types/react': 18.3.0
+      '@types/react': 18.3.1
 
-  '@mui/styled-engine@5.15.14(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(react@18.3.0)':
+  '@mui/styled-engine@5.15.14(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.4
       '@emotion/cache': 11.11.0
       csstype: 3.1.3
       prop-types: 15.8.1
-      react: 18.3.0
+      react: 18.3.1
     optionalDependencies:
-      '@emotion/react': 11.11.4(@types/react@18.3.0)(react@18.3.0)
-      '@emotion/styled': 11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
+      '@emotion/react': 11.11.4(@types/react@18.3.1)(react@18.3.1)
+      '@emotion/styled': 11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1)
 
-  '@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)':
+  '@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.4
-      '@mui/private-theming': 5.15.14(@types/react@18.3.0)(react@18.3.0)
-      '@mui/styled-engine': 5.15.14(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(react@18.3.0)
-      '@mui/types': 7.2.14(@types/react@18.3.0)
-      '@mui/utils': 5.15.14(@types/react@18.3.0)(react@18.3.0)
+      '@mui/private-theming': 5.15.14(@types/react@18.3.1)(react@18.3.1)
+      '@mui/styled-engine': 5.15.14(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(react@18.3.1)
+      '@mui/types': 7.2.14(@types/react@18.3.1)
+      '@mui/utils': 5.15.14(@types/react@18.3.1)(react@18.3.1)
       clsx: 2.1.1
       csstype: 3.1.3
       prop-types: 15.8.1
-      react: 18.3.0
+      react: 18.3.1
     optionalDependencies:
-      '@emotion/react': 11.11.4(@types/react@18.3.0)(react@18.3.0)
-      '@emotion/styled': 11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
-      '@types/react': 18.3.0
+      '@emotion/react': 11.11.4(@types/react@18.3.1)(react@18.3.1)
+      '@emotion/styled': 11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1)
+      '@types/react': 18.3.1
 
-  '@mui/types@7.2.14(@types/react@18.3.0)':
+  '@mui/types@7.2.14(@types/react@18.3.1)':
     optionalDependencies:
-      '@types/react': 18.3.0
+      '@types/react': 18.3.1
 
-  '@mui/utils@5.15.14(@types/react@18.3.0)(react@18.3.0)':
+  '@mui/utils@5.15.14(@types/react@18.3.1)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.4
       '@types/prop-types': 15.7.12
       prop-types: 15.8.1
-      react: 18.3.0
-      react-is: 18.3.0
+      react: 18.3.1
+      react-is: 18.3.1
     optionalDependencies:
-      '@types/react': 18.3.0
+      '@types/react': 18.3.1
 
   '@next/bundle-analyzer@14.2.3':
     dependencies:
@@ -11297,10 +11251,10 @@ snapshots:
 
   '@protobufjs/utf8@1.1.0': {}
 
-  '@react-native-async-storage/async-storage@1.23.1(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.0)(react@18.3.0))':
+  '@react-native-async-storage/async-storage@1.23.1(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.1)(react@18.3.1))':
     dependencies:
       merge-options: 3.0.4
-      react-native: 0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.0)(react@18.3.0)
+      react-native: 0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.1)(react@18.3.1)
 
   '@react-native-community/cli-clean@13.6.4':
     dependencies:
@@ -11449,14 +11403,14 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@react-native-community/netinfo@11.3.1(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.0)(react@18.3.0))':
+  '@react-native-community/netinfo@11.3.1(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.1)(react@18.3.1))':
     dependencies:
-      react-native: 0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.0)(react@18.3.0)
+      react-native: 0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.1)(react@18.3.1)
 
-  '@react-native-picker/picker@2.7.5(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.0)(react@18.3.0))(react@18.3.0)':
+  '@react-native-picker/picker@2.7.5(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.1)(react@18.3.1))(react@18.3.1)':
     dependencies:
-      react: 18.3.0
-      react-native: 0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.0)(react@18.3.0)
+      react: 18.3.1
+      react-native: 0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.1)(react@18.3.1)
 
   '@react-native/assets-registry@0.74.81': {}
 
@@ -11511,7 +11465,7 @@ snapshots:
       '@babel/template': 7.24.0
       '@react-native/babel-plugin-codegen': 0.74.81(@babel/preset-env@7.24.4(@babel/core@7.24.4))
       babel-plugin-transform-flow-enums: 0.0.2(@babel/core@7.24.4)
-      react-refresh: 0.14.1
+      react-refresh: 0.14.2
     transitivePeerDependencies:
       - '@babel/preset-env'
       - supports-color
@@ -11592,14 +11546,14 @@ snapshots:
 
   '@react-native/normalize-colors@0.74.81': {}
 
-  '@react-native/virtualized-lists@0.74.81(@types/react@18.3.0)(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.0)(react@18.3.0))(react@18.3.0)':
+  '@react-native/virtualized-lists@0.74.81(@types/react@18.3.1)(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.1)(react@18.3.1))(react@18.3.1)':
     dependencies:
       invariant: 2.2.4
       nullthrows: 1.1.1
-      react: 18.3.0
-      react-native: 0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.0)(react@18.3.0)
+      react: 18.3.1
+      react-native: 0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.1)(react@18.3.1)
     optionalDependencies:
-      '@types/react': 18.3.0
+      '@types/react': 18.3.1
 
   '@repeaterjs/repeater@3.0.4': {}
 
@@ -12057,8 +12011,6 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
-  '@types/json-stable-stringify@1.0.36': {}
-
   '@types/json5@0.0.29': {}
 
   '@types/long@4.0.2': {}
@@ -12092,13 +12044,13 @@ snapshots:
 
   '@types/react-dom@18.3.0':
     dependencies:
-      '@types/react': 18.3.0
+      '@types/react': 18.3.1
 
   '@types/react-transition-group@4.4.10':
     dependencies:
-      '@types/react': 18.3.0
+      '@types/react': 18.3.1
 
-  '@types/react@18.3.0':
+  '@types/react@18.3.1':
     dependencies:
       '@types/prop-types': 15.7.12
       csstype: 3.1.3
@@ -12565,27 +12517,25 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.0.0
 
-  aws-amplify-react-native@7.0.8(@react-native-picker/picker@2.7.5(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.0)(react@18.3.0))(react@18.3.0))(aws-amplify@6.1.4(aws-cdk-lib@2.139.0(constructs@10.3.0))(constructs@10.3.0))(graphql@16.8.1):
+  aws-amplify-react-native@7.0.8(@react-native-picker/picker@2.7.5(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.1)(react@18.3.1))(react@18.3.1))(aws-amplify@6.1.4)(graphql@16.8.1):
     dependencies:
-      '@react-native-picker/picker': 2.7.5(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.0)(react@18.3.0))(react@18.3.0)
-      aws-amplify: 6.1.4(aws-cdk-lib@2.139.0(constructs@10.3.0))(constructs@10.3.0)
+      '@react-native-picker/picker': 2.7.5(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.1)(react@18.3.1))(react@18.3.1)
+      aws-amplify: 6.1.4
       buffer: 5.7.1
       graphql: 16.8.1
 
-  aws-amplify@6.1.4(aws-cdk-lib@2.139.0(constructs@10.3.0))(constructs@10.3.0):
+  aws-amplify@6.1.4:
     dependencies:
       '@aws-amplify/analytics': 7.0.28(@aws-amplify/core@6.0.28)
-      '@aws-amplify/api': 6.0.30(@aws-amplify/core@6.0.28)(aws-cdk-lib@2.139.0(constructs@10.3.0))(constructs@10.3.0)
+      '@aws-amplify/api': 6.0.30(@aws-amplify/core@6.0.28)
       '@aws-amplify/auth': 6.2.1(@aws-amplify/core@6.0.28)
       '@aws-amplify/core': 6.0.28
-      '@aws-amplify/datastore': 5.0.30(@aws-amplify/core@6.0.28)(aws-cdk-lib@2.139.0(constructs@10.3.0))(constructs@10.3.0)
+      '@aws-amplify/datastore': 5.0.30(@aws-amplify/core@6.0.28)
       '@aws-amplify/notifications': 2.0.28(@aws-amplify/core@6.0.28)
       '@aws-amplify/storage': 6.3.1(@aws-amplify/core@6.0.28)
       tslib: 2.6.2
     transitivePeerDependencies:
-      - aws-cdk-lib
       - aws-crt
-      - constructs
 
   aws-cdk-lib@2.139.0(constructs@10.3.0):
     dependencies:
@@ -12600,12 +12550,12 @@ snapshots:
 
   aws-lambda@1.0.7:
     dependencies:
-      aws-sdk: 2.1607.0
+      aws-sdk: 2.1608.0
       commander: 3.0.2
       js-yaml: 3.14.1
       watchpack: 2.4.1
 
-  aws-sdk@2.1607.0:
+  aws-sdk@2.1608.0:
     dependencies:
       buffer: 4.9.2
       events: 1.1.1
@@ -12796,7 +12746,7 @@ snapshots:
   browserslist@4.23.0:
     dependencies:
       caniuse-lite: 1.0.30001612
-      electron-to-chromium: 1.4.749
+      electron-to-chromium: 1.4.750
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.23.0)
 
@@ -13297,7 +13247,7 @@ snapshots:
 
   ee-first@1.1.1: {}
 
-  electron-to-chromium@1.4.749: {}
+  electron-to-chromium@1.4.750: {}
 
   emittery@0.13.1: {}
 
@@ -13495,7 +13445,7 @@ snapshots:
       eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@9.1.1)(typescript@5.4.5))(eslint-import-resolver-typescript@3.6.1)(eslint@9.1.1)
       eslint-plugin-jsx-a11y: 6.8.0(eslint@9.1.1)
       eslint-plugin-react: 7.34.1(eslint@9.1.1)
-      eslint-plugin-react-hooks: 4.6.1(eslint@9.1.1)
+      eslint-plugin-react-hooks: 4.6.2(eslint@9.1.1)
     optionalDependencies:
       typescript: 5.4.5
     transitivePeerDependencies:
@@ -13682,7 +13632,7 @@ snapshots:
     optionalDependencies:
       eslint-config-prettier: 9.1.0(eslint@9.1.1)
 
-  eslint-plugin-react-hooks@4.6.1(eslint@9.1.1):
+  eslint-plugin-react-hooks@4.6.2(eslint@9.1.1):
     dependencies:
       eslint: 9.1.1
 
@@ -13755,7 +13705,7 @@ snapshots:
       lodash.merge: 4.6.2
       minimatch: 3.1.2
       natural-compare: 1.4.0
-      optionator: 0.9.3
+      optionator: 0.9.4
       strip-ansi: 6.0.1
       text-table: 0.2.0
     transitivePeerDependencies:
@@ -14361,7 +14311,7 @@ snapshots:
       through: 2.3.8
       wrap-ansi: 6.2.0
 
-  inquirer@9.2.19:
+  inquirer@9.2.20:
     dependencies:
       '@inquirer/figures': 1.0.1
       '@ljharb/through': 2.3.13
@@ -15014,13 +14964,6 @@ snapshots:
 
   json-stable-stringify-without-jsonify@1.0.1: {}
 
-  json-stable-stringify@1.1.1:
-    dependencies:
-      call-bind: 1.0.7
-      isarray: 2.0.5
-      jsonify: 0.0.1
-      object-keys: 1.1.1
-
   json-to-pretty-yaml@1.2.2:
     dependencies:
       remedial: 1.0.8
@@ -15041,8 +14984,6 @@ snapshots:
       universalify: 2.0.1
     optionalDependencies:
       graceful-fs: 4.2.11
-
-  jsonify@0.0.1: {}
 
   jsx-ast-utils@3.3.5:
     dependencies:
@@ -15515,7 +15456,7 @@ snapshots:
     dependencies:
       enhanced-resolve: 5.16.0
 
-  next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@next/env': 14.2.3
       '@swc/helpers': 0.5.5
@@ -15523,9 +15464,9 @@ snapshots:
       caniuse-lite: 1.0.30001612
       graceful-fs: 4.2.11
       postcss: 8.4.31
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
-      styled-jsx: 5.1.1(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react@18.3.0)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      styled-jsx: 5.1.1(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react@18.3.1)
     optionalDependencies:
       '@next/swc-darwin-arm64': 14.2.3
       '@next/swc-darwin-x64': 14.2.3
@@ -15658,14 +15599,14 @@ snapshots:
 
   opener@1.5.2: {}
 
-  optionator@0.9.3:
+  optionator@0.9.4:
     dependencies:
-      '@aashutoshrathi/word-wrap': 1.2.6
       deep-is: 0.1.4
       fast-levenshtein: 2.0.6
       levn: 0.4.1
       prelude-ls: 1.2.1
       type-check: 0.4.0
+      word-wrap: 1.2.5
 
   ora@5.4.1:
     dependencies:
@@ -15854,7 +15795,7 @@ snapshots:
     dependencies:
       '@jest/schemas': 29.6.3
       ansi-styles: 5.2.0
-      react-is: 18.3.0
+      react-is: 18.3.1
 
   process-nextick-args@2.0.1: {}
 
@@ -15929,19 +15870,19 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  react-dom@18.3.0(react@18.3.0):
+  react-dom@18.3.1(react@18.3.1):
     dependencies:
       loose-envify: 1.4.0
-      react: 18.3.0
-      scheduler: 0.23.1
+      react: 18.3.1
+      scheduler: 0.23.2
 
   react-is@16.13.1: {}
 
   react-is@17.0.2: {}
 
-  react-is@18.3.0: {}
+  react-is@18.3.1: {}
 
-  react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.0)(react@18.3.0):
+  react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.1)(react@18.3.1):
     dependencies:
       '@jest/create-cache-key-function': 29.7.0
       '@react-native-community/cli': 13.6.4
@@ -15953,7 +15894,7 @@ snapshots:
       '@react-native/gradle-plugin': 0.74.81
       '@react-native/js-polyfills': 0.74.81
       '@react-native/normalize-colors': 0.74.81
-      '@react-native/virtualized-lists': 0.74.81(@types/react@18.3.0)(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.0)(react@18.3.0))(react@18.3.0)
+      '@react-native/virtualized-lists': 0.74.81(@types/react@18.3.1)(react-native@0.74.0(@babel/core@7.24.4)(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react@18.3.1)(react@18.3.1))(react@18.3.1)
       abort-controller: 3.0.0
       anser: 1.4.10
       ansi-regex: 5.0.1
@@ -15971,10 +15912,10 @@ snapshots:
       nullthrows: 1.1.1
       pretty-format: 26.6.2
       promise: 8.3.0
-      react: 18.3.0
+      react: 18.3.1
       react-devtools-core: 5.1.0
-      react-refresh: 0.14.1
-      react-shallow-renderer: 16.15.0(react@18.3.0)
+      react-refresh: 0.14.2
+      react-shallow-renderer: 16.15.0(react@18.3.1)
       regenerator-runtime: 0.13.11
       scheduler: 0.24.0-canary-efb381bbf-20230505
       stacktrace-parser: 0.1.10
@@ -15982,7 +15923,7 @@ snapshots:
       ws: 6.2.2
       yargs: 17.7.2
     optionalDependencies:
-      '@types/react': 18.3.0
+      '@types/react': 18.3.1
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/preset-env'
@@ -15991,33 +15932,33 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  react-refresh@0.14.1: {}
+  react-refresh@0.14.2: {}
 
   react-refresh@0.4.3: {}
 
-  react-shallow-renderer@16.15.0(react@18.3.0):
+  react-shallow-renderer@16.15.0(react@18.3.1):
     dependencies:
       object-assign: 4.1.1
-      react: 18.3.0
-      react-is: 18.3.0
+      react: 18.3.1
+      react-is: 18.3.1
 
-  react-test-renderer@18.3.0(react@18.3.0):
+  react-test-renderer@18.3.1(react@18.3.1):
     dependencies:
-      react: 18.3.0
-      react-is: 18.3.0
-      react-shallow-renderer: 16.15.0(react@18.3.0)
-      scheduler: 0.23.1
+      react: 18.3.1
+      react-is: 18.3.1
+      react-shallow-renderer: 16.15.0(react@18.3.1)
+      scheduler: 0.23.2
 
-  react-transition-group@4.4.5(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  react-transition-group@4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.24.4
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
-  react@18.3.0:
+  react@18.3.1:
     dependencies:
       loose-envify: 1.4.0
 
@@ -16207,7 +16148,7 @@ snapshots:
 
   sax@1.2.1: {}
 
-  scheduler@0.23.1:
+  scheduler@0.23.2:
     dependencies:
       loose-envify: 1.4.0
 
@@ -16485,10 +16426,10 @@ snapshots:
 
   strnum@1.0.5: {}
 
-  styled-jsx@5.1.1(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react@18.3.0):
+  styled-jsx@5.1.1(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react@18.3.1):
     dependencies:
       client-only: 0.0.1
-      react: 18.3.0
+      react: 18.3.1
     optionalDependencies:
       '@babel/core': 7.24.4
       babel-plugin-macros: 3.1.0
@@ -16960,6 +16901,8 @@ snapshots:
   which@2.0.2:
     dependencies:
       isexe: 2.0.0
+
+  word-wrap@1.2.5: {}
 
   wrap-ansi@6.2.0:
     dependencies:

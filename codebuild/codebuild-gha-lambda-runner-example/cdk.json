@@ -1,0 +1,22 @@
+{
+  "app": "pnpm dlx node --loader ts-node/esm bin/codebuild-gha-lambda-runner-example.ts",
+  "watch": {
+    "include": [
+      "**"
+    ],
+    "exclude": [
+      "README.md",
+      "cdk*.json",
+      "**/*.d.ts",
+      "**/*.js",
+      "tsconfig.json",
+      "package*.json",
+      "yarn.lock",
+      "node_modules",
+      "test"
+    ]
+  },
+  "requireApproval": "never",
+  "context": {
+  }
+}

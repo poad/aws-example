@@ -138,7 +138,7 @@ if (context.triggers.customMessge) {
   };
 }
 
-// eslint-disable-next-line no-new
+ 
 new LambdaExamplesStack(app, `${env}-lambda-stack`, {
   name: `${env}-lambda`,
   region,

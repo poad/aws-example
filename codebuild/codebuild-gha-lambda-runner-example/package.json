@@ -1,0 +1,36 @@
+{
+  "name": "codebuild-gha-lambda-runner-example",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "codebuild-gha-lambda-runner-example": "bin/codebuild-gha-lambda-runner-example.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "vitest --run",
+    "cdk": "cdk",
+    "style-check": "prettier --write bin lib",
+    "eslint-check": "eslint './{bin,lib}/**/*.ts'",
+    "style:fix": "prettier --write bin lib",
+    "eslint:fix": "eslint --fix './{bin,lib}/**/*.ts'",
+    "lint-fix": "pnpm --parallel /^.*:fix$/",
+    "lint": "pnpm /^.*:check$/"
+  },
+  "devDependencies": {
+    "@types/node": "20.12.7",
+    "@vitest/coverage-v8": "^1.5.3",
+    "aws-cdk": "2.139.1",
+    "esbuild": "^0.20.2",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.4.5",
+    "vite": "^5.2.10",
+    "vite-tsconfig-paths": "^4.3.2",
+    "vitest": "^1.5.3"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "2.139.1",
+    "constructs": "^10.3.0",
+    "source-map-support": "^0.5.21"
+  }
+}

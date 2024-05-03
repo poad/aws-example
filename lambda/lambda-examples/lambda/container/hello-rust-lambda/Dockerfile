@@ -1,7 +1,6 @@
 ARG LLVM_VERSION=18
 ARG NODE_VERSION=20
 ARG DIST=ubuntu
-ARG PYTHON_VERSION=3.12
 ARG BASE_IMAGE=ghcr.io/poad/docker-aws-lambda-container-images/${DIST}
 ARG DEBUG_IMAGE=ghcr.io/poad/docker-aws-lambda-container-images/${DIST}-debug
 
@@ -34,7 +33,10 @@ FROM buildpack-deps:stable-curl AS downloader
 RUN curl -sSLo /tmp/llvm-snapshot.gpg.key "https://apt.llvm.org/llvm-snapshot.gpg.key" \
  && curl --proto '=https' --tlsv1.2 -sSfo /tmp/sh.rustup.rs "https://sh.rustup.rs"
 
-FROM ${BASE_IMAGE}:node${NODE_VERSION} AS builder
+FROM --platform=$BUILDPLATFORM ${BASE_IMAGE}:node${NODE_VERSION} AS builder
+
+ARG BUILDPLATFORM
+ARG TARGETPLATFORM
 
 COPY --from=downloader /tmp/llvm-snapshot.gpg.key /tmp/llvm-snapshot.gpg.key
 COPY --from=downloader /tmp/sh.rustup.rs /tmp/sh.rustup.rs
@@ -46,13 +48,35 @@ WORKDIR /var/task/
 ENV PATH ${PATH}:/root/.cargo/bin
 ARG DEBIAN_FRONTEND=noninteractive
 
-ARG PYTHON_VERSION
+RUN BUILD_OPTIONS=""; TARGET="" \
+  && if [ "${TARGETPLATFORM}" != "${BUILDPLATFORM}" ]; then \
+        case "${TARGETPLATFORM}" in \
+            'linux/arm64') \
+                apt update -qqqqy \
+                apt install -qqqqy --no-install-recommends g++-aarch64-linux-gnu libc6-dev-arm64-cross crossbuild-essential-arm64  \
+                TARGET="aarch64-unknown-linux-gnu" \
+                BUILD_OPTIONS="--target=${TARGET}" \
+                ;; \
+            'linux/amd64') \
+                apt update -qqqqy \
+                apt install -qqqqy --no-install-recommends g++-x86_64-linux-gnu libc6-dev-amd64-cross crossbuild-essential-amd64 \
+                TARGET="x86_64-unknown-linux-gnu" \
+                BUILD_OPTIONS="--target=${TARGET}" \
+                ;; \
+            *) \
+                ;; \
+        esac \
+ &&   rustup target add ${TARGET} \
+ &&   rustup toolchain install stable-${TARGET} \
+ ;  fi \
+ ; export BUILD_OPTIONS
 
 RUN apt-get update -qq \
  && apt-get install --no-install-recommends -qqy \
     unzip \
     libcurl4-openssl-dev \
-    python${PYTHON_VERSION}-dev \
+    python3-distutils-extra \
+    python3-venv \
     lsb-release \
     curl \
     ca-certificates \
@@ -60,9 +84,9 @@ RUN apt-get update -qq \
     binutils \
     apt-utils \
     software-properties-common \
- && apt-key add /tmp/llvm-snapshot.gpg.key \
+ && gpg --no-default-keyring --keyring /usr/share/keyrings/llvm-keyring.gpg --import /tmp/llvm-snapshot.gpg.key \
  && rm -rf /tmp/llvm-snapshot.gpg.key \
- && echo "deb http://apt.llvm.org/$(lsb_release -cs)/ llvm-toolchain-$(lsb_release -cs)-${LLVM_VERSION} main" >> /etc/apt/sources.list.d/llvm-toolchain.list \
+ && echo "deb [signed-by=/usr/share/keyrings/llvm-keyring.gpg] http://apt.llvm.org/$(lsb_release -cs)/ llvm-toolchain-$(lsb_release -cs)-${LLVM_VERSION} main" >> /etc/apt/sources.list.d/llvm-toolchain.list \
  && apt-get update -qq \
  && apt-get install --no-install-recommends -qqy \
     clang-${LLVM_VERSION} \
@@ -74,7 +98,7 @@ RUN apt-get update -qq \
  && /tmp/sh.rustup.rs -y \
  && rm -rf /tmp/sh.rustup.rs \
  && mkdir -p /work
- 
+
 ENV PATH ${PATH}:/root/.cargo/bin
 
 WORKDIR /work
@@ -82,12 +106,12 @@ WORKDIR /work
 COPY ./src /work/src
 COPY Cargo.toml /work/Cargo.toml
 
-RUN cargo build --target x86_64-unknown-linux-gnu \
- && cargo build --release --target x86_64-unknown-linux-gnu
+RUN cargo build ${BUILD_OPTIONS} \
+ && cargo build --release ${BUILD_OPTIONS}
 
 FROM ${BASE_IMAGE}:node${NODE_VERSION} AS release
 
-COPY --from=builder /work/target/x86_64-unknown-linux-gnu/release/handler /var/task/handler
+COPY --from=builder /work/target/release/handler /var/task/handler
 RUN chmod +x /var/task/handler
 
 WORKDIR /var/task/
@@ -98,7 +122,7 @@ FROM ${DEBUG_IMAGE}:node${NODE_VERSION} AS debug
 
 ENV RUST_BACKTRACE=full
 
-COPY --from=builder /work/target/x86_64-unknown-linux-gnu/debug/handler /var/task/handler
+COPY --from=builder /work/target/debug/handler /var/task/handler
 RUN chmod +x /var/task/handler
 
 WORKDIR /var/task/

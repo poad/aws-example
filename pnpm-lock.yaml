@@ -182,8 +182,8 @@ importers:
   amplify/amplify-cdk/infra:
     dependencies:
       '@aws-cdk/aws-amplify-alpha':
-        specifier: 2.136.0-alpha.0
-        version: 2.136.0-alpha.0(aws-cdk-lib@2.140.0(constructs@10.3.0))(constructs@10.3.0)
+        specifier: 2.140.0-alpha.0
+        version: 2.140.0-alpha.0(aws-cdk-lib@2.140.0(constructs@10.3.0))(constructs@10.3.0)
       aws-cdk-lib:
         specifier: ^2.140.0
         version: 2.140.0(constructs@10.3.0)
@@ -257,11 +257,11 @@ importers:
         version: 0.5.21
     devDependencies:
       '@types/node':
-        specifier: 20.12.7
-        version: 20.12.7
+        specifier: 20.12.8
+        version: 20.12.8
       '@vitest/coverage-v8':
         specifier: ^1.5.3
-        version: 1.5.3(vitest@1.5.3(@types/node@20.12.7)(terser@5.31.0))
+        version: 1.5.3(vitest@1.5.3(@types/node@20.12.8)(terser@5.31.0))
       aws-cdk:
         specifier: 2.140.0
         version: 2.140.0
@@ -270,19 +270,19 @@ importers:
         version: 0.20.2
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@20.12.7)(typescript@5.4.5)
+        version: 10.9.2(@types/node@20.12.8)(typescript@5.4.5)
       typescript:
         specifier: ~5.4.5
         version: 5.4.5
       vite:
         specifier: ^5.2.11
-        version: 5.2.11(@types/node@20.12.7)(terser@5.31.0)
+        version: 5.2.11(@types/node@20.12.8)(terser@5.31.0)
       vite-tsconfig-paths:
         specifier: ^4.3.2
-        version: 4.3.2(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.7)(terser@5.31.0))
+        version: 4.3.2(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.8)(terser@5.31.0))
       vitest:
         specifier: ^1.5.3
-        version: 1.5.3(@types/node@20.12.7)(terser@5.31.0)
+        version: 1.5.3(@types/node@20.12.8)(terser@5.31.0)
 
   codebuild/codebuild-webhook-project/infra:
     dependencies:
@@ -849,8 +849,8 @@ importers:
   lambda/lambda-examples:
     dependencies:
       '@aws-cdk/aws-lambda-python-alpha':
-        specifier: 2.136.0-alpha.0
-        version: 2.136.0-alpha.0(aws-cdk-lib@2.140.0(constructs@10.3.0))(constructs@10.3.0)
+        specifier: 2.140.0-alpha.0
+        version: 2.140.0-alpha.0(aws-cdk-lib@2.140.0(constructs@10.3.0))(constructs@10.3.0)
       aws-cdk-lib:
         specifier: ^2.140.0
         version: 2.140.0(constructs@10.3.0)
@@ -1203,18 +1203,18 @@ packages:
   '@aws-cdk/asset-node-proxy-agent-v6@2.0.3':
     resolution: {integrity: sha512-twhuEG+JPOYCYPx/xy5uH2+VUsIEhPTzDY0F1KuB+ocjWWB/KEDiOVL19nHvbPCB6fhWnkykXEMJ4HHcKvjtvg==}
 
-  '@aws-cdk/aws-amplify-alpha@2.136.0-alpha.0':
-    resolution: {integrity: sha512-JCgC+iTHEXdqr5CIAwVJP50P9Z/eeY6sLeHBNQ4kkSN/0EgHC5YEna+hUiE6iRodABS/iU94tRjlGNvSkGro8g==}
+  '@aws-cdk/aws-amplify-alpha@2.140.0-alpha.0':
+    resolution: {integrity: sha512-v94FkHDCgRw5CmURxsN6LurU0f0vbxmSr9yYHOkJ6GnGU+55yQ6AWpJVm635j1XeguyOZutUjmBnFGLkHTSwfg==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
-      aws-cdk-lib: ^2.136.0
+      aws-cdk-lib: ^2.140.0
       constructs: ^10.0.0
 
-  '@aws-cdk/aws-lambda-python-alpha@2.136.0-alpha.0':
-    resolution: {integrity: sha512-T+F//0IWhvTPj2wIHRoqoBK8kEzzNVzEz7bA+bk+IrG+KYsbxYivC028Zl8bWQSMOkQ64TouMXModMLSgTpsRg==}
+  '@aws-cdk/aws-lambda-python-alpha@2.140.0-alpha.0':
+    resolution: {integrity: sha512-tJ4GK4fIGjfHEN38NTYnxiovCB7xoR4sZRQtN9XefzpJKKllKxYMXLMF1PRRiOpewLjEtgupN5JG8Kfl/SRxcQ==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
-      aws-cdk-lib: ^2.136.0
+      aws-cdk-lib: ^2.140.0
       constructs: ^10.0.0
 
   '@aws-cdk/cfnspec@2.68.0':
@@ -3938,9 +3938,6 @@ packages:
 
   '@types/node@18.19.31':
     resolution: {integrity: sha512-ArgCD39YpyyrtFKIqMDvjz79jto5fcI/SVUs2HwB+f0dAzq68yqOdyaSivLiLugSziTpNXLQrVb7RZFmdZzbhA==}
-
-  '@types/node@20.12.7':
-    resolution: {integrity: sha512-wq0cICSkRLVaf3UGLMGItu/PtdY7oaXaI/RVU+xliKVOtRna3PRY57ZDfztpDL0n11vfymMUnXv8QwYCO7L1wg==}
 
   '@types/node@20.12.8':
     resolution: {integrity: sha512-NU0rJLJnshZWdE/097cdCBbyW1h4hEg0xpovcoAQYHl8dnEyp/NAOiE45pvc+Bd1Dt+2r94v2eGFpQJ4R7g+2w==}
@@ -8520,12 +8517,12 @@ snapshots:
 
   '@aws-cdk/asset-node-proxy-agent-v6@2.0.3': {}
 
-  '@aws-cdk/aws-amplify-alpha@2.136.0-alpha.0(aws-cdk-lib@2.140.0(constructs@10.3.0))(constructs@10.3.0)':
+  '@aws-cdk/aws-amplify-alpha@2.140.0-alpha.0(aws-cdk-lib@2.140.0(constructs@10.3.0))(constructs@10.3.0)':
     dependencies:
       aws-cdk-lib: 2.140.0(constructs@10.3.0)
       constructs: 10.3.0
 
-  '@aws-cdk/aws-lambda-python-alpha@2.136.0-alpha.0(aws-cdk-lib@2.140.0(constructs@10.3.0))(constructs@10.3.0)':
+  '@aws-cdk/aws-lambda-python-alpha@2.140.0-alpha.0(aws-cdk-lib@2.140.0(constructs@10.3.0))(constructs@10.3.0)':
     dependencies:
       aws-cdk-lib: 2.140.0(constructs@10.3.0)
       constructs: 10.3.0
@@ -12751,10 +12748,6 @@ snapshots:
     dependencies:
       undici-types: 5.26.5
 
-  '@types/node@20.12.7':
-    dependencies:
-      undici-types: 5.26.5
-
   '@types/node@20.12.8':
     dependencies:
       undici-types: 5.26.5
@@ -12982,7 +12975,7 @@ snapshots:
     dependencies:
       '@codegenie/serverless-express': 4.14.1
 
-  '@vitest/coverage-v8@1.5.3(vitest@1.5.3(@types/node@20.12.7)(terser@5.31.0))':
+  '@vitest/coverage-v8@1.5.3(vitest@1.5.3(@types/node@20.12.8)(terser@5.31.0))':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 0.2.3
@@ -12997,7 +12990,7 @@ snapshots:
       std-env: 3.7.0
       strip-literal: 2.1.0
       test-exclude: 6.0.0
-      vitest: 1.5.3(@types/node@20.12.7)(terser@5.31.0)
+      vitest: 1.5.3(@types/node@20.12.8)(terser@5.31.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -17547,24 +17540,6 @@ snapshots:
 
   ts-log@2.2.5: {}
 
-  ts-node@10.9.2(@types/node@20.12.7)(typescript@5.4.5):
-    dependencies:
-      '@cspotcode/source-map-support': 0.8.1
-      '@tsconfig/node10': 1.0.11
-      '@tsconfig/node12': 1.0.11
-      '@tsconfig/node14': 1.0.3
-      '@tsconfig/node16': 1.0.4
-      '@types/node': 20.12.7
-      acorn: 8.11.3
-      acorn-walk: 8.3.2
-      arg: 4.1.3
-      create-require: 1.1.1
-      diff: 4.0.2
-      make-error: 1.3.6
-      typescript: 5.4.5
-      v8-compile-cache-lib: 3.0.1
-      yn: 3.1.1
-
   ts-node@10.9.2(@types/node@20.12.8)(typescript@5.4.5):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
@@ -17762,13 +17737,13 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vite-node@1.5.3(@types/node@20.12.7)(terser@5.31.0):
+  vite-node@1.5.3(@types/node@20.12.8)(terser@5.31.0):
     dependencies:
       cac: 6.7.14
       debug: 4.3.4
       pathe: 1.1.2
       picocolors: 1.0.0
-      vite: 5.2.11(@types/node@20.12.7)(terser@5.31.0)
+      vite: 5.2.11(@types/node@20.12.8)(terser@5.31.0)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -17779,28 +17754,28 @@ snapshots:
       - supports-color
       - terser
 
-  vite-tsconfig-paths@4.3.2(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.7)(terser@5.31.0)):
+  vite-tsconfig-paths@4.3.2(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.8)(terser@5.31.0)):
     dependencies:
       debug: 4.3.4
       globrex: 0.1.2
       tsconfck: 3.0.3(typescript@5.4.5)
     optionalDependencies:
-      vite: 5.2.11(@types/node@20.12.7)(terser@5.31.0)
+      vite: 5.2.11(@types/node@20.12.8)(terser@5.31.0)
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  vite@5.2.11(@types/node@20.12.7)(terser@5.31.0):
+  vite@5.2.11(@types/node@20.12.8)(terser@5.31.0):
     dependencies:
       esbuild: 0.20.2
       postcss: 8.4.38
       rollup: 4.17.2
     optionalDependencies:
-      '@types/node': 20.12.7
+      '@types/node': 20.12.8
       fsevents: 2.3.3
       terser: 5.31.0
 
-  vitest@1.5.3(@types/node@20.12.7)(terser@5.31.0):
+  vitest@1.5.3(@types/node@20.12.8)(terser@5.31.0):
     dependencies:
       '@vitest/expect': 1.5.3
       '@vitest/runner': 1.5.3
@@ -17819,11 +17794,11 @@ snapshots:
       strip-literal: 2.1.0
       tinybench: 2.8.0
       tinypool: 0.8.4
-      vite: 5.2.11(@types/node@20.12.7)(terser@5.31.0)
-      vite-node: 1.5.3(@types/node@20.12.7)(terser@5.31.0)
+      vite: 5.2.11(@types/node@20.12.8)(terser@5.31.0)
+      vite-node: 1.5.3(@types/node@20.12.8)(terser@5.31.0)
       why-is-node-running: 2.2.2
     optionalDependencies:
-      '@types/node': 20.12.7
+      '@types/node': 20.12.8
     transitivePeerDependencies:
       - less
       - lightningcss

@@ -1,4 +1,3 @@
-ARG LLVM_VERSION=18
 ARG NODE_VERSION=20
 ARG DIST=ubuntu
 ARG BASE_IMAGE=ghcr.io/poad/docker-aws-lambda-container-images/${DIST}
@@ -26,27 +25,37 @@ ARG DEPS="\
     libreadline-dev \
     libsqlite3-dev \
     libbz2-dev \
+    libc6-dev \
+    pkg-config \
+    python3-distutils-extra \
+    python3-venv \
+    lsb-release \
+    curl \
+    ca-certificates \
+    gnupg2 \
+    binutils \
+    apt-utils \
+    clang \
 "
 
-FROM buildpack-deps:stable-curl AS downloader
-
-RUN curl -sSLo /tmp/llvm-snapshot.gpg.key "https://apt.llvm.org/llvm-snapshot.gpg.key" \
- && curl --proto '=https' --tlsv1.2 -sSfo /tmp/sh.rustup.rs "https://sh.rustup.rs"
-
-FROM --platform=$BUILDPLATFORM ${BASE_IMAGE}:node${NODE_VERSION} AS builder
+FROM rust:slim AS builder
 
 ARG BUILDPLATFORM
 ARG TARGETPLATFORM
 
-COPY --from=downloader /tmp/llvm-snapshot.gpg.key /tmp/llvm-snapshot.gpg.key
-COPY --from=downloader /tmp/sh.rustup.rs /tmp/sh.rustup.rs
-
-ARG LLVM_VERSION
-
-WORKDIR /var/task/
-
-ENV PATH ${PATH}:/root/.cargo/bin
+ENV PNPM_HOME="/root/pnpm"
+ENV PATH="$PNPM_HOME:$PATH:/root/.cargo/bin"
 ARG DEBIAN_FRONTEND=noninteractive
+ENV SHELL="/bin/bash"
+
+RUN apt-get update -qqq \
+ && apt-get full-upgrade -qqqy \
+ && apt-get install -qqy --no-install-recommends ${DEPS} ca-certificates \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/* /var/log/apt/* /var/log/alternatives.log /var/log/dpkg.log /var/log/faillog /var/log/lastlog \
+ && mkdir -p /work
+
+WORKDIR /root
 
 RUN BUILD_OPTIONS=""; TARGET="" \
   && if [ "${TARGETPLATFORM}" != "${BUILDPLATFORM}" ]; then \
@@ -68,43 +77,13 @@ RUN BUILD_OPTIONS=""; TARGET="" \
         esac \
  &&   rustup target add ${TARGET} \
  &&   rustup toolchain install stable-${TARGET} \
- ;  fi \
+ ; fi \
  ; export BUILD_OPTIONS
-
-RUN apt-get update -qq \
- && apt-get install --no-install-recommends -qqy \
-    unzip \
-    libcurl4-openssl-dev \
-    python3-distutils-extra \
-    python3-venv \
-    lsb-release \
-    curl \
-    ca-certificates \
-    gnupg2 \
-    binutils \
-    apt-utils \
-    software-properties-common \
- && gpg --no-default-keyring --keyring /usr/share/keyrings/llvm-keyring.gpg --import /tmp/llvm-snapshot.gpg.key \
- && rm -rf /tmp/llvm-snapshot.gpg.key \
- && echo "deb [signed-by=/usr/share/keyrings/llvm-keyring.gpg] http://apt.llvm.org/$(lsb_release -cs)/ llvm-toolchain-$(lsb_release -cs)-${LLVM_VERSION} main" >> /etc/apt/sources.list.d/llvm-toolchain.list \
- && apt-get update -qq \
- && apt-get install --no-install-recommends -qqy \
-    clang-${LLVM_VERSION} \
-    lld-${LLVM_VERSION} \
-    libllvm${LLVM_VERSION} \
-    gcc \
- && rm -rf /var/lib/apt/lists/* /var/log/apt/* /var/log/alternatives.log /var/log/dpkg.log /var/log/faillog /var/log/lastlog \
- && chmod +x /tmp/sh.rustup.rs \
- && /tmp/sh.rustup.rs -y \
- && rm -rf /tmp/sh.rustup.rs \
- && mkdir -p /work
-
-ENV PATH ${PATH}:/root/.cargo/bin
-
-WORKDIR /work
 
 COPY ./src /work/src
 COPY Cargo.toml /work/Cargo.toml
+
+WORKDIR /work
 
 RUN cargo build ${BUILD_OPTIONS} \
  && cargo build --release ${BUILD_OPTIONS}

@@ -39,7 +39,7 @@ jobs:
         subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
         allow-no-subscriptions: true
 
-    - uses: pnpm/action-setup@v3
+    - uses: pnpm/action-setup@v4
       name: Install pnpm
       id: pnpm-install
       with:

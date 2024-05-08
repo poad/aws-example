@@ -10,7 +10,7 @@ export class CodebuildGhaLambdaRunnerExampleStack extends cdk.Stack {
       projectName: "codebuild-gha-lambda-runner-example",
       source: codebuild.Source.gitHub({
         owner: "poad",
-        repo: "aws-codebuild-github-lambda-runner-example",
+        repo: "aws-codebuild-github-lambda-runner-node-example",
         webhook: true,
         webhookFilters: [
           codebuild.FilterGroup.inEventOf(codebuild.EventAction.PUSH),

@@ -40,25 +40,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          version: latest
-          run_install: |
-            - recursive: true
-              args: [--no-frozen-lockfile]
-            - args: [--global, aws-cdk]
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4.0.2
         with:
           node-version: ${{ matrix.node-version }}
           check-latest: true
-          cache: pnpm
           architecture: x64
-      
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: |
+            - recursive: true
+              args: [--no-frozen-lockfile]
+            - args: [--global, aws-cdk]
+
       - name: generate dummy aws-exports.js
         working-directory: amplify/amplified_todo/src
         run: |
@@ -71,7 +67,7 @@ jobs:
               "aws_appsync_authenticationType": "API_KEY",
               "aws_appsync_apiKey": ""
           };
-          
+
           export default awsmobile;
           EOS
 

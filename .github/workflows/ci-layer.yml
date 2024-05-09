@@ -52,22 +52,20 @@ jobs:
     - name: checkout
       uses: actions/checkout@v4
 
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        check-latest: true
+
     - uses: pnpm/action-setup@v4
       name: Install pnpm
       id: pnpm-install
       with:
-        version: latest
         run_install: |
           - recursive: true
             args: [--no-frozen-lockfile]
           - args: [--global, aws-cdk]
-
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4.0.2
-      with:
-        node-version: ${{ matrix.node-version }}
-        check-latest: true
-        cache: pnpm
 
     - name: cdk deploy (${{ matrix.target.paths[0] }})
       env:
@@ -86,7 +84,7 @@ jobs:
       env:
         FUNCTION_STACK: loose-linkage-lambda-layer-function-${{ steps.gen-timestamp.outputs.timestamp }}
       run: aws cloudformation wait stack-create-complete --stack-name ${FUNCTION_STACK}
-    
+
     - name: check status (function)
       run: if [ ! ${{ steps.create-await-fn.outputs.stack-status }} = 'CREATE_COMPLETE' ]; then exit 1; fi
 

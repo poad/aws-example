@@ -97,7 +97,7 @@ export class CodebuildGhaLambdaRunnerExampleStack extends cdk.Stack {
           repo,
           webhook: true,
           webhookFilters: [
-            codebuild.FilterGroup.inEventOf(codebuild.EventAction.PUSH),
+            codebuild.FilterGroup.inEventOf(codebuild.EventAction.WORKFLOW_JOB_QUEUED),
           ],
         }),
         environment: {
@@ -108,11 +108,6 @@ export class CodebuildGhaLambdaRunnerExampleStack extends cdk.Stack {
       });
 
       const cfnProject = project.node.defaultChild as codebuild.CfnProject;
-      cfnProject.addOverride(
-        "Properties.Triggers.FilterGroups.0.0.Pattern",
-        "WORKFLOW_JOB_QUEUED",
-      );
-
       if (customImage) {
         cfnProject.addOverride(
           "Properties.Environment.Image",

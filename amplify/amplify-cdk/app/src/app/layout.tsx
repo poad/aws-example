@@ -8,7 +8,7 @@ import {
   Drawer,
   IconButton,
   List,
-  ListItem,
+  ListItemButton,
   ListItemIcon,
   ListItemText,
   Toolbar,
@@ -42,8 +42,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <Divider />
       <List>
         {['Info'].map((text) => (
-          <ListItem
-            button
+          <ListItemButton
             key={text}
             sx={{
               width: drawerWidth,
@@ -59,7 +58,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               />
             </ListItemIcon>
             <ListItemText primary={text} />
-          </ListItem>
+          </ListItemButton>
         ))}
       </List>
     </Box>

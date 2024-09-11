@@ -43,10 +43,10 @@ const resolvers: Resolvers = {
         return null;
       }
       const author = authors.find((it) => it.id === item.authorId);
-      return {
+      return author ? {
         ...item,
         author,
-      } || null;
+      } : null;
     },
     author: (_, { id }: QueryAuthorArgs): Author | null => {
       logger.debug('Query.author');

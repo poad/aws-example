@@ -86,6 +86,19 @@ export class CodebuildGhaLambdaRunnerExampleStack extends cdk.Stack {
             ],
           }),
 
+          'codeconnections-policy': new iam.PolicyDocument({
+            statements: [
+              new iam.PolicyStatement({
+                effect: iam.Effect.ALLOW,
+                actions: [
+                  "codestar-connection:*"
+                ],
+                resources: [
+                  '*',
+                ],
+              }),
+            ],
+          }),
         },
 
       });

@@ -31,7 +31,7 @@ export class ApolloServerApiGatewayStack extends cdk.Stack {
     });
 
     const apolloFn = new NodejsFunction(this, 'ApolloLambdaFunction', {
-      runtime: Runtime.NODEJS_20_X,
+      runtime: Runtime.NODEJS_22_X,
       entry: './lambda/index.ts',
       functionName,
       retryAttempts: 0,

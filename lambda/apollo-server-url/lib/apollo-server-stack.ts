@@ -23,7 +23,7 @@ export class ApolloServerStack extends Stack {
     });
 
     const fn = new NodejsFunction(this, 'ApolloServerLambdaFn', {
-      runtime: Runtime.NODEJS_20_X,
+      runtime: Runtime.NODEJS_22_X,
       entry: path.resolve(__dirname, '../lambda/index.ts'),
       functionName,
       retryAttempts: 0,

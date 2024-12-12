@@ -11,25 +11,33 @@ updates:
     rebase-strategy: auto
     assignees:
       - poad
-
-  - package-ecosystem: npm
-    directory: '/infra/s3/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
     groups:
-      s3:
+      actions:
         patterns:
           - "*"
 
   - package-ecosystem: npm
-    directory: '/infra/ecs/'
+    directories:
+      - '/infra/s3/'
+      - '/infra/ecs/'
+      - '/codebuild/custom-image-test/'
+      - '/codebuild/codebuild-webhook-project/infra/'
+      - '/codepipeline/adoptium-temurin-jib/infra/'
+      - '/codepipeline/codebuild-custom-image/java-adopt-base/infra/'
+      - '/codepipeline/codebuild-github-tag/infra/'
+      - '/codepipeline/docker-build/infra/'
+      - '/codepipeline/vulnerability-scan/infra/'
+      - '/cognito/cognito-s3-example/infra/'
+      - '/lambda/apollo-server-url/'
+      - '/lambda/layer/functions/function/handler/'
+      - '/lambda/layer/layer/'
+      - '/lambda/layer/layer/src/nodejs/'
+      - '/amplify/amplify-cdk/app/'
+      - '/amplify/amplify_nextapp/'
+      - '/amplify/amplify-cdk/infra/'
+      - '/amplify/amplified_todo/'
+      - '/node-sign-v4/'
+      - '/lambda/eventbridge-lambda/'
     schedule:
       interval: daily
       timezone: Asia/Tokyo
@@ -40,183 +48,7 @@ updates:
     assignees:
       - poad
     groups:
-      ecs:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
-    directory: '/codebuild/custom-image-test/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      codebuild-custom-image-test:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
-    directory: '/codebuild/codebuild-webhook-project/infra/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      codebuild-webhook-project:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
-    directory: '/codepipeline/adoptium-temurin-jib/infra/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      codepipeline-adoptium-temurin-jib:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
-    directory: '/codepipeline/codebuild-custom-image/java-adopt-base/infra/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      codepipeline-codebuild-custom-image:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
-    directory: '/codepipeline/codebuild-github-tag/infra/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      codepipeline-codebuild-github-tag:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
-    directory: '/codepipeline/docker-build/infra/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      codepipeline-docker-build:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
-    directory: '/codepipeline/vulnerability-scan/infra/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      codepipeline-vulnerability-scan:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
-    directory: '/cognito/cognito-s3-example/infra/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      cognito-s3-example-infra:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
-    directory: '/lambda/apollo-server-url/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      lambda-apollo-server-url:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
-    directory: '/lambda/apollo-server-api-gateway/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      lambda-apollo-server-api-gateway:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
-    directory: '/lambda/lambda-examples/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      lambda-examples:
+      npm:
         patterns:
           - "*"
 
@@ -232,151 +64,7 @@ updates:
     assignees:
       - poad
     groups:
-      boto:
-        patterns:
-          - "boto*"
-
-  - package-ecosystem: npm
-    directory: '/lambda/layer/functions/function/handler/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      lambda-layer-handler:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
-    directory: '/lambda/layer/layer/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      lambda-layer-layer:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
-    directory: '/lambda/layer/layer/src/nodejs/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      lambda-layer-layer-src:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
-    directory: '/amplify/amplify_nextapp/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      amplify-nextappr:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
-    directory: '/amplify/amplify-cdk/app/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      amplify-cdk-app:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
-    directory: '/amplify/amplify-cdk/infra/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      amplify-cdk-infra:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
-    directory: '/amplify/amplified_todo/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      amplify-amplified-todo:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
-    directory: '/node-sign-v4/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      node-sign-v4:
-        patterns:
-          - "*"
-
-  - package-ecosystem: npm
-    directory: '/lambda/eventbridge-lambda/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      eventbridge-lambda:
+      pip:
         patterns:
           - "*"
 
@@ -392,7 +80,7 @@ updates:
     assignees:
       - poad
     groups:
-      hello-rust-lambda-cargo:
+      cargo:
         patterns:
           - "*"
 
@@ -408,12 +96,14 @@ updates:
     assignees:
       - poad
     groups:
-      hello-rust-lambda-oci:
+      oci:
         patterns:
           - "*"
 
   - package-ecosystem: gradle
-    directory: '/codebuild/codebuild-webhook-project/app/'
+    directories:
+      - '/codebuild/codebuild-webhook-project/app/'
+      - '/amplify/amplified_todo/android/'
     schedule:
       interval: daily
       timezone: Asia/Tokyo
@@ -424,22 +114,6 @@ updates:
     assignees:
       - poad
     groups:
-      codebuild-webhook-project:
-        patterns:
-          - "*"
-
-  - package-ecosystem: gradle
-    directory: '/amplify/amplified_todo/android/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      amplified-todo-android:
+      gradle:
         patterns:
           - "*"

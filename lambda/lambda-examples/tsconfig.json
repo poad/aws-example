@@ -4,7 +4,7 @@
     "module": "commonjs",
     "lib": [
       "esnext",
-      "DOM"
+      "dom"
     ],
     "declaration": true,
     "strict": true,
@@ -20,7 +20,10 @@
     "inlineSources": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "esModuleInterop": true
+    "baseUrl": ".",
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
   },
   "exclude": [
     "node_modules",

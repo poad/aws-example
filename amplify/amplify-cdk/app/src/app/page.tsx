@@ -1,6 +1,6 @@
 'use client';
 import { Box, Link, Typography } from '@mui/material';
-import { ReactNode } from 'react';
+import { JSX, ReactNode } from 'react';
 
 function CardStyleLink(props: {
   children: ReactNode;

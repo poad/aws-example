@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "bin": "bin/lambda-examples.js",
+  "type": "module",
   "scripts": {
     "build": "tsc bin/*.ts lib/*.ts",
     "watch": "tsc -w",
@@ -19,9 +20,8 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
-    "@aws-cdk/aws-lambda-python-alpha": "2.173.0-alpha.0",
     "aws-cdk-lib": "^2.173.0",
-    "cdk-ecr-deployment": "^3.0.150",
+    "cdk-ecr-deployment": "^3.0.151",
     "constructs": "^10.4.2",
     "source-map-support": "^0.5.21"
   }

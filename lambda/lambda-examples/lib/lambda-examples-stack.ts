@@ -1,21 +1,13 @@
-import * as cdk from 'aws-cdk-lib';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as events from 'aws-cdk-lib/aws-events';
-import * as targets from 'aws-cdk-lib/aws-events-targets';
-import * as lambda from 'aws-cdk-lib/aws-lambda';
-import { DockerImageFunction, DockerImageCode } from 'aws-cdk-lib/aws-lambda';
-import {
-  ServicePrincipal,
-} from 'aws-cdk-lib/aws-iam';
+import * as docker from 'aws-cdk-lib/aws-lambda';
 import {
   Stack, StackProps,
 } from 'aws-cdk-lib';
 import { HttpApi, HttpMethod } from 'aws-cdk-lib/aws-apigatewayv2';
 import { HttpLambdaIntegration } from 'aws-cdk-lib/aws-apigatewayv2-integrations';
-import { PythonFunction } from '@aws-cdk/aws-lambda-python-alpha';
 import { RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
-import * as path from 'path';
 
 export interface GroupConfig {
   id: string,
@@ -97,7 +89,7 @@ export class LambdaExamplesStack extends Stack {
     super(scope, id, props);
 
     const role = new iam.Role(this, 'ec2-instance-killer-role', {
-      assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
+      assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com'),
       inlinePolicies: {
         'ec2-policy': new iam.PolicyDocument({
           statements: [
@@ -128,15 +120,6 @@ export class LambdaExamplesStack extends Stack {
       },
     });
 
-    const lambdaFn = new PythonFunction(this, 'Ec2InstanceKiller', {
-      functionName: 'ec2-instance-killer',
-      entry: path.resolve(__dirname, '../lambda/python'),
-      runtime: lambda.Runtime.PYTHON_3_12,
-      logRetention: RetentionDays.ONE_DAY,
-      role,
-      timeout: cdk.Duration.seconds(14.5 * 60),
-    });
-
     const schedule = new events.Rule(this, 'ec2-instance-killer', {
       schedule: events.Schedule.expression('cron(0 0 * * ? *)'),
     });
@@ -145,10 +128,8 @@ export class LambdaExamplesStack extends Stack {
       event: events.RuleTargetInput.fromObject({ tags: props.targetTags }),
     }) : ({});
 
-    schedule.addTarget(new targets.LambdaFunction(lambdaFn, event));
-
-    const rustFn = new DockerImageFunction(this, 'hello-rust-lambda-function', {
-      code: DockerImageCode.fromImageAsset('lambda', {
+    const rustFn = new docker.DockerImageFunction(this, 'hello-rust-lambda-function', {
+      code: docker.DockerImageCode.fromImageAsset('lambda', {
         target: 'release',
       }),
       functionName: `${props.environment}-hello-rust-lambda`,

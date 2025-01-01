@@ -25,7 +25,7 @@ export class AmplifyCdkStack extends Stack {
       autoBranchDeletion: true,
       environmentVariables: {
         AMPLIFY_MONOREPO_APP_ROOT: 'amplify/amplify-cdk/app',
-        _LIVE_UPDATES: '[{"name":"Node.js version","pkg":"node","type":"nvm","version":"16"},{"name":"Next.js version","pkg":"next-version","type":"internal","version":"latest"},{"name":"Yarn","pkg":"yarn","type":"npm","version":"latest"}]'
+        _LIVE_UPDATES: '[{"name":"Node.js version","pkg":"node","type":"nvm","version":"22"},{"name":"Next.js version","pkg":"next-version","type":"internal","version":"latest"},{"name":"Yarn","pkg":"yarn","type":"npm","version":"latest"}]'
       },
       role: new Role(this, 'AmplifyAppServiceRole', {
         roleName: 'AmplifyAppServiceRole',

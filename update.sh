@@ -21,7 +21,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-if ! (corepack use pnpm@latest-10 && pnpm install -r && pnpm up -r && pnpm -r build); then
+if ! (pnpm install -r && pnpm up -r && pnpm -r build); then
   cd "${CUR}" || exit
   exit 1
 fi

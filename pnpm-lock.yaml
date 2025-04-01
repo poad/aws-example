@@ -229,11 +229,11 @@ importers:
         specifier: ~5.4.5
         version: 5.4.5
       vite:
-        specifier: ^5.4.16
-        version: 5.4.16(@types/node@20.12.8)(terser@5.31.3)
+        specifier: ^6.2.4
+        version: 6.2.4(@types/node@20.12.8)(jiti@2.4.2)(terser@5.31.3)(tsx@4.19.3)(yaml@2.7.1)
       vite-tsconfig-paths:
         specifier: ^4.3.2
-        version: 4.3.2(typescript@5.4.5)(vite@5.4.16(@types/node@20.12.8)(terser@5.31.3))
+        version: 4.3.2(typescript@5.4.5)(vite@6.2.4(@types/node@20.12.8)(jiti@2.4.2)(terser@5.31.3)(tsx@4.19.3)(yaml@2.7.1))
       vitest:
         specifier: ^1.6.1
         version: 1.6.1(@types/node@20.12.8)(terser@5.31.3)
@@ -346,11 +346,11 @@ importers:
         specifier: ^8.29.0
         version: 8.29.0(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2)
       vite:
-        specifier: ^5.4.16
-        version: 5.4.16(@types/node@22.13.16)(terser@5.31.3)
+        specifier: ^6.2.4
+        version: 6.2.4(@types/node@22.13.16)(jiti@2.4.2)(terser@5.31.3)(tsx@4.19.3)(yaml@2.7.1)
       vite-tsconfig-paths:
         specifier: ^5.1.4
-        version: 5.1.4(typescript@5.8.2)(vite@5.4.16(@types/node@22.13.16)(terser@5.31.3))
+        version: 5.1.4(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.16)(jiti@2.4.2)(terser@5.31.3)(tsx@4.19.3)(yaml@2.7.1))
       vitest:
         specifier: ^2.1.9
         version: 2.1.9(@types/node@22.13.16)(terser@5.31.3)
@@ -776,18 +776,6 @@ importers:
       typescript:
         specifier: ^5.8.2
         version: 5.8.2
-
-  lambda/layer/layer/cdk.out/asset.12129db410a6d670b3a037c999ff2fef023ca03a5aef5f920c815e368d2cf4b1/nodejs:
-    dependencies:
-      log4js:
-        specifier: ^6.9.1
-        version: 6.9.1
-
-  lambda/layer/layer/cdk.out/asset.198db5d0826061ac6034e2cef889b30bdd9c01fc21542e46f7d353a1e1611904/nodejs:
-    dependencies:
-      log4js:
-        specifier: ^6.9.1
-        version: 6.9.1
 
   lambda/layer/layer/src/nodejs:
     dependencies:
@@ -5993,6 +5981,46 @@ packages:
       sugarss:
         optional: true
       terser:
+        optional: true
+
+  vite@6.2.4:
+    resolution: {integrity: sha512-veHMSew8CcRzhL5o8ONjy8gkfmFJAd5Ac16oxBUjlwgX3Gq2Wqr+qNC3TjPIpy7TPV/KporLga5GT9HqdrCizw==}
+    engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': ^18.0.0 || ^20.0.0 || >=22.0.0
+      jiti: '>=1.21.0'
+      less: '*'
+      lightningcss: ^1.21.0
+      sass: '*'
+      sass-embedded: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.16.0
+      tsx: ^4.8.1
+      yaml: ^2.4.2
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      jiti:
+        optional: true
+      less:
+        optional: true
+      lightningcss:
+        optional: true
+      sass:
+        optional: true
+      sass-embedded:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+      tsx:
+        optional: true
+      yaml:
         optional: true
 
   vitest@1.6.1:
@@ -12476,24 +12504,24 @@ snapshots:
       - supports-color
       - terser
 
-  vite-tsconfig-paths@4.3.2(typescript@5.4.5)(vite@5.4.16(@types/node@20.12.8)(terser@5.31.3)):
+  vite-tsconfig-paths@4.3.2(typescript@5.4.5)(vite@6.2.4(@types/node@20.12.8)(jiti@2.4.2)(terser@5.31.3)(tsx@4.19.3)(yaml@2.7.1)):
     dependencies:
       debug: 4.4.0
       globrex: 0.1.2
       tsconfck: 3.1.5(typescript@5.4.5)
     optionalDependencies:
-      vite: 5.4.16(@types/node@20.12.8)(terser@5.31.3)
+      vite: 6.2.4(@types/node@20.12.8)(jiti@2.4.2)(terser@5.31.3)(tsx@4.19.3)(yaml@2.7.1)
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  vite-tsconfig-paths@5.1.4(typescript@5.8.2)(vite@5.4.16(@types/node@22.13.16)(terser@5.31.3)):
+  vite-tsconfig-paths@5.1.4(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.16)(jiti@2.4.2)(terser@5.31.3)(tsx@4.19.3)(yaml@2.7.1)):
     dependencies:
       debug: 4.4.0
       globrex: 0.1.2
       tsconfck: 3.1.5(typescript@5.8.2)
     optionalDependencies:
-      vite: 5.4.16(@types/node@22.13.16)(terser@5.31.3)
+      vite: 6.2.4(@types/node@22.13.16)(jiti@2.4.2)(terser@5.31.3)(tsx@4.19.3)(yaml@2.7.1)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -12517,6 +12545,32 @@ snapshots:
       '@types/node': 22.13.16
       fsevents: 2.3.3
       terser: 5.31.3
+
+  vite@6.2.4(@types/node@20.12.8)(jiti@2.4.2)(terser@5.31.3)(tsx@4.19.3)(yaml@2.7.1):
+    dependencies:
+      esbuild: 0.25.2
+      postcss: 8.5.3
+      rollup: 4.38.0
+    optionalDependencies:
+      '@types/node': 20.12.8
+      fsevents: 2.3.3
+      jiti: 2.4.2
+      terser: 5.31.3
+      tsx: 4.19.3
+      yaml: 2.7.1
+
+  vite@6.2.4(@types/node@22.13.16)(jiti@2.4.2)(terser@5.31.3)(tsx@4.19.3)(yaml@2.7.1):
+    dependencies:
+      esbuild: 0.25.2
+      postcss: 8.5.3
+      rollup: 4.38.0
+    optionalDependencies:
+      '@types/node': 22.13.16
+      fsevents: 2.3.3
+      jiti: 2.4.2
+      terser: 5.31.3
+      tsx: 4.19.3
+      yaml: 2.7.1
 
   vitest@1.6.1(@types/node@20.12.8)(terser@5.31.3):
     dependencies:

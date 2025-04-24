@@ -48,10 +48,10 @@ jobs:
           - recursive: true
             args: [--no-frozen-lockfile]
 
-    - name: Use Node.js 18.x
-      uses: actions/setup-node@v4.0.2
+    - name: Use Node.js 22.x
+      uses: actions/setup-node@v4
       with:
-        node-version: 18.x
+        node-version: 22.x
         check-latest: true
         cache: pnpm
 

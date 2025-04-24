@@ -1,0 +1,50 @@
+{
+  "name": "hello-mcp-server",
+  "version": "0.1.0",
+  "bin": {
+    "hello-mcp-server": "bin/hello-mcp-server.js"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "vitest run --passWithNoTests",
+    "dev": "tsx lambda/index.ts",
+    "lint": "eslint",
+    "lint-fix": "eslint --fix",
+    "client": "tsx client/index.ts"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.2.8",
+    "@eslint/js": "^9.25.1",
+    "@stylistic/eslint-plugin": "^4.2.0",
+    "@stylistic/eslint-plugin-js": "^4.2.0",
+    "@stylistic/eslint-plugin-plus": "^4.2.0",
+    "@stylistic/eslint-plugin-ts": "^4.2.0",
+    "@types/aws-lambda": "^8.10.149",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.1",
+    "@vitest/coverage-v8": "^3.1.2",
+    "aws-cdk": "^2.1012.0",
+    "esbuild": "^0.25.3",
+    "eslint": "^9.25.1",
+    "eslint-import-resolver-typescript": "^4.3.4",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-promise": "^7.2.1",
+    "tslib": "^2.8.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.31.0",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.1.2"
+  },
+  "dependencies": {
+    "@aws-lambda-powertools/logger": "^2.18.0",
+    "@modelcontextprotocol/sdk": "^1.10.2",
+    "aws-cdk-lib": "^2.191.0",
+    "constructs": "^10.4.2",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "zod": "^3.24.3"
+  }
+}

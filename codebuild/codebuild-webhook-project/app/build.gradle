@@ -23,10 +23,10 @@ subprojects {
 
     dependencies {
         // https://mvnrepository.com/artifact/org.junit/junit-bom
-        testImplementation platform('org.junit:junit-bom:5.11.3')
+        testImplementation platform('org.junit:junit-bom:5.12.2')
 
         // This dependency is used by the application.
-        implementation 'com.google.guava:guava:33.3.1-jre'
+        implementation 'com.google.guava:guava:33.4.8-jre'
 
         // Use JUnit Jupiter API for testing.
         testImplementation 'org.junit.jupiter:junit-jupiter-api'

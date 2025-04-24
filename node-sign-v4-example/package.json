@@ -2,10 +2,11 @@
   "name": "node-sign-v4",
   "version": "1.0.0",
   "license": "MIT",
+  "type": "module",
   "scripts": {
-    "lint": "eslint *.ts",
-    "lint-fix": "eslint *.ts --fix",
-    "dev": "ts-node index.ts",
+    "lint": "eslint",
+    "lint-fix": "eslint --fix",
+    "dev": "tsx index.ts",
     "build": "tsc"
   },
   "dependencies": {
@@ -13,10 +14,10 @@
     "@aws-sdk/client-sts": "^3.787.0",
     "@aws-sdk/credential-providers": "^3.787.0",
     "@smithy/hash-node": "^3.0.11",
-    "@smithy/node-http-handler": "^3.3.3",
-    "@smithy/protocol-http": "^4.1.8",
-    "@smithy/signature-v4": "^4.2.4",
-    "ts-node": "^10.9.2",
+    "@smithy/node-http-handler": "^4.0.4",
+    "@smithy/protocol-http": "^5.1.0",
+    "@smithy/signature-v4": "^5.1.0",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.3"
   },
   "devDependencies": {
@@ -25,7 +26,7 @@
     "eslint": "^9.25.1",
     "eslint-import-resolver-typescript": "^3.10.1",
     "eslint-plugin-import": "^2.31.0",
-    "typescript-eslint": "^7.18.0"
+    "typescript-eslint": "^8.31.0"
   },
   "engines": {
     "npm": "use pnpm please!",

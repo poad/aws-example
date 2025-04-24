@@ -18,28 +18,31 @@ updates:
 
   - package-ecosystem: npm
     directories:
-      - '/infra/s3/'
-      - '/infra/ecs/'
+      - '/amplify/amplify-cdk/app/'
+      - '/amplify/amplify_nextapp/'
+      - '/amplify/amplify-cdk/infra/'
       - '/codebuild/custom-image-test/'
       - '/codebuild/codebuild-gha-lambda-runner-example/'
       - '/codebuild/codebuild-webhook-project/infra/'
+      - '/codeconections/'
       - '/codepipeline/adoptium-temurin-jib/infra/'
       - '/codepipeline/codebuild-custom-image/java-adopt-base/infra/'
       - '/codepipeline/codebuild-github-tag/infra/'
       - '/codepipeline/docker-build/infra/'
       - '/codepipeline/vulnerability-scan/infra/'
-      - '/cognito/cognito-s3-example/infra/'
+      - '/ec2-bluegreen/cloudfront/'
+      - '/ec2-bluegreen/ec2/'
+      - '/infra/acm/'
+      - '/infra/ecs/'
+      - '/infra/s3/'
+      - '/infra/vpc/'
       - '/lambda/apollo-server-url/'
+      - '/lambda/eventbridge-lambda/'
+      - '/lambda/hello-mcp-server/'
       - '/lambda/layer/functions/function/handler/'
       - '/lambda/layer/layer/'
       - '/lambda/layer/layer/src/nodejs/'
-      - '/amplify/amplify-cdk/app/'
-      - '/amplify/amplify_nextapp/'
-      - '/amplify/amplify-cdk/infra/'
-      - '/amplify/amplified_todo/'
-      - '/node-sign-v4/'
-      - '/lambda/eventbridge-lambda/'
-      - '/lambda/hello-mcp-server/'
+      - '/node-sign-v4-example/'
     schedule:
       interval: daily
       timezone: Asia/Tokyo
@@ -54,58 +57,9 @@ updates:
         patterns:
           - "*"
 
-  - package-ecosystem: pip
-    directory: '/lambda/lambda-examples/lambda/python'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      pip:
-        patterns:
-          - "*"
-
-  - package-ecosystem: cargo
-    directory: '/lambda/lambda-examples/lambda/container/hello-rust-lambda/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      cargo:
-        patterns:
-          - "*"
-
-  - package-ecosystem: docker
-    directory: '/lambda/lambda-examples/lambda/container/hello-rust-lambda/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-      time: "12:00"
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      oci:
-        patterns:
-          - "*"
-
   - package-ecosystem: gradle
     directories:
       - '/codebuild/codebuild-webhook-project/app/'
-      - '/amplify/amplified_todo/android/'
     schedule:
       interval: daily
       timezone: Asia/Tokyo

@@ -48,7 +48,7 @@ jobs:
           - recursive: true
             args: [--no-frozen-lockfile]
 
+    - uses: oven-sh/setup-bun@v2
+
     - name: build
-      env:
-        BASE_PATH: /oauth/device/activate
       run: pnpm -r build

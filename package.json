@@ -5,10 +5,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "pnpm -r build",
+    "build": "pnpm -r --parallel build",
     "prebuild": "pnpm -r install",
-    "lint": "pnpm -r --if-present lint",
-    "lint-fix": "pnpm -r --if-present lint-fix"
+    "lint": "pnpm -r --parallel --if-present lint",
+    "lint-fix": "pnpm -r --parallel --if-present lint-fix"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.8",

@@ -2,7 +2,6 @@
 
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
-import stylisticTs from '@stylistic/eslint-plugin-ts';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 // @ts-ignore
@@ -45,7 +44,7 @@ export default tseslint.config(
     files: ['src/**/*.{jsx,tsx}'],
     plugins: {
       '@stylistic': stylistic,
-      '@stylistic/ts': stylisticTs,
+      '@stylistic/ts': stylistic,
       'jsx-a11y': jsxA11yPlugin,
     },
     // @ts-ignore

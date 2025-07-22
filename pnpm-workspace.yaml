@@ -3,11 +3,11 @@ packages:
   - '!**/.next'
   - '!**/cdk.out'
 
+enablePrePostScripts: true
+
 engineStrict: true
 
-### https://gist.github.com/belgattitude/838b2eba30c324f1f0033a797bab2e31#recommended-npmrc
-# https://pnpm.io/next/npmrc#strict-peer-dependencies
-strictPeerDependencies: false
+overrides:
+  esbuild@<=0.24.2: '>=0.25.0'
 
-### https://thedaviddias.dev/notes/how-to-fix-post-pre-build-pnpm
-enablePrePostScripts: true
+strictPeerDependencies: false

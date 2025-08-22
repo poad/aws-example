@@ -1,9 +1,7 @@
 // @ts-check
 
 import eslint from '@eslint/js';
-// @ts-ignore
 import importPlugin from 'eslint-plugin-import';
-
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
@@ -24,17 +22,24 @@ export default tseslint.config(
   ...tseslint.configs.stylistic,
   {
     files: ['**/*.ts'],
-    ...importPlugin.flatConfigs.recommended,
-    ...importPlugin.flatConfigs.typescript,
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
       parser: tseslint.parser,
+      parserOptions: {
+        projectService: true,
+      },
     },
+    extends: [
+      importPlugin.flatConfigs.recommended,
+      importPlugin.flatConfigs.typescript,
+    ],
     settings: {
       'import/resolver': {
-        node: true,
-        typescript: true,
+        // You will also need to install and configure the TypeScript resolver
+        // See also https://github.com/import-js/eslint-import-resolver-typescript#configuration
+        'typescript': true,
+        'node': true,
       },
     },
   },

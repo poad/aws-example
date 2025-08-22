@@ -25,7 +25,6 @@ export default tseslint.config(
   {
     ignores: [
       '**/*.d.ts',
-      '*.{js,jsx}',
       'src/tsconfig.json',
       'src/stories',
       '**/*.css',
@@ -33,18 +32,22 @@ export default tseslint.config(
       './.next/*',
       'out',
       '.storybook',
+      '**/bin/**/*.js',
+      '**/lambda/**/*.js',
+      '**/lib/**/*.js',
     ],
   },
   {
-    files: ['src/**/*.{jsx,ts,tsx}'],
+    files: ['eslint.config.js', 'src/**/*.{jsx,ts,tsx}'],
+    plugins: {
+      '@stylistic': stylistic,
+    },
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
   {
     files: ['src/**/*.{jsx,tsx}'],
     plugins: {
-      '@stylistic': stylistic,
-      '@stylistic/ts': stylistic,
       'jsx-a11y': jsxA11yPlugin,
     },
     // @ts-ignore
@@ -69,13 +72,12 @@ export default tseslint.config(
   },
   {
     files: ['src/**/*.{ts,tsx}'],
-    plugins: {
-      import: importPlugin,
-    },
     extends: [
       ...tseslint.configs.recommended,
       ...compat.config(importPlugin.configs.recommended),
       ...compat.config(importPlugin.configs.typescript),
+      importPlugin.flatConfigs.recommended,
+      importPlugin.flatConfigs.typescript,
     ],
     settings: {
       'import/internal-regex': '^~/',

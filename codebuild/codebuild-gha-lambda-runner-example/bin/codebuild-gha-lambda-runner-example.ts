@@ -10,15 +10,15 @@ const projects = [
     owner: "poad",
     repo: "aws-codebuild-github-lambda-runner-node-example",
     buildImage: codebuild.LinuxArmLambdaBuildImage.AMAZON_LINUX_2023_NODE_20,
-    prefix: '',
+    prefix: "",
   },
   {
     projectName: "codebuild-gha-lambda-runner-example-rust-dev1",
     owner: "poad",
     repo: "aws-codebuild-github-lambda-runner-rust-example",
     buildImage: codebuild.LinuxLambdaBuildImage.AMAZON_LINUX_2023_NODE_20,
-    prefix: 'Rust',
-    customImage: 'public.ecr.aws/docker/library/rust:latest',
+    prefix: "Rust",
+    customImage: "public.ecr.aws/docker/library/rust:latest",
   },
 ];
 

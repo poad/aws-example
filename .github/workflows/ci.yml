@@ -11,19 +11,6 @@ on:
 
   workflow_dispatch:
 
-permissions:
-  actions: read
-  checks: write
-  contents: write
-  deployments: none
-  id-token: write
-  issues: none
-  packages: none
-  pull-requests: write
-  repository-projects: read
-  security-events: write
-  statuses: write
-
 jobs:
   build:
     runs-on: ubuntu-latest

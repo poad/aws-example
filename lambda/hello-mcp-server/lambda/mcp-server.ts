@@ -1,7 +1,10 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
-// サーバーインスタンスの作成
+/**
+ * MCP サーバーインスタンス。WeatherTools 用のツールを登録して提供します。
+ * @type {McpServer}
+ */
 export const server = new McpServer({
   name: "MathTools",
   version: "0.1.0",

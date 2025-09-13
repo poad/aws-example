@@ -37,48 +37,34 @@ export default tseslint.config(
       '**/lib/**/*.js',
     ],
   },
-  {
-    files: ['eslint.config.js', 'src/**/*.{jsx,ts,tsx}'],
-    plugins: {
-      '@stylistic': stylistic,
-    },
-  },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    files: ['src/**/*.{jsx,tsx}'],
+    files: ['eslint.config.js', 'src/**/*.ts', 'src/**/*.jsx', 'src/**/*.tsx'],
     plugins: {
+      '@stylistic': stylistic,
       'jsx-a11y': jsxA11yPlugin,
     },
-    // @ts-ignore
-    extends: [
-      // @ts-ignore
-      ...compat.config(reactHooksPlugin.configs.recommended),
-      ...compat.config(jsxA11yPlugin.configs.recommended),
-    ],
-    settings: {
-      react: {
-        version: 'detect',
-      },
-      formComponents: ['Form'],
-      linkComponents: [
-        { name: 'Link', linkAttribute: 'to' },
-        { name: 'NavLink', linkAttribute: 'to' },
-      ],
-      'import/resolver': {
-        typescript: {},
-      },
-    },
-  },
-  {
-    files: ['src/**/*.{ts,tsx}'],
     extends: [
       ...tseslint.configs.recommended,
       ...compat.config(importPlugin.configs.recommended),
       ...compat.config(importPlugin.configs.typescript),
+      // @ts-ignore
+      ...compat.config(reactHooksPlugin.configs.recommended),
+      ...compat.config(jsxA11yPlugin.configs.recommended),
       importPlugin.flatConfigs.recommended,
       importPlugin.flatConfigs.typescript,
     ],
+    languageOptions: {
+      parser: tseslint.parser,
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      parserOptions: {
+        project: true,
+        projectService: true,
+        tsconfigRootDir: __dirname,
+      },
+    },
     settings: {
       'import/internal-regex': '^~/',
       'import/resolver': {
@@ -90,8 +76,6 @@ export default tseslint.config(
         },
       },
     },
-  },
-  {
     rules: {
       'react/display-name': 'off',
       'import/namespace': 'off',

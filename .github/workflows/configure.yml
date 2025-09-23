@@ -23,7 +23,7 @@ jobs:
     - name: Pull request auto merge enabler
       if: github.event_name == 'pull_request'
       continue-on-error: true
-      uses: poad/github-pull-request-auto-merge-enable-action@v2.1.0
+      uses: poad/github-pull-request-auto-merge-enable-action@v3.0.0
       with:
         pull_request_number: ${{ github.event.pull_request.number }}
         github_token: ${{ secrets.GITHUB_TOKEN }}

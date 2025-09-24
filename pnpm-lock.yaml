@@ -707,8 +707,8 @@ importers:
   lambda/hello-mcp-server:
     dependencies:
       '@aws-lambda-powertools/logger':
-        specifier: ^2.26.1
-        version: 2.26.1
+        specifier: ^2.27.0
+        version: 2.27.0
       '@modelcontextprotocol/sdk':
         specifier: ^1.18.1
         version: 1.18.1
@@ -1197,13 +1197,13 @@ packages:
   '@aws-crypto/util@5.2.0':
     resolution: {integrity: sha512-4RkU9EsI6ZpBve5fseQlGNUWKMa1RLPQ1dnjnQoe07ldfIzcsGb5hC5W0Dm7u423KWzawlrpbjXBrXCEv9zazQ==}
 
-  '@aws-lambda-powertools/commons@2.26.1':
-    resolution: {integrity: sha512-1UFUiQl5DsD/Sd5G+7JKDdFioWELls156G4i+0o9lwNK24HpV2txJp9mTe7RftuEaw74sT05yQxwCg01oa1V1g==}
+  '@aws-lambda-powertools/commons@2.27.0':
+    resolution: {integrity: sha512-LjrMrSNcAOUw5g9frev4J0NEs3B7AU0uemB0BXbNLAHrYUdP2ls+ncohwNYVVN+DwjfpYj+FYjdRhUlmWzs8Cw==}
 
-  '@aws-lambda-powertools/logger@2.26.1':
-    resolution: {integrity: sha512-OjRyeAtxGGTLG/jLINvHkpxPSjRQ52GhsueCP9w+85tP6jzCNrFSmbypbRaF7k9Izl8EGSbnsLb0rOZK74d3fA==}
+  '@aws-lambda-powertools/logger@2.27.0':
+    resolution: {integrity: sha512-q3W5GAxMs5usQE65mLY3sE6HCebnZxQhZoj0JjvmQRfzUOTfBKhCeKUA+M+G7i+JzhsgWzD0jovVY2d3+DrZbQ==}
     peerDependencies:
-      '@aws-lambda-powertools/jmespath': 2.26.1
+      '@aws-lambda-powertools/jmespath': 2.27.0
       '@middy/core': 4.x || 5.x || 6.x
     peerDependenciesMeta:
       '@aws-lambda-powertools/jmespath':
@@ -6330,11 +6330,11 @@ snapshots:
       '@smithy/util-utf8': 2.3.0
       tslib: 2.8.1
 
-  '@aws-lambda-powertools/commons@2.26.1': {}
+  '@aws-lambda-powertools/commons@2.27.0': {}
 
-  '@aws-lambda-powertools/logger@2.26.1':
+  '@aws-lambda-powertools/logger@2.27.0':
     dependencies:
-      '@aws-lambda-powertools/commons': 2.26.1
+      '@aws-lambda-powertools/commons': 2.27.0
       lodash.merge: 4.6.2
 
   '@aws-sdk/client-cognito-identity@3.895.0':

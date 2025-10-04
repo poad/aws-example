@@ -1,4 +1,4 @@
-name: dependabot-auto-merge
+name: Enable Auto Merge
 
 on: pull_request
 
@@ -10,17 +10,11 @@ jobs:
   auto-merge:
     runs-on: ubuntu-latest
 
-    if: github.actor == 'dependabot[bot]'
+    # リポジトリオーナーの Pull Request はドラフト以外は自動マージを有効にする
+    if: ${{ github.event.pull_request.draft == false && (github.actor == 'dependabot[bot]' || github.repository_owner == github.actor) }}
 
     steps:
-      - uses: actions/checkout@v5
-      - name: Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@v2
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Enable auto-merge for Dependabot Dependabot Pull Request
+      - name: Enable auto-merge for Pull Request
         run: |
           gh pr review --approve "$PR_URL"
           gh pr merge --auto --squash "$PR_URL"

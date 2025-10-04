@@ -1,5 +1,6 @@
 // @ts-check
 
+import { defineConfig } from 'eslint/config';
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
@@ -20,7 +21,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const gitignorePath = path.resolve(__dirname, ".gitignore");
 
-export default tseslint.config(
+export default defineConfig(
   includeIgnoreFile(gitignorePath),
   {
     ignores: [
@@ -43,10 +44,8 @@ export default tseslint.config(
     files: ['eslint.config.js', 'src/**/*.ts', 'src/**/*.jsx', 'src/**/*.tsx'],
     plugins: {
       '@stylistic': stylistic,
-      'jsx-a11y': jsxA11yPlugin,
     },
     extends: [
-      ...tseslint.configs.recommended,
       ...compat.config(importPlugin.configs.recommended),
       ...compat.config(importPlugin.configs.typescript),
       // @ts-ignore

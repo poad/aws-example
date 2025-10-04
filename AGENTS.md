@@ -20,9 +20,7 @@
 - インデント: スペース2、改行: LF、UTF-8、末尾改行必須
 - Prettier: セミコロン必須、シングルクォート、末尾カンマes5
 - ESLint: typescript-eslint, stylistic, import, react-hooks, jsx-a11y推奨
-- TypeScript: strictモード、any/unknown型禁止、クラスは原則禁止
+- TypeScript: strictモード、any型禁止、unknown型は適切な型ガードと併用、クラスは原則禁止
 - importパス: `~/*`や`@/*`エイリアス利用
 - 命名: キャメルケース推奨
-- エラー処理: Error拡張時のみclass使用
-
-Cursor/Copilotルールは未発見。
+- エラー処理: Error拡張時のみクラスを使用しても良い

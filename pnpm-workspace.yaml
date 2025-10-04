@@ -3,11 +3,6 @@ packages:
   - '!**/.next'
   - '!**/cdk.out'
 
-enablePrePostScripts: true
-
-engineStrict: true
-
-overrides:
-  esbuild@<=0.24.2: '>=0.25.0'
-
 strictPeerDependencies: false
+enablePrePostScripts: true
+engineStrict: true

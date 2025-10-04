@@ -1,0 +1,48 @@
+{
+  "name": "@agent-core-runtime-agent/app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "mastra dev",
+    "build": "mastra build",
+    "start": "mastra start",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "@ai-sdk/amazon-bedrock": "^3.0.30",
+    "@aws-sdk/credential-providers": "^3.901.0",
+    "@aws/aws-distro-opentelemetry-node-autoinstrumentation": "^0.7.0",
+    "@mastra/core": "0.18.0",
+    "@mastra/libsql": "0.14.3",
+    "@mastra/loggers": "0.10.13",
+    "@mastra/mcp": "0.13.1",
+    "@mastra/memory": "0.15.3",
+    "hono": "^4.9.9",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.4.0",
+    "@eslint/core": "^0.16.0",
+    "@eslint/js": "^9.37.0",
+    "@stylistic/eslint-plugin": "^5.4.0",
+    "@types/node": "^24.6.2",
+    "eslint": "^9.37.0",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-promise": "^7.2.1",
+    "jiti": "^2.6.1",
+    "mastra": "0.13.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.45.0"
+  }
+}

@@ -34,9 +34,6 @@ ENTRYPOINT ["pnpm", "dev"]
 
 FROM --platform=linux/arm64 node:$NODE_VERSION-slim
 
-# Create non-root user for security
-RUN groupadd -r node && useradd -r -g node node
-
 COPY --from=build /build /var/task
 
 # Change ownership to non-root user

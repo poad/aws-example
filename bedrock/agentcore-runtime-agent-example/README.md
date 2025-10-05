@@ -6,8 +6,8 @@ AWS CDK を使って、Mastra 製 Agent を Amazon Bedrock AgentCore Runtime に
 
 | リソース種別 | リソース名 |
 |------------|----------|
-| ECR Repository | agent-core-runtime-example |
-| IAM Role | agent-core-runtime-example-role |
+| ECR Repository | agentcore-runtime-agent-example |
+| IAM Role | agentcore-runtime-agent-example-role |
 | BedrockAgentCore Runtime | MyMastraAgentRuntime |
 
 上記の他に、[cdklabs/cdk-ecr-deployment](https://github.com/cdklabs/cdk-ecr-deployment#readme) によって生成されるリソースがあります。
@@ -31,4 +31,4 @@ aarch64 (arm64)
 
 ## 関連ドキュメント
 
-[Bedrock AgentCore Runtime がHTTPプロトコルでサポートするリクエストのパス](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-service-contract.html#http-protocol-contract)
+[Bedrock AgentCore Runtime がHTTPプロトコルでサポートするリクエストのパスについての説明](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-service-contract.html#http-protocol-contract)

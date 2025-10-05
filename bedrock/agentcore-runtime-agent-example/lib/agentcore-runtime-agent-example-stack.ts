@@ -8,7 +8,7 @@ import assert from 'assert';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export class AgentCoreRuntimeStack extends cdk.Stack {
+export class AgentcoreRuntimeAgentExampleStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
@@ -16,7 +16,7 @@ export class AgentCoreRuntimeStack extends cdk.Stack {
     assert(bedrockModelIdentifier, 'Context bedrockModelIdentifier is required');
 
     const repository = new cdk.aws_ecr.Repository(this, 'Repository', {
-      repositoryName: 'agent-core-runtime-example',
+      repositoryName: 'agentcore-runtime-agent-example',
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       lifecycleRules: [
         {
@@ -32,7 +32,7 @@ export class AgentCoreRuntimeStack extends cdk.Stack {
       file: 'Dockerfile',
     });
 
-    const ecrImageUri = `${repository.repositoryUri}:${new Date().getTime()}`;
+    const ecrImageUri = `${repository.repositoryUri}:${new Date().getTime()}-${Math.random().toString(36).substring(2, 7)}`;
 
     const deploy = new ecrdeploy.ECRDeployment(this, 'DeployDockerImage', {
       src: new ecrdeploy.DockerImageName(dockerImageAsset.imageUri),
@@ -47,7 +47,7 @@ export class AgentCoreRuntimeStack extends cdk.Stack {
 
     // Create IAM role for Bedrock AgentCore with required policies
     const agentCoreRole = new cdk.aws_iam.Role(this, 'BedrockAgentCoreRole', {
-      roleName: 'agent-core-runtime-example-role',
+      roleName: 'agentcore-runtime-agent-example-role',
       assumedBy: new cdk.aws_iam.ServicePrincipal('bedrock-agentcore.amazonaws.com'),
       description: 'IAM role for Bedrock AgentCore Runtime',
       inlinePolicies: {

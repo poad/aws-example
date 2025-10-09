@@ -14,17 +14,31 @@ export const app = new Hono();
 
 // ルートを設定
 app.post('/mcp', async (c) => {
+  const transport = new StreamableHTTPTransport({
+    sessionIdGenerator: undefined, // セッションIDを生成しない（ステートレスモード）
+    enableJsonResponse: true,
+  });
+
   try {
-    const transport = new StreamableHTTPTransport({
-      sessionIdGenerator: undefined, // セッションIDを生成しない（ステートレスモード）
-      enableJsonResponse: true,
-    });
     await server.connect(transport);
     logger.trace('MCP リクエストを受信');
-
-    return transport.handleRequest(c);
+    return transport.handleRequest(c)
+      .finally(() => {
+        transport.close();
+        server.close();
+      });
   } catch (error) {
     console.error('MCP リクエスト処理中のエラー:', error);
+    try {
+      transport.close();
+    } catch (closeError) {
+      console.error('トランスポートを閉じる中のエラー:', closeError);
+    }
+    try {
+      server.close();
+    } catch (closeError) {
+      console.error('サーバーを閉じる中のエラー:', closeError);
+    }
     return c.json(
       {
         jsonrpc: '2.0',

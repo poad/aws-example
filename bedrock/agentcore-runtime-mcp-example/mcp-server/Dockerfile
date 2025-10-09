@@ -6,17 +6,17 @@ ARG NODE_VERSION=24
 
 FROM --platform=$BUILDPLATFORM node:$NODE_VERSION-slim AS build
 
-RUN npm install -g bun pnpm
+RUN npm install -g pnpm
 WORKDIR /build
 COPY package.json ./
 
 RUN pnpm i
 COPY . ./
 
-RUN bun run mastra build
+RUN pnpm build
 
 
-FROM --platform=l$BUILDPLATFORM node:$NODE_VERSION-slim AS dev
+FROM --platform=$BUILDPLATFORM node:$NODE_VERSION-slim AS dev
 
 RUN npm install -g pnpm
 
@@ -31,8 +31,7 @@ ENV PORT=8080
 
 ENTRYPOINT ["pnpm", "dev"]
 
-
-FROM --platform=l$BUILDPLATFORM node:$NODE_VERSION-slim
+FROM --platform=$BUILDPLATFORM node:$NODE_VERSION-slim
 
 COPY --from=build /build /var/task
 
@@ -44,6 +43,8 @@ WORKDIR "/var/task"
 # Switch to non-root user
 USER node
 
-ENV PORT=8080
+RUN pnpm i --production
 
-ENTRYPOINT [ "node", "--import=./.mastra/output/instrumentation.mjs", ".mastra/output/index.mjs" ]
+ENV PORT=8000
+
+ENTRYPOINT [ "node", "dist/index.js" ]

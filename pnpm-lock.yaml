@@ -6,6 +6,7 @@ settings:
 
 overrides:
   esbuild@<=0.24.2: '>=0.25.0'
+  jsondiffpatch@<0.7.2: '>=0.7.2'
 
 importers:
 
@@ -359,225 +360,6 @@ importers:
         specifier: ^8.46.0
         version: 8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3)
 
-  bedrock/agentcore-runtime-agent-example/cdk.out/asset.58c8b2f1c31bffc4bdac6ad11e059cab679ef5b1859ce92353045d62d4fcf5ec:
-    dependencies:
-      '@ai-sdk/amazon-bedrock':
-        specifier: ^3.0.33
-        version: 3.0.33(zod@3.25.76)
-      '@aws-sdk/credential-providers':
-        specifier: ^3.907.0
-        version: 3.907.0
-      '@aws/aws-distro-opentelemetry-node-autoinstrumentation':
-        specifier: ^0.7.0
-        version: 0.7.0
-      '@mastra/core':
-        specifier: 0.18.0
-        version: 0.18.0(openapi-types@12.1.3)(react@19.2.0)(zod@3.25.76)
-      '@mastra/libsql':
-        specifier: 0.14.3
-        version: 0.14.3(@mastra/core@0.18.0(openapi-types@12.1.3)(react@19.2.0)(zod@3.25.76))
-      '@mastra/loggers':
-        specifier: 0.10.13
-        version: 0.10.13(@mastra/core@0.18.0(openapi-types@12.1.3)(react@19.2.0)(zod@3.25.76))
-      '@mastra/mcp':
-        specifier: 0.13.1
-        version: 0.13.1(@mastra/core@0.18.0(openapi-types@12.1.3)(react@19.2.0)(zod@3.25.76))(@types/json-schema@7.0.15)(zod@3.25.76)
-      '@mastra/memory':
-        specifier: 0.15.3
-        version: 0.15.3(@mastra/core@0.18.0(openapi-types@12.1.3)(react@19.2.0)(zod@3.25.76))(react@19.2.0)(zod@3.25.76)
-      hono:
-        specifier: ^4.9.10
-        version: 4.9.10
-      zod:
-        specifier: ^3.25.76
-        version: 3.25.76
-    devDependencies:
-      '@eslint/compat':
-        specifier: ^1.4.0
-        version: 1.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@eslint/core':
-        specifier: ^0.16.0
-        version: 0.16.0
-      '@eslint/js':
-        specifier: ^9.37.0
-        version: 9.37.0
-      '@stylistic/eslint-plugin':
-        specifier: ^5.4.0
-        version: 5.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@types/node':
-        specifier: ^24.7.1
-        version: 24.7.1
-      eslint:
-        specifier: ^9.37.0
-        version: 9.37.0(jiti@2.6.1)
-      eslint-import-resolver-typescript:
-        specifier: ^4.4.4
-        version: 4.4.4(eslint-plugin-import@2.32.0)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-import:
-        specifier: ^2.32.0
-        version: 2.32.0(@typescript-eslint/parser@8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-promise:
-        specifier: ^7.2.1
-        version: 7.2.1(eslint@9.37.0(jiti@2.6.1))
-      jiti:
-        specifier: ^2.6.1
-        version: 2.6.1
-      mastra:
-        specifier: 0.13.2
-        version: 0.13.2(@mastra/core@0.18.0(openapi-types@12.1.3)(react@19.2.0)(zod@3.25.76))(@opentelemetry/api@1.9.0)(@types/json-schema@7.0.15)(typescript@5.9.3)(zod@3.25.76)
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-      typescript-eslint:
-        specifier: ^8.46.0
-        version: 8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3)
-
-  bedrock/agentcore-runtime-agent-example/cdk.out/asset.6d8e3f36ef2516f124f92be0024b99516bab54b9ec0f28d784c78863b7964c18:
-    dependencies:
-      '@ai-sdk/amazon-bedrock':
-        specifier: ^3.0.33
-        version: 3.0.33(zod@3.25.76)
-      '@aws-sdk/credential-providers':
-        specifier: ^3.907.0
-        version: 3.907.0
-      '@aws/aws-distro-opentelemetry-node-autoinstrumentation':
-        specifier: ^0.7.0
-        version: 0.7.0
-      '@mastra/core':
-        specifier: 0.18.0
-        version: 0.18.0(openapi-types@12.1.3)(react@19.2.0)(zod@3.25.76)
-      '@mastra/libsql':
-        specifier: 0.14.3
-        version: 0.14.3(@mastra/core@0.18.0(openapi-types@12.1.3)(react@19.2.0)(zod@3.25.76))
-      '@mastra/loggers':
-        specifier: 0.10.13
-        version: 0.10.13(@mastra/core@0.18.0(openapi-types@12.1.3)(react@19.2.0)(zod@3.25.76))
-      '@mastra/mcp':
-        specifier: 0.13.1
-        version: 0.13.1(@mastra/core@0.18.0(openapi-types@12.1.3)(react@19.2.0)(zod@3.25.76))(@types/json-schema@7.0.15)(zod@3.25.76)
-      '@mastra/memory':
-        specifier: 0.15.3
-        version: 0.15.3(@mastra/core@0.18.0(openapi-types@12.1.3)(react@19.2.0)(zod@3.25.76))(react@19.2.0)(zod@3.25.76)
-      hono:
-        specifier: ^4.9.10
-        version: 4.9.10
-      zod:
-        specifier: ^3.25.76
-        version: 3.25.76
-    devDependencies:
-      '@eslint/compat':
-        specifier: ^1.4.0
-        version: 1.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@eslint/core':
-        specifier: ^0.16.0
-        version: 0.16.0
-      '@eslint/js':
-        specifier: ^9.37.0
-        version: 9.37.0
-      '@stylistic/eslint-plugin':
-        specifier: ^5.4.0
-        version: 5.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@types/node':
-        specifier: ^24.7.1
-        version: 24.7.1
-      eslint:
-        specifier: ^9.37.0
-        version: 9.37.0(jiti@2.6.1)
-      eslint-import-resolver-typescript:
-        specifier: ^4.4.4
-        version: 4.4.4(eslint-plugin-import@2.32.0)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-import:
-        specifier: ^2.32.0
-        version: 2.32.0(@typescript-eslint/parser@8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-promise:
-        specifier: ^7.2.1
-        version: 7.2.1(eslint@9.37.0(jiti@2.6.1))
-      jiti:
-        specifier: ^2.6.1
-        version: 2.6.1
-      mastra:
-        specifier: 0.13.2
-        version: 0.13.2(@mastra/core@0.18.0(openapi-types@12.1.3)(react@19.2.0)(zod@3.25.76))(@opentelemetry/api@1.9.0)(@types/json-schema@7.0.15)(typescript@5.9.3)(zod@3.25.76)
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-      typescript-eslint:
-        specifier: ^8.46.0
-        version: 8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3)
-
-  bedrock/agentcore-runtime-agent-example/cdk.out/asset.7d814f04080deccc4298d3e105a5d4a35380cf344d868e8770592799108595aa:
-    dependencies:
-      '@ai-sdk/amazon-bedrock':
-        specifier: ^3.0.33
-        version: 3.0.33(zod@3.25.76)
-      '@aws-sdk/credential-providers':
-        specifier: ^3.907.0
-        version: 3.907.0
-      '@aws/aws-distro-opentelemetry-node-autoinstrumentation':
-        specifier: ^0.7.0
-        version: 0.7.0
-      '@mastra/core':
-        specifier: 0.18.0
-        version: 0.18.0(openapi-types@12.1.3)(react@19.2.0)(zod@3.25.76)
-      '@mastra/libsql':
-        specifier: 0.14.3
-        version: 0.14.3(@mastra/core@0.18.0(openapi-types@12.1.3)(react@19.2.0)(zod@3.25.76))
-      '@mastra/loggers':
-        specifier: 0.10.13
-        version: 0.10.13(@mastra/core@0.18.0(openapi-types@12.1.3)(react@19.2.0)(zod@3.25.76))
-      '@mastra/mcp':
-        specifier: 0.13.1
-        version: 0.13.1(@mastra/core@0.18.0(openapi-types@12.1.3)(react@19.2.0)(zod@3.25.76))(@types/json-schema@7.0.15)(zod@3.25.76)
-      '@mastra/memory':
-        specifier: 0.15.3
-        version: 0.15.3(@mastra/core@0.18.0(openapi-types@12.1.3)(react@19.2.0)(zod@3.25.76))(react@19.2.0)(zod@3.25.76)
-      hono:
-        specifier: ^4.9.10
-        version: 4.9.10
-      zod:
-        specifier: ^3.25.76
-        version: 3.25.76
-    devDependencies:
-      '@eslint/compat':
-        specifier: ^1.4.0
-        version: 1.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@eslint/core':
-        specifier: ^0.16.0
-        version: 0.16.0
-      '@eslint/js':
-        specifier: ^9.37.0
-        version: 9.37.0
-      '@stylistic/eslint-plugin':
-        specifier: ^5.4.0
-        version: 5.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@types/node':
-        specifier: ^24.7.1
-        version: 24.7.1
-      eslint:
-        specifier: ^9.37.0
-        version: 9.37.0(jiti@2.6.1)
-      eslint-import-resolver-typescript:
-        specifier: ^4.4.4
-        version: 4.4.4(eslint-plugin-import@2.32.0)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-import:
-        specifier: ^2.32.0
-        version: 2.32.0(@typescript-eslint/parser@8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-promise:
-        specifier: ^7.2.1
-        version: 7.2.1(eslint@9.37.0(jiti@2.6.1))
-      jiti:
-        specifier: ^2.6.1
-        version: 2.6.1
-      mastra:
-        specifier: 0.13.2
-        version: 0.13.2(@mastra/core@0.18.0(openapi-types@12.1.3)(react@19.2.0)(zod@3.25.76))(@opentelemetry/api@1.9.0)(@types/json-schema@7.0.15)(typescript@5.9.3)(zod@3.25.76)
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-      typescript-eslint:
-        specifier: ^8.46.0
-        version: 8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3)
-
   bedrock/agentcore-runtime-mcp-example:
     dependencies:
       aws-cdk-lib:
@@ -635,519 +417,6 @@ importers:
       vitest:
         specifier: ^3.2.4
         version: 3.2.4(@types/node@22.7.9)(jiti@2.6.1)(lightningcss@1.30.1)(terser@5.31.3)(tsx@4.20.6)(yaml@2.8.1)
-
-  bedrock/agentcore-runtime-mcp-example/cdk.out/asset.2e24189b97661f62a5fa8a7a3f0db9d3f621afe6080ea5753e04064ec44bff5b:
-    dependencies:
-      '@modelcontextprotocol/sdk':
-        specifier: ^1.20.0
-        version: 1.20.0
-      fastmcp:
-        specifier: ^3.19.1
-        version: 3.19.1
-      hono:
-        specifier: ^4.9.10
-        version: 4.9.10
-      zod:
-        specifier: ^3.25.76
-        version: 3.25.76
-    devDependencies:
-      '@eslint/compat':
-        specifier: ^1.4.0
-        version: 1.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@eslint/core':
-        specifier: ^0.16.0
-        version: 0.16.0
-      '@eslint/js':
-        specifier: ^9.37.0
-        version: 9.37.0
-      '@hono/mcp':
-        specifier: ^0.1.4
-        version: 0.1.4(@modelcontextprotocol/sdk@1.20.0)(hono@4.9.10)
-      '@hono/node-server':
-        specifier: ^1.19.5
-        version: 1.19.5(hono@4.9.10)
-      '@stylistic/eslint-plugin':
-        specifier: ^5.4.0
-        version: 5.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@types/node':
-        specifier: 22.7.9
-        version: 22.7.9
-      eslint:
-        specifier: ^9.37.0
-        version: 9.37.0(jiti@2.6.1)
-      eslint-import-resolver-typescript:
-        specifier: ^4.4.4
-        version: 4.4.4(eslint-plugin-import@2.32.0)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-import:
-        specifier: ^2.32.0
-        version: 2.32.0(@typescript-eslint/parser@8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-promise:
-        specifier: ^7.2.1
-        version: 7.2.1(eslint@9.37.0(jiti@2.6.1))
-      jiti:
-        specifier: ^2.6.1
-        version: 2.6.1
-      tsx:
-        specifier: ^4.20.6
-        version: 4.20.6
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-      typescript-eslint:
-        specifier: ^8.46.0
-        version: 8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3)
-
-  bedrock/agentcore-runtime-mcp-example/cdk.out/asset.5dd8b8b72426c62af6a947c4494a567f349c92982f2aa830e07acf5093f8ff73:
-    dependencies:
-      fastmcp:
-        specifier: ^3.19.1
-        version: 3.19.1
-      zod:
-        specifier: ^3.25.76
-        version: 3.25.76
-    devDependencies:
-      '@eslint/compat':
-        specifier: ^1.4.0
-        version: 1.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@eslint/core':
-        specifier: ^0.16.0
-        version: 0.16.0
-      '@eslint/js':
-        specifier: ^9.37.0
-        version: 9.37.0
-      '@stylistic/eslint-plugin':
-        specifier: ^5.4.0
-        version: 5.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@types/node':
-        specifier: 22.7.9
-        version: 22.7.9
-      eslint:
-        specifier: ^9.37.0
-        version: 9.37.0(jiti@2.6.1)
-      eslint-import-resolver-typescript:
-        specifier: ^4.4.4
-        version: 4.4.4(eslint-plugin-import@2.32.0)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-import:
-        specifier: ^2.32.0
-        version: 2.32.0(@typescript-eslint/parser@8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-promise:
-        specifier: ^7.2.1
-        version: 7.2.1(eslint@9.37.0(jiti@2.6.1))
-      jiti:
-        specifier: ^2.6.1
-        version: 2.6.1
-      tsx:
-        specifier: ^4.20.6
-        version: 4.20.6
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-      typescript-eslint:
-        specifier: ^8.46.0
-        version: 8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3)
-
-  bedrock/agentcore-runtime-mcp-example/cdk.out/asset.622a2557b8af76a0d18ee9cec702e0e6b562931171e7ef07df9f5c1218a97972:
-    dependencies:
-      '@modelcontextprotocol/sdk':
-        specifier: ^1.20.0
-        version: 1.20.0
-      fastmcp:
-        specifier: ^3.19.1
-        version: 3.19.1
-      hono:
-        specifier: ^4.9.10
-        version: 4.9.10
-      zod:
-        specifier: ^3.25.76
-        version: 3.25.76
-    devDependencies:
-      '@eslint/compat':
-        specifier: ^1.4.0
-        version: 1.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@eslint/core':
-        specifier: ^0.16.0
-        version: 0.16.0
-      '@eslint/js':
-        specifier: ^9.37.0
-        version: 9.37.0
-      '@hono/mcp':
-        specifier: ^0.1.4
-        version: 0.1.4(@modelcontextprotocol/sdk@1.20.0)(hono@4.9.10)
-      '@hono/node-server':
-        specifier: ^1.19.5
-        version: 1.19.5(hono@4.9.10)
-      '@stylistic/eslint-plugin':
-        specifier: ^5.4.0
-        version: 5.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@types/node':
-        specifier: 22.7.9
-        version: 22.7.9
-      eslint:
-        specifier: ^9.37.0
-        version: 9.37.0(jiti@2.6.1)
-      eslint-import-resolver-typescript:
-        specifier: ^4.4.4
-        version: 4.4.4(eslint-plugin-import@2.32.0)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-import:
-        specifier: ^2.32.0
-        version: 2.32.0(@typescript-eslint/parser@8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-promise:
-        specifier: ^7.2.1
-        version: 7.2.1(eslint@9.37.0(jiti@2.6.1))
-      jiti:
-        specifier: ^2.6.1
-        version: 2.6.1
-      tsx:
-        specifier: ^4.20.6
-        version: 4.20.6
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-      typescript-eslint:
-        specifier: ^8.46.0
-        version: 8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3)
-
-  bedrock/agentcore-runtime-mcp-example/cdk.out/asset.72373f722c501e31ad7ef7abedfed9dc14f7a4379605b492e5b348f9569334bf:
-    dependencies:
-      '@modelcontextprotocol/sdk':
-        specifier: ^1.20.0
-        version: 1.20.0
-      fastmcp:
-        specifier: ^3.19.1
-        version: 3.19.1
-      hono:
-        specifier: ^4.9.10
-        version: 4.9.10
-      zod:
-        specifier: ^3.25.76
-        version: 3.25.76
-    devDependencies:
-      '@eslint/compat':
-        specifier: ^1.4.0
-        version: 1.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@eslint/core':
-        specifier: ^0.16.0
-        version: 0.16.0
-      '@eslint/js':
-        specifier: ^9.37.0
-        version: 9.37.0
-      '@hono/mcp':
-        specifier: ^0.1.4
-        version: 0.1.4(@modelcontextprotocol/sdk@1.20.0)(hono@4.9.10)
-      '@hono/node-server':
-        specifier: ^1.19.5
-        version: 1.19.5(hono@4.9.10)
-      '@stylistic/eslint-plugin':
-        specifier: ^5.4.0
-        version: 5.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@types/node':
-        specifier: 22.7.9
-        version: 22.7.9
-      eslint:
-        specifier: ^9.37.0
-        version: 9.37.0(jiti@2.6.1)
-      eslint-import-resolver-typescript:
-        specifier: ^4.4.4
-        version: 4.4.4(eslint-plugin-import@2.32.0)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-import:
-        specifier: ^2.32.0
-        version: 2.32.0(@typescript-eslint/parser@8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-promise:
-        specifier: ^7.2.1
-        version: 7.2.1(eslint@9.37.0(jiti@2.6.1))
-      jiti:
-        specifier: ^2.6.1
-        version: 2.6.1
-      tsx:
-        specifier: ^4.20.6
-        version: 4.20.6
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-      typescript-eslint:
-        specifier: ^8.46.0
-        version: 8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3)
-
-  bedrock/agentcore-runtime-mcp-example/cdk.out/asset.a149db21779c0f7a22fc7310da302860e621ca516c031c43107fa887e14f99d2:
-    dependencies:
-      fastmcp:
-        specifier: ^3.19.1
-        version: 3.19.1
-      zod:
-        specifier: ^3.25.76
-        version: 3.25.76
-    devDependencies:
-      '@eslint/compat':
-        specifier: ^1.4.0
-        version: 1.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@eslint/core':
-        specifier: ^0.16.0
-        version: 0.16.0
-      '@eslint/js':
-        specifier: ^9.37.0
-        version: 9.37.0
-      '@stylistic/eslint-plugin':
-        specifier: ^5.4.0
-        version: 5.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@types/node':
-        specifier: 22.7.9
-        version: 22.7.9
-      eslint:
-        specifier: ^9.37.0
-        version: 9.37.0(jiti@2.6.1)
-      eslint-import-resolver-typescript:
-        specifier: ^4.4.4
-        version: 4.4.4(eslint-plugin-import@2.32.0)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-import:
-        specifier: ^2.32.0
-        version: 2.32.0(@typescript-eslint/parser@8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-promise:
-        specifier: ^7.2.1
-        version: 7.2.1(eslint@9.37.0(jiti@2.6.1))
-      jiti:
-        specifier: ^2.6.1
-        version: 2.6.1
-      tsx:
-        specifier: ^4.20.6
-        version: 4.20.6
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-      typescript-eslint:
-        specifier: ^8.46.0
-        version: 8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3)
-
-  bedrock/agentcore-runtime-mcp-example/cdk.out/asset.a4b0a72333e92a41b8f6c5ba4006dbec09bc45d4fe3548446586ed4333806a1f:
-    dependencies:
-      fastmcp:
-        specifier: ^3.19.1
-        version: 3.19.1
-      zod:
-        specifier: ^3.25.76
-        version: 3.25.76
-    devDependencies:
-      '@eslint/compat':
-        specifier: ^1.4.0
-        version: 1.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@eslint/core':
-        specifier: ^0.16.0
-        version: 0.16.0
-      '@eslint/js':
-        specifier: ^9.37.0
-        version: 9.37.0
-      '@stylistic/eslint-plugin':
-        specifier: ^5.4.0
-        version: 5.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@types/node':
-        specifier: 22.7.9
-        version: 22.7.9
-      eslint:
-        specifier: ^9.37.0
-        version: 9.37.0(jiti@2.6.1)
-      eslint-import-resolver-typescript:
-        specifier: ^4.4.4
-        version: 4.4.4(eslint-plugin-import@2.32.0)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-import:
-        specifier: ^2.32.0
-        version: 2.32.0(@typescript-eslint/parser@8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-promise:
-        specifier: ^7.2.1
-        version: 7.2.1(eslint@9.37.0(jiti@2.6.1))
-      jiti:
-        specifier: ^2.6.1
-        version: 2.6.1
-      tsx:
-        specifier: ^4.20.6
-        version: 4.20.6
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-      typescript-eslint:
-        specifier: ^8.46.0
-        version: 8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3)
-
-  bedrock/agentcore-runtime-mcp-example/cdk.out/asset.bbc9f3d1ec488ea0b7493b6d583c229fb48cfea2224b1dfe1697062036d39b92:
-    dependencies:
-      '@modelcontextprotocol/sdk':
-        specifier: ^1.20.0
-        version: 1.20.0
-      fastmcp:
-        specifier: ^3.19.1
-        version: 3.19.1
-      hono:
-        specifier: ^4.9.10
-        version: 4.9.10
-      zod:
-        specifier: ^3.25.76
-        version: 3.25.76
-    devDependencies:
-      '@eslint/compat':
-        specifier: ^1.4.0
-        version: 1.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@eslint/core':
-        specifier: ^0.16.0
-        version: 0.16.0
-      '@eslint/js':
-        specifier: ^9.37.0
-        version: 9.37.0
-      '@hono/mcp':
-        specifier: ^0.1.4
-        version: 0.1.4(@modelcontextprotocol/sdk@1.20.0)(hono@4.9.10)
-      '@hono/node-server':
-        specifier: ^1.19.5
-        version: 1.19.5(hono@4.9.10)
-      '@stylistic/eslint-plugin':
-        specifier: ^5.4.0
-        version: 5.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@types/node':
-        specifier: 22.7.9
-        version: 22.7.9
-      eslint:
-        specifier: ^9.37.0
-        version: 9.37.0(jiti@2.6.1)
-      eslint-import-resolver-typescript:
-        specifier: ^4.4.4
-        version: 4.4.4(eslint-plugin-import@2.32.0)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-import:
-        specifier: ^2.32.0
-        version: 2.32.0(@typescript-eslint/parser@8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-promise:
-        specifier: ^7.2.1
-        version: 7.2.1(eslint@9.37.0(jiti@2.6.1))
-      jiti:
-        specifier: ^2.6.1
-        version: 2.6.1
-      tsx:
-        specifier: ^4.20.6
-        version: 4.20.6
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-      typescript-eslint:
-        specifier: ^8.46.0
-        version: 8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3)
-
-  bedrock/agentcore-runtime-mcp-example/cdk.out/asset.d8af7a71617bcd6c03b8901ac8ec1747198b221ef7530d30e3b20635a368d39d:
-    dependencies:
-      '@modelcontextprotocol/sdk':
-        specifier: ^1.20.0
-        version: 1.20.0
-      fastmcp:
-        specifier: ^3.19.1
-        version: 3.19.1
-      hono:
-        specifier: ^4.9.10
-        version: 4.9.10
-      zod:
-        specifier: ^3.25.76
-        version: 3.25.76
-    devDependencies:
-      '@eslint/compat':
-        specifier: ^1.4.0
-        version: 1.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@eslint/core':
-        specifier: ^0.16.0
-        version: 0.16.0
-      '@eslint/js':
-        specifier: ^9.37.0
-        version: 9.37.0
-      '@hono/mcp':
-        specifier: ^0.1.4
-        version: 0.1.4(@modelcontextprotocol/sdk@1.20.0)(hono@4.9.10)
-      '@hono/node-server':
-        specifier: ^1.19.5
-        version: 1.19.5(hono@4.9.10)
-      '@stylistic/eslint-plugin':
-        specifier: ^5.4.0
-        version: 5.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@types/node':
-        specifier: 22.7.9
-        version: 22.7.9
-      eslint:
-        specifier: ^9.37.0
-        version: 9.37.0(jiti@2.6.1)
-      eslint-import-resolver-typescript:
-        specifier: ^4.4.4
-        version: 4.4.4(eslint-plugin-import@2.32.0)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-import:
-        specifier: ^2.32.0
-        version: 2.32.0(@typescript-eslint/parser@8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-promise:
-        specifier: ^7.2.1
-        version: 7.2.1(eslint@9.37.0(jiti@2.6.1))
-      jiti:
-        specifier: ^2.6.1
-        version: 2.6.1
-      tsx:
-        specifier: ^4.20.6
-        version: 4.20.6
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-      typescript-eslint:
-        specifier: ^8.46.0
-        version: 8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3)
-
-  bedrock/agentcore-runtime-mcp-example/cdk.out/asset.dc56a45290c45f004460ee611d7f9583c56621ee34722562e174142791716388:
-    dependencies:
-      '@modelcontextprotocol/sdk':
-        specifier: ^1.20.0
-        version: 1.20.0
-      fastmcp:
-        specifier: ^3.19.1
-        version: 3.19.1
-      hono:
-        specifier: ^4.9.10
-        version: 4.9.10
-      zod:
-        specifier: ^3.25.76
-        version: 3.25.76
-    devDependencies:
-      '@eslint/compat':
-        specifier: ^1.4.0
-        version: 1.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@eslint/core':
-        specifier: ^0.16.0
-        version: 0.16.0
-      '@eslint/js':
-        specifier: ^9.37.0
-        version: 9.37.0
-      '@hono/mcp':
-        specifier: ^0.1.4
-        version: 0.1.4(@modelcontextprotocol/sdk@1.20.0)(hono@4.9.10)
-      '@hono/node-server':
-        specifier: ^1.19.5
-        version: 1.19.5(hono@4.9.10)
-      '@stylistic/eslint-plugin':
-        specifier: ^5.4.0
-        version: 5.4.0(eslint@9.37.0(jiti@2.6.1))
-      '@types/node':
-        specifier: 22.7.9
-        version: 22.7.9
-      eslint:
-        specifier: ^9.37.0
-        version: 9.37.0(jiti@2.6.1)
-      eslint-import-resolver-typescript:
-        specifier: ^4.4.4
-        version: 4.4.4(eslint-plugin-import@2.32.0)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-import:
-        specifier: ^2.32.0
-        version: 2.32.0(@typescript-eslint/parser@8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4)(eslint@9.37.0(jiti@2.6.1))
-      eslint-plugin-promise:
-        specifier: ^7.2.1
-        version: 7.2.1(eslint@9.37.0(jiti@2.6.1))
-      jiti:
-        specifier: ^2.6.1
-        version: 2.6.1
-      tsx:
-        specifier: ^4.20.6
-        version: 4.20.6
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-      typescript-eslint:
-        specifier: ^8.46.0
-        version: 8.46.0(eslint@9.37.0(jiti@2.6.1))(typescript@5.9.3)
 
   bedrock/agentcore-runtime-mcp-example/mcp-server:
     dependencies:
@@ -1804,156 +1073,6 @@ importers:
         specifier: ^3.2.4
         version: 3.2.4(@types/node@22.18.9)(jiti@2.6.1)(lightningcss@1.30.1)(terser@5.31.3)(tsx@4.20.6)(yaml@2.8.1)
 
-  lambda/hello-mcp-server/cdk.out/asset.0ef97c5176934d8ce7abd11906306eabaab6d2df7b2d1eb15ec1bc80fd95b8f4:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.13c6c9b3246bc9c3492f96bbf6c7bdbc3a1af90f160cab1fd68c9f82a882111b:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.1a7e5c9e085e48b532432f24553346559d5794ec480c05295544b1ec81fb00d8:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.2745c32f70681f843eba7b08990fd53c9d331eae08966d2842ce61117d6ae045:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.2781002c748b899362d2726e8df3238a6ba2a5419bd3b0df3477b66280562ba5:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.3838386d57349b64670e650b4a020a5e3a43ac7e0d6559c4f685980377ae790b:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.38e06a2d2ff4679dffc8767d84cce49ef0e10bc245099f0a139b54dc7dbaced0:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.5e798363b07892dacd9524e2ce117aab6ba1644ef22f8941caf4ee72a8108845:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.62971b7641495012862d0f4b92d24cf677df8ef77c1f3a5a4d019663ea875d2a:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.730d8359e9a0bcea4f9e138ab2a3539e1daf34991cf8e7a9c881905bdeabdb43:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.84fcc72d6e8e9789afe14e36ebff03a2a8b85f19fa84d6326184591e1f71ce8f:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.88fe24d8ddbc84a3618a5ed7106d3ade361baca49819a2decfbeece0a5629ac2:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.908bd4542e68b92b14cb77bbc2e09a8d4d348b85c55cbbcf88649ee1ce574c2b:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.9d991652cd31da91841a6fc8c08a2a6a35ee869958a1c6278deacb7d96990f31:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.9da09c04cc1ef77450b10a87258dc394e2144fa6f334ef485a71226c63a530ab:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.b01106ac5e25864fe87a1b611371ab4153916e7c974aa038ed6c2601840d882e:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.cbb122b8944f9006fcf4e1ea8fbc36990102821ba518a516b3713fe1ce1fdcaa:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.cdad80cdec0b94555a82e6d20b75efce754028229d06c508600918c8dd766258:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.cffc1f43266c5e2afdef16effefad070b9312296d7a61955a0ed62fd6bda0e4d:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.d1ff538c140739ae1398d9fbf41ede954590c3dab94bf137b805ecd54ac63ccc:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.e2940398d846856d11a3105371f249cd96f97783112f7524324a196e45395ff3:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.e379e900520e145db1a796c9f362af5619b2749ad23e4eb2ffcbf3e97f22883f:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.e462f6c73da1d920209a82c162c95a13171b5af5a2b29cb27a37100208e0e329:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/asset.eaff4a50f2cf2f9b7c9e432e7cd4119b199309a294e8754cb4a24bb03b0b04bd:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
-  lambda/hello-mcp-server/cdk.out/bundling-temp-74737dd72a657c3f6f404f2d6a76aec6de325094ac923d452179ee5c81bbe477-building:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
-
   lambda/layer/functions/function:
     dependencies:
       aws-cdk-lib:
@@ -2012,18 +1131,6 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
 
-  lambda/layer/layer/cdk.out/asset.12129db410a6d670b3a037c999ff2fef023ca03a5aef5f920c815e368d2cf4b1/nodejs:
-    dependencies:
-      log4js:
-        specifier: ^6.9.1
-        version: 6.9.1
-
-  lambda/layer/layer/cdk.out/asset.198db5d0826061ac6034e2cef889b30bdd9c01fc21542e46f7d353a1e1611904/nodejs:
-    dependencies:
-      log4js:
-        specifier: ^6.9.1
-        version: 6.9.1
-
   lambda/layer/layer/src/nodejs:
     dependencies:
       log4js:
@@ -2064,8 +1171,8 @@ importers:
         specifier: ^3.901.0
         version: 3.901.0
       '@types/node':
-        specifier: ^20.19.20
-        version: 20.19.20
+        specifier: ^24
+        version: 24.7.1
       eslint:
         specifier: ^9.37.0
         version: 9.37.0(jiti@2.6.1)
@@ -2775,6 +1882,9 @@ packages:
   '@discoveryjs/json-ext@0.5.7':
     resolution: {integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==}
     engines: {node: '>=10.0.0'}
+
+  '@dmsnell/diff-match-patch@1.1.0':
+    resolution: {integrity: sha512-yejLPmM5pjsGvxS9gXablUSbInW7H976c/FJ4iQxWIm7/38xBySRemTPDe34lhg1gVLbJntX0+sH0jYfU+PN9A==}
 
   '@emnapi/core@1.5.0':
     resolution: {integrity: sha512-sbP8GzB1WDzacS8fgNPpHlp6C9VZe+SJP3F90W9rLemaQj2PzIuTEl1qDOYQf58YIpyjViI24y9aPWCjEzY2cg==}
@@ -5690,9 +4800,6 @@ packages:
   '@types/deep-eql@4.0.2':
     resolution: {integrity: sha512-c9h9dVVMigMPc4bwTvC5dxqtqJZwQPePsWjPlpSOnojbor6pGqdk541lfA7AqFQr5pB1BRdq0juY9db81BwyFw==}
 
-  '@types/diff-match-patch@1.0.36':
-    resolution: {integrity: sha512-xFdR6tkm0MWvBfO8xXCSsinYxHcqkQUlcHeSpMC2ukzOb6lwQAfDmW+Qt0AvlGd8HpsS28qKsB+oPeJn9I39jg==}
-
   '@types/estree@1.0.8':
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
 
@@ -6391,10 +5498,6 @@ packages:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
 
-  chalk@5.6.2:
-    resolution: {integrity: sha512-7NzBL0rN6fMUW+f7A6Io4h40qQlG+xGmtMxfbnH/K7TAtt8JQWVQK+6g0UXKMeVJoyV5EkkNsErQ8pVD3bLHbA==}
-    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
-
   char-regex@1.0.2:
     resolution: {integrity: sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==}
     engines: {node: '>=10'}
@@ -6706,9 +5809,6 @@ packages:
   detect-newline@3.1.0:
     resolution: {integrity: sha512-TLz+x/vEXm/Y7P7wn1EJFNLxYpUD4TgMosxY6fAVJUnJMbupHBOncxyWUG9OpTaH9EBD7uFI5LfEgmMOc54DsA==}
     engines: {node: '>=8'}
-
-  diff-match-patch@1.0.5:
-    resolution: {integrity: sha512-IayShXAgj/QMXgB0IWmKx+rOPuGMhqm5w6jvFxmVenXKIzRqTAAsbBPT3kWQeGANj3jGgvcvv4yK6SxqYmikgw==}
 
   diff-sequences@29.6.3:
     resolution: {integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==}
@@ -8012,8 +7112,8 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
-  jsondiffpatch@0.6.0:
-    resolution: {integrity: sha512-3QItJOXp2AP1uv7waBkao5nCvhEv+QmJAd38Ybq7wNI74Q+BBmnLn4EDKz6yI9xGAIQoUF87qHt+kc1IVxB4zQ==}
+  jsondiffpatch@0.7.3:
+    resolution: {integrity: sha512-zd4dqFiXSYyant2WgSXAZ9+yYqilNVvragVNkNRn2IFZKgjyULNrKRznqN4Zon0MkLueCg+3QaPVCnDAVP20OQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
 
@@ -11300,6 +10400,8 @@ snapshots:
 
   '@discoveryjs/json-ext@0.5.7': {}
 
+  '@dmsnell/diff-match-patch@1.1.0': {}
+
   '@emnapi/core@1.5.0':
     dependencies:
       '@emnapi/wasi-threads': 1.1.0
@@ -11951,7 +11053,7 @@ snapshots:
   '@jest/console@29.7.0':
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
       chalk: 4.1.2
       jest-message-util: 29.7.0
       jest-util: 29.7.0
@@ -11964,14 +11066,14 @@ snapshots:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       ci-info: 3.9.0
       exit: 0.1.2
       graceful-fs: 4.2.11
       jest-changed-files: 29.7.0
-      jest-config: 29.7.0(@types/node@22.18.9)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@22.18.9)(typescript@5.9.3))
+      jest-config: 29.7.0(@types/node@24.7.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@22.18.9)(typescript@5.9.3))
       jest-haste-map: 29.7.0
       jest-message-util: 29.7.0
       jest-regex-util: 29.6.3
@@ -11996,7 +11098,7 @@ snapshots:
     dependencies:
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
       jest-mock: 29.7.0
 
   '@jest/expect-utils@29.7.0':
@@ -12014,7 +11116,7 @@ snapshots:
     dependencies:
       '@jest/types': 29.6.3
       '@sinonjs/fake-timers': 10.3.0
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
       jest-message-util: 29.7.0
       jest-mock: 29.7.0
       jest-util: 29.7.0
@@ -12036,7 +11138,7 @@ snapshots:
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
       '@jridgewell/trace-mapping': 0.3.31
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
       chalk: 4.1.2
       collect-v8-coverage: 1.0.2
       exit: 0.1.2
@@ -12106,7 +11208,7 @@ snapshots:
       '@jest/schemas': 29.6.3
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
       '@types/yargs': 17.0.33
       chalk: 4.1.2
 
@@ -14977,11 +14079,11 @@ snapshots:
   '@types/body-parser@1.19.6':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
 
   '@types/bunyan@1.8.11':
     dependencies:
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
 
   '@types/chai@5.2.2':
     dependencies:
@@ -14989,15 +14091,13 @@ snapshots:
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
 
   '@types/cors@2.8.19':
     dependencies:
       '@types/node': 22.18.9
 
   '@types/deep-eql@4.0.2': {}
-
-  '@types/diff-match-patch@1.0.36': {}
 
   '@types/estree@1.0.8': {}
 
@@ -15010,7 +14110,7 @@ snapshots:
 
   '@types/express-serve-static-core@5.1.0':
     dependencies:
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
       '@types/qs': 6.14.0
       '@types/range-parser': 1.2.7
       '@types/send': 1.2.0
@@ -15030,7 +14130,7 @@ snapshots:
 
   '@types/graceful-fs@4.1.9':
     dependencies:
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
 
   '@types/http-errors@2.0.5': {}
 
@@ -15057,13 +14157,13 @@ snapshots:
 
   '@types/memcached@2.2.10':
     dependencies:
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
 
   '@types/mime@1.3.5': {}
 
   '@types/mysql@2.15.26':
     dependencies:
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
 
   '@types/mysql@2.15.27':
     dependencies:
@@ -15103,7 +14203,7 @@ snapshots:
 
   '@types/pg@8.6.1':
     dependencies:
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
       pg-protocol: 1.10.3
       pg-types: 2.2.0
 
@@ -15130,16 +14230,16 @@ snapshots:
   '@types/send@0.17.5':
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
 
   '@types/send@1.2.0':
     dependencies:
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
 
   '@types/serve-static@1.15.9':
     dependencies:
       '@types/http-errors': 2.0.5
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
       '@types/send': 0.17.5
 
   '@types/shimmer@1.2.0': {}
@@ -15148,7 +14248,7 @@ snapshots:
 
   '@types/tedious@4.0.14':
     dependencies:
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
 
   '@types/ws@8.18.1':
     dependencies:
@@ -15441,7 +14541,7 @@ snapshots:
       '@ai-sdk/react': 1.2.12(react@19.2.0)(zod@3.25.76)
       '@ai-sdk/ui-utils': 1.2.11(zod@3.25.76)
       '@opentelemetry/api': 1.9.0
-      jsondiffpatch: 0.6.0
+      jsondiffpatch: 0.7.3
       zod: 3.25.76
     optionalDependencies:
       react: 19.2.0
@@ -15822,8 +14922,6 @@ snapshots:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
 
-  chalk@5.6.2: {}
-
   char-regex@1.0.2: {}
 
   check-error@2.1.1: {}
@@ -15960,7 +15058,7 @@ snapshots:
       chalk: 4.1.2
       exit: 0.1.2
       graceful-fs: 4.2.11
-      jest-config: 29.7.0(@types/node@24.7.1)(babel-plugin-macros@3.1.0)
+      jest-config: 29.7.0(@types/node@24.7.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@22.18.9)(typescript@5.9.3))
       jest-util: 29.7.0
       prompts: 2.4.2
     transitivePeerDependencies:
@@ -16082,8 +15180,6 @@ snapshots:
   detect-libc@2.1.2: {}
 
   detect-newline@3.1.0: {}
-
-  diff-match-patch@1.0.5: {}
 
   diff-sequences@29.6.3: {}
 
@@ -17487,7 +16583,7 @@ snapshots:
       '@jest/expect': 29.7.0
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
       chalk: 4.1.2
       co: 4.6.0
       dedent: 1.7.0(babel-plugin-macros@3.1.0)
@@ -17535,7 +16631,7 @@ snapshots:
       create-jest: 29.7.0(@types/node@24.7.1)(babel-plugin-macros@3.1.0)
       exit: 0.1.2
       import-local: 3.2.0
-      jest-config: 29.7.0(@types/node@24.7.1)(babel-plugin-macros@3.1.0)
+      jest-config: 29.7.0(@types/node@24.7.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@22.18.9)(typescript@5.9.3))
       jest-util: 29.7.0
       jest-validate: 29.7.0
       yargs: 17.7.2
@@ -17577,7 +16673,7 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
-  jest-config@29.7.0(@types/node@24.7.1)(babel-plugin-macros@3.1.0):
+  jest-config@29.7.0(@types/node@24.7.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@22.18.9)(typescript@5.9.3)):
     dependencies:
       '@babel/core': 7.28.4
       '@jest/test-sequencer': 29.7.0
@@ -17603,10 +16699,10 @@ snapshots:
       strip-json-comments: 3.1.1
     optionalDependencies:
       '@types/node': 24.7.1
+      ts-node: 10.9.2(@types/node@22.18.9)(typescript@5.9.3)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
-    optional: true
 
   jest-diff@29.7.0:
     dependencies:
@@ -17632,7 +16728,7 @@ snapshots:
       '@jest/environment': 29.7.0
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
       jest-mock: 29.7.0
       jest-util: 29.7.0
 
@@ -17642,7 +16738,7 @@ snapshots:
     dependencies:
       '@jest/types': 29.6.3
       '@types/graceful-fs': 4.1.9
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -17681,7 +16777,7 @@ snapshots:
   jest-mock@29.7.0:
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
       jest-util: 29.7.0
 
   jest-pnp-resolver@1.2.3(jest-resolve@29.7.0):
@@ -17716,7 +16812,7 @@ snapshots:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
       chalk: 4.1.2
       emittery: 0.13.1
       graceful-fs: 4.2.11
@@ -17744,7 +16840,7 @@ snapshots:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
       chalk: 4.1.2
       cjs-module-lexer: 1.4.3
       collect-v8-coverage: 1.0.2
@@ -17790,7 +16886,7 @@ snapshots:
   jest-util@29.7.0:
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
       chalk: 4.1.2
       ci-info: 3.9.0
       graceful-fs: 4.2.11
@@ -17809,7 +16905,7 @@ snapshots:
     dependencies:
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       emittery: 0.13.1
@@ -17818,7 +16914,7 @@ snapshots:
 
   jest-worker@29.7.0:
     dependencies:
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
@@ -17900,11 +16996,9 @@ snapshots:
 
   json5@2.2.3: {}
 
-  jsondiffpatch@0.6.0:
+  jsondiffpatch@0.7.3:
     dependencies:
-      '@types/diff-match-patch': 1.0.36
-      chalk: 5.6.2
-      diff-match-patch: 1.0.5
+      '@dmsnell/diff-match-patch': 1.1.0
 
   jsonfile@4.0.0:
     optionalDependencies:
@@ -18611,7 +17705,7 @@ snapshots:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 22.18.9
+      '@types/node': 24.7.1
       long: 5.3.2
 
   proxy-addr@2.0.7:

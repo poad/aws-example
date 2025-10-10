@@ -1,4 +1,4 @@
-import { signRequest } from './sign-v4-request'
+import { signRequest } from './sign-v4-request.js'
 
 const service = 'sts';
 const region = 'us-west-2';

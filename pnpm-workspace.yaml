@@ -2,6 +2,9 @@ packages:
   - ./**
   - '!**/.next'
   - '!**/cdk.out'
+  - '!**/cdk.out/**'
+  - '!**/dist'
+  - '!**/build'
 
 enablePrePostScripts: true
 

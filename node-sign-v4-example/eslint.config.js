@@ -8,7 +8,8 @@ export default tseslint.config(
   {
     ignores: [
       '**/*.d.ts',
-      '*.{js,jsx}',
+      '**/*.js',
+      '**/*.jsx',
       'src/tsconfig.json',
       'src/stories',
       '**/*.css',

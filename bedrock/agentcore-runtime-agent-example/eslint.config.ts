@@ -16,16 +16,16 @@ const __dirname = path.dirname(__filename);
 const gitignorePath = path.resolve(__dirname, '.gitignore');
 
 const eslintConfig: ConfigObject<RulesConfig>[] = defineConfig(
+  includeIgnoreFile(gitignorePath),
   {
     ignores: [
-      ...(includeIgnoreFile(gitignorePath).ignores || []),
       '**/*.d.ts',
       'src/tsconfig.json',
       'src/stories',
       '**/*.css',
       'node_modules/**/*',
       'out',
-      'cdk.out',
+      '**/cdk.out/**',
       'dist',
       'app',
     ],
@@ -44,8 +44,8 @@ const eslintConfig: ConfigObject<RulesConfig>[] = defineConfig(
       sourceType: 'module',
       parser,
       parserOptions: {
-        projectService: true,
         tsconfigRootDir: __dirname,
+        projectService: true,
       },
     },
     extends: [

@@ -5,7 +5,6 @@ import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
-// @ts-ignore
 import importPlugin from 'eslint-plugin-import';
 
 import tseslint from 'typescript-eslint';
@@ -36,20 +35,19 @@ export default defineConfig(
       '**/bin/**/*.js',
       '**/lambda/**/*.js',
       '**/lib/**/*.js',
+      '**/cdk.out/**',
     ],
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
+  // @ts-ignore
+  reactHooksPlugin.configs.flat.recommended,
   {
     files: ['eslint.config.js', 'src/**/*.ts', 'src/**/*.jsx', 'src/**/*.tsx'],
     plugins: {
       '@stylistic': stylistic,
     },
     extends: [
-      ...compat.config(importPlugin.configs.recommended),
-      ...compat.config(importPlugin.configs.typescript),
-      // @ts-ignore
-      ...compat.config(reactHooksPlugin.configs.recommended),
       ...compat.config(jsxA11yPlugin.configs.recommended),
       importPlugin.flatConfigs.recommended,
       importPlugin.flatConfigs.typescript,
@@ -59,7 +57,6 @@ export default defineConfig(
       ecmaVersion: 'latest',
       sourceType: 'module',
       parserOptions: {
-        project: true,
         projectService: true,
         tsconfigRootDir: __dirname,
       },

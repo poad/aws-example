@@ -45,7 +45,9 @@ const eslintConfig: ConfigObject<RulesConfig>[] = defineConfig(
       parser,
       parserOptions: {
         tsconfigRootDir: __dirname,
-        project: ['./tsconfig-eslint.json'],
+        projectService: {
+          allowDefaultProject: ['eslint.config.ts'],
+        },
       },
     },
     extends: [

@@ -6,8 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "eslint-check": "eslint './src/**/*{.ts,.js,.tsx,.jsx}'",
-    "eslint-fix": "eslint --fix './src/**/*{.ts,.js,.tsx,.jsx}'",
+    "eslint-check": "eslint -c ../../../eslint.config.js './src/**/*{.ts,.js,.tsx,.jsx}'",
+    "eslint-fix": "eslint -c ../../../eslint.config.js --fix './src/**/*{.ts,.js,.tsx,.jsx}'",
     "prettier-check": "prettier --check src",
     "prettier-format": "prettier --write src",
     "lint": "pnpm prettier-check && pnpm eslint-check",
@@ -32,13 +32,23 @@
     "web-vitals": "^4.2.4"
   },
   "devDependencies": {
+    "@eslint/compat": "^1.4.0",
+    "@eslint/core": "^0.16.0",
+    "@eslint/js": "^9.37.0",
     "@next/bundle-analyzer": "^15.5.4",
+    "@stylistic/eslint-plugin": "^5.4.0",
     "@tailwindcss/postcss": "^4.1.14",
-    "@types/node": "^22.18.8",
-    "@types/react": "^19.2.0",
+    "@types/node": "^22.18.9",
+    "@types/react": "^19.2.2",
+    "eslint": "^9.37.0",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-promise": "^7.2.1",
     "prettier": "^3.6.2",
     "rimraf": "^6.0.1",
-    "typescript": "^5.9.3"
+    "styled-jsx": "^5.1.7",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.0"
   },
   "jest": {
     "transform": {

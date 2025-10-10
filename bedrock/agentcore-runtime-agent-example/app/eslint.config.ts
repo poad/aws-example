@@ -25,7 +25,7 @@ const eslintConfig: ConfigObject<RulesConfig>[] = defineConfig(
       '**/*.css',
       'node_modules/**/*',
       'out',
-      'cdk.out',
+      '**/cdk.out/**',
       'dist',
       '.mastra',
     ],

@@ -23,13 +23,13 @@ server.registerTool('say_hello', {
     who: z.string().optional(),
   },
 },
-  async ({ who }) => {
-    const result = String(`Hello ${who || 'world'}!`);
-    console.debug(result);
-    return {
-      content: [{ type: 'text', text: result }],
-    };
-  },
+async ({ who }) => {
+  const result = String(`Hello ${who || 'world'}!`);
+  console.debug(result);
+  return {
+    content: [{ type: 'text', text: result }],
+  };
+},
 );
 
 const cleanupServer = async () => {
@@ -50,7 +50,7 @@ app.post('/mcp', async (c) => {
       enableJsonResponse: true,
     });
     transport.onclose = async () => {
-      await cleanupServer()
+      await cleanupServer();
     };
 
     try {

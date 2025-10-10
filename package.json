@@ -5,10 +5,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "pnpm -r --parallel build",
+    "build": "pnpm -r build",
     "prebuild": "pnpm -r install",
-    "lint": "pnpm -r --parallel --if-present lint",
-    "lint-fix": "pnpm -r --parallel --if-present lint-fix"
+    "lint": "pnpm -r --if-present lint",
+    "lint-fix": "pnpm -r --if-present lint-fix"
   },
   "devDependencies": {
     "@eslint/compat": "^1.4.0",
@@ -25,9 +25,9 @@
     "eslint-plugin-jest": "^28.14.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "pnpm": "^10.18.0",
-    "typescript-eslint": "^8.45.0"
+    "eslint-plugin-react-hooks": "^7.0.0",
+    "pnpm": "^10.18.2",
+    "typescript-eslint": "^8.46.0"
   },
   "engines": {
     "npm": "use pnpm please!",

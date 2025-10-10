@@ -6,33 +6,30 @@ ARG NODE_VERSION=24
 
 FROM --platform=$BUILDPLATFORM node:$NODE_VERSION-slim AS build
 
-RUN npm install -g bun pnpm
 WORKDIR /build
 COPY package.json ./
 
-RUN pnpm i
+RUN npx -y pnpm@latest i
 COPY . ./
 
-RUN bun run mastra build
+RUN npx -y bun@latest run mastra build
 
 
-FROM --platform=l$BUILDPLATFORM node:$NODE_VERSION-slim AS dev
-
-RUN npm install -g pnpm
+FROM --platform=$BUILDPLATFORM node:$NODE_VERSION-slim AS dev
 
 WORKDIR /work
 COPY package.json ./
 
-RUN pnpm i
+RUN npx -y pnpm@latest i
 
 COPY . ./
 
 ENV PORT=8080
 
-ENTRYPOINT ["pnpm", "dev"]
+ENTRYPOINT ["npx", "-y", "pnpm", "dev"]
 
 
-FROM --platform=l$BUILDPLATFORM node:$NODE_VERSION-slim
+FROM --platform=$BUILDPLATFORM node:$NODE_VERSION-slim
 
 COPY --from=build /build /var/task
 

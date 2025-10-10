@@ -73,7 +73,11 @@ export class AgentcoreRuntimeAgentExampleStack extends cdk.Stack {
             new cdk.aws_iam.PolicyStatement({
               sid: 'ECRImageAccess',
               effect: cdk.aws_iam.Effect.ALLOW,
-              actions: ['ecr:BatchGetImage', 'ecr:GetDownloadUrlForLayer'],
+              actions: [
+                'ecr:GetAuthorizationToken',
+                'ecr:BatchGetImage',
+                'ecr:GetDownloadUrlForLayer',
+              ],
               resources: [`arn:aws:ecr:${region}:${accountId}:repository/*`],
             }),
             new cdk.aws_iam.PolicyStatement({

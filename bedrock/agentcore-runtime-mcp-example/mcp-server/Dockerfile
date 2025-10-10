@@ -6,30 +6,27 @@ ARG NODE_VERSION=24
 
 FROM --platform=$BUILDPLATFORM node:$NODE_VERSION-slim AS build
 
-RUN npm install -g pnpm
 WORKDIR /build
 COPY package.json ./
 
-RUN pnpm i
+RUN npx -y pnpm@latest i
 COPY . ./
 
-RUN pnpm build
+RUN npx -y pnpm@latest build
 
 
 FROM --platform=$BUILDPLATFORM node:$NODE_VERSION-slim AS dev
 
-RUN npm install -g pnpm
-
 WORKDIR /work
 COPY package.json ./
 
-RUN pnpm i
+RUN npx -y pnpm@latest i
 
 COPY . ./
 
 ENV PORT=8080
 
-ENTRYPOINT ["pnpm", "dev"]
+ENTRYPOINT ["npx", "-y", "pnpm", "dev"]
 
 FROM --platform=$BUILDPLATFORM node:$NODE_VERSION-slim
 
@@ -43,7 +40,7 @@ WORKDIR "/var/task"
 # Switch to non-root user
 USER node
 
-RUN pnpm i --production
+RUN CI=true npx -y pnpm@latest i --production
 
 ENV PORT=8000
 

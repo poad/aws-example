@@ -15,7 +15,7 @@ export class HelloMcpServerStack extends cdk.Stack {
     const fn = new cdk.aws_lambda_nodejs.NodejsFunction(this, 'Lambda', {
       functionName,
       architecture: cdk.aws_lambda.Architecture.ARM_64,
-      runtime: cdk.aws_lambda.Runtime.NODEJS_LATEST,
+      runtime: cdk.aws_lambda.Runtime.NODEJS_24_X,
       entry: 'lambda/index.ts',
       retryAttempts: 0,
       logGroup,

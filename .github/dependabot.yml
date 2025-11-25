@@ -42,6 +42,7 @@ updates:
       - '/lambda/layer/functions/function/handler/'
       - '/lambda/layer/layer/'
       - '/lambda/layer/layer/src/nodejs/'
+      - '/lambda/rust-runtime/'
       - '/node-sign-v4-example/'
       - '/bedrock/agentcore-runtime-agent-example/'
       - '/bedrock/agentcore-runtime-agent-example/app/'
@@ -54,14 +55,6 @@ updates:
     allow:
       - dependency-type: all
     rebase-strategy: auto
-
-    # Mastra で Bedrock と MCP Server を使う際に zod v4 対応が未完なため `The value at toolConfig.tools.0.toolSpec.inputSchema.json.type must be one of the following: object.` となってしまう問題の対策
-    ignore:
-      - dependency-name: "@mastra/*"
-      - dependency-name: "mastra"
-      - dependency-name: "zod"
-        versions: [ "4.x" ]
-
     assignees:
       - poad
     groups:
@@ -71,7 +64,7 @@ updates:
 
   - package-ecosystem: gradle
     directories:
-      - '/codebuild/codebuild-webhook-project/app/'
+      - '/lambda/rust-runtime/lambda/'
     schedule:
       interval: daily
       timezone: Asia/Tokyo
@@ -85,3 +78,19 @@ updates:
       gradle:
         patterns:
           - "*"
+
+  - package-ecosystem: cargo
+    directories:
+      - '/actix-web-reqwest-example/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+    groups:
+      actix-web-reqwest:
+        patterns:
+          - '*'

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "tsc --build --clean",
     "dev": "mastra dev",
     "build": "mastra build",
     "start": "mastra start",
@@ -19,19 +20,19 @@
     "node": ">=22.0.0"
   },
   "dependencies": {
-    "@ai-sdk/amazon-bedrock": "^3.0.57",
-    "@aws-sdk/credential-providers": "^3.936.0",
-    "@aws/aws-distro-opentelemetry-node-autoinstrumentation": "^0.7.0",
-    "@mastra/core": "^0.23.3",
-    "@mastra/libsql": "^0.16.2",
+    "@ai-sdk/amazon-bedrock": "^3.0.62",
+    "@aws-sdk/credential-providers": "^3.940.0",
+    "@aws/aws-distro-opentelemetry-node-autoinstrumentation": "^0.8.0",
+    "@mastra/core": "^0.24.6",
+    "@mastra/libsql": "^0.16.3",
     "@mastra/loggers": "^0.10.19",
-    "@mastra/mcp": "^0.14.3",
-    "@mastra/memory": "^0.15.11",
-    "hono": "^4.10.6",
-    "zod": "^3.25.76"
+    "@mastra/mcp": "^0.14.4",
+    "@mastra/memory": "^0.15.12",
+    "hono": "^4.10.7",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
-    "@eslint/compat": "^1.4.1",
+    "@eslint/compat": "^2.0.0",
     "@eslint/js": "^9.39.1",
     "@stylistic/eslint-plugin": "^5.6.1",
     "@types/node": "^24.10.1",
@@ -40,8 +41,8 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-promise": "^7.2.1",
     "jiti": "^2.6.1",
-    "mastra": "^0.17.7",
+    "mastra": "^0.18.6",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.47.0"
+    "typescript-eslint": "^8.48.0"
   }
 }

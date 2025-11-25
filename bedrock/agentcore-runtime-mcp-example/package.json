@@ -7,6 +7,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
+    "clean": "tsc --build --clean",
     "watch": "tsc -w",
     "test": "vitest run",
     "cdk": "cdk",
@@ -14,7 +15,7 @@
     "lint-fix": "eslint . --fix"
   },
   "devDependencies": {
-    "@eslint/compat": "^1.4.1",
+    "@eslint/compat": "^2.0.0",
     "@eslint/js": "^9.39.1",
     "@stylistic/eslint-plugin": "^5.6.1",
     "@types/node": "^24.10.1",
@@ -26,11 +27,11 @@
     "jiti": "^2.6.1",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.47.0",
-    "vitest": "^3.2.4"
+    "typescript-eslint": "^8.48.0",
+    "vitest": "^4.0.14"
   },
   "dependencies": {
-    "aws-cdk-lib": "^2.227.0",
+    "aws-cdk-lib": "^2.230.0",
     "cdk-ecr-deployment": "^4.0.3",
     "constructs": "^10.4.3"
   }

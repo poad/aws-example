@@ -7,6 +7,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
+    "clean": "tsc --build --clean",
     "watch": "tsc -w",
     "test": "vitest run",
     "cdk": "cdk",
@@ -27,12 +28,12 @@
     "jiti": "^2.6.1",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.47.0",
-    "vitest": "^3.2.4"
+    "typescript-eslint": "^8.48.0",
+    "vitest": "^4.0.14"
   },
   "dependencies": {
     "@aws/aws-distro-opentelemetry-node-autoinstrumentation": "^0.7.0",
-    "aws-cdk-lib": "^2.227.0",
+    "aws-cdk-lib": "^2.230.0",
     "cdk-ecr-deployment": "^4.0.3",
     "constructs": "^10.4.3"
   }

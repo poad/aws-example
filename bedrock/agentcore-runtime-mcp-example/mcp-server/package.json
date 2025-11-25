@@ -4,15 +4,16 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
+    "clean": "tsc --build --clean",
     "watch": "tsc -w",
     "dev": "tsx --watch src/index.ts",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix"
   },
   "devDependencies": {
-    "@eslint/compat": "^1.4.1",
+    "@eslint/compat": "^2.0.0",
     "@eslint/js": "^9.39.1",
-    "@hono/mcp": "^0.1.5",
+    "@hono/mcp": "^0.2.0",
     "@hono/node-server": "^1.19.6",
     "@stylistic/eslint-plugin": "^5.6.1",
     "@types/node": "^24.10.1",
@@ -23,12 +24,12 @@
     "jiti": "^2.6.1",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.47.0"
+    "typescript-eslint": "^8.48.0"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.22.0",
-    "fastmcp": "^3.23.1",
-    "hono": "^4.10.6",
-    "zod": "^3.25.76"
+    "@modelcontextprotocol/sdk": "^1.23.0",
+    "fastmcp": "^3.24.0",
+    "hono": "^4.10.7",
+    "zod": "^4.1.13"
   }
 }

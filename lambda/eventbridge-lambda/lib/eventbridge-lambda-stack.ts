@@ -4,7 +4,7 @@ import { LambdaFunction } from 'aws-cdk-lib/aws-events-targets';
 import {
   Role, ServicePrincipal, PolicyDocument, PolicyStatement, Effect,
 } from 'aws-cdk-lib/aws-iam';
-import { Runtime } from 'aws-cdk-lib/aws-lambda';
+import { Architecture, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { LogGroup, RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
@@ -24,7 +24,8 @@ export class EventbridgeLambdaStack extends cdk.Stack {
     });
 
     const fn = new NodejsFunction(this, 'EventBridgeLambdaFn', {
-      runtime: Runtime.NODEJS_22_X,
+      runtime: Runtime.NODEJS_24_X,
+      architecture: Architecture.ARM_64,
       entry: path.resolve(__dirname, '../lambda/index.ts'),
       functionName,
       retryAttempts: 0,

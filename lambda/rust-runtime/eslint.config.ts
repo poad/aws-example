@@ -1,10 +1,8 @@
 import { defineConfig } from 'eslint/config';
 import eslint from '@eslint/js';
-import { configs, parser } from 'typescript-eslint';
 import stylistic from '@stylistic/eslint-plugin';
-import importPlugin from 'eslint-plugin-import';
-// @ts-expect-error ignore type errors
-import pluginPromise from 'eslint-plugin-promise';
+import { configs, parser } from 'typescript-eslint';
+import eslintImport from 'eslint-plugin-import';
 
 import { includeIgnoreFile } from '@eslint/compat';
 import path from 'node:path';
@@ -12,29 +10,27 @@ import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const gitignorePath = path.resolve(__dirname, '../.gitignore');
+const gitignorePath = path.resolve(__dirname, '.gitignore');
 
 export default defineConfig(
   includeIgnoreFile(gitignorePath),
   {
     ignores: [
       '**/*.d.ts',
-      'src/tsconfig.json',
-      'src/stories',
-      '**/*.css',
+      '**/*.js',
       'node_modules/**/*',
       'out',
-      '**/cdk.out/**',
       'dist',
-      '.mastra',
+      'cdk.out',
+      '.output',
+      'lambda',
     ],
   },
   eslint.configs.recommended,
-  configs.strict,
-  configs.stylistic,
-  pluginPromise.configs['flat/recommended'],
+  ...configs.strict,
+  ...configs.stylistic,
   {
-    files: ['**/*.ts', '*.js'],
+    files: ['**/*.{ts,tsx}', '*.js'],
     plugins: {
       '@stylistic': stylistic,
     },
@@ -48,8 +44,8 @@ export default defineConfig(
       },
     },
     extends: [
-      importPlugin.flatConfigs.recommended,
-      importPlugin.flatConfigs.typescript,
+      eslintImport.flatConfigs.recommended,
+      eslintImport.flatConfigs.typescript,
     ],
     settings: {
       'import/resolver': {
@@ -63,7 +59,6 @@ export default defineConfig(
       '@stylistic/semi': ['error', 'always'],
       '@stylistic/indent': ['error', 2],
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
-      '@stylistic/arrow-parens': ['error', 'always'],
       '@stylistic/quotes': ['error', 'single'],
     },
   },

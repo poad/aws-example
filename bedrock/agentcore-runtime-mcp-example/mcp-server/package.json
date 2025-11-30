@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
+    "clean": "tsc --build --clean",
     "watch": "tsc -w",
     "dev": "tsx --watch src/index.ts",
     "lint": "eslint .",
@@ -27,7 +28,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.23.0",
-    "fastmcp": "^3.23.1",
+    "fastmcp": "^3.24.0",
     "hono": "^4.10.7",
     "zod": "^4.1.13"
   }

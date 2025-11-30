@@ -8,8 +8,8 @@
     "export": "echo Skip this script",
     "start": "next start",
     "analyze": "ANALYZE=true next build",
-    "eslint-check": "eslint -c ../../eslint.config.js './src/**/*{.ts,.js,.tsx,.jsx}'",
-    "eslint-fix": "eslint -c ../../eslint.config.js --fix './src/**/*{.ts,.js,.tsx,.jsx}'",
+    "eslint-check": "eslint -c ../../eslint.config.ts './src/**/*{.ts,.js,.tsx,.jsx}'",
+    "eslint-fix": "eslint -c ../../eslint.config.ts --fix './src/**/*{.ts,.js,.tsx,.jsx}'",
     "prettier-check": "prettier --check src",
     "prettier-format": "prettier --write src",
     "lint": "pnpm prettier-check && pnpm eslint-check",
@@ -25,7 +25,7 @@
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "prettier": "^3.6.2",
+    "prettier": "^3.7.3",
     "typescript": "^5.9.3"
   }
 }

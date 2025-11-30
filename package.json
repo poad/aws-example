@@ -7,12 +7,13 @@
   "scripts": {
     "build": "pnpm -r build",
     "prebuild": "pnpm -r install",
+    "clean": "pnpm -r --if-present clean",
     "lint": "pnpm -r --if-present lint",
     "lint-fix": "pnpm -r --if-present lint-fix"
   },
   "devDependencies": {
-    "@eslint/compat": "^1.4.1",
-    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/compat": "^2",
+    "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^9.39.1",
     "@graphql-eslint/eslint-plugin": "^4.4.0",
     "@stylistic/eslint-plugin": "^5.6.1",
@@ -25,14 +26,15 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
-    "pnpm": "^10.23.0",
+    "jiti": "^2.6.1",
+    "pnpm": "^10.24.0",
     "typescript-eslint": "^8.48.0"
   },
   "engines": {
     "npm": "use pnpm please!",
     "yarn": "use pnpm please!",
     "pnpm": ">=10.0.0",
-    "node": ">=22.0.0"
+    "node": ">=24.0.0"
   },
-  "packageManager": "pnpm@10.23.0"
+  "packageManager": "pnpm@10.24.0"
 }

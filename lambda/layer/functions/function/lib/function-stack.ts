@@ -29,6 +29,7 @@ export class FunctionStack extends Stack {
       code: lambda.Code.fromAsset('handler'),
       handler: 'index.handler',
       runtime: lambda.Runtime.NODEJS_24_X,
+      architecture: lambda.Architecture.ARM_64,
       layers: [LayerVersion.fromLayerVersionArn(this, 'LambdaLayerVersion', parameter.stringValue)],
     });
   }

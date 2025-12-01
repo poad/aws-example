@@ -34,7 +34,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-if ! (cargo update && catbo build); then
+if ! (cargo update && cargo build); then
   cd "${CUR}" || exit
   exit 1
 fi

@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as process from 'process';
 
 // eslint-disable-next-line import/no-unresolved, import/no-absolute-path
-import * as log from '/opt/nodejs/log';
+import * as log from '/opt/nodejs/log.js';
 
 // eslint-disable-next-line import/prefer-default-export
 export const handler = async () => {

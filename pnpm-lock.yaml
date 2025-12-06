@@ -435,8 +435,8 @@ importers:
         specifier: ^9.39.1
         version: 9.39.1
       '@hono/mcp':
-        specifier: ^0.2.0
-        version: 0.2.0(@modelcontextprotocol/sdk@1.24.3(zod@4.1.13))(hono-rate-limiter@0.4.2(hono@4.10.7))(hono@4.10.7)
+        specifier: ^0.2.1
+        version: 0.2.1(@modelcontextprotocol/sdk@1.24.3(zod@4.1.13))(hono-rate-limiter@0.4.2(hono@4.10.7))(hono@4.10.7)(zod@4.1.13)
       '@hono/node-server':
         specifier: ^1.19.6
         version: 1.19.6(hono@4.10.7)
@@ -2633,12 +2633,13 @@ packages:
       '@modelcontextprotocol/sdk': ^1.12.0
       hono: '>=4.0.0'
 
-  '@hono/mcp@0.2.0':
-    resolution: {integrity: sha512-kKZklY+yApZce6zzHzQPrEOhon4O7ANstUCDWstvGF3+B/Qn0j9mWUyps2XZhA/PzKoFGUBuAu1SwTFc7JRX9A==}
+  '@hono/mcp@0.2.1':
+    resolution: {integrity: sha512-2h++bwfLw80M1D5qudnT7VfXGlL+N2JH+X1rrn5axIQXvkININcsyMd1ifdrUlJGgllmN2a7jk2GnP/J4piB8w==}
     peerDependencies:
-      '@modelcontextprotocol/sdk': ^1.17.3
+      '@modelcontextprotocol/sdk': ^1.23.0
       hono: '*'
       hono-rate-limiter: ^0.4.2
+      zod: ^3.25.0 || ^4.0.0
 
   '@hono/node-server@1.19.6':
     resolution: {integrity: sha512-Shz/KjlIeAhfiuE93NDKVdZ7HdBVLQAfdbaXEaoAVO3ic9ibRSLGIQGkcBbFyuLr+7/1D5ZCINM8B+6IvXeMtw==}
@@ -11680,12 +11681,13 @@ snapshots:
       '@modelcontextprotocol/sdk': 1.24.3(zod@3.25.76)
       hono: 4.10.7
 
-  '@hono/mcp@0.2.0(@modelcontextprotocol/sdk@1.24.3(zod@4.1.13))(hono-rate-limiter@0.4.2(hono@4.10.7))(hono@4.10.7)':
+  '@hono/mcp@0.2.1(@modelcontextprotocol/sdk@1.24.3(zod@4.1.13))(hono-rate-limiter@0.4.2(hono@4.10.7))(hono@4.10.7)(zod@4.1.13)':
     dependencies:
       '@modelcontextprotocol/sdk': 1.24.3(zod@4.1.13)
       hono: 4.10.7
       hono-rate-limiter: 0.4.2(hono@4.10.7)
       pkce-challenge: 5.0.1
+      zod: 4.1.13
 
   '@hono/node-server@1.19.6(hono@4.10.7)':
     dependencies:

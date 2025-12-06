@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { FunctionStack } from '../lib/function-stack';
-import { compileBundles } from '../lib/process/setup';
+import { FunctionStack } from '../lib/function-stack.js';
+import { compileBundles } from '../lib/process/setup.js';
 
 compileBundles();
 

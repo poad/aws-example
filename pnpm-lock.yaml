@@ -312,13 +312,13 @@ importers:
         version: 0.10.19(@mastra/core@0.24.9(@sinclair/typebox@0.34.48)(openapi-types@12.1.3)(react@19.2.3)(zod@4.3.6))
       '@mastra/mcp':
         specifier: ^0.14.5
-        version: 0.14.5(@mastra/core@0.24.9(@sinclair/typebox@0.34.48)(openapi-types@12.1.3)(react@19.2.3)(zod@4.3.6))(@types/json-schema@7.0.15)(hono@4.11.5)(zod@4.3.6)
+        version: 0.14.5(@mastra/core@0.24.9(@sinclair/typebox@0.34.48)(openapi-types@12.1.3)(react@19.2.3)(zod@4.3.6))(@types/json-schema@7.0.15)(hono@4.11.7)(zod@4.3.6)
       '@mastra/memory':
         specifier: ^0.15.13
         version: 0.15.13(@mastra/core@0.24.9(@sinclair/typebox@0.34.48)(openapi-types@12.1.3)(react@19.2.3)(zod@4.3.6))(react@19.2.3)(zod@4.3.6)
       hono:
-        specifier: ^4.11.5
-        version: 4.11.5
+        specifier: ^4.11.7
+        version: 4.11.7
       zod:
         specifier: ^4.3.6
         version: 4.3.6
@@ -419,13 +419,13 @@ importers:
     dependencies:
       '@modelcontextprotocol/sdk':
         specifier: ^1.25.3
-        version: 1.25.3(hono@4.11.5)(zod@4.3.6)
+        version: 1.25.3(hono@4.11.7)(zod@4.3.6)
       fastmcp:
         specifier: ^3.29.0
-        version: 3.29.0(hono@4.11.5)
+        version: 3.29.0(hono@4.11.7)
       hono:
-        specifier: ^4.11.5
-        version: 4.11.5
+        specifier: ^4.11.7
+        version: 4.11.7
       zod:
         specifier: ^4.3.6
         version: 4.3.6
@@ -438,10 +438,10 @@ importers:
         version: 9.39.2
       '@hono/mcp':
         specifier: ^0.2.3
-        version: 0.2.3(@modelcontextprotocol/sdk@1.25.3(hono@4.11.5)(zod@4.3.6))(hono-rate-limiter@0.4.2(hono@4.11.5))(hono@4.11.5)(zod@4.3.6)
+        version: 0.2.3(@modelcontextprotocol/sdk@1.25.3(hono@4.11.7)(zod@4.3.6))(hono-rate-limiter@0.4.2(hono@4.11.7))(hono@4.11.7)(zod@4.3.6)
       '@hono/node-server':
         specifier: ^1.19.9
-        version: 1.19.9(hono@4.11.5)
+        version: 1.19.9(hono@4.11.7)
       '@stylistic/eslint-plugin':
         specifier: ^5.7.1
         version: 5.7.1(eslint@9.39.2(jiti@2.6.1))
@@ -986,10 +986,10 @@ importers:
         version: 2.30.2
       '@hono/mcp':
         specifier: ^0.1.5
-        version: 0.1.5(@modelcontextprotocol/sdk@1.25.3(hono@4.11.5)(zod@3.25.76))(hono@4.11.5)
+        version: 0.1.5(@modelcontextprotocol/sdk@1.25.3(hono@4.11.7)(zod@3.25.76))(hono@4.11.7)
       '@modelcontextprotocol/sdk':
         specifier: ^1.25.3
-        version: 1.25.3(hono@4.11.5)(zod@3.25.76)
+        version: 1.25.3(hono@4.11.7)(zod@3.25.76)
       aws-cdk-lib:
         specifier: ^2.236.0
         version: 2.236.0(constructs@10.4.5)
@@ -1000,8 +1000,8 @@ importers:
         specifier: ^16.6.1
         version: 16.6.1
       hono:
-        specifier: ^4.11.5
-        version: 4.11.5
+        specifier: ^4.11.7
+        version: 4.11.7
       zod:
         specifier: 3.25.76
         version: 3.25.76
@@ -1014,7 +1014,7 @@ importers:
         version: 9.39.2
       '@hono/node-server':
         specifier: ^1.19.9
-        version: 1.19.9(hono@4.11.5)
+        version: 1.19.9(hono@4.11.7)
       '@stylistic/eslint-plugin':
         specifier: ^5.7.1
         version: 5.7.1(eslint@9.39.2(jiti@2.6.1))
@@ -7104,8 +7104,8 @@ packages:
     peerDependencies:
       hono: ^4.1.1
 
-  hono@4.11.5:
-    resolution: {integrity: sha512-WemPi9/WfyMwZs+ZUXdiwcCh9Y+m7L+8vki9MzDw3jJ+W9Lc+12HGsd368Qc1vZi1xwW8BWMMsnK5efYKPdt4g==}
+  hono@4.11.7:
+    resolution: {integrity: sha512-l7qMiNee7t82bH3SeyUCt9UF15EVmaBvsppY2zQtrbIhl/yzBTny+YUxsVjSjQ6gaqaeVtZmGocom8TzBlA4Yw==}
     engines: {node: '>=16.9.0'}
 
   html-escaper@2.0.2:
@@ -11790,22 +11790,22 @@ snapshots:
       protobufjs: 7.5.4
       yargs: 17.7.2
 
-  '@hono/mcp@0.1.5(@modelcontextprotocol/sdk@1.25.3(hono@4.11.5)(zod@3.25.76))(hono@4.11.5)':
+  '@hono/mcp@0.1.5(@modelcontextprotocol/sdk@1.25.3(hono@4.11.7)(zod@3.25.76))(hono@4.11.7)':
     dependencies:
-      '@modelcontextprotocol/sdk': 1.25.3(hono@4.11.5)(zod@3.25.76)
-      hono: 4.11.5
+      '@modelcontextprotocol/sdk': 1.25.3(hono@4.11.7)(zod@3.25.76)
+      hono: 4.11.7
 
-  '@hono/mcp@0.2.3(@modelcontextprotocol/sdk@1.25.3(hono@4.11.5)(zod@4.3.6))(hono-rate-limiter@0.4.2(hono@4.11.5))(hono@4.11.5)(zod@4.3.6)':
+  '@hono/mcp@0.2.3(@modelcontextprotocol/sdk@1.25.3(hono@4.11.7)(zod@4.3.6))(hono-rate-limiter@0.4.2(hono@4.11.7))(hono@4.11.7)(zod@4.3.6)':
     dependencies:
-      '@modelcontextprotocol/sdk': 1.25.3(hono@4.11.5)(zod@4.3.6)
-      hono: 4.11.5
-      hono-rate-limiter: 0.4.2(hono@4.11.5)
+      '@modelcontextprotocol/sdk': 1.25.3(hono@4.11.7)(zod@4.3.6)
+      hono: 4.11.7
+      hono-rate-limiter: 0.4.2(hono@4.11.7)
       pkce-challenge: 5.0.1
       zod: 4.3.6
 
-  '@hono/node-server@1.19.9(hono@4.11.5)':
+  '@hono/node-server@1.19.9(hono@4.11.7)':
     dependencies:
-      hono: 4.11.5
+      hono: 4.11.7
 
   '@humanfs/core@0.19.1': {}
 
@@ -12442,8 +12442,8 @@ snapshots:
       ai-v5: ai@5.0.97(zod@4.3.6)
       date-fns: 3.6.0
       dotenv: 16.6.1
-      hono: 4.11.5
-      hono-openapi: 0.4.8(@sinclair/typebox@0.34.48)(hono@4.11.5)(openapi-types@12.1.3)(zod@4.3.6)
+      hono: 4.11.7
+      hono-openapi: 0.4.8(@sinclair/typebox@0.34.48)(hono@4.11.7)(openapi-types@12.1.3)(zod@4.3.6)
       js-tiktoken: 1.0.21
       json-schema: 0.4.0
       lru-cache: 11.2.4
@@ -12496,7 +12496,7 @@ snapshots:
       esbuild: 0.25.12
       find-workspaces: 0.3.1
       fs-extra: 11.3.3
-      hono: 4.11.5
+      hono: 4.11.7
       local-pkg: 1.1.2
       resolve-from: 5.0.0
       resolve.exports: 2.0.3
@@ -12525,11 +12525,11 @@ snapshots:
       pino: 9.14.0
       pino-pretty: 13.1.3
 
-  '@mastra/mcp@0.14.5(@mastra/core@0.24.9(@sinclair/typebox@0.34.48)(openapi-types@12.1.3)(react@19.2.3)(zod@4.3.6))(@types/json-schema@7.0.15)(hono@4.11.5)(zod@4.3.6)':
+  '@mastra/mcp@0.14.5(@mastra/core@0.24.9(@sinclair/typebox@0.34.48)(openapi-types@12.1.3)(react@19.2.3)(zod@4.3.6))(@types/json-schema@7.0.15)(hono@4.11.7)(zod@4.3.6)':
     dependencies:
       '@apidevtools/json-schema-ref-parser': 14.2.1(@types/json-schema@7.0.15)
       '@mastra/core': 0.24.9(@sinclair/typebox@0.34.48)(openapi-types@12.1.3)(react@19.2.3)(zod@4.3.6)
-      '@modelcontextprotocol/sdk': 1.25.3(hono@4.11.5)(zod@4.3.6)
+      '@modelcontextprotocol/sdk': 1.25.3(hono@4.11.7)(zod@4.3.6)
       date-fns: 4.1.0
       exit-hook: 4.0.0
       fast-deep-equal: 3.1.3
@@ -12579,9 +12579,9 @@ snapshots:
       '@mastra/core': 0.24.9(@sinclair/typebox@0.34.48)(openapi-types@12.1.3)(react@19.2.3)(zod@4.3.6)
       zod: 4.3.6
 
-  '@modelcontextprotocol/sdk@1.25.3(hono@4.11.5)(zod@3.25.76)':
+  '@modelcontextprotocol/sdk@1.25.3(hono@4.11.7)(zod@3.25.76)':
     dependencies:
-      '@hono/node-server': 1.19.9(hono@4.11.5)
+      '@hono/node-server': 1.19.9(hono@4.11.7)
       ajv: 8.17.1
       ajv-formats: 3.0.1(ajv@8.17.1)
       content-type: 1.0.5
@@ -12601,9 +12601,9 @@ snapshots:
       - hono
       - supports-color
 
-  '@modelcontextprotocol/sdk@1.25.3(hono@4.11.5)(zod@4.3.6)':
+  '@modelcontextprotocol/sdk@1.25.3(hono@4.11.7)(zod@4.3.6)':
     dependencies:
-      '@hono/node-server': 1.19.9(hono@4.11.5)
+      '@hono/node-server': 1.19.9(hono@4.11.7)
       ajv: 8.17.1
       ajv-formats: 3.0.1(ajv@8.17.1)
       content-type: 1.0.5
@@ -17102,9 +17102,9 @@ snapshots:
     dependencies:
       strnum: 2.1.2
 
-  fastmcp@3.29.0(hono@4.11.5):
+  fastmcp@3.29.0(hono@4.11.7):
     dependencies:
-      '@modelcontextprotocol/sdk': 1.25.3(hono@4.11.5)(zod@4.3.6)
+      '@modelcontextprotocol/sdk': 1.25.3(hono@4.11.7)(zod@4.3.6)
       '@standard-schema/spec': 1.1.0
       execa: 9.6.1
       file-type: 21.3.0
@@ -17472,20 +17472,20 @@ snapshots:
     dependencies:
       react-is: 16.13.1
 
-  hono-openapi@0.4.8(@sinclair/typebox@0.34.48)(hono@4.11.5)(openapi-types@12.1.3)(zod@4.3.6):
+  hono-openapi@0.4.8(@sinclair/typebox@0.34.48)(hono@4.11.7)(openapi-types@12.1.3)(zod@4.3.6):
     dependencies:
       json-schema-walker: 2.0.0
       openapi-types: 12.1.3
     optionalDependencies:
       '@sinclair/typebox': 0.34.48
-      hono: 4.11.5
+      hono: 4.11.7
       zod: 4.3.6
 
-  hono-rate-limiter@0.4.2(hono@4.11.5):
+  hono-rate-limiter@0.4.2(hono@4.11.7):
     dependencies:
-      hono: 4.11.5
+      hono: 4.11.7
 
-  hono@4.11.5: {}
+  hono@4.11.7: {}
 
   html-escaper@2.0.2: {}
 

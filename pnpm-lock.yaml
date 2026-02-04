@@ -419,8 +419,8 @@ importers:
   bedrock/agentcore-runtime-mcp-example/mcp-server:
     dependencies:
       '@modelcontextprotocol/sdk':
-        specifier: ^1.25.3
-        version: 1.25.3(hono@4.11.7)(zod@4.3.6)
+        specifier: ^1.26.0
+        version: 1.26.0(zod@4.3.6)
       fastmcp:
         specifier: ^3.31.0
         version: 3.31.0
@@ -439,7 +439,7 @@ importers:
         version: 9.39.2
       '@hono/mcp':
         specifier: ^0.2.3
-        version: 0.2.3(@modelcontextprotocol/sdk@1.25.3(hono@4.11.7)(zod@4.3.6))(hono-rate-limiter@0.4.2(hono@4.11.7))(hono@4.11.7)(zod@4.3.6)
+        version: 0.2.3(@modelcontextprotocol/sdk@1.26.0(zod@4.3.6))(hono-rate-limiter@0.4.2(hono@4.11.7))(hono@4.11.7)(zod@4.3.6)
       '@hono/node-server':
         specifier: ^1.19.9
         version: 1.19.9(hono@4.11.7)
@@ -987,10 +987,10 @@ importers:
         version: 2.30.2
       '@hono/mcp':
         specifier: ^0.1.5
-        version: 0.1.5(@modelcontextprotocol/sdk@1.25.3(hono@4.11.7)(zod@3.25.76))(hono@4.11.7)
+        version: 0.1.5(@modelcontextprotocol/sdk@1.26.0(zod@3.25.76))(hono@4.11.7)
       '@modelcontextprotocol/sdk':
-        specifier: ^1.25.3
-        version: 1.25.3(hono@4.11.7)(zod@3.25.76)
+        specifier: ^1.26.0
+        version: 1.26.0(zod@3.25.76)
       aws-cdk-lib:
         specifier: ^2.237.1
         version: 2.237.1(constructs@10.4.5)
@@ -3138,6 +3138,16 @@ packages:
 
   '@modelcontextprotocol/sdk@1.25.3':
     resolution: {integrity: sha512-vsAMBMERybvYgKbg/l4L1rhS7VXV1c0CtyJg72vwxONVX0l4ZfKVAnZEWTQixJGTzKnELjQ59e4NbdFDALRiAQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@cfworker/json-schema': ^4.1.1
+      zod: ^3.25 || ^4.0
+    peerDependenciesMeta:
+      '@cfworker/json-schema':
+        optional: true
+
+  '@modelcontextprotocol/sdk@1.26.0':
+    resolution: {integrity: sha512-Y5RmPncpiDtTXDbLKswIJzTqu2hyBKxTNsgKqKclDbhIgg1wgtf1fRuvxgTnRfcnxtvvgbIEcqUOzZrJ6iSReg==}
     engines: {node: '>=18'}
     peerDependencies:
       '@cfworker/json-schema': ^4.1.1
@@ -6746,6 +6756,12 @@ packages:
     peerDependencies:
       express: '>= 4.11'
 
+  express-rate-limit@8.2.1:
+    resolution: {integrity: sha512-PCZEIEIxqwhzw4KF0n7QF4QqruVTcF73O5kFKUnGOyjbCCgizBBiFaYpd/fnBLUMPw/BWw9OsiN7GgrNYr7j6g==}
+    engines: {node: '>= 16'}
+    peerDependencies:
+      express: '>= 4.11'
+
   express@4.22.1:
     resolution: {integrity: sha512-F2X8g9P1X7uCPZMA3MVf9wcTqlyNp7IhH5qPCI0izhaOIYXaW9L535tGA3qmjRzpH+bZczqq7hVKxTR4NWnu+g==}
     engines: {node: '>= 0.10.0'}
@@ -7250,6 +7266,10 @@ packages:
   internal-slot@1.1.0:
     resolution: {integrity: sha512-4gd7VpWNQNB4UKKCFFVcp1AVv+FMOgs9NKzjHKusc8jTMhd5eL1NqQqOpE0KzMds804/yHlglp3uxgluOqAPLw==}
     engines: {node: '>= 0.4'}
+
+  ip-address@10.0.1:
+    resolution: {integrity: sha512-NWv9YLW4PoW2B7xtzaS3NCot75m6nK7Icdv0o3lfMceJVRfSoQwqD4wEH5rLwoKJwUiZ/rfpiVBhnaF0FK4HoA==}
+    engines: {node: '>= 12'}
 
   ip-regex@4.3.0:
     resolution: {integrity: sha512-B9ZWJxHHOHUhUjCPrMpLD4xEq35bUTClHM1S6CBU5ixQnkZmwipwgc96vAd7AAGM9TGHvJR+Uss+/Ak6UphK+Q==}
@@ -11860,14 +11880,14 @@ snapshots:
       protobufjs: 7.5.4
       yargs: 17.7.2
 
-  '@hono/mcp@0.1.5(@modelcontextprotocol/sdk@1.25.3(hono@4.11.7)(zod@3.25.76))(hono@4.11.7)':
+  '@hono/mcp@0.1.5(@modelcontextprotocol/sdk@1.26.0(zod@3.25.76))(hono@4.11.7)':
     dependencies:
-      '@modelcontextprotocol/sdk': 1.25.3(hono@4.11.7)(zod@3.25.76)
+      '@modelcontextprotocol/sdk': 1.26.0(zod@3.25.76)
       hono: 4.11.7
 
-  '@hono/mcp@0.2.3(@modelcontextprotocol/sdk@1.25.3(hono@4.11.7)(zod@4.3.6))(hono-rate-limiter@0.4.2(hono@4.11.7))(hono@4.11.7)(zod@4.3.6)':
+  '@hono/mcp@0.2.3(@modelcontextprotocol/sdk@1.26.0(zod@4.3.6))(hono-rate-limiter@0.4.2(hono@4.11.7))(hono@4.11.7)(zod@4.3.6)':
     dependencies:
-      '@modelcontextprotocol/sdk': 1.25.3(hono@4.11.7)(zod@4.3.6)
+      '@modelcontextprotocol/sdk': 1.26.0(zod@4.3.6)
       hono: 4.11.7
       hono-rate-limiter: 0.4.2(hono@4.11.7)
       pkce-challenge: 5.0.1
@@ -12612,28 +12632,6 @@ snapshots:
       '@mastra/core': 0.24.9(@sinclair/typebox@0.34.48)(openapi-types@12.1.3)(react@19.2.4)(zod@4.3.6)
       zod: 4.3.6
 
-  '@modelcontextprotocol/sdk@1.25.3(hono@4.11.7)(zod@3.25.76)':
-    dependencies:
-      '@hono/node-server': 1.19.9(hono@4.11.7)
-      ajv: 8.17.1
-      ajv-formats: 3.0.1(ajv@8.17.1)
-      content-type: 1.0.5
-      cors: 2.8.6
-      cross-spawn: 7.0.6
-      eventsource: 3.0.7
-      eventsource-parser: 3.0.6
-      express: 5.2.1
-      express-rate-limit: 7.5.1(express@5.2.1)
-      jose: 6.1.3
-      json-schema-typed: 8.0.2
-      pkce-challenge: 5.0.1
-      raw-body: 3.0.2
-      zod: 3.25.76
-      zod-to-json-schema: 3.25.1(zod@3.25.76)
-    transitivePeerDependencies:
-      - hono
-      - supports-color
-
   '@modelcontextprotocol/sdk@1.25.3(hono@4.11.7)(zod@4.3.6)':
     dependencies:
       '@hono/node-server': 1.19.9(hono@4.11.7)
@@ -12654,6 +12652,50 @@ snapshots:
       zod-to-json-schema: 3.25.1(zod@4.3.6)
     transitivePeerDependencies:
       - hono
+      - supports-color
+
+  '@modelcontextprotocol/sdk@1.26.0(zod@3.25.76)':
+    dependencies:
+      '@hono/node-server': 1.19.9(hono@4.11.7)
+      ajv: 8.17.1
+      ajv-formats: 3.0.1(ajv@8.17.1)
+      content-type: 1.0.5
+      cors: 2.8.6
+      cross-spawn: 7.0.6
+      eventsource: 3.0.7
+      eventsource-parser: 3.0.6
+      express: 5.2.1
+      express-rate-limit: 8.2.1(express@5.2.1)
+      hono: 4.11.7
+      jose: 6.1.3
+      json-schema-typed: 8.0.2
+      pkce-challenge: 5.0.1
+      raw-body: 3.0.2
+      zod: 3.25.76
+      zod-to-json-schema: 3.25.1(zod@3.25.76)
+    transitivePeerDependencies:
+      - supports-color
+
+  '@modelcontextprotocol/sdk@1.26.0(zod@4.3.6)':
+    dependencies:
+      '@hono/node-server': 1.19.9(hono@4.11.7)
+      ajv: 8.17.1
+      ajv-formats: 3.0.1(ajv@8.17.1)
+      content-type: 1.0.5
+      cors: 2.8.6
+      cross-spawn: 7.0.6
+      eventsource: 3.0.7
+      eventsource-parser: 3.0.6
+      express: 5.2.1
+      express-rate-limit: 8.2.1(express@5.2.1)
+      hono: 4.11.7
+      jose: 6.1.3
+      json-schema-typed: 8.0.2
+      pkce-challenge: 5.0.1
+      raw-body: 3.0.2
+      zod: 4.3.6
+      zod-to-json-schema: 3.25.1(zod@4.3.6)
+    transitivePeerDependencies:
       - supports-color
 
   '@mui/core-downloads-tracker@7.3.7': {}
@@ -16997,6 +17039,11 @@ snapshots:
     dependencies:
       express: 5.2.1
 
+  express-rate-limit@8.2.1(express@5.2.1):
+    dependencies:
+      express: 5.2.1
+      ip-address: 10.0.1
+
   express@4.22.1:
     dependencies:
       accepts: 1.3.8
@@ -17104,7 +17151,7 @@ snapshots:
 
   fastmcp@3.31.0:
     dependencies:
-      '@modelcontextprotocol/sdk': 1.25.3(hono@4.11.7)(zod@4.3.6)
+      '@modelcontextprotocol/sdk': 1.26.0(zod@4.3.6)
       '@standard-schema/spec': 1.1.0
       execa: 9.6.1
       file-type: 21.3.0
@@ -17579,6 +17626,8 @@ snapshots:
       es-errors: 1.3.0
       hasown: 2.0.2
       side-channel: 1.1.0
+
+  ip-address@10.0.1: {}
 
   ip-regex@4.3.0: {}
 

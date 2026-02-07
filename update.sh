@@ -21,7 +21,7 @@ if [ $result -ne 0 ]; then
 fi
 echo ""
 pwd
-if ! (npx -y pnpm@latest self-update && pnpm install -r && pnpm up -r && pnpm audit --fix && pnpm up -r && pnpm -r build); then
+if ! (npx -y pnpm@latest self-update && pnpm install -r && pnpm up -r && pnpm audit --fix && pnpm up -r && pnpm -r lint-fix && pnpm -r build); then
   cd "${CUR}" || exit
   exit 1
 fi

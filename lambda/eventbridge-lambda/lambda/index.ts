@@ -1,6 +1,5 @@
 import { EventBridgeHandler } from 'aws-lambda';
 
-// eslint-disable-next-line import/prefer-default-export
 export const handler: EventBridgeHandler<string, {}, void> = async ({ time }) => {
   const timestamp = new Intl.DateTimeFormat('UTC', {
     calendar: 'iso8601',

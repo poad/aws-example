@@ -12,12 +12,11 @@ engineStrict: true
 
 overrides:
   '@smithy/config-resolver@<4.4.0': '>=4.4.0'
-  ai: '>=5.0.52'
-  fast-xml-parser@<5.3.8: '>=5.3.8'
+  fast-xml-parser@>=4.0.0-beta.0 <4.5.4: '>=4.5.4'
   fast-xml-parser@>=4.0.0-beta.3 <=5.5.5: '>=5.5.6'
-  fast-xml-parser@>=4.1.3 <5.3.5: '>=5.3.5'
-  fast-xml-parser@>=4.1.3 <5.3.6: '>=5.3.6'
-  'jsondiffpatch': '>=0.7.2'
+  fast-xml-parser@>=4.1.3 <4.5.4: '>=4.5.4'
   rollup@>=4.0.0 <4.59.0: '>=4.59.0'
+  jsondiffpatch: '>=0.7.2'
+  ai: '>=5.0.52'
 
 strictPeerDependencies: false

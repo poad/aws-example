@@ -3,7 +3,6 @@
 import { defineConfig } from 'eslint/config';
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
-import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import { importX } from 'eslint-plugin-import-x';
 import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 
@@ -40,10 +39,8 @@ export default defineConfig(
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
-  // @ts-ignore
-  reactHooksPlugin.configs.flat.recommended,
   {
-    files: ['eslint.config.js', 'src/**/*.ts', 'src/**/*.jsx', 'src/**/*.tsx'],
+    files: ['eslint.config.ts', 'src/**/*.ts', 'src/**/*.jsx', 'src/**/*.tsx'],
     plugins: {
       '@stylistic': stylistic,
     },

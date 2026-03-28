@@ -8,12 +8,8 @@
     "export": "echo Skip this script",
     "start": "next start",
     "analyze": "ANALYZE=true next build",
-    "eslint-check": "eslint -c ../../eslint.config.ts './src/**/*{.ts,.js,.tsx,.jsx}'",
-    "eslint-fix": "eslint -c ../../eslint.config.ts --fix './src/**/*{.ts,.js,.tsx,.jsx}'",
-    "prettier-check": "prettier --check src",
-    "prettier-format": "prettier --write src",
-    "lint": "pnpm prettier-check && pnpm eslint-check",
-    "lint-fix": "pnpm prettier-format && pnpm eslint-fix"
+    "lint": "eslint -c ../../eslint.config.ts",
+    "lint-fix": "eslint -c ../../eslint.config.ts --fix"
   },
   "dependencies": {
     "next": "^16.2.1",

@@ -1,7 +1,8 @@
 // @ts-check
 
 import eslint from '@eslint/js';
-import importPlugin from 'eslint-plugin-import';
+import { importX } from 'eslint-plugin-import-x';
+import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
@@ -32,16 +33,13 @@ export default tseslint.config(
       },
     },
     extends: [
-      importPlugin.flatConfigs.recommended,
-      importPlugin.flatConfigs.typescript,
+      importX.flatConfigs.recommended,
+      importX.flatConfigs.typescript,
     ],
     settings: {
-      'import/resolver': {
-        // You will also need to install and configure the TypeScript resolver
-        // See also https://github.com/import-js/eslint-import-resolver-typescript#configuration
-        'typescript': true,
-        'node': true,
-      },
+      'import-x/resolver-next': [
+        createTypeScriptImportResolver(),
+      ],
     },
   },
 );

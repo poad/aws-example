@@ -4,8 +4,8 @@ import { defineConfig } from 'eslint/config';
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
-import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
-import importPlugin from 'eslint-plugin-import';
+import { importX } from 'eslint-plugin-import-x';
+import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 
 import tseslint from 'typescript-eslint';
 import { FlatCompat } from '@eslint/eslintrc';
@@ -48,9 +48,8 @@ export default defineConfig(
       '@stylistic': stylistic,
     },
     extends: [
-      ...compat.config(jsxA11yPlugin.configs.recommended),
-      importPlugin.flatConfigs.recommended,
-      importPlugin.flatConfigs.typescript,
+      importX.flatConfigs.recommended,
+      importX.flatConfigs.typescript,
     ],
     languageOptions: {
       parser: tseslint.parser,
@@ -62,21 +61,15 @@ export default defineConfig(
       },
     },
     settings: {
-      'import/internal-regex': '^~/',
-      'import/resolver': {
-        node: {
-          extensions: ['.ts', '.tsx'],
-        },
-        typescript: {
-          alwaysTryTypes: true,
-        },
-      },
+      'import-x/internal-regex': '^~/',
+      'import-x/resolver-next': [
+        createTypeScriptImportResolver(),
+      ],
     },
     rules: {
-      'react/display-name': 'off',
-      'import/namespace': 'off',
-      'import/no-named-as-default': 'off',
-      'import/no-named-as-default-member': 'off',
+      '@stylistic/quotes': ['error', 'single'],
+      '@stylistic/semi': ['error', 'always'],
+      '@stylistic/comma-dangle': ['error', 'always-multiline'],
     },
   },
 );

@@ -8,9 +8,8 @@ import { Architecture, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { LogGroup, RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
-import path = require('path');
+import path from 'node:path';
 
-// eslint-disable-next-line import/prefer-default-export
 export class EventbridgeLambdaStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
@@ -48,7 +47,6 @@ export class EventbridgeLambdaStack extends cdk.Stack {
       }),
     });
 
-    // eslint-disable-next-line no-new
     new Rule(this, 'ScheduleEventRule', {
       schedule: Schedule.cron({
         minute: '*/5',

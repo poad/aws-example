@@ -1,5 +1,5 @@
 'use client';
-import React, { ReactNode } from 'react';
+import { useState, ReactNode } from 'react';
 import {
   AppBar,
   Box,
@@ -24,7 +24,7 @@ import StyledJsxRegistry from './registry';
 const drawerWidth = 240;
 
 export default function Layout({ children }: { children: ReactNode }) {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   function handleDrawerToggle() {
     setMobileOpen(!mobileOpen);

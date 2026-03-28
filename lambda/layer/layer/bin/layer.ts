@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { LayerStack } from '../lib/layer-stack.js';
 import { compileBundles } from '../lib/process/setup.js';

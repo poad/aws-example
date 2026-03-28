@@ -1,6 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import ecrdeploy from 'cdk-ecr-deployment';
+import { ECRDeployment, DockerImageName } from 'cdk-ecr-deployment';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -55,9 +55,9 @@ export class AgentcoreRuntimeMcpExampleStack extends cdk.Stack {
 
     const ecrImageUri = `${repository.repositoryUri}:${new Date().getTime()}-${Math.random().toString(36).substring(2, 7)}`;
 
-    const deploy = new ecrdeploy.ECRDeployment(this, 'DeployDockerImage', {
-      src: new ecrdeploy.DockerImageName(dockerImageAsset.imageUri),
-      dest: new ecrdeploy.DockerImageName(ecrImageUri),
+    const deploy = new ECRDeployment(this, 'DeployDockerImage', {
+      src: new DockerImageName(dockerImageAsset.imageUri),
+      dest: new DockerImageName(ecrImageUri),
       imageArch: ['arm64'],
     });
 

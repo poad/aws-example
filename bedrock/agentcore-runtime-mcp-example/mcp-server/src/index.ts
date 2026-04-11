@@ -1,7 +1,7 @@
 import { Context, Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { StreamableHTTPTransport } from '@hono/mcp';
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
 import { z } from 'zod'; // Or any validation library that supports Standard Schema
 import { BlankEnv, BlankInput } from 'hono/types';
 import { serve } from '@hono/node-server';

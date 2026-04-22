@@ -1,6 +1,3 @@
-/// <reference types="vitest" />
-/// <reference types="vite/client" />
-
 import { defineConfig } from 'vitest/config';
 import * as dotenv from 'dotenv';
 import { resolve } from 'path';

@@ -8,7 +8,6 @@ interface LayerStackProps extends StackProps {
   timestamp: string | undefined
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export class LayerStack extends Stack {
   constructor(scope: Construct, id: string, props: LayerStackProps) {
     super(scope, id, props);
@@ -23,7 +22,7 @@ export class LayerStack extends Stack {
       layerVersionName: `${appName}-lambda-layer-version${suffix}`,
     });
 
-    // eslint-disable-next-line no-new
+
     new StringParameter(this, 'LayerArnParameterStore', {
       parameterName: `${appName}-lambda-layer-version${suffix}-arn`,
       stringValue: layer.layerVersionArn,

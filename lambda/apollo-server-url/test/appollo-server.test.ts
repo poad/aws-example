@@ -2,6 +2,8 @@
 // import { Template } from 'aws-cdk-lib/assertions';
 // import * as AppolloServer from '../lib/appollo-server-stack';
 
+import { test } from 'vitest';
+
 // example test. To run these tests, uncomment this file along with the
 // example resource in lib/appollo-server-stack.ts
 test('SQS Queue Created', () => {

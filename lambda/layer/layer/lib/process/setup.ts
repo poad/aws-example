@@ -1,7 +1,6 @@
 import * as childProcess from 'child_process';
 import * as fs from 'fs';
 
-// eslint-disable-next-line import/prefer-default-export
 export const compileBundles = () => {
   ['src/nodejs/']
     .forEach((f) => {

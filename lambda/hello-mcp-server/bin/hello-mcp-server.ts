@@ -1,6 +1,6 @@
 #!/usr/bin/env node
+import { HelloMcpServerStack } from '../lib/hello-mcp-server-stack.js';
 import * as cdk from 'aws-cdk-lib';
-import { HelloMcpServerStack } from '../lib/hello-mcp-server-stack';
 
 const app = new cdk.App();
 new HelloMcpServerStack(app, 'HelloMcpServerStack', {

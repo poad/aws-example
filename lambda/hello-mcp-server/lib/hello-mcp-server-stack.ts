@@ -11,7 +11,7 @@ export class HelloMcpServerStack extends cdk.Stack {
       logGroupName: `/aws/lambda/${functionName}`,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       retention: cdk.aws_logs.RetentionDays.ONE_DAY,
-    })
+    });
     const fn = new cdk.aws_lambda_nodejs.NodejsFunction(this, 'Lambda', {
       functionName,
       architecture: cdk.aws_lambda.Architecture.ARM_64,

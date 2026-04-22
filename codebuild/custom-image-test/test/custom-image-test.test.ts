@@ -1,6 +1,7 @@
 import { Template } from 'aws-cdk-lib/assertions';
 import * as cdk from 'aws-cdk-lib';
-import * as CustomImageTest from '../lib/custom-image-test-stack';
+import * as CustomImageTest from '../lib/custom-image-test-stack.js';
+import {test} from 'vitest';
 
 test('Empty Stack', () => {
   const app = new cdk.App();

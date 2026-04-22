@@ -1,6 +1,6 @@
+import { server } from './mcp-server';
 import { Context, Hono } from 'hono';
 import { StreamableHTTPTransport } from '@hono/mcp';
-import { server } from './mcp-server';
 import { Logger } from '@aws-lambda-powertools/logger';
 import { BlankEnv, BlankInput } from 'hono/types';
 

@@ -1,7 +1,6 @@
 #!/usr/bin/env node
-import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib/core';
-import { CustomImageTestStack } from '../lib/custom-image-test-stack';
+import { CustomImageTestStack } from '../lib/custom-image-test-stack.js';
 
 const app = new cdk.App();
 

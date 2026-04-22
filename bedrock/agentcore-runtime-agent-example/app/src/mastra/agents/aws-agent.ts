@@ -1,21 +1,18 @@
-import { createAmazonBedrock } from '@ai-sdk/amazon-bedrock';
+import { tools } from '../tools/aws-tool.js';
+import { scorers } from '../scorers/aws-scorer.js';
 import { Agent } from '@mastra/core/agent';
 import { Memory } from '@mastra/memory';
-import { LibSQLStore } from '@mastra/libsql';
+import { createAmazonBedrock } from '@ai-sdk/amazon-bedrock';
 import { fromNodeProviderChain } from '@aws-sdk/credential-providers';
-import { mcp } from '../mcp.js';
-
-const bedrockModelIdentifier = process.env.BEDROCK_MODEL;
-
-if (!bedrockModelIdentifier || bedrockModelIdentifier.length === 0) {
-  throw new Error('BEDROCK_MODEL environment variable is not set');
-}
 
 const bedrock = createAmazonBedrock({
+  region: 'us-east-1',
   credentialProvider: fromNodeProviderChain(),
 });
-export const exampleAgent = new Agent({
-  name: 'Example Agent',
+
+export const awsAgent = new Agent({
+  id: 'aws-agent',
+  name: 'AWS Agent',
   instructions: `
       You are an assistant that helps architects design systems using Amazon Web Services (AWS). Your primary function is to answer user questions based on AWS knowledge and propose system architectures. When responding, follow these guidelines:
 
@@ -28,11 +25,30 @@ export const exampleAgent = new Agent({
       - For non-AWS information, use Context7 to resolve queries with up-to-date information
           - If Context7 cannot resolve the query, clearly state that you don't know
 `,
-  model: bedrock(bedrockModelIdentifier),
-  tools: { ...await mcp.getTools() },
-  memory: new Memory({
-    storage: new LibSQLStore({
-      url: 'file:../mastra.db', // path is relative to the .mastra/output directory
-    }),
-  }),
+  model: bedrock('global.amazon.nova-2-lite-v1:0'),
+  tools,
+  scorers: {
+    toolCallAppropriateness: {
+      scorer: scorers.toolCallAppropriatenessScorer,
+      sampling: {
+        type: 'ratio',
+        rate: 1,
+      },
+    },
+    completeness: {
+      scorer: scorers.completenessScorer,
+      sampling: {
+        type: 'ratio',
+        rate: 1,
+      },
+    },
+    translation: {
+      scorer: scorers.translationScorer,
+      sampling: {
+        type: 'ratio',
+        rate: 1,
+      },
+    },
+  },
+  memory: new Memory(),
 });

@@ -1,7 +1,6 @@
 #!/usr/bin/env node
-import 'source-map-support/register';
+import { CodeconectionsStack } from '../lib/codeconections-stack.js';
 import * as cdk from 'aws-cdk-lib';
-import { CodeconectionsStack } from '../lib/codeconections-stack';
 
 const app = new cdk.App();
 

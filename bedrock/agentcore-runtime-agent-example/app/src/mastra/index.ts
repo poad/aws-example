@@ -1,38 +1,28 @@
-
+import { awsAgent } from './agents/aws-agent.js';
+import { toolCallAppropriatenessScorer, completenessScorer, translationScorer } from './scorers/aws-scorer.js';
+import { mcp } from './tools/aws-tool.js';
 import { Mastra } from '@mastra/core/mastra';
 import { PinoLogger } from '@mastra/loggers';
 import { LibSQLStore } from '@mastra/libsql';
+import { DuckDBStore } from '@mastra/duckdb';
+import { MastraCompositeStore } from '@mastra/core/storage';
+import { Observability, SensitiveDataFilter } from '@mastra/observability';
+import { OtelExporter } from '@mastra/otel-exporter';
 import { registerApiRoute } from '@mastra/core/server';
 import { streamSSE } from 'hono/streaming';
-import { exampleAgent } from './agents/example-agent.js';
-import { mcp } from './mcp.js';
-
-/**
- * X-Ray にトレースを投入する際に Mastra のコンストラクターの telemetry にプロパティに設定する OTel 設定例 (未検証)。
- *
- * ```typescript
- * import { OtelConfig } from '@mastra/core';
- *
- * const otelConfig: OtelConfig = {
- *   serviceName: 'my-awesome-service',
- *   enabled: true,
- *   sampling: {
- *     type: 'ratio',
- *     probability: 0.5,
- *   },
- *   export: {
- *     type: 'otlp',
- *     endpoint: `https://xray.us-west-2.amazonaws.com/v1/traces`,
- *   },
- * };
- * ```
- */
 
 export const mastra = new Mastra({
-  agents: { exampleAgent },
-  storage: new LibSQLStore({
-    // stores telemetry, evals, ... into memory storage, if it needs to persist, change to file:../mastra.db
-    url: ':memory:',
+  agents: { awsAgent },
+  scorers: { toolCallAppropriatenessScorer, completenessScorer, translationScorer },
+  storage: new MastraCompositeStore({
+    id: 'composite-storage',
+    default: new LibSQLStore({
+      id: 'mastra-storage',
+      url: 'file:./mastra.db',
+    }),
+    domains: {
+      observability: await new DuckDBStore().getStore('observability'),
+    },
   }),
   logger: new PinoLogger({
     name: 'Mastra',
@@ -89,11 +79,11 @@ export const mastra = new Mastra({
 
           const agent = await mastra.getAgent('exampleAgent');
 
-          const toolsets = await mcp.getToolsets();
+          const toolsets = await mcp.listToolsets();
 
           // ストリーミングレスポンス
           try {
-            const streamResult = await agent.streamVNext(prompt, {
+            const streamResult = await agent.stream(prompt, {
               toolsets,
             });
 
@@ -124,4 +114,31 @@ export const mastra = new Mastra({
       }),
     ],
   },
+  observability: new Observability({
+    configs: {
+      default: {
+        serviceName: 'mastra',
+        exporters: [
+          new OtelExporter({
+            provider: {
+              custom: {
+                endpoint: `${process.env.MLFLOW_TRACKING_URI ?? 'http://127.0.0.1:5000'}/v1/traces`,
+                protocol: 'http/protobuf',
+                headers: {
+                  'x-mlflow-experiment-id': process.env.MLFLOW_EXPERIMENT_ID ?? '0',
+                },
+              },
+            },
+          }),
+        ],
+        spanOutputProcessors: [
+          new SensitiveDataFilter(), // Redacts sensitive data like passwords, tokens, keys
+        ],
+        logging: {
+          enabled: true, // set to false to disable log forwarding
+          level: 'info', // minimum level: 'debug' | 'info' | 'warn' | 'error' | 'fatal'
+        },
+      },
+    },
+  }),
 });

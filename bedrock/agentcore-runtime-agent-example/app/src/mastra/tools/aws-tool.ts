@@ -13,3 +13,5 @@ export const mcp = new MCPClient({
     },
   },
 });
+
+export const tools = await mcp.listTools();

@@ -2,7 +2,7 @@ import withBundleAnalyzer from '@next/bundle-analyzer';
 import { NextConfig } from 'next';
 
 const config: NextConfig = {
-  output: "export",
+  output: 'export',
   reactStrictMode: true,
   compiler: {
     emotion: true,

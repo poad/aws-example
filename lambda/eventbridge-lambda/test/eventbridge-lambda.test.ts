@@ -2,6 +2,8 @@
 // import { Template } from 'aws-cdk-lib/assertions';
 // import * as EventbridgeLambda from '../lib/eventbridge-lambda-stack';
 
+import {test} from 'vitest';
+
 // example test. To run these tests, uncomment this file along with the
 // example resource in lib/eventbridge-lambda-stack.ts
 test('SQS Queue Created', () => {

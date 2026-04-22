@@ -1,3 +1,4 @@
+import path from 'path';
 import { RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
 import {
   Role, ServicePrincipal, PolicyDocument, PolicyStatement, Effect,
@@ -6,7 +7,6 @@ import { Architecture, FunctionUrl, FunctionUrlAuthType, Runtime } from 'aws-cdk
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { LogGroup, RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
-import path from 'path';
 
 export class ApolloServerStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {

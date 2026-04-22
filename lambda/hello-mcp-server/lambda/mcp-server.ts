@@ -1,58 +1,58 @@
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { z } from "zod";
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { z } from 'zod';
 
 /**
  * MCP サーバーインスタンス。WeatherTools 用のツールを登録して提供します。
  * @type {McpServer}
  */
 export const server = new McpServer({
-  name: "MathTools",
-  version: "0.1.0",
+  name: 'MathTools',
+  version: '0.1.0',
 });
 
 server.tool(
-  "calculate",
-  { a: z.number(), b: z.number(), operation: z.enum(["add", "subtract", "multiply", "divide"]) },
+  'calculate',
+  { a: z.number(), b: z.number(), operation: z.enum(['add', 'subtract', 'multiply', 'divide']) },
   async ({ a, b, operation }) => {
     let result;
     switch (operation) {
-      case "add": result = a + b; break;
-      case "subtract": result = a - b; break;
-      case "multiply": result = a * b; break;
-      case "divide": result = a / b; break;
+      case 'add': result = a + b; break;
+      case 'subtract': result = a - b; break;
+      case 'multiply': result = a * b; break;
+      case 'divide': result = a / b; break;
     }
     return {
-      content: [{ type: "text", text: `結果: ${result}` }]
+      content: [{ type: 'text', text: `結果: ${result}` }],
     };
-  }
+  },
 );
 
 // 因数分解ツールの実装
 server.tool(
-  "factorize",
-  "Factorize a number into its prime factors",
-  { number: z.number().int().positive().describe("An integer to factorize") },
+  'factorize',
+  'Factorize a number into its prime factors',
+  { number: z.number().int().positive().describe('An integer to factorize') },
   async ({ number }) => {
     const factors = findPrimeFactors(number);
 
     return {
       content: [
         {
-          type: "text",
+          type: 'text',
           text: `Prime factors of ${number}: ${factors.join(' × ')}`,
         },
       ],
     };
-  }
+  },
 );
 
 // 最大公約数を計算するツール
 server.tool(
-  "gcd",
-  "Calculate the greatest common divisor of two numbers",
+  'gcd',
+  'Calculate the greatest common divisor of two numbers',
   {
-    a: z.number().int().describe("First integer"),
-    b: z.number().int().describe("Second integer")
+    a: z.number().int().describe('First integer'),
+    b: z.number().int().describe('Second integer'),
   },
   async ({ a, b }) => {
     const result = calculateGCD(a, b);
@@ -60,33 +60,33 @@ server.tool(
     return {
       content: [
         {
-          type: "text",
+          type: 'text',
           text: `The greatest common divisor of ${a} and ${b} is ${result}`,
         },
       ],
     };
-  }
+  },
 );
 
 // 素数判定ツール
 server.tool(
-  "isPrime",
-  "Check if a number is prime",
-  { number: z.number().int().positive().describe("Number to check") },
+  'isPrime',
+  'Check if a number is prime',
+  { number: z.number().int().positive().describe('Number to check') },
   async ({ number }) => {
     const prime = isPrime(number);
 
     return {
       content: [
         {
-          type: "text",
+          type: 'text',
           text: prime ?
             `${number} is a prime number.` :
             `${number} is not a prime number.`,
         },
       ],
     };
-  }
+  },
 );
 
 // 素数判定関数

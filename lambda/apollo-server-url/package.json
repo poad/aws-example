@@ -16,31 +16,17 @@
     "@apollo/server": "^5.5.0",
     "@types/aws-lambda": "^8.10.161",
     "@types/cors": "^2.8.19",
-    "@types/jest": "^30.0.0",
     "@types/node": "^24.12.2",
     "aws-cdk": "^2.1118.2",
-    "esbuild": "^0.25.12",
-    "jest": "^30.3.0",
-    "ts-jest": "^29.4.9",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "esbuild": "^0.28.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.8",
+    "vitest": "^4.1.4"
   },
   "dependencies": {
     "aws-cdk-lib": "^2.250.0",
     "constructs": "^10.6.0",
-    "graphql": "^16.13.2",
-    "source-map-support": "^0.5.21"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "roots": [
-      "<rootDir>/test"
-    ],
-    "testMatch": [
-      "**/*.test.ts"
-    ],
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    }
+    "graphql": "^16.13.2"
   }
 }

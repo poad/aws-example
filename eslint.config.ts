@@ -3,13 +3,10 @@
 import { defineConfig } from 'eslint/config';
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
-import { importX } from 'eslint-plugin-import-x';
+import { importX, createNodeResolver } from 'eslint-plugin-import-x';
 import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 
 import tseslint from 'typescript-eslint';
-import { FlatCompat } from '@eslint/eslintrc';
-
-const compat = new FlatCompat();
 
 import { includeIgnoreFile } from '@eslint/compat';
 import path from "node:path";
@@ -24,13 +21,12 @@ export default defineConfig(
   {
     ignores: [
       '**/*.d.ts',
-      'src/tsconfig.json',
-      'src/stories',
+      '**/stories',
       '**/*.css',
-      'node_modules/**/*',
-      './.next/*',
-      'out',
-      '.storybook',
+      '**/node_modules/**/*',
+      '**/.next',
+      '**/out',
+      '**/.storybook',
       '**/bin/**/*.js',
       '**/lambda/**/*.js',
       '**/lib/**/*.js',
@@ -40,13 +36,13 @@ export default defineConfig(
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    files: ['eslint.config.ts', 'src/**/*.ts', 'src/**/*.jsx', 'src/**/*.tsx'],
+    files: ['eslint.config.ts', '**/*.ts', '**/*.tsx'],
     plugins: {
+      'import-x': importX,
       '@stylistic': stylistic,
     },
     extends: [
-      importX.flatConfigs.recommended,
-      importX.flatConfigs.typescript,
+      'import-x/flat/recommended',
     ],
     languageOptions: {
       parser: tseslint.parser,
@@ -58,15 +54,34 @@ export default defineConfig(
       },
     },
     settings: {
-      'import-x/internal-regex': '^~/',
       'import-x/resolver-next': [
-        createTypeScriptImportResolver(),
+        createTypeScriptImportResolver({
+          alwaysTryTypes: true,
+        }),
+        createNodeResolver(),
       ],
     },
     rules: {
       '@stylistic/quotes': ['error', 'single'],
       '@stylistic/semi': ['error', 'always'],
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
+
+      'import-x/order': [
+        'error',
+        {
+          'groups': [
+            // Imports of builtins are first
+            'builtin',
+            // Then sibling and parent imports. They can be mingled together
+            ['sibling', 'parent'],
+            // Then index file imports
+            'index',
+            // Then any arcane TypeScript imports
+            'object',
+            // Then the omitted imports: internal, external, type, unknown
+          ],
+        },
+      ],
     },
   },
 );

@@ -6,7 +6,7 @@ export default defineConfig({
   },
   test: {
     coverage: {
-      reporter: ['json', 'json-summary', 'html', 'cobertura'],
-    },
+      reporter: ['json', 'json-summary', 'html', 'cobertura']
+    }
   },
 });

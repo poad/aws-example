@@ -1,8 +1,7 @@
 #!/usr/bin/env node
-import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { Ec2Stack } from '../lib/ec2-stack';
-import assert = require('assert');
+import { Ec2Stack } from '../lib/ec2-stack.js';
+import assert from 'assert';
 
 const app = new cdk.App();
 

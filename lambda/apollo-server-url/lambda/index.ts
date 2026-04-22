@@ -58,7 +58,7 @@ function parseGraphQLRequest(event: APIGatewayProxyEvent | APIGatewayProxyEventV
 // Apollo Server v5用のLambda統合
 export async function handler(
   event: APIGatewayProxyEvent | APIGatewayProxyEventV2,
-  context: Context
+  context: Context,
 ): Promise<APIGatewayProxyResult | APIGatewayProxyResultV2> {
   const httpMethod = Object.keys(event).includes('httpMethod') ? (event as APIGatewayProxyEvent).httpMethod : (event as APIGatewayProxyEventV2).requestContext.http.method;
   // CORS preflight リクエストの処理

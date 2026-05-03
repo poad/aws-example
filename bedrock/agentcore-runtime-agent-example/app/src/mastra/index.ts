@@ -10,9 +10,11 @@ import { Observability, SensitiveDataFilter } from '@mastra/observability';
 import { OtelExporter } from '@mastra/otel-exporter';
 import { registerApiRoute } from '@mastra/core/server';
 import { streamSSE } from 'hono/streaming';
+import { CustomDeployer } from './deployer.js';
 
 export const mastra = new Mastra({
   agents: { awsAgent },
+  deployer: new CustomDeployer(),
   scorers: { toolCallAppropriatenessScorer, completenessScorer, translationScorer },
   storage: new MastraCompositeStore({
     id: 'composite-storage',

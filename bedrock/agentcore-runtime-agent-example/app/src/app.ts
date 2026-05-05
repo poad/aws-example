@@ -48,5 +48,5 @@ app.post('/invocations', async (c) => {
     await mcp.disconnect();
     throw e;
   }
-},
-);
+  return c.json({ error: 'prompt is too long' }, 400);
+});

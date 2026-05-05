@@ -20,25 +20,25 @@ engineStrict: true
 
 minimumReleaseAge: 10080 # 7 days in minutes
 minimumReleaseAgeExclude:
-  - typescript-eslint@8.59.1
-  - eslint-plugin-promise@7.3.0
   - '@typescript-eslint/*'
-  - '@opentelemetry/*'
   - '@aws-cdk/*'
   - '@aws-sdk/*'
   - '@smithy/*'
   - '@rolldown/*'
   - 'rolldown'
-  - '@hono/node-server'
+  - '@strands-agents/sdk@1.0.0'
+  - '@aws/aws-distro-opentelemetry-node-autoinstrumentation@0.11.0'
+  - '@opentelemetry/*'
+  - 'yaml@2.8.4'
 
 overrides:
+  '@aws/aws-distro-opentelemetry-node-autoinstrumentation': '^0.11.0'
   eslint-import-resolver-typescript: '^4.4.4'
   fast-xml-parser@<5.7.0: '>=5.7.0'
   file-type@>=13.0.0 <21.3.1: '>=21.3.1'
   postcss@<8.5.10: '>=8.5.10'
   semver: '>=7'
   uuid: '>=14.0.0'
-  yaml: '2.8.3'
 
 strictPeerDependencies: false
 

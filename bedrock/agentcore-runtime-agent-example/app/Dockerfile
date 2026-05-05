@@ -12,7 +12,7 @@ COPY package.json ./
 RUN npx -y pnpm@latest i
 COPY . ./
 
-RUN npx -y bun@latest run mastra build
+RUN npx -y bun@latest run tsc
 
 
 FROM --platform=$BUILDPLATFORM node:$NODE_VERSION-slim AS dev
@@ -28,10 +28,17 @@ ENV PORT=8080
 
 ENTRYPOINT ["npx", "-y", "pnpm", "dev"]
 
+FROM --platform=$BUILDPLATFORM node:$NODE_VERSION-slim AS base
 
-FROM --platform=$BUILDPLATFORM node:$NODE_VERSION-slim
+WORKDIR /var/task
+COPY package.json ./
 
-COPY --from=build /build /var/task
+RUN npx -y pnpm@latest i --production
+RUN rm -rf package.json
+
+FROM --platform=$BUILDPLATFORM base
+
+COPY --from=build /build/dist /var/task
 
 # Change ownership to non-root user
 RUN chown -R node:node /var/task
@@ -43,4 +50,4 @@ USER node
 
 ENV PORT=8080
 
-ENTRYPOINT [ "node", "--import=./.mastra/output/instrumentation.mjs", ".mastra/output/index.mjs" ]
+ENTRYPOINT [ "node", "./index.js" ]

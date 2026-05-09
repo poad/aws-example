@@ -30,12 +30,18 @@ minimumReleaseAgeExclude:
   - '@aws/aws-distro-opentelemetry-node-autoinstrumentation@0.11.0'
   - '@opentelemetry/*'
   - 'yaml@2.8.4'
+  - ip-address@10.1.1
+  - fast-xml-builder@1.1.7
+  - fast-uri@3.1.2
 
 overrides:
   '@aws/aws-distro-opentelemetry-node-autoinstrumentation': '^0.11.0'
   eslint-import-resolver-typescript: '^4.4.4'
+  fast-uri@<=3.1.1: ^3.1.2
+  fast-xml-builder@<=1.1.6: ^1.1.7
   fast-xml-parser@<5.7.0: '>=5.7.0'
   file-type@>=13.0.0 <21.3.1: '>=21.3.1'
+  ip-address@<=10.1.0: ^10.1.1
   postcss@<8.5.10: '>=8.5.10'
   semver: '>=7'
   uuid: '>=14.0.0'

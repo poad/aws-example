@@ -20,22 +20,46 @@ engineStrict: true
 
 minimumReleaseAge: 10080 # 7 days in minutes
 minimumReleaseAgeExclude:
-  - '@typescript-eslint/*'
   - '@aws-cdk/*'
+  - 'aws-cdk@2.1121.0'
+
   - '@aws-sdk/*'
   - '@smithy/*'
+
   - '@rolldown/*'
-  - 'rolldown'
+  - 'rolldown@1.0.0'
+
+  - 'vite@8.0.12'
+  - '@vite/*'
+
   - '@strands-agents/sdk@1.0.0'
   - '@aws/aws-distro-opentelemetry-node-autoinstrumentation@0.11.0'
   - '@opentelemetry/*'
+
   - 'yaml@2.8.4'
   - ip-address@10.1.1
   - fast-xml-builder@1.1.7
   - fast-uri@3.1.2
 
+  - 'jiti@2.7.0'
+
+  - '@opentelemetry/*'
+
+  - '@oxc-project/*'
+
+  - 'hono@4.12.18'
+
+  - 'next@16.2.6'
+  - '@next/*'
+  - '@opentelemetry/auto-instrumentations-node@0.75.0'
+  - '@opentelemetry/sdk-node@0.217.0'
+  - '@opentelemetry/exporter-prometheus@0.217.0'
+
 overrides:
   '@aws/aws-distro-opentelemetry-node-autoinstrumentation': '^0.11.0'
+  '@opentelemetry/auto-instrumentations-node@<0.75.0': ^0.75.0
+  '@opentelemetry/exporter-prometheus@<0.217.0': ^0.217.0
+  '@opentelemetry/sdk-node@<0.217.0': ^0.217.0
   eslint-import-resolver-typescript: '^4.4.4'
   fast-uri@<=3.1.1: ^3.1.2
   fast-xml-builder@<=1.1.6: ^1.1.7
@@ -48,5 +72,4 @@ overrides:
 
 strictPeerDependencies: false
 
-# mastra build で compromise@14.15.0 で引っかかるのを回避するため no-downgrade ではなく time-based を使用する
-trustPolicy: time-based
+trustPolicy: no-downgrade

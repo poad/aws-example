@@ -55,6 +55,7 @@ minimumReleaseAgeExclude:
   - '@opentelemetry/sdk-node@0.217.0'
   - '@opentelemetry/exporter-prometheus@0.217.0'
   - protobufjs@8.0.2
+  - ws@8.20.1
 
 overrides:
   '@aws/aws-distro-opentelemetry-node-autoinstrumentation': '^0.11.0'
@@ -71,6 +72,7 @@ overrides:
   protobufjs@>=8.0.0 <=8.0.1: ^8.0.2
   semver: '>=7'
   uuid: '>=14.0.0'
+  ws@>=8.0.0 <8.20.1: ^8.20.1
 
 strictPeerDependencies: false
 

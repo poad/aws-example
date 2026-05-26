@@ -50,12 +50,7 @@ if ! (git pull --prune && git commit -am "Bumps node modules" && git push); then
   exit 1
 fi
 
-if (cd "${CURRENT}/lambda/rust-runtime/lambda" || exit); then
-  pwd
-  cargo clean
-else
-  cd "${CUR}" || exit
-  exit 1
-fi
+cd "${CURRENT}/lambda/rust-runtime/lambda" || exit
+cargo clean
 
 cd "${CUR}" || exit

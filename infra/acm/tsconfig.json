@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "commonjs",
+    "target": "ES2023",
+    "module": "nodenext",
     "lib": [
-      "es2020",
+      "es2023",
       "dom"
     ],
+    "types": ["node"],
+    "noEmit": true,
+    "moduleResolution": "nodenext",
     "declaration": true,
     "strict": true,
     "noImplicitAny": true,

@@ -1,0 +1,28 @@
+{
+  "name": "@aws-example/bedrock-mantle-example",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "lint": "eslint",
+    "lint-fix": "eslint --fix"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@types/node": "^25.9.4",
+    "eslint": "^10.5.0",
+    "eslint-import-resolver-typescript": "^4.4.5",
+    "eslint-plugin-import-x": "^4.17.0",
+    "eslint-plugin-promise": "^7.3.0",
+    "jiti": "^2.7.0",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.62.0"
+  },
+  "dependencies": {
+    "@aws/bedrock-token-generator": "^1.1.0",
+    "@dotenvx/dotenvx": "^1.75.1",
+    "openai": "^6.45.0"
+  }
+}

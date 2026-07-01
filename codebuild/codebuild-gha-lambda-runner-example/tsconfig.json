@@ -1,17 +1,12 @@
 {
-  "ts-node": {
-    "esm": true,
-    "experimentalSpecifierResolution": "node"
-  },
   "compilerOptions": {
     "target": "esnext",
-    "module": "esnext",
+    "module": "nodenext",
     "lib": [
       "esnext",
       "dom"
     ],
-    "moduleResolution":"bundler",
-    "declaration": true,
+    "moduleResolution":"nodenext",
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -28,7 +23,8 @@
     "typeRoots": [
       "./node_modules/@types"
     ],
-    "types": ["node"]
+    "types": ["node"],
+    "noEmit": true
   },
   "exclude": [
     "node_modules",

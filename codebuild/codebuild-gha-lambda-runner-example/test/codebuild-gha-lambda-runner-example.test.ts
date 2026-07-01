@@ -1,4 +1,4 @@
-import * as CodebuildGhaLambdaRunnerExample from '../lib/codebuild-gha-lambda-runner-example-stack';
+import * as CodebuildGhaLambdaRunnerExample from '../lib/codebuild-gha-lambda-runner-example-stack.js';
 import * as cdk from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import * as codebuild from 'aws-cdk-lib/aws-codebuild';

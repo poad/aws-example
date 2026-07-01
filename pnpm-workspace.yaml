@@ -52,11 +52,12 @@ minimumReleaseAgeExclude:
   - '@esbuild/win32-arm64@0.28.1'
   - '@esbuild/win32-ia32@0.28.1'
   - '@esbuild/win32-x64@0.28.1'
-  - protobufjs@8.0.2
-  - protobufjs@8.2.0
+  - protobufjs@8.0.2 || 8.2.0
+  - '@opentelemetry/core@2.8.0'
 
 overrides:
   '@opentelemetry/auto-instrumentations-node@<0.75.0': ^0.75.0
+  '@opentelemetry/core@<2.8.0': ^2.8.0
   '@opentelemetry/exporter-prometheus@<0.217.0': ^0.217.0
   '@opentelemetry/sdk-node@<0.217.0': ^0.217.0
   esbuild@>=0.17.0 <0.28.1: ^0.28.1

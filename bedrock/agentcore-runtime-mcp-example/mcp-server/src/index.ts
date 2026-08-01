@@ -1,16 +1,25 @@
-import { Context, Hono } from 'hono';
+import { Context } from 'hono';
 import { cors } from 'hono/cors';
-import { StreamableHTTPTransport } from '@hono/mcp';
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
-import { z } from 'zod'; // Or any validation library that supports Standard Schema
-import { BlankEnv, BlankInput } from 'hono/types';
+import { McpServer, WebStandardStreamableHTTPServerTransport } from '@modelcontextprotocol/server';
+import { createMcpHonoApp } from '@modelcontextprotocol/hono';
+import { z } from 'zod';
 import { serve } from '@hono/node-server';
+import { BlankEnv, BlankInput } from 'hono/types';
+
+// `@modelcontextprotocol/hono` が c.set('parsedBody', ...) で格納する値の型を
+// Hono の ContextVariableMap に宣言マージで追加する（パッケージ側の型定義に
+// 反映されていないための回避策）
+declare module 'hono' {
+  interface ContextVariableMap {
+    parsedBody: unknown;
+  }
+}
 
 /**
  * Hono アプリケーションインスタンス。MCP エンドポイントを処理します。
  * @type {Hono}
  */
-const app = new Hono();
+const app = createMcpHonoApp();
 app.use('/mcp', cors());
 const server = new McpServer({
   name: 'Hello World!',
@@ -19,9 +28,9 @@ const server = new McpServer({
 
 server.registerTool('say_hello', {
   description: 'Say hello',
-  inputSchema: {
+  inputSchema: z.object({
     who: z.string().optional(),
-  },
+  }),
 },
 async ({ who }) => {
   const result = String(`Hello ${who || 'world'}!`);
@@ -43,9 +52,9 @@ const cleanupServer = async () => {
 };
 
 // ルートを設定
-app.post('/mcp', async (c) => {
+app.post('/mcp', async (c: Context<BlankEnv, '/mcp', BlankInput>) => {
   try {
-    const transport = new StreamableHTTPTransport({
+    const transport = new WebStandardStreamableHTTPServerTransport({
       sessionIdGenerator: undefined, // セッションIDを生成しない（ステートレスモード）
       enableJsonResponse: true,
     });
@@ -57,7 +66,7 @@ app.post('/mcp', async (c) => {
       await server.connect(transport);
       console.debug('MCP リクエストを受信');
 
-      return transport.handleRequest(c)
+      return transport.handleRequest(c.req.raw, { parsedBody: c.get('parsedBody') })
         .finally(() => {
           transport.close();
         });
@@ -98,7 +107,7 @@ app.post('/mcp', async (c) => {
   }
 });
 
-const methodNotAllowedHandler = async (c: Context<BlankEnv, '/mcp', BlankInput>) => {
+const methodNotAllowedHandler = async (c: Context) => {
   return c.json(
     {
       jsonrpc: '2.0',

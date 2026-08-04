@@ -1,4 +1,4 @@
-import { defineConfig } from 'eslint/config';
+import { defineConfig, includeIgnoreFile } from 'eslint/config';
 import eslint from '@eslint/js';
 import { configs, parser } from 'typescript-eslint';
 import stylistic from '@stylistic/eslint-plugin';
@@ -7,7 +7,6 @@ import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescrip
 // @ts-expect-error ignore type errors
 import pluginPromise from 'eslint-plugin-promise';
 
-import { includeIgnoreFile } from '@eslint/compat';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 

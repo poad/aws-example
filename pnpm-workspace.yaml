@@ -20,7 +20,12 @@ engineStrict: true
 
 minimumReleaseAge: 10080 # 7 days in minutes
 minimumReleaseAgeExclude:
-  - pnpm@11.19.0
+  - pnpm@11.20.0
+
+  - next@16.3.0
+  - eslint-config-next@16.3.0
+  - '@next/eslint-plugin-next@16.3.0'
+
   - '@modelcontextprotocol/codemod@2.0.0'
   - '@modelcontextprotocol/client@2.0.0'
   - '@modelcontextprotocol/core@2.0.0'
@@ -34,8 +39,11 @@ minimumReleaseAgeExclude:
   - '@hono/node-server@2.0.5'
   - '@opentelemetry/propagator-jaeger@2.9.0'
   - sharp@0.35.0
-  - brace-expansion@1.1.17 || 2.1.3
+  - brace-expansion@1.1.17 || 1.1.18 || 2.1.3 || 2.1.4 || 5.0.9
   - protobufjs@8.0.2 || 8.2.0 || 8.4.1 || 8.5.1 || 8.6.6
+  - fast-uri@3.1.5
+  - ip-address@10.2.1 || 10.2.2 || 10.3.1
+  - hono@4.12.34
 
 overrides:
   '@hono/node-server@<2.0.5': ^2.0.5
@@ -45,8 +53,16 @@ overrides:
   '@opentelemetry/propagator-jaeger@<2.9.0': ^2.9.0
   '@opentelemetry/sdk-node@<0.217.0': ^0.217.0
   brace-expansion@<1.1.17: ^1.1.17
+  brace-expansion@<1.1.18: ^1.1.18
   brace-expansion@>=2.0.0 <2.1.3: ^2.1.3
+  brace-expansion@>=2.0.0 <2.1.4: ^2.1.4
+  brace-expansion@>=4.0.0 <5.0.9: ^5.0.9
   eslint-import-resolver-typescript: '^4.4.4'
+  fast-uri@>=3.0.0 <3.1.5: ^3.1.5
+  hono@<4.12.34: ^4.12.34
+  ip-address@<=10.3.0: ^10.3.1
+  ip-address@>=10.1.1 <=10.2.0: ^10.2.1
+  ip-address@>=10.1.1 <=10.2.1: ^10.2.2
   postcss@<8.5.10: ^8.5.10
   postcss@<=8.5.11: ^8.5.12
   postcss@<=8.5.17: ^8.5.18

@@ -1,9 +1,9 @@
-import * as cdk from 'aws-cdk-lib';
-import { Construct } from 'constructs';
-import { ECRDeployment, DockerImageName } from 'cdk-ecr-deployment';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import assert from 'assert';
+import * as cdk from 'aws-cdk-lib';
+import { Construct } from 'constructs';
+import { ECRDeployment, DockerImageName } from 'cdk-ecr-deployment';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

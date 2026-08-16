@@ -24,12 +24,12 @@ export class S3Stack extends Stack {
       ],
       resources: [
         `arn:aws:s3:::codepipeline-artifact-store-${this.region}-${this.account}`,
-        `arn:aws:s3:::codepipeline-artifact-store-${this.region}-${this.account}/*`
+        `arn:aws:s3:::codepipeline-artifact-store-${this.region}-${this.account}/*`,
       ],
       principals: [
         new ServicePrincipal('codepipeline.amazonaws.com'),
       ],
-      effect: Effect.ALLOW
+      effect: Effect.ALLOW,
     }));
 
     new StringParameter(this, 'BucketArn', {

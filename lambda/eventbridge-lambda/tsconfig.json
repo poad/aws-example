@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "commonjs",
+    "target": "ES2023",
+    "module": "nodenext",
     "lib": [
-      "esnext"
+      "es2023",
+      "dom"
     ],
-    "declaration": true,
+    "moduleResolution": "nodenext",
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -19,14 +20,15 @@
     "inlineSources": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "esModuleInterop": true,
     "typeRoots": [
       "./node_modules/@types"
     ],
-    "types": ["node"]
+    "types": ["node"],
+    "noEmit": true
   },
   "exclude": [
     "node_modules",
-    "cdk.out"
+    "cdk.out",
+    "eslint.config.ts"
   ]
 }

@@ -4,8 +4,8 @@ import * as lambda from 'aws-cdk-lib/aws-lambda';
 import { StringParameter } from 'aws-cdk-lib/aws-ssm';
 
 interface LayerStackProps extends StackProps {
-  appName: string,
-  timestamp: string | undefined
+  readonly appName: string,
+  readonly timestamp: string | undefined
 }
 
 export class LayerStack extends Stack {

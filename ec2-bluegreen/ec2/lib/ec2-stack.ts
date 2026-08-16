@@ -1,17 +1,17 @@
-import * as cdk from "aws-cdk-lib";
-import { Construct } from "constructs";
-import * as ec2 from "aws-cdk-lib/aws-ec2";
-import * as iam from "aws-cdk-lib/aws-iam";
-import * as autoscaling from "aws-cdk-lib/aws-autoscaling";
-import * as elbv2 from "aws-cdk-lib/aws-elasticloadbalancingv2";
-import * as ssm from "aws-cdk-lib/aws-ssm";
-import * as acm from "aws-cdk-lib/aws-certificatemanager";
-import * as route53 from "aws-cdk-lib/aws-route53";
-import * as route53targets from "aws-cdk-lib/aws-route53-targets";
+import * as cdk from 'aws-cdk-lib';
+import { Construct } from 'constructs';
+import * as ec2 from 'aws-cdk-lib/aws-ec2';
+import * as iam from 'aws-cdk-lib/aws-iam';
+import * as autoscaling from 'aws-cdk-lib/aws-autoscaling';
+import * as elbv2 from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+import * as ssm from 'aws-cdk-lib/aws-ssm';
+import * as acm from 'aws-cdk-lib/aws-certificatemanager';
+import * as route53 from 'aws-cdk-lib/aws-route53';
+import * as route53targets from 'aws-cdk-lib/aws-route53-targets';
 
 interface Ec2StackProps extends cdk.StackProps {
-  amiId: string;
-  albName: string;
+  readonly amiId: string;
+  readonly albName: string;
 }
 
 export class Ec2Stack extends cdk.Stack {
@@ -23,47 +23,47 @@ export class Ec2Stack extends cdk.Stack {
 
     const acmArn = ssm.StringParameter.fromStringParameterName(
       this,
-      "AcmArn",
-      "/acm/arn"
+      'AcmArn',
+      '/acm/arn',
     ).stringValue;
 
     const userData = ec2.UserData.forLinux({});
     userData.addCommands(
-      "curl -sSLo /tmp/amazon-ssm-agent.deb https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb",
-      "dpkg -i /tmp/amazon-ssm-agent.deb",
-      "systemctl status amazon-ssm-agent",
-      "systemctl enable amazon-ssm-agent",
-      "systemctl start amazon-ssm-agent"
+      'curl -sSLo /tmp/amazon-ssm-agent.deb https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb',
+      'dpkg -i /tmp/amazon-ssm-agent.deb',
+      'systemctl status amazon-ssm-agent',
+      'systemctl enable amazon-ssm-agent',
+      'systemctl start amazon-ssm-agent',
     );
 
-    const cfnKeyPair = new ec2.CfnKeyPair(this, "CfnKeyPair", {
-      keyName: "test-key-pair",
+    const cfnKeyPair = new ec2.CfnKeyPair(this, 'CfnKeyPair', {
+      keyName: 'test-key-pair',
     });
     cfnKeyPair.applyRemovalPolicy(cdk.RemovalPolicy.DESTROY);
 
-    new cdk.CfnOutput(this, "GetSSHKeyCommand", {
+    new cdk.CfnOutput(this, 'GetSSHKeyCommand', {
       value: `aws ssm get-parameter --name /ec2/keypair/${cfnKeyPair.getAtt(
-        "KeyPairId"
+        'KeyPairId',
       )} --region ${
         this.region
       } --with-decryption --query Parameter.Value --output text`,
     });
 
-    const role = new iam.Role(this, "InstanceProfile", {
-      roleName: "test-InstanceProfile",
-      assumedBy: new iam.ServicePrincipal("ec2.amazonaws.com"),
+    const role = new iam.Role(this, 'InstanceProfile', {
+      roleName: 'test-InstanceProfile',
+      assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
       managedPolicies: [
         iam.ManagedPolicy.fromAwsManagedPolicyName(
-          "AmazonSSMManagedInstanceCore"
+          'AmazonSSMManagedInstanceCore',
         ),
       ],
     });
 
-    const vpc = ec2.Vpc.fromLookup(this, "VPC", { isDefault: false });
+    const vpc = ec2.Vpc.fromLookup(this, 'VPC', { isDefault: false });
 
     const autoScalingGroups = [
-      { name: "blue", count: 1 },
-      { name: "green", count: 0 },
+      { name: 'blue', count: 1 },
+      { name: 'green', count: 0 },
     ].map(({ name: autoScalingGroupName, count }) => {
       return {
         autoScalingGroupName,
@@ -78,7 +78,7 @@ export class Ec2Stack extends cdk.Stack {
             },
             instanceType: ec2.InstanceType.of(
               ec2.InstanceClass.T3A,
-              ec2.InstanceSize.SMALL
+              ec2.InstanceSize.SMALL,
             ),
             minCapacity: count,
             maxCapacity: count,
@@ -86,36 +86,36 @@ export class Ec2Stack extends cdk.Stack {
               { [region]: amiId },
               {
                 userData,
-              }
+              },
             ),
             keyName: cdk.Token.asString(cfnKeyPair.ref),
             ssmSessionPermissions: true,
             role: role,
             userData: userData,
-          }
+          },
         ),
       };
     });
 
     const hostedZoneName = ssm.StringParameter.fromStringParameterName(
       this,
-      "HostedZoneName",
-      "/route53/hostedZoneName"
+      'HostedZoneName',
+      '/route53/hostedZoneName',
     ).stringValue;
 
     const hostedZoneId = ssm.StringParameter.fromStringParameterName(
       this,
-      "HostedZoneId",
-      "/route53/hostedZoneId"
+      'HostedZoneId',
+      '/route53/hostedZoneId',
     ).stringValue;
 
-    const hostedZone = route53.HostedZone.fromHostedZoneAttributes(this, "HostedZone", {
+    const hostedZone = route53.HostedZone.fromHostedZoneAttributes(this, 'HostedZone', {
       hostedZoneId,
       zoneName: hostedZoneName,
     });
 
     // create a load balancer
-    const alb = new elbv2.ApplicationLoadBalancer(this, "ALB", {
+    const alb = new elbv2.ApplicationLoadBalancer(this, 'ALB', {
       vpc,
       internetFacing: true,
       loadBalancerName: albName,
@@ -123,25 +123,25 @@ export class Ec2Stack extends cdk.Stack {
 
     const certificate = acm.Certificate.fromCertificateArn(
       this,
-      "Certificate",
-      acmArn
+      'Certificate',
+      acmArn,
     );
 
     const defaultTargetGroup = new elbv2.ApplicationTargetGroup(
       this,
-      `default-target`,
+      'DefaultTarget',
       {
         port: 80,
         targets: [autoScalingGroups[0].autoScalingGroup],
         healthCheck: {
           enabled: true,
-          path: "/health",
+          path: '/health',
         },
         targetGroupName: 'default',
         vpc,
-      }
+      },
     );
-    const listener = alb.addListener("Listener", {
+    const listener = alb.addListener('Listener', {
       protocol: elbv2.ApplicationProtocol.HTTPS,
       port: 443,
       certificates: [certificate],
@@ -156,7 +156,7 @@ export class Ec2Stack extends cdk.Stack {
           targets: [autoScalingGroup],
           healthCheck: {
             enabled: true,
-            path: "/health",
+            path: '/health',
           },
           targetGroupName: autoScalingGroupName,
           conditions: [
@@ -165,9 +165,9 @@ export class Ec2Stack extends cdk.Stack {
             ]),
           ],
           priority: index + 1,
-        }
+        },
       );
-    })
+    });
 
 
     // // add a scaling rule
@@ -178,25 +178,25 @@ export class Ec2Stack extends cdk.Stack {
     // });
 
     const domainName = `ec2-bluegreen-alb.${hostedZoneName}`;
-    new route53.ARecord(this, "ARecord", {
+    new route53.ARecord(this, 'ARecord', {
       recordName: domainName,
       zone: hostedZone,
       target: route53.RecordTarget.fromAlias(
-        new route53targets.LoadBalancerTarget(alb)
+        new route53targets.LoadBalancerTarget(alb),
       ),
     });
 
-    new cdk.CfnOutput(this, "AlbArn", {
+    new cdk.CfnOutput(this, 'AlbArn', {
       value: alb.loadBalancerArn,
     });
 
-    new ssm.StringParameter(this, "AlbArnParam", {
-      parameterName: "/ec2-bluegreen/alb/arn",
+    new ssm.StringParameter(this, 'AlbArnParam', {
+      parameterName: '/ec2-bluegreen/alb/arn',
       dataType: ssm.ParameterDataType.TEXT,
       stringValue: alb.loadBalancerArn,
     });
 
-    new cdk.CfnOutput(this, "AlbDomainName", {
+    new cdk.CfnOutput(this, 'AlbDomainName', {
       value: domainName,
     });
   }

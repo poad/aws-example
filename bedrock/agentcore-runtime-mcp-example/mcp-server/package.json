@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "clean": "tsc --build --clean",
-    "watch": "tsc -w",
+    "build": "node_modules/@typescript/native/bin/tsc",
+    "clean": "node_modules/@typescript/native/bin/tsc --build --clean",
+    "watch": "node_modules/@typescript/native/bin/tsc -w",
     "dev": "tsx --watch src/index.ts",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix"
@@ -13,23 +13,24 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@hono/mcp": "^0.2.5",
-    "@hono/node-server": "^2.0.12",
+    "@hono/node-server": "^2.1.0",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@types/node": "^24.13.3",
-    "eslint": "^10.8.0",
+    "eslint": "^10.8.1",
     "eslint-import-resolver-typescript": "^4.4.5",
     "eslint-plugin-import-x": "^4.17.1",
     "eslint-plugin-promise": "^7.3.0",
     "jiti": "^2.7.0",
-    "tsx": "^4.23.1",
-    "typescript": "^6.0.3",
-    "typescript-eslint": "^8.65.0"
+    "tsx": "^4.23.11",
+    "@typescript/native": "npm:typescript@^7.0.2",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "typescript-eslint": "^8.66.0"
   },
   "dependencies": {
     "@modelcontextprotocol/hono": "^2.0.0",
     "@modelcontextprotocol/server": "^2.0.0",
     "fastmcp": "^3.35.0",
-    "hono": "^4.12.34",
+    "hono": "^4.13.1",
     "zod": "^4.4.3"
   }
 }

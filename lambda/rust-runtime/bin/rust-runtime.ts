@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-import * as cdk from 'aws-cdk-lib/core';
 import { RustRuntimeStack } from '../lib/rust-runtime-stack.js';
+import * as cdk from 'aws-cdk-lib/core';
 
 const app = new cdk.App();
-const stack = new RustRuntimeStack(app, 'rust-runtime-stack', {
+const stack = new RustRuntimeStack(app, 'RustRuntime', {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */

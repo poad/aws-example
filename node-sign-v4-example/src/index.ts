@@ -1,11 +1,11 @@
-import { signRequest } from './sign-v4-request.js'
+import { signRequest } from './sign-v4-request.js';
 
 const service = 'sts';
 const region = 'us-west-2';
 
 const endpoint = new URL(`https://${service}.${region}.amazonaws.com/`);
 
-signRequest({
+const { request: req, response: res } = await signRequest({
   method: 'GET',
   service,
   endpoint,
@@ -28,8 +28,8 @@ signRequest({
   //     }
   //   },
   // }),
-}).then(async ({ request: req, response: res }) => {
-  console.log(JSON.stringify(req.headers));
-  console.log(`${res.status} ${res.statusText}`);
-  console.log(await res.text());
 });
+
+console.log(JSON.stringify(req.headers));
+console.log(`${res.status} ${res.statusText}`);
+console.log(await res.text());

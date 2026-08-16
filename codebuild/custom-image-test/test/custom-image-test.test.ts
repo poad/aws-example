@@ -1,3 +1,5 @@
+/* eslint-disable vitest/expect-expect */
+
 import { Template } from 'aws-cdk-lib/assertions';
 import * as cdk from 'aws-cdk-lib';
 import * as CustomImageTest from '../lib/custom-image-test-stack.js';
@@ -19,3 +21,5 @@ test('Empty Stack', () => {
     "Resources": {}
   })
 });
+
+/* eslint-enable vitest/expect-expect */

@@ -6,7 +6,7 @@ const app = new cdk.App();
 
 const account = app.node.tryGetContext('acccount');
 
-new CodeconectionsStack(app, 'CodeconectionsStack', {
+new CodeconectionsStack(app, 'Codeconections', {
   env: {
     account,
     region: 'us-west-2',

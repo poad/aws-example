@@ -5,7 +5,7 @@ import * as iam from 'aws-cdk-lib/aws-iam';
 import * as awslogs from 'aws-cdk-lib/aws-logs';
 
 interface CodebuildGhaLambdaRunnerExampleStackProps extends cdk.StackProps {
-  projects: {
+  readonly projects: {
     projectName: string;
     owner: string;
     repo: string;

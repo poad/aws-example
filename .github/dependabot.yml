@@ -10,7 +10,7 @@ updates:
       - dependency-type: all
     rebase-strategy: auto
     cooldown:
-      default-days: 3
+      default-days: 7
     assignees:
       - poad
     groups:
@@ -20,9 +20,6 @@ updates:
 
   - package-ecosystem: npm
     directories:
-      - '/amplify/amplify-cdk/app/'
-      - '/amplify/amplify_nextapp/'
-      - '/amplify/amplify-cdk/infra/'
       - '/codebuild/custom-image-test/'
       - '/codebuild/codebuild-gha-lambda-runner-example/'
       - '/codebuild/codebuild-webhook-project/infra/'
@@ -67,7 +64,7 @@ updates:
         patterns:
           - "*"
 
-  - package-ecosystem: gradle
+  - package-ecosystem: cargo
     directories:
       - '/lambda/rust-runtime/lambda/'
     schedule:
@@ -80,22 +77,7 @@ updates:
     assignees:
       - poad
     groups:
-      gradle:
+      cargo:
         patterns:
           - "*"
 
-  - package-ecosystem: cargo
-    directories:
-      - '/actix-web-reqwest-example/'
-    schedule:
-      interval: daily
-      timezone: Asia/Tokyo
-    allow:
-      - dependency-type: all
-    rebase-strategy: auto
-    assignees:
-      - poad
-    groups:
-      actix-web-reqwest:
-        patterns:
-          - '*'

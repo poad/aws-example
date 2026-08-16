@@ -26,6 +26,8 @@ export default defineConfig(
     ],
   },
   pluginPromise.configs['flat/recommended'],
+  importX.flatConfigs.recommended,
+  importX.flatConfigs.typescript,
   {
     files: ['**/*.ts'],
     languageOptions: {
@@ -40,12 +42,9 @@ export default defineConfig(
       },
     },
     plugins: {
-      'import-x': importX,
       '@stylistic': stylistic,
     },
     extends: [
-      'import-x/flat/recommended',
-
       eslint.configs.recommended,
       configs.strict,
       configs.stylistic,
@@ -64,6 +63,7 @@ export default defineConfig(
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
       '@stylistic/arrow-parens': ['error', 'always'],
       '@stylistic/quotes': ['error', 'single'],
+
       'import-x/order': [
         'error',
         {

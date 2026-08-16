@@ -2,7 +2,7 @@ import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as acm from 'aws-cdk-lib/aws-certificatemanager';
 import * as route53 from 'aws-cdk-lib/aws-route53';
-import * as ssm from "aws-cdk-lib/aws-ssm";
+import * as ssm from 'aws-cdk-lib/aws-ssm';
 
 export class AcmStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props: cdk.StackProps) {

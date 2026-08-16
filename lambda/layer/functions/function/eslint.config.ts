@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig, includeIgnoreFile } from 'eslint/config';
+import { configs as cdkConfigs } from 'eslint-plugin-awscdk';
 import eslint from '@eslint/js';
 import { configs, parser } from 'typescript-eslint';
 import stylistic from '@stylistic/eslint-plugin';
@@ -26,6 +27,8 @@ export default defineConfig(
     ],
   },
   pluginPromise.configs['flat/recommended'],
+  importX.flatConfigs.recommended,
+  importX.flatConfigs.typescript,
   {
     files: ['**/*.ts'],
     languageOptions: {
@@ -40,12 +43,10 @@ export default defineConfig(
       },
     },
     plugins: {
-      'import-x': importX,
       '@stylistic': stylistic,
     },
     extends: [
-      'import-x/flat/recommended',
-
+      cdkConfigs.recommended,
       eslint.configs.recommended,
       configs.strict,
       configs.stylistic,
@@ -64,6 +65,7 @@ export default defineConfig(
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
       '@stylistic/arrow-parens': ['error', 'always'],
       '@stylistic/quotes': ['error', 'single'],
+
       'import-x/order': [
         'error',
         {

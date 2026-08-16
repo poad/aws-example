@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "commonjs",
+    "target": "ES2023",
+    "module": "nodenext",
     "lib": [
-      "es2020",
+      "es2023",
       "dom"
     ],
-    "declaration": true,
+    "moduleResolution": "nodenext",
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -23,10 +23,12 @@
     "typeRoots": [
       "./node_modules/@types"
     ],
-    "types": ["node"]
+    "types": ["node"],
+    "noEmit": true
   },
   "exclude": [
     "node_modules",
-    "cdk.out"
+    "cdk.out",
+    "eslint.config.ts"
   ]
 }

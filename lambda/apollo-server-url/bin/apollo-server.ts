@@ -4,5 +4,5 @@ import * as cdk from 'aws-cdk-lib';
 
 const app = new cdk.App();
 
-new ApolloServerStack(app, 'apollo-server-stack', {
+new ApolloServerStack(app, 'ApolloServer', {
 });

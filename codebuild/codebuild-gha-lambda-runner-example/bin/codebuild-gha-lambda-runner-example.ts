@@ -17,7 +17,7 @@ const projects = [
 const app = new cdk.App();
 new CodebuildGhaLambdaRunnerExampleStack(
   app,
-  'codebuild-gha-lambda-runner-example-stack',
+  'CodebuildGhaLambdaRunnerExample',
   {
     projects,
   },

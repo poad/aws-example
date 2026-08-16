@@ -3,33 +3,33 @@ import { Peer, Port, SecurityGroup, Subnet, Vpc } from 'aws-cdk-lib/aws-ec2';
 import { Cluster, CpuArchitecture, FargateTaskDefinition, LogDriver, OperatingSystemFamily, Protocol, RepositoryImage } from 'aws-cdk-lib/aws-ecs';
 import { ApplicationLoadBalancedFargateService } from 'aws-cdk-lib/aws-ecs-patterns';
 import { AlbScheme } from 'aws-cdk-lib/aws-eks';
-import { ApplicationLoadBalancer, ApplicationProtocol, ApplicationTargetGroup, ListenerAction, TargetType } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+import { ApplicationLoadBalancer, ApplicationProtocol, ApplicationTargetGroup, TargetType } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import { Effect, PolicyDocument, PolicyStatement, Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { LogGroup, RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
 
 interface EcsStackProps extends StackProps {
-  clusterName: string,
-  albName: string,
-  albSecurityGroupName: string,
-  albScheme: AlbScheme,
-  port: number,
-  containerPort: number,
-  protocol: ApplicationProtocol,
-  albTargetGroupName: string,
-  ecsLogGroupName: string,
-  ecsTaskFamily: string,
-  ecsImageName: string,
-  ecsTaskExecutionRoleName: string,
-  ecsTaskRoleName: string,
-  ecsTaskCPUUnit: 256 | 512 | 1024 | 2048 | 4096,
-  ecsTaskMemory: 512 | 1024 | 2048 | 4096,
-  ecsServiceSecurityGroupName: string,
-  vpcId: string,
-  ecsTaskDesiredCount: number,
-  containerName: string,
-  ecsServiceName: string,
-  subnets: string[],
+  readonly clusterName: string,
+  readonly albName: string,
+  readonly albSecurityGroupName: string,
+  readonly albScheme: AlbScheme,
+  readonly port: number,
+  readonly containerPort: number,
+  readonly protocol: ApplicationProtocol,
+  readonly albTargetGroupName: string,
+  readonly ecsLogGroupName: string,
+  readonly ecsTaskFamily: string,
+  readonly ecsImageName: string,
+  readonly ecsTaskExecutionRoleName: string,
+  readonly ecsTaskRoleName: string,
+  readonly ecsTaskCPUUnit: 256 | 512 | 1024 | 2048 | 4096,
+  readonly ecsTaskMemory: 512 | 1024 | 2048 | 4096,
+  readonly ecsServiceSecurityGroupName: string,
+  readonly vpcId: string,
+  readonly ecsTaskDesiredCount: number,
+  readonly containerName: string,
+  readonly ecsServiceName: string,
+  readonly subnets: string[],
 }
 
 export class EcsStack extends Stack {
@@ -51,8 +51,8 @@ export class EcsStack extends Stack {
 
     const vpcSubnets = subnets.length > 0 ? {
       subnets: subnets.map((subnetId, index) =>
-        Subnet.fromSubnetId(this, `Subnet-${index}`, subnetId)
-      )
+        Subnet.fromSubnetId(this, `Subnet-${index}`, subnetId),
+      ),
     } : undefined;
 
     const alb = new ApplicationLoadBalancer(this, 'Alb', {
@@ -69,7 +69,7 @@ export class EcsStack extends Stack {
       port,
       protocol,
       targetType: TargetType.IP,
-      vpc
+      vpc,
     });
     targetGroup.node.addDependency(alb);
 
@@ -102,9 +102,9 @@ export class EcsStack extends Stack {
                   'logs:GetLogEvents',
                 ],
                 effect: Effect.ALLOW,
-                resources: ['*']
-              })
-            ]
+                resources: ['*'],
+              }),
+            ],
           }),
         },
       }),
@@ -120,9 +120,9 @@ export class EcsStack extends Stack {
                   'logs:PutLogEvents',
                 ],
                 effect: Effect.ALLOW,
-                resources: ['*']
-              })
-            ]
+                resources: ['*'],
+              }),
+            ],
           }),
           'ecs-policy': new PolicyDocument({
             statements: [
@@ -132,10 +132,10 @@ export class EcsStack extends Stack {
                   'ecr:*',
                 ],
                 effect: Effect.ALLOW,
-                resources: ['*']
-              })
-            ]
-          })
+                resources: ['*'],
+              }),
+            ],
+          }),
 
         },
       }),
@@ -154,8 +154,8 @@ export class EcsStack extends Stack {
         {
           containerPort,
           hostPort: containerPort,
-          protocol: Protocol.TCP
-        }
+          protocol: Protocol.TCP,
+        },
       ],
       logging: LogDriver.awsLogs({
         logGroup: ecsLogs,

@@ -2,19 +2,33 @@
   "name": "ecs",
   "version": "0.1.0",
   "bin": "bin/ecs.js",
+  "type": "module",
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
-    "cdk": "cdk"
+    "build": "node_modules/@typescript/native/bin/tsc -p tsconfig.json",
+    "watch": "node_modules/@typescript/native/bin/tsc -p tsconfig.json -w",
+    "cdk": "cdk",
+    "lint": "eslint",
+    "lint-fix": "eslint --fix"
   },
   "devDependencies": {
+    "@eslint/core": "^1.2.1",
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
     "@types/node": "^24.13.3",
-    "aws-cdk": "^2.1133.0",
-    "tsx": "^4.23.1",
-    "typescript": "^6.0.3"
+    "@typescript/native": "npm:typescript@^7.0.2",
+    "aws-cdk": "^2.1135.1",
+    "eslint": "^10.8.1",
+    "eslint-import-resolver-typescript": "^4.4.5",
+    "eslint-plugin-awscdk": "^4.4.0",
+    "eslint-plugin-import-x": "^4.17.1",
+    "eslint-plugin-promise": "^7.3.0",
+    "jiti": "^2.7.0",
+    "tsx": "^4.23.11",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "typescript-eslint": "^8.66.0"
   },
   "dependencies": {
-    "aws-cdk-lib": "^2.262.1",
-    "constructs": "^10.7.1"
+    "aws-cdk-lib": "^2.263.0",
+    "constructs": "^10.8.1"
   }
 }

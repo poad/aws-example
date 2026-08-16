@@ -1,10 +1,10 @@
-import * as fs from 'fs';
-import * as process from 'process';
+import * as fs from 'node:fs';
+import * as process from 'node:process';
 
-// eslint-disable-next-line import/no-unresolved, import/no-absolute-path
+ 
 import * as log from '/opt/nodejs/log.js';
 
-// eslint-disable-next-line import/prefer-default-export
+ 
 export const handler = async () => {
   const currentDir = process.cwd();
   fs.readdirSync(currentDir, {

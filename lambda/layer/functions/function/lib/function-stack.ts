@@ -5,11 +5,10 @@ import { StringParameter } from 'aws-cdk-lib/aws-ssm';
 import { LayerVersion } from 'aws-cdk-lib/aws-lambda';
 
 interface FunctionStackProps extends StackProps {
-  appName: string,
-  timestamp: string | undefined
+  readonly appName: string,
+  readonly timestamp: string | undefined
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export class FunctionStack extends Stack {
   constructor(scope: Construct, id: string, props: FunctionStackProps) {
     super(scope, id, props);
@@ -23,7 +22,7 @@ export class FunctionStack extends Stack {
       `${appName}-lambda-layer-version${suffix}-arn`,
     );
 
-    // eslint-disable-next-line no-new
+
     new lambda.Function(this, 'LambdaFunction', {
       functionName: `${appName}${suffix}`,
       code: lambda.Code.fromAsset('handler'),

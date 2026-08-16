@@ -7,26 +7,32 @@
     "lint": "eslint",
     "lint-fix": "eslint --fix",
     "dev": "tsx index.ts",
-    "build": "tsc"
+    "build": "node_modules/@typescript/native/bin/tsc"
   },
   "dependencies": {
     "@aws-crypto/sha256-universal": "^5.2.0",
-    "@aws-sdk/client-sts": "^3.1096.0",
-    "@aws-sdk/credential-providers": "^3.1096.0",
+    "@aws-sdk/client-sts": "^3.1106.0",
+    "@aws-sdk/credential-providers": "^3.1106.0",
     "@smithy/hash-node": "^3.0.11",
-    "@smithy/node-http-handler": "^4.9.12",
-    "@smithy/protocol-http": "^5.5.15",
-    "@smithy/signature-v4": "^5.6.11",
-    "tsx": "^4.23.1",
-    "typescript": "^6.0.3"
+    "@smithy/node-http-handler": "^4.9.13",
+    "@smithy/protocol-http": "^5.5.16",
+    "@smithy/signature-v4": "^5.6.12",
+    "tsx": "^4.23.11"
   },
   "devDependencies": {
     "@aws-sdk/types": "^3.974.2",
+    "@eslint/core": "^1.2.1",
+    "@eslint/eslintrc": "^3.3.6",
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
     "@types/node": "^24.13.3",
-    "eslint": "^10.8.0",
+    "@typescript/native": "npm:typescript@^7.0.2",
+    "eslint": "^10.8.1",
     "eslint-import-resolver-typescript": "^4.4.5",
     "eslint-plugin-import-x": "^4.17.1",
+    "eslint-plugin-promise": "^7.3.0",
     "jiti": "^2.7.0",
-    "typescript-eslint": "^8.65.0"
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "typescript-eslint": "^8.66.0"
   }
 }

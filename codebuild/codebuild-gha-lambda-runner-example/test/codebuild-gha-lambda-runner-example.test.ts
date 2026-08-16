@@ -1,3 +1,5 @@
+/* eslint-disable vitest/expect-expect */
+
 import * as CodebuildGhaLambdaRunnerExample from '../lib/codebuild-gha-lambda-runner-example-stack.js';
 import * as cdk from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
@@ -8,8 +10,8 @@ import { test } from 'vitest';
 // example resource in lib/codebuild-gha-lambda-runner-example-stack.ts
 test('SQS Queue Created', () => {
   const app = new cdk.App();
-    // WHEN
-  const stack = new CodebuildGhaLambdaRunnerExample.CodebuildGhaLambdaRunnerExampleStack(app, 'MyTestStack', {
+  // WHEN
+  const stack = new CodebuildGhaLambdaRunnerExample.CodebuildGhaLambdaRunnerExampleStack(app, 'MyTest', {
     projects: [
       {
         projectName: 'codebuild-gha-lambda-runner-example-rust-dev1',
@@ -26,13 +28,15 @@ test('SQS Queue Created', () => {
 
   template.hasResourceProperties('AWS::CodeBuild::Project', {
     Triggers: {
-        FilterGroups: [
-            [
-                {
-                    Pattern: 'WORKFLOW_JOB_QUEUED',
-                },
-            ],
+      FilterGroups: [
+        [
+          {
+            Pattern: 'WORKFLOW_JOB_QUEUED',
+          },
         ],
+      ],
     },
   });
 });
+
+/* eslint-enable vitest/expect-expect */

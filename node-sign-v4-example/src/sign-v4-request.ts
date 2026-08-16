@@ -39,7 +39,7 @@ interface SignV4RequestParams {
   fetchOption?: unknown
 };
 
-async function sign({ endpoint, query, optionalHeaders, body, region, service, credentials, }: SignParams) {
+async function sign({ endpoint, query, optionalHeaders, body, region, service, credentials }: SignParams) {
   const signer = new SignatureV4({
     region,
     service,
@@ -57,7 +57,7 @@ async function sign({ endpoint, query, optionalHeaders, body, region, service, c
     body,
   };
   return signer.sign(
-    new HttpRequest(options)
+    new HttpRequest(options),
   );
 };
 
@@ -81,29 +81,29 @@ async function signRequest(params: SignV4RequestParams) {
         hostname: params.endpoint.host,
         port,
       },
-    }
+    },
   );
 
   const { protocol, hostname, path, method, body, headers } = req;
 
   const queryString = params.query ? Object.entries(params.query)
-    .map(entry => {
+    .map((entry) => {
       if (Array.isArray(entry[1])) {
-        return entry[1].map(value=> `${entry[0]}=${value}`).join('&');
+        return entry[1].map((value)=> `${entry[0]}=${value}`).join('&');
       }
       return `${entry[0]}=${entry[1] || ''}`;
     }).join('&') : undefined;
   const res = await fetch(`${protocol}${hostname}${path}${queryString ? `?${queryString}` : ''}`, {
     method,
     headers,
-    ...(body ? { body } : {})
+    ...(body ? { body } : {}),
   });
   return {
     request: req,
-    response: res
+    response: res,
   };
 };
 
 export {
   signRequest,
-}
+};

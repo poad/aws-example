@@ -89,11 +89,12 @@ pnpm test          # テストを実行
 - `.next` と `cdk.out` は workspace から除外
 - `enablePrePostScripts: true` で pre/post スクリプトが有効
 
-## ESLint Configuration
+## oxlint / oxfmt Configuration
 
-- ルートに `eslint.config.js` (Flat Config 形式)
-- TypeScript、React Hooks、jsx-a11y、import プラグインを使用
-- プロジェクト全体で統一された lint ルール
+- 各プロジェクトに `.oxlintrc.json` (ESLint から `@oxlint/migrate` で移行)
+- TypeScript、import、promise、vitest プラグインを使用 (awscdk は jsPlugins 経由)
+- フォーマットは `.oxfmtrc.json` で管理 (セミコロン必須、シングルクォート、インポートソート有効)
+- プロジェクト全体で統一された lint / format ルール
 
 ## Testing
 

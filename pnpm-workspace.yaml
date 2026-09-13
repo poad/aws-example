@@ -8,11 +8,18 @@ packages:
 
 allowBuilds:
   '@apollo/protobufjs': false
+  better-sqlite3: false
   esbuild: false
+  node-llama-cpp: false
   protobufjs: false
   sharp: false
   tldjs: false
-  unrs-resolver: false
+  tree-sitter-go: true
+  tree-sitter-javascript: true
+  tree-sitter-python: true
+  tree-sitter-rust: true
+  tree-sitter-typescript: true
+  unrs-resolver: true
 
 enablePrePostScripts: false
 
@@ -20,8 +27,49 @@ engineStrict: true
 
 minimumReleaseAge: 10080 # 7 days in minutes
 minimumReleaseAgeExclude:
-  - pnpm@12.3.4
+  - pnpm@12.4.1
   - protobufjs@8.5.1
+  - '@oxfmt/binding-android-arm-eabi@0.67.0'
+  - '@oxfmt/binding-android-arm64@0.67.0'
+  - '@oxfmt/binding-darwin-arm64@0.67.0'
+  - '@oxfmt/binding-darwin-x64@0.67.0'
+  - '@oxfmt/binding-freebsd-x64@0.67.0'
+  - '@oxfmt/binding-linux-arm-gnueabihf@0.67.0'
+  - '@oxfmt/binding-linux-arm-musleabihf@0.67.0'
+  - '@oxfmt/binding-linux-arm64-gnu@0.67.0'
+  - '@oxfmt/binding-linux-arm64-musl@0.67.0'
+  - '@oxfmt/binding-linux-ppc64-gnu@0.67.0'
+  - '@oxfmt/binding-linux-riscv64-gnu@0.67.0'
+  - '@oxfmt/binding-linux-riscv64-musl@0.67.0'
+  - '@oxfmt/binding-linux-s390x-gnu@0.67.0'
+  - '@oxfmt/binding-linux-x64-gnu@0.67.0'
+  - '@oxfmt/binding-linux-x64-musl@0.67.0'
+  - '@oxfmt/binding-openharmony-arm64@0.67.0'
+  - '@oxfmt/binding-win32-arm64-msvc@0.67.0'
+  - '@oxfmt/binding-win32-ia32-msvc@0.67.0'
+  - '@oxfmt/binding-win32-x64-msvc@0.67.0'
+  - '@oxlint/binding-android-arm-eabi@1.82.0'
+  - '@oxlint/binding-android-arm64@1.82.0'
+  - '@oxlint/binding-darwin-arm64@1.82.0'
+  - '@oxlint/binding-darwin-x64@1.82.0'
+  - '@oxlint/binding-freebsd-x64@1.82.0'
+  - '@oxlint/binding-linux-arm-gnueabihf@1.82.0'
+  - '@oxlint/binding-linux-arm-musleabihf@1.82.0'
+  - '@oxlint/binding-linux-arm64-gnu@1.82.0'
+  - '@oxlint/binding-linux-arm64-musl@1.82.0'
+  - '@oxlint/binding-linux-ppc64-gnu@1.82.0'
+  - '@oxlint/binding-linux-riscv64-gnu@1.82.0'
+  - '@oxlint/binding-linux-riscv64-musl@1.82.0'
+  - '@oxlint/binding-linux-s390x-gnu@1.82.0'
+  - '@oxlint/binding-linux-x64-gnu@1.82.0'
+  - '@oxlint/binding-linux-x64-musl@1.82.0'
+  - '@oxlint/binding-openharmony-arm64@1.82.0'
+  - '@oxlint/binding-win32-arm64-msvc@1.82.0'
+  - '@oxlint/binding-win32-ia32-msvc@1.82.0'
+  - '@oxlint/binding-win32-x64-msvc@1.82.0'
+  - oxfmt@0.67.0
+  - oxlint-plugin-awscdk@1.0.3
+  - oxlint@1.82.0
 
 overrides:
   '@opentelemetry/auto-instrumentations-node@<0.75.0': ^0.75.0
@@ -29,7 +77,6 @@ overrides:
   '@opentelemetry/exporter-prometheus@<0.217.0': ^0.217.0
   '@opentelemetry/propagator-jaeger@<2.9.0': ^2.9.0
   '@opentelemetry/sdk-node@<0.217.0': ^0.217.0
-  eslint-import-resolver-typescript: '^4.4.5'
   protobufjs@>=8.0.0 <8.2.0: ^8.2.0
   protobufjs@>=8.0.0 <=8.0.1: ^8.0.2
   protobufjs@>=8.0.0 <=8.4.0: ^8.4.1

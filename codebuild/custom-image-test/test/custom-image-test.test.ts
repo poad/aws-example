@@ -8,7 +8,7 @@ import {test} from 'vitest';
 test('Empty Stack', () => {
   const app = new cdk.App();
   // WHEN
-  const stack = new CustomImageTest.CustomImageTestStack(app, 'MyTestStack', {
+  const stack = new CustomImageTest.CustomImageTestStack(app, 'MyTest', {
     owner: '',
     repo: '',
     environment: '',

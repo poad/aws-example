@@ -10,7 +10,7 @@ const repo = app.node.tryGetContext('repo') as string;
 const buildspec = app.node.tryGetContext('buildspec') as string;
 const image = app.node.tryGetContext('image') as string;
 
-new CustomImageTestStack(app, 'CustomImageTestStack', {
+new CustomImageTestStack(app, 'CustomImageTest', {
     owner,
     repo,
     buildspec,

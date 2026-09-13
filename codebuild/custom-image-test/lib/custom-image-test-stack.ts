@@ -5,18 +5,18 @@ import { Construct } from 'constructs';
 
 
 export interface CustomImageTestStackProps extends cdk.StackProps {
-  owner: string,
-  repo: string,
-  environment: string,
-  buildspec: string,
-  image: string,
+  readonly owner: string,
+  readonly repo: string,
+  readonly environment: string,
+  readonly buildspec: string,
+  readonly image: string,
 }
 
 export class CustomImageTestStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props: CustomImageTestStackProps) {
     super(scope, id, props);
 
-    const repository = Repository.fromRepositoryName(this, 'ECR', 'aws-codebuild-docker-images');
+    Repository.fromRepositoryName(this, 'ECR', 'aws-codebuild-docker-images');
 
     const projectName = props.environment !== undefined ? `${props.environment}-custom-image-build-test` : 'custom-image-build-test';
     new Project(this, 'CodeBuildProject', {

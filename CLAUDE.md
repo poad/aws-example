@@ -15,18 +15,21 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Common Commands
 
 ### ビルド
+
 ```bash
 pnpm -r build              # 全プロジェクトをビルド
 pnpm -r --parallel build   # 全プロジェクトを並列ビルド
 ```
 
 ### Lint
+
 ```bash
 pnpm -r --parallel lint           # 全プロジェクトで lint 実行
 pnpm -r --parallel lint-fix       # 全プロジェクトで lint 自動修正
 ```
 
 ### CDK 操作 (各プロジェクト内で実行)
+
 ```bash
 cd <project-directory>
 pnpm cdk deploy    # スタックをデプロイ
@@ -36,6 +39,7 @@ pnpm cdk destroy   # スタックを削除
 ```
 
 ### テスト (Jest を含むプロジェクトの場合)
+
 ```bash
 cd <project-directory>
 pnpm test          # テストを実行
@@ -85,8 +89,7 @@ pnpm test          # テストを実行
 
 ### pnpm Workspace 設定
 
-- `pnpm-workspace.yaml` で全サブプロジェクトを管理
-- `.next` と `cdk.out` は workspace から除外
+- `pnpm-workspace.yaml` で全サブプロジェクトを明示列挙して管理 (pnpm 12形式、相対パス不使用)
 - `enablePrePostScripts: true` で pre/post スクリプトが有効
 
 ## oxlint / oxfmt Configuration
@@ -99,6 +102,7 @@ pnpm test          # テストを実行
 ## Testing
 
 Jest を使用するプロジェクトの場合：
+
 - テストファイルは `test/**/*.test.ts` に配置
 - `ts-jest` トランスフォーマーを使用
 - `pnpm test` でテストを実行
@@ -106,6 +110,7 @@ Jest を使用するプロジェクトの場合：
 ## CI/CD
 
 GitHub Actions を使用：
+
 - `.github/workflows/ci.yml` でビルドとテストを実行
 - pnpm を使用して依存関係をインストール
 - 全プロジェクトを並列ビルド

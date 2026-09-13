@@ -1,10 +1,26 @@
 packages:
-  - ./**
-  - '!**/.next'
-  - '!**/cdk.out'
-  - '!**/cdk.out/**'
-  - '!**/dist'
-  - '!**/build'
+  - bedrock/agentcore-runtime-agent-example
+  - bedrock/agentcore-runtime-agent-example/app
+  - bedrock/agentcore-runtime-mcp-example
+  - bedrock/agentcore-runtime-mcp-example/mcp-server
+  - bedrock/bedrock-mantle-example
+  - codebuild/codebuild-gha-lambda-runner-example
+  - codebuild/custom-image-test
+  - codeconections
+  - ec2-bluegreen/cloudfront
+  - ec2-bluegreen/ec2
+  - infra/acm
+  - infra/ecs
+  - infra/s3
+  - infra/vpc
+  - lambda/apollo-server-url
+  - lambda/eventbridge-lambda
+  - lambda/layer/functions/function
+  - lambda/layer/functions/function/handler
+  - lambda/layer/layer
+  - lambda/layer/layer/src/nodejs
+  - lambda/rust-runtime
+  - node-sign-v4-example
 
 allowBuilds:
   '@apollo/protobufjs': false
@@ -74,16 +90,13 @@ minimumReleaseAgeExclude:
 overrides:
   '@opentelemetry/auto-instrumentations-node@<0.75.0': ^0.75.0
   '@opentelemetry/core@<2.8.0': ^2.8.0
-  '@opentelemetry/exporter-prometheus@<0.217.0': ^0.217.0
+  '@opentelemetry/exporter-prometheus@<0.217.0': ^0.222.0
   '@opentelemetry/propagator-jaeger@<2.9.0': ^2.9.0
-  '@opentelemetry/sdk-node@<0.217.0': ^0.217.0
-  protobufjs@>=8.0.0 <8.2.0: ^8.2.0
-  protobufjs@>=8.0.0 <=8.0.1: ^8.0.2
-  protobufjs@>=8.0.0 <=8.4.0: ^8.4.1
-  protobufjs@>=8.0.0 <=8.5.0: ^8.5.1
-  protobufjs@>=8.0.0 <=8.6.5: ^8.6.6
+  '@opentelemetry/sdk-node@<0.217.0': ^0.222.0
   semver: '>=7'
   uuid: '>=14.0.0'
+
+  typescript: ^7.0.2
 
 strictPeerDependencies: false
 

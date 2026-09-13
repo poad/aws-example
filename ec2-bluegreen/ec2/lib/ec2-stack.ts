@@ -1,13 +1,13 @@
 import * as cdk from 'aws-cdk-lib';
-import { Construct } from 'constructs';
-import * as ec2 from 'aws-cdk-lib/aws-ec2';
-import * as iam from 'aws-cdk-lib/aws-iam';
 import * as autoscaling from 'aws-cdk-lib/aws-autoscaling';
-import * as elbv2 from 'aws-cdk-lib/aws-elasticloadbalancingv2';
-import * as ssm from 'aws-cdk-lib/aws-ssm';
 import * as acm from 'aws-cdk-lib/aws-certificatemanager';
+import * as ec2 from 'aws-cdk-lib/aws-ec2';
+import * as elbv2 from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+import * as iam from 'aws-cdk-lib/aws-iam';
 import * as route53 from 'aws-cdk-lib/aws-route53';
 import * as route53targets from 'aws-cdk-lib/aws-route53-targets';
+import * as ssm from 'aws-cdk-lib/aws-ssm';
+import { Construct } from 'constructs';
 
 interface Ec2StackProps extends cdk.StackProps {
   readonly amiId: string;
@@ -44,19 +44,13 @@ export class Ec2Stack extends cdk.Stack {
     new cdk.CfnOutput(this, 'GetSSHKeyCommand', {
       value: `aws ssm get-parameter --name /ec2/keypair/${cfnKeyPair.getAtt(
         'KeyPairId',
-      )} --region ${
-        this.region
-      } --with-decryption --query Parameter.Value --output text`,
+      )} --region ${this.region} --with-decryption --query Parameter.Value --output text`,
     });
 
     const role = new iam.Role(this, 'InstanceProfile', {
       roleName: 'test-InstanceProfile',
       assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
-      managedPolicies: [
-        iam.ManagedPolicy.fromAwsManagedPolicyName(
-          'AmazonSSMManagedInstanceCore',
-        ),
-      ],
+      managedPolicies: [iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonSSMManagedInstanceCore')],
     });
 
     const vpc = ec2.Vpc.fromLookup(this, 'VPC', { isDefault: false });
@@ -76,10 +70,7 @@ export class Ec2Stack extends cdk.Stack {
             vpcSubnets: {
               subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
             },
-            instanceType: ec2.InstanceType.of(
-              ec2.InstanceClass.T3A,
-              ec2.InstanceSize.SMALL,
-            ),
+            instanceType: ec2.InstanceType.of(ec2.InstanceClass.T3A, ec2.InstanceSize.SMALL),
             minCapacity: count,
             maxCapacity: count,
             machineImage: ec2.MachineImage.genericLinux(
@@ -121,26 +112,18 @@ export class Ec2Stack extends cdk.Stack {
       loadBalancerName: albName,
     });
 
-    const certificate = acm.Certificate.fromCertificateArn(
-      this,
-      'Certificate',
-      acmArn,
-    );
+    const certificate = acm.Certificate.fromCertificateArn(this, 'Certificate', acmArn);
 
-    const defaultTargetGroup = new elbv2.ApplicationTargetGroup(
-      this,
-      'DefaultTarget',
-      {
-        port: 80,
-        targets: [autoScalingGroups[0].autoScalingGroup],
-        healthCheck: {
-          enabled: true,
-          path: '/health',
-        },
-        targetGroupName: 'default',
-        vpc,
+    const defaultTargetGroup = new elbv2.ApplicationTargetGroup(this, 'DefaultTarget', {
+      port: 80,
+      targets: [autoScalingGroups[0].autoScalingGroup],
+      healthCheck: {
+        enabled: true,
+        path: '/health',
       },
-    );
+      targetGroupName: 'default',
+      vpc,
+    });
     const listener = alb.addListener('Listener', {
       protocol: elbv2.ApplicationProtocol.HTTPS,
       port: 443,
@@ -148,27 +131,19 @@ export class Ec2Stack extends cdk.Stack {
       defaultAction: elbv2.ListenerAction.forward([defaultTargetGroup]),
     });
 
-    autoScalingGroups.map(({autoScalingGroup, autoScalingGroupName}, index) => {
-      listener.addTargets(
-        `Targets-${autoScalingGroupName}`,
-        {
-          port: 80,
-          targets: [autoScalingGroup],
-          healthCheck: {
-            enabled: true,
-            path: '/health',
-          },
-          targetGroupName: autoScalingGroupName,
-          conditions: [
-            elbv2.ListenerCondition.pathPatterns([
-              `/${autoScalingGroupName}`,
-            ]),
-          ],
-          priority: index + 1,
+    autoScalingGroups.map(({ autoScalingGroup, autoScalingGroupName }, index) => {
+      listener.addTargets(`Targets-${autoScalingGroupName}`, {
+        port: 80,
+        targets: [autoScalingGroup],
+        healthCheck: {
+          enabled: true,
+          path: '/health',
         },
-      );
+        targetGroupName: autoScalingGroupName,
+        conditions: [elbv2.ListenerCondition.pathPatterns([`/${autoScalingGroupName}`])],
+        priority: index + 1,
+      });
     });
-
 
     // // add a scaling rule
     // autoScalingGroups.forEach(({ autoScalingGroup: asg }) => {
@@ -181,9 +156,7 @@ export class Ec2Stack extends cdk.Stack {
     new route53.ARecord(this, 'ARecord', {
       recordName: domainName,
       zone: hostedZone,
-      target: route53.RecordTarget.fromAlias(
-        new route53targets.LoadBalancerTarget(alb),
-      ),
+      target: route53.RecordTarget.fromAlias(new route53targets.LoadBalancerTarget(alb)),
     });
 
     new cdk.CfnOutput(this, 'AlbArn', {

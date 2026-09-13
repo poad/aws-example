@@ -1,7 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
-import { Construct } from 'constructs';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as ssm from 'aws-cdk-lib/aws-ssm';
+import { Construct } from 'constructs';
 
 /**
  * Gets a value or throws an exception.
@@ -9,10 +9,7 @@ import * as ssm from 'aws-cdk-lib/aws-ssm';
  * @param value A value, possibly undefined
  * @param err The error to throw if `value` is undefined.
  */
-const valueOrDie = <T, C extends T = T>(
-  value: T | undefined,
-  err: Error,
-): C => {
+const valueOrDie = <T, C extends T = T>(value: T | undefined, err: Error): C => {
   if (value === undefined) throw err;
   return value as C;
 };
@@ -51,7 +48,7 @@ export class VpcStack extends cdk.Stack {
     // public subnets.
     const internetGateway = valueOrDie<Construct, ec2.CfnInternetGateway>(
       vpc.node.children.find((c) => c instanceof ec2.CfnInternetGateway),
-      new Error('Couldn\'t find an internet gateway'),
+      new Error("Couldn't find an internet gateway"),
     );
 
     vpc.publicSubnets.forEach((subnet, idx) => {
@@ -67,7 +64,7 @@ export class VpcStack extends cdk.Stack {
       // subnet nodes.
       const cfnSubnet = valueOrDie<Construct, ec2.CfnSubnet>(
         subnet.node.children.find((c) => c instanceof ec2.CfnSubnet),
-        new Error('Couldn\'t find a CfnSubnet'),
+        new Error("Couldn't find a CfnSubnet"),
       );
 
       // Use the intrinsic Fn::Cidr CloudFormation function on the VPC's
@@ -97,7 +94,7 @@ export class VpcStack extends cdk.Stack {
       // subnet nodes.
       const cfnSubnet = valueOrDie<Construct, ec2.CfnSubnet>(
         subnet.node.children.find((c) => c instanceof ec2.CfnSubnet),
-        new Error('Couldn\'t find a CfnSubnet'),
+        new Error("Couldn't find a CfnSubnet"),
       );
 
       // Use the intrinsic Fn::Cidr CloudFormation function on the VPC's

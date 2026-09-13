@@ -14,23 +14,23 @@ export class S3Stack extends Stack {
       autoDeleteObjects: true,
     });
 
-    bucket.addToResourcePolicy(new PolicyStatement({
-      actions: [
-        's3:PutObject',
-        's3:GetObject',
-        's3:ListBucket',
-        's3:DeleteObject',
-        's3:GetBucketLocation',
-      ],
-      resources: [
-        `arn:aws:s3:::codepipeline-artifact-store-${this.region}-${this.account}`,
-        `arn:aws:s3:::codepipeline-artifact-store-${this.region}-${this.account}/*`,
-      ],
-      principals: [
-        new ServicePrincipal('codepipeline.amazonaws.com'),
-      ],
-      effect: Effect.ALLOW,
-    }));
+    bucket.addToResourcePolicy(
+      new PolicyStatement({
+        actions: [
+          's3:PutObject',
+          's3:GetObject',
+          's3:ListBucket',
+          's3:DeleteObject',
+          's3:GetBucketLocation',
+        ],
+        resources: [
+          `arn:aws:s3:::codepipeline-artifact-store-${this.region}-${this.account}`,
+          `arn:aws:s3:::codepipeline-artifact-store-${this.region}-${this.account}/*`,
+        ],
+        principals: [new ServicePrincipal('codepipeline.amazonaws.com')],
+        effect: Effect.ALLOW,
+      }),
+    );
 
     new StringParameter(this, 'BucketArn', {
       parameterName: '/infta/codepipeline/ArtifactStore',

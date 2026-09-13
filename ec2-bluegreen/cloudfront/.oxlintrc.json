@@ -1,9 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": [
-    "promise",
-    "import"
-  ],
+  "plugins": ["promise", "import"],
   "categories": {
     "correctness": "off"
   },
@@ -11,39 +8,16 @@
     "builtin": true
   },
   "settings": {
-    "import-x/extensions": [
-      ".ts",
-      ".tsx",
-      ".cts",
-      ".mts",
-      ".js",
-      ".jsx",
-      ".cjs",
-      ".mjs"
-    ],
-    "import-x/external-module-folders": [
-      "node_modules",
-      "node_modules/@types"
-    ],
+    "import-x/extensions": [".ts", ".tsx", ".cts", ".mts", ".js", ".jsx", ".cjs", ".mjs"],
+    "import-x/external-module-folders": ["node_modules", "node_modules/@types"],
     "import-x/parsers": {
-      "@typescript-eslint/parser": [
-        ".ts",
-        ".tsx",
-        ".cts",
-        ".mts"
-      ]
+      "@typescript-eslint/parser": [".ts", ".tsx", ".cts", ".mts"]
     },
     "import-x/resolver": {
       "typescript": true
     }
   },
-  "ignorePatterns": [
-    "**/*.d.ts",
-    "out",
-    "cdk.out",
-    "**/generated/**",
-    "**/*.js"
-  ],
+  "ignorePatterns": ["**/*.d.ts", "out", "cdk.out", "**/generated/**", "**/*.js"],
   "rules": {
     "promise/always-return": "error",
     "promise/no-return-wrap": "error",
@@ -62,9 +36,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "**/*.ts"
-      ],
+      "files": ["**/*.ts"],
       "rules": {
         "awscdk/construct-constructor-property": "error",
         "awscdk/no-construct-in-interface": "error",
@@ -198,12 +170,8 @@
         "typescript/prefer-for-of": "error",
         "typescript/prefer-function-type": "error"
       },
-      "jsPlugins": [
-        "oxlint-plugin-awscdk"
-      ],
-      "plugins": [
-        "typescript"
-      ],
+      "jsPlugins": ["oxlint-plugin-awscdk"],
+      "plugins": ["typescript"],
       "env": {
         "es2026": true
       }

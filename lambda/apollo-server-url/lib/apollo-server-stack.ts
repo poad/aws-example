@@ -1,7 +1,11 @@
 import path from 'path';
 import { RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
 import {
-  Role, ServicePrincipal, PolicyDocument, PolicyStatement, Effect,
+  Role,
+  ServicePrincipal,
+  PolicyDocument,
+  PolicyStatement,
+  Effect,
 } from 'aws-cdk-lib/aws-iam';
 import { Architecture, FunctionUrl, FunctionUrlAuthType, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
@@ -34,11 +38,7 @@ export class ApolloServerStack extends Stack {
             statements: [
               new PolicyStatement({
                 effect: Effect.ALLOW,
-                actions: [
-                  'logs:CreateLogGroup',
-                  'logs:CreateLogStream',
-                  'logs:PutLogEvents',
-                ],
+                actions: ['logs:CreateLogGroup', 'logs:CreateLogStream', 'logs:PutLogEvents'],
                 resources: [`${logGroup.logGroupArn}:*`],
               }),
             ],
@@ -46,7 +46,6 @@ export class ApolloServerStack extends Stack {
         },
       }),
     });
-
 
     new FunctionUrl(this, 'ApolloServerLambdaFnUrl', {
       function: fn,

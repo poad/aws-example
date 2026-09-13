@@ -1,7 +1,7 @@
-import * as cdk from 'aws-cdk-lib/core';
-import { Construct } from 'constructs';
-import { RustFunction } from 'cargo-lambda-cdk';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
+import * as cdk from 'aws-cdk-lib/core';
+import { RustFunction } from 'cargo-lambda-cdk';
+import { Construct } from 'constructs';
 
 export class RustRuntimeStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {

@@ -10,8 +10,8 @@ const { request: req, response: res } = await signRequest({
   service,
   endpoint,
   query: {
-    'Action': 'GetCallerIdentity',
-    'Version': '2011-06-15',
+    Action: 'GetCallerIdentity',
+    Version: '2011-06-15',
   },
   // credentials: defaultProvider({
   //   roleAssumer: async (credentials) => {

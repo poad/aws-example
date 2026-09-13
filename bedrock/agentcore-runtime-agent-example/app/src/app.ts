@@ -1,8 +1,7 @@
-
-import { awsAgent } from './agents/aws-agent.js';
-import { mcp } from './tools/aws-tool.js';
 import { Hono } from 'hono';
 import { streamSSE } from 'hono/streaming';
+import { awsAgent } from './agents/aws-agent.js';
+import { mcp } from './tools/aws-tool.js';
 
 export const app = new Hono();
 
@@ -26,7 +25,8 @@ app.post('/invocations', async (c) => {
     return c.json({ error: 'prompt is required and must be a string' }, 400);
   }
 
-  if (prompt.length > 10000) { // Reasonable limit
+  if (prompt.length > 10000) {
+    // Reasonable limit
     return c.json({ error: 'prompt is too long' }, 400);
   }
 

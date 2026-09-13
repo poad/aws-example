@@ -11,9 +11,9 @@ const buildspec = app.node.tryGetContext('buildspec') as string;
 const image = app.node.tryGetContext('image') as string;
 
 new CustomImageTestStack(app, 'CustomImageTest', {
-    owner,
-    repo,
-    buildspec,
-    environment: env,
-    image,
+  owner,
+  repo,
+  buildspec,
+  environment: env,
+  image,
 });

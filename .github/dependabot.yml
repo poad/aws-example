@@ -5,7 +5,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
-      time: "12:00"
+      time: '12:00'
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -16,7 +16,7 @@ updates:
     groups:
       actions:
         patterns:
-          - "*"
+          - '*'
 
   - package-ecosystem: npm
     directories:
@@ -51,7 +51,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
-      time: "12:00"
+      time: '12:00'
     allow:
       - dependency-type: all
     cooldown:
@@ -62,7 +62,7 @@ updates:
     groups:
       npm:
         patterns:
-          - "*"
+          - '*'
 
   - package-ecosystem: cargo
     directories:
@@ -70,7 +70,7 @@ updates:
     schedule:
       interval: daily
       timezone: Asia/Tokyo
-      time: "12:00"
+      time: '12:00'
     allow:
       - dependency-type: all
     rebase-strategy: auto
@@ -79,5 +79,4 @@ updates:
     groups:
       cargo:
         patterns:
-          - "*"
-
+          - '*'

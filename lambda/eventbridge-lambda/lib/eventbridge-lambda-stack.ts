@@ -3,7 +3,11 @@ import * as cdk from 'aws-cdk-lib';
 import { Rule, Schedule } from 'aws-cdk-lib/aws-events';
 import { LambdaFunction } from 'aws-cdk-lib/aws-events-targets';
 import {
-  Role, ServicePrincipal, PolicyDocument, PolicyStatement, Effect,
+  Role,
+  ServicePrincipal,
+  PolicyDocument,
+  PolicyStatement,
+  Effect,
 } from 'aws-cdk-lib/aws-iam';
 import { Architecture, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
@@ -35,10 +39,7 @@ export class EventbridgeLambdaStack extends cdk.Stack {
             statements: [
               new PolicyStatement({
                 effect: Effect.ALLOW,
-                actions: [
-                  'logs:CreateLogStream',
-                  'logs:PutLogEvents',
-                ],
+                actions: ['logs:CreateLogStream', 'logs:PutLogEvents'],
                 resources: [`${logGroup.logGroupArn}:*`],
               }),
             ],

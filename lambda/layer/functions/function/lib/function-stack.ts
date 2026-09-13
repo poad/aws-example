@@ -1,12 +1,12 @@
 import { Stack, StackProps } from 'aws-cdk-lib';
-import { Construct } from 'constructs';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
-import { StringParameter } from 'aws-cdk-lib/aws-ssm';
 import { LayerVersion } from 'aws-cdk-lib/aws-lambda';
+import { StringParameter } from 'aws-cdk-lib/aws-ssm';
+import { Construct } from 'constructs';
 
 interface FunctionStackProps extends StackProps {
-  readonly appName: string,
-  readonly timestamp: string | undefined
+  readonly appName: string;
+  readonly timestamp: string | undefined;
 }
 
 export class FunctionStack extends Stack {
@@ -21,7 +21,6 @@ export class FunctionStack extends Stack {
       'LayerArnParameterStore',
       `${appName}-lambda-layer-version${suffix}-arn`,
     );
-
 
     new lambda.Function(this, 'LambdaFunction', {
       functionName: `${appName}${suffix}`,

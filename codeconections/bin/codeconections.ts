@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import { CodeconectionsStack } from '../lib/codeconections-stack.js';
 import * as cdk from 'aws-cdk-lib';
+import { CodeconectionsStack } from '../lib/codeconections-stack.js';
 
 const app = new cdk.App();
 

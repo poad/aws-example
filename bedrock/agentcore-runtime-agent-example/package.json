@@ -6,8 +6,8 @@
   },
   "type": "module",
   "scripts": {
-    "build": "node_modules/@typescript/native/bin/tsc",
-    "watch": "node_modules/@typescript/native/bin/tsc -w",
+    "build": "tsc",
+    "watch": "tsc -w",
     "test": "vitest --run",
     "cdk": "cdk",
     "lint": "oxlint",
@@ -17,21 +17,20 @@
   },
   "devDependencies": {
     "@types/node": "^24.13.3",
-    "@typescript/native": "npm:typescript@^7.0.2",
-    "aws-cdk": "^2.1138.0",
+    "aws-cdk": "^2.1140.0",
     "jiti": "^2.7.0",
     "oxfmt": "^0.67.0",
     "oxlint": "^1.82.0",
     "oxlint-plugin-awscdk": "^1.0.3",
-    "tsx": "^4.23.12",
-    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2",
     "vite": "^8.2.2",
     "vitest": "^4.1.11"
   },
   "dependencies": {
-    "@aws/aws-distro-opentelemetry-node-autoinstrumentation": "^0.11.0",
-    "aws-cdk-lib": "^2.266.0",
-    "cdk-ecr-deployment": "^4.2.52",
+    "@aws/aws-distro-opentelemetry-node-autoinstrumentation": "^0.12.0",
+    "aws-cdk-lib": "^2.268.0",
+    "cdk-ecr-deployment": "^4.2.63",
     "constructs": "^10.8.1"
   }
 }

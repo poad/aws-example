@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import assert from 'assert';
-import { Ec2Stack } from '../lib/ec2-stack.js';
 import * as cdk from 'aws-cdk-lib';
+import { Ec2Stack } from '../lib/ec2-stack.js';
 
 const app = new cdk.App();
 

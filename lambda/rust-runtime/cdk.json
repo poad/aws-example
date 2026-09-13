@@ -1,9 +1,7 @@
 {
   "app": "pnx --allow-build=esbuild tsx bin/rust-runtime.ts",
   "watch": {
-    "include": [
-      "**"
-    ],
+    "include": ["**"],
     "exclude": [
       "README.md",
       "cdk*.json",
@@ -16,6 +14,5 @@
       "test"
     ]
   },
-  "context": {
-  }
+  "context": {}
 }

@@ -1,10 +1,10 @@
+import { serve } from '@hono/node-server';
+import { createMcpHonoApp } from '@modelcontextprotocol/hono';
+import { McpServer, WebStandardStreamableHTTPServerTransport } from '@modelcontextprotocol/server';
 import { Context } from 'hono';
 import { cors } from 'hono/cors';
-import { McpServer, WebStandardStreamableHTTPServerTransport } from '@modelcontextprotocol/server';
-import { createMcpHonoApp } from '@modelcontextprotocol/hono';
-import { z } from 'zod';
-import { serve } from '@hono/node-server';
 import { BlankEnv, BlankInput } from 'hono/types';
+import { z } from 'zod';
 
 // `@modelcontextprotocol/hono` が c.set('parsedBody', ...) で格納する値の型を
 // Hono の ContextVariableMap に宣言マージで追加する（パッケージ側の型定義に
@@ -26,19 +26,21 @@ const server = new McpServer({
   version: '1.0.0',
 });
 
-server.registerTool('say_hello', {
-  description: 'Say hello',
-  inputSchema: z.object({
-    who: z.string().optional(),
-  }),
-},
-async ({ who }) => {
-  const result = String(`Hello ${who || 'world'}!`);
-  console.debug(result);
-  return {
-    content: [{ type: 'text', text: result }],
-  };
-},
+server.registerTool(
+  'say_hello',
+  {
+    description: 'Say hello',
+    inputSchema: z.object({
+      who: z.string().optional(),
+    }),
+  },
+  async ({ who }) => {
+    const result = String(`Hello ${who || 'world'}!`);
+    console.debug(result);
+    return {
+      content: [{ type: 'text', text: result }],
+    };
+  },
 );
 
 const cleanupServer = async () => {
@@ -66,10 +68,9 @@ app.post('/mcp', async (c: Context<BlankEnv, '/mcp', BlankInput>) => {
       await server.connect(transport);
       console.debug('MCP リクエストを受信');
 
-      return transport.handleRequest(c.req.raw, { parsedBody: c.get('parsedBody') })
-        .finally(() => {
-          transport.close();
-        });
+      return transport.handleRequest(c.req.raw, { parsedBody: c.get('parsedBody') }).finally(() => {
+        transport.close();
+      });
     } catch (error) {
       console.error('MCP リクエスト処理中のエラー:', error);
       try {
@@ -127,15 +128,21 @@ app.delete('/mcp', methodNotAllowedHandler);
 
 const startServer = () => {
   try {
-    return serve({
-      fetch: app.fetch,
-      hostname: '0.0.0.0',
-      port: 8000,
-    }, (info) => {
-      console.info(`MCP サーバーがポート ${info.port} でリッスン中`);
-    });
+    return serve(
+      {
+        fetch: app.fetch,
+        hostname: '0.0.0.0',
+        port: 8000,
+      },
+      (info) => {
+        console.info(`MCP サーバーがポート ${info.port} でリッスン中`);
+      },
+    );
   } catch (error) {
-    console.error('サーバーのセットアップに失敗しました:', error instanceof Error ? error : JSON.stringify(error));
+    console.error(
+      'サーバーのセットアップに失敗しました:',
+      error instanceof Error ? error : JSON.stringify(error),
+    );
     process.exit(1);
   }
 };

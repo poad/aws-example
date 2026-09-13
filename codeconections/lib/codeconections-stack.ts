@@ -1,7 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
-import { Construct } from 'constructs';
-import * as codeconnections from 'aws-cdk-lib/aws-codeconnections';
 import * as codebuild from 'aws-cdk-lib/aws-codebuild';
+import * as codeconnections from 'aws-cdk-lib/aws-codeconnections';
+import { Construct } from 'constructs';
 
 export class CodeconectionsStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {

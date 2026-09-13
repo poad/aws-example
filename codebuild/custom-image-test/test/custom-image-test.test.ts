@@ -1,9 +1,9 @@
 /* eslint-disable vitest/expect-expect */
 
-import { Template } from 'aws-cdk-lib/assertions';
 import * as cdk from 'aws-cdk-lib';
+import { Template } from 'aws-cdk-lib/assertions';
+import { test } from 'vitest';
 import * as CustomImageTest from '../lib/custom-image-test-stack.js';
-import {test} from 'vitest';
 
 test('Empty Stack', () => {
   const app = new cdk.App();
@@ -18,8 +18,8 @@ test('Empty Stack', () => {
   // THEN
   const template = Template.fromStack(stack);
   template.templateMatches({
-    "Resources": {}
-  })
+    Resources: {},
+  });
 });
 
 /* eslint-enable vitest/expect-expect */

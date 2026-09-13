@@ -1,12 +1,11 @@
-import { app } from './app.js';
 import { serve } from '@hono/node-server';
+import { app } from './app.js';
 
 const PORT = Number.parseInt(process.env.PORT ?? '8080');
 
-const server = serve(
-  { ...app, port: PORT }, (info) => {
-    console.log(`Server is running on http://localhost:${info.port}`);
-  });
+const server = serve({ ...app, port: PORT }, (info) => {
+  console.log(`Server is running on http://localhost:${info.port}`);
+});
 
 // graceful shutdown
 process.on('SIGINT', () => {

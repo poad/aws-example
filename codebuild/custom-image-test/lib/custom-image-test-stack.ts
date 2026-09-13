@@ -1,15 +1,21 @@
-import { BuildSpec, EventAction, FilterGroup, LinuxBuildImage, Project, Source } from 'aws-cdk-lib/aws-codebuild';
+import {
+  BuildSpec,
+  EventAction,
+  FilterGroup,
+  LinuxBuildImage,
+  Project,
+  Source,
+} from 'aws-cdk-lib/aws-codebuild';
 import { Repository } from 'aws-cdk-lib/aws-ecr';
 import * as cdk from 'aws-cdk-lib/core';
 import { Construct } from 'constructs';
 
-
 export interface CustomImageTestStackProps extends cdk.StackProps {
-  readonly owner: string,
-  readonly repo: string,
-  readonly environment: string,
-  readonly buildspec: string,
-  readonly image: string,
+  readonly owner: string;
+  readonly repo: string;
+  readonly environment: string;
+  readonly buildspec: string;
+  readonly image: string;
 }
 
 export class CustomImageTestStack extends cdk.Stack {
@@ -18,20 +24,27 @@ export class CustomImageTestStack extends cdk.Stack {
 
     Repository.fromRepositoryName(this, 'ECR', 'aws-codebuild-docker-images');
 
-    const projectName = props.environment !== undefined ? `${props.environment}-custom-image-build-test` : 'custom-image-build-test';
+    const projectName =
+      props.environment !== undefined
+        ? `${props.environment}-custom-image-build-test`
+        : 'custom-image-build-test';
     new Project(this, 'CodeBuildProject', {
       projectName,
       source: Source.gitHub({
         owner: props.owner,
         repo: props.repo,
         webhookFilters: [
-          FilterGroup.inEventOf(EventAction.PULL_REQUEST_CREATED, EventAction.PULL_REQUEST_REOPENED, EventAction.PULL_REQUEST_UPDATED)
-        ]
+          FilterGroup.inEventOf(
+            EventAction.PULL_REQUEST_CREATED,
+            EventAction.PULL_REQUEST_REOPENED,
+            EventAction.PULL_REQUEST_UPDATED,
+          ),
+        ],
       }),
       environment: {
-        buildImage: LinuxBuildImage.fromDockerRegistry(props.image)
+        buildImage: LinuxBuildImage.fromDockerRegistry(props.image),
       },
-      buildSpec: BuildSpec.fromSourceFilename(props.buildspec)
+      buildSpec: BuildSpec.fromSourceFilename(props.buildspec),
     });
   }
 }

@@ -1,45 +1,82 @@
 import { RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
 import { Peer, Port, SecurityGroup, Subnet, Vpc } from 'aws-cdk-lib/aws-ec2';
-import { Cluster, CpuArchitecture, FargateTaskDefinition, LogDriver, OperatingSystemFamily, Protocol, RepositoryImage } from 'aws-cdk-lib/aws-ecs';
+import {
+  Cluster,
+  CpuArchitecture,
+  FargateTaskDefinition,
+  LogDriver,
+  OperatingSystemFamily,
+  Protocol,
+  RepositoryImage,
+} from 'aws-cdk-lib/aws-ecs';
 import { ApplicationLoadBalancedFargateService } from 'aws-cdk-lib/aws-ecs-patterns';
 import { AlbScheme } from 'aws-cdk-lib/aws-eks';
-import { ApplicationLoadBalancer, ApplicationProtocol, ApplicationTargetGroup, TargetType } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
-import { Effect, PolicyDocument, PolicyStatement, Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
+import {
+  ApplicationLoadBalancer,
+  ApplicationProtocol,
+  ApplicationTargetGroup,
+  TargetType,
+} from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+import {
+  Effect,
+  PolicyDocument,
+  PolicyStatement,
+  Role,
+  ServicePrincipal,
+} from 'aws-cdk-lib/aws-iam';
 import { LogGroup, RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
 
 interface EcsStackProps extends StackProps {
-  readonly clusterName: string,
-  readonly albName: string,
-  readonly albSecurityGroupName: string,
-  readonly albScheme: AlbScheme,
-  readonly port: number,
-  readonly containerPort: number,
-  readonly protocol: ApplicationProtocol,
-  readonly albTargetGroupName: string,
-  readonly ecsLogGroupName: string,
-  readonly ecsTaskFamily: string,
-  readonly ecsImageName: string,
-  readonly ecsTaskExecutionRoleName: string,
-  readonly ecsTaskRoleName: string,
-  readonly ecsTaskCPUUnit: 256 | 512 | 1024 | 2048 | 4096,
-  readonly ecsTaskMemory: 512 | 1024 | 2048 | 4096,
-  readonly ecsServiceSecurityGroupName: string,
-  readonly vpcId: string,
-  readonly ecsTaskDesiredCount: number,
-  readonly containerName: string,
-  readonly ecsServiceName: string,
-  readonly subnets: string[],
+  readonly clusterName: string;
+  readonly albName: string;
+  readonly albSecurityGroupName: string;
+  readonly albScheme: AlbScheme;
+  readonly port: number;
+  readonly containerPort: number;
+  readonly protocol: ApplicationProtocol;
+  readonly albTargetGroupName: string;
+  readonly ecsLogGroupName: string;
+  readonly ecsTaskFamily: string;
+  readonly ecsImageName: string;
+  readonly ecsTaskExecutionRoleName: string;
+  readonly ecsTaskRoleName: string;
+  readonly ecsTaskCPUUnit: 256 | 512 | 1024 | 2048 | 4096;
+  readonly ecsTaskMemory: 512 | 1024 | 2048 | 4096;
+  readonly ecsServiceSecurityGroupName: string;
+  readonly vpcId: string;
+  readonly ecsTaskDesiredCount: number;
+  readonly containerName: string;
+  readonly ecsServiceName: string;
+  readonly subnets: string[];
 }
 
 export class EcsStack extends Stack {
   constructor(scope: Construct, id: string, props: EcsStackProps) {
     super(scope, id, props);
 
-    const { clusterName, albSecurityGroupName, albName, containerPort, vpcId, albScheme, subnets, port, protocol,
-      albTargetGroupName, ecsLogGroupName, ecsTaskCPUUnit: cpu, ecsTaskMemory: memoryLimitMiB,
-      containerName, ecsServiceName, ecsTaskFamily, ecsTaskDesiredCount, ecsTaskExecutionRoleName, ecsTaskRoleName,
-      ecsServiceSecurityGroupName } = props;
+    const {
+      clusterName,
+      albSecurityGroupName,
+      albName,
+      containerPort,
+      vpcId,
+      albScheme,
+      subnets,
+      port,
+      protocol,
+      albTargetGroupName,
+      ecsLogGroupName,
+      ecsTaskCPUUnit: cpu,
+      ecsTaskMemory: memoryLimitMiB,
+      containerName,
+      ecsServiceName,
+      ecsTaskFamily,
+      ecsTaskDesiredCount,
+      ecsTaskExecutionRoleName,
+      ecsTaskRoleName,
+      ecsServiceSecurityGroupName,
+    } = props;
 
     const vpc = Vpc.fromLookup(this, 'VPC', { vpcId });
     const albSg = new SecurityGroup(this, 'AlbSecurityGroup', {
@@ -49,11 +86,14 @@ export class EcsStack extends Stack {
     });
     albSg.addIngressRule(Peer.anyIpv4(), Port.tcp(containerPort));
 
-    const vpcSubnets = subnets.length > 0 ? {
-      subnets: subnets.map((subnetId, index) =>
-        Subnet.fromSubnetId(this, `Subnet-${index}`, subnetId),
-      ),
-    } : undefined;
+    const vpcSubnets =
+      subnets.length > 0
+        ? {
+            subnets: subnets.map((subnetId, index) =>
+              Subnet.fromSubnetId(this, `Subnet-${index}`, subnetId),
+            ),
+          }
+        : undefined;
 
     const alb = new ApplicationLoadBalancer(this, 'Alb', {
       loadBalancerName: albName,
@@ -115,10 +155,7 @@ export class EcsStack extends Stack {
           'log-access-policy': new PolicyDocument({
             statements: [
               new PolicyStatement({
-                actions: [
-                  'logs:CreateLogStream',
-                  'logs:PutLogEvents',
-                ],
+                actions: ['logs:CreateLogStream', 'logs:PutLogEvents'],
                 effect: Effect.ALLOW,
                 resources: ['*'],
               }),
@@ -127,16 +164,12 @@ export class EcsStack extends Stack {
           'ecs-policy': new PolicyDocument({
             statements: [
               new PolicyStatement({
-                actions: [
-                  'ecs:*',
-                  'ecr:*',
-                ],
+                actions: ['ecs:*', 'ecr:*'],
                 effect: Effect.ALLOW,
                 resources: ['*'],
               }),
             ],
           }),
-
         },
       }),
       family: ecsTaskFamily,
@@ -168,7 +201,10 @@ export class EcsStack extends Stack {
       description: 'Security Group for ECS Service',
       vpc,
     });
-    serviceSecurityGroup.addIngressRule(Peer.securityGroupId(albSg.securityGroupId), Port.tcp(containerPort));
+    serviceSecurityGroup.addIngressRule(
+      Peer.securityGroupId(albSg.securityGroupId),
+      Port.tcp(containerPort),
+    );
 
     new ApplicationLoadBalancedFargateService(this, 'ECSService', {
       cluster: new Cluster(this, 'ECSCluster', { clusterName }),

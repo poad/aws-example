@@ -1,21 +1,13 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": [
-    "promise"
-  ],
+  "plugins": ["promise"],
   "categories": {
     "correctness": "off"
   },
   "env": {
     "builtin": true
   },
-  "ignorePatterns": [
-    "**/*.d.ts",
-    "out",
-    "cdk.out",
-    "**/generated/**",
-    "**/*.js"
-  ],
+  "ignorePatterns": ["**/*.d.ts", "out", "cdk.out", "**/generated/**", "**/*.js"],
   "rules": {
     "promise/always-return": "error",
     "promise/no-return-wrap": "error",
@@ -29,9 +21,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "**/*.ts"
-      ],
+      "files": ["**/*.ts"],
       "rules": {
         "import/namespace": "error",
         "import/default": "error",
@@ -148,10 +138,7 @@
         "typescript/prefer-for-of": "error",
         "typescript/prefer-function-type": "error"
       },
-      "plugins": [
-        "import",
-        "typescript"
-      ],
+      "plugins": ["import", "typescript"],
       "env": {
         "es2026": true
       }

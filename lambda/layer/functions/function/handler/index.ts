@@ -1,10 +1,8 @@
 import * as fs from 'node:fs';
 import * as process from 'node:process';
 
- 
 import * as log from '/opt/nodejs/log.js';
 
- 
 export const handler = async () => {
   const currentDir = process.cwd();
   fs.readdirSync(currentDir, {

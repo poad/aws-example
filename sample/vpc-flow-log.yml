@@ -9,7 +9,7 @@ Resources:
           - Effect: Allow
             Principal:
               Service:
-              - 'vpc-flow-logs.amazonaws.com'
+                - 'vpc-flow-logs.amazonaws.com'
             Action:
               - 'sts:AssumeRole'
       Path: /

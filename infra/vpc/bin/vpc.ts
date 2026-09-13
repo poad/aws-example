@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import assert from 'assert';
-import { VpcStack } from '../lib/vpc-stack.js';
 import * as cdk from 'aws-cdk-lib';
+import { VpcStack } from '../lib/vpc-stack.js';
 
 const app = new cdk.App();
 const config = app.node.tryGetContext('config');

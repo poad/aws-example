@@ -32,7 +32,9 @@ const server = new ApolloServer({
 // GraphQLリクエストを解析する関数
 function parseGraphQLRequest(event: APIGatewayProxyEvent | APIGatewayProxyEventV2) {
   const { body, queryStringParameters } = event;
-  const httpMethod = Object.keys(event).includes('httpMethod') ? (event as APIGatewayProxyEvent).httpMethod : (event as APIGatewayProxyEventV2).requestContext.http.method;
+  const httpMethod = Object.keys(event).includes('httpMethod')
+    ? (event as APIGatewayProxyEvent).httpMethod
+    : (event as APIGatewayProxyEventV2).requestContext.http.method;
 
   if (httpMethod === 'POST' && body) {
     try {
@@ -60,7 +62,9 @@ export async function handler(
   event: APIGatewayProxyEvent | APIGatewayProxyEventV2,
   context: Context,
 ): Promise<APIGatewayProxyResult | APIGatewayProxyResultV2> {
-  const httpMethod = Object.keys(event).includes('httpMethod') ? (event as APIGatewayProxyEvent).httpMethod : (event as APIGatewayProxyEventV2).requestContext.http.method;
+  const httpMethod = Object.keys(event).includes('httpMethod')
+    ? (event as APIGatewayProxyEvent).httpMethod
+    : (event as APIGatewayProxyEventV2).requestContext.http.method;
   // CORS preflight リクエストの処理
   if (httpMethod === 'OPTIONS') {
     return {

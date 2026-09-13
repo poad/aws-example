@@ -4,8 +4,8 @@
   "bin": "bin/ecs.js",
   "type": "module",
   "scripts": {
-    "build": "node_modules/@typescript/native/bin/tsc -p tsconfig.json",
-    "watch": "node_modules/@typescript/native/bin/tsc -p tsconfig.json -w",
+    "build": "tsc -p tsconfig.json",
+    "watch": "tsc -p tsconfig.json -w",
     "cdk": "cdk",
     "lint": "oxlint",
     "lint-fix": "oxlint --fix",
@@ -14,17 +14,16 @@
   },
   "devDependencies": {
     "@types/node": "^24.13.3",
-    "@typescript/native": "npm:typescript@^7.0.2",
-    "aws-cdk": "^2.1138.0",
+    "aws-cdk": "^2.1140.0",
     "jiti": "^2.7.0",
     "oxfmt": "^0.67.0",
     "oxlint": "^1.82.0",
     "oxlint-plugin-awscdk": "^1.0.3",
-    "tsx": "^4.23.12",
-    "typescript": "npm:@typescript/typescript6@^6.0.2"
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
   },
   "dependencies": {
-    "aws-cdk-lib": "^2.266.0",
+    "aws-cdk-lib": "^2.268.0",
     "constructs": "^10.8.1"
   }
 }

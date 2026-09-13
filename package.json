@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "pnpm -r build",
-    "lint": "oxlint",
-    "lint-fix": "oxlint --fix",
+    "lint": "oxfmt --check && oxlint && pnpm -r --if-present lint",
+    "lint-fix": "oxfmt && oxlint --fix && pnpm -r --if-present lint-fix",
     "format": "pnpm -r --if-present format",
     "format-check": "pnpm -r --if-present format-check"
   },

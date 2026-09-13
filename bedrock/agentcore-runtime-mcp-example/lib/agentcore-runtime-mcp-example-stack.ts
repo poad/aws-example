@@ -1,8 +1,8 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 import * as cdk from 'aws-cdk-lib';
-import { Construct } from 'constructs';
 import { ECRDeployment, DockerImageName } from 'cdk-ecr-deployment';
+import { Construct } from 'constructs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -72,7 +72,7 @@ export class AgentcoreRuntimeMcpExampleStack extends cdk.Stack {
       assumedBy: new cdk.aws_iam.ServicePrincipal('bedrock-agentcore.amazonaws.com'),
       description: 'IAM role for Bedrock AgentCore Runtime',
       inlinePolicies: {
-        'BedrockAgentCoreRuntimePolicy': new cdk.aws_iam.PolicyDocument({
+        BedrockAgentCoreRuntimePolicy: new cdk.aws_iam.PolicyDocument({
           statements: [
             new cdk.aws_iam.PolicyStatement({
               sid: 'ECRImageAccess',
@@ -82,14 +82,14 @@ export class AgentcoreRuntimeMcpExampleStack extends cdk.Stack {
                 'ecr:BatchGetImage',
                 'ecr:GetDownloadUrlForLayer',
               ],
-              resources: [
-                `arn:aws:ecr:${region}:${accountId}:repository/*`,
-              ],
+              resources: [`arn:aws:ecr:${region}:${accountId}:repository/*`],
             }),
             new cdk.aws_iam.PolicyStatement({
               effect: cdk.aws_iam.Effect.ALLOW,
               actions: ['logs:DescribeLogStreams', 'logs:CreateLogGroup'],
-              resources: [`arn:aws:logs:${region}:${accountId}:log-group:/aws/bedrock-agentcore/runtimes/*`],
+              resources: [
+                `arn:aws:logs:${region}:${accountId}:log-group:/aws/bedrock-agentcore/runtimes/*`,
+              ],
             }),
             new cdk.aws_iam.PolicyStatement({
               effect: cdk.aws_iam.Effect.ALLOW,
@@ -99,7 +99,9 @@ export class AgentcoreRuntimeMcpExampleStack extends cdk.Stack {
             new cdk.aws_iam.PolicyStatement({
               effect: cdk.aws_iam.Effect.ALLOW,
               actions: ['logs:CreateLogStream', 'logs:PutLogEvents'],
-              resources: [`arn:aws:logs:${region}:${accountId}:log-group:/aws/bedrock-agentcore/runtimes/*:log-stream:*`],
+              resources: [
+                `arn:aws:logs:${region}:${accountId}:log-group:/aws/bedrock-agentcore/runtimes/*:log-stream:*`,
+              ],
             }),
             new cdk.aws_iam.PolicyStatement({
               sid: 'ECRTokenAccess',
@@ -140,7 +142,6 @@ export class AgentcoreRuntimeMcpExampleStack extends cdk.Stack {
                 `arn:aws:bedrock-agentcore:${region}:${accountId}:workload-identity-directory/default/workload-identity/*`,
               ],
             }),
-
           ],
         }),
       },

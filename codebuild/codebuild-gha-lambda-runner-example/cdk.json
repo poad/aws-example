@@ -1,9 +1,7 @@
 {
   "app": "pnx --allow-build=esbuild tsx bin/codebuild-gha-lambda-runner-example.ts",
   "watch": {
-    "include": [
-      "**"
-    ],
+    "include": ["**"],
     "exclude": [
       "README.md",
       "cdk*.json",
@@ -17,6 +15,5 @@
     ]
   },
   "requireApproval": "never",
-  "context": {
-  }
+  "context": {}
 }

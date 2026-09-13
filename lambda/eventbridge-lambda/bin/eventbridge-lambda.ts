@@ -1,7 +1,6 @@
 #!/usr/bin/env node
-import { EventbridgeLambdaStack } from '../lib/eventbridge-lambda-stack.js';
 import * as cdk from 'aws-cdk-lib';
+import { EventbridgeLambdaStack } from '../lib/eventbridge-lambda-stack.js';
 
 const app = new cdk.App();
-new EventbridgeLambdaStack(app, 'EventbridgeLambda', {
-});
+new EventbridgeLambdaStack(app, 'EventbridgeLambda', {});

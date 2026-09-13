@@ -1,5 +1,5 @@
+import { Agent, BedrockModel } from '@strands-agents/sdk';
 import { tools } from '../tools/aws-tool.js';
-import { Agent, BedrockModel  } from '@strands-agents/sdk';
 
 const bedrockModel = new BedrockModel({
   modelId: 'global.amazon.nova-2-lite-v1:0',

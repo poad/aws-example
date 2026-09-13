@@ -1,6 +1,6 @@
-import OpenAI from 'openai';
 import { getTokenProvider } from '@aws/bedrock-token-generator';
 import { config } from '@dotenvx/dotenvx';
+import OpenAI from 'openai';
 
 config();
 

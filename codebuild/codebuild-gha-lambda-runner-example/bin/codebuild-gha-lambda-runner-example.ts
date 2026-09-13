@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import { CodebuildGhaLambdaRunnerExampleStack } from '../lib/codebuild-gha-lambda-runner-example-stack.js';
 import * as cdk from 'aws-cdk-lib';
 import * as codebuild from 'aws-cdk-lib/aws-codebuild';
+import { CodebuildGhaLambdaRunnerExampleStack } from '../lib/codebuild-gha-lambda-runner-example-stack.js';
 
 const projects = [
   {
@@ -15,10 +15,6 @@ const projects = [
 ];
 
 const app = new cdk.App();
-new CodebuildGhaLambdaRunnerExampleStack(
-  app,
-  'CodebuildGhaLambdaRunnerExample',
-  {
-    projects,
-  },
-);
+new CodebuildGhaLambdaRunnerExampleStack(app, 'CodebuildGhaLambdaRunnerExample', {
+  projects,
+});

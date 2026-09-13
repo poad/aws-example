@@ -14,5 +14,7 @@ export const handler: EventBridgeHandler<string, {}, void> = async ({ time }) =>
   }).format(new Date(time));
   console.log(timestamp);
   const date = new Date(time);
-  console.log(`${date.getFullYear()}${`00${date.getMonth() + 1}`.slice(-2)}${`00${date.getDate()}`.slice(-2)}${`00${date.getHours()}`.slice(-2)}00`);
+  console.log(
+    `${date.getFullYear()}${`00${date.getMonth() + 1}`.slice(-2)}${`00${date.getDate()}`.slice(-2)}${`00${date.getHours()}`.slice(-2)}00`,
+  );
 };

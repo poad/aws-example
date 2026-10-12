@@ -43,60 +43,22 @@ engineStrict: true
 
 minimumReleaseAge: 10080 # 7 days in minutes
 minimumReleaseAgeExclude:
-  - pnpm@12.5.1
-  - protobufjs@8.5.1
-  - '@oxfmt/binding-android-arm-eabi@0.67.0'
-  - '@oxfmt/binding-android-arm64@0.67.0'
-  - '@oxfmt/binding-darwin-arm64@0.67.0'
-  - '@oxfmt/binding-darwin-x64@0.67.0'
-  - '@oxfmt/binding-freebsd-x64@0.67.0'
-  - '@oxfmt/binding-linux-arm-gnueabihf@0.67.0'
-  - '@oxfmt/binding-linux-arm-musleabihf@0.67.0'
-  - '@oxfmt/binding-linux-arm64-gnu@0.67.0'
-  - '@oxfmt/binding-linux-arm64-musl@0.67.0'
-  - '@oxfmt/binding-linux-ppc64-gnu@0.67.0'
-  - '@oxfmt/binding-linux-riscv64-gnu@0.67.0'
-  - '@oxfmt/binding-linux-riscv64-musl@0.67.0'
-  - '@oxfmt/binding-linux-s390x-gnu@0.67.0'
-  - '@oxfmt/binding-linux-x64-gnu@0.67.0'
-  - '@oxfmt/binding-linux-x64-musl@0.67.0'
-  - '@oxfmt/binding-openharmony-arm64@0.67.0'
-  - '@oxfmt/binding-win32-arm64-msvc@0.67.0'
-  - '@oxfmt/binding-win32-ia32-msvc@0.67.0'
-  - '@oxfmt/binding-win32-x64-msvc@0.67.0'
-  - '@oxlint/binding-android-arm-eabi@1.82.0'
-  - '@oxlint/binding-android-arm64@1.82.0'
-  - '@oxlint/binding-darwin-arm64@1.82.0'
-  - '@oxlint/binding-darwin-x64@1.82.0'
-  - '@oxlint/binding-freebsd-x64@1.82.0'
-  - '@oxlint/binding-linux-arm-gnueabihf@1.82.0'
-  - '@oxlint/binding-linux-arm-musleabihf@1.82.0'
-  - '@oxlint/binding-linux-arm64-gnu@1.82.0'
-  - '@oxlint/binding-linux-arm64-musl@1.82.0'
-  - '@oxlint/binding-linux-ppc64-gnu@1.82.0'
-  - '@oxlint/binding-linux-riscv64-gnu@1.82.0'
-  - '@oxlint/binding-linux-riscv64-musl@1.82.0'
-  - '@oxlint/binding-linux-s390x-gnu@1.82.0'
-  - '@oxlint/binding-linux-x64-gnu@1.82.0'
-  - '@oxlint/binding-linux-x64-musl@1.82.0'
-  - '@oxlint/binding-openharmony-arm64@1.82.0'
-  - '@oxlint/binding-win32-arm64-msvc@1.82.0'
-  - '@oxlint/binding-win32-ia32-msvc@1.82.0'
-  - '@oxlint/binding-win32-x64-msvc@1.82.0'
-  - oxfmt@0.67.0
-  - oxlint-plugin-awscdk@1.0.3
-  - oxlint@1.82.0
+  - pnpm@12.12.1
 
 overrides:
-  '@opentelemetry/auto-instrumentations-node@<0.75.0': ^0.75.0
-  '@opentelemetry/core@<2.8.0': ^2.8.0
-  '@opentelemetry/exporter-prometheus@<0.217.0': ^0.222.0
-  '@opentelemetry/propagator-jaeger@<2.9.0': ^2.9.0
-  '@opentelemetry/sdk-node@<0.217.0': ^0.222.0
   semver: '>=7'
   uuid: '>=14.0.0'
 
   typescript: ^7.0.2
+  '@opentelemetry/instrumentation-cassandra-driver@<0.66.0': ^0.66.0
+  '@opentelemetry/instrumentation-knex@<0.65.0': ^0.65.0
+  '@opentelemetry/instrumentation-mongoose@<0.67.0': ^0.67.0
+  '@opentelemetry/instrumentation-mysql2@<0.67.0': ^0.67.0
+  '@opentelemetry/instrumentation-mysql@<0.67.0': ^0.67.0
+  '@opentelemetry/instrumentation-oracledb@<0.46.0': ^0.46.0
+  '@opentelemetry/instrumentation-pg@<0.73.0': ^0.73.0
+  '@opentelemetry/instrumentation-tedious@<0.40.0': ^0.40.0
+  '@opentelemetry/propagator-jaeger@<2.9.0': ^2.9.0
 
 strictPeerDependencies: false
 

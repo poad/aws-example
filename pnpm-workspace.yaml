@@ -43,12 +43,9 @@ engineStrict: true
 
 minimumReleaseAge: 10080 # 7 days in minutes
 minimumReleaseAgeExclude:
-  - pnpm@12.14.0
+  - pnpm@12.15.0
 
 overrides:
-  semver: '>=7'
-  uuid: '>=14.0.0'
-
   '@opentelemetry/instrumentation-cassandra-driver@<0.66.0': ^0.66.0
   '@opentelemetry/instrumentation-knex@<0.65.0': ^0.65.0
   '@opentelemetry/instrumentation-mongoose@<0.67.0': ^0.67.0
@@ -57,6 +54,7 @@ overrides:
   '@opentelemetry/instrumentation-oracledb@<0.46.0': ^0.46.0
   '@opentelemetry/instrumentation-pg@<0.73.0': ^0.73.0
   '@opentelemetry/instrumentation-tedious@<0.40.0': ^0.40.0
-  '@opentelemetry/propagator-jaeger@<2.9.0': ^2.9.0
+  semver: '>=7'
+  uuid: '>=14.0.0'
 
 trustPolicy: no-downgrade

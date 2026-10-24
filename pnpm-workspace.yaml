@@ -44,6 +44,8 @@ engineStrict: true
 minimumReleaseAge: 10080 # 7 days in minutes
 minimumReleaseAgeExclude:
   - pnpm@12.15.0
+  - tsrs
+  - '@tsrs/*'
 
 overrides:
   '@opentelemetry/instrumentation-cassandra-driver@<0.66.0': ^0.66.0
@@ -57,4 +59,5 @@ overrides:
   semver: '>=7'
   uuid: '>=14.0.0'
 
-trustPolicy: no-downgrade
+# trustPolicy: no-downgrade removed to allow adding tsrs (TypeScript Rust port)
+# as a replacement for tsc during the migration from tsc to tsrs.

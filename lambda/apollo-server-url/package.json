@@ -6,8 +6,8 @@
   },
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
+    "build": "tsrs",
+    "watch": "tsrs -w",
     "test": "vitest --run --passWithNoTests",
     "cdk": "cdk",
     "lint": "oxlint",
@@ -27,7 +27,7 @@
     "oxlint": "^1.88.0",
     "oxlint-plugin-awscdk": "^1.0.3",
     "tsx": "^4.23.15",
-    "typescript": "^7.0.2",
+    "tsrs": "0.18.0-ts7.1.0-dev.20260929",
     "vite": "^8.3.4",
     "vitest": "^5.0.5"
   },

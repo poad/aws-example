@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "clean": "tsc --build --clean",
-    "watch": "tsc -w",
+    "build": "tsrs",
+    "clean": "tsrs --build --clean",
+    "watch": "tsrs -w",
     "dev": "tsx --watch src/index.ts",
     "lint": "oxlint",
     "lint-fix": "oxlint --fix",
@@ -20,7 +20,7 @@
     "oxfmt": "^0.73.0",
     "oxlint": "^1.88.0",
     "tsx": "^4.23.15",
-    "typescript": "^7.0.2"
+    "tsrs": "0.18.0-ts7.1.0-dev.20260929"
   },
   "dependencies": {
     "@modelcontextprotocol/hono": "^2.0.2",

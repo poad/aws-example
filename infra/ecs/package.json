@@ -4,8 +4,8 @@
   "bin": "bin/ecs.js",
   "type": "module",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "watch": "tsc -p tsconfig.json -w",
+    "build": "tsrs -p tsconfig.json",
+    "watch": "tsrs -p tsconfig.json -w",
     "cdk": "cdk",
     "lint": "oxlint",
     "lint-fix": "oxlint --fix",
@@ -20,7 +20,7 @@
     "oxlint": "^1.88.0",
     "oxlint-plugin-awscdk": "^1.0.3",
     "tsx": "^4.23.15",
-    "typescript": "^7.0.2"
+    "tsrs": "0.18.0-ts7.1.0-dev.20260929"
   },
   "dependencies": {
     "aws-cdk-lib": "^2.273.0",

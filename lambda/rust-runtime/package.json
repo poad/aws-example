@@ -6,9 +6,9 @@
     "rust-runtime": "bin/rust-runtime.js"
   },
   "scripts": {
-    "build": "tsc && cd lambda && cargo build",
-    "clean": "tsc --build --clean && cd lambda && cargo clean",
-    "watch": "tsc -w",
+    "build": "tsrs && cd lambda && cargo build",
+    "clean": "tsrs --build --clean && cd lambda && cargo clean",
+    "watch": "tsrs -w",
     "cdk": "cdk",
     "lint": "oxlint",
     "lint-fix": "oxlint --fix",
@@ -26,7 +26,7 @@
     "oxlint": "^1.88.0",
     "oxlint-plugin-awscdk": "^1.0.3",
     "tsx": "^4.23.15",
-    "typescript": "^7.0.2",
+    "tsrs": "0.18.0-ts7.1.0-dev.20260929",
     "vite": "^8.3.4",
     "vitest": "^5.0.5"
   },

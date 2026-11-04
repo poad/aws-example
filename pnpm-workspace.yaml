@@ -43,7 +43,7 @@ engineStrict: true
 
 minimumReleaseAge: 10080 # 7 days in minutes
 minimumReleaseAgeExclude:
-  - pnpm@12.15.0
+  - pnpm@12.17.0
   - tsrs
   - '@tsrs/*'
 
@@ -56,6 +56,8 @@ overrides:
   '@opentelemetry/instrumentation-oracledb@<0.46.0': ^0.46.0
   '@opentelemetry/instrumentation-pg@<0.73.0': ^0.73.0
   '@opentelemetry/instrumentation-tedious@<0.40.0': ^0.40.0
+  glob@>=9.0.0 <=14.0.1: ^14.0.2
+  minimatch@<11.0.1: ^11.0.1
   semver: '>=7'
   uuid: '>=14.0.0'
 

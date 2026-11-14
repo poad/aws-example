@@ -173,6 +173,7 @@ settings:
 
 overrides:
   '@opentelemetry/instrumentation-cassandra-driver@<0.66.0': ^0.66.0
+  '@opentelemetry/instrumentation-http@>=0.204.0 <0.222.0': ^0.222.0
   '@opentelemetry/instrumentation-knex@<0.65.0': ^0.65.0
   '@opentelemetry/instrumentation-mongoose@<0.67.0': ^0.67.0
   '@opentelemetry/instrumentation-mysql2@<0.67.0': ^0.67.0
@@ -194,11 +195,11 @@ importers:
         specifier: runtime:^26.13.1
         version: runtime:26.13.1
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
 
   bedrock/agentcore-runtime-agent-example:
     dependencies:
@@ -219,20 +220,20 @@ importers:
         specifier: ^26.6.6
         version: 26.6.6
       aws-cdk:
-        specifier: ^2.1147.0
-        version: 2.1147.0
+        specifier: ^2.1148.0
+        version: 2.1148.0
       jiti:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       oxlint-plugin-awscdk:
         specifier: ^1.0.4
-        version: 1.0.4(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2006))
+        version: 1.0.4(@oxlint/plugins@1.92.0)(oxlint@1.92.0(oxlint-tsgolint@7.0.2006))
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -271,11 +272,11 @@ importers:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -299,20 +300,20 @@ importers:
         specifier: ^26.6.6
         version: 26.6.6
       aws-cdk:
-        specifier: ^2.1147.0
-        version: 2.1147.0
+        specifier: ^2.1148.0
+        version: 2.1148.0
       jiti:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       oxlint-plugin-awscdk:
         specifier: ^1.0.4
-        version: 1.0.4(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2006))
+        version: 1.0.4(@oxlint/plugins@1.92.0)(oxlint@1.92.0(oxlint-tsgolint@7.0.2006))
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -332,8 +333,8 @@ importers:
         specifier: ^2.4.0
         version: 2.4.0
       fastmcp:
-        specifier: ^4.24.2
-        version: 4.24.2(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.15)(openapi-types@12.1.3)
+        specifier: ^4.24.5
+        version: 4.24.5(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.15)(openapi-types@12.1.3)
       hono:
         specifier: ^4.13.16
         version: 4.13.16
@@ -354,11 +355,11 @@ importers:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -375,8 +376,8 @@ importers:
         specifier: ^2.38.2
         version: 2.38.2
       openai:
-        specifier: ^7.51.0
-        version: 7.51.0(@aws-sdk/credential-provider-node@3.972.93)(@smithy/hash-node@4.5.2)(@smithy/signature-v4@5.7.5)(undici@6.29.1)(zod@4.6.7)
+        specifier: ^7.53.0
+        version: 7.53.0(@aws-sdk/credential-provider-node@3.972.94)(@smithy/hash-node@4.5.2)(@smithy/signature-v4@5.7.5)(undici@6.29.1)(zod@4.6.7)
     devDependencies:
       '@types/node':
         specifier: ^26.6.6
@@ -385,11 +386,11 @@ importers:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -413,8 +414,8 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0(vitest@5.1.0)
       aws-cdk:
-        specifier: ^2.1147.0
-        version: 2.1147.0
+        specifier: ^2.1148.0
+        version: 2.1148.0
       esbuild:
         specifier: ^0.28.2
         version: 0.28.2
@@ -422,14 +423,14 @@ importers:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       oxlint-plugin-awscdk:
         specifier: ^1.0.4
-        version: 1.0.4(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2006))
+        version: 1.0.4(@oxlint/plugins@1.92.0)(oxlint@1.92.0(oxlint-tsgolint@7.0.2006))
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -456,20 +457,20 @@ importers:
         specifier: ^26.6.6
         version: 26.6.6
       aws-cdk:
-        specifier: ^2.1147.0
-        version: 2.1147.0
+        specifier: ^2.1148.0
+        version: 2.1148.0
       jiti:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       oxlint-plugin-awscdk:
         specifier: ^1.0.4
-        version: 1.0.4(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2006))
+        version: 1.0.4(@oxlint/plugins@1.92.0)(oxlint@1.92.0(oxlint-tsgolint@7.0.2006))
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -496,20 +497,20 @@ importers:
         specifier: ^26.6.6
         version: 26.6.6
       aws-cdk:
-        specifier: ^2.1147.0
-        version: 2.1147.0
+        specifier: ^2.1148.0
+        version: 2.1148.0
       jiti:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       oxlint-plugin-awscdk:
         specifier: ^1.0.4
-        version: 1.0.4(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2006))
+        version: 1.0.4(@oxlint/plugins@1.92.0)(oxlint@1.92.0(oxlint-tsgolint@7.0.2006))
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -536,20 +537,20 @@ importers:
         specifier: ^26.6.6
         version: 26.6.6
       aws-cdk:
-        specifier: ^2.1147.0
-        version: 2.1147.0
+        specifier: ^2.1148.0
+        version: 2.1148.0
       jiti:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       oxlint-plugin-awscdk:
         specifier: ^1.0.4
-        version: 1.0.4(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2006))
+        version: 1.0.4(@oxlint/plugins@1.92.0)(oxlint@1.92.0(oxlint-tsgolint@7.0.2006))
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -570,20 +571,20 @@ importers:
         specifier: ^26.6.6
         version: 26.6.6
       aws-cdk:
-        specifier: ^2.1147.0
-        version: 2.1147.0
+        specifier: ^2.1148.0
+        version: 2.1148.0
       jiti:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       oxlint-plugin-awscdk:
         specifier: ^1.0.4
-        version: 1.0.4(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2006))
+        version: 1.0.4(@oxlint/plugins@1.92.0)(oxlint@1.92.0(oxlint-tsgolint@7.0.2006))
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -604,20 +605,20 @@ importers:
         specifier: ^26.6.6
         version: 26.6.6
       aws-cdk:
-        specifier: ^2.1147.0
-        version: 2.1147.0
+        specifier: ^2.1148.0
+        version: 2.1148.0
       jiti:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       oxlint-plugin-awscdk:
         specifier: ^1.0.4
-        version: 1.0.4(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2006))
+        version: 1.0.4(@oxlint/plugins@1.92.0)(oxlint@1.92.0(oxlint-tsgolint@7.0.2006))
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -638,20 +639,20 @@ importers:
         specifier: ^26.6.6
         version: 26.6.6
       aws-cdk:
-        specifier: ^2.1147.0
-        version: 2.1147.0
+        specifier: ^2.1148.0
+        version: 2.1148.0
       jiti:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       oxlint-plugin-awscdk:
         specifier: ^1.0.4
-        version: 1.0.4(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2006))
+        version: 1.0.4(@oxlint/plugins@1.92.0)(oxlint@1.92.0(oxlint-tsgolint@7.0.2006))
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -672,20 +673,20 @@ importers:
         specifier: ^26.6.6
         version: 26.6.6
       aws-cdk:
-        specifier: ^2.1147.0
-        version: 2.1147.0
+        specifier: ^2.1148.0
+        version: 2.1148.0
       jiti:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       oxlint-plugin-awscdk:
         specifier: ^1.0.4
-        version: 1.0.4(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2006))
+        version: 1.0.4(@oxlint/plugins@1.92.0)(oxlint@1.92.0(oxlint-tsgolint@7.0.2006))
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -706,20 +707,20 @@ importers:
         specifier: ^26.6.6
         version: 26.6.6
       aws-cdk:
-        specifier: ^2.1147.0
-        version: 2.1147.0
+        specifier: ^2.1148.0
+        version: 2.1148.0
       jiti:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       oxlint-plugin-awscdk:
         specifier: ^1.0.4
-        version: 1.0.4(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2006))
+        version: 1.0.4(@oxlint/plugins@1.92.0)(oxlint@1.92.0(oxlint-tsgolint@7.0.2006))
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -752,8 +753,8 @@ importers:
         specifier: ^26.6.6
         version: 26.6.6
       aws-cdk:
-        specifier: ^2.1147.0
-        version: 2.1147.0
+        specifier: ^2.1148.0
+        version: 2.1148.0
       esbuild:
         specifier: ^0.28.2
         version: 0.28.2
@@ -761,14 +762,14 @@ importers:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       oxlint-plugin-awscdk:
         specifier: ^1.0.4
-        version: 1.0.4(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2006))
+        version: 1.0.4(@oxlint/plugins@1.92.0)(oxlint@1.92.0(oxlint-tsgolint@7.0.2006))
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -798,8 +799,8 @@ importers:
         specifier: ^26.6.6
         version: 26.6.6
       aws-cdk:
-        specifier: ^2.1147.0
-        version: 2.1147.0
+        specifier: ^2.1148.0
+        version: 2.1148.0
       esbuild:
         specifier: ^0.28.2
         version: 0.28.2
@@ -807,14 +808,14 @@ importers:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       oxlint-plugin-awscdk:
         specifier: ^1.0.4
-        version: 1.0.4(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2006))
+        version: 1.0.4(@oxlint/plugins@1.92.0)(oxlint@1.92.0(oxlint-tsgolint@7.0.2006))
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -841,8 +842,8 @@ importers:
         specifier: ^26.6.6
         version: 26.6.6
       aws-cdk:
-        specifier: ^2.1147.0
-        version: 2.1147.0
+        specifier: ^2.1148.0
+        version: 2.1148.0
       esbuild:
         specifier: ^0.28.2
         version: 0.28.2
@@ -850,14 +851,14 @@ importers:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       oxlint-plugin-awscdk:
         specifier: ^1.0.4
-        version: 1.0.4(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2006))
+        version: 1.0.4(@oxlint/plugins@1.92.0)(oxlint@1.92.0(oxlint-tsgolint@7.0.2006))
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -880,8 +881,8 @@ importers:
         specifier: ^26.6.6
         version: 26.6.6
       aws-cdk:
-        specifier: ^2.1147.0
-        version: 2.1147.0
+        specifier: ^2.1148.0
+        version: 2.1148.0
       esbuild:
         specifier: ^0.28.2
         version: 0.28.2
@@ -889,14 +890,14 @@ importers:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       oxlint-plugin-awscdk:
         specifier: ^1.0.4
-        version: 1.0.4(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2006))
+        version: 1.0.4(@oxlint/plugins@1.92.0)(oxlint@1.92.0(oxlint-tsgolint@7.0.2006))
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -926,8 +927,8 @@ importers:
         specifier: ^26.6.6
         version: 26.6.6
       aws-cdk:
-        specifier: ^2.1147.0
-        version: 2.1147.0
+        specifier: ^2.1148.0
+        version: 2.1148.0
       dotenv:
         specifier: ^18.0.9
         version: 18.0.9
@@ -938,14 +939,14 @@ importers:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       oxlint-plugin-awscdk:
         specifier: ^1.0.4
-        version: 1.0.4(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2006))
+        version: 1.0.4(@oxlint/plugins@1.92.0)(oxlint@1.92.0(oxlint-tsgolint@7.0.2006))
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -965,11 +966,11 @@ importers:
         specifier: ^5.2.0
         version: 5.2.0
       '@aws-sdk/client-sts':
-        specifier: ^3.1162.0
-        version: 3.1162.0
+        specifier: ^3.1164.0
+        version: 3.1164.0
       '@aws-sdk/credential-providers':
-        specifier: ^3.1162.0
-        version: 3.1162.0
+        specifier: ^3.1164.0
+        version: 3.1164.0
       '@smithy/hash-node':
         specifier: ^4.5.2
         version: 4.5.2
@@ -996,11 +997,11 @@ importers:
         specifier: ^2.7.0
         version: 2.7.0
       oxfmt:
-        specifier: ^0.76.0
-        version: 0.76.0
+        specifier: ^0.77.0
+        version: 0.77.0
       oxlint:
-        specifier: ^1.91.0
-        version: 1.91.0(oxlint-tsgolint@7.0.2006)
+        specifier: ^1.92.0
+        version: 1.92.0(oxlint-tsgolint@7.0.2006)
       tsrs:
         specifier: 0.25.0-ts7.1.0-beta
         version: 0.25.0-ts7.1.0-beta
@@ -1115,8 +1116,8 @@ packages:
   '@aws-cdk/asset-node-proxy-agent-v6@2.1.3':
     resolution: {integrity: sha512-98We1QWfin9vtuuQtNFhIIAEWb8CreyYTAP0Vn8HqSBoNiFJM9nZgifJeQawT9Wq0NX1HCNFlxCyTccIrK1PSA==}
 
-  '@aws-cdk/cloud-assembly-schema@55.3.0':
-    resolution: {integrity: sha512-V40A9DFnKSB8kS615QaaMxLEyWRhHhPWz6fTlssT5fr61BAPgY+dduRtgN3wEo1IyV/zURuhVEfDIKyE8JzSNw==}
+  '@aws-cdk/cloud-assembly-schema@55.4.0':
+    resolution: {integrity: sha512-u+vZLR1ZkmUZdbNRjrHPxpcNLhBHdJwG0bFx5IvEhN1J7AOhx+olWm/7K4e953YnPHr0y3CF2UxQlARqR9/FQg==}
     engines: {node: '>= 18.0.0'}
     bundledDependencies:
       - jsonschema
@@ -1139,60 +1140,60 @@ packages:
   '@aws-crypto/util@5.2.0':
     resolution: {integrity: sha512-4RkU9EsI6ZpBve5fseQlGNUWKMa1RLPQ1dnjnQoe07ldfIzcsGb5hC5W0Dm7u423KWzawlrpbjXBrXCEv9zazQ==}
 
-  '@aws-sdk/client-bedrock-runtime@3.1162.0':
-    resolution: {integrity: sha512-5JiQfVsvbQ4E/v7+E9dDF0VYp02OKdKceAJyBzK3H+Ia13ntMZFgD5YL/xpgNR2SuK89MxuwdU5ilAqiXbarKw==}
+  '@aws-sdk/client-bedrock-runtime@3.1164.0':
+    resolution: {integrity: sha512-yQDXRDOK5RiyucumWsdiz5d69+Winj/7B0bLr8vAHK04XtCY3aVPY3aJHFBnzPyZXbXaq0RsQgbcsaYgaZL4gA==}
     engines: {node: '>=20.0.0'}
 
   '@aws-sdk/client-cloudwatch-logs@3.1045.0':
     resolution: {integrity: sha512-8p8jQuiIteWVYF7NhNHTXv4I7w6ZsDUWa4S6F+j8XIu8x5t+f38RKusQCHN4z8YEAzHSmg/8eIXkagP6N4UNMw==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/client-sts@3.1162.0':
-    resolution: {integrity: sha512-x5fu1mg5s+0cagBGYe1alUX8INs1EtdVs6E2yrqJhUyN/E9VcsodUGaSmrFHM0mGRtORfLMQiv7nH5R/VaeTAw==}
+  '@aws-sdk/client-sts@3.1164.0':
+    resolution: {integrity: sha512-JIebSxHMlRBIbGLSaARtS4RMR5hVSkswgOkySa6MeztmVKyKAWOP2lXw5k4d3vdsh3UqQTm5uYwWY2GoWSIi6Q==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/core@3.980.0':
-    resolution: {integrity: sha512-2RVSP/SsPS8HSPPzIPWNYFnSmlOdxx8VDlt5gDOuMaq9UiIi35pUyo6ZEuJcysjVCu0L8Lv5dJevLLpEkyF0/Q==}
+  '@aws-sdk/core@3.980.1':
+    resolution: {integrity: sha512-W7jDWUPucezIUjFZpr8MudQQtz/m6yPMyAFrOyyQcHjuF4UrZdcCdP8eV1js06U9sH3dxp0AbhN+s9uHwQyXzQ==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/credential-provider-cognito-identity@3.972.80':
-    resolution: {integrity: sha512-2RtgpNQ5Sg9sqip70sPh1RuF8aNH2H6VDZiqMLas5Qvts++u0veEN1BjMUYKPu6jxs5VfcddoIdXCWwCuaYHcA==}
+  '@aws-sdk/credential-provider-cognito-identity@3.972.81':
+    resolution: {integrity: sha512-WS8AKP5qS6SzDN7bNZBd3ECmjeHkBbHgBmZjtFvHo7zdnSn5v+U9hSRuQLDQ9aueU2/ToH0x56mC7UgtLueBiA==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/credential-provider-env@3.972.81':
-    resolution: {integrity: sha512-VD+EVZ9UHNZhSm4KtakXZAPzgfOw4mRx66dAXNUtHcdJUisbsE7kpi1PRZFMquvuqVfx52fCDBgJgYyOFT/4hQ==}
+  '@aws-sdk/credential-provider-env@3.972.82':
+    resolution: {integrity: sha512-sAfysgoFWKg/CJvufYM7lhvMUfJpTsuwjCLzp843Vtw8NlQh2PW9/+upUFrsoQK46pJcv3u1a+st7qJ4jfSODw==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/credential-provider-http@3.972.83':
-    resolution: {integrity: sha512-NsLT02HXcWAQAgpuDJznoJDPIDH/Hh2LiQVlYc+1bVGsksEUZuYCMKa1E1L5qvzc5LLTphp7BP9LYVIhf+MbQA==}
+  '@aws-sdk/credential-provider-http@3.972.84':
+    resolution: {integrity: sha512-6xFe7tGPZedfak01TLUxuExU2Xhqw0VtoVvcS/+1OLjPB8If5vulTpCaR0TKTA/J6sAhTOjZHb6+4R1e1KRMKg==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/credential-provider-ini@3.973.26':
-    resolution: {integrity: sha512-vRydnN8wPqh5APe5R+/y4/UOts7QQQQP1UTczJq3fLcLzkQblbkYpLn+Srr8w9S/gzXU1pbiPKTv479unRawAA==}
+  '@aws-sdk/credential-provider-ini@3.973.27':
+    resolution: {integrity: sha512-geyao3+s46HIo8C0vyLz7cQ1qaOM1H6wrP/nNWTr5SoR4r97qlWrubi+a7Sg128KmvRZIFbwXTvkbKawBeysqg==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/credential-provider-login@3.972.88':
-    resolution: {integrity: sha512-J8IcBpuFj3j3RImHq/dVO5HtnUbFgvzg7JQvzLt5A42VmzLLgPLM+CUWN68jpIMdIPayu1bb1T+mJjDv9Sq1aA==}
+  '@aws-sdk/credential-provider-login@3.972.89':
+    resolution: {integrity: sha512-5kcIZkMMs6eYvU6psqZkmeWsS3EGES53S6xUJFCC6eoJak3BQCCaF8yLU1bN6LTAOr2a9RWw+m1XBGen7Jcq+Q==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/credential-provider-node@3.972.93':
-    resolution: {integrity: sha512-f5Grg1sgckk11ojxZ7NUYG1ZCOvcNhuuPngKWVxOKGuZokj8eOmo/75+GyR6qAQx4wAGytglZ53r4a3UPleAPQ==}
+  '@aws-sdk/credential-provider-node@3.972.94':
+    resolution: {integrity: sha512-qZzjRq45j0S0rI4XjHKGL63gGSFGPDYRe18Crp7l4Zk3Yr6PG4PjIixZEtsGIliOjtZ/h+ATExgjE54JQJeZMQ==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/credential-provider-process@3.972.81':
-    resolution: {integrity: sha512-6NBoFaNJbHB0YjcKW4WfrYIDmaMjtwbxlRreAf3MnXkD9WJX8XYu62pa78M0AQGgEt2TJmcNxqL3btAAjV67bA==}
+  '@aws-sdk/credential-provider-process@3.972.82':
+    resolution: {integrity: sha512-VsFOXU7gYDWqYwRis7Rif3CrE+c7xMNxp0L3XqGPuvF6JO2K93FYjhLlEphW5uEMpHEXkOOutZ5USGErgfKaog==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/credential-provider-sso@3.973.25':
-    resolution: {integrity: sha512-p1fNaa3as6S2L0wrWqe1cEz1r4iGQa7GbW23KJE3rJy+ZZxhPr6pr9cyCAJ7fAnzoMELvQGZZAuv/rG1ogRuOQ==}
+  '@aws-sdk/credential-provider-sso@3.973.26':
+    resolution: {integrity: sha512-IIrqv0iFNwO8Cd5EigbwILsnsvmprCAw5/BPfRvP/EiLQtBfv3PI9KpyUj2+qsJhYcpmKad+ugaS0+izle8OqQ==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/credential-provider-web-identity@3.972.87':
-    resolution: {integrity: sha512-O2P6CUfMP2qi8vgYB6UHYj/NYTEAAdTr2geEVdVchr3JBofK4Q6W917FiVr2sleA72R59YAXMEhrpzPwkX/xdA==}
+  '@aws-sdk/credential-provider-web-identity@3.972.88':
+    resolution: {integrity: sha512-RmeE04naP7gWzux9l1vqNQPzuo2OkH0Ca9WDtX5Zf4NERoBLeWZNU2g1ka7aJ4Fc9fqBxBLtGL89vYEfFP1LHw==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/credential-providers@3.1162.0':
-    resolution: {integrity: sha512-i1F6XYMp68lrYOXTp5Hn+rP6HYnJ2eP6DkuqUizXlecN0R0ToWnupTSoaLbtDacZAch+8OkgjfPzc9c0J4Ib+Q==}
+  '@aws-sdk/credential-providers@3.1164.0':
+    resolution: {integrity: sha512-EPX7tzUIO4SefvtIvUjxQJ5GWXgkua3ULDZWlbUbu1qTNb4nANjgtixY4pZJYcmsLjsJE1MDiRIx4bwgAjwwAg==}
     engines: {node: '>=20.0.0'}
 
   '@aws-sdk/eventstream-handler-node@3.972.40':
@@ -1211,40 +1212,40 @@ packages:
     resolution: {integrity: sha512-OkV+alDzmJ3DOs2mRPLSM9FUVSul7G1wkpKrbO+tyxxGOT7qLMPZHOlj4Ipjw9OayRmU7nMVPSFo7hvUqOSeJg==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/middleware-host-header@3.972.56':
-    resolution: {integrity: sha512-lVzDLkaV061cWKnMruxdjVDeL9cb8GI2jG/gP4qlx9tw+olpNZoxVcGTXT3UACRGD1CMa5Um12cPsz+uSd9NPA==}
+  '@aws-sdk/middleware-host-header@3.972.57':
+    resolution: {integrity: sha512-NSEEzuViAa58xjNxEfVyZNVD4yuDfssCHjME7gK0CRL+6Qp5IG83AooQ4KCwDSusk7n06RnvOBAXar9XGyjtAw==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/middleware-logger@3.972.55':
-    resolution: {integrity: sha512-J/I0P4A6b6v2FxkebHewf3kEowHxlKFufRgO0PguM5TkbGuQ647p818Dc6mEH/+Dz57a7eR1UulH7EY1a5h6bA==}
+  '@aws-sdk/middleware-logger@3.972.56':
+    resolution: {integrity: sha512-7RlEOlFWluqL5tFKaZH/tUh/hOTjwjl81EGA3jA8xyugXuJfuV9fFPfJ883dT7B5qwhhMOvQTsKoNxjdel5qnQ==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/middleware-recursion-detection@3.972.57':
-    resolution: {integrity: sha512-a4jjbiY33mHrfiLuu9U80j/lL7e8Ey6Ft7MmfawxUbatbxG72zBsiy+/w5UG9mnNyyk8Xi35DFs+7bQ6ClvkgA==}
+  '@aws-sdk/middleware-recursion-detection@3.972.58':
+    resolution: {integrity: sha512-jGiK26pWkCujz4Aiwh1gCxzT9c4mzvyvVAj7JT+AeEJ+24+N45KWMd6Bx12Q5eTGXx2LMnXXClUFoL8ZvdVs+A==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/middleware-user-agent@3.972.85':
-    resolution: {integrity: sha512-+PJRr+h6f96ZKrSM5V9BzeztJgsGojTbahN6erGOzYGmaGwfplfl0164tRIuR0dOJAvXmqp5ZOLaKvJxqFkkdw==}
+  '@aws-sdk/middleware-user-agent@3.972.86':
+    resolution: {integrity: sha512-1Hm+NEJGEBZmzyXgDr491UJLBxuwjQsx/2bgCBKnbgjNYEExjG+qsVnBUxOLIOSM/EBX24TOiGer0mk8cCnwRw==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/middleware-websocket@3.972.63':
-    resolution: {integrity: sha512-fgY5UA9oeQYwxR5MyhIHUs9wGrXJGXLK71MQck1z3ArEb/GvQ0TmZm/RPs+cIbcaoKtIGqMb2u8AZ1rGFKYzKg==}
+  '@aws-sdk/middleware-websocket@3.972.64':
+    resolution: {integrity: sha512-qhsyjMHfYZ+G7ejfs/Sq5P/ZUCi9SPVN/UpgeYxWvVa3WVjuFXPHTSKSxgXhLuRAUUcamFYEVUM7iQ4EPqtyig==}
     engines: {node: '>= 14.0.0'}
 
-  '@aws-sdk/nested-clients@3.998.0':
-    resolution: {integrity: sha512-aOD1oQVWG6UjOOEdp0MsrWE93vG8pPbvtymmeNtglGxAARplh1wzhHs4npqtY5JN5GBSrTaLbn1hQQ3W2Lk8ow==}
+  '@aws-sdk/nested-clients@3.998.1':
+    resolution: {integrity: sha512-KPw5W6LN3waUskfDCRXRcyBEHAev5PVlMOjMq74OIivFYbgPvq39QeFege7IOFPncO425/AQK0qxdfaoeGejYQ==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/region-config-resolver@3.972.59':
-    resolution: {integrity: sha512-dsSikJWRKp6qj5EdviPChoFOCfaZMpnMnRdPLqnRHodcIPtwzmZB4W/LbaHGUE64kRfH6IFD4lSra4Qe1CMl/w==}
+  '@aws-sdk/region-config-resolver@3.972.60':
+    resolution: {integrity: sha512-LgLhH/vTP8GOc4I/rQL3gl6NugAG/gOZiVdEb/68PWmtKhbExYqjK0RIDnB66BJoM0wrVPCsrzR3hkVo4JyKJg==}
     engines: {node: '>=20.0.0'}
 
   '@aws-sdk/signature-v4-multi-region@3.996.51':
     resolution: {integrity: sha512-+aHvUugVBuMPXxgkPfWnTMyGdE/yWS8GHi5+qQ37HowS0YqzrbuaDLznj+Dtmtu5jgCdqz36gXmujOToUhNNWw==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/token-providers@3.1162.0':
-    resolution: {integrity: sha512-vOD6Ac0M43LtXaPu+/+wUMQCd27zIpKt/Le/a645qhx7T1MZeEK71PDhtIHGHgnQjGyNSfC6Z5RNud/hQb3veg==}
+  '@aws-sdk/token-providers@3.1164.0':
+    resolution: {integrity: sha512-9LPRWfev5QZH1EnNn9O/Y++iCRpfxrJs4EIsJuOAKYZ0DY/kZ3aOx0qWzmN1OUOd8JlUk6Mjy1tJ8b7ul5tuVw==}
     engines: {node: '>=20.0.0'}
 
   '@aws-sdk/types@3.370.0':
@@ -1259,23 +1260,23 @@ packages:
     resolution: {integrity: sha512-i6LVeXFtGih5Zs8enLrt+ExXY92QV25jtEnTKHsmlFqFAuL3VBeod6boeMXkN2p9lbSVVQ1sAOOYZOHYbYkntw==}
     engines: {node: '>=14.0.0'}
 
-  '@aws-sdk/util-endpoints@3.996.54':
-    resolution: {integrity: sha512-TV2+d5KCagj4ikObmBiSXeQ81gUcOIZN9/ESwigg1H5x0lBMXDOuReAueRmxHxP2o1Z/Ej12s/jE9jpGmrWEDQ==}
+  '@aws-sdk/util-endpoints@3.996.55':
+    resolution: {integrity: sha512-treuvfqD9gyDTPjqJu4Aqr0AjkNYMsyFhOyLgyHmERfonCskNQfRcbLn2X552S8fVFU6ti6lo4NyfRPegWWisA==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/util-format-url@3.972.57':
-    resolution: {integrity: sha512-KS+cS2R3ki4LGY49pC43xczWGtVNi2rJSBWuYmPKN7LwrQQHL5ds3JkWwH7kxapcx2IrPF5uhnIIwkMb8TWtcg==}
+  '@aws-sdk/util-format-url@3.972.58':
+    resolution: {integrity: sha512-avDbd/MozQxwJEVxNR5cMz5jAlkIj77vdkuL5a9FLJZJlNGO+vQCX4DApzk4q0qO4EJHG8KWjBJ1OCTJ/4UmZQ==}
     engines: {node: '>=20.0.0'}
 
   '@aws-sdk/util-locate-window@3.965.10':
     resolution: {integrity: sha512-ycwH6Zd2GhuSqdXX9ihbCjeGTB6xOJs+O3+Jb8/zDG9978XU80qs75dfkPJRMNKe5MvBZPuNeFpd4JZKPoUF4g==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/util-user-agent-browser@3.972.56':
-    resolution: {integrity: sha512-uupWzuyIhat6jXcaW7rbYCKCKNNmlWgIY2PDk0ATHb7dyxfsEDBsamALw77fpAlAObbRvr0KQb9lOqQ1Tt8Hcg==}
+  '@aws-sdk/util-user-agent-browser@3.972.57':
+    resolution: {integrity: sha512-7KfDM84yPfe6/jepsXVpf1w/TX35KsRWozNbU9L53C0mjsZgoXljZH9on125h9hqpZOaBfAoUp4Ba1896BJHeg==}
 
-  '@aws-sdk/util-user-agent-node@3.973.71':
-    resolution: {integrity: sha512-Y8N+X/OOQlMVk5InyXqc2b0zLxouaagPvkxmp5hYjdZCXsM0XJn3x2cRZMY4r+H9D3WzYMXC/HEcRWbnWgwZhg==}
+  '@aws-sdk/util-user-agent-node@3.973.72':
+    resolution: {integrity: sha512-feVfmPjtsjRxVv6j4Kf7SS1jr7woZGb/k3RZ7sI4RJjQK1IHyPeqfZ2COGb0/nA+2Ab4V/4lc6XHpPc7mNbUhQ==}
     engines: {node: '>=20.0.0'}
 
   '@aws-sdk/util-utf8@3.310.0':
@@ -1385,8 +1386,8 @@ packages:
   '@dotenvx/primitives@3.3.1':
     resolution: {integrity: sha512-ykX29rVnHwwV6m3AMmvR+niFSwhOG2TYttJjURz3n/3iHtpWC8gEptojYY+eHgBAV4fkaGRM1Rf0wgQ6/DeUYQ==}
 
-  '@dotenvx/primitives@4.3.0':
-    resolution: {integrity: sha512-yTtZaVQt7DYnOaCm9BzhoTytGDAL5j49HCoFd9Vt/UlEFVSbkTEPHd23QmlPARYEqsJSUZEx43Avw9oQrWJINg==}
+  '@dotenvx/primitives@4.4.0':
+    resolution: {integrity: sha512-swvcX4CxhlgE5G56r6pHYg7LgiKvBZ+cHz/2zk/AyrBxm6eig//oMYnK9IgQ8Jds9DSKIJ88G8RvvANgx7Qv0Q==}
 
   '@dotenvx/providers@0.3.13':
     resolution: {integrity: sha512-fF39zRYFyukQtjZJ8VyrAl6zsZo7t20ZD55QK+yN7VPS5gmEVHoIHwzNZGQHJDNA5A3evWiGM6547egI/sWahQ==}
@@ -1596,8 +1597,8 @@ packages:
     peerDependencies:
       hono: ^4 || ^5.0.0-0
 
-  '@isaacs/nonrecursive-glob-match@1.0.3':
-    resolution: {integrity: sha512-SI7kyKHq4XXDRozw+r9GlRZkia1ZkFrpLW98r2IC2Bpr8YkFGE3fvjzmxCG0x78A++69HmDNrDvSMYBZmHGpKA==}
+  '@isaacs/nonrecursive-glob-match@1.1.0':
+    resolution: {integrity: sha512-GPm/Dbvk5RLmhRnxXIa7nTpK0xtl4E0wj0MslsuNiJ1FIROU+2+9lgUC/dgF7Ey4QCWhfEsgxilMRMCdHPfDfw==}
 
   '@jridgewell/resolve-uri@3.1.2':
     resolution: {integrity: sha512-bRISgCIjP20/tbWSPWMEi54QVPRZExkuD9lJL+UIxUKtwVJA8wW1Trb1jMs1RFXo1CBTNZ/5hpC9QvmKWdopKw==}
@@ -1657,6 +1658,10 @@ packages:
     resolution: {integrity: sha512-OlanaW1vv7ufTqQ3/fPLI4arGt5ZoM+P8abOMki6uEYnpRazepSWDwDnnw+la7kE26SHVC18//SMccrDvLKOXQ==}
     engines: {node: '>=8.0.0'}
 
+  '@opentelemetry/api-logs@0.222.0':
+    resolution: {integrity: sha512-9mb1If+IF6u0ZVXkHQ6ogEae5HwA6ajIVUgpSDQyRASxft6BSXHvBvPooRle3yFN/fKnCdSOnuu0OC3PLcF6+g==}
+    engines: {node: '>=8.0.0'}
+
   '@opentelemetry/api@1.9.1':
     resolution: {integrity: sha512-gLyJlPHPZYdAk1JENA9LeHejZe1Ti77/pTeFm/nMXmQH/HFZlcS/O2XJB+L8fkbrNSqhdtlvjBVjxwUYanNH5Q==}
     engines: {node: '>=8.0.0'}
@@ -1688,6 +1693,12 @@ packages:
 
   '@opentelemetry/context-async-hooks@2.8.0':
     resolution: {integrity: sha512-/3FIraneMcng67SUJCxvyInk/oxzwsxyadufk0wwfOBLf5wqtAGX4MoQASwSbndBPeARzBryUM9Azr5kHIdWLw==}
+    engines: {node: ^18.19.0 || >=20.6.0}
+    peerDependencies:
+      '@opentelemetry/api': '>=1.0.0 <1.10.0'
+
+  '@opentelemetry/core@2.11.0':
+    resolution: {integrity: sha512-7YP44XH0tV6+Mb54x2YGf84i7yi+31MBZlE8JwvozkxyTvXbSp10X7cI7YE49ChJ3shMJoBmCJF3+1QFBJctGA==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
       '@opentelemetry/api': '>=1.0.0 <1.10.0'
@@ -1878,8 +1889,8 @@ packages:
     peerDependencies:
       '@opentelemetry/api': ^1.3.0
 
-  '@opentelemetry/instrumentation-http@0.219.0':
-    resolution: {integrity: sha512-nNt1fqpyah/OKjNHdEOu8xLwISppRU2qJuF8aR+fCcftVwdFkPgtworBLA+TI1HU2iF508jcQBF2gerWczJAXg==}
+  '@opentelemetry/instrumentation-http@0.222.0':
+    resolution: {integrity: sha512-HhMHW32LyGzIJEmUElxaML4oUe6JiCq0Hvjt/Awxb60SlMsSFetFLFjed45g/0wrPr1n7z+xW+x1B/584WBAkg==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
       '@opentelemetry/api': ^1.3.0
@@ -2040,6 +2051,12 @@ packages:
     peerDependencies:
       '@opentelemetry/api': ^1.3.0
 
+  '@opentelemetry/instrumentation@0.222.0':
+    resolution: {integrity: sha512-fhbRDuAgzPKpq1k5+hX3uS+3QAYNca0on0Ngot/R8dDsQtuFaADeZnG2uSgxABuvcI7S2phAaRhbct9jieeKZw==}
+    engines: {node: ^18.19.0 || >=20.6.0}
+    peerDependencies:
+      '@opentelemetry/api': ^1.3.0
+
   '@opentelemetry/otlp-exporter-base@0.219.0':
     resolution: {integrity: sha512-zvIxQX/AZUVKDU+hCuYx+7UkiP7GRdnk1ZbFQRYzHvYp47cAWR4j3IhoPhV9KaeXEv2xdGq3IA6PnpzDmLcmSA==}
     engines: {node: ^18.19.0 || >=20.6.0}
@@ -2179,124 +2196,124 @@ packages:
   '@oxc-project/types@0.156.0':
     resolution: {integrity: sha512-1Duyg48TdJNdyhEB8Xn1L36bT9Pv6GUtlKjHxOys8xkaF/rQq3XJE+bAurSK/AgIz5mGFsb77cn9Pb20+WCScw==}
 
-  '@oxfmt/binding-android-arm-eabi@0.76.0':
-    resolution: {integrity: sha512-z8x4kittQLPsrJWmfoIJyYqs2gNwceGShoUqAJdFRPw3K4kkkKCFHh3Cr4NFRvZb7DPfDS3+JfBjSm3OIyQaJQ==}
+  '@oxfmt/binding-android-arm-eabi@0.77.0':
+    resolution: {integrity: sha512-zmPiuOvkuu0csMx4U3gdMunIFWNcWulzikFMdAPBzLazVAA3LhdHzv9yzgUgAckv/zje5vz4XJcseNQKdSsWMw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm]
     os: [android]
 
-  '@oxfmt/binding-android-arm64@0.76.0':
-    resolution: {integrity: sha512-Zj9fEQhQSKGj8ZTB+X4q4ho4545xWf7qsvJpwREWnBz5BATEFYtStKRgiwYOZvxQ7ORlBEgSj7pmDzuljfV1mQ==}
+  '@oxfmt/binding-android-arm64@0.77.0':
+    resolution: {integrity: sha512-shXOIK9sj3bvt4H6K47qFWNKaYBwEhzj97iUwoLGyyRDrXt1OdAAuCiupCinG1i7ETL81knjEKeB+JmhOOfPew==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [android]
 
-  '@oxfmt/binding-darwin-arm64@0.76.0':
-    resolution: {integrity: sha512-jZy8GpUXaWpic5JPMAvLmaBz95Sx0naZl6hptBPLOMiYmZYiME7jAt6pv8o/tjQqPNWKb+7jKzZhrYx6UqM5MQ==}
+  '@oxfmt/binding-darwin-arm64@0.77.0':
+    resolution: {integrity: sha512-lrTX0I54buv9CW2leEWchWLdfcrblZ5Rj8uAilKzBEyWif8CTN6zBHdFc12K1b6U2cnlvOFBd1LxdLdqLKX2EA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [darwin]
 
-  '@oxfmt/binding-darwin-x64@0.76.0':
-    resolution: {integrity: sha512-U59+a9lVpoRp9enRhTE9GssL3qB1k09CYagRzTfs3dfknopMYV0x0xHZv7Pls3SNMqHlyHR+ufmY76CYafQoLw==}
+  '@oxfmt/binding-darwin-x64@0.77.0':
+    resolution: {integrity: sha512-SD44K3x/Im8EsOtdHxjVmTBi0cafAaunRpCeq+w91tkD2keqYagR8oAvxkJHUK+KPg5NQk7JZqQnzGHnVEBrDw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [darwin]
 
-  '@oxfmt/binding-freebsd-x64@0.76.0':
-    resolution: {integrity: sha512-J1R3YJHPdQJ2RQvzMdTVDWyizhihGiRGGAeEZxtGp629j5pcT5ypSLSiBflopD7o7tmiMD+xlNfhIVmjcHKMVQ==}
+  '@oxfmt/binding-freebsd-x64@0.77.0':
+    resolution: {integrity: sha512-N+gUflsCx3FAVkxi5sxGlL5LwO+7pv5NexHJufBqPyl3BcPv1rXpfwqhL/Vj+XfshfoxMFTBbzrbJgGVaPVkAw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [freebsd]
 
-  '@oxfmt/binding-linux-arm-gnueabihf@0.76.0':
-    resolution: {integrity: sha512-x9qTg6zHoqeyzmFVlIjSb9WlhZdoXaayMTeQeDeUEfKA484AgPJz7f9chLjDMONA6wUUX0FJxnVHsYgX5Zv0+g==}
+  '@oxfmt/binding-linux-arm-gnueabihf@0.77.0':
+    resolution: {integrity: sha512-DXGwP8818IUZ4cxcfugg9PXqnI6fVCWIqgCgBoUKdl/QhJF4Po+lucJBrnrX/b5BNKwVMc3xSrvbI9rl8+RrBA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm]
     os: [linux]
 
-  '@oxfmt/binding-linux-arm-musleabihf@0.76.0':
-    resolution: {integrity: sha512-303gbamm7NDllTtkeaX+8F5Da+KcSBr64mqELQEFg9XgnjfLX3YBCHUcOfgIlVTSybesy43eoeKai8oGr0P6UA==}
+  '@oxfmt/binding-linux-arm-musleabihf@0.77.0':
+    resolution: {integrity: sha512-HUiJTgdV10PkCW41nHqVYYlW8Uc+39YBOoluZLfJE2MBPKVTNElhL+vpdSEuVaCGhGkzOGR6XyxM37gu31L1Qw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm]
     os: [linux]
 
-  '@oxfmt/binding-linux-arm64-gnu@0.76.0':
-    resolution: {integrity: sha512-j3UAXzCJoWX9bZLaICj6DfwkI/2fzja9RpiCIbIN+2CQAcKoY+5SH5pQUcECvn32mQm17NSPE9YqTAwYx1seZg==}
+  '@oxfmt/binding-linux-arm64-gnu@0.77.0':
+    resolution: {integrity: sha512-+w3V07y6yy8FdACnGtzgDsG/CHgA0Y/W2/bzZuPYgvBAa23Lap/nmvyNQmCiGKkSaChTPlY7QpIShGGAC7IGEQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@oxfmt/binding-linux-arm64-musl@0.76.0':
-    resolution: {integrity: sha512-qFZqWVkEzuxWMtUkCtHxsnohXHnUMBQr/ZIxF0KmlCSt8de/bc1lbpVgpqjb3QxCADQHG/O1s3JcowcBF2sqdw==}
+  '@oxfmt/binding-linux-arm64-musl@0.77.0':
+    resolution: {integrity: sha512-FASxWQAuLW4WXFViDa77ybd3Y1lbkBx5DTtL4OGl+pL64/ymtydTFvJM0xz/0vnCirNzPUDAI6TiTBDGsFbEVg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@oxfmt/binding-linux-ppc64-gnu@0.76.0':
-    resolution: {integrity: sha512-ROiAid0UH2GN5lMMX2JTgKlOKx1rN+6a1WxIuBsU3j5A3MuB9U5XkREMW76XBbAImnH45mfOCFcSIwb+drcVYg==}
+  '@oxfmt/binding-linux-ppc64-gnu@0.77.0':
+    resolution: {integrity: sha512-WRdlgZahG35zCieq7Po7QU8mBgkFAIdEpgS5p3vVZrHt0FXTbFgzqC7xeBCceh9gpFGgr4VWblULNnU8gdw0DA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [ppc64]
     os: [linux]
     libc: [glibc]
 
-  '@oxfmt/binding-linux-riscv64-gnu@0.76.0':
-    resolution: {integrity: sha512-Oyd/9ObdM2RYkZ7yzF/GyvVdbNgJcRG8BFVwnAVo3ooqzaem4E2p5eTIGB09FecQD+Q5HQEANOTEnIZTO6rBAQ==}
+  '@oxfmt/binding-linux-riscv64-gnu@0.77.0':
+    resolution: {integrity: sha512-CVzNO94x/UzQe/INVUu9qt5X1MjLEooqwc/5VcQ88eyLXiEIIsjubpPQgwEMKwfWtAA5hnpFL2GF74zSdCg07Q==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [riscv64]
     os: [linux]
     libc: [glibc]
 
-  '@oxfmt/binding-linux-riscv64-musl@0.76.0':
-    resolution: {integrity: sha512-86DOpmPDR5UzHSOB8y5HlOpYAIBtMx+6L72IyousNx54q1Kz61aykB4ScovFYivZUak+7Ww6tPBUjarluzYKLw==}
+  '@oxfmt/binding-linux-riscv64-musl@0.77.0':
+    resolution: {integrity: sha512-NrCcVheqL0kRUi9gptqjkQhxSFayotM+zycC3lSOSrsf5SroZq49u66ShyuZkHCCzKPHB0AT0pL/s+ET9R3qQQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [riscv64]
     os: [linux]
     libc: [musl]
 
-  '@oxfmt/binding-linux-s390x-gnu@0.76.0':
-    resolution: {integrity: sha512-u6omjjFooKfnHLBI+3UtBVInAeuEhoM/RAIw/OiFop2QQgOan5zDfqPR6guMaylt68L60kV+by07Ibp87KDjrw==}
+  '@oxfmt/binding-linux-s390x-gnu@0.77.0':
+    resolution: {integrity: sha512-LWDQ9T/Bo/kt/q223j9fYLiNTkUYyuMkk7ZrIsIAV7l19MmuKxgd/1tZ8xhoUuVIdsyET7sJrQ6X/vRG6V+bZQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [s390x]
     os: [linux]
     libc: [glibc]
 
-  '@oxfmt/binding-linux-x64-gnu@0.76.0':
-    resolution: {integrity: sha512-L0/hW1MdMrgsvuLGp9YEQOYOGj5xPHa8wVRtybdd5av03PV4qSpAq3pyfC7sn7UCA8ynRhMRTAa9Kr9nV4LGZg==}
+  '@oxfmt/binding-linux-x64-gnu@0.77.0':
+    resolution: {integrity: sha512-5JbOT3ucC/2kROUjyyOW06FjXO8trPjYb+kE7E7cLxmpGAnw0jjeU4Tjg4C8H9JR1MZ2oH4fXE1NqLNZ89ISnw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@oxfmt/binding-linux-x64-musl@0.76.0':
-    resolution: {integrity: sha512-JNk/7HaPDJjy5kih3vq6b71Qif3tHx1ZFACGBzeHeNzyKaIpar4eFGya89GR398K2rwX0eEVmEq1npBPlEkkmg==}
+  '@oxfmt/binding-linux-x64-musl@0.77.0':
+    resolution: {integrity: sha512-/q9p495bmmKtxqWlIrNiJ15hoddgk/jPvJwMW6Nh796UgVRMTCKD7yI+AAL7/7xWlC3+2ls5l1RPywuV4lOdlw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@oxfmt/binding-openharmony-arm64@0.76.0':
-    resolution: {integrity: sha512-MDLrOQPXDuPKvPUCvpP3hC6kO72dsYxfpYiR08Nf5DiM75M0d8+D26JwT4uHDf0bcflvlGHcd58Hn2HpxkHUUQ==}
+  '@oxfmt/binding-openharmony-arm64@0.77.0':
+    resolution: {integrity: sha512-tmN3OEI38xXr48UeAkQMAX1jMHszVHv4I9lzh44DKrMlIFxEU0aBYl3Zs7PzRBuJOLR7h77m6bUlCh0E06MVXw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [openharmony]
 
-  '@oxfmt/binding-win32-arm64-msvc@0.76.0':
-    resolution: {integrity: sha512-2CcICDrQKqMAOFuzmts/8Ov5iKb+DW/QrW4MFsl2bnRg86uoiUvtqUkHqNSY19Shegc8pBHiXMSEHDjIg94o0A==}
+  '@oxfmt/binding-win32-arm64-msvc@0.77.0':
+    resolution: {integrity: sha512-v//nJMk72xRT+/9QB9mJWEPV3/5XncMvxtYQAYbAsv5VcxLlRcbj2n2srQSERglVcTft4jI3MK30ceCoRcDTJg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [win32]
 
-  '@oxfmt/binding-win32-ia32-msvc@0.76.0':
-    resolution: {integrity: sha512-NjZLJg+tQpMWVSyeWBBKCpib7H/uLq84ZzxCvY5eqHzSaItuzCECGA9MBiZwmW8fnkBIfppg49Ib//LSCGAp8Q==}
+  '@oxfmt/binding-win32-ia32-msvc@0.77.0':
+    resolution: {integrity: sha512-D3SMXWBkVogzAlzd3RfMaFuHOTdPpRDFT+jVbtXszWwck9PCK4hYoRoncjuAjWZuWzRFND3/Mk91qFvJyoJbLA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [ia32]
     os: [win32]
 
-  '@oxfmt/binding-win32-x64-msvc@0.76.0':
-    resolution: {integrity: sha512-0vCMaX/qloc7uaKBDRh+62SBW8EqmhS7c8/al+PxD594ao4lyEWdcoEmVoBgnCNVW07GDpg+9uPV7x6ta9mljw==}
+  '@oxfmt/binding-win32-x64-msvc@0.77.0':
+    resolution: {integrity: sha512-2vyyODjP1Sb830rTVgfFqZoIUYF8uYdGx9S/Usih+Av6gQ9QyxXzwEGXS7poxfsxxQftZW1IbcFlhvQkeDRekQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [win32]
@@ -2331,130 +2348,130 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@oxlint/binding-android-arm-eabi@1.91.0':
-    resolution: {integrity: sha512-eOqJUUS1MCqIoUUxMIkuwaqIdKaHr1SXYA0CQI95UUrF8jwQylQH33bBmnqhZfvWXKlRB2Ylx/+Sbk/ctEqzZQ==}
+  '@oxlint/binding-android-arm-eabi@1.92.0':
+    resolution: {integrity: sha512-k3Sd4ixQfiOrybv1gT+AMI81HSdtAFsiCFx+xXxWdFkmKW2HNrSiOfwn20o5nl/ggwbzU1oNLDeU/fRPinTVZQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm]
     os: [android]
 
-  '@oxlint/binding-android-arm64@1.91.0':
-    resolution: {integrity: sha512-vIJU4lRxK0EhbBt+iR3rkq3pio4I+V5Gshwjei3plNjN+CIq0WxWHzYVI06J9KN8Ar3hyNSFtzJAjVRLZOYpjg==}
+  '@oxlint/binding-android-arm64@1.92.0':
+    resolution: {integrity: sha512-OZzgEuiTSG11QkBWdXEguiLOT6lL09KtfcC/BmvUQWBAjU5eVyBxIAsmWAXv8L85/eT6RE0GBEWTEFBAbYE74g==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [android]
 
-  '@oxlint/binding-darwin-arm64@1.91.0':
-    resolution: {integrity: sha512-tLy76MurwAOpQt5QVMkJUgexBSWhB7qdvAYb14bc0xntZS6f55aKicbZoxZ/QlmAbnrdlXeD5+IjwY8EZ9RWTg==}
+  '@oxlint/binding-darwin-arm64@1.92.0':
+    resolution: {integrity: sha512-We6XS7tIqxgUoany6uyGjj7mNsh/mwf4Gt9gUzhxG65NKo2Ow9s6tDfrVuI0FVg8n3YmpW5PBx80qFxiLwAfsA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [darwin]
 
-  '@oxlint/binding-darwin-x64@1.91.0':
-    resolution: {integrity: sha512-zPeMmjAqm5vXxbTp/JqYuc9gGSbUuEaeCAkFHB4TCRLTlfJGD//Fkx03YvZHCHZJ7ideLiiLcae+3f2I27qnaA==}
+  '@oxlint/binding-darwin-x64@1.92.0':
+    resolution: {integrity: sha512-jKJWijmi6AxAZcXXWA6R/NLVZHxoRTbIMnV8znsHzeiVfuEefYcyR8SJGfbBPmkG+kveLFRcBGw0fBrjLqtGmQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [darwin]
 
-  '@oxlint/binding-freebsd-x64@1.91.0':
-    resolution: {integrity: sha512-psOR9+xGMXn0hj4KY5M2kjSQ1n0TCMdYbPOraoV0iQyl7mw2oBBYGUM2+ma40m1YLVrktTBOta4FjrmcOHDhrg==}
+  '@oxlint/binding-freebsd-x64@1.92.0':
+    resolution: {integrity: sha512-wkw01wvJPM8/4jh+MV3cp11859VuBc94N2q5uOzcBgdGIRAqMCg1O0W/+xsZ1fsInvuUcv2Xo4nd1nzcKhi9kg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [freebsd]
 
-  '@oxlint/binding-linux-arm-gnueabihf@1.91.0':
-    resolution: {integrity: sha512-1PNA1j4ETxawvxfz6ueDxWgQgWkXPbv44DWZmC7LR07GqojGFDOwWbosOT6/AYiJr7zMXEhn2dPWMkyFFOFpUQ==}
+  '@oxlint/binding-linux-arm-gnueabihf@1.92.0':
+    resolution: {integrity: sha512-Elm6nW308MzmR8knvk0tPqQ4XE+PGKztjXv7kVZTRLkhBQZRXHUQoBLc4E30fiIuF6gkZO5f3EpJtQc4Ok/fXw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm]
     os: [linux]
 
-  '@oxlint/binding-linux-arm-musleabihf@1.91.0':
-    resolution: {integrity: sha512-jcNePVpca37lTbHmiPMnVbPAAW0rH9kAoDjsDv6vESEX9pzazIR1q5SyYuc1rQzdjHtc2VVCDN9jDh6tHcOHyA==}
+  '@oxlint/binding-linux-arm-musleabihf@1.92.0':
+    resolution: {integrity: sha512-oylpBAoeogddjhTlSPsXrzGq/aeJsvaULz/hYXvWtGn/Wt8LPLC7gFhucCicbRnzEKsShrZxIA0KyHmtFNnijQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm]
     os: [linux]
 
-  '@oxlint/binding-linux-arm64-gnu@1.91.0':
-    resolution: {integrity: sha512-TJi78UX6R+9qZ23ZKtzN6adfW83bjY0NXsCRMBRH6H7IizaMXmZbdRAtjedMkx77bT46YQH0csawsY9lwha8MA==}
+  '@oxlint/binding-linux-arm64-gnu@1.92.0':
+    resolution: {integrity: sha512-/EWOI0wwY+74UGvC93TldpoNP8moIcidVUPbUSoX16/SEdF7ah209yxSQia4+9JdCRWYA3+yQMofXMgWKk/16Q==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@oxlint/binding-linux-arm64-musl@1.91.0':
-    resolution: {integrity: sha512-OowlLroUTzKq5OBvbu6iegch8SJ2DivXFCukzPWURwvcJhMj7/P0CUGH5qrDlxT1Kh48dcxqYqrvE8qK6xTLKQ==}
+  '@oxlint/binding-linux-arm64-musl@1.92.0':
+    resolution: {integrity: sha512-9Se7Zuazr104yc2PaluriJW2rqvtaN6FSi9MSjQgZGeYb6LKvEcJ586tpjek0l7hNQNoir8MID7OENPH6juN1w==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@oxlint/binding-linux-ppc64-gnu@1.91.0':
-    resolution: {integrity: sha512-QF/5Ge8yGpWg5s4awMNHfVKh1WOmk591Qg082i6CHenXYBa+W1E5RwWZXaKUOw4Ko7CCjqg3TfBc0AzhnqblYg==}
+  '@oxlint/binding-linux-ppc64-gnu@1.92.0':
+    resolution: {integrity: sha512-88IAchs204I/xxAbAo3NRyz1m/29tn8jUAPvc4tK4FzrT2PLwZertd93ANF6231vwbAhYiD5gl0cX8Po5xsjWQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [ppc64]
     os: [linux]
     libc: [glibc]
 
-  '@oxlint/binding-linux-riscv64-gnu@1.91.0':
-    resolution: {integrity: sha512-dXlsKlNhzJQX1nageGKnvWe1D7uTng249hQM80CG/YPZ8F/VZHbxVLhImgurdWBOmu86XOemValLjrW6QIOM/Q==}
+  '@oxlint/binding-linux-riscv64-gnu@1.92.0':
+    resolution: {integrity: sha512-KtFdVdkfvBGcsrmnbjYJ9/XTDABnaniiwnptAcAm0pkaR2zhZ3sr/Xy+N1Xbz1Yq5Jegu7SoeNv9caTP0b5OTA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [riscv64]
     os: [linux]
     libc: [glibc]
 
-  '@oxlint/binding-linux-riscv64-musl@1.91.0':
-    resolution: {integrity: sha512-tznkj5VrWNRUfymkaLcJetgMLbP9suL5ob/m7j0Fdbnm5u3Li/Ezo/YcBixiuwdL1sg0oGpyTe86It0J6T+Lxg==}
+  '@oxlint/binding-linux-riscv64-musl@1.92.0':
+    resolution: {integrity: sha512-V43CO5FPgHtwHup4H5+dIdwzZX2FhREQGsSBZx8V1UyFEAul0Q13qviKqZfSMM6G41CGtCekVpJGGOxW5v1y8Q==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [riscv64]
     os: [linux]
     libc: [musl]
 
-  '@oxlint/binding-linux-s390x-gnu@1.91.0':
-    resolution: {integrity: sha512-sNvfLiUYQkVsLNUgIW24AEYTHSd2zZ1vAxXssPdjuQHTtCpRvQihYri6d5z5FY7w/QrcnB5+g9E+/sqmZq8tfA==}
+  '@oxlint/binding-linux-s390x-gnu@1.92.0':
+    resolution: {integrity: sha512-WooxeACzGH5q34olo7JgAk7XbVkTUNfwhR/TzmhwVs/y1p2R7ZWJo14hiyxiGcoYZR1iBnbBFHectADqb/KSog==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [s390x]
     os: [linux]
     libc: [glibc]
 
-  '@oxlint/binding-linux-x64-gnu@1.91.0':
-    resolution: {integrity: sha512-eA25ETvimhUZ89y5BcunNY7yv7qwG2I7V7dFQAU+mIEqZ57gBCXdIERl0yXOEt43zjsw0yK2gRKTc+twF706wQ==}
+  '@oxlint/binding-linux-x64-gnu@1.92.0':
+    resolution: {integrity: sha512-lW2pLF1oFvNN780YUCtDyoUm8oFzZGJNcOFe9RtLMX5v5+FcWfAQvHUMMPF8H8kJB0HAi3dFmWDWLa5VPuY9mw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@oxlint/binding-linux-x64-musl@1.91.0':
-    resolution: {integrity: sha512-4hZ4Z9K+OkcTpAHDoUTMg/8MModbM0aocrl9KnGzp9h5iKqjrXraEUZorYoVCT7xoK93CAHXgTndxRBrOjH/fA==}
+  '@oxlint/binding-linux-x64-musl@1.92.0':
+    resolution: {integrity: sha512-2BJAAB/eqPn7iD7mFVfs+1ZVUogAYOMCTaUgjAvbtNGg2ppCDE7gcv/9VSO6GCDybdFUqlcyeyjn9hRpl1ZHog==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@oxlint/binding-openharmony-arm64@1.91.0':
-    resolution: {integrity: sha512-gtqn4b0kLpGe46Qh7NHiR86wZpd+TLaesO106s7V3RG33r63VB94LW5qPKEDJX64osh3xfjnPFn1M0484bC7wQ==}
+  '@oxlint/binding-openharmony-arm64@1.92.0':
+    resolution: {integrity: sha512-iLtjNqqa/2IV5qu/3rrkpVd42Ia3yeCn4fSZoEr+m5FoGHtZvAV6J6YuU3lewg5Rg5ORGvwhdgN+7gNzwkl7tA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [openharmony]
 
-  '@oxlint/binding-win32-arm64-msvc@1.91.0':
-    resolution: {integrity: sha512-KQItBdsyHN28U3z/bEek6h9pvG3Uqv564QYO8K1bE/V7YRZgpHlRnfNKVPHkk4sfYKyPzEjCgW80QkImOLvJog==}
+  '@oxlint/binding-win32-arm64-msvc@1.92.0':
+    resolution: {integrity: sha512-ryxiR3ZqB0OJzydMu+bVC3R7ZtoU7X1rI8sEgTBCCvQvgVwoCwqSFlfmhgiZ+9wZ4IdTsFeu9tdiF9KtRCbSHQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [arm64]
     os: [win32]
 
-  '@oxlint/binding-win32-ia32-msvc@1.91.0':
-    resolution: {integrity: sha512-XFKqbbsQVmTgw+CyBKuzSZtAa45viom1naFfulKmkTFdDyDaBQaBqEz5J61TI8iwBynU+F8q7qPD+9mplZRhEg==}
+  '@oxlint/binding-win32-ia32-msvc@1.92.0':
+    resolution: {integrity: sha512-DaE9OChj4nsdEST32BP7saGu8WtjOinTy/eS88dZ0TvTfDV26ebRDhsI1rL9OKXfO+DgehzhAQMqdPr2jgfcFw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [ia32]
     os: [win32]
 
-  '@oxlint/binding-win32-x64-msvc@1.91.0':
-    resolution: {integrity: sha512-DmpK0PthG66Bcz5Y4JqNbzXltzyLQtg3ofYpd25+ejm7kQYUM78VL1uIP/ZFct2781mwUyBX37LatFPCTVp35A==}
+  '@oxlint/binding-win32-x64-msvc@1.92.0':
+    resolution: {integrity: sha512-0AyhqX0ciFuEnHIL+B4PIMMX3s/IpGHNEbbUqwsNhSrzWUSlEOPw/q7qFnRsEJfiKedcqVfUE/aXYuSMtpiFyw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [win32]
 
-  '@oxlint/plugins@1.91.0':
-    resolution: {integrity: sha512-Fh+SOBxMu7/pbSk84WG4BN6npcxxlF4jWNQJ+S4IUNyvSVeQwOVTFQMD/Dx2EqBQ1lVeCADcJ+0rzT1BKQ9cUA==}
+  '@oxlint/plugins@1.92.0':
+    resolution: {integrity: sha512-+8wfampUIDYgvWX+QOd4RFk0fTLCquBnkCSdb9MiK+H0BaFQtgq445s+yJnb5/qjjyaWGfX4j7yJOdijXv79qg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
   '@protobufjs/aspromise@1.1.2':
@@ -2617,8 +2634,8 @@ packages:
     resolution: {integrity: sha512-WkWkseIHXv+hr6RnrkpEOv5TOPHWLzzlOsocnPCCKsdfCOkBN7qhBn1/Pij9QZynkloJXYsQp9A5ykdIPVL2tg==}
     engines: {node: '>=18.0.0'}
 
-  '@smithy/fetch-http-handler@5.8.0':
-    resolution: {integrity: sha512-ycSJu3tFAQ4v04CBB0agqFMVsSQ1iG3yw+SpgxRqKfaURpQD4CZ8Wn0zPMmSnOuTpTh65Vz+EA0rMrw089wvkA==}
+  '@smithy/fetch-http-handler@5.8.1':
+    resolution: {integrity: sha512-h8BdMUrUBhMhMaeK7QqAdINRZezCGuYOCpcOZZ1ewxbHST9rdTd09xwNpvLTYfzDRehxQiReK4SKbdYZxBA+ew==}
     engines: {node: '>=18.0.0'}
 
   '@smithy/hash-node@4.5.2':
@@ -3167,8 +3184,8 @@ packages:
       - yaml
       - mime-types
 
-  aws-cdk@2.1147.0:
-    resolution: {integrity: sha512-2ON/W4jShXWS926bKO6Osgw3MDlxhco5cz3n7SS5GLzaEaYs6ebpAHRDZp6sirkGnMqWoUwxCmIOkvAHS9Rn2A==}
+  aws-cdk@2.1148.0:
+    resolution: {integrity: sha512-G7MqPDzldsFxrVSFxR8Oj3vf8NutokIatJVygW/g/0COjrepsbDjuCP9OB9iN2hOn3QvOSf10qd5K/P3D5TQcQ==}
     engines: {node: '>= 18.0.0'}
     hasBin: true
 
@@ -3450,8 +3467,8 @@ packages:
   fast-uri@3.1.9:
     resolution: {integrity: sha512-hS/0Wt3Ya043oKXs0sIxrMpKQITXhMLIrVAKKXi4gozGC9v7YRWVnXIZzjNPTO02M9BdxLCWqK1yRXgNziVyJQ==}
 
-  fastmcp@4.24.2:
-    resolution: {integrity: sha512-TNN75MCKTGZGUOtvYS+nZvZi/Ozl7ec6A/uJ3/QNKxvvHVjkLpSEqPrP83b/O/lcQ4d4RYiCuYUjrtUhMcw8VA==}
+  fastmcp@4.24.5:
+    resolution: {integrity: sha512-C8C6ZQv4HtjSaTC7nHLlrzZ8aJC9GQvJ4nbVb/B0FHTwnobJkoZ8SniWNWMt/M1jjVQbaK7sw8zaFOXRoXCAbw==}
     hasBin: true
     peerDependencies:
       ajv: ^8.0.0
@@ -3573,8 +3590,8 @@ packages:
     resolution: {integrity: sha512-kVCxPF3vQM/N0B1PmoqVUqgHP+EeVjmZSQn+1oCRPxd2P21P2F19lIgbR3HBosbB1PUhOAoctJnfEn2GbN2eZA==}
     engines: {node: '>=18'}
 
-  glob@14.0.3:
-    resolution: {integrity: sha512-A1vjIwC3qpdCso45Iw127gnp7sPhqgY8lUQhDrArIs+GbmfaaVPFuoyy7WyLT9EPZCRZ7j7aLdwUhQmHWesEow==}
+  glob@14.0.4:
+    resolution: {integrity: sha512-mMiwNKoJZ4HAIRVJxotO6LsNRReA30gQwP9E2/p94tfLv+jygCNpKDjhhSL6OLY6LE371EZm5EAf7RpYuUqlsw==}
     engines: {node: 18 || 20 || >=22}
 
   google-logging-utils@1.1.3:
@@ -3654,8 +3671,8 @@ packages:
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
 
-  import-in-the-middle@3.5.3:
-    resolution: {integrity: sha512-usm/IiY63VtOyx/dm7uEoZV+EsanCDmwRUroQZIkFLGu1NVXZ8mZqIOhaN4QIJ7EsbMTuQbJXwCySCx+ozMA8g==}
+  import-in-the-middle@3.6.0:
+    resolution: {integrity: sha512-xRU7hI24S2FhucXtuZXn8EpcOjfVP6iiEQyR0USayPeaOroEmSsNlqnl95866iRdRtkHrd6Q/Z4D14R60au0+A==}
     engines: {node: '>=18'}
 
   imurmurhash@0.1.4:
@@ -3859,8 +3876,8 @@ packages:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
 
-  mcp-proxy@6.9.0:
-    resolution: {integrity: sha512-ESLLBs4UfvxZFOcWn5P0zxyGt7e3uJgkzcCZSAUd61Kq1hm3JViXVVHH8xSzMxTFK1VdlaY1HbZaY7i2oNjoFw==}
+  mcp-proxy@6.9.1:
+    resolution: {integrity: sha512-s4ZP3qzGU8WhCWxNdSj9VQcDAIBu1AGFaM8uP4+CPQ7krXPdcsjMbRg4Z5Q91uC0CU793YCyeECLO50sK8PczA==}
     hasBin: true
 
   media-typer@1.1.1:
@@ -3887,8 +3904,8 @@ packages:
     resolution: {integrity: sha512-Lbgzdk0h4juoQ9fCKXW4by0UJqj+nOOrI9MJ1sSj4nI8aI2eo1qmvQEie4VD1glsS250n15LsWsYtCugiStS5A==}
     engines: {node: '>=18'}
 
-  minimatch@11.0.4:
-    resolution: {integrity: sha512-/UJ1dEoVQTjPNDh6SGlUo+ueLMmoHTas4q+8yaAR/5t6nLAIiBDJtoYUh20IYleix7ehiQkgczb84PE3uzHkxg==}
+  minimatch@11.0.5:
+    resolution: {integrity: sha512-snPlVppFcYWfLLFQGhDxUyBcHNtMlWmn3jtj7pEaO+DP8pqL0IvAzXhMYmn1z9ASNtgmwLBdFxSf4tMUB0OTKA==}
     engines: {node: 20 || >=22}
 
   minipass@7.1.3:
@@ -4078,8 +4095,8 @@ packages:
   once@1.4.0:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
 
-  openai@7.51.0:
-    resolution: {integrity: sha512-Ibu1d3ilmMbXRS8Y3WUPNTKk96p0rg1/BSlqASnvKy6i8efKjliUZGSfUTTCRcZJNGQ3xXMdita2REQOlH68JA==}
+  openai@7.53.0:
+    resolution: {integrity: sha512-PXiIZraFYMb2QYgTtWqDA16Oszj4fWRZNn7qLIAddmiJxM5uQPWBFaxp9O8MhLfTUOQ+iQsnFSRJhLPecsGovQ==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       '@aws-sdk/credential-provider-node': '>=3.972.0 <4'
@@ -4108,8 +4125,8 @@ packages:
   openapi-types@12.1.3:
     resolution: {integrity: sha512-N4YtSYJqghVu4iek2ZUvcN/0aqH1kRDuNqzcycDxhOUpg7GdvLa2F3DgS6yBNhInhv2r/6I0Flkn7CqL8+nIcw==}
 
-  oxfmt@0.76.0:
-    resolution: {integrity: sha512-Yo9RIn9lRWTm/U8obHbXUWc39lCpEFXlEggFoPx01zS18OCFi7mAwMmL05+p1AunuJgSkONffWyBHJzpMMCRuQ==}
+  oxfmt@0.77.0:
+    resolution: {integrity: sha512-3bPDJwLZf4i6dOaQS+6GOI/YUFTHNif7qw4nknbZyzdB0uws57tD8jA/GLGC9J7kjyf6d/eVWm73b43VeMUqGw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -4134,8 +4151,8 @@ packages:
     resolution: {integrity: sha512-5B3UtH71kycPHUC1kFEIffivEAs49SUmkJuHZOZnTY0NPj4legp0bcsCQucuLVNCoJzDucS68P2C4WIhP+LypQ==}
     hasBin: true
 
-  oxlint@1.91.0:
-    resolution: {integrity: sha512-vjy/cBZcEFcYh3dbxUoQK+bjc+QaY3ZWo86aJkZ5YAwp/HyiqP7dTdNgbvcIVJafhAH5sZbTqBp4sZcicEZngA==}
+  oxlint@1.92.0:
+    resolution: {integrity: sha512-y9iRiRwVjVFqzKNXZJ9bT/GYRdf+F9Gy+a1Yju2Aq3xqqa4FJYXHI8VrxlpzxKDvkYRohvJX42m/eH+qkQPOFw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -4827,7 +4844,7 @@ snapshots:
 
   '@aws-cdk/asset-node-proxy-agent-v6@2.1.3': {}
 
-  '@aws-cdk/cloud-assembly-schema@55.3.0': {}
+  '@aws-cdk/cloud-assembly-schema@55.4.0': {}
 
   '@aws-crypto/sha256-browser@5.2.0':
     dependencies:
@@ -4862,17 +4879,17 @@ snapshots:
       '@smithy/util-utf8': 2.3.0
       tslib: 2.9.1
 
-  '@aws-sdk/client-bedrock-runtime@3.1162.0':
+  '@aws-sdk/client-bedrock-runtime@3.1164.0':
     dependencies:
-      '@aws-sdk/core': 3.980.0
-      '@aws-sdk/credential-provider-node': 3.972.93
+      '@aws-sdk/core': 3.980.1
+      '@aws-sdk/credential-provider-node': 3.972.94
       '@aws-sdk/eventstream-handler-node': 3.972.40
       '@aws-sdk/middleware-eventstream': 3.972.36
-      '@aws-sdk/middleware-websocket': 3.972.63
-      '@aws-sdk/token-providers': 3.1162.0
+      '@aws-sdk/middleware-websocket': 3.972.64
+      '@aws-sdk/token-providers': 3.1164.0
       '@aws-sdk/types': 3.975.0
       '@smithy/core': 3.39.0
-      '@smithy/fetch-http-handler': 5.8.0
+      '@smithy/fetch-http-handler': 5.8.1
       '@smithy/node-http-handler': 4.14.2
       '@smithy/types': 4.20.0
       tslib: 2.9.1
@@ -4881,23 +4898,23 @@ snapshots:
     dependencies:
       '@aws-crypto/sha256-browser': 5.2.0
       '@aws-crypto/sha256-js': 5.2.0
-      '@aws-sdk/core': 3.980.0
-      '@aws-sdk/credential-provider-node': 3.972.93
-      '@aws-sdk/middleware-host-header': 3.972.56
-      '@aws-sdk/middleware-logger': 3.972.55
-      '@aws-sdk/middleware-recursion-detection': 3.972.57
-      '@aws-sdk/middleware-user-agent': 3.972.85
-      '@aws-sdk/region-config-resolver': 3.972.59
+      '@aws-sdk/core': 3.980.1
+      '@aws-sdk/credential-provider-node': 3.972.94
+      '@aws-sdk/middleware-host-header': 3.972.57
+      '@aws-sdk/middleware-logger': 3.972.56
+      '@aws-sdk/middleware-recursion-detection': 3.972.58
+      '@aws-sdk/middleware-user-agent': 3.972.86
+      '@aws-sdk/region-config-resolver': 3.972.60
       '@aws-sdk/types': 3.975.0
-      '@aws-sdk/util-endpoints': 3.996.54
-      '@aws-sdk/util-user-agent-browser': 3.972.56
-      '@aws-sdk/util-user-agent-node': 3.973.71
+      '@aws-sdk/util-endpoints': 3.996.55
+      '@aws-sdk/util-user-agent-browser': 3.972.57
+      '@aws-sdk/util-user-agent-node': 3.973.72
       '@smithy/config-resolver': 4.7.2
       '@smithy/core': 3.39.0
       '@smithy/eventstream-serde-browser': 4.5.2
       '@smithy/eventstream-serde-config-resolver': 4.6.2
       '@smithy/eventstream-serde-node': 4.5.2
-      '@smithy/fetch-http-handler': 5.8.0
+      '@smithy/fetch-http-handler': 5.8.1
       '@smithy/hash-node': 4.5.2
       '@smithy/invalid-dependency': 4.5.2
       '@smithy/middleware-content-length': 4.5.2
@@ -4922,19 +4939,19 @@ snapshots:
       '@smithy/util-utf8': 4.5.2
       tslib: 2.9.1
 
-  '@aws-sdk/client-sts@3.1162.0':
+  '@aws-sdk/client-sts@3.1164.0':
     dependencies:
-      '@aws-sdk/core': 3.980.0
-      '@aws-sdk/credential-provider-node': 3.972.93
+      '@aws-sdk/core': 3.980.1
+      '@aws-sdk/credential-provider-node': 3.972.94
       '@aws-sdk/signature-v4-multi-region': 3.996.51
       '@aws-sdk/types': 3.975.0
       '@smithy/core': 3.39.0
-      '@smithy/fetch-http-handler': 5.8.0
+      '@smithy/fetch-http-handler': 5.8.1
       '@smithy/node-http-handler': 4.14.2
       '@smithy/types': 4.20.0
       tslib: 2.9.1
 
-  '@aws-sdk/core@3.980.0':
+  '@aws-sdk/core@3.980.1':
     dependencies:
       '@aws-sdk/types': 3.975.0
       '@aws-sdk/xml-builder': 3.972.42
@@ -4945,111 +4962,111 @@ snapshots:
       bowser: 2.15.0
       tslib: 2.9.1
 
-  '@aws-sdk/credential-provider-cognito-identity@3.972.80':
+  '@aws-sdk/credential-provider-cognito-identity@3.972.81':
     dependencies:
-      '@aws-sdk/nested-clients': 3.998.0
+      '@aws-sdk/nested-clients': 3.998.1
       '@aws-sdk/types': 3.975.0
       '@smithy/core': 3.39.0
       '@smithy/types': 4.20.0
       tslib: 2.9.1
 
-  '@aws-sdk/credential-provider-env@3.972.81':
+  '@aws-sdk/credential-provider-env@3.972.82':
     dependencies:
-      '@aws-sdk/core': 3.980.0
+      '@aws-sdk/core': 3.980.1
       '@aws-sdk/types': 3.975.0
       '@smithy/core': 3.39.0
       '@smithy/types': 4.20.0
       tslib: 2.9.1
 
-  '@aws-sdk/credential-provider-http@3.972.83':
+  '@aws-sdk/credential-provider-http@3.972.84':
     dependencies:
-      '@aws-sdk/core': 3.980.0
+      '@aws-sdk/core': 3.980.1
       '@aws-sdk/types': 3.975.0
       '@smithy/core': 3.39.0
-      '@smithy/fetch-http-handler': 5.8.0
+      '@smithy/fetch-http-handler': 5.8.1
       '@smithy/node-http-handler': 4.14.2
       '@smithy/types': 4.20.0
       tslib: 2.9.1
 
-  '@aws-sdk/credential-provider-ini@3.973.26':
+  '@aws-sdk/credential-provider-ini@3.973.27':
     dependencies:
-      '@aws-sdk/core': 3.980.0
-      '@aws-sdk/credential-provider-env': 3.972.81
-      '@aws-sdk/credential-provider-http': 3.972.83
-      '@aws-sdk/credential-provider-login': 3.972.88
-      '@aws-sdk/credential-provider-process': 3.972.81
-      '@aws-sdk/credential-provider-sso': 3.973.25
-      '@aws-sdk/credential-provider-web-identity': 3.972.87
-      '@aws-sdk/nested-clients': 3.998.0
+      '@aws-sdk/core': 3.980.1
+      '@aws-sdk/credential-provider-env': 3.972.82
+      '@aws-sdk/credential-provider-http': 3.972.84
+      '@aws-sdk/credential-provider-login': 3.972.89
+      '@aws-sdk/credential-provider-process': 3.972.82
+      '@aws-sdk/credential-provider-sso': 3.973.26
+      '@aws-sdk/credential-provider-web-identity': 3.972.88
+      '@aws-sdk/nested-clients': 3.998.1
       '@aws-sdk/types': 3.975.0
       '@smithy/core': 3.39.0
       '@smithy/credential-provider-imds': 4.5.2
       '@smithy/types': 4.20.0
       tslib: 2.9.1
 
-  '@aws-sdk/credential-provider-login@3.972.88':
+  '@aws-sdk/credential-provider-login@3.972.89':
     dependencies:
-      '@aws-sdk/core': 3.980.0
-      '@aws-sdk/nested-clients': 3.998.0
+      '@aws-sdk/core': 3.980.1
+      '@aws-sdk/nested-clients': 3.998.1
       '@aws-sdk/types': 3.975.0
       '@smithy/core': 3.39.0
       '@smithy/types': 4.20.0
       tslib: 2.9.1
 
-  '@aws-sdk/credential-provider-node@3.972.93':
+  '@aws-sdk/credential-provider-node@3.972.94':
     dependencies:
-      '@aws-sdk/credential-provider-env': 3.972.81
-      '@aws-sdk/credential-provider-http': 3.972.83
-      '@aws-sdk/credential-provider-ini': 3.973.26
-      '@aws-sdk/credential-provider-process': 3.972.81
-      '@aws-sdk/credential-provider-sso': 3.973.25
-      '@aws-sdk/credential-provider-web-identity': 3.972.87
+      '@aws-sdk/credential-provider-env': 3.972.82
+      '@aws-sdk/credential-provider-http': 3.972.84
+      '@aws-sdk/credential-provider-ini': 3.973.27
+      '@aws-sdk/credential-provider-process': 3.972.82
+      '@aws-sdk/credential-provider-sso': 3.973.26
+      '@aws-sdk/credential-provider-web-identity': 3.972.88
       '@aws-sdk/types': 3.975.0
       '@smithy/core': 3.39.0
       '@smithy/credential-provider-imds': 4.5.2
       '@smithy/types': 4.20.0
       tslib: 2.9.1
 
-  '@aws-sdk/credential-provider-process@3.972.81':
+  '@aws-sdk/credential-provider-process@3.972.82':
     dependencies:
-      '@aws-sdk/core': 3.980.0
+      '@aws-sdk/core': 3.980.1
       '@aws-sdk/types': 3.975.0
       '@smithy/core': 3.39.0
       '@smithy/types': 4.20.0
       tslib: 2.9.1
 
-  '@aws-sdk/credential-provider-sso@3.973.25':
+  '@aws-sdk/credential-provider-sso@3.973.26':
     dependencies:
-      '@aws-sdk/core': 3.980.0
-      '@aws-sdk/nested-clients': 3.998.0
-      '@aws-sdk/token-providers': 3.1162.0
+      '@aws-sdk/core': 3.980.1
+      '@aws-sdk/nested-clients': 3.998.1
+      '@aws-sdk/token-providers': 3.1164.0
       '@aws-sdk/types': 3.975.0
       '@smithy/core': 3.39.0
       '@smithy/types': 4.20.0
       tslib: 2.9.1
 
-  '@aws-sdk/credential-provider-web-identity@3.972.87':
+  '@aws-sdk/credential-provider-web-identity@3.972.88':
     dependencies:
-      '@aws-sdk/core': 3.980.0
-      '@aws-sdk/nested-clients': 3.998.0
+      '@aws-sdk/core': 3.980.1
+      '@aws-sdk/nested-clients': 3.998.1
       '@aws-sdk/types': 3.975.0
       '@smithy/core': 3.39.0
       '@smithy/types': 4.20.0
       tslib: 2.9.1
 
-  '@aws-sdk/credential-providers@3.1162.0':
+  '@aws-sdk/credential-providers@3.1164.0':
     dependencies:
-      '@aws-sdk/core': 3.980.0
-      '@aws-sdk/credential-provider-cognito-identity': 3.972.80
-      '@aws-sdk/credential-provider-env': 3.972.81
-      '@aws-sdk/credential-provider-http': 3.972.83
-      '@aws-sdk/credential-provider-ini': 3.973.26
-      '@aws-sdk/credential-provider-login': 3.972.88
-      '@aws-sdk/credential-provider-node': 3.972.93
-      '@aws-sdk/credential-provider-process': 3.972.81
-      '@aws-sdk/credential-provider-sso': 3.973.25
-      '@aws-sdk/credential-provider-web-identity': 3.972.87
-      '@aws-sdk/nested-clients': 3.998.0
+      '@aws-sdk/core': 3.980.1
+      '@aws-sdk/credential-provider-cognito-identity': 3.972.81
+      '@aws-sdk/credential-provider-env': 3.972.82
+      '@aws-sdk/credential-provider-http': 3.972.84
+      '@aws-sdk/credential-provider-ini': 3.973.27
+      '@aws-sdk/credential-provider-login': 3.972.89
+      '@aws-sdk/credential-provider-node': 3.972.94
+      '@aws-sdk/credential-provider-process': 3.972.82
+      '@aws-sdk/credential-provider-sso': 3.973.26
+      '@aws-sdk/credential-provider-web-identity': 3.972.88
+      '@aws-sdk/nested-clients': 3.998.1
       '@aws-sdk/types': 3.975.0
       '@smithy/core': 3.39.0
       '@smithy/credential-provider-imds': 4.5.2
@@ -5081,50 +5098,50 @@ snapshots:
       '@smithy/types': 4.20.0
       tslib: 2.9.1
 
-  '@aws-sdk/middleware-host-header@3.972.56':
+  '@aws-sdk/middleware-host-header@3.972.57':
     dependencies:
-      '@aws-sdk/core': 3.980.0
+      '@aws-sdk/core': 3.980.1
       tslib: 2.9.1
 
-  '@aws-sdk/middleware-logger@3.972.55':
+  '@aws-sdk/middleware-logger@3.972.56':
     dependencies:
-      '@aws-sdk/core': 3.980.0
+      '@aws-sdk/core': 3.980.1
       tslib: 2.9.1
 
-  '@aws-sdk/middleware-recursion-detection@3.972.57':
+  '@aws-sdk/middleware-recursion-detection@3.972.58':
     dependencies:
-      '@aws-sdk/core': 3.980.0
+      '@aws-sdk/core': 3.980.1
       tslib: 2.9.1
 
-  '@aws-sdk/middleware-user-agent@3.972.85':
+  '@aws-sdk/middleware-user-agent@3.972.86':
     dependencies:
-      '@aws-sdk/core': 3.980.0
+      '@aws-sdk/core': 3.980.1
       tslib: 2.9.1
 
-  '@aws-sdk/middleware-websocket@3.972.63':
+  '@aws-sdk/middleware-websocket@3.972.64':
     dependencies:
-      '@aws-sdk/core': 3.980.0
+      '@aws-sdk/core': 3.980.1
       '@aws-sdk/types': 3.975.0
       '@smithy/core': 3.39.0
-      '@smithy/fetch-http-handler': 5.8.0
+      '@smithy/fetch-http-handler': 5.8.1
       '@smithy/signature-v4': 5.7.5
       '@smithy/types': 4.20.0
       tslib: 2.9.1
 
-  '@aws-sdk/nested-clients@3.998.0':
+  '@aws-sdk/nested-clients@3.998.1':
     dependencies:
-      '@aws-sdk/core': 3.980.0
+      '@aws-sdk/core': 3.980.1
       '@aws-sdk/signature-v4-multi-region': 3.996.51
       '@aws-sdk/types': 3.975.0
       '@smithy/core': 3.39.0
-      '@smithy/fetch-http-handler': 5.8.0
+      '@smithy/fetch-http-handler': 5.8.1
       '@smithy/node-http-handler': 4.14.2
       '@smithy/types': 4.20.0
       tslib: 2.9.1
 
-  '@aws-sdk/region-config-resolver@3.972.59':
+  '@aws-sdk/region-config-resolver@3.972.60':
     dependencies:
-      '@aws-sdk/core': 3.980.0
+      '@aws-sdk/core': 3.980.1
       tslib: 2.9.1
 
   '@aws-sdk/signature-v4-multi-region@3.996.51':
@@ -5134,10 +5151,10 @@ snapshots:
       '@smithy/types': 4.20.0
       tslib: 2.9.1
 
-  '@aws-sdk/token-providers@3.1162.0':
+  '@aws-sdk/token-providers@3.1164.0':
     dependencies:
-      '@aws-sdk/core': 3.980.0
-      '@aws-sdk/nested-clients': 3.998.0
+      '@aws-sdk/core': 3.980.1
+      '@aws-sdk/nested-clients': 3.998.1
       '@aws-sdk/types': 3.975.0
       '@smithy/core': 3.39.0
       '@smithy/types': 4.20.0
@@ -5158,29 +5175,29 @@ snapshots:
       '@aws-sdk/is-array-buffer': 3.310.0
       tslib: 2.9.1
 
-  '@aws-sdk/util-endpoints@3.996.54':
+  '@aws-sdk/util-endpoints@3.996.55':
     dependencies:
-      '@aws-sdk/core': 3.980.0
+      '@aws-sdk/core': 3.980.1
       '@smithy/core': 3.39.0
       tslib: 2.9.1
 
-  '@aws-sdk/util-format-url@3.972.57':
+  '@aws-sdk/util-format-url@3.972.58':
     dependencies:
-      '@aws-sdk/core': 3.980.0
+      '@aws-sdk/core': 3.980.1
       tslib: 2.9.1
 
   '@aws-sdk/util-locate-window@3.965.10':
     dependencies:
       tslib: 2.9.1
 
-  '@aws-sdk/util-user-agent-browser@3.972.56':
+  '@aws-sdk/util-user-agent-browser@3.972.57':
     dependencies:
-      '@aws-sdk/core': 3.980.0
+      '@aws-sdk/core': 3.980.1
       tslib: 2.9.1
 
-  '@aws-sdk/util-user-agent-node@3.973.71':
+  '@aws-sdk/util-user-agent-node@3.973.72':
     dependencies:
-      '@aws-sdk/core': 3.980.0
+      '@aws-sdk/core': 3.980.1
       tslib: 2.9.1
 
   '@aws-sdk/util-utf8@3.310.0':
@@ -5223,7 +5240,7 @@ snapshots:
       '@opentelemetry/sdk-trace-base': 2.8.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.41.1
       acorn: 8.19.0
-      minimatch: 11.0.4
+      minimatch: 11.0.5
       pirates: 4.0.7
       rotating-file-stream: 3.2.10
       uuid: 14.0.3
@@ -5232,8 +5249,8 @@ snapshots:
 
   '@aws/bedrock-token-generator@1.1.0':
     dependencies:
-      '@aws-sdk/credential-providers': 3.1162.0
-      '@aws-sdk/util-format-url': 3.972.57
+      '@aws-sdk/credential-providers': 3.1164.0
+      '@aws-sdk/util-format-url': 3.972.58
       '@smithy/config-resolver': 4.7.2
       '@smithy/hash-node': 4.5.2
       '@smithy/invalid-dependency': 4.5.2
@@ -5307,11 +5324,11 @@ snapshots:
 
   '@dotenvx/primitives@3.3.1': {}
 
-  '@dotenvx/primitives@4.3.0': {}
+  '@dotenvx/primitives@4.4.0': {}
 
   '@dotenvx/providers@0.3.13':
     dependencies:
-      '@dotenvx/primitives': 4.3.0
+      '@dotenvx/primitives': 4.4.0
       '@dotenvx/tooling': 1.0.6
 
   '@dotenvx/tooling@1.0.6': {}
@@ -5443,7 +5460,7 @@ snapshots:
     dependencies:
       hono: 4.13.16
 
-  '@isaacs/nonrecursive-glob-match@1.0.3': {}
+  '@isaacs/nonrecursive-glob-match@1.1.0': {}
 
   '@jridgewell/resolve-uri@3.1.2': {}
 
@@ -5516,6 +5533,10 @@ snapshots:
     dependencies:
       '@opentelemetry/api': 1.9.1
 
+  '@opentelemetry/api-logs@0.222.0':
+    dependencies:
+      '@opentelemetry/api': 1.9.1
+
   '@opentelemetry/api@1.9.1': {}
 
   '@opentelemetry/auto-configuration-propagators@0.4.6(@opentelemetry/api@1.9.1)':
@@ -5549,7 +5570,7 @@ snapshots:
       '@opentelemetry/instrumentation-grpc': 0.219.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/instrumentation-hapi': 0.65.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/instrumentation-host-metrics': 0.2.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/instrumentation-http': 0.219.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/instrumentation-http': 0.222.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/instrumentation-ioredis': 0.67.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/instrumentation-kafkajs': 0.28.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/instrumentation-knex': 0.65.0(@opentelemetry/api@1.9.1)
@@ -5598,6 +5619,11 @@ snapshots:
   '@opentelemetry/context-async-hooks@2.8.0(@opentelemetry/api@1.9.1)':
     dependencies:
       '@opentelemetry/api': 1.9.1
+
+  '@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1)':
+    dependencies:
+      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/semantic-conventions': 1.41.1
 
   '@opentelemetry/core@2.12.0(@opentelemetry/api@1.9.1)':
     dependencies:
@@ -5858,11 +5884,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@opentelemetry/instrumentation-http@0.219.0(@opentelemetry/api@1.9.1)':
+  '@opentelemetry/instrumentation-http@0.222.0(@opentelemetry/api@1.9.1)':
     dependencies:
       '@opentelemetry/api': 1.9.1
-      '@opentelemetry/core': 2.8.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/instrumentation': 0.219.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/instrumentation': 0.222.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.41.1
       forwarded-parse: 2.1.2
     transitivePeerDependencies:
@@ -5929,7 +5955,7 @@ snapshots:
   '@opentelemetry/instrumentation-mongoose@0.67.0(@opentelemetry/api@1.9.1)':
     dependencies:
       '@opentelemetry/api': 1.9.1
-      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.9.1)
       '@opentelemetry/instrumentation': 0.221.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.41.1
     transitivePeerDependencies:
@@ -5990,7 +6016,7 @@ snapshots:
   '@opentelemetry/instrumentation-pg@0.73.0(@opentelemetry/api@1.9.1)':
     dependencies:
       '@opentelemetry/api': 1.9.1
-      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.9.1)
       '@opentelemetry/instrumentation': 0.221.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.41.1
       '@opentelemetry/sql-common': 0.42.0(@opentelemetry/api@1.9.1)
@@ -6080,7 +6106,7 @@ snapshots:
     dependencies:
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/api-logs': 0.219.0
-      import-in-the-middle: 3.5.3
+      import-in-the-middle: 3.6.0
       require-in-the-middle: 8.0.1
     transitivePeerDependencies:
       - supports-color
@@ -6089,7 +6115,16 @@ snapshots:
     dependencies:
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/api-logs': 0.221.0
-      import-in-the-middle: 3.5.3
+      import-in-the-middle: 3.6.0
+      require-in-the-middle: 8.0.1
+    transitivePeerDependencies:
+      - supports-color
+
+  '@opentelemetry/instrumentation@0.222.0(@opentelemetry/api@1.9.1)':
+    dependencies:
+      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/api-logs': 0.222.0
+      import-in-the-middle: 3.6.0
       require-in-the-middle: 8.0.1
     transitivePeerDependencies:
       - supports-color
@@ -6258,61 +6293,61 @@ snapshots:
 
   '@oxc-project/types@0.156.0': {}
 
-  '@oxfmt/binding-android-arm-eabi@0.76.0':
+  '@oxfmt/binding-android-arm-eabi@0.77.0':
     optional: true
 
-  '@oxfmt/binding-android-arm64@0.76.0':
+  '@oxfmt/binding-android-arm64@0.77.0':
     optional: true
 
-  '@oxfmt/binding-darwin-arm64@0.76.0':
+  '@oxfmt/binding-darwin-arm64@0.77.0':
     optional: true
 
-  '@oxfmt/binding-darwin-x64@0.76.0':
+  '@oxfmt/binding-darwin-x64@0.77.0':
     optional: true
 
-  '@oxfmt/binding-freebsd-x64@0.76.0':
+  '@oxfmt/binding-freebsd-x64@0.77.0':
     optional: true
 
-  '@oxfmt/binding-linux-arm-gnueabihf@0.76.0':
+  '@oxfmt/binding-linux-arm-gnueabihf@0.77.0':
     optional: true
 
-  '@oxfmt/binding-linux-arm-musleabihf@0.76.0':
+  '@oxfmt/binding-linux-arm-musleabihf@0.77.0':
     optional: true
 
-  '@oxfmt/binding-linux-arm64-gnu@0.76.0':
+  '@oxfmt/binding-linux-arm64-gnu@0.77.0':
     optional: true
 
-  '@oxfmt/binding-linux-arm64-musl@0.76.0':
+  '@oxfmt/binding-linux-arm64-musl@0.77.0':
     optional: true
 
-  '@oxfmt/binding-linux-ppc64-gnu@0.76.0':
+  '@oxfmt/binding-linux-ppc64-gnu@0.77.0':
     optional: true
 
-  '@oxfmt/binding-linux-riscv64-gnu@0.76.0':
+  '@oxfmt/binding-linux-riscv64-gnu@0.77.0':
     optional: true
 
-  '@oxfmt/binding-linux-riscv64-musl@0.76.0':
+  '@oxfmt/binding-linux-riscv64-musl@0.77.0':
     optional: true
 
-  '@oxfmt/binding-linux-s390x-gnu@0.76.0':
+  '@oxfmt/binding-linux-s390x-gnu@0.77.0':
     optional: true
 
-  '@oxfmt/binding-linux-x64-gnu@0.76.0':
+  '@oxfmt/binding-linux-x64-gnu@0.77.0':
     optional: true
 
-  '@oxfmt/binding-linux-x64-musl@0.76.0':
+  '@oxfmt/binding-linux-x64-musl@0.77.0':
     optional: true
 
-  '@oxfmt/binding-openharmony-arm64@0.76.0':
+  '@oxfmt/binding-openharmony-arm64@0.77.0':
     optional: true
 
-  '@oxfmt/binding-win32-arm64-msvc@0.76.0':
+  '@oxfmt/binding-win32-arm64-msvc@0.77.0':
     optional: true
 
-  '@oxfmt/binding-win32-ia32-msvc@0.76.0':
+  '@oxfmt/binding-win32-ia32-msvc@0.77.0':
     optional: true
 
-  '@oxfmt/binding-win32-x64-msvc@0.76.0':
+  '@oxfmt/binding-win32-x64-msvc@0.77.0':
     optional: true
 
   '@oxlint-tsgolint/darwin-arm64@7.0.2006':
@@ -6333,64 +6368,64 @@ snapshots:
   '@oxlint-tsgolint/win32-x64@7.0.2006':
     optional: true
 
-  '@oxlint/binding-android-arm-eabi@1.91.0':
+  '@oxlint/binding-android-arm-eabi@1.92.0':
     optional: true
 
-  '@oxlint/binding-android-arm64@1.91.0':
+  '@oxlint/binding-android-arm64@1.92.0':
     optional: true
 
-  '@oxlint/binding-darwin-arm64@1.91.0':
+  '@oxlint/binding-darwin-arm64@1.92.0':
     optional: true
 
-  '@oxlint/binding-darwin-x64@1.91.0':
+  '@oxlint/binding-darwin-x64@1.92.0':
     optional: true
 
-  '@oxlint/binding-freebsd-x64@1.91.0':
+  '@oxlint/binding-freebsd-x64@1.92.0':
     optional: true
 
-  '@oxlint/binding-linux-arm-gnueabihf@1.91.0':
+  '@oxlint/binding-linux-arm-gnueabihf@1.92.0':
     optional: true
 
-  '@oxlint/binding-linux-arm-musleabihf@1.91.0':
+  '@oxlint/binding-linux-arm-musleabihf@1.92.0':
     optional: true
 
-  '@oxlint/binding-linux-arm64-gnu@1.91.0':
+  '@oxlint/binding-linux-arm64-gnu@1.92.0':
     optional: true
 
-  '@oxlint/binding-linux-arm64-musl@1.91.0':
+  '@oxlint/binding-linux-arm64-musl@1.92.0':
     optional: true
 
-  '@oxlint/binding-linux-ppc64-gnu@1.91.0':
+  '@oxlint/binding-linux-ppc64-gnu@1.92.0':
     optional: true
 
-  '@oxlint/binding-linux-riscv64-gnu@1.91.0':
+  '@oxlint/binding-linux-riscv64-gnu@1.92.0':
     optional: true
 
-  '@oxlint/binding-linux-riscv64-musl@1.91.0':
+  '@oxlint/binding-linux-riscv64-musl@1.92.0':
     optional: true
 
-  '@oxlint/binding-linux-s390x-gnu@1.91.0':
+  '@oxlint/binding-linux-s390x-gnu@1.92.0':
     optional: true
 
-  '@oxlint/binding-linux-x64-gnu@1.91.0':
+  '@oxlint/binding-linux-x64-gnu@1.92.0':
     optional: true
 
-  '@oxlint/binding-linux-x64-musl@1.91.0':
+  '@oxlint/binding-linux-x64-musl@1.92.0':
     optional: true
 
-  '@oxlint/binding-openharmony-arm64@1.91.0':
+  '@oxlint/binding-openharmony-arm64@1.92.0':
     optional: true
 
-  '@oxlint/binding-win32-arm64-msvc@1.91.0':
+  '@oxlint/binding-win32-arm64-msvc@1.92.0':
     optional: true
 
-  '@oxlint/binding-win32-ia32-msvc@1.91.0':
+  '@oxlint/binding-win32-ia32-msvc@1.92.0':
     optional: true
 
-  '@oxlint/binding-win32-x64-msvc@1.91.0':
+  '@oxlint/binding-win32-x64-msvc@1.92.0':
     optional: true
 
-  '@oxlint/plugins@1.91.0': {}
+  '@oxlint/plugins@1.92.0': {}
 
   '@protobufjs/aspromise@1.1.2': {}
 
@@ -6496,7 +6531,7 @@ snapshots:
       '@smithy/core': 3.39.0
       tslib: 2.9.1
 
-  '@smithy/fetch-http-handler@5.8.0':
+  '@smithy/fetch-http-handler@5.8.1':
     dependencies:
       '@smithy/core': 3.39.0
       '@smithy/types': 4.20.0
@@ -6641,11 +6676,11 @@ snapshots:
 
   '@strands-agents/sdk@1.24.0(@aws/bedrock-token-generator@1.1.0)(@modelcontextprotocol/client@2.4.0)(@opentelemetry/api@1.9.1)(@opentelemetry/baggage-span-processor@0.5.0(@opentelemetry/api@1.9.1))(@opentelemetry/exporter-metrics-otlp-http@0.219.0(@opentelemetry/api@1.9.1))(@opentelemetry/exporter-trace-otlp-http@0.219.0(@opentelemetry/api@1.9.1))(@opentelemetry/resources@2.8.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.8.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.8.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.8.0(@opentelemetry/api@1.9.1))(@smithy/types@4.20.0)(express@5.3.0)(zod@4.6.7)':
     dependencies:
-      '@aws-sdk/client-bedrock-runtime': 3.1162.0
+      '@aws-sdk/client-bedrock-runtime': 3.1164.0
       '@modelcontextprotocol/client': 2.4.0
       '@modelcontextprotocol/ext-tasks': 0.2.3(@modelcontextprotocol/client@2.4.0)
       '@opentelemetry/api': 1.9.1
-      '@smithy/fetch-http-handler': 5.8.0
+      '@smithy/fetch-http-handler': 5.8.1
       '@types/json-schema': 7.0.15
       uuid: 14.0.3
       yaml: 2.9.1
@@ -6914,10 +6949,10 @@ snapshots:
     dependencies:
       '@aws-cdk/asset-awscli-v1': 2.2.292
       '@aws-cdk/asset-node-proxy-agent-v6': 2.1.3
-      '@aws-cdk/cloud-assembly-schema': 55.3.0
+      '@aws-cdk/cloud-assembly-schema': 55.4.0
       constructs: 10.8.1
 
-  aws-cdk@2.1147.0: {}
+  aws-cdk@2.1148.0: {}
 
   axios@1.21.0(debug@4.4.3):
     dependencies:
@@ -7034,11 +7069,11 @@ snapshots:
       object-assign: 4.1.1
       vary: 1.1.2
 
-  corsa-oxlint@1.14.2(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2006)):
+  corsa-oxlint@1.14.2(@oxlint/plugins@1.92.0)(oxlint@1.92.0(oxlint-tsgolint@7.0.2006)):
     dependencies:
       '@corsa-bind/napi': 1.14.2
-      '@oxlint/plugins': 1.91.0
-      oxlint: 1.91.0(oxlint-tsgolint@7.0.2006)
+      '@oxlint/plugins': 1.92.0
+      oxlint: 1.92.0(oxlint-tsgolint@7.0.2006)
 
   cross-inspect@1.0.1:
     dependencies:
@@ -7226,7 +7261,7 @@ snapshots:
 
   fast-uri@3.1.9: {}
 
-  fastmcp@4.24.2(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.15)(openapi-types@12.1.3):
+  fastmcp@4.24.5(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.15)(openapi-types@12.1.3):
     dependencies:
       '@apidevtools/swagger-parser': 13.1.0(openapi-types@12.1.3)
       '@modelcontextprotocol/sdk': 1.32.2(zod@4.6.7)
@@ -7235,7 +7270,7 @@ snapshots:
       file-type: 21.3.4
       fuse.js: 7.5.0
       hono: 4.13.16
-      mcp-proxy: 6.9.0
+      mcp-proxy: 6.9.1
       strict-event-emitter-types: 2.0.0
       uri-templates: 0.2.0
       xsschema: 0.4.4(zod-to-json-schema@3.25.2(zod@4.6.7))(zod@4.6.7)
@@ -7375,9 +7410,9 @@ snapshots:
       '@sec-ant/readable-stream': 0.4.1
       is-stream: 4.0.1
 
-  glob@14.0.3:
+  glob@14.0.4:
     dependencies:
-      minimatch: 11.0.4
+      minimatch: 11.0.5
       minipass: 7.1.3
       path-scurry: 3.0.0
 
@@ -7456,7 +7491,7 @@ snapshots:
 
   ieee754@1.2.1: {}
 
-  import-in-the-middle@3.5.3:
+  import-in-the-middle@3.6.0:
     dependencies:
       cjs-module-lexer: 2.3.0
       es-module-lexer: 3.0.4
@@ -7633,7 +7668,7 @@ snapshots:
 
   math-intrinsics@1.1.0: {}
 
-  mcp-proxy@6.9.0:
+  mcp-proxy@6.9.1:
     dependencies:
       '@modelcontextprotocol/client': 2.4.0
       '@modelcontextprotocol/server': 2.4.0
@@ -7657,9 +7692,9 @@ snapshots:
     dependencies:
       mime-db: 1.54.0
 
-  minimatch@11.0.4:
+  minimatch@11.0.5:
     dependencies:
-      '@isaacs/nonrecursive-glob-match': 1.0.3
+      '@isaacs/nonrecursive-glob-match': 1.1.0
       brace-expansion: 5.0.12
 
   minipass@7.1.3: {}
@@ -7705,9 +7740,9 @@ snapshots:
     dependencies:
       wrappy: 1.0.2
 
-  openai@7.51.0(@aws-sdk/credential-provider-node@3.972.93)(@smithy/hash-node@4.5.2)(@smithy/signature-v4@5.7.5)(undici@6.29.1)(zod@4.6.7):
+  openai@7.53.0(@aws-sdk/credential-provider-node@3.972.94)(@smithy/hash-node@4.5.2)(@smithy/signature-v4@5.7.5)(undici@6.29.1)(zod@4.6.7):
     optionalDependencies:
-      '@aws-sdk/credential-provider-node': 3.972.93
+      '@aws-sdk/credential-provider-node': 3.972.94
       '@smithy/hash-node': 4.5.2
       '@smithy/signature-v4': 5.7.5
       undici: 6.29.1
@@ -7715,34 +7750,34 @@ snapshots:
 
   openapi-types@12.1.3: {}
 
-  oxfmt@0.76.0:
+  oxfmt@0.77.0:
     dependencies:
       tinypool: 2.2.0
     optionalDependencies:
-      '@oxfmt/binding-android-arm-eabi': 0.76.0
-      '@oxfmt/binding-android-arm64': 0.76.0
-      '@oxfmt/binding-darwin-arm64': 0.76.0
-      '@oxfmt/binding-darwin-x64': 0.76.0
-      '@oxfmt/binding-freebsd-x64': 0.76.0
-      '@oxfmt/binding-linux-arm-gnueabihf': 0.76.0
-      '@oxfmt/binding-linux-arm-musleabihf': 0.76.0
-      '@oxfmt/binding-linux-arm64-gnu': 0.76.0
-      '@oxfmt/binding-linux-arm64-musl': 0.76.0
-      '@oxfmt/binding-linux-ppc64-gnu': 0.76.0
-      '@oxfmt/binding-linux-riscv64-gnu': 0.76.0
-      '@oxfmt/binding-linux-riscv64-musl': 0.76.0
-      '@oxfmt/binding-linux-s390x-gnu': 0.76.0
-      '@oxfmt/binding-linux-x64-gnu': 0.76.0
-      '@oxfmt/binding-linux-x64-musl': 0.76.0
-      '@oxfmt/binding-openharmony-arm64': 0.76.0
-      '@oxfmt/binding-win32-arm64-msvc': 0.76.0
-      '@oxfmt/binding-win32-ia32-msvc': 0.76.0
-      '@oxfmt/binding-win32-x64-msvc': 0.76.0
+      '@oxfmt/binding-android-arm-eabi': 0.77.0
+      '@oxfmt/binding-android-arm64': 0.77.0
+      '@oxfmt/binding-darwin-arm64': 0.77.0
+      '@oxfmt/binding-darwin-x64': 0.77.0
+      '@oxfmt/binding-freebsd-x64': 0.77.0
+      '@oxfmt/binding-linux-arm-gnueabihf': 0.77.0
+      '@oxfmt/binding-linux-arm-musleabihf': 0.77.0
+      '@oxfmt/binding-linux-arm64-gnu': 0.77.0
+      '@oxfmt/binding-linux-arm64-musl': 0.77.0
+      '@oxfmt/binding-linux-ppc64-gnu': 0.77.0
+      '@oxfmt/binding-linux-riscv64-gnu': 0.77.0
+      '@oxfmt/binding-linux-riscv64-musl': 0.77.0
+      '@oxfmt/binding-linux-s390x-gnu': 0.77.0
+      '@oxfmt/binding-linux-x64-gnu': 0.77.0
+      '@oxfmt/binding-linux-x64-musl': 0.77.0
+      '@oxfmt/binding-openharmony-arm64': 0.77.0
+      '@oxfmt/binding-win32-arm64-msvc': 0.77.0
+      '@oxfmt/binding-win32-ia32-msvc': 0.77.0
+      '@oxfmt/binding-win32-x64-msvc': 0.77.0
 
-  oxlint-plugin-awscdk@1.0.4(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2006)):
+  oxlint-plugin-awscdk@1.0.4(@oxlint/plugins@1.92.0)(oxlint@1.92.0(oxlint-tsgolint@7.0.2006)):
     dependencies:
-      corsa-oxlint: 1.14.2(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2006))
-      oxlint: 1.91.0(oxlint-tsgolint@7.0.2006)
+      corsa-oxlint: 1.14.2(@oxlint/plugins@1.92.0)(oxlint@1.92.0(oxlint-tsgolint@7.0.2006))
+      oxlint: 1.92.0(oxlint-tsgolint@7.0.2006)
       oxlint-tsgolint: 7.0.2006
       typescript: 7.0.2
     transitivePeerDependencies:
@@ -7757,27 +7792,27 @@ snapshots:
       '@oxlint-tsgolint/win32-arm64': 7.0.2006
       '@oxlint-tsgolint/win32-x64': 7.0.2006
 
-  oxlint@1.91.0(oxlint-tsgolint@7.0.2006):
+  oxlint@1.92.0(oxlint-tsgolint@7.0.2006):
     optionalDependencies:
-      '@oxlint/binding-android-arm-eabi': 1.91.0
-      '@oxlint/binding-android-arm64': 1.91.0
-      '@oxlint/binding-darwin-arm64': 1.91.0
-      '@oxlint/binding-darwin-x64': 1.91.0
-      '@oxlint/binding-freebsd-x64': 1.91.0
-      '@oxlint/binding-linux-arm-gnueabihf': 1.91.0
-      '@oxlint/binding-linux-arm-musleabihf': 1.91.0
-      '@oxlint/binding-linux-arm64-gnu': 1.91.0
-      '@oxlint/binding-linux-arm64-musl': 1.91.0
-      '@oxlint/binding-linux-ppc64-gnu': 1.91.0
-      '@oxlint/binding-linux-riscv64-gnu': 1.91.0
-      '@oxlint/binding-linux-riscv64-musl': 1.91.0
-      '@oxlint/binding-linux-s390x-gnu': 1.91.0
-      '@oxlint/binding-linux-x64-gnu': 1.91.0
-      '@oxlint/binding-linux-x64-musl': 1.91.0
-      '@oxlint/binding-openharmony-arm64': 1.91.0
-      '@oxlint/binding-win32-arm64-msvc': 1.91.0
-      '@oxlint/binding-win32-ia32-msvc': 1.91.0
-      '@oxlint/binding-win32-x64-msvc': 1.91.0
+      '@oxlint/binding-android-arm-eabi': 1.92.0
+      '@oxlint/binding-android-arm64': 1.92.0
+      '@oxlint/binding-darwin-arm64': 1.92.0
+      '@oxlint/binding-darwin-x64': 1.92.0
+      '@oxlint/binding-freebsd-x64': 1.92.0
+      '@oxlint/binding-linux-arm-gnueabihf': 1.92.0
+      '@oxlint/binding-linux-arm-musleabihf': 1.92.0
+      '@oxlint/binding-linux-arm64-gnu': 1.92.0
+      '@oxlint/binding-linux-arm64-musl': 1.92.0
+      '@oxlint/binding-linux-ppc64-gnu': 1.92.0
+      '@oxlint/binding-linux-riscv64-gnu': 1.92.0
+      '@oxlint/binding-linux-riscv64-musl': 1.92.0
+      '@oxlint/binding-linux-s390x-gnu': 1.92.0
+      '@oxlint/binding-linux-x64-gnu': 1.92.0
+      '@oxlint/binding-linux-x64-musl': 1.92.0
+      '@oxlint/binding-openharmony-arm64': 1.92.0
+      '@oxlint/binding-win32-arm64-msvc': 1.92.0
+      '@oxlint/binding-win32-ia32-msvc': 1.92.0
+      '@oxlint/binding-win32-x64-msvc': 1.92.0
       oxlint-tsgolint: 7.0.2006
 
   parse-ms@4.0.0: {}
@@ -7909,7 +7944,7 @@ snapshots:
 
   rimraf@5.0.10:
     dependencies:
-      glob: 14.0.3
+      glob: 14.0.4
 
   rolldown@1.2.16:
     dependencies:
